@@ -2,7 +2,7 @@
 function approve(id)
 {
     $.ajax({
-        url: '/jobs/approve',
+        url: 'approve',
         type: 'post',
         data: 'id='+id,
         success:function(response)

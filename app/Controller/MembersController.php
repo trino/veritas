@@ -29,12 +29,32 @@ class MembersController extends AppController
                 }
                 else
                 $path = $_SERVER['DOCUMENT_ROOT'].'app/webroot/img/uploads/';
+                
+                if($_SERVER['SERVER_NAME']=='localhost')
+                {
+                    $path = $_SERVER['DOCUMENT_ROOT'].'veritas/app/webroot/img/uploads/';
+                }
+                else
+                    $path = $_SERVER['DOCUMENT_ROOT'].'app/webroot/img/uploads/';
+                    
             $source = $_FILES['image']['tmp_name'];
             $destination = $path.$_FILES['image']['name'];
+             //move_uploaded_file($source,$destination);
+            /*
+            $this->Image = $this->Components->load('Image');
+            if($destination1 = $this->Image->resize($source,$_FILES['image']['name'],'60','60'))
+            {
+                //print_r($this->Image->getErrors());
+                //die($destination1);
+                copy($destination1,$path);
+            }
+            */
             move_uploaded_file($source,$destination);
             $max_width = 60;
             $max_height = 60;
-            list($w, $h) = getimagesize($destination);
+            
+            list($w, $h ) = getimagesize($destination);
+            //die($image_params['mime']);
             if($w > $h)
             {
                 $width = $max_width;
@@ -49,10 +69,36 @@ class MembersController extends AppController
                 $width = $ratio * $w;
             }
             	$virtual_image = imagecreatetruecolor($width, $height);
-                $image = imagecreatefromjpeg($destination);
-            	imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
-            	imagejpeg($virtual_image, $destination);
-
+            
+            $image_params = getimagesize($destination);
+            $ext = $image_params['mime'];
+            switch($ext)
+            {
+                case 'image/png':
+                    $image = imagecreatefrompng($destination);
+                    imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
+    	            imagepng($virtual_image, $destination);
+                    break;
+                case 'image/gif':
+                    $image = imagecreatefromgif($destination);
+                    imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
+                	imagegif($virtual_image, $destination);
+                    break;
+                case 'image/jpeg':
+                    $image = imagecreatefromjpeg($destination);
+                    imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
+                	imagejpeg($virtual_image, $destination);
+                    break;
+                default:
+                    $image = imagecreatefromjpeg($destination);
+                    imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
+                	imagejpeg($virtual_image, $destination);
+                    break; 
+            }    
+                //$image = imagecreatefromjpeg($destination);
+            //	imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
+            //	imagejpeg($virtual_image, $destination);
+            
             $arr['full_name']=$_POST['full_name'];
             $arr['title'] = $_POST['title'];
             $arr['address'] = $_POST['address'];

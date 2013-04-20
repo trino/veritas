@@ -3,7 +3,7 @@
     {
         var em=$('#email').val();
         $.ajax({
-            url: '/comp/check_email',
+            url: 'check_email',
             type: 'post',
             data: 'em='+em,
             success:function(response)

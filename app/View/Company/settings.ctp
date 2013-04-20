@@ -3,7 +3,7 @@ function check_pass()
 {
     var pass= $('#old_password').val();
     $.ajax({
-        url: '/company/check_pass',
+        url: 'check_pass',
         type : 'post',
         data : 'pass='+pass,
         success:function(response)
@@ -37,7 +37,7 @@ function check_email()
 {
     var email=$('#email').val();
     $.ajax({
-        url: '/company/check_email',
+        url: 'check_email',
         type: 'post',
         data: 'email='+email,
         success:function(response)

@@ -8,7 +8,7 @@ function sort(value)
        
       $.ajax({
         
-        url : '/jobs/sorting',
+        url : 'sorting',
         type: 'post',
         data: 'order='+order+'&type='+value,
         success: function(data)

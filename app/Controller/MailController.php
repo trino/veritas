@@ -4,7 +4,7 @@ class MailController extends AppController
     public $helpers = array('Html');
     var $components = array('Email');
     public $paginate = array(
-        'limit' => 1,
+        'limit' => 15,
         'order' => array('date'=>'desc')
     );
     function __construct(CakeRequest $request, CakeResponse $response)
@@ -20,7 +20,7 @@ class MailController extends AppController
     {
         if($this->Session->read('avatar'))
         {
-            $this->paginate=array('conditions'=>array('recipients_id'=>'0','delete_for IN ("s","")'),'limit'=>1,'order'=>array('date'=>'desc'));
+            $this->paginate=array('conditions'=>array('recipients_id'=>'0','delete_for IN ("s","")'),'limit'=>15,'order'=>array('date'=>'desc'));
             $em= $this->paginate('Mail');
             $this->set('email',$em);
             
@@ -28,7 +28,7 @@ class MailController extends AppController
         }
         else
         {
-            $this->paginate=array('conditions'=>array('recipients_id'=>$this->Session->read('id'),'delete_for IN("s","")'),'limit'=>1,'order'=>array('date'=>'desc'));
+            $this->paginate=array('conditions'=>array('recipients_id'=>$this->Session->read('id'),'delete_for IN("s","")'),'limit'=>15,'order'=>array('date'=>'desc'));
             $em= $this->paginate('Mail');
             $this->set('email',$em);
             //$this->set('email',$this->Mail->find('all',array('conditions'=>array('recipients_id'=>$this->Session->read('id')))));
@@ -78,6 +78,22 @@ class MailController extends AppController
                 $this->Email->send($message);
         }
         $data = $this->Mail->find('first',array('conditions'=>array('id'=>$id)));
+        $par = $data['Mail']['parent'];
+        if($par)
+        $all = $this->Mail->find('all',array('OR'=>array('parent'=>$par,'id'=>$par),'order'=>'id DESC'));
+        else
+        $all = $this->Mail->find('all',array('conditions'=>array('id'=>$id),'order'=>'id DESC'));
+        $this->set('all',$all);
+        $this->set('member',$this->Member);
+        $this->set('user',$this->User);
+        $this->Mail->id=$id;
+        $this->Mail->saveField('status','read');
+        
+        
+        
+        
+        /*
+        $data = $this->Mail->find('first',array('conditions'=>array('id'=>$id)));
         $u_id=$data['Mail']['sender_id'];
         if($u_id=='0')
         {
@@ -104,9 +120,8 @@ class MailController extends AppController
             $this->set('reply',$this->Mail->find('all',array('conditions'=>array('id'=>$p_id))));
         }
         
-        $this->set('member',$this->Member->find('all'));
-        $this->Mail->id=$id;
-        $this->Mail->saveField('status','read');
+        //$this->set('member',$this->Member->find('all'));*/
+        
     }
     
     public function sent_mail()

@@ -22,7 +22,7 @@
     <?php
     foreach($image as $i)
     {?>
-        <li><a href="/strike/img/documents/<?php echo $i['Image']['image']; ?>" rel="prettyPhoto[gallery1]"><?php echo $this->Html->image('documents/'.$i['Image']['image'],array('width'=>'100','height'=>'100')); ?></a></li>
+        <li><a href="<?php echo $base_url;?>img/documents/<?php echo $i['Image']['image']; ?>" rel="prettyPhoto[gallery1]"><?php echo $this->Html->image('documents/'.$i['Image']['image'],array('width'=>'100','height'=>'100')); ?></a></li>
         
     <?php } 
     ?>
@@ -33,7 +33,7 @@
     <?php 
         foreach($do as $d)
         { ?>
-            <a class="btn" href="https://docs.google.com/viewer?url=http://localhost/strike/img/documents/<?php echo $d['Doc']['doc'];  ?>"><?php echo $d['Doc']['doc'];  ?></a>
+            <a class="btn" href="https://docs.google.com/viewer?url=<?php echo $base_url;?>img/documents/<?php echo $d['Doc']['doc'];  ?>"><?php echo $d['Doc']['doc'];  ?></a>
         <?php }
     ?>
     <div class="clear"></div>
@@ -44,15 +44,15 @@
     function video(value)
     {
         jwplayer("myElement").setup({
-        file: "/strike/img/documents/"+value,
-        image: "/strike/img/documents/ZaideesVID-Clip1.flv"
+        file: "<?php echo $base_url;?>img/documents/"+value,
+        image: "<?php echo $base_url;?>img/documents/ZaideesVID-Clip1.flv"
     });
     }
     $(function(){
     var video = $('#first').val();
     jwplayer("myElement").setup({
-        file: "/strike/img/documents/"+video,
-        image: "/strike/img/documents/ZaideesVID-Clip1.flv"
+        file: "<?php echo $base_url;?>img/documents/"+video,
+        image: "<?php echo $base_url;?>img/documents/ZaideesVID-Clip1.flv"
     });
     });
 </script>
