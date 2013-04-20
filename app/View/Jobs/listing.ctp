@@ -1,3 +1,4 @@
+<?php include_once('inc.php');?>
 <script>
 function sort(value)
 {

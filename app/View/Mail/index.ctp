@@ -1,3 +1,4 @@
+<?php include_once('inc.php');?>
 <div id="table">
 <h2>Inbox</h2>
 <?php echo $this->Html->link('Inbox','/mail', array('class'=>'btn btn-primary reg-company')); ?>

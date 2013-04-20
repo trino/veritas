@@ -1,3 +1,4 @@
+<?php include_once('inc.php');?>
 <?php 
     if($this->Session->read('avatar'))
     {
