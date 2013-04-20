@@ -112,8 +112,9 @@ $parents = $a['Mail']['id'];
 $(function(){
     
    $('.clickable tr').hide();
-   $('.clickable').css('background','#ccc');
+   $('.clickable').css('background','#e5e5e5');
    $('.clickable').css('display','block');
+   $('.clickable').css('border-radius','5px');
    $('.clickable').css('padding','10px');
    $('.clickable').css('cursor','pointer');
    $('.show').show();   
@@ -129,7 +130,7 @@ $(function(){
     var di = $(this).attr('id');
     $('#'+di+ ' tr').hide();
     $('.show').show();
-    $(this).css('background','#ccc');
+    $(this).css('background','#e5e5e5');
    }
    );
 });
