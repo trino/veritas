@@ -71,7 +71,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
             {
                 var a='<a href="<?php echo $base_url;?>/mail">You Have received '+response+' email(s)</a>'
                 if(response>0)
-                $('.notific').html(' ('+response+')');
+                $('.notific').html('&nbsp;'+response+'&nbsp;');
                 else
                 $('.notific').html('');
             }
@@ -87,7 +87,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
             {
                 var a='<a href="<?php echo $base_url;?>mail">You Have received '+response+' email(s)</a>'
                 if(response>0)
-                $('.notific').html(' ('+response+')');
+                $('.notific').html('&nbsp;'+response+'&nbsp;');
                 else
                 $('.notific').html('');
             }
@@ -155,7 +155,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
             <?php // echo $this->Html->link('<i class="icon-list"></i>'.'Pages','/dashboard/home',array('escape' => false,)); ?>
             <?php }?>
             <?php  echo $this->Html->link('<i class="icon-flag"></i>'.'Job Manager','/jobs',array('escape' => false,)); ?>
-            <?php  echo $this->Html->link('<i class="icon-envelope-alt"></i>'.'Mail<span class="notific"></span>','/mail',array('escape' => false,)); ?>
+            <?php  echo $this->Html->link('<i class="icon-envelope-alt"></i>'.'Mail <span class="notific"></span>','/mail',array('escape' => false,)); ?>
             <?php  echo $this->Html->link('<i class="icon-off"></i>'.'Logout','/admin/logout',array('escape' => false,)); ?>
             <?php //echo $this->Html->link('Document','/uploads'); ?>
 

@@ -6,10 +6,13 @@
 </script>
 
 <div id="table">
- <table>
+<h3 style="padding-left:15px;"><?php echo $subj;?></h3>
+ <table class="tables">
 <?php 
 $i=0;
+$j = 0;
 foreach($all as $a){
+    $j++;
     if($a['Mail']['parent']!=0)
     $parents = $a['Mail']['parent'];
     if($i==0)
@@ -35,15 +38,15 @@ foreach($all as $a){
         }
     }
     ?>
-    <tr><td><label>Sent By:</label> <?php if($a['Mail']['sender_id']=='0')echo 'Admin';else{
+    <table id="span<?php echo $j;?>" class="clickable">
+    <tr class="show"><td> <b>Sent By:</b> <?php if($a['Mail']['sender_id']=='0')echo 'Admin';else{
         $qs = $member->find('first',array('conditions'=>array('id'=>$a['Mail']['sender_id'])));
         echo $qs['Member']['full_name'];
         
-    } ?></td></tr>
-    <tr><td><label>Subject :</label><?php echo $a['Mail']['subject']; ?></td></tr>
-    <tr><td><label>Message:</label><?php echo $a['Mail']['message']; ?></td></tr>
-    <tr><td><hr /></td></tr>
-
+    } ?> &nbsp; [<?php echo $a['Mail']['date'];?>]</td></tr>
+    <tr><td><?php echo $a['Mail']['message']; ?></td></tr>
+    <tr><td>&nbsp;</td></tr>
+    </table>
     <?php
     
 }
@@ -52,7 +55,7 @@ $parents = $a['Mail']['id'];
 /*
 ?>
 
-<tr><td><label>Sent By:</label><b><?php echo $name; ?></b> <?php echo $sender; ?></td></tr>
+<tr><td><label>Sent By:</label><b><?php echo $name; ?></b> <?php echo $sender; ?> </td></tr>
 <tr><td><label>Subject :</label><?php echo $email['Mail']['subject']; ?></td></tr>
 <tr><td><label>Message:</label><?php echo $email['Mail']['message']; ?></td></tr>
 <tr><td>
@@ -104,3 +107,29 @@ $parents = $a['Mail']['id'];
 </form>
 */?>
 </div>
+<script>
+$(function(){
+    
+   $('.clickable tr').hide();
+   $('.clickable').css('background','#ccc');
+   $('.clickable').css('display','block');
+   $('.clickable').css('padding','10px');
+   $('.clickable').css('cursor','pointer');
+   $('.show').show();   
+   $('#span<?php echo $j;?> tr').show(); 
+   $('#span<?php echo $j;?>').css('background','none');
+   $('.clickable').toggle(
+   function(){
+    var di = $(this).attr('id');
+    $('#'+di+ ' tr').show();
+    $(this).css('background','none');
+   },
+   function(){
+    var di = $(this).attr('id');
+    $('#'+di+ ' tr').hide();
+    $('.show').show();
+    $(this).css('background','#ccc');
+   }
+   );
+});
+</script>

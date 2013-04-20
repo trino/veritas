@@ -16,7 +16,7 @@ figure{margin:0; padding: 0;}
 .left{float:left;}
 .right{float:right;}
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td{font-family: 'Oxygen', sans-serif; font-weight: 400;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td{font-family: 'Oxygen', sans-serif; }
 .clear{clear:both;}
 
 
@@ -124,3 +124,24 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 .main.user-main .messagee h1{ font-size: 20px; font-weight: bold; margin-bottom: 10px; text-transform: capitalize;}
 .main.user-main .login{ float: right;}
 .line{border-right:1px dashed #ccc; float: left; width: 514px; margin-top: 10px;}
+.notific{
+     -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #F03D25;
+    border-color: #E23923 #D83722 #C0311E;
+    border-image: none;
+    border-left: 1px solid #D83722;
+    border-radius: 2px 2px 2px 2px;
+    border-right: 1px solid #D83722;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(0, 39, 121, 0.77);
+    display: block;
+    float:right;
+    border-radius:2px;
+    
+    margin-right:140px;
+    padding: 0 1px;
+}
