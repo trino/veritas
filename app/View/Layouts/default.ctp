@@ -107,7 +107,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
         <?php 
         if($this->Session->read('avatar')){?>
 			<h1>Welcome <?php echo $this->Session->read('avatar');?></h1>
-            <div class="right user-panel">
+            <div class="right user-panel" style="border:1px solid green;width:200px; float:right;">
                 <?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => '', 'class'=>'image'))?>
                 <div class="links">
                 <?php  echo $this->Html->link('<i class="icon-user"></i> '.'User Preference','/dashboard/settings',array('escape' => false,)); ?>
@@ -121,9 +121,10 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
             if($this->Session->read('user'))
             {
                 ?>
-                <div class="left">Welcome <strong><?php echo $this->Session->read('user');?></strong></div>
 
-                <div class="right user-panel">
+                <div class="right user-panel" style="border:1px solid green;width:200px; float:right;">
+				                <div class="left" style="color:#999;">Welcome <strong><?php echo $this->Session->read('user');?></strong></div>
+
                     <?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => ''))?>
                     <div class="links">
                      <?php  echo $this->Html->link('<i class="icon-user"></i>'.'User Preference','/dashboard/settings',array('escape' => false,)); ?>

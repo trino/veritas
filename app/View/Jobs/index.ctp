@@ -13,7 +13,7 @@ if($this->Session->read('avatar'))
 			?>
             <?php if($job)
     echo $this->Html->link('Assign Job to User','listing',array('class'=>'btn btn-primary reg-company')); 
-    echo $this->Html->link('Pending Jobs','/jobs/pending',array('class'=>'btn btn-primary reg-company'));
+   // echo $this->Html->link('Pending Jobs','/jobs/pending',array('class'=>'btn btn-primary reg-company'));
    }
    ?>
    
