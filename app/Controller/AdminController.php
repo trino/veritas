@@ -27,7 +27,7 @@ class AdminController extends AppController {
         $qu = $this->Member->find('first',array('conditions'=>array('email'=>$un,'password'=>$pw)));
         if($q)
         {
-            $this->Session->write(array('avatar'=>$q['User']['name_avatar'],'email'=>$q['User']['email'],'image'=>$q['User']['picture'],'id'=>$q['User']['id'],'view'=>'1'));
+            $this->Session->write(array('admin'=>1,'avatar'=>$q['User']['name_avatar'],'email'=>$q['User']['email'],'image'=>$q['User']['picture'],'id'=>$q['User']['id'],'view'=>'1'));
             $this->redirect('/dashboard');
         }
         else if($qu)
