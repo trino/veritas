@@ -1,3 +1,4 @@
+<?php include_once('inc.php');?>
 <div id="table">
     <h2>Company Lists</h2>
 <table>

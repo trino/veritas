@@ -1,3 +1,4 @@
+<?php include_once('inc.php');?>
 <script>
 $(function(){
     $( "#start_date" ).datepicker({dateFormat: "yy-mm-dd"});

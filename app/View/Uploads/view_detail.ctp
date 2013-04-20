@@ -1,3 +1,4 @@
+<?php include_once('inc.php');?>
 <?php echo $this->Html->css('prettyPhoto'); ?>
 <?php echo $this->Html->script('jquery.prettyPhoto'); ?>
 <div id="table">

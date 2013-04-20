@@ -1,3 +1,4 @@
+<?php include_once('inc.php');?>
 <div id="table">
 <h2>User Manager</h2>
 

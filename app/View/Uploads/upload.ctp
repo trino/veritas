@@ -1,3 +1,4 @@
+<?php include_once('inc.php');?>
 <script type="text/javascript">
 $(function(){
    $('#document').val('1');
