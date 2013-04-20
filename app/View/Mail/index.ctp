@@ -14,10 +14,14 @@
 
 <?php 
     foreach($email as $e)
-    {  ?>
-    <tr>
-        <td><?php echo $this->Html->link($e['Mail']['sender'],'/mail/read/'.$e['Mail']['id'],array('class'=>'text-decoration: none;')); ?></td>
-        <td><?php echo $this->Html->link($e['Mail']['subject'],'/mail/read/'.$e['Mail']['id'],array('style'=>'text-decoration: none;')); ?></td>
+    {  
+        if($e['Mail']['status']=='unread'){$style="";}else{$style="background-color:#e5e5f5;";}
+        
+        ?>
+        
+    <tr style="<?php echo $style;?>">
+        <td><?php echo $this->Html->link($e['Mail']['sender'],'/mail/read/'.$e['Mail']['id'],array('style'=>'')); if($e['Mail']['status']=='unread'){echo "</b>";} ?></td>
+        <td><?php echo $this->Html->link($e['Mail']['subject'],'/mail/read/'.$e['Mail']['id'],array('style'=>'')); ?></td>
         <td><?php echo $e['Mail']['date']; ?></td>
         <td><?php echo $this->Html->link('Delete','/mail/delete_mail/reciever/'.$e['Mail']['id'],array('class'=>'btn btn-primary')); ?></td>
     </tr>
@@ -29,8 +33,8 @@
 <div id="pagination">
 <?php echo $this->Paginator->numbers(); ?>
 <!-- Shows the next and previous links -->
-<?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?>
-<?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled')); ?>
+<?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'btn btn-inverse disabled')); ?>
+&nbsp;&nbsp;&nbsp;<?php echo $this->Paginator->next('Next »', null, null, array('class' => 'btn btn-inverse disabled')); ?>
 </div>
 <?php }
     else

@@ -62,31 +62,31 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     $(function(){
         $.ajax({
             
-            url: '/admin/email_status',
+            url: '<?php if($_SERVER['SERVER_NAME'] == 'localhost'){echo "/veritas";}?>/admin/email_status',
             success:function(response)
             {
                 var a='<a href="/strike/mail">You Have received '+response+' email(s)</a>'
                 if(response>0)
-                $('#email_reponse').html(a);
+                $('.notific').html(' ('+response+')');
                 else
-                $('#email_reponse').html('');
+                $('.notific').html('');
             }
         });
     });
     setInterval(function(){
         $.ajax({
             
-            url: '/admin/email_status',
+            url: '<?php if($_SERVER['SERVER_NAME'] == 'localhost'){echo "/veritas";}?>/admin/email_status',
             success:function(response)
             {
                 var a='<a href="/strike/mail">You Have received '+response+' email(s)</a>'
                 if(response>0)
-                $('#email_reponse').html(a);
+                $('.notific').html(' ('+response+')');
                 else
-                $('#email_reponse').html('');
+                $('.notific').html('');
             }
         })
-    },50000);
+    },5000);
     </script>
     <style>label.error{display: none !important;}
 
@@ -148,7 +148,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
             <?php // echo $this->Html->link('<i class="icon-list"></i>'.'Pages','/dashboard/home',array('escape' => false,)); ?>
             <?php }?>
             <?php  echo $this->Html->link('<i class="icon-flag"></i>'.'Job Manager','/jobs',array('escape' => false,)); ?>
-            <?php  echo $this->Html->link('<i class="icon-envelope-alt"></i>'.'Mail','/mail',array('escape' => false,)); ?>
+            <?php  echo $this->Html->link('<i class="icon-envelope-alt"></i>'.'Mail<span class="notific"></span>','/mail',array('escape' => false,)); ?>
             <?php  echo $this->Html->link('<i class="icon-off"></i>'.'Logout','/admin/logout',array('escape' => false,)); ?>
             <?php //echo $this->Html->link('Document','/uploads'); ?>
 
