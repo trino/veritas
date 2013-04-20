@@ -20,7 +20,7 @@ function check()
     var pass = $('#old_password').val();
     $.ajax({
         
-        url : '/dashboard/check_password',
+        url : 'check_password',
         type: 'post',
         data: 'pass='+pass,
         success:function(data)
@@ -41,7 +41,7 @@ function check_email()
 {
     var email=$('#email').val();
     $.ajax({
-        url: '/dashboard/check_email',
+        url: 'check_email',
         type: 'post',
         data: 'email='+email,
         success:function(response)

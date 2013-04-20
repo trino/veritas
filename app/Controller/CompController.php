@@ -55,9 +55,32 @@
                     $width = $ratio * $w;
                 }
             	$virtual_image = imagecreatetruecolor($width, $height);
-                $image = imagecreatefromjpeg($destination);
-            	imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
-            	imagejpeg($virtual_image, $destination);   
+                $image_params = getimagesize($destination);
+            $ext = $image_params['mime'];
+            switch($ext)
+            {
+                case 'image/png':
+                    $image = imagecreatefrompng($destination);
+                    imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
+    	            imagepng($virtual_image, $destination);
+                    break;
+                case 'image/gif':
+                    $image = imagecreatefromgif($destination);
+                    imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
+                	imagegif($virtual_image, $destination);
+                    break;
+                case 'image/jpeg':
+                    $image = imagecreatefromjpeg($destination);
+                    imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
+                	imagejpeg($virtual_image, $destination);
+                    break;
+                default:
+                    $image = imagecreatefromjpeg($destination);
+                    imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
+                	imagejpeg($virtual_image, $destination);
+                    break; 
+            }    
+                   
                 $img=$_FILES['image']['name'];
                 
                 $arr['full_name'] = $_POST['name'];
@@ -168,9 +191,32 @@
                         $width = $ratio * $w;
                     }
             	   $virtual_image = imagecreatetruecolor($width, $height);
+                   $image_params = getimagesize($destination);
+            $ext = $image_params['mime'];
+            switch($ext)
+            {
+                case 'image/png':
+                    $image = imagecreatefrompng($destination);
+                    imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
+    	            imagepng($virtual_image, $destination);
+                    break;
+                case 'image/gif':
+                    $image = imagecreatefromgif($destination);
+                    imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
+                	imagegif($virtual_image, $destination);
+                    break;
+                case 'image/jpeg':
                     $image = imagecreatefromjpeg($destination);
-            	   imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
-            	   imagejpeg($virtual_image, $destination);   
+                    imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
+                	imagejpeg($virtual_image, $destination);
+                    break;
+                default:
+                    $image = imagecreatefromjpeg($destination);
+                    imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
+                	imagejpeg($virtual_image, $destination);
+                    break; 
+            }    
+                   
                    $image = $_FILES['image']['name'];
                 }
                 else

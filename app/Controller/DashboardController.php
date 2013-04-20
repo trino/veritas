@@ -74,6 +74,13 @@ class DashboardController extends AppController
                 }
                 else
                 $path = $_SERVER['DOCUMENT_ROOT'].'app/webroot/img/attachment/';
+        
+         if($_SERVER['SERVER_NAME']=='localhost')
+                {
+                    $path = $_SERVER['DOCUMENT_ROOT'].'veritas/app/webroot/img/attachment/';
+                }
+                else
+                    $path = $_SERVER['DOCUMENT_ROOT'].'app/webroot/img/attachment/';        
         if(isset($_POST['submit']))
         {
             $r = $_POST['recipients'];
@@ -195,6 +202,12 @@ class DashboardController extends AppController
                 }
                 else
                 $path = $_SERVER['DOCUMENT_ROOT'].'app/webroot/img/uploads/';
+                 if($_SERVER['SERVER_NAME']=='localhost')
+                {
+                    $path = $_SERVER['DOCUMENT_ROOT'].'veritas/app/webroot/img/uploads/';
+                }
+                else
+                    $path = $_SERVER['DOCUMENT_ROOT'].'app/webroot/img/uploads/';
                 $source = $_FILES['image']['tmp_name'];
                 $destination = $path.$_FILES['image']['name'];
                 move_uploaded_file($source,$destination);
@@ -215,9 +228,32 @@ class DashboardController extends AppController
                     $width = $ratio * $w;
                 }
             	$virtual_image = imagecreatetruecolor($width, $height);
-                $image = imagecreatefromjpeg($destination);
-            	imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
-            	imagejpeg($virtual_image, $destination);   
+                          $image_params = getimagesize($destination);
+            $ext = $image_params['mime'];
+            switch($ext)
+            {
+                case 'image/png':
+                    $image = imagecreatefrompng($destination);
+                    imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
+    	            imagepng($virtual_image, $destination);
+                    break;
+                case 'image/gif':
+                    $image = imagecreatefromgif($destination);
+                    imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
+                	imagegif($virtual_image, $destination);
+                    break;
+                case 'image/jpeg':
+                    $image = imagecreatefromjpeg($destination);
+                    imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
+                	imagejpeg($virtual_image, $destination);
+                    break;
+                default:
+                    $image = imagecreatefromjpeg($destination);
+                    imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
+                	imagejpeg($virtual_image, $destination);
+                    break; 
+            } 
+                
                 $img=$_FILES['image']['name'];
            }
            else

@@ -5,7 +5,7 @@
         var email = $('#email').val();
         $.ajax(
         {
-            url: '/members/check_email',
+            url: 'check_email',
             type: 'post',
             data: 'email='+email,
             success:function(response)

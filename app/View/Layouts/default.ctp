@@ -16,6 +16,8 @@
  * @since         CakePHP(tm) v 0.10.0.1076
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+include_once('inc.php');
+
 
 $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
 ?>
@@ -43,7 +45,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->fetch('script');
 	?>
     <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300' rel='stylesheet' type='text/css'>
-    <script src="http://localhost/strike/jwplayer/jwplayer.js"></script>
+    <script src="<?php echo $base_url;?>jwplayer/jwplayer.js"></script>
     <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
     <script type="text/javascript">jwplayer.key="N+fGwqE9+uBPKzrjO6qyGHWiJJRmw0UtbEU0iA==";</script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
@@ -62,10 +64,10 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     $(function(){
         $.ajax({
             
-            url: '/admin/email_status',
+            url: '<?php echo $base_url;?>admin/email_status',
             success:function(response)
             {
-                var a='<a href="/strike/mail">You Have received '+response+' email(s)</a>'
+                var a='<a href="<?php echo $base_url;?>/mail">You Have received '+response+' email(s)</a>'
                 if(response>0)
                 $('#email_reponse').html(a);
                 else
@@ -76,10 +78,10 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     setInterval(function(){
         $.ajax({
             
-            url: '/admin/email_status',
+            url: '<?php echo $base_url;?>admin/email_status',
             success:function(response)
             {
-                var a='<a href="/strike/mail">You Have received '+response+' email(s)</a>'
+                var a='<a href="<?php echo $base_url;?>mail">You Have received '+response+' email(s)</a>'
                 if(response>0)
                 $('#email_reponse').html(a);
                 else
@@ -139,7 +141,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
             {
          ?>
         <div id="sidebar">
-            <a href="/dashboard"><h2 style="color:#FFF; font-size:40px;">LOGO</h2></a>
+            <a href="<?php echo $base_url;?>dashboard"><h2 style="color:#FFF; font-size:40px;">LOGO</h2></a>
         <?php if($this->Session->read('avatar')){?>
             
 

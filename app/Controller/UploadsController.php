@@ -94,6 +94,13 @@ class UploadsController extends AppController
                 }
                 else
                 $path = $_SERVER['DOCUMENT_ROOT'].'app/webroot/img/documents/';
+                
+                 if($_SERVER['SERVER_NAME']=='localhost')
+                {
+                    $path = $_SERVER['DOCUMENT_ROOT'].'veritas/app/webroot/img/documents/';
+                }
+                else
+                    $path = $_SERVER['DOCUMENT_ROOT'].'app/webroot/img/documents/';
                 $q=$this->Member->find('first',array('conditions'=>array('email'=>$this->Session->read('email'))));
             $id=$q['Member']['id'];
             $arr['location'] = $_POST['location'];
