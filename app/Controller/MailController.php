@@ -28,11 +28,13 @@ class MailController extends AppController
         }
         else
         {
-            $this->paginate=array('conditions'=>array('recipients_id'=>$this->Session->read('id'),'delete_for IN("s","")'),'limit'=>15,'order'=>array('date'=>'desc'));
+            $this->paginate=array('conditions'=>array('parent'=>'0','recipients_id'=>$this->Session->read('id'),'delete_for IN("s","")'),'limit'=>15,'order'=>array('date'=>'desc'));
             $em= $this->paginate('Mail');
             $this->set('email',$em);
             //$this->set('email',$this->Mail->find('all',array('conditions'=>array('recipients_id'=>$this->Session->read('id')))));
         }
+        $cnt = $this->Mail;
+        $this->set('count',$cnt);
     }
     
     function read($id)

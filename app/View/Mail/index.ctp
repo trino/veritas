@@ -1,4 +1,4 @@
-<?php include_once('inc.php');?>
+<?php include('inc.php');?>
 <div id="table">
 <h2>Inbox</h2>
 <?php echo $this->Html->link('Inbox','/mail', array('class'=>'btn btn-primary reg-company')); ?>
@@ -17,12 +17,12 @@
     foreach($email as $e)
     {  
         if($e['Mail']['status']=='unread'){$style="";}else{$style="background-color:#e5e5f5;";}
-        
+        $cnt = $count->find('count',array('conditions'=>array('parent'=>$e['Mail']['id']))); 
         ?>
         
     <tr style="<?php echo $style;?>">
         <td><?php echo $this->Html->link($e['Mail']['sender'],'/mail/read/'.$e['Mail']['id'],array('style'=>'')); if($e['Mail']['status']=='unread'){echo "</b>";} ?></td>
-        <td><?php echo $this->Html->link($e['Mail']['subject'],'/mail/read/'.$e['Mail']['id'],array('style'=>'')); ?></td>
+        <td><?php echo $this->Html->link($e['Mail']['subject'].(($cnt!=0)? "(".$cnt.")" : ""),'/mail/read/'.$e['Mail']['id'],array('style'=>'')); ?></td>
         <td><?php echo $e['Mail']['date']; ?></td>
         <td><?php echo $this->Html->link('Delete','/mail/delete_mail/reciever/'.$e['Mail']['id'],array('class'=>'btn btn-primary')); ?></td>
     </tr>
