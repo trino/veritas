@@ -70,10 +70,18 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
             success:function(response)
             {
                 var a='<a href="<?php echo $base_url;?>/mail">You Have received '+response+' email(s)</a>'
-                if(response>0)
+                if(response>0){
                 $('.notific').html('&nbsp;'+response+'&nbsp;');
+                $('.notific').css('background-color','#F03D25');
+                $('.notific').css('border-color','#E23923 #D83722 #C0311E');
+                
+                }
                 else
+                {
+                $('.notific').css('background','none');
+                $('.notific').css('border','none');    
                 $('.notific').html('');
+                }
             }
         });
     });
