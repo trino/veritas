@@ -27,16 +27,18 @@ if(isset($msg))
 else
 {
 if($job){
+    ?>
+    <table>    
+    <?php        
 foreach($job as $j)
 {
     ?>
-    <table>
+    
         <tr><td>
-            <table>
-                <tr><td>
+            
         <?php echo $this->Html->image('uploads/'.$j['Job']['image'], array('alt' => '')); ?></td><td><?php echo $j['Job']['title']?></td>
         <?php if($this->Session->read('avatar')) { ?>
-            <td>Assigned to:
+            <td style="width: 345px;"><strong>Assigned to: </strong>
         <?php 
             foreach($member as $m)
             {
@@ -51,7 +53,7 @@ foreach($job as $j)
                         {
                             if($ji[$i]==$j['Job']['id'])
                             {
-                                echo $m['Member']['title']." ".$m['Member']['full_name']."<br>";
+                                echo $m['Member']['title']." ".$m['Member']['full_name'].", ";
                             }
                         }
                     }
@@ -60,9 +62,7 @@ foreach($job as $j)
             }
         ?>
     </td>
-</tr>
-</table>
-        </td>
+
         <td>
     <?php 
     if($this->Session->read('avatar'))
@@ -81,11 +81,11 @@ foreach($job as $j)
         <?php echo $this->Html->link('View','/jobs/view/'.$j['Job']['id'],array('class'=>'btn btn-primary')); ?>
     </td>
         </tr>
-    </table>
+    
         
     <?php
 }
-?>
+?></table>
 </div>
 <div id="pagination">
 <?php echo $this->Paginator->numbers(); ?>

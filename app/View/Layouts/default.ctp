@@ -112,10 +112,11 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <body>
 	<div id="container">
 		<div id="header">
+        <?php if($this->Session->read('email')){?><h1><form action="<?php echo $base_url;?>search" method="get"><input type="text" name="search" style="margin-top: 10px;" placeholder="Search Document" /> <input type="submit" class="btn btn-info" value="Search" /></form></h1><?php }?>
         <?php 
         if($this->Session->read('avatar')){?>
 			<h1>Welcome <?php echo $this->Session->read('avatar');?></h1>
-            <div class="right user-panel" style="border:1px solid green;width:200px; float:right;">
+            <div class="right user-panel" style="border-left: 1px solid #999999;float: right;padding-left: 0;width: 200px;height:92px;">
                 <?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => '', 'class'=>'image'))?>
                 <div class="links">
                 <?php  echo $this->Html->link('<i class="icon-user"></i> '.'User Preference','/dashboard/settings',array('escape' => false,)); ?>
@@ -130,8 +131,8 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
             {
                 ?>
 
-                <div class="right user-panel" style="border:1px solid green;width:200px; float:right;">
-				                <div class="left" style="color:#999;">Welcome <strong><?php echo $this->Session->read('user');?></strong></div>
+                <div class="right user-panel" style="border-left: 1px solid #999999;float: right;padding-left: 0;padding-right:0;width: 200px;height:92px;">
+				                <div class="" style="text-align:center;color:#999;border-bottom: 1px solid #999;padding-bottom: 5px;">Welcome <strong><?php echo $this->Session->read('user');?></strong></div>
 
                     <?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => ''))?>
                     <div class="links">

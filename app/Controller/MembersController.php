@@ -161,7 +161,10 @@ class MembersController extends AppController
             {
                 $this->Member->saveField('canUpdate',0);
             }
-            
+            if(!$this->Session->read('avatar'))
+            {
+                $this->Session->email($_POST['email']);
+            }
             $this->Session->setFlash('Data Saved Successfully.');
             $this->redirect('index');
         }
