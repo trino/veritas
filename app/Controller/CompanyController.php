@@ -10,9 +10,12 @@
             $this->loadModel('Job');
             $this->loadModel('Page');
             $this->layout = "user";
+            $this->redirect('/');
         }
+        
         public function index()
         {
+            
             if(isset($_POST['submit']))
             {
 			debug($_POST);

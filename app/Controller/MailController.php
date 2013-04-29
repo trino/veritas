@@ -18,6 +18,7 @@ class MailController extends AppController
     
     function index()
     {
+        $this->set('mails',$this->Mail);
         if($this->Session->read('avatar'))
         {
             $this->paginate=array('conditions'=>array('recipients_id'=>'0','delete_for IN ("s","")'),'limit'=>15,'order'=>array('date'=>'desc'));
@@ -28,7 +29,22 @@ class MailController extends AppController
         }
         else
         {
-            $this->paginate=array('conditions'=>array('parent'=>'0','recipients_id'=>$this->Session->read('id'),'delete_for IN("s","")'),'limit'=>15,'order'=>array('date'=>'desc'));
+            $arr = array();
+            $test = $this->Mail->find('all',array('conditions'=>array('recipients_id'=>$this->Session->read('id'),'parent <>'=>0)));
+            foreach($test as $t)
+            {
+                if(!in_array($t['Mail']['parent'],$arr))
+                $arr[] = $t['Mail']['parent'];
+            }
+            $str[] = '0';
+            $k = 0;
+            foreach($arr as $a)
+            {
+                
+                $str[] = $a;
+                 
+            }
+            $this->paginate=array('conditions'=>array('OR'=>array('AND'=>array('parent'=>0,'recipients_id'=>$this->Session->read('id'),'delete_for IN("s","")'),'id IN'=>$str)),'limit'=>15,'order'=>array('date'=>'desc'));
             $em= $this->paginate('Mail');
             $this->set('email',$em);
             //$this->set('email',$this->Mail->find('all',array('conditions'=>array('recipients_id'=>$this->Session->read('id')))));
@@ -41,7 +57,7 @@ class MailController extends AppController
     {
         
     
-       
+        
         if($this->Session->read('avatar') || $this->Session->read('user'))
         {
             
@@ -87,11 +103,25 @@ class MailController extends AppController
         $all = $this->Mail->find('all',array('conditions'=>array('OR'=>array('id'=>$par,'parent'=>$par)),'order'=>'id DESC'));
         else
         $all = $this->Mail->find('all',array('conditions'=>array('OR'=>array('id'=>$id,'parent'=>$id)),'order'=>'id DESC'));
+        
         $this->set('all',$all);
         $this->set('member',$this->Member);
         $this->set('user',$this->User);
+        
         $this->Mail->id=$id;
+        
+        if($this->Session->read('admin'))
+        $rece = 0;
+        else
+        $rece = $this->Session->read('id');
+        $pare = $this->Mail->find('all',array('conditions'=>array('OR'=>array('id'=>$id,'parent'=>$id),'recipients_id'=>$rece)));
+        foreach($pare as $p)
+        {
+        unset($this->Mail->id);
+        $this->Mail->id = $p['Mail']['id'];
         $this->Mail->saveField('status','read');
+        }
+        
         
         
         

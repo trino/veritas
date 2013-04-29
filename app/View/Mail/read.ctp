@@ -18,8 +18,8 @@ foreach($all as $a){
     $parents = $a['Mail']['parent'];
     if($i==0)
     {
-        if($this->Session->read('admin'))
-        {
+       // if($this->Session->read('admin'))
+        //{
             if($a['Mail']['sender_id']!=0)
             {
                 $reqs = $a['Mail']['sender_id'];
@@ -29,7 +29,7 @@ foreach($all as $a){
                 $i++;
             }
             
-        }
+        //}
         else
         {
             $sub = $a['Mail']['subject'];
@@ -44,7 +44,11 @@ foreach($all as $a){
         $qs = $member->find('first',array('conditions'=>array('id'=>$a['Mail']['sender_id'])));
         echo $qs['Member']['full_name'];
         
-    } ?> &nbsp; [<?php echo $a['Mail']['date'];?>]</td></tr>
+    } ?> &nbsp; [<?php echo $a['Mail']['date'];?>] &nbsp; ( <strong>To</strong> : <?php if($a['Mail']['recipients_id']=='0')echo 'Admin';else{
+        $qs2 = $member->find('first',array('conditions'=>array('id'=>$a['Mail']['recipients_id'])));
+        echo $qs2['Member']['full_name'];
+        
+    } ?> )</td></tr>
     <tr><td><?php echo $a['Mail']['message']; ?></td></tr>
     <tr><td>&nbsp;</td></tr>
     </table>
