@@ -21,9 +21,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 
 
-
-
-
 .msg{width:350px;}
 #add_form{width:550px;}
 .checks{width:245px}
@@ -32,14 +29,23 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 .btn-mini{ border-radius:0px; padding: 2px 6px; line-height: 13px;}
 
+#container{min-width:1200px;}
+.logo{
+	padding:7px 12px !important;
+	text-align:center;
+}
+.logo img{
+	height:60px;
+}
 
-#header{ background: url(../img/header.jpg) repeat-x scroll left bottom; height:106px;}
+#header{ background: url(../img/header.jpg) repeat-x scroll left bottom; height:80px; overflow:hidden;}
 #header h1{color: #FFF; text-transform: uppercase; margin-left: 250px; float: left; padding-top: 20px; font-weight: 300;}
 #header .user-panel{ padding:7px 10px; width: 180px; }
 #header .user-panel .image{ float: left;}
 #header .user-panel img{border: 1px solid #555555;border-radius: 5px 5px 5px 5px;margin-left: 5px;margin-top: 9px;}
 #header .user-panel .links{ float:right; margin-top: 9px;margin-right:8px;}
 #header .user-panel a{ display: block; font-size: 12px; padding-left: 10px; margin-bottom: 4px; text-decoration: none; color: #CCC;}
+
 #sidebar{ background: url(../img/bg.jpg) repeat-y; position:fixed; height: 100%; left: 0; top: 0; width: 230px; }
 #sidebar h2{ height: 78px;}
 #sidebar a{ display: block; width: 206px; border-bottom: 1px solid #292929 ;border-top: 1px solid #384756 ; padding: 12px; text-decoration: none; color: #FFF; font-size: 13px; }
@@ -146,3 +152,25 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     margin-right:140px;
     padding: 0 1px;
 }
+
+
+/***
+Import fonts
+***/
+@import url(http://fonts.googleapis.com/css?family=Oxygen:300);
+
+.page-title {
+  padding: 0px;
+  font-size: 30px;
+  letter-spacing: -1px;
+  display: block;
+  color: #666;
+  margin: 20px 0px 15px 0px;
+  font-weight: 300;
+  font-family: 'Oxygen', sans-serif;
+}
+
+.breadcrumb{padding:8px 15px;margin:0 0 20px;list-style:none;background-color:#f5f5f5;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px; margin-right:25px;}
+.breadcrumb>li{display:inline-block;*display:inline;text-shadow:0 1px 0 #fff;*zoom:1}
+.breadcrumb>li>.divider{padding:0 5px;color:#ccc}
+.breadcrumb>.active{color:#999}

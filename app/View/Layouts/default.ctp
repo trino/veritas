@@ -26,7 +26,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		V Management
+		Veritas | Intelligence on Demand
 	</title>
     
 	<?php
@@ -49,6 +49,8 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
     <script type="text/javascript">jwplayer.key="N+fGwqE9+uBPKzrjO6qyGHWiJJRmw0UtbEU0iA==";</script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+	<link rel="shortcut icon" href="/img/favicon.ico" />
+	
     <script type="text/javascript">
     $(document).ready(function(){
      $('#Form').validate({
@@ -155,9 +157,8 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
             {
          ?>
         <div id="sidebar">
-            <a href="<?php echo $base_url;?>dashboard"><h2 style="color:#FFF; font-size:40px;">LOGO</h2></a>
+            <a href="<?php echo $base_url;?>dashboard" class="logo"><?php echo $this->Html->image('/img/logoVeritas01.png');?></a>
         <?php if($this->Session->read('avatar')){?>
-            
 
             <?php  echo $this->Html->link('<i class="icon-globe"></i>'.'User Manager','/members',array('escape' => false,)); ?>
             <?php  echo $this->Html->link('<i class="icon-user"></i>'.'Company Manager','/comp',array('escape' => false,)); ?>
@@ -173,6 +174,24 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
             <div class="main"><?php }?>
 			<?php echo $this->Session->flash(); ?>
 
+			
+			
+					
+			<h3 class="page-title">
+				Document Management
+				<small>Intelligence on Demand</small>
+			</h3>
+			<ul class="breadcrumb">
+				<li>
+					<i class="icon-home"></i>
+					<a href="">Home</a> <span class="icon-angle-right"></span>
+					<a href="">Documents</a>
+				</li>
+			</ul>
+			
+			
+			
+			
 			<?php echo $this->fetch('content'); ?>
             </div>
             <div class="clear"></div>
