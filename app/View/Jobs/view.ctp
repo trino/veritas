@@ -133,7 +133,7 @@
 </table>
 
 <?php 
-if($this->Session->read('upload')=='1')
+if($this->Session->read('upload')=='1' || $this->Session->read('admin'))
 echo $this->Html->link('Upload Document','/uploads/upload/'.$job['Job']['id'],array('class'=>'btn btn-primary','style'=>"margin:10px")); 
 ?>
 </div>

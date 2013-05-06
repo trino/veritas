@@ -79,10 +79,7 @@ class UploadsController extends AppController
             $this->redirect('/jobs');
            } 
         }  
-        else
-        {
-            $this->redirect('/jobs');
-        }
+        
         if(isset($_POST['submit']))
         {
             $uri = $_SERVER['REQUEST_URI'];
@@ -101,8 +98,10 @@ class UploadsController extends AppController
                 }
                 else
                     $path = $_SERVER['DOCUMENT_ROOT'].'app/webroot/img/documents/';
-                $q=$this->Member->find('first',array('conditions'=>array('email'=>$this->Session->read('email'))));
-            $id=$q['Member']['id'];
+            if(!$this->Session->read('admin'))   
+            $id=$this->Session->read('id');
+            else
+            $id=0;
             $arr['location'] = $_POST['location'];
             $arr['title'] = $_POST['title'];
             $arr['description'] = $_POST['description'];

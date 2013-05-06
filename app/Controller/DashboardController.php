@@ -191,6 +191,27 @@ class DashboardController extends AppController
         $this->loadModel('User');
         if(isset($_POST['submit']))
         {
+            //if()
+            if($_POST['email'])
+            {
+                $ch = $this->check_email($_POST['email']);
+                if(!$ch)
+                {
+                    $this->Session->setFlash('Email Already Taken');
+                    $this->redirect('settings');
+                }
+            }
+            if($_POST['old_password'])
+            {
+                $ch2 = $this->check_password($_POST['old_password']);
+                if(!$ch2)
+                {
+                    $this->Session->setFlash('Old Password Do Not Match');
+                    $this->redirect('settings');
+                }
+            }
+            
+            
             if($_FILES['image']['name']!="")
             {
                 $uri = $_SERVER['REQUEST_URI'];
@@ -266,6 +287,7 @@ class DashboardController extends AppController
                 $this->User->id=$this->Session->read('id');
                 $this->User->saveField('name_avatar',$_POST['name']);
                 $this->User->saveField('email',$_POST['email']);
+                if($_POST['password'] != '')
                 $this->User->saveField('password',$_POST['password']);
                 $this->User->saveField('picture',$img);
               }
@@ -274,6 +296,7 @@ class DashboardController extends AppController
                 $this->Member->id = $this->Session->read('id');
                 $this->Member->saveField('full_name',$_POST['name']);
                 $this->Member->saveField('email',$_POST['email']);
+                if($_POST['password']!='')
                 $this->Member->saveField('password',$_POST['password']);
                 $this->Member->saveField('address', $_POST['address']);
                 $this->Member->saveField('phone',$_POST['phone']);
@@ -301,12 +324,15 @@ class DashboardController extends AppController
         
     }
     
-    public function check_password()
+    public function check_password($p='')
     {
          $this->loadModel('Member');
         $this->loadModel('Mail');
         $this->loadModel('User');
+        if(isset($_POST['pass']))
         $pass = $_POST['pass'];
+        else
+        $pass = $p;
         if($this->Session->read('avatar'))
         {
             $val = $this->User->find('count',array('conditions'=>array('email'=>$this->Session->read('email'),'password'=>$pass)));
@@ -317,30 +343,44 @@ class DashboardController extends AppController
         }
         if($val>0)
         {
+            if(isset($_POST['pass']) && !$p)
             echo "1";
+            else
+            return true;
         }
         else
         {
+            if(isset($_POST['pass']) && !$p)
             echo "0";
+            else
+            return false;
         }
         die();
     }
-    public function check_email()
+    public function check_email($em = '')
     {
         $this->loadModel('Member');
         $this->loadModel('Mail');
         $this->loadModel('User');
+        if(isset($_POST['email']))
         $em=$_POST['email'];
+        
         $c=$this->User->find('count',array('conditions'=>array('email'=>$em,'id !='=>$this->Session->read('id'))));
         $co=$this->Member->find('count',array('conditions'=>array('email'=>$em,'id !='=>$this->Session->read('id'))));
 
         if($c>0 || $co>0)
         {
+            if(isset($_POST['email']) && !$em)
             echo "0";
+            else
+            return false;
         }
         else
         {
+            if(isset($_POST['email']) && !$em)
             echo "1";
+            else
+            return true;
         }
         die();
     }
