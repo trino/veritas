@@ -121,17 +121,19 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<?php if($this->Session->read('avatar') || $this->Session->read('user')){ ?>
 
 			<div class="logo"><a href="<?php echo $base_url;?>dashboard"><?php echo $this->Html->image('/img/logoVeritas01.png');?></a></div>
-			<?php if($this->Session->read('avatar')){?>
+			
 			
 			<div class="poweredBy">
-				<?php echo $this->Html->image('/img/logoVeritas01.png');?>
+				<table cellspacing="0" cellpadding="0" border="0" width="100%" height="100%"><tr><td valign="middle">Powered By <br/><img src="<?php echo $base_url;?>img/afimaclogo.png" alt=""/></td></tr></table>
 			</div>
 			
 			<div class="menu">
-				<?php  echo $this->Html->link('<i class="icon-globe"></i>'.'User Manager','/members',array('escape' => false,)); ?>
-				<?php  echo $this->Html->link('<i class="icon-user"></i>'.'Company Manager','/comp',array('escape' => false,)); ?>
-				<?php // echo $this->Html->link('<i class="icon-list"></i>'.'Pages','/dashboard/home',array('escape' => false,)); ?>
+				<?php if($this->Session->read('avatar')){?>
+					<?php  echo $this->Html->link('<i class="icon-globe"></i>'.'User Manager','/members',array('escape' => false,)); ?>
+					<?php  echo $this->Html->link('<i class="icon-user"></i>'.'Company Manager','/comp',array('escape' => false,)); ?>
+					<?php // echo $this->Html->link('<i class="icon-list"></i>'.'Pages','/dashboard/home',array('escape' => false,)); ?>
 				<?php }?>
+				
 				<?php  echo $this->Html->link('<i class="icon-flag"></i>'.'Job Manager','/jobs',array('escape' => false,)); ?>
 				<?php  echo $this->Html->link('<i class="icon-envelope-alt"></i>'.'Mail <span class="notific"></span>','/mail',array('escape' => false,)); ?>
 				<?php  echo $this->Html->link('<i class="icon-off"></i>'.'Logout','/admin/logout',array('escape' => false,)); ?>
@@ -180,10 +182,10 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			<?php }?>
 			
 			
+			
 			<?php if($this->Session->read('user')) {?>
-				<div class="userControlPanel" style="float:right;width: 200px;">
+				<div class="userControlPanel">
 					<!--div class="" style="">Welcome <?php echo $this->Session->read('user');?></div-->
-					
 					<div class="avatar">
 					<?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => ''))?>
 					</div>
@@ -191,6 +193,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 					<?php  echo $this->Html->link('<i class="icon-user"></i>'.'User Preference','/dashboard/settings',array('escape' => false,)); ?><br/>
 					<?php  echo $this->Html->link('<i class="icon-group"></i> '.'Manage My team','/dashboard/settings',array('escape' => false,)); ?><br/>
 					<?php  echo $this->Html->link('<i class="icon-warning-sign"></i> '.'User Support','/dashboard/settings',array('escape' => false,)); ?>
+					</div>
+					<div class="companyLogo">
+					<?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => '', 'class'=>'image'))?>
 					</div>
 				</div>
 			<?php } ?>

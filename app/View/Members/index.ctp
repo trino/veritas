@@ -57,11 +57,26 @@ foreach($mem as $m)
 </table>
 </div>
 <div class="pagination">
+<?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled btn btn-mini btn-primary')); ?> &nbsp;
 <?php echo $this->Paginator->numbers(); ?>
 <!-- Shows the next and previous links -->
-<?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled btn btn-mini btn-primary')); ?> &nbsp;
 <?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled btn btn-mini btn-primary')); ?>
 </div>
+
+
+<div class="pagination pagination-small">
+	<ul>
+		<li><a href="#">«</a></li>
+		<li><a href="#">1</a></li>
+		<li><a href="#">2</a></li>
+		<li><a href="#">3</a></li>
+		<li><a href="#">4</a></li>
+		<li><a href="#">»</a></li>
+	</ul>
+</div>
+
+
+
 
 <?php } 
 else

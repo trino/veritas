@@ -7,7 +7,7 @@
 	<li>
 		<i class="icon-home"></i>
 		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>mail">Mail</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>mail">Inbox</a> <span class="icon-angle-right"></span>
 		<a href="<?=$base_url;?>mail"><?php echo $subj;?></a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>

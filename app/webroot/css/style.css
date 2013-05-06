@@ -61,12 +61,54 @@ body{
 .poweredBy {
 	background-color:#ffffff;
 	margin:0px 3px;
-}
-.poweredBy img{
 	height:90px;
+	text-align:center;
+
+}
+.poweredBy  table td{
+	font-size:10px;
+	font-style:italic;
 }
 
 
+.login{
+border:1px solid #cccccc;
+clear:both; width:250px;
+padding:10px 20px;
+margin:100px auto;
+background-color:#ffffff;
+-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+   -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+.login input{
+width:100%;
+padding:5px;
+border:1px solid #cccccc;
+    width: -moz-calc(100% - 12px);
+    width: -webkit-calc(100% - 12px);
+    width: calc(100% - 12px);
+}
+.login h2{
+  padding: 0px;
+  font-size: 30px;
+  letter-spacing: -1px;
+  display: block;
+  color: #666666;
+  font-weight: 300;
+  font-family: 'Oxygen', sans-serif;
+}
+ .login select{
+  width:100%;
+ }
+ .log-submit{
+ text-align:right;
+ }
+.log-submit input{
+	width:auto;
+	padding-left:20px;
+	padding-right:20px;
+}
 
 /* Header */
 #rightHeader{
@@ -501,6 +543,7 @@ Import fonts
   margin: 20px 0px 10px 0px;
   font-weight: 300;
   font-family: 'Oxygen', sans-serif;
+
 }
 .page-title small {
 	color:#bbbbbb ;

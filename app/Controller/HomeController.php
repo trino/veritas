@@ -15,6 +15,7 @@ class HomeController extends AppController {
        
     }
 	public function index() {
+	$this->layout = 'login';
 	    if($this->Session->read('email'))
         $this->redirect('/dashboard');
 	   $this->loadModel('User');
@@ -37,7 +38,7 @@ class HomeController extends AppController {
         }
         else
         {
-            $this->Session->setFlash('Username and Password donot match');
+            $this->Session->setFlash('Username and Password do not match');
             $this->redirect('/');
         }
         

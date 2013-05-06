@@ -1,13 +1,13 @@
 <?php include('inc.php');?>
 
 <h3 class="page-title">
-	Mail
+	Inbox
 </h3>
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
 		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>mail">Mail</a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>mail">Inbox</a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
 

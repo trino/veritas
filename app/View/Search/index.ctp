@@ -7,11 +7,14 @@
 	<li>
 		<i class="icon-home"></i>
 		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>dashboard/search?search=">Documents Search</a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>search?search=">Documents Search</a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
 
-<div class="table">
+
+
+
+<div id="table">
 <h2>Search Result</h2>
 <?php
 if($docs)
