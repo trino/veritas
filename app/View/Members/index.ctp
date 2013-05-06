@@ -1,4 +1,18 @@
 <?php include_once('inc.php');?>
+
+
+<h3 class="page-title">
+	User Manager
+</h3>
+<ul class="breadcrumb">
+	<li>
+		<i class="icon-home"></i>
+		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>members">User Manager</a> <!--span class="icon-angle-right"></span-->
+	</li>
+</ul>
+
+
 <div id="table">
 <h2>User Manager</h2>
 

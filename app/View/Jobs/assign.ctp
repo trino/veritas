@@ -1,4 +1,17 @@
 <?php include_once('inc.php');?>
+
+<h3 class="page-title">
+	Assign Job to <?php echo $mem['Member']['full_name']; ?>
+</h3>
+<ul class="breadcrumb">
+	<li>
+		<i class="icon-home"></i>
+		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>jobs">Job Manager</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>jobs/assign/<?php echo $mem['Member']['id']; ?>">Assign Job to <?php echo $mem['Member']['full_name']; ?></a> <!--span class="icon-angle-right"></span-->
+	</li>
+</ul>
+
 <script type="text/javascript">
 function option()
 {

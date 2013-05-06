@@ -1,4 +1,17 @@
 <?php include_once('inc.php');?>
+
+<h3 class="page-title">
+	Add Job
+</h3>
+<ul class="breadcrumb">
+	<li>
+		<i class="icon-home"></i>
+		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>jobs">Job Manager</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>jobs/add">Add Job</a> <!--span class="icon-angle-right"></span-->
+	</li>
+</ul>
+
 <script>
 $(function(){
     $( "#start_date" ).datepicker({dateFormat: "yy-mm-dd"});

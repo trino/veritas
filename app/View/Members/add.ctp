@@ -1,4 +1,17 @@
 <?php include_once('inc.php');?>
+
+<h3 class="page-title">
+	Add User
+</h3>
+<ul class="breadcrumb">
+	<li>
+		<i class="icon-home"></i>
+		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>members">User Manager</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>members/add">Add User</a> <!--span class="icon-angle-right"></span-->
+	</li>
+</ul>
+
 <script>
     function check_email()
     {
@@ -36,7 +49,7 @@
     }
 </script>
 <div id="table">
-<h2>Add Member</h2>
+<h2>Add User</h2>
 <form id="Form" action="" method="post" enctype="multipart/form-data" onsubmit="return valid();">
 <table>
 <tr><td><label>Full Name</label><input type="text" class="required" name="full_name" /></td></tr>

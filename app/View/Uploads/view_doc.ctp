@@ -1,4 +1,20 @@
 <?php include_once('inc.php');?>
+
+
+
+<h3 class="page-title">
+	Documents: Contracts
+</h3>
+<ul class="breadcrumb">
+	<li>
+		<i class="icon-home"></i>
+		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>uploads/view_doc/contract">Documents: Contracts</a> <!--span class="icon-angle-right"></span-->
+	</li>
+</ul>
+
+
+
 <?php 
 if(isset($message))
 {

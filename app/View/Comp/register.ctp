@@ -1,4 +1,19 @@
 <?php include_once('inc.php');?>
+
+
+<h3 class="page-title">
+	Register Company
+</h3>
+<ul class="breadcrumb">
+	<li>
+		<i class="icon-home"></i>
+		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>comp">Comapny Manager</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>comp/register">Register Company</a> <!--span class="icon-angle-right"></span-->
+	</li>
+</ul>
+
+
 <script>
     function check_email()
     {

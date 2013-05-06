@@ -1,3 +1,19 @@
+<?php include_once('inc.php');?>
+
+
+<h3 class="page-title">
+	Edit <?php echo $company['Company']['full_name']; ?>
+</h3>
+<ul class="breadcrumb">
+	<li>
+		<i class="icon-home"></i>
+		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>comp">Comapny Manager</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>comp/edit_company/<?php echo $company['Company']['id']; ?>">Edit <?php echo $company['Company']['full_name']; ?></a> <!--span class="icon-angle-right"></span-->
+	</li>
+</ul>
+
+
 <div id="table">
 <form id="Form" action="" method="post" enctype="multipart/form-data">
 	<table>

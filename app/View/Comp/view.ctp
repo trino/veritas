@@ -1,3 +1,19 @@
+<?php include_once('inc.php');?>
+
+
+<h3 class="page-title">
+	<?php echo $c['Company']['full_name']; ?>
+</h3>
+<ul class="breadcrumb">
+	<li>
+		<i class="icon-home"></i>
+		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>comp">Comapny Manager</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>comp/view/<?php echo $c['Company']['id']; ?>"><?php echo $c['Company']['full_name']; ?></a> <!--span class="icon-angle-right"></span-->
+	</li>
+</ul>
+
+
 <div id="table">
 <h2><?php echo $this->Html->image('uploads/'.$c['Company']['image']); ?> &nbsp; Details of <?php echo $c['Company']['company']; ?> </h2>
 <table>

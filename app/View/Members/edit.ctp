@@ -1,5 +1,19 @@
+<?php include_once('inc.php');?>
+
+<h3 class="page-title">
+	Edit <?php echo $m['Member']['full_name'];?>
+</h3>
+<ul class="breadcrumb">
+	<li>
+		<i class="icon-home"></i>
+		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>members">User Manager</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>members/edit/<?php echo $m['Member']['id'];?>">Edit <?php echo $m['Member']['full_name'];?></a> <!--span class="icon-angle-right"></span-->
+	</li>
+</ul>
+
 <div id="table">
-<h2>Add Member</h2>
+<h2>Edit <?php echo $m['Member']['full_name'];?></h2>
 <form action="" method="post" id="add_form">
 <table>
 <tr><td><label>Full Name</label><input type="text" name="full_name" value="<?php echo $m['Member']['full_name'];?>" class="required" /></td></tr>

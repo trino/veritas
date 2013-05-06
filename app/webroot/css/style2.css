@@ -1,0 +1,180 @@
+@import url('font/font-awesome.css');
+/*Global Reset*/
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outline:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+/*Global*/
+body{ margin:0; }
+.floatLeft{float:left;}
+.floatRight{float: right;}
+.clear{clear:both;}
+.wrapper{margin:auto;}
+img{max-width: 100%;}
+figure{margin:0; padding: 0;}
+.sticky{}
+.gallery-caption{}
+.aligncenter{}
+.left{float:left;}
+.right{float:right;}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td{font-family: 'Oxygen', sans-serif; }
+.clear{clear:both;}
+
+
+
+.msg{width:350px;}
+#add_form{width:550px;}
+.checks{width:245px}
+.checks div{padding:3px 0;}
+
+
+.btn-mini{ border-radius:0px; padding: 2px 6px; line-height: 13px;}
+
+#container{min-width:1200px;}
+.logo{
+	padding:7px 12px !important;
+	text-align:center;
+}
+.logo img{
+	height:60px;
+}
+
+#header{ background: url(../img/header.jpg) repeat-x scroll left bottom; height:80px; overflow:hidden;}
+#header h1{color: #FFF; text-transform: uppercase; margin-left: 250px; float: left; padding-top: 20px; font-weight: 300;}
+#header .user-panel{ padding:7px 10px; width: 180px; }
+#header .user-panel .image{ float: left;}
+#header .user-panel img{border: 1px solid #555555;border-radius: 5px 5px 5px 5px;margin-left: 5px;margin-top: 9px;}
+#header .user-panel .links{ float:right; margin-top: 9px;margin-right:8px;}
+#header .user-panel a{ display: block; font-size: 12px; padding-left: 10px; margin-bottom: 4px; text-decoration: none; color: #CCC;}
+
+#sidebar{ background: url(../img/bg.jpg) repeat-y; position:fixed; height: 100%; left: 0; top: 0; width: 230px; }
+#sidebar h2{ height: 78px;}
+#sidebar a{ display: block; width: 206px; border-bottom: 1px solid #292929 ;border-top: 1px solid #384756 ; padding: 12px; text-decoration: none; color: #FFF; font-size: 13px; }
+#sidebar a i{ margin-right: 4px;}
+#sidebar a:hover{ background: rgba(0,0,0,0.2);}
+#sidebar a:active{ background: rgba(0,0,0,0.4);}
+.main{ position: relative; margin-left: 250px;}
+.main .message-form{ background: #EEE; padding: 10px 10px 10px 20px; border-bottom: 1px solid #BBB; margin-bottom: 20px; margin-left: -20px;}
+.main .message-form .msg{ width: 55%;}
+.main .message-form .inputs{ width: 45%; }
+.main .message-form textarea{ height: 85px; margin-bottom: 0; font-size: 13px; font-family: 'Oxygen', sans-serif;padding: 5px; border-radius: 0px; width: 98%; -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box; }
+.main .message-form input[type=text]{ border-radius: 0px; display: block;font-size: 13px; font-family: 'Oxygen', sans-serif; width: 100%; margin-bottom: 5px; float: right;padding:5px; height: 28px; -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box; }
+.main .message-form a.email{ margin-right:6px;}
+.main .message-form #email{ width: 410px;}
+.main .message-form #email a{ float: left; margin: 0 5px 5px 0}
+.main .box .main-box{height:110px; width: 22.8%; margin-right: 2.12%; float: left;position: relative;}
+.main .box .sub-box{ width: 100%;}
+.main .box .sub-box .corner{ background: url(../img/whiteCorner.png) no-repeat; position: absolute; top: 0; right: 0; height: 25px; width: 25px; }
+.main .box .sub-box .icon{ float: left; color: #FFF; font-size: 60px; padding:12px 0 0 26px; }
+.main .box .sub-box .number{ position: absolute; font-size: 14px; text-transform: uppercase;font-weight: 300;  color: #FFF;top: 20px; right: 20px;}
+.main .box .sub-box .number a{ display: block; font-size: 34px; font-weight: 300; margin-bottom: 6px; color: #FFF; text-align: right; text-decoration: none;}
+.main .box .sub-box .view-all{ background:rgba(0,0,0,0.15); position: absolute; height: 28px; width: 100%; bottom: 0;}
+.main .box .sub-box .view-all a{ font-weight: 300; color: #FFF; font-size: 11px; padding: 8px; text-decoration: none; display: block; float: left; text-transform: uppercase; }
+.main .box .view-all i{ display: block; float: right; color: #FFF; font-size: 12px; padding: 8px;}
+.main .box .blue{ background-color: #27A9E3;}
+.main .box .green{ background-color: #28B779;}
+.main .box .purple{ background-color: #852B99;}
+.main .box .yello{ background-color: #FFB848;}
+.main .box .shadow{background: url(../img/shadow.png) no-repeat scroll bottom left; bottom: -9px;  background-size: 100% 9px; width: 100%; position: absolute; height: 9px; }
+.main #table{ border: 1px solid #9D9C9C; margin-top: 25px; width: 98%; margin-bottom: 15px;}
+.main #table h2{ background: #555; color: #FFF; font-size: 18px; font-weight:300; padding: 8px; line-height:18px;}
+.main table{ width: 98%; margin: 10px auto;  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;}
+.main table th{ text-align: left;}
+.main table th, .main table td{padding: 8px;  font-size: 13px; vertical-align: middle;}
+.main table tr, .main table th{border-bottom:1px solid #DDDDDD;}
+.main table tr:last-child{ border-bottom: none;}
+.main table tr:hover{ background: #f5f5f5;}
+.main table input, .main table textarea{ margin-bottom: 0;}
+.main img{ vertical-align: middle; margin-right: 10px;}	
+.reg-company{ margin: 10px;}
+.main table label{ display: inline-block; width: 200px; text-transform: capitalize;}
+#pagination{ clear: both; margin-top: 10px;}
+.btn{ border-radius: 0; font-size: 13px; line-height: 14px;}
+#flashMessage.message{margin-top: 10px; border: 1px solid #EEE; width: 96%; padding: 10px; text-align: center;}
+
+.login {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border: 8px solid #CCCCCC;
+    margin: 0 auto;
+    width: 400px;
+    font-size: 13px;
+    margin-top: 30px;
+}
+.login  label{ display: inline-block; width: 100px;}
+.login form{ padding: 39px;}
+.login h1{ text-align: center; font-size: 16px; font-weight: bold;}
+.login .log-submit{ float: right;}
+.image { margin-bottom: 15px;}
+.image li{ float: left; margin-right: 15px;}
+.documents { margin-bottom: 20px;}
+.documents a{margin-right: 15px; float: left; }
+#myElement_wrapper{ float: left; margin-right: 15px; margin-bottom: 15px;}
+.video{ float: left;}
+.video .sub-video{ float:  left; width: 100px; margin-right: 10px; margin-bottom: 10px;}
+.video .sub-video a{ display: block;color: #333; margin-top: 5px; font-size: 13px;}
+.video .sub-video img{width: 100%}
+
+
+.company .main{ margin-left: 0;}
+.login p{ text-align: center;}
+.company #content{ width: 980px; margin:0 auto;}
+.company #header h1{ color: #FFF;text-transform: uppercase;float: left;font-weight: 300; margin-left: 0;}
+.company .mid{ width: 980px; margin: 0 auto;}
+.main.user-main{ margin: 0 auto; width: 980px;}
+.main.user-main .messagee{ background: #EEEEEE; float: left; width: 420px; margin-top: 20px;  padding:20px; margin-right: 30px; min-height: 300px; }
+.main.user-main .messagee{ font-size:13px; line-height: 18px;}
+.main.user-main .messagee h1{ font-size: 20px; font-weight: bold; margin-bottom: 10px; text-transform: capitalize;}
+.main.user-main .login{ float: right;}
+.line{border-right:1px dashed #ccc; float: left; width: 514px; margin-top: 10px;}
+.notific{
+     -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #F03D25;
+    border-color: #E23923 #D83722 #C0311E;
+    border-image: none;
+    border-left: 1px solid #D83722;
+    border-radius: 2px 2px 2px 2px;
+    border-right: 1px solid #D83722;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(0, 39, 121, 0.77);
+    display: block;
+    float:right;
+    border-radius:2px;
+    
+    margin-right:140px;
+    padding: 0 1px;
+}
+
+
+/***
+Import fonts
+***/
+@import url(http://fonts.googleapis.com/css?family=Oxygen:300);
+
+.page-title {
+  padding: 0px;
+  font-size: 30px;
+  letter-spacing: -1px;
+  display: block;
+  color: #666666;
+  margin: 20px 0px 15px 0px;
+  font-weight: 300;
+  font-family: 'Oxygen', sans-serif;
+}
+.page-title small {
+	color:#bbbbbb ;
+}
+
+.breadcrumb{padding:8px 15px 10px;margin:0 0 20px;list-style:none;background-color:#f5f5f5;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px; margin-right:26px;}
+.breadcrumb>li{display:inline-block;*display:inline;text-shadow:0 1px 0 #fff;*zoom:1}
+.breadcrumb>li>.divider{padding:0 5px;color:#ccc}
+.breadcrumb a, .breadcrumb i, .breadcrumb span {color:#999999; font-size:15px;}
+.breadcrumb a:hover{color:#666666}

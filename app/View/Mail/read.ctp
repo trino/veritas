@@ -1,4 +1,18 @@
 <?php include_once('inc.php');?>
+
+<h3 class="page-title">
+	<?php echo $subj;?>
+</h3>
+<ul class="breadcrumb">
+	<li>
+		<i class="icon-home"></i>
+		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>mail">Mail</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>mail"><?php echo $subj;?></a> <!--span class="icon-angle-right"></span-->
+	</li>
+</ul>
+
+
 <script type="text/javascript">
     function show_reply()
     {
