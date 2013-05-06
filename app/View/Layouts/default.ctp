@@ -52,18 +52,16 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<link rel="shortcut icon" href="/img/favicon.ico" />
 	
     <script type="text/javascript">
-    $(document).ready(function(){
-     $('#Form').validate({
-    rules: {
-            password: 'required',
-            c_password: {
-                  required: true,
-                  equalTo: '#password'
-            }
-      }
- });  
-     });
+   
     $(function(){
+        $('.del_email').live('click',function(){
+           var ems = $(this).attr('id');
+           $(this).remove(); 
+           var ar = ems.split('__');
+           $('#receipient_id').val($('#receipient_id').val().replace(ar[1]+',',''));
+	       $('#recipients').val($('#recipients').val().replace(ar[0]+',',''));
+           
+        });
         $.ajax({
             
             url: '<?php echo $base_url;?>admin/email_status',
@@ -222,34 +220,48 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 						var e=value.split('_');
 						var i= $('#receipient_id').val();
 						var id;
+                        var ema2 = $('#name').html();
+                        //var del_em = '';
 						if(em=="")
 						{
-							name=e[0]+',';
+						    //name = name.replace(e[0],'');
+							name=e[0]+', ';
 						}
 						else
 						{
-						name = em+e[0]+',';
+						name = name.replace(e[0],'');  
+						name = em+e[0]+', ';
 						}
 						if(i=="")
 						{
+						  
 							id=e[1]+',';
 						}
 						else
 						{
+						    i = i.replace(e[1]+',','')
 							id=i+e[1]+',';
 						}
 						if(ema=="")
 						{
-							email=e[2]+',';
+						  
+							email=e[2]+', ';
+                            var ema2 = '<a href="javascript:void(0)" id="'+e[2]+'__'+e[1]+'" class="del_email">'+e[2]+','+'</a> ';
+                            del_em = ema2;
 						}
 						else
 						{
+						  
+						    ema = ema.replace(e[2]+', ','');
+                            ema2 = ema2.replace('<a href="javascript:void(0)" id="'+e[2]+'__'+e[1]+'" class="del_email">'+e[2]+','+'</a> ','');                            
 							email=ema+e[2]+',';
+                            del_em = ema2+'<a href="javascript:void(0)" id="'+e[2]+'__'+e[1]+'" class="del_email">'+e[2]+','+'</a> ';
+                            //alert(del_em);
 						}
-						alert(email);
+						//alert(email);
 						$('#receipient_id').val(id);
 						$('#recipients').val(email);
-						$('#name').val(name);
+						$('#name').html(del_em);
 					}
 
 					</script>
@@ -264,7 +276,8 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 									<input type="text" name="subject" placeholder="Subject" class="required" />
 								</div>
 								<div class="recipientsLine">
-									<input type="text" name="name" id="name" placeholder="Recipients (Separate with comma)" class="required" /> 
+                                    <div id="name" style="height: 19px; width: calc(100% - 10px); background: white; border: 1px solid #ccc;padding:4px;margin-bottom: 3px;color:#AAA;">Recipients</div>
+<!--									<input type="text" name="name" id="name" placeholder="Recipients (Separate with comma)" class="required" />--> 
 								</div>
 							
 								<a href="javascript:void(0)" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a>

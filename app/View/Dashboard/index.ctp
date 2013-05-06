@@ -116,6 +116,7 @@
         <th>When</th>
         <th>Who</th>
         <th>What</th>
+        <th>View</th>
     </tr>
 
 <?php
@@ -125,17 +126,25 @@
         <tr>
             <td><?php echo $a['Document']['date']; ?></td>
             <td>
-                <?php 
+            
+                <?php
+                if($a['Document']['addedBy']==0)
+                echo "Admin";
+                     else    
                     foreach($added as $aa)
                     {
+                        
                         if($a['Document']['addedBy']==$aa['Member']['id'])
                         {
                             echo $aa['Member']['email'];
                         }
+                        
+                        
                     }
                 ?>
             </td>
             <td>Upload <?php echo $a['Document']['document_type']; ?></td>
+            <td><a href="<?php echo $base_url;?>uploads/view_detail/<?php echo $a['Document']['id'];?>"><?php echo $a['Document']['title']; ?></a></td>
         </tr>
     <?php } 
  ?>

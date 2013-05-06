@@ -13,6 +13,17 @@
 </ul>
 
 <script>
+ $(document).ready(function(){
+     $('#Form').validate({
+    rules: {
+            password: 'required',
+            c_password: {
+                  required: true,
+                  equalTo: '#password'
+            }
+      }
+ });  
+     });
     function check_email()
     {
         //alert('test');
