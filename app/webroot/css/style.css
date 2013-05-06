@@ -165,7 +165,7 @@ border:1px solid #cccccc;
 }
 .userControlPanel .links{
 	float:left;
-	padding: 4px 0px 0px 5px;
+	padding: 4px 20px 0px 10px;
 }
 .userControlPanel .links a{
 	color:#cccccc;
@@ -523,9 +523,38 @@ Dashboard stats
 
 
 
-
-
-
+.pagination2 ul{
+	margin:0px;
+}
+.pagination2 ul li{
+	display:block;
+	float:left;
+	border:1px solid #cccccc;
+	border-right:0px solid #cccccc;
+	position:relative;
+	padding:4px 0px;
+	text-align:center;
+	min-width:28px;
+}
+.pagination2 ul li:hover{
+	background-color:#d9d9d9;
+}
+.pagination2 ul li.current{
+	background-color:#eeeeee;
+}
+.pagination2 ul li:first-child{
+	border-radius:6px 0px 0px 6px;
+}
+.pagination2 ul li:last-child{
+	border-right:1px solid #cccccc;
+	border-radius:0px 6px 6px 0px;
+}
+.pagination2 ul li a{
+	padding:4px 10px;
+	width:100%;
+	height:100%;
+	display:inline;
+}
 
 
 

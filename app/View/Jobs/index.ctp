@@ -101,12 +101,16 @@ foreach($job as $j)
 }
 ?></table>
 </div>
-<div id="pagination">
-<?php echo $this->Paginator->numbers(); ?>
-<!-- Shows the next and previous links -->
-<?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?>
-<?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled')); ?>
+
+
+<div class="pagination2">
+<ul>
+<?php echo $this->Paginator->prev('«', array('tag' => 'li')); ?>
+<?php echo str_replace(" | ","",$this->Paginator->numbers(array('tag' => 'li'))); ?>
+<?php echo $this->Paginator->next('»', array('tag' => 'li')); ?>
+</ul>
 </div>
+
 <?php }
 else
 {
