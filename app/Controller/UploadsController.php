@@ -288,6 +288,7 @@ class UploadsController extends AppController
         $this->set('image',$this->Image->find('all',array('conditions'=>array('document_id'=>$id))));
         $this->set('vid',$this->Video->find('all',array('conditions'=>array('document_id'=>$id))));
         $this->set('you',$this->Youtube->find('all',array('conditions'=>array('document_id'=>$id))));
+        $this->set('member',$this->Member);
     }
     
     public function edit($id)

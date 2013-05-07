@@ -15,6 +15,13 @@ class MembersController extends AppController
     }
     public function add()
     {
+        if(isset($_POST['email'])){
+        $email = $_POST['email'];
+        $q=$this->Member->find('first',array('conditions'=>array('email'=>$email)));
+        if($q){
+        $this->Session->setFlash('Email already exist');
+        $this->redirect('add');
+        }}
         $this->loadModel('Member');
         if(!$this->Session->read('avatar'))
         $this->redirect('/admin');
@@ -102,7 +109,7 @@ class MembersController extends AppController
             $arr['full_name']=$_POST['full_name'];
             $arr['title'] = $_POST['title'];
             $arr['address'] = $_POST['address'];
-            $arr['email'] = $_POST['email'];
+            
             $arr['phone'] = $_POST['phone'];
             $arr['password'] = $_POST['password'];
             $arr['image'] = $_FILES['image']['name'];

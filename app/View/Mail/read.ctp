@@ -102,17 +102,17 @@ $parents = $a['Mail']['id'];
 ?>
 </table>
 
-<a href="javascript:void(0);" onclick="show_reply()" class="btn btn-primary reg-company">Reply</a>
 
 
-<div id="reply" style="display: none;">
+
+<div id="reply" style="padding:15px;">
 <form action="" method="post">
-    <textarea name="reply" rows="10" cols="35" style="height:100px;"></textarea>
+    <textarea name="reply" style="height:100px;width:420px;"></textarea>
     <input type="hidden" name="mail_id" value="<?php echo $parents;?>" />
     <input type="hidden" name="recipient_id" value="<?php echo $reqs; ?>" />
     <input type="hidden" name="recipient_email" value="<?php echo $reqs_email; ?>" />
     <input type="hidden" name="subject" value="<?php echo $sub; ?>" />
-    <input type="submit" name="submit" value="Reply" class="btn btn-primary reg-company" />
+    <br /><input type="submit" name="submit" value="Reply" class="btn btn-primary reg-company" />
 </form>
 <?php
 /*

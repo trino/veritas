@@ -34,7 +34,7 @@
         $check_child_status = $mails->find('first',array('conditions'=>array('parent'=>$e['Mail']['id'],'status'=>'unread')));
         else
         $check_child_status = false;
-        if($e['Mail']['status']=='unread' || $check_child_status){$style="";}else{$style="background-color:#e5e5f5;";}
+        if($e['Mail']['status']=='unread' || $check_child_status){$style="background-color:#e5e5f5;";}else{$style="";}
         $cnt = $count->find('count',array('conditions'=>array('parent'=>$e['Mail']['id']))); 
         ?>
         

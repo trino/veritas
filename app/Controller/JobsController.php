@@ -25,7 +25,7 @@ class JobsController extends AppController
         }
         if($this->Session->read('avatar'))
         {
-            $this->paginate = array('conditions'=>array('isApproved'=>'1'),'limit'=>1);
+            $this->paginate = array('conditions'=>array('isApproved'=>'1'),'limit'=>10);
             $this->set('job',$this->paginate('Job'));
             $this->set('member',$this->Member->find('all'));
             $this->set('jobmember',$this->Jobmember->find('all'));

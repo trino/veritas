@@ -31,6 +31,14 @@
         <td>Description</td>
         <td><?php echo $doc['Document']['description']; ?></td>
     </tr>
+    <tr>
+        <td>Uploaded By</td>
+        <td><?php if($doc['Document']['addedBy'] != 0){$q = $member->find('first',array('conditions'=>array('id'=>$doc['Document']['addedBy'])));if($q){echo $q['Member']['full_name'];}}else echo "Admin";?></td>
+    </tr>
+    <tr>
+        <td>Uploaded On</td>
+        <td><?php echo $doc['Document']['date']?></td>
+    </tr>
 </table>
 </div>
 <div class="image">

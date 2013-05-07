@@ -16,7 +16,7 @@ class DashboardController extends AppController
         $this->loadModel('User');
         $this->loadModel('Document');
         $this->loadModel('Jobmember');
-        $this->set('mem',$this->Member->find('all'));
+        
         $this->set('ad',$this->User->find('first'));
         if($this->Session->read('avatar'))
         {
@@ -24,7 +24,8 @@ class DashboardController extends AppController
             $this->set('post_order',$this->Document->find('count',array('conditions'=>array('document_type'=>'post_order'))));
              $this->set('audits',$this->Document->find('count',array('conditions'=>array('document_type'=>'audits'))));
               $this->set('training_manuals',$this->Document->find('count',array('conditions'=>array('document_type'=>'training_manuals'))));
-             $this->set('activity',$this->Document->find('all',array('limit'=>10,'order'=>'date desc')));
+              $this->paginate = array('limit'=>10,'order'=>'date desc');
+             $this->set('activity',$this->paginate('Document'));
              $this->set('added',$this->Member->find('all'));
         }
         else
@@ -183,7 +184,11 @@ class DashboardController extends AppController
             }
         }
     }
-    
+    public function get_email_list()
+    {
+        $this->loadModel('Member');
+        return $this->Member->find('all');
+    }
     public function settings()
     {
         $this->loadModel('Member');

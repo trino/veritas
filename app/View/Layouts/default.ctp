@@ -17,6 +17,7 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 include('inc.php');
+$mems = $this->requestAction($base_url.'/dashboard/get_email_list');
 //echo $base_url;
 $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
 ?>
@@ -54,12 +55,17 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <script type="text/javascript">
    
     $(function(){
+        $('#send_email').attr('disabled','disabled');
         $('.del_email').live('click',function(){
            var ems = $(this).attr('id');
            $(this).remove(); 
            var ar = ems.split('__');
            $('#receipient_id').val($('#receipient_id').val().replace(ar[1]+',',''));
 	       $('#recipients').val($('#recipients').val().replace(ar[0]+',',''));
+           if($('#name').html().replace(' ','') == '' || $('#name').html().replace(' ','') == ' ' )
+           {
+            $('#send_email').attr('disabled','disabled');
+           }
            
         });
         $.ajax({
@@ -262,6 +268,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 						$('#receipient_id').val(id);
 						$('#recipients').val(email);
 						$('#name').html(del_em);
+                        $('#send_email').removeAttr('disabled');
 					}
 
 					</script>
@@ -283,7 +290,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 								<a href="javascript:void(0)" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a>
 								
 								<div id="email" style="display: none;">
-									<?php foreach($mem as $m) { ?> 
+									<?php foreach($mems as $m) { ?> 
 									<a class="buttonV" href="javascript:void(0)" onclick="list_email(this.id)" id="<?php echo $m['Member']['full_name']."_".$m['Member']['id']."_".$m['Member']['email'];?>"><?php echo $m['Member']['full_name']; ?></a>
 									<?php } ?>
 									<?php 
@@ -299,7 +306,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 								<input type="hidden" name="recipients" id="recipients" value="" />
 								<input type="hidden" name="response" id="resp" />
 								<input type="hidden" name="receipient_id" id="receipient_id" value="" />
-								<input type="submit" name="submit" value="Send" class="buttonV" />
+								<input type="submit" name="submit" value="Send" class="buttonV" id="send_email" />
 							</div>
 						</form>
 					</div>

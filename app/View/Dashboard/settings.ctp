@@ -33,8 +33,29 @@
 <script>
 $(function(){
    $('#passw').val('');
-   $('#old_password').val('');  
-   
+   $('#old_password').val('');
+   $('#myform').validate();
+   $('#old_password').keypress(function(){
+    if($(this).val() == '')
+    {
+        $('#passw').removeClass('required');
+    }
+    else
+    {
+        if($('#passw').attr('class').replace('required','') == $('#passw').attr('class'))
+        $('#passw').addClass('required');
+    }
+    
+   });  
+   $('#old_password').change(function(){
+    if($(this).val() == '')
+    {
+        $('#passw').removeClass('required');
+    }    
+   });
+   $('#passw').change(function(){
+    $('#passw').removeClass('error');
+   });
 });
 </script>
 <div id="table">
@@ -53,7 +74,7 @@ $(function(){
                <tr><td><label>Phone </label><input type="text" name="phone" value="<?php echo $user['Member']['phone']; ?>" class="required" /></td></tr>
             <?php }
         ?> 
-        <tr><td><input type="submit" name="submit" value="Save" class="btn btn-primary" /></td></tr>
+        <tr><td><input type="submit" name="submit" value="Save" class="btn btn-primary" onclick="if($('#old_password').val() != '' && $('#passw').val() == ''){$('#passw').addClass('error');return false;}else return true;" /></td></tr>
     </table>
     </form>
 </div>

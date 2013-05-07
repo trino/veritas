@@ -100,9 +100,9 @@ class MailController extends AppController
         $subj = $data['Mail']['subject'];
         $this->set('subj',$subj);
         if($par != 0)
-        $all = $this->Mail->find('all',array('conditions'=>array('OR'=>array('id'=>$par,'parent'=>$par)),'order'=>'id DESC'));
+        $all = $this->Mail->find('all',array('conditions'=>array('OR'=>array('id'=>$par,'parent'=>$par)),'order'=>'id ASC'));
         else
-        $all = $this->Mail->find('all',array('conditions'=>array('OR'=>array('id'=>$id,'parent'=>$id)),'order'=>'id DESC'));
+        $all = $this->Mail->find('all',array('conditions'=>array('OR'=>array('id'=>$id,'parent'=>$id)),'order'=>'id ASC'));
         
         $this->set('all',$all);
         $this->set('member',$this->Member);
