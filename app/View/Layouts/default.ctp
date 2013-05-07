@@ -173,9 +173,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 					<?php  echo $this->Html->link('<i class="icon-warning-sign"></i> '.'User Support','/dashboard/settings',array('escape' => false,)); ?>
 					</div>
 					
-					<div class="companyLogo">
+					<!--div class="companyLogo">
 					<?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => '', 'class'=>'image'))?>
-					</div>
+					</div-->
 				</div>
 			<?php }?>
 			
@@ -192,9 +192,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 					<?php  echo $this->Html->link('<i class="icon-group"></i> '.'Manage My team','/dashboard/settings',array('escape' => false,)); ?><br/>
 					<?php  echo $this->Html->link('<i class="icon-warning-sign"></i> '.'User Support','/dashboard/settings',array('escape' => false,)); ?>
 					</div>
-					<div class="companyLogo">
+					<!--div class="companyLogo">
 					<?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => '', 'class'=>'image'))?>
-					</div>
+					</div-->
 				</div>
 			<?php } ?>
 			
