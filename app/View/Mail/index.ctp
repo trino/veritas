@@ -11,11 +11,12 @@
 	</li>
 </ul>
 
+<?php echo $this->Html->link('Inbox','/mail', array('class'=>'btn btn-primary reg-company')); ?> 
+<?php echo $this->Html->link('Sent Mail','/mail/sent_mail', array('class'=>'btn btn-primary reg-company')); ?>
+<br/><br/>
 
 <div id="table">
-<h2>Inbox</h2>
-<?php echo $this->Html->link('Inbox','/mail', array('class'=>'btn btn-primary reg-company')); ?>
-<?php echo $this->Html->link('Sent Mail','/mail/sent_mail', array('class'=>'btn btn-primary reg-company')); ?>
+
 
 <?php if($email) { ?>
 <table>

@@ -13,18 +13,23 @@
 </ul>
 
 
-<div id="table">
-<h2>User Manager</h2>
-
 <?php echo $this->Html->link(
-					'+Add',
+					'Add User',
 					'/members/add',
 					array('class'=>'btn btn-primary reg-company')
 				);
 			?>
-   
+<br/>
+<br/>
+<div id="table">
 
-  <table>
+
+<table>
+            <tr>
+                <th>Company</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
 <?php
 if($mem){
 foreach($mem as $m)

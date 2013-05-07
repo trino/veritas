@@ -194,6 +194,14 @@ class UploadsController extends AppController
     
     public function view_doc($type)
     {
+	
+		if ($type =="contract"){$type2="Contracts";}
+		else if ($type =="post_order"){$type2="Post Orders";}
+		else if ($type =="audits"){$type2="Audits";}
+		else if ($type =="training_manuals"){$type2="Training Manuals";}
+		else {$type2="";}
+		$this->set('title2',$type2);
+		
         if($this->Session->read('avatar'))
         {
             $do=$this->Document->find('all',array('conditions'=>array('document_type'=>$type)));

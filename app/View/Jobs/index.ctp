@@ -11,16 +11,11 @@
 	</li>
 </ul>
 
-
-
-<div id="table">
-<h2>Job Manager</h2>
-
 <?php
 if($this->Session->read('avatar'))
 {
  echo $this->Html->link(
-					'+Add',
+					'Add Job',
 					'/jobs/add',
                     array('class'=>'btn btn-primary reg-company')
 				);
@@ -30,6 +25,13 @@ if($this->Session->read('avatar'))
    // echo $this->Html->link('Pending Jobs','/jobs/pending',array('class'=>'btn btn-primary reg-company'));
    }
    ?>
+  
+  <br/><br/>
+
+<div id="table">
+
+
+
    
 
 
@@ -43,6 +45,12 @@ else
 if($job){
     ?>
     <table>    
+	        <tr>
+                <th>Image</th>
+                <th>Company</th>
+                <th>Assigned to</th>
+                <th>Options</th>
+            </tr>
     <?php        
 foreach($job as $j)
 {

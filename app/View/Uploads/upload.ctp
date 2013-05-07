@@ -1,4 +1,19 @@
 <?php include_once('inc.php');?>
+
+
+
+<h3 class="page-title">
+	Upload Document
+</h3>
+<ul class="breadcrumb">
+	<li>
+		<i class="icon-home"></i>
+		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>jobs">Upload Document</a> <!--span class="icon-angle-right"></span-->
+	</li>
+</ul>
+
+
 <script type="text/javascript">
 $(function(){
    $('#document').val('1');
@@ -127,7 +142,8 @@ function remove_youtube()
     }
 }
 </script>
-<div>Upload Document</div>
+
+
 <form id="Form" action="" method="post" enctype="multipart/form-data">
 <div class="inputs"><div class="left">Location</div><div class="right"><input type="text" name="location" class="required" /></div><div class="clear"></div></div>
 <div class="inputs"><div class="left">Title</div><div class="right"><input type="text" name="title" class="required" /></div><div class="clear"></div></div>

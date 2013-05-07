@@ -12,11 +12,13 @@
 	</li>
 </ul>
 
-<div id="table">
-<h2>Sent Mail</h2>
-
-<?php echo $this->Html->link('Inbox','/mail', array('class'=>'btn btn-primary reg-company')); ?>
+<?php echo $this->Html->link('Inbox','/mail', array('class'=>'btn btn-primary reg-company')); ?> 
 <?php echo $this->Html->link('Sent Mail','/mail/sent_mail', array('class'=>'btn btn-primary reg-company')); ?>
+<br/><br/>
+
+<div id="table">
+
+
 <?php if($email) { ?>
 <table>
     <tr>
