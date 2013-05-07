@@ -3,7 +3,7 @@
 
 
 <h3 class="page-title">
-	Documents: Contracts
+	Documents: <?=$title2;?>
 </h3>
 <ul class="breadcrumb">
 	<li>
@@ -24,7 +24,7 @@ else
 {
     ?>
     <div id="table">
-        <h2>Documents</h2>
+        <h2>Documents: <?=$title2;?></h2>
      <table>
         <tr>
             <th>Title</th>

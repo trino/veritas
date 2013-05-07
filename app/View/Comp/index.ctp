@@ -11,9 +11,11 @@
 	</li>
 </ul>
 
-<div id="table">
-<h2>Company Manager</h2>
 <?php echo $this->Html->link('Register Company','/comp/register', array('class'=>'btn btn-primary reg-company')); ?>
+<br/><br/>
+<div id="table">
+
+
     <?php 
    
     if($company)
