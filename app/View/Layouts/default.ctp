@@ -289,7 +289,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 									<?php 
 										if(!$this->Session->read('avatar'))
 										{?>
-											<a class="buttonV" href="javascripit::void(0)" onclick="list_email(this.id)" id="<?php echo $ad['User']['name_avatar']."_0_".$ad['User']['email']; ?>"><?php echo $ad['User']['name_avatar']; ?></a>
+											<a class="buttonV" href="javascript:void(0)" onclick="list_email(this.id)" id="<?php echo $ad['User']['name_avatar']."_0_".$ad['User']['email']; ?>"><?php echo $ad['User']['name_avatar']; ?></a>
 										<?php }
 									?>
 								</div>
