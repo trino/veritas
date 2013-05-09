@@ -4,12 +4,12 @@ class DashboardController extends AppController
     var $components = array('Email');
     public function index()
     {
-        if($this->Session->read('avatar') || $this->Session->read('user'))
+        if($this->Session->read('admin') || $this->Session->read('user'))
         {
             
         }
         else
-            $this->redirect('/admin');
+            $this->redirect('/');
             
         $this->loadModel('Member');
         $this->loadModel('Mail');
