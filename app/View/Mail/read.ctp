@@ -1,5 +1,5 @@
 <?php include_once('inc.php');?>
-
+<?php if(isset($success)){?><div id="flashMessage" class="message"><?php echo $success;?></div><?php }?>
 <h3 class="page-title">
 	<?php echo $subj;?>
 </h3>

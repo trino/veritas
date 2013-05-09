@@ -136,7 +136,7 @@
                         
                         if($a['Document']['addedBy']==$aa['Member']['id'])
                         {
-                            echo $aa['Member']['email'];
+                            echo "<a href='".$base_url."members/view/".$aa['Member']['id']."'>".$aa['Member']['email']."</a>";
                         }
                         
                         

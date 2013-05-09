@@ -93,6 +93,7 @@ class MailController extends AppController
                 $arr['parent'] = $_POST['mail_id'];
                 $this->Mail->create();
                 $this->Mail->save($arr);
+                $this->set('success','You have replied to this message.');
                 $this->Email->from    = $this->Session->read('email');
                 $this->Email->to = $receiver;
                 $this->Email->subject = $_POST['subject'];
