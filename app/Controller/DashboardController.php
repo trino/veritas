@@ -4,15 +4,13 @@ class DashboardController extends AppController
     var $components = array('Email');
     public function index()
     {
-        if($this->Session->read('admin') || $this->Session->read('user'))
+        if($this->Session->read('avatar') || $this->Session->read('user'))
         {
             //die('here');
         }
-
         else{
             //die('there');
             $this->redirect('/admin');}
-
             
         $this->loadModel('Member');
         $this->loadModel('Mail');
@@ -20,7 +18,7 @@ class DashboardController extends AppController
         $this->loadModel('Document');
         $this->loadModel('Jobmember');
         
-        $this->set('ad',$this->User->find('first'));
+        //$this->set('ad',$this->User->find('first'));
         if($this->Session->read('avatar'))
         {
             $this->set('contract',$this->Document->find('count',array('conditions'=>array('document_type'=>'contract'))));
@@ -191,7 +189,14 @@ class DashboardController extends AppController
     {
         $this->loadModel('Member');
         return $this->Member->find('all');
-    }
+    }        
+    public function get_user()
+    {
+        $this->loadModel('User');
+        return $this->User->find('first');die();
+            
+            
+    }            
     public function settings()
     {
         $this->loadModel('Member');

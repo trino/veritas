@@ -13,6 +13,20 @@
 </ul>
 
 <script type="text/javascript">
+$(function(){
+   $('.jobs').each(function(){
+    var vals = $(this).val();
+    if($(this).is(':checked'))
+    {
+        if($('#job').val() == '')
+        {
+            $('#job').val(vals);
+        }
+        else
+        $('#job').val($('#job').val()+','+vals);
+    }
+   }); 
+});
 function option()
 {
     var value="";
@@ -36,34 +50,24 @@ function option()
 <?php //var_dump($job_id); ?>
 <form action="" method="post" onsubmit="return check()">
 <?php 
-    foreach($job as $j)
-    {
-        if($job_id)
+$arrs = array();
+    if($job_id)
         {
-        foreach($job_id as $ji)
-        {
-            $jo=$ji['Jobmember']['job_id'];
-            $jii=explode(',',$jo);
-            //var_dump($jii);
-            //echo $j['Job']['id'];
-            for($i=0;$i<sizeof($jii);$i++)
-            {
-                if($j['Job']['id']==$jii[$i])
-                {
-                    $checked = "checked='checked'";
-                    break;
-                }
-                else
-                $checked ="";
+            //var_dump($ji);
+            $jos = $job_id['Jobmember']['job_id'];
+            $jos_array = explode(',',$jos);
+            foreach($jos_array as $jost){
+            $arrs[] = $jost;             
             }
         
-        ?>
-        <input type="checkbox" class="jobs" onclick="option()" name="job[]" value="<?php echo $j['Job']['id']; ?>" <?php echo $checked; ?> /> <?php echo $j['Job']['title']; ?><br />
-    <?php } }
-    else
-    { ?>
-       <input type="checkbox" class="jobs" onclick="option()" name="job[]" value="<?php echo $j['Job']['id']; ?>"  /> <?php echo $j['Job']['title']; ?><br /> 
-    <?php }
+        }
+    foreach($job as $j)
+    {
+       
+         
+    ?>
+    <input type="checkbox" class="jobs" onclick="option()" name="job[]" value="<?php echo $j['Job']['id']; ?>" <?php if(in_array($j['Job']['id'],$arrs)){echo "checked='checked'";} ?> /> <?php echo $j['Job']['title']; ?><br />
+    <?php
     }
 ?>
 <input type="hidden" name="job" id="job" value="" />

@@ -210,4 +210,8 @@ class MembersController extends AppController
         }
         die();
     }
+    public function view($id)
+    {
+        $this->set('profile',$this->Member->find('first',array('conditions'=>array('id'=>$id))));
+    }
 }

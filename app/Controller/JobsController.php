@@ -261,6 +261,7 @@ class JobsController extends AppController
         }*/
         if(isset($_POST['submit']))
         {
+            
             $this->set('user',$this->Member->find('all',array('conditions'=>array('full_name LIKE'=>$_POST['search']."%"))));
         }
         else
@@ -278,13 +279,22 @@ class JobsController extends AppController
         $this->set('mem',$this->Member->findById($id));
         $this->set('job',$this->Job->find('all'));
         $id  = $data['Member']['id'];
-        $this->set('job_id',$this->Jobmember->find('all',array('conditions'=>array('member_id in ('.$id.')'))));
+        $this->set('job_id',$this->Jobmember->find('first',array('conditions'=>array('member_id' =>$id))));
         if(isset($_POST['submit']))
         {
+            //var_dump($_POST);            
             $arr['job_id']=$_POST['job'];
             $arr['member_id'] = $_POST['member'];
-            $this->Jobmember->create();
-            $this->Jobmember->save($arr);
+            $q = $this->Jobmember->find('first',array('conditions'=>array('member_id' =>$id)));
+            if($q){
+            $this->Jobmember->id = $q['Jobmember']['id'];
+            $this->Jobmember->saveField('job_id',$arr['job_id']);
+            }
+            else
+            {
+                $this->Jobmember->create();
+                $this->Jobmember->save($arr);
+            }                        
             $this->Session->setFlash('Data Saved Successfully.');
             $this->redirect('listing');
         }

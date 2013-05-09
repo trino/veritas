@@ -1,5 +1,7 @@
 <?php include_once('inc.php');?>
-
+<style>
+.infos a:hover{text-decoration: none;}
+</style>
 
 <h3 class="page-title">
 	User Manager
@@ -37,7 +39,7 @@ foreach($mem as $m)
     ?>
   
     	<tr>
-    		<td><?php echo $this->Html->image('uploads/'.$m['Member']['image'], array('alt' => ''))?> <?php echo $m['Member']['title']." ".$m['Member']['full_name']?></td>
+    		<td class="infos"><a href="<?php echo $base_url.'members/view/'.$m['Member']['id']?>"><?php echo $this->Html->image('uploads/'.$m['Member']['image'], array('alt' => ''))?> <?php echo $m['Member']['title']." ".$m['Member']['full_name']?></a></td>
     		<td>
     <?php echo $this->Html->link(
 					'Edit',

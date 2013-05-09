@@ -36,7 +36,7 @@ if($docs)
             <td><?php echo $d['Document']['title']; ?></td>
             <td><?php echo $d['Document']['location']; ?></td>
             <td><?php echo $d['Document']['description']; ?></td>
-            <td><?php if($d['Document']['addedBy'] != 0){$q = $member->find('first',array('conditions'=>array('id'=>$d['Document']['addedBy'])));if($q){echo $q['Member']['full_name'];}}else echo "Admin";?></td>
+            <td><?php if($d['Document']['addedBy'] != 0){$q = $member->find('first',array('conditions'=>array('id'=>$d['Document']['addedBy'])));if($q){echo "<a href='".$base_url."members/view/".$q['Member']['id']."'>".$q['Member']['full_name']."</a>";}}else echo "Admin";?></td>
             <td><?php echo $d['Document']['date'];?></td>
             <td><?php echo $this->Html->link('View Detail','/uploads/view_detail/'.$d['Document']['id']);  ?>
                 

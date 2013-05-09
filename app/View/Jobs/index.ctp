@@ -75,7 +75,7 @@ foreach($job as $j)
                         {
                             if($ji[$i]==$j['Job']['id'])
                             {
-                                echo $m['Member']['title']." ".$m['Member']['full_name'].", ";
+                                echo "<a href='".$base_url."members/view/".$m['Member']['id']."'>".$m['Member']['title']." ".$m['Member']['full_name']."</a>, ";
                             }
                         }
                     }

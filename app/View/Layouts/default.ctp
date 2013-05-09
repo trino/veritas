@@ -18,7 +18,8 @@
  */
 include('inc.php');
 $mems = $this->requestAction($base_url.'/dashboard/get_email_list');
-//echo $base_url;
+$ad = $this->requestAction($base_url.'/dashboard/get_user');
+//echo  $base_url;
 $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
 ?>
 
@@ -174,7 +175,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 					</div>
 					
 					<div class="links">
-					<?php  echo $this->Html->link('<i class="icon-user"></i> '.'User Preference','/dashboard/settings',array('escape' => false,)); ?><br/>
+					<?php  echo $this->Html->link('<i class="icon-user"></i> '.' '.$this->Session->read('avatar'),'/dashboard/settings',array('escape' => false,)); ?><br/>
 					<?php  echo $this->Html->link('<i class="icon-group"></i> '.'Manage My team','/dashboard/settings',array('escape' => false,)); ?><br/>
 					<?php  echo $this->Html->link('<i class="icon-warning-sign"></i> '.'User Support','/dashboard/settings',array('escape' => false,)); ?>
 					</div>
@@ -194,7 +195,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 					<?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => ''))?>
 					</div>
 					<div class="links">
-					<?php  echo $this->Html->link('<i class="icon-user"></i>'.'User Preference','/dashboard/settings',array('escape' => false,)); ?><br/>
+					<?php  echo $this->Html->link('<i class="icon-user"></i>'.' '.$this->Session->read('user'),'/dashboard/settings',array('escape' => false,)); ?><br/>
 					<?php  echo $this->Html->link('<i class="icon-group"></i> '.'Manage My team','/dashboard/settings',array('escape' => false,)); ?><br/>
 					<?php  echo $this->Html->link('<i class="icon-warning-sign"></i> '.'User Support','/dashboard/settings',array('escape' => false,)); ?>
 					</div>
@@ -252,16 +253,16 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 						{
 						  
 							email=e[2]+', ';
-                            var ema2 = '<a href="javascript:void(0)" id="'+e[2]+'__'+e[1]+'" class="del_email">'+e[2]+','+'</a> ';
+                            var ema2 = '<a href="javascript:void(0)" id="'+e[2]+'__'+e[1]+'" class="del_email">'+e[2]+' [x],'+'</a> ';
                             del_em = ema2;
 						}
 						else
 						{
 						  
 						    ema = ema.replace(e[2]+', ','');
-                            ema2 = ema2.replace('<a href="javascript:void(0)" id="'+e[2]+'__'+e[1]+'" class="del_email">'+e[2]+','+'</a> ','');                            
+                            ema2 = ema2.replace('<a href="javascript:void(0)" id="'+e[2]+'__'+e[1]+'" class="del_email">'+e[2]+' [x],'+'</a> ','');                            
 							email=ema+e[2]+',';
-                            del_em = ema2+'<a href="javascript:void(0)" id="'+e[2]+'__'+e[1]+'" class="del_email">'+e[2]+','+'</a> ';
+                            del_em = ema2+'<a href="javascript:void(0)" id="'+e[2]+'__'+e[1]+'" class="del_email">'+e[2]+' [x],'+'</a> ';
                             //alert(del_em);
 						}
 						//alert(email);
@@ -290,7 +291,16 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 								<a href="javascript:void(0)" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a>
 								
 								<div id="email" style="display: none;">
-									<?php foreach($mems as $m) { ?> 
+									<?php foreach($mems as $m) {
+									   if(!$this->Session->read('admin'))
+                                       {
+                                        if($m['Member']['id'] == $this->Session->read('id'))
+                                        {
+                                            continue;
+                                        }
+                                       }
+									   ?> 
+                                    
 									<a class="buttonV" href="javascript:void(0)" onclick="list_email(this.id)" id="<?php echo $m['Member']['full_name']."_".$m['Member']['id']."_".$m['Member']['email'];?>"><?php echo $m['Member']['full_name']; ?></a>
 									<?php } ?>
 									<?php 

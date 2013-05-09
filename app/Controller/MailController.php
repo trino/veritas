@@ -47,7 +47,7 @@ class MailController extends AppController
             }
             $str = str_replace(',',' ',$str);
             $str = trim($str);
-            $str = $str.')';
+            $str = str_replace(' ',',',$str).')';
             $this->paginate=array('conditions'=>array('OR'=>array('AND'=>array('parent'=>0,'recipients_id'=>$this->Session->read('id'),'delete_for IN("s","")'),'id IN'.$str)),'limit'=>15,'order'=>array('date'=>'desc'));
             $em= $this->paginate('Mail');
             $this->set('email',$em);
