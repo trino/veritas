@@ -70,16 +70,19 @@ class JobsController extends AppController
                 $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/uploads/';
                 }
                 else
-                $path = $_SERVER['DOCUMENT_ROOT'].'app/webroot/img/uploads/';
+                $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/uploads/';
                 
                  if($_SERVER['SERVER_NAME']=='localhost')
                 {
                     $path = $_SERVER['DOCUMENT_ROOT'].'veritas/app/webroot/img/uploads/';
                 }
                 else
-                    $path = $_SERVER['DOCUMENT_ROOT'].'app/webroot/img/uploads/';
+                    $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/uploads/';
                 $source = $_FILES['image']['tmp_name'];
-                $destination = $path.$_FILES['image']['name'];
+                $rand = rand(100000,999999);
+                $ext_arr = explode('.',$_FILES['image']['name']);
+                $img = $rand.'.'.end($ext_arr);
+                $destination = $path.$img;
                 move_uploaded_file($source,$destination);
                 $max_width = 60;
                 $max_height = 60;
@@ -125,10 +128,10 @@ class JobsController extends AppController
             } 
                 
                 
-            $image=$_FILES['image']['name'];
+            //$image=$_FILES['image']['name'];
             $arr['title'] = $_POST['title'];
             $arr['description'] = $_POST['description'];
-            $arr['image'] = $image;
+            $arr['image'] = $img;
             $arr['date_start'] = $_POST['start_date'];
             $arr['date_end'] = $_POST['end_date'];
             $arr['isApproved'] = '1';
@@ -157,16 +160,19 @@ class JobsController extends AppController
                 $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/uploads/';
                 }
                 else
-                $path = $_SERVER['DOCUMENT_ROOT'].'app/webroot/img/uploads/';
+                $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/uploads/';
                 
                  if($_SERVER['SERVER_NAME']=='localhost')
                 {
                     $path = $_SERVER['DOCUMENT_ROOT'].'veritas/app/webroot/img/uploads/';
                 }
                 else
-                    $path = $_SERVER['DOCUMENT_ROOT'].'app/webroot/img/uploads/';
+                    $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/uploads/';
                 $source = $_FILES['image']['tmp_name'];
-                $destination = $path.$_FILES['image']['name'];
+                $rand = rand(100000,999999);
+                $ext_arr = explode('.',$_FILES['image']['name']);
+                $img = $rand.'.'.end($ext_arr);
+                $destination = $path.$img;
                 move_uploaded_file($source,$destination);
                 $max_width = 60;
                 $max_height = 60;
@@ -211,16 +217,16 @@ class JobsController extends AppController
                     break; 
             } 
                 
-                $image=$_FILES['image']['name'];
+                //$img=$_FILES['image']['name'];
             }
             else
             {
-                $image =  $_POST['img'];
+                $img =  $_POST['img'];
             }
             $this->Job->id = $id;
             $this->Job->saveField('title',$_POST['title']);
             $this->Job->saveField('description',$_POST['description']);
-            $this->Job->saveField('image',$image);
+            $this->Job->saveField('image',$img);
             $this->Job->saveField('date_start',$_POST['start_date']);
             $this->Job->saveField('date_end',$_POST['end_date']);  
             $this->Session->setFlash('Data Saved Successfully');

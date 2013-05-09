@@ -90,14 +90,14 @@ class UploadsController extends AppController
                 $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/documents/';
                 }
                 else
-                $path = $_SERVER['DOCUMENT_ROOT'].'app/webroot/img/documents/';
+                $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/documents/';
                 
                  if($_SERVER['SERVER_NAME']=='localhost')
                 {
                     $path = $_SERVER['DOCUMENT_ROOT'].'veritas/app/webroot/img/documents/';
                 }
                 else
-                    $path = $_SERVER['DOCUMENT_ROOT'].'app/webroot/img/documents/';
+                    $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/documents/';
             if(!$this->Session->read('admin'))   
             $id=$this->Session->read('id');
             else
@@ -113,18 +113,22 @@ class UploadsController extends AppController
             $this->Document->save($arr);
             $id=$this->Document->id;
             $doc = $_POST['document'];
-            $img = $_POST['image'];
+            $imgs = $_POST['image'];
             $vid = $_POST['video'];
             $you=$_POST['youtube'];
-            for($i=1;$i<=$img;$i++)
+            for($i=1;$i<=$imgs;$i++)
             {
                 if($_FILES['image_'.$i]['tmp_name']!="")
                 {
                 $source=$_FILES['image_'.$i]['tmp_name'];
-                $destination = $path.$_FILES['image_'.$i]['name'];
+                $rand = rand(100000,999999);
+                $ext_arr = explode('.',$_FILES['image_'.$i]['name']);
+                $img = $rand.'.'.end($ext_arr);
+                $destination = $path.$img;
+                //$destination = $path.$_FILES['image_'.$i]['name'];
                 move_uploaded_file($source,$destination);
                 $im['document_id'] = $id;
-                $im['image'] = $_FILES['image_'.$i]['name'];
+                $im['image'] = $img;
                 
                 $this->Image->create();
                 $this->Image->save($im);
@@ -135,10 +139,14 @@ class UploadsController extends AppController
                 if($_FILES['document_'.$i]['tmp_name']!="")
                 {
                 $source=$_FILES['document_'.$i]['tmp_name'];
-                $destination = $path.$_FILES['document_'.$i]['name'];
+                $rand = rand(100000,999999);
+                $ext_arr = explode('.',$_FILES['document_'.$i]['name']);
+                $img = $rand.'.'.end($ext_arr);
+                $destination = $path.$img;
+                //$destination = $path.$_FILES['document_'.$i]['name'];
                 move_uploaded_file($source,$destination);
                 $d['document_id'] = $id;
-                $d['doc'] = $_FILES['document_'.$i]['name'];
+                $d['doc'] = $img;
                 $this->Doc->create();
                 $this->Doc->save($d);
             }
@@ -148,10 +156,14 @@ class UploadsController extends AppController
                 if($_FILES['video_'.$i]['tmp_name']!="")
                 {
                 $source=$_FILES['video_'.$i]['tmp_name'];
-                $destination = $path.$_FILES['video_'.$i]['name'];
+                $rand = rand(100000,999999);
+                $ext_arr = explode('.',$_FILES['video_'.$i]['name']);
+                $img = $rand.'.'.end($ext_arr);
+                $destination = $path.$img;
+                //$destination = $path.$_FILES['video_'.$i]['name'];
                 move_uploaded_file($source,$destination);
                 $v['document_id'] = $id;
-                $v['video'] = $_FILES['video_'.$i]['name'];
+                $v['video'] = $img;
                 $this->Video->create();
                 $this->Video->save($v);
                 }

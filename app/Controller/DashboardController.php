@@ -6,10 +6,13 @@ class DashboardController extends AppController
     {
         if($this->Session->read('admin') || $this->Session->read('user'))
         {
-            
+            //die('here');
         }
-        else
-            $this->redirect('/');
+
+        else{
+            //die('there');
+            $this->redirect('/admin');}
+
             
         $this->loadModel('Member');
         $this->loadModel('Mail');
@@ -227,15 +230,18 @@ class DashboardController extends AppController
                 $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/uploads/';
                 }
                 else
-                $path = $_SERVER['DOCUMENT_ROOT'].'app/webroot/img/uploads/';
+                $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/uploads/';
                  if($_SERVER['SERVER_NAME']=='localhost')
                 {
                     $path = $_SERVER['DOCUMENT_ROOT'].'veritas/app/webroot/img/uploads/';
                 }
                 else
-                    $path = $_SERVER['DOCUMENT_ROOT'].'app/webroot/img/uploads/';
+                    $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/uploads/';
                 $source = $_FILES['image']['tmp_name'];
-                $destination = $path.$_FILES['image']['name'];
+                $rand = rand(100000,999999);
+                $ext_arr = explode('.',$_FILES['image']['name']);
+                $img = $rand.'.'.end($ext_arr);
+                $destination = $path.$img;
                 move_uploaded_file($source,$destination);
                 $max_width = 60;
                 $max_height = 60;
@@ -280,7 +286,7 @@ class DashboardController extends AppController
                     break; 
             } 
                 
-                $img=$_FILES['image']['name'];
+                //$img=$_FILES['image']['name'];
            }
            else
            {

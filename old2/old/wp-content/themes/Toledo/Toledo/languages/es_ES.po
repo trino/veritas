@@ -1,0 +1,393 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Alex <alextintea@ymail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+
+#. Text in function
+#: category.php:108
+#: search.php:108
+msgid " %s"
+msgstr "%s"
+
+#. Text in function
+#: comments.php:11
+#: archive.php:303
+#: category.php:285
+#: template-blog.php:287
+#: search.php:285
+#: single.php:254
+msgid "% Comments"
+msgstr "% Comentarios"
+
+#. Text in function
+#: lib/projects.php:1
+msgid "Add New Project"
+msgstr "Añadir Proyecto Nuevo"
+
+#. Text in function
+#: lib/quotes.php:1
+msgid "Add New Quote"
+msgstr "Añadir Nueva Cita"
+
+#. Text in function
+#: lib/projects.php:1
+msgid "Add New Set"
+msgstr "Añadir Nuevo Set"
+
+#. Text in function
+#: lib/projects.php:1
+msgid "All Sets"
+msgstr "Todos los Sets"
+
+#. Text in echo
+#: template-archive.php:208
+msgid "Archives by Month:"
+msgstr "Archivos por Mes"
+
+#. Text in echo
+#: template-archive.php:193
+msgid "Archives by Subject:"
+msgstr "Archivos por Tema"
+
+#. Text in echo
+#: archive.php:302
+#: category.php:284
+#: template-blog.php:286
+#: search.php:284
+#: single.php:253
+msgid "Author"
+msgstr "Autor"
+
+#. Text in echo
+#: template-archive.php:178
+msgid "Available Pages"
+msgstr "Páginas Disponibles"
+
+#. Text in echo
+#: archive.php:304
+#: category.php:286
+#: category.php:108
+#: template-blog.php:288
+#: search.php:286
+#: search.php:108
+#: single.php:255
+msgid "Category"
+msgstr "Categoría"
+
+#. Text in echo
+#: archive.php:303
+#: category.php:285
+#: template-blog.php:287
+#: search.php:285
+#: single.php:254
+msgid "Comments"
+msgstr "Comentarios"
+
+#. Text in function
+#: lib/projects.php:1
+msgid "Edit Project"
+msgstr "Editar Proyecto"
+
+#. Text in function
+#: lib/quotes.php:1
+msgid "Edit Quote"
+msgstr "Editar Cita"
+
+#. Text in function
+#: lib/projects.php:1
+msgid "Edit Set"
+msgstr "Editar Set"
+
+#. Text in function
+#: lib/flex-slider.php:1
+msgid "Flex Slider"
+msgstr "Deslizante Flexible"
+
+#. Text in function
+#: forum.php:108
+msgid "Forums"
+msgstr "Foro"
+
+#. Text in function
+#: lib/sponsors.php:1
+#: lib/wmu-slider.php:1
+#: lib/team.php:1
+#: lib/flex-slider.php:1
+msgid "Image"
+msgstr "Imagen"
+
+#. Text in echo
+#: archive.php:177
+#: category.php:159
+#: template-blog.php:161
+#: search.php:159
+#: single.php:85
+msgid "Link"
+msgstr "Enlace"
+
+#. Text in echo
+#: template-comments-form.php:15
+msgid "Log out &raquo;"
+msgstr "Desconectar &raquo;"
+
+#. Text in echo
+#: template-comments-form.php:15
+msgid "Logged in as"
+msgstr "Conectado como"
+
+#. Text in function
+#: lib/team.php:1
+msgid "Member"
+msgstr "Miembro"
+
+#. Text in function
+#: lib/projects.php:1
+msgid "New Project"
+msgstr "Nuevo Proyecto"
+
+#. Text in function
+#: lib/quotes.php:1
+msgid "New Quote"
+msgstr "Nueva Cita"
+
+#. Text in function
+#: lib/projects.php:1
+msgid "New Set Name"
+msgstr "Nuevo Nombre del Set"
+
+#. Text in function
+#: lib/projects.php:1
+msgid "No Project found"
+msgstr "No se ha encontrado ningún proyecto"
+
+#. Text in function
+#: lib/projects.php:1
+msgid "No Projects found in Trash"
+msgstr "No se ha encontrado ningún proyecto en la papelera"
+
+#. Text in function
+#: lib/quotes.php:1
+msgid "No Quote found"
+msgstr "No se ha encontrado ninguna cita"
+
+#. Text in function
+#: lib/quotes.php:1
+msgid "No Testimonials found in Trash"
+msgstr "No se ha encontrado ningún testimonio"
+
+#. Text in function
+#: comments.php:11
+#: archive.php:303
+#: category.php:285
+#: template-blog.php:287
+#: search.php:285
+#: single.php:254
+msgid "No comment"
+msgstr "No hay comentarios"
+
+#. Text in function
+#: comments.php:11
+#: archive.php:303
+#: category.php:285
+#: template-blog.php:287
+#: search.php:285
+#: single.php:254
+msgid "One comment"
+msgstr "Un comentario"
+
+#. Text in echo
+#: 404.php:38
+msgid "Ooops, you've encountered an error"
+msgstr "Ooops, se ha producido un error"
+
+#. Text in echo
+#: 404.php:17
+msgid "PAGE NOT FOUND"
+msgstr "PÁGINA NO ENCONTRADA"
+
+#. Text in function
+#: lib/custom.lib.php:248
+msgid "Page"
+msgstr "Página"
+
+#. Text in function
+#: header.php:14
+msgid "Page %s"
+msgstr "Pagina %s"
+
+#. Text in function
+#: lib/projects.php:1
+msgid "Parent Set"
+msgstr "Set Matriz"
+
+#. Text in function
+#: lib/projects.php:1
+msgid "Parent Set:"
+msgstr "Set Matriz:"
+
+#. Text in function
+#: lib/sponsors.php:1
+msgid "Partners"
+msgstr "Socios"
+
+#. Text in function
+#: template-archive.php:138
+msgid "Permanent Link:"
+msgstr "Enclace Permanente"
+
+#. Text in echo
+#: archive.php:301
+#: category.php:283
+#: template-blog.php:285
+#: search.php:283
+#: single.php:252
+msgid "Posted on"
+msgstr "Publicado en"
+
+#. Text in function
+#: lib/projects.php:1
+msgid "Search Projects"
+msgstr "Buscar Proyectos"
+
+#. Text in function
+#: lib/projects.php:1
+msgid "Search Sets"
+msgstr "Buscar Sets"
+
+#. Text in function
+#: lib/quotes.php:1
+msgid "Search Testimonials"
+msgstr "Buscar Testimonios"
+
+#. Text in echo
+#: single.php:259
+msgid "Share"
+msgstr "Compartir"
+
+#. Text in echo
+#: single.php:262
+#: single.php:264
+#: single.php:266
+#: single.php:268
+#: single.php:270
+#: single.php:272
+msgid "Share this on"
+msgstr "Compartir esto en"
+
+#. Text in echo
+#: 404.php:39
+msgid "The page you were looking for doesn't exist."
+msgstr "La página que busca no existe."
+
+#. Text in echo
+#: comments.php:3
+msgid "This post is password protected. Enter the password to view comments."
+msgstr "Este artículo está protegido por una contraseña. Introduzca la contraseña para ver comentarios."
+
+#. Text in function
+#: lib/projects.php:1
+msgid "Update Set"
+msgstr "Actualizar Set"
+
+#. Text in function
+#: lib/projects.php:1
+msgid "View Project"
+msgstr "Ver Proyecto"
+
+#. Text in function
+#: lib/quotes.php:1
+msgid "View Quote"
+msgstr "Ver Cita"
+
+#. Text in echo
+#: template-comments-form.php:7
+msgid "Wanna say something?"
+msgstr "¿Quieres decir algo?"
+
+#. Text in function
+#: plugins/theme_store.php:176
+#: plugins/shortcode_generator.php:872
+msgid "You do not have sufficient permissions to access this page."
+msgstr "No tienes el permiso suficiente para acceder a esta página."
+
+#. Text in echo
+#: template-comments-form.php:4
+msgid "You must be"
+msgstr "Usted ha de ser"
+
+#. Text in echo
+#: lib/custom.lib.php:239
+msgid "Your comment is awaiting moderation"
+msgstr "Su comentario está esperando la moderación"
+
+#. Text in echo
+#: comments.php:11
+msgid "for"
+msgstr "para"
+
+#. Text in echo
+#: template-comments-form.php:4
+msgid "logged in"
+msgstr "conectado"
+
+#. Text in echo
+#: template-comments-form.php:4
+msgid "to post a comment."
+msgstr "para publicar un comentario."
+
+#. Text in function
+#: lib/wmu-slider.php:1
+msgid "wmu Slider"
+msgstr "wmu deslizante"
+
+#. Text in function
+#: functions.php:594
+msgid "Main menu"
+msgstr "Menú Principal"
+
+#. Text in function
+#: archive.php:115
+msgid "Tag: "
+msgstr "Etiqueta:"
+
+#. Text in echo
+#: archive.php:117
+msgid "Blog Archives: "
+msgstr "Archivos del Blog"
+
+#. Text in function
+#: archive.php:109
+msgid "Daily Archives: %s"
+msgstr "Archivos Diarios: %s"
+
+#. Text in function
+#: forum.php:108
+msgid "Edit profile for User:"
+msgstr "Editar perfil del Usuario:"
+
+#. Text in function
+#: archive.php:111
+msgid "Monthly Archives: %s"
+msgstr "Archivos Mensuales:"
+
+#. Text in function
+#: forum.php:108
+msgid "Profile for User:"
+msgstr "Perfil del Usuario:"
+
+#. Text in echo
+#: template-archive.php:133
+msgid "The 20 latest Blog Posts"
+msgstr "Los últimos 20 artículos de blog"
+
+#. Text in function
+#: archive.php:113
+msgid "Yearly Archives: %s"
+msgstr "Archivos Anuales: %s"
+

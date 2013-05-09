@@ -134,7 +134,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			<div class="menu">
 				<?php if($this->Session->read('avatar')){?>
 					<?php  echo $this->Html->link('<i class="icon-globe"></i>'.'User Manager','/members',array('escape' => false,)); ?>
-					<?php  echo $this->Html->link('<i class="icon-user"></i>'.'Company Manager','/comp',array('escape' => false,)); ?>
+					<?php  //echo $this->Html->link('<i class="icon-user"></i>'.'Company Manager','/comp',array('escape' => false,)); ?>
 					<?php // echo $this->Html->link('<i class="icon-list"></i>'.'Pages','/dashboard/home',array('escape' => false,)); ?>
 				<?php }?>
 				
