@@ -35,17 +35,20 @@ class MembersController extends AppController
                 $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/uploads/';
                 }
                 else
-                $path = $_SERVER['DOCUMENT_ROOT'].'app/webroot/img/uploads/';
+                $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/uploads/';
                 
                 if($_SERVER['SERVER_NAME']=='localhost')
                 {
                     $path = $_SERVER['DOCUMENT_ROOT'].'veritas/app/webroot/img/uploads/';
                 }
                 else
-                    $path = $_SERVER['DOCUMENT_ROOT'].'app/webroot/img/uploads/';
+                    $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/uploads/';
                     
             $source = $_FILES['image']['tmp_name'];
-            $destination = $path.$_FILES['image']['name'];
+            $rand = rand(100000,999999);
+            $ext_arr = explode('.',$_FILES['image']['name']);
+            $img = $rand.'.'.end($ext_arr);
+            $destination = $path.$img;
              //move_uploaded_file($source,$destination);
             /*
             $this->Image = $this->Components->load('Image');
@@ -112,7 +115,7 @@ class MembersController extends AppController
             
             $arr['phone'] = $_POST['phone'];
             $arr['password'] = $_POST['password'];
-            $arr['image'] = $_FILES['image']['name'];
+            $arr['image'] = $img;
             if(isset($_POST['canView']))
             {
                 $arr['canView'] = 1;

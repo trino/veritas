@@ -36,15 +36,19 @@ class MailController extends AppController
                 if(!in_array($t['Mail']['parent'],$arr))
                 $arr[] = $t['Mail']['parent'];
             }
-            $str[] = '0';
+            $str = '(0,';
             $k = 0;
+            
             foreach($arr as $a)
             {
                 
-                $str[] = $a;
+                $str = $str.$a.',';
                  
             }
-            $this->paginate=array('conditions'=>array('OR'=>array('AND'=>array('parent'=>0,'recipients_id'=>$this->Session->read('id'),'delete_for IN("s","")'),'id IN'=>$str)),'limit'=>15,'order'=>array('date'=>'desc'));
+            $str = str_replace(',',' ',$str);
+            $str = trim($str);
+            $str = $str.')';
+            $this->paginate=array('conditions'=>array('OR'=>array('AND'=>array('parent'=>0,'recipients_id'=>$this->Session->read('id'),'delete_for IN("s","")'),'id IN'.$str)),'limit'=>15,'order'=>array('date'=>'desc'));
             $em= $this->paginate('Mail');
             $this->set('email',$em);
             //$this->set('email',$this->Mail->find('all',array('conditions'=>array('recipients_id'=>$this->Session->read('id')))));
