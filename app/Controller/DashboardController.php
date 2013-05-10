@@ -17,6 +17,7 @@ class DashboardController extends AppController
         $this->loadModel('User');
         $this->loadModel('Document');
         $this->loadModel('Jobmember');
+        $this->loadModel('Event_log');
         
         //$this->set('ad',$this->User->find('first'));
         if($this->Session->read('avatar'))
@@ -26,8 +27,9 @@ class DashboardController extends AppController
              $this->set('audits',$this->Document->find('count',array('conditions'=>array('document_type'=>'audits'))));
               $this->set('training_manuals',$this->Document->find('count',array('conditions'=>array('document_type'=>'training_manuals'))));
               $this->paginate = array('limit'=>10,'order'=>'date desc');
-             $this->set('activity',$this->paginate('Document'));
+             //$this->set('activity',$this->paginate('Document'));
              $this->set('added',$this->Member->find('all'));
+             $this->set('activity', $this->paginate('Event_log'));
         }
         else
         {

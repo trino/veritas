@@ -12,6 +12,7 @@ class UploadsController extends AppController
         $this->loadModel('Doc');
         $this->loadModel('Video');
         $this->loadModel('Youtube');
+        $this->loadModel('Event_log');
         parent::__construct($request,$response);
     }
     
@@ -179,6 +180,26 @@ class UploadsController extends AppController
                 }        
             }
             $this->Session->setFlash('Data Saved Successfully.');
+            $log['date'] =  date('Y-m-d');
+            $log['time'] =  date('H:i:s');
+            if($this->Session->read('admin'))
+            {
+                $log['fullname'] = 'ADMIN('.$this->Session->read('avatar').')';
+                $log['username'] = $this->Session->read('email');
+                $log['member_id'] = 0;
+            }
+            else
+            {
+                
+                $log['fullname'] = $this->Session->read('user');
+                $log['username'] = $this->Session->read('email');
+                $log['member_id'] = $this->Session->read('id');   
+            }
+            $log['event'] = "Upload ".$_POST['document_type'];
+            $log['document_id'] = $id;
+            $log['event_type'] = "Upload Document";
+            $this->Event_log->create();
+            $this->Event_log->save($log);
         }
         $this->set('job_id',$id);
     }

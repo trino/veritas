@@ -110,13 +110,15 @@
 {?>
 
 <div id="table">
-<h2>Document Activity Log</h2>
+<h2>Activity Log</h2>
 <table>
     <tr>
-        <th>When</th>
-        <th>Who</th>
-        <th>What</th>
-        <th>View</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>User Name</th>
+        <th>Full Name</th>
+        <th>Event Type</th>
+        <th>Event</th>
     </tr>
 
 <?php
@@ -124,27 +126,26 @@
     foreach($activity as $a)
     {?>
         <tr>
-            <td><?php echo $a['Document']['date']; ?></td>
+            <td><?php echo $a['Event_log']['date']; ?></td>
+            <td><?php echo $a['Event_log']['time'];?></td>
             <td>
-            
                 <?php
-                if($a['Document']['addedBy']==0)
-                echo "Admin";
-                     else    
-                    foreach($added as $aa)
-                    {
-                        
-                        if($a['Document']['addedBy']==$aa['Member']['id'])
-                        {
-                            echo "<a href='".$base_url."members/view/".$aa['Member']['id']."'>".$aa['Member']['email']."</a>";
-                        }
-                        
-                        
-                    }
+                if($a['Event_log']['member_id']==0)
+                    echo $a['Event_log']['username'];
+                elseif($a['Event_log']['member_id']>0)    
+                {
+                     echo "<a href='".$base_url."members/view/".$a['Event_log']['member_id']."'>".$a['Event_log']['username']."</a>";
+                }
+                else
+                    echo $a['Event_log']['username'];
+                
+                             
+                    
                 ?>
             </td>
-            <td>Upload <?php echo $a['Document']['document_type']; ?></td>
-            <td><a href="<?php echo $base_url;?>uploads/view_detail/<?php echo $a['Document']['id'];?>"><?php echo $a['Document']['title']; ?></a></td>
+            <td><?php echo $a['Event_log']['fullname'];?></td>
+            <td><?php echo $a['Event_log']['event_type']; ?></td>
+            <td><?php if($a['Event_log']['document_id']!=0){ ?><a href="<?php echo $base_url; ?>uploads/view_detail/<?php echo $a['Event_log']['document_id'];?>"><?php echo $a['Event_log']['event']; ?></a><?php } else { echo $a['Event_log']['event'];} ?></td>
         </tr>
     <?php } 
  ?>
