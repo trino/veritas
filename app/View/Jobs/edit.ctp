@@ -32,6 +32,30 @@ $(function(){
 <tr><td><label>Image</label><input type="file" name="image" /></td></tr>
 <tr><td><label>Start Date</label><input type="text" name="start_date" id="start_date" value="<?php echo $j['Job']['date_start']; ?>" /></td></tr>
 <tr><td><label>End Date</label><input type="text" name="end_date" id="end_date" value="<?php echo $j['Job']['date_end']; ?>" /></td></tr>
+<tr><td><a href="javascript:void(0);" id="add_key"><strong>+ Add Key Contact</strong></a></td></tr>
+<tr class="add_more"></tr>
+<tr><?php foreach($keys as $k){ ?>
+                <table width="100%"><tr><td>Title</td><td>Phone Number</td><td>Company</td></tr>
+                <tr><td><input type="text" name="key_title[]" class="required" value="<?php echo $k['Key_contact']['title'];?>" /></td>
+                <td><input type="text" name="key_number[]" class="required" value="<?php echo $k['Key_contact']['phone'];?>" /></td>
+                <td><input type="text" name="key_company[]" class="required" value="<?php echo $k['Key_contact']['company'];?>" /> <input type="button" onclick="$(this).parent().parent().parent().parent().remove();" class="btn btn-danger" value="Remove"/></td></tr>
+                </table>
+
+<?php } ?>
+
+</tr>
 <tr><td><div class="submit"><input type="submit" class="btn btn-primary" value="Edit" name="submit"/></div></td></tr>
 </table>
 </form>
+<script>
+$(function(){
+    var add = '<table width="100%"><tr><td>Title</td><td>Phone Number</td><td>Company</td></tr>'+
+                '<tr><td><input type="text" name="key_title[]" class="required" /></td>'+
+                '<td><input type="text" name="key_number[]" class="required" /></td>'+
+                '<td><input type="text" name="key_company[]" class="required" /> <input type="button" onclick="$(this).parent().parent().parent().parent().remove();" class="btn btn-danger" value="Remove"/></td></tr>'+
+                '</table>';
+   $('#add_key').click(function(){
+        $('.add_more').append(add);
+   }); 
+});
+</script>

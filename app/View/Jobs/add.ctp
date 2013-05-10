@@ -40,7 +40,7 @@ $(function(){
     var add = '<table width="100%"><tr><td>Title</td><td>Phone Number</td><td>Company</td></tr>'+
                 '<tr><td><input type="text" name="key_title[]" class="required" /></td>'+
                 '<td><input type="text" name="key_number[]" class="required" /></td>'+
-                '<td><input type="text" name="key_company" class="required" /> <input type="button" onclick="$(this).parent().parent().parent().parent().remove();" class="btn btn-danger" value="Remove"/></td></tr>'+
+                '<td><input type="text" name="key_company[]" class="required" /> <input type="button" onclick="$(this).parent().parent().parent().parent().remove();" class="btn btn-danger" value="Remove"/></td></tr>'+
                 '</table>';
    $('#add_key').click(function(){
         $('.add_more').append(add);

@@ -130,6 +130,31 @@
         <td>Date End</td>
         <td><?php echo $job['Job']['date_end']; ?></td>
     </tr>
+    
+    <tr>
+        <td colspan="2"><strong>Key Contacts</strong></td>
+    </tr>
+    <?php if(count($keys)>0){?>
+    <tr>
+        <table width="100%"><thead><th>Title</th><th>Phone Number</th><th>Company</th></thead>
+    <?php foreach($keys as $k){ ?>
+                
+                <tr>
+                <td><?php echo $k['Key_contact']['title'];?></td>
+                <td><?php echo $k['Key_contact']['phone'];?></td>
+                <td><?php echo $k['Key_contact']['company'];?></td>
+                </tr>
+                
+
+<?php } ?>
+        </table>
+    </tr>
+   <?php }
+   else
+   {
+        echo "<tr><td colspan='2'>No Key Contacts Found.</td></tr>";
+    }
+   ?> 
 </table>
 
 <?php 

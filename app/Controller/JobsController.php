@@ -10,6 +10,7 @@ class JobsController extends AppController
         parent::__construct($request,$response);
          $this->loadModel('Job');
          $this->loadModel('Member');
+         $this->loadModel('Key_contact');
          $this->loadModel('Jobmember');
          $this->loadModel('Document');
     }
@@ -59,10 +60,10 @@ class JobsController extends AppController
     public function add()
     {
         if(!$this->Session->read('avatar'))
-        $this->redirect('/admin');
+            $this->redirect('/admin');
         if(isset($_POST['submit']))
         {
-            $uri = $_SERVER['REQUEST_URI'];
+                $uri = $_SERVER['REQUEST_URI'];
                 $uri = str_replace('/',' ',$uri);
                 $uri = str_replace(' ','/',trim($uri));
                 if($uri!='jobs'){
@@ -135,8 +136,31 @@ class JobsController extends AppController
             $arr['date_start'] = $_POST['start_date'];
             $arr['date_end'] = $_POST['end_date'];
             $arr['isApproved'] = '1';
+            
             $this->Job->create();
             $this->Job->save($arr);
+            
+            $job_id = $this->Job->id;
+            $key_title = $_POST['key_title'];
+            //die(count($key_title));
+            $key_company = $_POST['key_company'];
+            $key_number = $_POST['key_number'];
+            
+            for($i= 0; $i<count($key_title); $i++)
+            {
+              
+              $key['title'] = $key_title[$i];
+              $key['company'] = $key_company[$i];
+              $key['phone'] = $key_number[$i];
+              $key['job_id'] = $job_id;
+              
+              if($key_title[$i]!="")
+              {
+                $this->Key_contact->create();
+                $this->Key_contact->save($key);
+              } 
+                
+            }
             $this->Session->setFlash('Data Saved Successfully');
             $this->redirect('index');
             
@@ -228,11 +252,35 @@ class JobsController extends AppController
             $this->Job->saveField('description',$_POST['description']);
             $this->Job->saveField('image',$img);
             $this->Job->saveField('date_start',$_POST['start_date']);
-            $this->Job->saveField('date_end',$_POST['end_date']);  
+            $this->Job->saveField('date_end',$_POST['end_date']); 
+            
+            //Key Contacts
+            $this->Key_contact->deleteAll(array('job_id'=>$id));
+            
+            $job_id = $id;
+            $key_title = $_POST['key_title'];
+            $key_company = $_POST['key_company'];
+            $key_number = $_POST['key_number'];
+            
+            for($i= 0; $i<count($key_title); $i++)
+            {
+              $key['title'] = $key_title[$i];
+              $key['company'] = $key_company[$i];
+              $key['phone'] = $key_number[$i];
+              $key['job_id'] = $job_id;
+              if($key_title[$i]!="")
+              {
+                  $this->Key_contact->create();
+                  $this->Key_contact->save($key);
+              }
+                
+            }
+             
             $this->Session->setFlash('Data Saved Successfully');
             $this->redirect('index'); 
         }
         $this->set('j',$this->Job->find('first',array('conditions'=>array('id'=>$id))));
+        $this->set('keys', $this->Key_contact->find('all', array('conditions'=>array('job_id'=>$id))));
     }
     
      public function delete($id)
@@ -314,6 +362,7 @@ class JobsController extends AppController
         $this->set('post_order',$this->Document->find('count',array('conditions'=>array('document_type'=>'post_order','job_id'=>$id))));
         $this->set('audits',$this->Document->find('count',array('conditions'=>array('document_type'=>'audits','job_id'=>$id))));
         $this->set('training_manuals',$this->Document->find('count',array('conditions'=>array('document_type'=>'training_manuals','job_id'=>$id))));
+        $this->set('keys', $this->Key_contact->find('all', array('conditions'=>array('job_id'=>$id))));
     }
     
     public function view_doc($type,$id)
