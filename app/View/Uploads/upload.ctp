@@ -19,6 +19,7 @@ $(function(){
    $('#document').val('1');
    $('#image').val('1');
    $('#video').val('1'); 
+   $('#my_form').validate();
 });
 function add_document()
 {
@@ -144,7 +145,7 @@ function remove_youtube()
 </script>
 
 
-<form id="Form" action="" method="post" enctype="multipart/form-data">
+<form id="my_form" action="" method="post" enctype="multipart/form-data">
 <div class="inputs"><div class="left">Location</div><div class="right"><input type="text" name="location" class="required" /></div><div class="clear"></div></div>
 <div class="inputs"><div class="left">Title</div><div class="right"><input type="text" name="title" class="required" /></div><div class="clear"></div></div>
 <div class="inputs"><div class="left">Description</div><div class="right"><textarea cols="35" name="description" class="required"></textarea></div><div class="clear"></div></div>
