@@ -16,12 +16,12 @@
 $(function(){
     $( "#start_date" ).datepicker({dateFormat: "yy-mm-dd"});
     $( "#end_date" ).datepicker({dateFormat: "yy-mm-dd"});
-    $('#Form').validate();
+    $('#my_form').validate();
     });
 </script>
 <div id="table">
 <h2>Add Job</h2>
-<form action="" method="post" id="Form" enctype="multipart/form-data">
+<form action="" method="post" id="my_form" enctype="multipart/form-data">
 	<table>
 <tr><td><label>Job Title</label><input type="text" name="title" class="required" /></td></tr>
 <tr><td><label>Job Description</label><input type="text" name="description" class="required" /></td></tr>
@@ -39,7 +39,7 @@ $(function(){
 $(function(){
     var add = '<table width="100%"><tr><td>Title</td><td>Phone Number</td><td>Company</td></tr>'+
                 '<tr><td><input type="text" name="key_title[]" class="required" /></td>'+
-                '<td><input type="text" name="key_number[]" class="required" /></td>'+
+                '<td><input type="text" name="key_number[]" class="required number" /></td>'+
                 '<td><input type="text" name="key_company[]" class="required" /> <input type="button" onclick="$(this).parent().parent().parent().parent().remove();" class="btn btn-danger" value="Remove"/></td></tr>'+
                 '</table>';
    $('#add_key').click(function(){
