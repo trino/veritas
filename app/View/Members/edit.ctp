@@ -1,5 +1,9 @@
 <?php include_once('inc.php');?>
-
+<script>
+$(function(){
+   $('#add_form').validate(); 
+});
+</script>
 <h3 class="page-title">
 	Edit <?php echo $m['Member']['full_name'];?>
 </h3>

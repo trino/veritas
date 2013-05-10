@@ -147,7 +147,15 @@ class MembersController extends AppController
         $this->set('m',$this->Member->find('first',array('conditions'=>array('id'=>$id))));
         if(isset($_POST['submit']))
         {
-            
+            if($_POST['email'])
+            {
+                $ch = $this->check_email2($_POST['email'],$id);
+                if(!$ch)
+                {
+                    $this->Session->setFlash('Email Already Taken');
+                    $this->redirect('edit/'.$id);
+                }
+            }
             $this->Member->id = $id;
             $this->Member->saveField('full_name',$_POST['full_name']);
             $this->Member->saveField('title',$_POST['title']);
@@ -213,5 +221,24 @@ class MembersController extends AppController
     public function view($id)
     {
         $this->set('profile',$this->Member->find('first',array('conditions'=>array('id'=>$id))));
+    }
+     public function check_email2($em = '',$id=0)
+    {
+        $this->loadModel('Member');
+              
+        $c=$this->Member->find('count',array('conditions'=>array('email'=>$em,'id !='=>$id)));
+        
+
+        if($c>0)
+        {
+            
+            return false;
+        }
+        else
+        {
+            
+            return true;
+        }
+        die();
     }
 }

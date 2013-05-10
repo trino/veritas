@@ -89,7 +89,7 @@ class MailController extends AppController
                 $arr['message'] = $_POST['reply'];
                 $arr['sender_id'] = $sender_id;
                 $arr['status'] = 'unread';
-                $arr['date'] = date('Y-m-d');
+                $arr['date'] = date('Y-m-d H:i:s');
                 $arr['parent'] = $_POST['mail_id'];
                 $this->Mail->create();
                 $this->Mail->save($arr);
@@ -97,7 +97,10 @@ class MailController extends AppController
                 $this->Email->from    = $this->Session->read('email');
                 $this->Email->to = $receiver;
                 $this->Email->subject = $_POST['subject'];
-                $message="You have recieved an email from ".$sender." on Strike Website. Please Login to see the message";
+                $base_url = 'http://'.$_SERVER['SERVER_NAME'];
+                if($_SERVER['SERVER_NAME'] == 'localhost')
+                $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
+                $message="You have recieved an email from ".$sender." on Strike Website. <br/><a href='".$base_url."'>Check your message, click here</a>";
                 $this->Email->send($message);
         }
         $data = $this->Mail->find('first',array('conditions'=>array('id'=>$id)));
@@ -168,12 +171,12 @@ class MailController extends AppController
         
         if($this->Session->read('avatar'))
         {
-            $this->paginate=array('conditions'=>array('sender_id'=>'0','delete_for IN("r","")'),'limit'=>1,'order'=>array('date'=>'desc'));
+            $this->paginate=array('conditions'=>array('sender_id'=>'0','delete_for IN("r","")'),'limit'=>10,'order'=>array('date'=>'desc'));
             $this->set('email',$this->paginate('Mail'));
         }
         else
         {
-            $this->paginate=array('conditions'=>array('sender_id'=>$this->Session->read('id'),'delete_for IN ("r","")'),'limit'=>1,'order'=>array('date'=>'desc'));
+            $this->paginate=array('conditions'=>array('sender_id'=>$this->Session->read('id'),'delete_for IN ("r","")'),'limit'=>10,'order'=>array('date'=>'desc'));
             $this->set('email',$this->paginate('Mail'));
         }   
     }
@@ -202,5 +205,98 @@ class MailController extends AppController
             $this->Session->setFlash('Email Deleted Successfully');
             $this->redirect('index');
         
+    }
+    public function send()
+    {
+        $return = urldecode($_GET['return']);
+        $return = str_replace('/',' ',$return);
+        $return = trim($return);
+        $return = '/'.str_replace(' ','/',$return);
+        if(isset($_POST['submit']))
+        {
+            $r = $_POST['recipients'];
+            $id = $_POST['receipient_id'];
+            if(str_replace(',','',$r) != $r)
+            {
+                $arr = explode(',',$r);
+                
+                for($i=1;$i<count($arr);$i++)
+                {
+                    if(trim($arr[$i])!='')
+                    $a[$i-1] = trim($arr[$i]);
+                }
+            }
+            if(str_replace(',','',$id) != $id)
+            {
+                $d = explode(',',$id);
+            }
+            $att = $_POST['response'];
+            if($att){
+            $att_arr = explode(',',$att);
+            
+            for($j=0;$j<count($att_arr);$j++)
+            {
+                if(trim($att_arr[$j]) != '')
+                $arr_att[] = trim($path.$att_arr[$j]);
+            }
+            //var_dump($arr_att);die();
+            
+            }
+            else
+            $arr_att = false;
+            
+            
+            /*die();
+            $this->Email->to = rtrim($_POST['recipients']);
+            if(isset($a))
+            $this->Email->cc = $a;
+            /*if(isset($arr))
+            $this->Email->to      = trim($arr[0]);
+            else
+            
+            */
+            /*if($arr_att){
+               
+            $this->Email->attachments = $arr_att;
+            }*/
+            if($this->Session->read('avatar'))
+            {
+                $sender_id = '0';
+                $sender= 'Admin';
+            }
+            else
+            {
+                $sender_id = $this->Session->read('id');
+                $na= $this->Member->find('first',array('conditions'=>array('id'=>$sender_id)));
+                $sender = $na['Member']['full_name'];
+            }
+            for($i=0;$i<sizeof($d)-1;$i++)
+            {
+                $data['sender_id'] = $sender_id;
+                $data['sender'] = $sender;
+                $data['recipients_id'] = $d[$i];
+                $data['subject'] = $_POST['subject'];
+                $data['message'] = $_POST['message'];
+                $data['status'] = 'unread';
+                $data['date'] = date('Y-m-d H:i:s');
+                $this->Mail->create();
+                $this->Mail->save($data); 
+            }
+            
+            for($i=0;$i<sizeof($arr)-1;$i++)
+            {
+                $this->Email->from    = $this->Session->read('email');
+                $this->Email->to = $arr[$i];
+                $this->Email->subject = $_POST['subject'];
+                $base_url = 'http://'.$_SERVER['SERVER_NAME'];
+                if($_SERVER['SERVER_NAME'] == 'localhost')
+                $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
+                $message="You have recieved an email from ".$sender." on Strike Website. <br/><a href='".$base_url."'>Check your message, click here</a>";
+                $this->Email->send($message);
+                $this->Session->setFlash('Email Send Successfully.');
+                $this->redirect(str_replace('veritas/','',$return));
+            }
+            
+        }
     }
 }

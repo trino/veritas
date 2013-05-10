@@ -14,7 +14,7 @@
 
 <script>
  $(document).ready(function(){
-     $('#Form').validate({
+     $('#my_form').validate({
     rules: {
             password: 'required',
             c_password: {
@@ -61,7 +61,7 @@
 </script>
 <div id="table">
 <h2>Add User</h2>
-<form id="Form" action="" method="post" enctype="multipart/form-data" onsubmit="return valid();">
+<form id="my_form" action="" method="post" enctype="multipart/form-data" onsubmit="return valid();">
 <table>
 <tr><td><label>Full Name</label><input type="text" class="required" name="full_name" /></td></tr>
 <tr><td><label>Title</label><input type="text" class="required" name="title" /></td></tr>
