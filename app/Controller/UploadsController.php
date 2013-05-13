@@ -244,7 +244,7 @@ class UploadsController extends AppController
         return $ext;
     }
     
-    public function view_doc($type)
+    public function view_doc($type,$jid)
     {
 	
 		if ($type =="contract"){$type2="Contracts";}
@@ -278,7 +278,7 @@ class UploadsController extends AppController
                         $data.=$j['Jobmember']['job_id'].",";
                     }
                 $d=rtrim($data,',');
-                $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'job_id in ('.$d.')')));
+                $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'job_id'=>$jid)));
                 if($do)
                     $this->set('doc',$do);
                 else
@@ -289,7 +289,7 @@ class UploadsController extends AppController
             {
                 $q=$this->Member->find('first',array('conditions'=>array('email'=>$this->Session->read('email'))));
                 $id=$q['Member']['id'];
-                $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'addedBy'=>$id)));
+                $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'addedBy'=>$id,'job_id'=>$jid)));
                 if($do)
                 $this->set('doc',$do);
                 else

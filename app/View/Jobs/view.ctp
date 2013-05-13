@@ -26,7 +26,7 @@
 	<!-- tien-repsonsive div class="span3 responsive" data-tablet="span6  fix-offset" data-desktop="span3"-->											
 	<div class="dashboard-stat blue">								
 		<div class="whiteCorner"></div>								
-		<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">		
+		<a href="<?=$base_url;?>uploads/view_doc/contract/<?php echo $job['Job']['id'];?>" class="overallLink more">		
 			<div class="visual">										
 				<i class="icon-file"></i>									
 			</div>									
@@ -44,7 +44,7 @@
 	<!-- tien-repsonsive div class="span3 responsive" data-tablet="span6" data-desktop="span3"-->												
 	<div class="dashboard-stat green">								
 		<div class="whiteCorner"></div>								
-		<a href="<?=$base_url;?>uploads/view_doc/post_order" class="overallLink more">									
+		<a href="<?=$base_url;?>uploads/view_doc/post_order/<?php echo $job['Job']['id'];?>" class="overallLink more">									
 			<div class="visual">										
 				<i class="icon-shopping-cart"></i>									
 			</div>									
@@ -63,7 +63,7 @@
 	<!-- tien-repsonsive div class="span3 responsive" data-tablet="span6" data-desktop="span3"-->
 	<div class="dashboard-stat purple">
 		<div class="whiteCorner"></div>
-		<a href="<?=$base_url;?>uploads/view_doc/audits" class="overallLink more">
+		<a href="<?=$base_url;?>uploads/view_doc/audits/<?php echo $job['Job']['id'];?>" class="overallLink more">
 		<div class="visual">
 		<i class="icon-legal"></i>
 		</div>
@@ -85,7 +85,7 @@
 	<!-- tien-repsonsive div class="span3 responsive" data-tablet="span6" data-desktop="span3"-->
 	<div class="dashboard-stat dashboard-stat-last yellow">
 	<div class="whiteCorner"></div>
-	<a href="<?=$base_url;?>uploads/view_doc/training_manuals" class="overallLink more">
+	<a href="<?=$base_url;?>uploads/view_doc/training_manuals/<?php echo $job['Job']['id'];?>" class="overallLink more">
 	<div class="visual">
 	<i class="icon-book"></i>
 	</div>
