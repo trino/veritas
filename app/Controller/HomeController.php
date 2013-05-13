@@ -58,7 +58,7 @@ class HomeController extends AppController {
                 $log['time'] =  date('H:i:s');
                 $log['fullname'] = $qu['Member']['full_name'];
                 $log['username'] = $un;
-                $log['member_id'] = $query['Member']['id'];
+                $log['member_id'] = $qu['Member']['id'];
                 $log['document_id'] = 0;
                 $log['event_type'] = "User Login";
                 $log['event'] = "Login SuccessFull";
