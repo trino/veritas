@@ -240,7 +240,7 @@ class MembersController extends AppController
     {
         $this->loadModel('Member');
               
-        $c=$this->Member->find('count',array('conditions'=>array('email'=>$em,'id !='=>$id)));
+        $c=$this->Member->find('count',array('conditions'=>array('email'=>$em,'id <>'=>$id)));
         
 
         if($c>0)
