@@ -264,6 +264,7 @@ class JobsController extends AppController
             
             $job_id = $id;
             $key_title = $_POST['key_title'];
+            //var_dump($_POST); die();
             $key_company = $_POST['key_company'];
             $key_number = $_POST['key_number'];
             $key_name = $_POST['key_name'];
