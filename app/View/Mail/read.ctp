@@ -127,6 +127,7 @@ $parents = $a['Mail']['id'];
 */?>
 </div>
 <script>
+/*
 $(function(){
     
    $('.clickable tr').hide();
@@ -151,5 +152,5 @@ $(function(){
     $(this).css('background','#e5e5e5');
    }
    );
-});
+});*/
 </script>
