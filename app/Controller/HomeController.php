@@ -91,7 +91,23 @@ class HomeController extends AppController {
     
     function logout()
     {
+        $this->loadModel('Event_log');
+        
+        if($this->Session->read('user'))
+        {
+            $log['date'] =  date('Y-m-d');
+            $log['time'] =  date('H:i:s');
+            $log['fullname'] = $this->Session->read('user');
+            $log['username'] = $this->Session->read('email');
+            $log['member_id'] = $this->Session->read('id');
+            $log['document_id'] = 0;
+            $log['event_type'] = "LogOut";
+            $log['event'] = "LogOut SuccessFull";
+            $this->Event_log->create();
+            $this->Event_log->save($log);
+        }
         $this->Session->destroy();
+          
         $this->redirect('/');
     }
     

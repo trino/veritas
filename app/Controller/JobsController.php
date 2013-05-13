@@ -142,7 +142,9 @@ class JobsController extends AppController
             
             $job_id = $this->Job->id;
             $key_title = $_POST['key_title'];
-            //die(count($key_title));
+            $key_name = $_POST['key_name'];
+            $key_cell = $_POST['key_cell'];
+            $key_email = $_POST['key_email'];
             $key_company = $_POST['key_company'];
             $key_number = $_POST['key_number'];
             
@@ -152,6 +154,9 @@ class JobsController extends AppController
               $key['title'] = $key_title[$i];
               $key['company'] = $key_company[$i];
               $key['phone'] = $key_number[$i];
+              $key['cell'] = $key_cell[$i];
+              $key['email'] = $key_email[$i];
+              $key['name'] = $key_name[$i];
               $key['job_id'] = $job_id;
               
               if($key_title[$i]!="")
@@ -261,12 +266,18 @@ class JobsController extends AppController
             $key_title = $_POST['key_title'];
             $key_company = $_POST['key_company'];
             $key_number = $_POST['key_number'];
+            $key_name = $_POST['key_name'];
+            $key_cell = $_POST['key_cell'];
+            $key_email = $_POST['key_email'];
             
             for($i= 0; $i<count($key_title); $i++)
             {
               $key['title'] = $key_title[$i];
               $key['company'] = $key_company[$i];
               $key['phone'] = $key_number[$i];
+              $key['cell'] = $key_cell[$i];
+              $key['email'] = $key_email[$i];
+              $key['name'] = $key_name[$i];
               $key['job_id'] = $job_id;
               if($key_title[$i]!="")
               {
