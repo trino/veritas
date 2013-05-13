@@ -102,7 +102,7 @@ class MailController extends AppController
                 if($_SERVER['SERVER_NAME'] == 'localhost')
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
                 $message="You have recieved an email from ".$sender." on Strike Website. <br/><a href='".$base_url."'>Check your message, click here</a>";
-                $$emails->send($message);
+                $emails->send($message);
         }
         $data = $this->Mail->find('first',array('conditions'=>array('id'=>$id)));
         $par = $data['Mail']['parent'];
