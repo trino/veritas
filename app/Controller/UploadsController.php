@@ -123,12 +123,19 @@ class UploadsController extends AppController
             $arr['description'] = $_POST['description'];
             $arr['document_type'] = $_POST['document_type'];
             $arr['date'] = date('Y-m-d H:i:s');
-            $arr['`ob_id'] = $_POST['job'];
+            $arr['job_id'] = $_POST['job'];
             $arr['addedBy'] = $id;
             $this->Document->create();
             $this->Document->save($arr);
             $id=$this->Document->id;
             $doc = $_POST['document'];
+            
+            $ext_doc = array('doc','docx','txt','pdf','xls','xlsx','ppt','pptx','cmd');
+            $ext_img = array('jpg','png','gif','jpeg','bmp');
+            
+            
+            //$ext_arr = explode('.',$_FILES['document_'.$i]['name']);
+            //$img = $rand.'.'.end($ext_arr);
             //$imgs = $_POST['image'];
             //$vid = $_POST['video'];
             $you=$_POST['youtube'];
@@ -159,14 +166,31 @@ class UploadsController extends AppController
                 $source=$_FILES['document_'.$i]['tmp_name'];
                 $rand = rand(100000,999999);
                 $ext_arr = explode('.',$_FILES['document_'.$i]['name']);
+                $extn = end($ext_arr);
                 $img = $rand.'.'.end($ext_arr);
+                $lower_ext = strtolower($extn);
                 $destination = $path.$img;
                 //$destination = $path.$_FILES['document_'.$i]['name'];
                 move_uploaded_file($source,$destination);
                 $d['document_id'] = $id;
-                $d['doc'] = $img;
+                
+                if(in_array($lower_ext,$ext_doc)){
+                    $d['doc'] = $img;
                 $this->Doc->create();
                 $this->Doc->save($d);
+                }
+                else
+                if(in_array($lower_ext,$ext_img)){
+                    $d['image'] = $img;
+                    $this->Image->create();
+                $this->Image->save($d);
+                }
+                else
+                {
+                    $d['video'] = $img;
+                    $this->Video->create();
+                $this->Video->save($d);
+                }
             }
             }
             /*
