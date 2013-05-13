@@ -22,8 +22,8 @@ $(function(){
     $('#my_form').validate();
     });
 </script>
-<div id="table">
 <form action="" method="post" id="my_form" enctype="multipart/form-data">
+<div id="table">
 <h2>Job Description</h2>
 <table>
 <tr><td style="width:140px;"><b>Job Title</b></td><td><input type="text" class="required" name="title" value="<?php echo $j['Job']['title']; ?>" /></td></tr>

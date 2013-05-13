@@ -338,7 +338,7 @@ class DashboardController extends AppController
               if($this->Session->read('avatar'))
               {
                 $this->User->id=$this->Session->read('id');
-                $this->User->saveField('name_avatar',$_POST['name']);
+                $this->User->saveField('name_avatar',$_POST['avatar']);
                 $this->User->saveField('email',$_POST['email']);
                 if($_POST['password'] != '')
                 $this->User->saveField('password',$_POST['password']);

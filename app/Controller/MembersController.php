@@ -16,7 +16,7 @@ class MembersController extends AppController
     public function add()
     {
         if(isset($_POST['email'])){
-        $email = $_POST['email'];
+            $email = $_POST['email'];
         $q=$this->Member->find('first',array('conditions'=>array('email'=>$email)));
         if($q){
         $this->Session->setFlash('Email already exist');
@@ -110,6 +110,7 @@ class MembersController extends AppController
             //	imagejpeg($virtual_image, $destination);
             
             $arr['full_name']=$_POST['full_name'];
+            $arr['name_avatar'] = $_POST['avatar'];
             $arr['title'] = $_POST['title'];
             $arr['address'] = $_POST['address'];
             $arr['email'] = $_POST['email'];
@@ -162,6 +163,7 @@ class MembersController extends AppController
             }
             $this->Member->id = $id;
             $this->Member->saveField('full_name',$_POST['full_name']);
+            $this->Member->saveField('name_avatar',$_POST['avatar']);
             $this->Member->saveField('title',$_POST['title']);
             $this->Member->saveField('address',$_POST['address']);
             $this->Member->saveField('email',$_POST['email']);
@@ -238,7 +240,7 @@ class MembersController extends AppController
     {
         $this->loadModel('Member');
               
-        $c=$this->Member->find('count',array('conditions'=>array('email'=>$em,'id !='=>$id)));
+        $c=$this->Member->find('count',array('conditions'=>array('email'=>$em,'id <>'=>$id)));
         
 
         if($c>0)
