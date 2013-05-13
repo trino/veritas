@@ -176,7 +176,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 					
 					<div class="links">
 					<?php  echo $this->Html->link('<i class="icon-user"></i> '.' '.$this->Session->read('avatar'),'/dashboard/settings',array('escape' => false,)); ?><br/>
-					<?php  echo $this->Html->link('<i class="icon-warning-sign"></i> '.'User Support','/dashboard/settings',array('escape' => false,)); ?>
+					<?php  echo $this->Html->link('<i class="icon-warning-sign"></i> '.'User Support','/dashboard/contactus',array('escape' => false,)); ?>
 					</div>
 					
 					<!--div class="companyLogo">
