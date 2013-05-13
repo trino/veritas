@@ -53,7 +53,7 @@ class HomeController extends AppController {
         if($qu)
         {
                 
-                $this->Session->write(array('user'=>$qu['Member']['full_name'],'email'=>$qu['Member']['email'],'image'=>$qu['Member']['image'],'id'=>$qu['Member']['id'],'upload'=>$qu['Member']['canUpdate'],'view'=>$qu['Member']['canView']));
+                $this->Session->write(array('user'=>$qu['Member']['full_name'],'email'=>$qu['Member']['email'],'image'=>$qu['Member']['image'],'id'=>$qu['Member']['id'],'upload'=>$qu['Member']['canUpdate'],'view'=>$qu['Member']['canView'],'canEmail'=>$qu['Member']['canEmail']));
                 $log['date'] =  date('Y-m-d');
                 $log['time'] =  date('H:i:s');
                 $log['fullname'] = $qu['Member']['full_name'];

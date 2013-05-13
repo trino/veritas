@@ -53,7 +53,7 @@ class AdminController extends AppController {
         }
         else if($qu)
         {
-                $this->Session->write(array('user'=>$qu['Member']['full_name'],'email'=>$qu['Member']['email'],'image'=>$qu['Member']['image'],'id'=>$qu['Member']['id'],'upload'=>$qu['Member']['canUpdate'],'view'=>$qu['Member']['canView']));
+                $this->Session->write(array('user'=>$qu['Member']['full_name'],'email'=>$qu['Member']['email'],'image'=>$qu['Member']['image'],'id'=>$qu['Member']['id'],'upload'=>$qu['Member']['canUpdate'],'canEmail'=>$qu['Member']['canEmail'],'see'=>$qu['Member']['canView'],'view'=>$qu['Member']['canView']));
                 if($qu['Member']['canView']=="1" && $qu['Member']['canUpdate']=="0")
                     $this->Session->write(array('see'=>'1'));
                 $log['date'] =  date('Y-m-d');

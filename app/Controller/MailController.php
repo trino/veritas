@@ -287,7 +287,7 @@ class MailController extends AppController
             for($i=0;$i<sizeof($arr)-1;$i++)
             {
                 $this->Email->from    = $this->Session->read('email');
-                $this->Email->to = $arr[$i];
+                $this->Email->to = trim($arr[$i]);
                 $this->Email->subject = $_POST['subject'];
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'];
                 if($_SERVER['SERVER_NAME'] == 'localhost')

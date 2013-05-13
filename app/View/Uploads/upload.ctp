@@ -150,7 +150,7 @@ function remove_youtube()
 <div id="table">
 <table>
 
-<tr><td style="width:140px;"><b>Location</b></td><td><div class="right"><input type="text" name="location" class="required" /></div></td></tr>
+<tr style="display: none;"><td style="width:140px;"><b>Location</b></td><td><div class="right"><input type="text" name="location" class="" /></div></td></tr>
 <tr><td><b>Title</b></td><td><div class="right"><input type="text" name="title" class="required" /></div></td></tr>
 <tr><td><b>Description</b></td><td><div class="right"><textarea cols="35" name="description" class="required"></textarea></div></td></tr>
 <tr><td><b>Documnet Type</b></td><td><div class="right"><select name="document_type" class="required"><option value="">Choose documnet type</option><option value="contract">Contracts</option><option value="post_order">Post Orders</option><option value="audits">Audits</option><option value="training_manuals">Training Manuals</option></select></div></td></tr>
