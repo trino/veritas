@@ -7,19 +7,19 @@
 	<li>
 		<i class="icon-home"></i>
 		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>members/view/<?php echo $profile['Member']['id'];?>"><?php echo $profile['Member']['full_name'];?>(profile)</a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>members">User Manager</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>members/view/<?php echo $profile['Member']['id'];?>"><?php echo $profile['Member']['full_name'];?> (Profile)</a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
 
 <div id="table">
-<h2><?php echo $profile['Member']['full_name'];?></h2>
 <form action="" method="post" id="add_form">
 <table>
-<tr><td><b>Full Name</b> : <?php echo $profile['Member']['full_name'];?></td></tr>
-<tr><td><b>Title</b> : <?php echo $profile['Member']['title'];?></td></tr>
-<tr><td><b>Address</b> : <?php echo $profile['Member']['address'];?></td></tr>
-<tr><td><b>Email</b> : <?php echo $profile['Member']['email'];?></td></tr>
-<tr><td><b>Phone</b> : <?php echo $profile['Member']['phone'];?></td></tr>
+<tr><td style="width:140px;"><b>Full Name</b></td><td> <?php echo $profile['Member']['full_name'];?></td></tr>
+<tr><td><b>Title</b></td><td> <?php echo $profile['Member']['title'];?></td></tr>
+<tr><td><b>Address</b></td><td> <?php echo $profile['Member']['address'];?></td></tr>
+<tr><td><b>Email</b></td><td> <?php echo $profile['Member']['email'];?></td></tr>
+<tr><td><b>Phone</b></td><td> <?php echo $profile['Member']['phone'];?></td></tr>
 </table>
 </form>
 </div>

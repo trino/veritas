@@ -22,10 +22,10 @@
 <?php if($email) { ?>
 <table>
     <tr>
-        <th>Sent By</th>
+        <th>From</th>
         <th>Subject</th>
         <th>Date</th>
-        <th>Option</th>
+        <th>Options</th>
     </tr>
 
 <?php 
@@ -35,7 +35,9 @@
         <td><?php echo $this->Html->link($e['Mail']['sender'],'/mail/read/'.$e['Mail']['id'],array('style'=>'text-decoration: none;')); ?></td>
         <td><?php echo $this->Html->link($e['Mail']['subject'],'/mail/read/'.$e['Mail']['id'],array('style'=>'text-decoration: none;')); ?></td>
         <td><?php echo $e['Mail']['date']; ?></td>
-        <td><?php echo $this->Html->link('Delete','/mail/delete_mail/sender/'.$e['Mail']['id']); ?></td>
+        <td>
+		<?php echo $this->Html->link('View','/mail/read/'.$e['Mail']['id'], array('class'=>'btn btn-primary')); ?>
+		<?php echo $this->Html->link('Delete','/mail/delete_mail/sender/'.$e['Mail']['id'], array('class'=>'btn btn-primary')); ?></td>
     </tr>
         
     <?php  }

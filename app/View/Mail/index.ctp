@@ -21,10 +21,10 @@
 <?php if($email) { ?>
 <table>
     <tr>
-        <th>Sent By</th>
+        <th>From</th>
         <th>Subject</th>
         <th>Date</th>
-        <th>Option</th>
+        <th>Options</th>
     </tr>
 
 <?php 
@@ -42,7 +42,10 @@
         <td><?php echo $this->Html->link($e['Mail']['sender'],'/mail/read/'.$e['Mail']['id'],array('style'=>'')); if($e['Mail']['status']=='unread'){echo "</b>";} ?></td>
         <td><?php echo $this->Html->link($e['Mail']['subject'].(($cnt!=0)? "(".$cnt.")" : ""),'/mail/read/'.$e['Mail']['id'],array('style'=>'')); ?></td>
         <td><?php echo $e['Mail']['date']; ?></td>
-        <td><?php echo $this->Html->link('Delete','/mail/delete_mail/reciever/'.$e['Mail']['id'],array('class'=>'btn btn-primary')); ?></td>
+        <td>
+		<?php echo $this->Html->link('View','/mail/read/'.$e['Mail']['id'],array('class'=>'btn btn-primary')); ?>
+		<?php echo $this->Html->link('Delete','/mail/delete_mail/reciever/'.$e['Mail']['id'],array('class'=>'btn btn-primary')); ?>
+        </td>
     </tr>
         
     <?php  }

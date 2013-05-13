@@ -60,21 +60,20 @@
     }
 </script>
 <div id="table">
-<h2>Add User</h2>
 <form id="my_form" action="" method="post" enctype="multipart/form-data" onsubmit="return valid();">
 <table>
-<tr><td><label>Full Name</label><input type="text" class="required" name="full_name" /></td></tr>
-<tr><td><label>Title</label><input type="text" class="required" name="title" /></td></tr>
-<tr><td><label>Address</label><input type="text" class="required" name="address" /></td></tr>
-<tr><td><label>Email</label><input type="text" id="email" class="required email" name="email" onchange="check_email()" /><span id="response"></span></td></tr>
-<tr><td><label>Image</label><input type="file" class="required" name="image" /></td></tr>
-<tr><td><label>Phone</label><input type="text" name="phone" /></td></tr>
-<tr><td><label>Password</label><input type="password" class="required" name="password" /></td></tr>
-<tr><td><label>Can View</label><input type="checkbox" name="canView" /></td></tr>
-<tr><td><label>Can Upload</label><input type="checkbox" name="canUpdate" /></td></tr>
+<tr><td style="width:140px;"><b>Full Name</b></td><td><input type="text" class="required" name="full_name" /></td></tr>
+<tr><td><b>Title</b></td><td><input type="text" class="required" name="title" /></td></tr>
+<tr><td><b>Address</b></td><td><input type="text" class="required" name="address" /></td></tr>
+<tr><td><b>Email</b></td><td><input type="text" id="email" class="required email" name="email" onchange="check_email()" /><span id="response"></span></td></tr>
+<tr><td><b>Image</b></td><td><input type="file" class="required" name="image" /></td></tr>
+<tr><td><b>Phone</b></td><td><input type="text" name="phone" /></td></tr>
+<tr><td><b>Password</b></td><td><input type="password" class="required" name="password" /></td></tr>
+<tr><td><b>Can View Files</b></td><td><input type="checkbox" name="canView" /></td></tr>
+<tr><td><b>Can Upload Files</b></td><td><input type="checkbox" name="canUpdate" /></td></tr>
 <!-- <div class="checks"><div class="left">Is Supervisor</div><div class="right"><input type="checkbox" name="isSupervisor" /></div><div class="clear"></div></div>
 <div class="checks"><div class="left">Is Employee</div><div class="right"><input type="checkbox" name="isEmployee" /></div><div class="clear"></div></div> -->
-<tr><td><div class="submit"><input type="submit" class="btn btn-primary" value="Add" name="submit"/></div></td></tr>
+<tr><td><div class="submit"><input type="submit" class="btn btn-primary" value="Add User" name="submit"/></div></td></tr>
 </table>
 </form>
 

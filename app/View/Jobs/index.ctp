@@ -23,10 +23,14 @@ if($this->Session->read('avatar'))
             <?php if($job)
     echo $this->Html->link('Assign Job to User','listing',array('class'=>'btn btn-primary reg-company')); 
    // echo $this->Html->link('Pending Jobs','/jobs/pending',array('class'=>'btn btn-primary reg-company'));
+   
+   	echo "<br/><br/>";
    }
+   
+
    ?>
   
-  <br/><br/>
+
 
 <div id="table">
 
@@ -46,21 +50,20 @@ if($job){
     ?>
     <table>    
 	        <tr>
-                <th>Image</th>
-                <th>Company</th>
-                <th>Assigned to</th>
-                <th>Options</th>
+                <th colspan="2">Company</th>
+                <?php if($this->Session->read('avatar')) { ?><th>Assigned to</th><?php }?>
+                <th style="width:250px;">Options</th>
             </tr>
     <?php        
 foreach($job as $j)
 {
     ?>
     
-        <tr><td>
+        <tr><td style="width:40px;"><div style="background-color:#dddddd;width:40px; height:40px;">
             
-        <?php echo $this->Html->image('uploads/'.$j['Job']['image'], array('alt' => '')); ?></td><td><?php echo $j['Job']['title']?></td>
+        <a href="<?php echo $base_url.'jobs/view/'.$j['Job']['id']; ?>"><?php echo $this->Html->image('uploads/'.$j['Job']['image'], array('alt' => '')); ?></a></td><td><a href="<?php echo $base_url.'jobs/view/'.$j['Job']['id']; ?>"><?php echo $j['Job']['title']?></a></td>
         <?php if($this->Session->read('avatar')) { ?>
-            <td style="width: 345px;"><strong>Assigned to: </strong>
+            <td style="width: 345px;">
         <?php 
             foreach($member as $m)
             {

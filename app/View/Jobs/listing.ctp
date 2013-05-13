@@ -55,11 +55,16 @@ function sort(value)
       });  
 }
 </script>
-<div id="table">
 <form action="" method="post">
+
+<input type="text" name="search" placeholder="Members Search" /> <input type="submit" name="submit" value="Search" class="btn btn-primary" style="margin-top:-10px;"/>
+
+
+<div id="table">
+
 <table>
-<tr><td><label>Search Members</label><input type="text" name="search" /> <input type="submit" name="submit" value="Search" class="btn btn-primary"/></td></tr>
-</form>
+<tr><th>User</th>
+<th>Options</th></tr>
 <!-- <table>
     <tr>
         <th><a href="javascript:void(0);" onclick="sort('employee');">Employee</a></th>
@@ -89,13 +94,20 @@ function sort(value)
     <?php 
         foreach($user as $u)
         { ?>
-    <tr><td>
-<label><?php
-            echo $u['Member']['full_name']; ?></label><?php echo $this->Html->link('Assign','assign/'.$u['Member']['id'],array('class' =>'btn btn-primary' )) ?>
+    <tr><td style="width:140px;">
+<?php
+            echo $u['Member']['full_name']; ?></td><td><?php echo $this->Html->link('Assign','assign/'.$u['Member']['id'],array('class' =>'btn btn-primary' )) ?>
             </td></tr> 
             <?php
         }
     ?>
 </table>
+</div>
 <input type="hidden" name="emp" id="emp" value="asc" />
 <input type="hidden" name="sup" id="sup" value="asc" />
+</form>
+
+
+
+
+

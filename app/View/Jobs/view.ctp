@@ -111,29 +111,47 @@
 <h2>Job Details</h2>
 <table>
     <tr>
-        <td>Job Title</td>
+        <td style="width:140px;"><b>Job Title</b></td>
         <td><?php echo $job['Job']['title']; ?></td>
     </tr>
     <tr>
-        <td>Description</td>
+        <td><b>Description</b></td>
         <td><?php echo $job['Job']['description']; ?></td>
     </tr>
     <tr>
-        <td>Image</td>
+        <td><b>Image</b></td>
         <td><?php echo $this->Html->image('uploads/'.$job['Job']['image'],array('width'=>'100','height'=>'100')); ?></td>
     </tr>
     <tr>
-        <td>Date Start</td>
+        <td><b>Date Start</b></td>
         <td><?php echo $job['Job']['date_start'] ?></td>
     </tr>
     <tr>
-        <td>Date End</td>
+        <td><b>Date End</b></td>
         <td><?php echo $job['Job']['date_end']; ?></td>
     </tr>
-    
-    <tr>
-        <td colspan="2"><strong>Key Contacts</strong></td>
-    </tr>
+	<tr>
+	<td colspan="2">
+	
+<?php 
+if($this->Session->read('upload')=='1' || $this->Session->read('admin'))
+echo $this->Html->link('Upload a Document','/uploads/upload/'.$job['Job']['id'],array('class'=>'btn btn-primary')); 
+?>
+
+
+	</td>
+	</tr>
+	
+</table>
+
+
+</div>
+	
+	
+	
+<div id="table">
+<h2>Key Contacts</h2>
+<table>
     <?php if(count($keys)>0){?>
     <tr>
         <table width="100%"><thead><th>Title</th><th>Phone Number</th><th>Company</th></thead>
@@ -157,14 +175,8 @@
    ?> 
 </table>
 
-<?php 
-if($this->Session->read('upload')=='1' || $this->Session->read('admin'))
-echo $this->Html->link('Upload Document','/uploads/upload/'.$job['Job']['id'],array('class'=>'btn btn-primary','style'=>"margin:10px")); 
-?>
+
 </div>
-
-
-
 
 
 

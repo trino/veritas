@@ -9,7 +9,7 @@
 	<li>
 		<i class="icon-home"></i>
 		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>uploads/view_doc/contract">Documents: Contracts</a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>uploads/view_doc/contract">Documents: <?=$title2;?></a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
 
@@ -24,7 +24,6 @@ else
 {
     ?>
     <div id="table">
-        <h2>Documents: <?=$title2;?></h2>
      <table>
         <tr>
             <th>Title</th>

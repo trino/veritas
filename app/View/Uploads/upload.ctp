@@ -146,22 +146,30 @@ function remove_youtube()
 
 
 <form id="my_form" action="" method="post" enctype="multipart/form-data">
-<div class="inputs"><div class="left">Location</div><div class="right"><input type="text" name="location" class="required" /></div><div class="clear"></div></div>
-<div class="inputs"><div class="left">Title</div><div class="right"><input type="text" name="title" class="required" /></div><div class="clear"></div></div>
-<div class="inputs"><div class="left">Description</div><div class="right"><textarea cols="35" name="description" class="required"></textarea></div><div class="clear"></div></div>
-<div class="inputs"><div class="left">Documnet Type</div><div class="right"><select name="document_type" class="required"><option value="">Choose documnet type</option><option value="contract">Contracts</option><option value="post_order">Post Orders</option><option value="audits">Audits</option><option value="training_manuals">Training Manuals</option></select></div><div class="clear"></div></div>
-<div class="inputs"><div class="left">Documents</div><div class="right"><input type="file" name="document_1" /><a href="javascript:void(0)" onclick="add_document()">Add</a><span id="remove_doc" style="display: none;"><a href="javascript:void(0);" onclick="remove_document();">Remove</a></span></div><div class="clear"></div></div>
-<div id="doc"></div>
-<div class="inputs"><div class="left">Images</div><div class="right"><input type="file" name="image_1" /><a href="javascript:void(0);" onclick="add_image()">Add</a><span id="remove_img" style="display: none;"><a href="javascript:void(0);" onclick="remove_image();">Remove</a></span></div><div class="clear"></div></div>
-<div id="img"></div>
-<div class="inputs"><div class="left">Videos</div><div class="right"><input type="file" name="video_1" /><a href="javascript:void(0);" onclick="add_video()">Add</a><span id="remove_vid" style="display: none;"><a href="javascript:void(0);" onclick="remove_video();">Remove</a></span></div><div class="clear"></div></div>
-<div id="vid"></div>
-<div class="inputs"><div class="left">Youtube Link</div><div class="right"><input type="text" name="youtube_1" /><a href="javascript:void(0);" onclick="add_youtube()">Add</a><span id="remove_youtube" style="display: none;"><a href="javascript:void(0);" onclick="remove_youtube();">Remove</a></span></div><div class="clear"></div></div>
-<div id="you"></div>
+
+<div id="table">
+<table>
+
+<tr><td style="width:140px;"><b>Location</b></td><td><div class="right"><input type="text" name="location" class="required" /></div></td></tr>
+<tr><td><b>Title</b></td><td><div class="right"><input type="text" name="title" class="required" /></div></td></tr>
+<tr><td><b>Description</b></td><td><div class="right"><textarea cols="35" name="description" class="required"></textarea></div></td></tr>
+<tr><td><b>Documnet Type</b></td><td><div class="right"><select name="document_type" class="required"><option value="">Choose documnet type</option><option value="contract">Contracts</option><option value="post_order">Post Orders</option><option value="audits">Audits</option><option value="training_manuals">Training Manuals</option></select></div></td></tr>
+<tr><td><b>Documents</b></td><td><div class="right"><input type="file" name="document_1" /><a href="javascript:void(0)" onclick="add_document()" class="btn btn-primary">Add</a><span id="remove_doc" style="display: none;"> &nbsp; <a href="javascript:void(0);" onclick="remove_document();" class="btn btn-danger">Remove</a></span></div><div id="doc"></div></td></tr>
+
+<tr><td><b>Images</b></td><td><div class="right"><input type="file" name="image_1" /><a href="javascript:void(0);" onclick="add_image()" class="btn btn-primary">Add</a><span id="remove_img" style="display: none;"> &nbsp; <a href="javascript:void(0);" onclick="remove_image();" class="btn btn-danger">Remove</a></span></div><div id="img"></div></td></tr>
+
+<tr><td><b>Videos</b></td><td><div class="right"><input type="file" name="video_1" /><a href="javascript:void(0);" onclick="add_video()" class="btn btn-primary">Add</a><span id="remove_vid" style="display: none;"> &nbsp; <a href="javascript:void(0);" onclick="remove_video();" class="btn btn-danger">Remove</a></span></div><div id="vid"></div></td></tr>
+<tr><td><b>Youtube Link</b></td><td><div class="right"><input type="text" name="youtube_1" />  &nbsp; <a href="javascript:void(0);" onclick="add_youtube()" class="btn btn-primary">Add</a><span id="remove_youtube" style="display: none;"> &nbsp; <a href="javascript:void(0);" onclick="remove_youtube();" class="btn btn-danger">Remove</a></span></div><div id="you"></div></td></tr>
+
+</table>
+</div>
+
 <input type="hidden" name="document" id="document" value="1" />
 <input type="hidden" name="image" id="image" value="1" />
 <input type="hidden" name="video" id="video" value="1" />
 <input type="hidden" name="youtube" id="youtube" value="1" />
 <input type="hidden" name="job" value="<?php echo $job_id; ?>" />
-<div class="submit"><input type="submit" class="btn" value="Add" name="submit"/></div>
+<div class="submit"><input type="submit" class="btn btn-primary" value="Upload Document" name="submit"/></div>
+
+
 </form>

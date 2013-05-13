@@ -6,9 +6,18 @@
 <label>Password</label><input type="password" name="pw" />
 <label>Login As</label><select class="loginas"><option value="home">User</option><option value="admin">Admin</option></select> 
 <div class="log-submit">
-<div style="text-align:center; color:#ff0000; font-style:italic;  padding-bottom:10px; font-size:12px;">
+
+<style>
+#flashMessage,.message{
+width:100%;
+margin:0px;
+border:0px; padding:0px; background-color:#ffffff;
+text-align:center; color:#ff0000; font-style:italic;  padding-bottom:10px; font-size:12px;
+}
+</style>
+
 <?php echo $this->Session->flash(); ?>
-</div>
+
 <input type="submit" name="submit" value="Login" class="btn btn-primary" />
 
 

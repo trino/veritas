@@ -28,9 +28,8 @@
 
 <table>
             <tr>
-                <th>Company</th>
-                <th>Edit</th>
-                <th>Delete</th>
+				<th colspan="2">User</th>
+                <th style="width:250px;">Options</th>
             </tr>
 <?php
 if($mem){
@@ -39,17 +38,22 @@ foreach($mem as $m)
     ?>
   
     	<tr>
-    		<td class="infos"><a href="<?php echo $base_url.'members/view/'.$m['Member']['id']?>"><?php echo $this->Html->image('uploads/'.$m['Member']['image'], array('alt' => ''))?> <?php echo $m['Member']['title']." ".$m['Member']['full_name']?></a></td>
+			<td style="width:40px;"><div style="background-color:#dddddd;width:40px; height:40px;"><a href="<?php echo $base_url.'members/view/'.$m['Member']['id']; ?>"><?php echo $this->Html->image('uploads/'.$m['Member']['image'], array('alt' => '')); ?></a></div> </td>
+    		<td class="infos"><a href="<?php echo $base_url.'members/view/'.$m['Member']['id']; ?>"><?php echo $m['Member']['title']." ".$m['Member']['full_name']; ?></a></td>
     		<td>
-    <?php echo $this->Html->link(
+    <?php 	echo $this->Html->link(
 					'Edit',
 					'/members/edit/'.$m['Member']['id'],
 					array('class'=>'btn btn-primary')
-				);
-			?></td> 
-			<td><?php echo $this->Html->link(
+				);  
+			echo " " . $this->Html->link(
 					'Delete',
 					'/members/delete/'.$m['Member']['id'],
+					array('class'=>'btn btn-primary')
+				); 
+			echo " " . $this->Html->link(
+					'View',
+					'/members/view/'.$m['Member']['id'],
 					array('class'=>'btn btn-primary')
 				);
 			?>

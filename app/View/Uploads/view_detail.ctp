@@ -17,26 +17,25 @@
 <?php echo $this->Html->css('prettyPhoto'); ?>
 <?php echo $this->Html->script('jquery.prettyPhoto'); ?>
 <div id="table">
-    <h2>Lists</h2>
 <table>
     <tr>
-        <td>Title</td>
+        <td style="width:140px;"><b>Title</b></td>
         <td><?php echo $doc['Document']['title']; ?></td>
     </tr>
     <tr>
-        <td>Location</td>
+        <td><b>Location</b></td>
         <td><?php echo $doc['Document']['location']; ?></td>
     </tr>
     <tr>
-        <td>Description</td>
+        <td><b>Description</b></td>
         <td><?php echo $doc['Document']['description']; ?></td>
     </tr>
     <tr>
-        <td>Uploaded By</td>
+        <td><b>Uploaded By</b></td>
         <td><?php if($doc['Document']['addedBy'] != 0){$q = $member->find('first',array('conditions'=>array('id'=>$doc['Document']['addedBy'])));if($q){echo "<a href='".$base_url."members/view/".$q['Member']['id']."'>".$q['Member']['full_name']."</a>";}}else echo "Admin";?></td>
     </tr>
     <tr>
-        <td>Uploaded On</td>
+        <td><b>Uploaded On</b></td>
         <td><?php echo $doc['Document']['date']?></td>
     </tr>
 </table>

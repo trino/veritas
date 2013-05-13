@@ -13,13 +13,12 @@
 
 
 
-
-<div id="table">
-<h2>Search Result</h2>
 <?php
 if($docs)
 {
     ?>
+<div id="table">
+
     <table>
         <tr>
             <th>Title</th>
@@ -38,7 +37,7 @@ if($docs)
             <td><?php echo $d['Document']['description']; ?></td>
             <td><?php if($d['Document']['addedBy'] != 0){$q = $member->find('first',array('conditions'=>array('id'=>$d['Document']['addedBy'])));if($q){echo "<a href='".$base_url."members/view/".$q['Member']['id']."'>".$q['Member']['full_name']."</a>";}}else echo "Admin";?></td>
             <td><?php echo $d['Document']['date'];?></td>
-            <td><?php echo $this->Html->link('View Detail','/uploads/view_detail/'.$d['Document']['id']);  ?>
+            <td><?php echo $this->Html->link('View','/uploads/view_detail/'.$d['Document']['id'], array('class'=>'btn btn-primary'));  ?>
                 
             </td>
        </tr> 
@@ -46,7 +45,9 @@ if($docs)
     
 ?>
  </table>
-    <?php
-}
-?>
+
 </div>
+
+    <?php
+} else {echo"No Search Results";}
+?>

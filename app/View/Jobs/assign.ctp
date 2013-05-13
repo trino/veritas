@@ -46,9 +46,17 @@ function option()
 
 </script>
 
-<h2>Assign Job To <?php echo $mem['Member']['full_name']; ?></h2>
+
+
+
+
 <?php //var_dump($job_id); ?>
 <form action="" method="post" onsubmit="return check()">
+<div id="table">
+<table>
+<tr><th colspan="2">Jobs</th></tr>
+
+
 <?php 
 $arrs = array();
     if($job_id)
@@ -66,11 +74,19 @@ $arrs = array();
        
          
     ?>
-    <input type="checkbox" class="jobs" onclick="option()" name="job[]" value="<?php echo $j['Job']['id']; ?>" <?php if(in_array($j['Job']['id'],$arrs)){echo "checked='checked'";} ?> /> <?php echo $j['Job']['title']; ?><br />
+    <tr><td style="width:15px;"><input type="checkbox" class="jobs" onclick="option()" name="job[]" value="<?php echo $j['Job']['id']; ?>" <?php if(in_array($j['Job']['id'],$arrs)){echo "checked='checked'";} ?> style="margin-top:-3px;" /> </td><td><?php echo $j['Job']['title']; ?></td></tr>
     <?php
     }
 ?>
+
+</table>
+</div>
+
 <input type="hidden" name="job" id="job" value="" />
 <input type="hidden" name="member" value="<?php echo $mem['Member']['id']; ?>" />
-<div class="submit"><input type="submit" class="btn" value="Add" name="submit"/></div>
+<div class="submit"><input type="submit" class="btn btn-primary" value="Save Changes" name="submit"/></div>
+
 </form>
+
+
+

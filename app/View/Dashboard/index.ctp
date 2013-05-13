@@ -150,14 +150,20 @@
     <?php } 
  ?>
  </table>
- <div class="pagination2">
+
+</div>
+
+<div class="pagination2">
 <ul>
-<?php echo $this->Paginator->prev('«', array('tag' => 'li')); ?>
+<?php echo $this->Paginator->prev('<', array('tag' => 'li')); ?>
 <?php echo str_replace(" | ","",$this->Paginator->numbers(array('tag' => 'li'))); ?>
-<?php echo $this->Paginator->next('»', array('tag' => 'li')); ?>
+<?php echo $this->Paginator->next('>', array('tag' => 'li')); ?>
 </ul>
 </div>
-</div>
+
+
+
+
 <?php } } ?> 
 <script>
 $(function(){

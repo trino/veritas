@@ -20,27 +20,25 @@ $(function(){
     });
 </script>
 <div id="table">
-<h2>Add Job</h2>
 <form action="" method="post" id="my_form" enctype="multipart/form-data">
 	<table>
-<tr><td><label>Job Title</label><input type="text" name="title" class="required" /></td></tr>
-<tr><td><label>Job Description</label><input type="text" name="description" class="required" /></td></tr>
-<tr><td><label>Image</label><input type="file" name="image" class="required" /></td></tr>
-<tr><td><label>Start Date</label><input type="text" name="start_date" id="start_date" class="required" /></td></tr>
-<tr><td><label>End Date</label><input type="text" name="end_date" id="end_date" class="required" /></td></tr>
-<tr><td><a href="javascript:void(0);" id="add_key"><strong>+ Add Key Contact</strong></a></td></tr>
-<tr class="add_more"></tr>
-<tr><td><div class="submit"><input type="submit" class="btn btn-primary" value="Add" name="submit"/></td></tr>
+<tr><td style="width:140px;"><b>Job Title</b></td><td><input type="text" name="title" class="required" /></td></tr>
+<tr><td><b>Job Description</b></td><td><input type="text" name="description" class="required" /></td></tr>
+<tr><td><b>Image</b></td><td><input type="file" name="image" class="required" /></td></tr>
+<tr><td><b>Start Date</b></td><td><input type="text" name="start_date" id="start_date" class="required" /></td></tr>
+<tr><td><b>End Date</b></td><td><input type="text" name="end_date" id="end_date" class="required" /></td></tr>
+<tr><td colspan="2"><a href="javascript:void(0);" id="add_key"><strong>+ Add Key Contact</strong></a></td></tr>
+<tr><td colspan="2" class="add_more"></td></tr>
+<tr><td><div class="submit"><input type="submit" class="btn btn-primary" value="Add Job" name="submit"/></td></tr>
 
 </table>
 </form>
 </div>
 <script>
 $(function(){
-    var add = '<table width="100%"><tr><td>Title</td><td>Phone Number</td><td>Company</td></tr>'+
-                '<tr><td><input type="text" name="key_title[]" class="required" /></td>'+
-                '<td><input type="text" name="key_number[]" class="required number" /></td>'+
-                '<td><input type="text" name="key_company[]" class="required" /> <input type="button" onclick="$(this).parent().parent().parent().parent().remove();" class="btn btn-danger" value="Remove"/></td></tr>'+
+    var add =   '<table width="100%"><tr><td width="25%"><b>Title</b><br/> <input type="text" name="key_title[]" class="required" /></td>'+
+                '<td width="25%"><b>Phone Number</b><br/> <input type="text" name="key_number[]" class="required number" /></td>'+
+                '<td width="25%"><b>Company</b><br/> <input type="text" name="key_company[]" class="required" /> </td><td><input type="button" onclick="$(this).parent().parent().parent().parent().remove();" class="btn btn-danger" style="margin-top:20px;" value="Remove"/></td></tr>'+
                 '</table>';
    $('#add_key').click(function(){
         $('.add_more').append(add);
