@@ -23,7 +23,7 @@ $(function(){
 <form action="" method="post" id="my_form" enctype="multipart/form-data">
 	<table>
 <tr><td style="width:140px;"><b>Job Title</b></td><td><input type="text" name="title" class="required" /></td></tr>
-<tr><td><b>Job Description</b></td><td><input type="text" name="description" class="required" /></td></tr>
+<tr><td><b>Job Description</b></td><td><textarea name="description" class="required" ></textarea></td></tr>
 <tr><td><b>Image</b></td><td><input type="file" name="image" class="required" /></td></tr>
 <tr><td><b>Start Date</b></td><td><input type="text" name="start_date" id="start_date" class="required" /></td></tr>
 <tr><td><b>End Date</b></td><td><input type="text" name="end_date" id="end_date" class="required" /></td></tr>

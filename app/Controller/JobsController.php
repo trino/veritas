@@ -388,7 +388,7 @@ class JobsController extends AppController
         }
         else
             $this->redirect('/admin');
-        $do=$this->Document->find('all',array('conditions'=>array('job_id'=>$id,'document_type'=>$type)));
+        $do=$this->Document->find('all',array('conditions'=>array('job_ids'=>$id,'document_type'=>$type)));
         if($do)
         $this->set('doc',$do);
         else

@@ -122,8 +122,8 @@ class UploadsController extends AppController
             $arr['title'] = $_POST['title'];
             $arr['description'] = $_POST['description'];
             $arr['document_type'] = $_POST['document_type'];
-            $arr['date'] = date('Y-d-m H:i:s');
-            $arr['job_id'] = $_POST['job'];
+            $arr['date'] = date('Y-m-d H:i:s');
+            $arr['`ob_id'] = $_POST['job'];
             $arr['addedBy'] = $id;
             $this->Document->create();
             $this->Document->save($arr);
@@ -266,6 +266,7 @@ class UploadsController extends AppController
         {
             if($this->Session->read('see'))
             {
+                //die('here');
                 $q=$this->Member->find('first',array('conditions'=>array('email'=>$this->Session->read('email'))));
                 $id=$q['Member']['id'];
                 $this->set('update',$q['Member']['canUpdate']);
