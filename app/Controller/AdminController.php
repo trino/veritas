@@ -27,7 +27,7 @@ class AdminController extends AppController {
         $un = $_POST['un'];
         $pw = $_POST['pw'];
         $q = $this->User->find('first',array('conditions'=>array('email'=>$un,'password'=>$pw)));
-        //$qu = $this->Member->find('first',array('conditions'=>array('email'=>$un,'password'=>$pw)));
+        $qu = $this->Member->find('first',array('conditions'=>array('email'=>$un,'password'=>$pw)));
         if($q)
         {
             
@@ -35,13 +35,13 @@ class AdminController extends AppController {
             
             $this->redirect('/dashboard');
         }
-        /*else if($qu)
+        else if($qu)
         {
                 $this->Session->write(array('user'=>$qu['Member']['full_name'],'email'=>$qu['Member']['email'],'image'=>$qu['Member']['image'],'id'=>$qu['Member']['id'],'upload'=>$qu['Member']['canUpdate'],'view'=>$qu['Member']['canView']));
                 if($qu['Member']['canView']=="1" && $qu['Member']['canUpdate']=="0")
                     $this->Session->write(array('see'=>'1'));
                 $this->redirect('/dashboard');
-        }*/
+        }
         else
         {
             $this->Session->setFlash('Username and Password does not match');

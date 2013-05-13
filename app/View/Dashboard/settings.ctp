@@ -35,7 +35,7 @@ $(function(){
    $('#passw').val('');
    $('#old_password').val('');
    $('#myform').validate();
-   $('#old_password').keypress(function(){
+   /*$('#old_password').keypress(function(){
     if($(this).val() == '')
     {
         $('#passw').removeClass('required');
@@ -56,6 +56,7 @@ $(function(){
    $('#passw').change(function(){
     $('#passw').removeClass('error');
    });
+   */
 });
 </script>
 <div id="table">
@@ -65,7 +66,7 @@ $(function(){
         <tr><td><b>Email</b></td><td><input type="text" name="email" value="<?php echo $email; ?>" id="email" class="required email" /><span id="email_response"></span></td></tr>
         <tr><td><b>Image</b></td><td><?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => ''))?></td></tr>
         <tr><td><b>New Image</b></td><td><input type="file" name="image"  /><br />
-        <tr><td><b>Old password</b></td><td><input type="password" name="old_password" id="old_password" class=""  /><span id="response"></span></td></tr>
+        <tr><td><b>Old password</b></td><td><input type="password" name="old_password" id="old_password" class="required"  /><span id="response"></span></td></tr>
        <tr><td><b> New Password </b></td><td><input type="password" id="passw" name="password" class="" /></td></tr>
         <?php 
             if(!$this->Session->read('avatar'))
@@ -74,7 +75,7 @@ $(function(){
                <tr><td><b>Phone </b></td><td><input type="text" name="phone" value="<?php echo $user['Member']['phone']; ?>" class="required" /></td></tr>
             <?php }
         ?> 
-        <tr><td><input type="submit" name="submit" value="Save Changes" class="btn btn-primary" onclick="if($('#old_password').val() != '' && $('#passw').val() == ''){$('#passw').addClass('error');return false;}else return true;" /></td></tr>
+        <tr><td><input type="submit" name="submit" value="Save Changes" class="btn btn-primary" onclick="/*if($('#old_password').val() != '' && $('#passw').val() == ''){$('#passw').addClass('error');return false;}else return true;*/" /></td></tr>
     </table>
     </form>
 </div>

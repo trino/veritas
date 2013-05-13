@@ -1,10 +1,14 @@
 <?php include('inc.php');?>
 <div class="login">
 <h2>Login</h2>
-<form action="" method="post" id="loginform">
+<form action="<?php echo $base_url."/admin";?>" method="post" id="loginform">
 <label>Username</label><input type="text" name="un" />
 <label>Password</label><input type="password" name="pw" />
-<label>Login As</label><select class="loginas"><option value="home">User</option><option value="admin">Admin</option></select> 
+<!--<label>Login As</label>
+<select class="loginas">
+<option value="home">User</option>
+<option value="admin">Admin</option>
+</select> -->
 <div class="log-submit">
 
 <style>

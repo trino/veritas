@@ -13,7 +13,22 @@ class UploadsController extends AppController
         $this->loadModel('Video');
         $this->loadModel('Youtube');
         $this->loadModel('Event_log');
+        
+        
+        
         parent::__construct($request,$response);
+        
+    }
+    function beforefilter()
+    {
+         //echo $this->Session->read('admin'); die();    
+        if($this->Session->read('admin') || $this->Session->read('user') )
+        {
+         
+         }
+        else
+               $this->redirect('/');  
+      
     }
     
     function index()
@@ -114,9 +129,10 @@ class UploadsController extends AppController
             $this->Document->save($arr);
             $id=$this->Document->id;
             $doc = $_POST['document'];
-            $imgs = $_POST['image'];
-            $vid = $_POST['video'];
+            //$imgs = $_POST['image'];
+            //$vid = $_POST['video'];
             $you=$_POST['youtube'];
+            /*
             for($i=1;$i<=$imgs;$i++)
             {
                 if($_FILES['image_'.$i]['tmp_name']!="")
@@ -135,6 +151,7 @@ class UploadsController extends AppController
                 $this->Image->save($im);
                 }
             }
+            */
             for($i=1;$i<=$doc;$i++)
             {
                 if($_FILES['document_'.$i]['tmp_name']!="")
@@ -152,6 +169,7 @@ class UploadsController extends AppController
                 $this->Doc->save($d);
             }
             }
+            /*
             for($i=1;$i<=$vid;$i++)
             {
                 if($_FILES['video_'.$i]['tmp_name']!="")
@@ -169,6 +187,7 @@ class UploadsController extends AppController
                 $this->Video->save($v);
                 }
             }
+            */
             for($i=1;$i<=$you;$i++)
             {
                 if($_POST['youtube_'.$i]!="")

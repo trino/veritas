@@ -94,14 +94,15 @@ class MailController extends AppController
                 $this->Mail->create();
                 $this->Mail->save($arr);
                 $this->set('success','You have replied to this message.');
-                $this->Email->from    = $this->Session->read('email');
-                $this->Email->to = $receiver;
-                $this->Email->subject = $_POST['subject'];
+                $emails = new CakeEmail();
+                $emails->from($this->Session->read('email'));
+                $emails->to($receiver);
+                $emails->subject($_POST['subject']);
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'];
                 if($_SERVER['SERVER_NAME'] == 'localhost')
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
                 $message="You have recieved an email from ".$sender." on Strike Website. <br/><a href='".$base_url."'>Check your message, click here</a>";
-                $this->Email->send($message);
+                $$emails->send($message);
         }
         $data = $this->Mail->find('first',array('conditions'=>array('id'=>$id)));
         $par = $data['Mail']['parent'];

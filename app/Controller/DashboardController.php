@@ -8,9 +8,11 @@ class DashboardController extends AppController
         {
             //die('here');
         }
-        else{
+        else
+        {
             //die('there');
-            $this->redirect('/admin');}
+            $this->redirect('/admin');
+        }
             
         $this->loadModel('Member');
         $this->loadModel('Mail');
@@ -198,6 +200,35 @@ class DashboardController extends AppController
         return $this->User->find('first');die();
             
             
+    }
+    
+    public function contactus()
+    {
+        if(isset($_POST['submit']))
+        {
+            $name = $_POST['name'];
+            $email = $_POST['email'];
+            $phone = $_POST['phone'];
+            $message = $_POST['message'];
+            
+            $emails = new CakeEmail();
+            $emails->from($email);
+            $emails->to('warriorbik@gmail.com');
+            $emails->subject("User Support");
+            $emails->emailFormat('html');
+            $base_url = 'http://'.$_SERVER['SERVER_NAME'];
+            if($_SERVER['SERVER_NAME'] == 'localhost')
+            $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
+            $message="You have recieved an email from ".$email.". <br/>".$message;
+            if($emails->send($message))
+            {
+                $this->Session->setFlash("Email Successfully Sent.");
+            }
+            else
+              $this->Session->setFlash("Sorry, Email Could not be Sent.");  
+              
+        }
+        
     }            
     public function settings()
     {

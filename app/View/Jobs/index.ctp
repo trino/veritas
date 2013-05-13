@@ -100,7 +100,7 @@ foreach($job as $j)
 			?> <?php echo $this->Html->link(
 					'Delete',
 					'/jobs/delete/'.$j['Job']['id'],
-                    array('class'=>'btn btn-primary')
+                    array('class'=>'btn btn-primary'),"Are you sure deleting this job?"
 				);
 		}	?>
         <?php echo $this->Html->link('View','/jobs/view/'.$j['Job']['id'],array('class'=>'btn btn-primary')); ?>

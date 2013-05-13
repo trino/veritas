@@ -49,7 +49,7 @@ foreach($mem as $m)
 			echo " " . $this->Html->link(
 					'Delete',
 					'/members/delete/'.$m['Member']['id'],
-					array('class'=>'btn btn-primary')
+					array('class'=>'btn btn-primary'),"Are you sure deleting this member?"
 				); 
 			echo " " . $this->Html->link(
 					'View',
