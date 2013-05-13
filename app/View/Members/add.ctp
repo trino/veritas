@@ -71,6 +71,7 @@
 <tr><td><b>Password</b></td><td><input type="password" class="required" name="password" /></td></tr>
 <tr><td><b>Can View Files</b></td><td><input type="checkbox" name="canView" /></td></tr>
 <tr><td><b>Can Upload Files</b></td><td><input type="checkbox" name="canUpdate" /></td></tr>
+<tr><td><b>Can Send Email</b></td><td><input type="checkbox" name="canEmail" /></td></tr>
 <!-- <div class="checks"><div class="left">Is Supervisor</div><div class="right"><input type="checkbox" name="isSupervisor" /></div><div class="clear"></div></div>
 <div class="checks"><div class="left">Is Employee</div><div class="right"><input type="checkbox" name="isEmployee" /></div><div class="clear"></div></div> -->
 <tr><td><div class="submit"><input type="submit" class="btn btn-primary" value="Add User" name="submit"/></div></td></tr>

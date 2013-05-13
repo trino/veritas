@@ -112,7 +112,7 @@ class MembersController extends AppController
             $arr['full_name']=$_POST['full_name'];
             $arr['title'] = $_POST['title'];
             $arr['address'] = $_POST['address'];
-            
+            $arr['email'] = $_POST['email'];
             $arr['phone'] = $_POST['phone'];
             $arr['password'] = $_POST['password'];
             $arr['image'] = $img;
@@ -123,6 +123,10 @@ class MembersController extends AppController
             if(isset($_POST['canUpdate']))
             {
                 $arr['canUpdate'] = 1;
+            }
+            if(isset($_POST['canEmail']))
+            {
+                $arr['canEmail'] = 1;
             }
             if(isset($_POST['isSupervisor']))
             {
@@ -178,6 +182,14 @@ class MembersController extends AppController
             else
             {
                 $this->Member->saveField('canUpdate',0);
+            }
+            if(isset($_POST['canEmail']))
+            {
+                $this->Member->saveField('canEmail', 1);
+            }
+            else
+            {
+                $this->Member->saveField('canEmail',0);
             }
             if(!$this->Session->read('avatar'))
             {

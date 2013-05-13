@@ -210,6 +210,11 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		
 		
 		<div id="rightContent">
+        <?php
+        if($this->Session->read('canEmail') || $this->Session->read('admin'))
+        {
+            ?>
+            
 				<div class="emailTab">
 					
 					<script type="text/javascript">
@@ -321,7 +326,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 					<div class="clearfix" ></div>
 				</div><!-- emailTab -->
-				
+				<?php
+        }
+        ?>
 				
 				
 				
