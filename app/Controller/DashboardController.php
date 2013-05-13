@@ -204,6 +204,7 @@ class DashboardController extends AppController
     
     public function contactus()
     {
+        $this->loadModel('User');
         if(isset($_POST['submit']))
         {
             $name = $_POST['name'];
@@ -213,7 +214,10 @@ class DashboardController extends AppController
             
             $emails = new CakeEmail();
             $emails->from($email);
-            $emails->to('warriorbik@gmail.com');
+            $tos = $this->User->find('first'); 
+            $to = $tos['User']['email'];
+            //die();
+            $emails->to($to);
             $emails->subject("User Support");
             $emails->emailFormat('html');
             $base_url = 'http://'.$_SERVER['SERVER_NAME'];
