@@ -63,6 +63,7 @@
 <form id="my_form" action="" method="post" enctype="multipart/form-data" onsubmit="return valid();">
 <table>
 <tr><td style="width:140px;"><b>Full Name</b></td><td><input type="text" class="required" name="full_name" /></td></tr>
+<tr><td><b>Avatar</b></td><td><input type="text" name="avatar" value="" class="required" /></td></tr>
 <tr><td><b>Title</b></td><td><input type="text" class="required" name="title" /></td></tr>
 <tr><td><b>Address</b></td><td><input type="text" class="required" name="address" /></td></tr>
 <tr><td><b>Email</b></td><td><input type="text" id="emails" class="required email" name="email" onchange="check_email()" /><span id="response"></span></td></tr>
