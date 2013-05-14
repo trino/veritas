@@ -22,10 +22,10 @@
         <td style="width:140px;"><b>Title</b></td>
         <td><?php echo $doc['Document']['title']; ?></td>
     </tr>
-    <tr>
+    <!--<tr>
         <td><b>Location</b></td>
         <td><?php echo $doc['Document']['location']; ?></td>
-    </tr>
+    </tr> -->
     <tr>
         <td><b>Description</b></td>
         <td><?php echo $doc['Document']['description']; ?></td>
