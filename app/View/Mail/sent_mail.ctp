@@ -23,6 +23,7 @@
 <table>
     <tr>
         <th>From</th>
+        <th>To</th>
         <th>Subject</th>
         <th>Date</th>
         <th>Options</th>
@@ -33,6 +34,7 @@
     {  ?>
     <tr>
         <td><?php echo $this->Html->link($e['Mail']['sender'],'/mail/read/'.$e['Mail']['id'],array('style'=>'text-decoration: none;')); ?></td>
+        <td><?php if($e['Mail']['recipients_id'] == 0)echo 'Admin';else{$get = $mems->find('first',array('conditions'=>array('id'=>$e['Mail']['recipients_id'])));if($get)echo "<a href='".$base_url."mail/read/".$e['Mail']['id']."'>".$get['Member']['full_name']."</a>";}?></td>
         <td><?php echo $this->Html->link($e['Mail']['subject'],'/mail/read/'.$e['Mail']['id'],array('style'=>'text-decoration: none;')); ?></td>
         <td><?php echo $e['Mail']['date']; ?></td>
         <td>

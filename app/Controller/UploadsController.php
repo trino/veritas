@@ -270,7 +270,8 @@ class UploadsController extends AppController
     
     public function view_doc($type,$jid=0)
     {
-	
+	    $this->set('mems',$this->Member);
+        $this->set('jo_bs',$this->Job);
 		if ($type =="contract"){$type2="Contracts";}
 		else if ($type =="post_order"){$type2="Post Orders";}
 		else if ($type =="audits"){$type2="Audits";}

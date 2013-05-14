@@ -85,7 +85,7 @@
     foreach($vid as $v)
     { ?>
 <div class="sub-video"> <?php
-        echo $this->Html->image('video.png', array('alt' => 'video'));
+        //echo $this->Html->image('video.png', array('alt' => 'video'));
         ?>
         
         <a href="javascript:void(0);" onclick="video(this.id)" id="<?php echo $v['Video']['video']; ?>"><?php echo $v['Video']['video']; ?></a> </div>
