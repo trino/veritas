@@ -42,7 +42,10 @@ class AdminController extends AppController {
             $log['event_type'] = "User Login";
             $log['event'] = "Login Failed: Invalid Password";
             $this->Event_log->create();
-            $this->Event_log->save($log); 
+            $this->Event_log->save($log);
+            $this->Session->setFlash('Username and Password does not match');
+            $this->redirect('/');
+             
         }
         elseif($q)
         {

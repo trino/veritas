@@ -154,12 +154,15 @@ echo $this->Html->link('Upload a Document','/uploads/upload/'.$job['Job']['id'],
 <table>
     <?php if(count($keys)>0){?>
     <tr>
-        <table width="100%"><thead><th>Title</th><th>Phone Number</th><th>Company</th></thead>
+        <table width="100%"><thead><th>Name</th><th>Title</th><th>Cell Number</th></th><th>Phone Number</th><th>Email</th><th>Company</th></thead>
     <?php foreach($keys as $k){ ?>
                 
                 <tr>
+                <td><?php echo $k['Key_contact']['name'];?></td>
                 <td><?php echo $k['Key_contact']['title'];?></td>
+                <td><?php echo $k['Key_contact']['cell'];?></td>
                 <td><?php echo $k['Key_contact']['phone'];?></td>
+                <td><?php echo $k['Key_contact']['email'];?></td>
                 <td><?php echo $k['Key_contact']['company'];?></td>
                 </tr>
                 

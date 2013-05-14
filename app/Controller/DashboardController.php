@@ -28,7 +28,7 @@ class DashboardController extends AppController
             $this->set('post_order',$this->Document->find('count',array('conditions'=>array('document_type'=>'post_order'))));
              $this->set('audits',$this->Document->find('count',array('conditions'=>array('document_type'=>'audits'))));
               $this->set('training_manuals',$this->Document->find('count',array('conditions'=>array('document_type'=>'training_manuals'))));
-              $this->paginate = array('limit'=>10,'order'=>'date desc');
+              $this->paginate = array('limit'=>10,'order'=>'date desc ,time desc');
              //$this->set('activity',$this->paginate('Document'));
              $this->set('added',$this->Member->find('all'));
              $this->set('activity', $this->paginate('Event_log'));
