@@ -42,12 +42,12 @@ $(function(){
 <tr><td><?php foreach($keys as $k){ ?>
                 <table width="100%">
                 <tr>
-                <td><b>Name</b><br/><input type="text" name="key_name[]" class="required" value="<?php echo $k['Key_contact']['name'];?>" /></td>
-                <td><b>Title</b><br/><input type="text" name="key_title[]" class="required" value="<?php echo $k['Key_contact']['title'];?>" /></td>
-                <td><b>Cell Number</b><br/><input type="text" name="key_cell[]" class="required number" value="<?php echo $k['Key_contact']['cell'];?>" /></td></tr>
-                <tr><td><b>Phone Number</b><br/><input type="text" name="key_number[]" class="required number" value="<?php echo $k['Key_contact']['phone'];?>" /></td>
-                <td><b>Email</b><br/><input type="text" name="key_email[]" class="required email" value="<?php echo $k['Key_contact']['email'];?>" /></td>
-                <td><b>Company</b><br/><input type="text" name="key_company[]" class="required" value="<?php echo $k['Key_contact']['company'];?>" /> </td><td valign=""> <input type="button" onclick="$(this).parent().parent().parent().parent().remove();" class="btn btn-danger" value="Remove" style="margin-top:20px;"/></td></tr>
+                <td><b>Name</b><br/><input type="text" name="key_name[]" class="required" value="<?php echo $k['Key_contact']['name'];?>" style="width: 100px;" /></td>
+                <td><b>Title</b><br/><input type="text" name="key_title[]" class="required" value="<?php echo $k['Key_contact']['title'];?>" style="width: 100px;" /></td>
+                <td><b>Cell Number</b><br/><input type="text" name="key_cell[]" class="required number" value="<?php echo $k['Key_contact']['cell'];?>" style="width: 100px;" /></td>
+                <td><b>Phone Number</b><br/><input type="text" name="key_number[]" class="required number" value="<?php echo $k['Key_contact']['phone'];?>" style="width: 100px;" /></td>
+                <td><b>Email</b><br/><input type="text" name="key_email[]" class="required email" value="<?php echo $k['Key_contact']['email'];?>" style="width: 100px;" /></td>
+                <td><b>Company</b><br/><input type="text" name="key_company[]" class="required" value="<?php echo $k['Key_contact']['company'];?>" style="width: 100px;" /> </td><td valign=""> <input type="button" onclick="$(this).parent().parent().parent().parent().remove();" class="btn btn-danger" value="Remove" style="margin-top:20px;"/></td></tr>
                 </table>
 
 <?php } ?>
@@ -62,12 +62,12 @@ $(function(){
 </form>
 <script>
 $(function(){
-    var add =   '<table width="100%"><tr><td><b>Name</b><br/> <input type="text" name="key_name[]" class="required" /></td>'+
-                '<td><b>Title</b><br/> <input type="text" name="key_title[]" class="required" /></td>'+
-                '<td><b>Cell Number</b><br/> <input type="text" name="key_cell[]" class="required number" /></td><tr/>'+
-                '<tr><td><b>Phone Number</b><br/> <input type="text" name="key_number[]" class="required number" /></td>'+
-                '<td><b>Email</b><br/> <input type="text" name="key_email[]" class="required email" /></td>'+
-                '<td><b>Company</b><br/> <input type="text" name="key_company[]" class="required" /> </td><td><input type="button" onclick="$(this).parent().parent().parent().parent().remove();" class="btn btn-danger" style="margin-top:20px;" value="Remove"/></td></tr>'+
+    var add =   '<table width="100%"><tr><td><b>Name</b><br/> <input type="text" name="key_name[]" class="required" style="width: 100px;" /></td>'+
+                '<td><b>Title</b><br/> <input type="text" name="key_title[]" class="required" style="width: 100px;" /></td>'+
+                '<td><b>Cell Number</b><br/> <input type="text" name="key_cell[]" class="required number" style="width: 100px;" /></td>'+
+                '<td><b>Phone Number</b><br/> <input type="text" name="key_number[]" class="required number" style="width: 100px;" /></td>'+
+                '<td><b>Email</b><br/> <input type="text" name="key_email[]" class="required email" style="width: 100px;" /></td>'+
+                '<td><b>Company</b><br/> <input type="text" name="key_company[]" class="required" style="width: 100px;" /> </td><td><input type="button" onclick="$(this).parent().parent().parent().parent().remove();" class="btn btn-danger" style="margin-top:20px;" value="Remove"/></td></tr>'+
                 '</table>';
    $('#add_key').click(function(){
         $('.add_more').append(add);

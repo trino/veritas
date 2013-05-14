@@ -17,13 +17,14 @@ $(function(){
 </ul>
 
 <div id="table">
-<form action="" method="post" id="add_form">
+<form action="" method="post" id="add_form" enctype="multipart/form-data">
 <table>
 <tr><td style="width:140px;"><b>Full Name</b></td><td><input type="text" name="full_name" value="<?php echo $m['Member']['full_name'];?>" class="required" /></td></tr>
-<tr><td><b>Avatar</b></td><td><input type="text" name="avatar" value="<?php echo $m['Member']['name_avatar'];?>" class="required" /></td></tr>
+<!--<tr><td><b>Avatar</b></td><td><input type="text" name="avatar" value="<?php echo $m['Member']['name_avatar'];?>" class="required" /></td></tr>-->
 <tr><td><b>Title</b></td><td><input type="text" name="title" value="<?php echo $m['Member']['title'];?>" class="required" /></td></tr>
 <tr><td><b>Address</b></td><td><input type="text" name="address" value="<?php echo $m['Member']['address'];?>" class="required" /></td></tr>
 <tr><td><b>Email</b></td><td><input type="text" name="email" value="<?php echo $m['Member']['email'];?>" class="required" /></td></tr>
+<tr><td><b>Image</b></td><td><input type="file" class="" name="image" /> <img src="<?php echo $base_url."img/uploads/".$m['Member']['image'];?>" /></td></tr>
 <tr><td><b>Phone</b></td><td><input type="text" name="phone" value="<?php echo $m['Member']['phone'];?>" /></td></tr>
 <tr><td><b>Password</b></td><td><input type="password" name="password" value="<?php echo $m['Member']['password'];?>" class="required" /></td></tr>
 <tr><td><b>Can View Files</b></td><td><input type="checkbox" name="canView" <?php if($m['Member']['canView']==1){?>checked="checked"<?php }?> /></td></tr>

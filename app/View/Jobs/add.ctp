@@ -36,12 +36,12 @@ $(function(){
 </div>
 <script>
 $(function(){
-    var add =   '<table width="100%"><tr><td><b>Name</b><br/> <input type="text" name="key_name[]" class="required" /></td>'+
-                '<td><b>Title</b><br/> <input type="text" name="key_title[]" class="required" /></td>'+
-                '<td><b>Cell Number</b><br/> <input type="text" name="key_cell[]" class="required number" /></td><tr/>'+
-                '<tr><td><b>Phone Number</b><br/> <input type="text" name="key_number[]" class="required number" /></td>'+
-                '<td><b>Email</b><br/> <input type="text" name="key_email[]" class="required email" /></td>'+
-                '<td><b>Company</b><br/> <input type="text" name="key_company[]" class="required" /> </td><td><input type="button" onclick="$(this).parent().parent().parent().parent().remove();" class="btn btn-danger" style="margin-top:20px;" value="Remove"/></td></tr>'+
+    var add =   '<table width="100%"><tr><td><b>Name</b><br/> <input type="text" name="key_name[]" class="required" style="width: 100px;" /></td>'+
+                '<td><b>Title</b><br/> <input type="text" name="key_title[]" class="required" style="width: 100px;" /></td>'+
+                '<td><b>Cell Number</b><br/> <input type="text" name="key_cell[]" class="required number" style="width: 100px;" /></td>'+
+                '<td><b>Phone Number</b><br/> <input type="text" name="key_number[]" class="required number" style="width: 100px;" /></td>'+
+                '<td><b>Email</b><br/> <input type="text" name="key_email[]" class="required email" style="width: 100px;" /></td>'+
+                '<td><b>Company</b><br/> <input type="text" name="key_company[]" class="required" style="width: 100px;" /> </td><td><input type="button" onclick="$(this).parent().parent().parent().parent().remove();" class="btn btn-danger" style="margin-top:20px;" value="Remove"/></td></tr>'+
                 '</table>';
    $('#add_key').click(function(){
         $('.add_more').append(add);

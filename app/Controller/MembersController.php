@@ -148,8 +148,10 @@ class MembersController extends AppController
     {
         $this->loadModel('Member');
         if(!$this->Session->read('avatar'))
-        $this->redirect('/admin');
-        $this->set('m',$this->Member->find('first',array('conditions'=>array('id'=>$id))));
+            $this->redirect('/admin');
+        if($mem = $this->Member->find('first',array('conditions'=>array('id'=>$id))))
+            $image = $mem['Member']['image'];
+        $this->set('m',$mem);
         if(isset($_POST['submit']))
         {
             if($_POST['email'])
@@ -161,11 +163,102 @@ class MembersController extends AppController
                     $this->redirect('edit/'.$id);
                 }
             }
+            if($_FILES['image']['name']!= "")
+            {
+                $uri = $_SERVER['REQUEST_URI'];
+                $uri = str_replace('/',' ',$uri);
+                $uri = str_replace(' ','/',trim($uri));
+                if($uri!='members'){
+                $arr_uri = explode('/',$uri);
+                $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/uploads/';
+                }
+                else
+                $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/uploads/';
+                
+                if($_SERVER['SERVER_NAME']=='localhost')
+                {
+                    $path = $_SERVER['DOCUMENT_ROOT'].'veritas/app/webroot/img/uploads/';
+                }
+                else
+                    $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/uploads/';
+                    
+            $source = $_FILES['image']['tmp_name'];
+            $rand = rand(100000,999999);
+            $ext_arr = explode('.',$_FILES['image']['name']);
+           // var_dump($ext_arr);
+            $img = $rand.'.'.end($ext_arr);
+            //die();
+            $destination = $path.$img;
+             //move_uploaded_file($source,$destination);
+            /*
+            $this->Image = $this->Components->load('Image');
+            if($destination1 = $this->Image->resize($source,$_FILES['image']['name'],'60','60'))
+            {
+                //print_r($this->Image->getErrors());
+                //die($destination1);
+                copy($destination1,$path);
+            }
+            */
+            if(move_uploaded_file($source,$destination))
+                unlink($path.$image);
+            else
+                $img = $image;        
+            $max_width = 60;
+            $max_height = 60;
+            
+            list($w, $h ) = getimagesize($destination);
+            //die($image_params['mime']);
+            if($w > $h)
+            {
+                $width = $max_width;
+                $ratio = $max_width/$w;
+                $height = $ratio * $h;
+                
+            }
+            else
+            {
+                $height = $max_height;
+                $ratio = $max_height/$h;
+                $width = $ratio * $w;
+            }
+            	$virtual_image = imagecreatetruecolor($width, $height);
+            
+            $image_params = getimagesize($destination);
+            $ext = $image_params['mime'];
+            switch($ext)
+            {
+                case 'image/png':
+                    $image = imagecreatefrompng($destination);
+                    imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
+    	            imagepng($virtual_image, $destination);
+                    break;
+                case 'image/gif':
+                    $image = imagecreatefromgif($destination);
+                    imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
+                	imagegif($virtual_image, $destination);
+                    break;
+                case 'image/jpeg':
+                    $image = imagecreatefromjpeg($destination);
+                    imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
+                	imagejpeg($virtual_image, $destination);
+                    break;
+                default:
+                    $image = imagecreatefromjpeg($destination);
+                    imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
+                	imagejpeg($virtual_image, $destination);
+                    break; 
+            }
+            
+            
+            }
+            
             $this->Member->id = $id;
             $this->Member->saveField('full_name',$_POST['full_name']);
             $this->Member->saveField('name_avatar',$_POST['avatar']);
             $this->Member->saveField('title',$_POST['title']);
             $this->Member->saveField('address',$_POST['address']);
+            if(isset($img))
+            $this->Member->saveField('image',$img);
             $this->Member->saveField('email',$_POST['email']);
             $this->Member->saveField('phone',$_POST['phone']);
             $this->Member->saveField('password',$_POST['password']);
