@@ -1,0 +1,9 @@
+These are the fields for the customer account
+customer.custno - customer number
+customer.ngoldpremium - gold discount
+customer.nsilvpremium - silver discount
+
+Also found these issues:
+View account detail needs customer #
+add merchant user needs customer #
+edit merchant user needs customer #

@@ -256,16 +256,16 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 						{
 						  
 							email=e[2]+', ';
-                            var ema2 = '<a href="javascript:void(0)" id="'+e[2]+'__'+e[1]+'" class="del_email">'+e[2]+' [x],'+'</a> ';
+                            var ema2 = '<a href="javascript:void(0)" id="'+e[2]+'__'+e[1]+'" class="del_email">'+e[0]+' [x],'+'</a> ';
                             del_em = ema2;
 						}
 						else
 						{
 						  
 						    ema = ema.replace(e[2]+', ','');
-                            ema2 = ema2.replace('<a href="javascript:void(0)" id="'+e[2]+'__'+e[1]+'" class="del_email">'+e[2]+' [x],'+'</a> ','');                            
+                            ema2 = ema2.replace('<a href="javascript:void(0)" id="'+e[2]+'__'+e[1]+'" class="del_email">'+e[0]+' [x],'+'</a> ','');                            
 							email=ema+e[2]+',';
-                            del_em = ema2+'<a href="javascript:void(0)" id="'+e[2]+'__'+e[1]+'" class="del_email">'+e[2]+' [x],'+'</a> ';
+                            del_em = ema2+'<a href="javascript:void(0)" id="'+e[2]+'__'+e[1]+'" class="del_email">'+e[0]+' [x],'+'</a> ';
                             //alert(del_em);
 						}
 						//alert(email);

@@ -19,6 +19,7 @@ class MailController extends AppController
     function index()
     {
         $this->set('mails',$this->Mail);
+        $this->set('mems',$this->Member);
         if($this->Session->read('avatar'))
         {
             $this->paginate=array('conditions'=>array('recipients_id'=>'0','delete_for IN ("s","")'),'limit'=>15,'order'=>array('date'=>'desc'));
@@ -169,7 +170,7 @@ class MailController extends AppController
     
     public function sent_mail()
     {
-        
+        $this->set('mems',$this->Member);
         if($this->Session->read('avatar'))
         {
             $this->paginate=array('conditions'=>array('sender_id'=>'0','delete_for IN("r","")'),'limit'=>10,'order'=>array('date'=>'desc'));
