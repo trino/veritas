@@ -19,7 +19,7 @@ class AdminController extends AppController {
 	   
        
 	    if($this->Session->read('admin'))
-        $this->redirect('/dashboard');
+            $this->redirect('/dashboard');
 	   $this->loadModel('User');
        $this->loadModel('Member');
        $this->loadModel('Event_log');
