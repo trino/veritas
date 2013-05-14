@@ -28,9 +28,9 @@ $(function(){
 <table>
 <tr><td style="width:140px;"><b>Job Title</b></td><td><input type="text" class="required" name="title" value="<?php echo $j['Job']['title']; ?>" /></td></tr>
 <tr><td><b>Job Description</b></td><td><textarea name="description" class="required" ><?php echo $j['Job']['description']; ?></textarea></td></tr>
-<!-- <div id="image"><?php echo $this->Html->image("uploads/".$j['Job']['image']); ?></div> -->
+ 
 <input type="hidden" name="img" value="<?php echo $j['Job']['image']; ?>" />
-<tr><td><b>Image</b></td><td><input type="file" name="image" class="" /></td></tr>
+<tr><td><b>Image</b></td><td><input type="file" name="image" class="" /> <?php echo $this->Html->image("uploads/".$j['Job']['image']); ?></td></tr>
 <tr><td><b>Start Date</b></td><td><input type="text" class="required" name="start_date" id="start_date" value="<?php echo $j['Job']['date_start']; ?>" /></td></tr>
 <tr><td><b>End Date</b></td><td><input type="text" class="required" name="end_date" id="end_date" value="<?php echo $j['Job']['date_end']; ?>" /></td></tr>
 </table>

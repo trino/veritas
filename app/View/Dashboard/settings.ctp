@@ -20,7 +20,7 @@
         $password = $user['User']['password'];
         $name = $user['User']['name_avatar'];
         $image = $user['User']['picture'];
-        $avatar = $user['User']['name_avatar'];
+        //$avatar = $user['User']['name_avatar'];
     }
     else
     {
@@ -28,7 +28,7 @@
         $password = $user['Member']['password'];
         $name = $user['Member']['full_name'];
         $image = $user['Member']['image'];
-        $avatar = $user['User']['name_avatar'];
+        //$avatar = $user['User']['name_avatar'];
     }
 ?>
 
