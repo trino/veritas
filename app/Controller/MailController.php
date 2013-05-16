@@ -173,12 +173,12 @@ class MailController extends AppController
         $this->set('mems',$this->Member);
         if($this->Session->read('avatar'))
         {
-            $this->paginate=array('conditions'=>array('sender_id'=>'0','delete_for IN("r","")'),'limit'=>10,'order'=>array('date'=>'desc'));
+            $this->paginate=array('conditions'=>array('sender_id'=>'0','delete_for IN("r","")'),'limit'=>15,'order'=>array('date'=>'desc'));
             $this->set('email',$this->paginate('Mail'));
         }
         else
         {
-            $this->paginate=array('conditions'=>array('sender_id'=>$this->Session->read('id'),'delete_for IN ("r","")'),'limit'=>10,'order'=>array('date'=>'desc'));
+            $this->paginate=array('conditions'=>array('sender_id'=>$this->Session->read('id'),'delete_for IN ("r","")'),'limit'=>15,'order'=>array('date'=>'desc'));
             $this->set('email',$this->paginate('Mail'));
         }   
     }

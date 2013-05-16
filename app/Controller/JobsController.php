@@ -3,7 +3,7 @@ class JobsController extends AppController
 {
     public $helpers = array('Html');
      public $paginate = array(
-        'limit' => 1
+        'limit' => 10
     );
     function __construct(CakeRequest $request, CakeResponse $response)
     {
@@ -44,7 +44,7 @@ class JobsController extends AppController
                     $data.=$j['Jobmember']['job_id'].',';
                 }
                 $d=rtrim($data, ",");
-                $this->paginate = array('conditions'=>'Job.id in ('.$d.')','limit'=>2);
+                $this->paginate = array('conditions'=>'Job.id in ('.$d.')','limit'=>10);
                 $t=$this->paginate('Job');
                 //$t=$this->Job->find('all', array('conditions'=>'Job.id in ('.$d.')'));
                 $this->set('job',$t);

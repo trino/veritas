@@ -2,7 +2,7 @@
 class MembersController extends AppController
 {
      public $paginate = array(
-        'limit' => 3
+        'limit' => 10
     );
     public function index()
     {
@@ -12,6 +12,31 @@ class MembersController extends AppController
         $mem=$this->paginate('Member');
         $this->set('mem',$mem);
         //$this->set('mem',$this->Member->find('all'));
+    }
+    public function loadall()
+    {
+        $this->layout = 'modal_layout';
+        $this->loadModel('Job');
+        $this->loadModel('Jobmember');
+        if($this->Session->read('Admin'))
+        $this->set('job',$this->Job->find('all',array('order'=>'title')));
+        else
+        {
+            $q = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
+            if($q)
+            {
+                
+                $jobs = $q['Jobmember']['job_id'];
+                if(trim($jobs)=='')
+                $jobs='0';
+                $arr = '('.$jobs.')';
+                $this->set('job',$this->Job->find('all',array('order'=>'title','conditions'=>array('id IN '.$arr))));
+            }
+        }
+        $this->set('member',$this->Member);
+        $this->set('job_model',$this->Job);
+        $this->set('jm',$this->Jobmember);
+        
     }
     public function add()
     {
