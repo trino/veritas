@@ -22,7 +22,7 @@ if($docs)
     <table>
         <tr>
             <th>Title</th>
-            <th>Location</th>
+            <!--<th>Location</th>-->
             <th>Description</th>
             <th>Uploaded By</th>
             <th>Uploaded On</th>
@@ -33,7 +33,7 @@ if($docs)
     {?>
        <tr>
             <td><?php echo $d['Document']['title']; ?></td>
-            <td><?php echo $d['Document']['location']; ?></td>
+            <!--<td><?php echo $d['Document']['location']; ?></td>-->
             <td><?php echo $d['Document']['description']; ?></td>
             <td><?php if($d['Document']['addedBy'] != 0){$q = $member->find('first',array('conditions'=>array('id'=>$d['Document']['addedBy'])));if($q){echo "<a href='".$base_url."members/view/".$q['Member']['id']."'>".$q['Member']['full_name']."</a>";}}else echo "Admin";?></td>
             <td><?php echo $d['Document']['date'];?></td>
