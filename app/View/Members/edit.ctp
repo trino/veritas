@@ -27,8 +27,32 @@ $(function(){
 <tr><td><b>Image</b></td><td><input type="file" class="" name="image" /> <img src="<?php echo $base_url."img/uploads/".$m['Member']['image'];?>" /></td></tr>
 <tr><td><b>Phone</b></td><td><input type="text" name="phone" value="<?php echo $m['Member']['phone'];?>" /></td></tr>
 <tr><td><b>Password</b></td><td><input type="password" name="password" value="<?php echo $m['Member']['password'];?>" class="required" /></td></tr>
-<tr><td><b>Can View Files</b></td><td><input type="checkbox" name="canView" <?php if($m['Member']['canView']==1){?>checked="checked"<?php }?> /></td></tr>
-<tr><td><b>Can Upload Files</b></td><td><input type="checkbox" name="canUpdate" <?php if($m['Member']['canUpdate']==1){?>checked="checked"<?php }?> /></td></tr>
+<tr><td><b>Can View Files</b></td><td><input type="checkbox" name="canView" id="canView" <?php if($m['Member']['canView']==1){?>checked="checked"<?php }?> /></td></tr>
+<tr class="canviewfiles" style="display: none;">
+<td colspan="2">
+<table width="50%">
+<tr>
+<td><span>Contracts </span><input type="checkbox" name="canView_contracts" <?php if(isset($v['Canview']['contracts']) && $v['Canview']['contracts']==1){?>checked="checked"<?php }?> /></td>
+<td><span>Evidence </span><input type="checkbox" name="canView_evidence" <?php if(isset($v['Canview']['evidence']) && $v['Canview']['evidence']==1){?>checked="checked"<?php }?> /></td>
+<td><span>Templates </span><input type="checkbox" name="canView_templates" <?php if(isset($v['Canview']['templates']) && $v['Canview']['templates']==1){?>checked="checked"<?php }?> /></td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr><td><b>Can Upload Files</b></td><td><input type="checkbox" name="canUpdate" id="canUpdate" <?php if($m['Member']['canUpdate']==1){?>checked="checked"<?php }?> /></td></tr>
+<tr class="canuploadfiles" style="display:none;">
+<td colspan="2">
+<table width="50%">
+<tr>
+<td><span>Contracts </span><input type="checkbox" name="canUpload_contracts" <?php if(isset($u['Canupload']['contracts']) && $u['Canupload']['contracts']==1){?>checked="checked"<?php }?> /></td>
+<td><span>Evidence </span><input type="checkbox" name="canUpload_evidence" <?php if(isset($u['Canupload']['evidence']) && $u['Canupload']['evidence']==1){?>checked="checked"<?php }?> /></td>
+<td><span>Templates </span><input type="checkbox" name="canUpload_templates" <?php if(isset($u['Canupload']['templates']) && $u['Canupload']['templates']==1){?>checked="checked"<?php }?> /></td>
+</tr>
+</table>
+</td>
+</tr>
+
 <tr><td><b>Can Send Email</b></td><td><input type="checkbox" name="canEmail" <?php if($m['Member']['canEmail']==1){?>checked="checked"<?php }?> /></td></tr>
 <!--<div class="checks"><div class="left">Is Supervisor</div><div class="right"><input type="checkbox" name="isSupervisor" <?php if($m['Member']['isSupervisor']==1){?>checked="checked"<?php }?> /></div><div class="clear"></div></div>
 <div class="checks"><div class="left">Is Employee</div><div class="right"><input type="checkbox" name="isEmployee" <?php if($m['Member']['isEmployee']==1){?>checked="checked"<?php }?> /></div><div class="clear"></div></div> -->
@@ -36,3 +60,36 @@ $(function(){
 </table>
 </form>
 </div>
+<script>
+$(function(){
+   
+   if($('#canUpdate').is(':checked'))
+        $('.canuploadfiles').show();
+   
+   if($('#canView').is(':checked'))
+        $('.canviewfiles').show();
+        
+    $('#canUpdate').click(function(){
+        if($('#canUpdate').is(':checked'))
+            $('.canuploadfiles').show();
+        else
+            $('.canuploadfiles').hide();
+    
+    }); 
+           
+    $('#canView').click(function(){
+        if($('#canView').is(':checked'))
+            $('.canviewfiles').show();
+        else
+            $('.canviewfiles').hide();
+            
+    
+    });         
+       
+   //$('#canView').toggle(function(){$('.canviewfiles').toogle;});
+   //$('#canUpdate').toggle(function(){$('.canuploadfiles').toogle;});
+        
+        
+    
+});
+</script>

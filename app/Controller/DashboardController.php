@@ -20,14 +20,16 @@ class DashboardController extends AppController
         $this->loadModel('Document');
         $this->loadModel('Jobmember');
         $this->loadModel('Event_log');
+        $this->loadModel('Canview');
+        $this->loadModel('Canupload');
         
         //$this->set('ad',$this->User->find('first'));
         if($this->Session->read('avatar'))
         {
             $this->set('contract',$this->Document->find('count',array('conditions'=>array('document_type'=>'contract'))));
-            $this->set('post_order',$this->Document->find('count',array('conditions'=>array('document_type'=>'post_order'))));
-             $this->set('audits',$this->Document->find('count',array('conditions'=>array('document_type'=>'audits'))));
-              $this->set('training_manuals',$this->Document->find('count',array('conditions'=>array('document_type'=>'training_manuals'))));
+            $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence'))));
+            $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template'))));
+            //$this->set('training_manuals',$this->Document->find('count',array('conditions'=>array('document_type'=>'training_manuals'))));
               $this->paginate = array('limit'=>10,'order'=>'date desc ,time desc');
              //$this->set('activity',$this->paginate('Document'));
              $this->set('added',$this->Member->find('all'));
@@ -39,6 +41,10 @@ class DashboardController extends AppController
             {
                 $q=$this->Member->find('first',array('conditions'=>array('email'=>$this->Session->read('email'))));
                 $id=$q['Member']['id'];
+                if($canview = $this->Canview->find('first',array('conditions'=>array('member_id'=>$id))))
+                    $this->set('canview',$canview);
+                if($canupdate = $this->Canupload->find('first', array('conditions'=>array('member_id'=>$id))))
+                    $this->set('canupdate',$canupdate);
                 $jo=$this->Jobmember->find('all',array('conditions'=>array('member_id'=>$id)));
                 if($jo)
                 {
@@ -49,16 +55,16 @@ class DashboardController extends AppController
                     }
                     $d=rtrim($data, ",");
                     $this->set('contract',$this->Document->find('count',array('conditions'=>array('document_type'=>'contract','job_id in ('.$d.')'))));
-                    $this->set('post_order',$this->Document->find('count',array('conditions'=>array('document_type'=>'post_order','job_id in ('.$d.')'))));
-                    $this->set('audits',$this->Document->find('count',array('conditions'=>array('document_type'=>'audits','job_id in ('.$d.')'))));
-                    $this->set('training_manuals',$this->Document->find('count',array('conditions'=>array('document_type'=>'training_manuals','job_id in ('.$d.')'))));
+                    $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','job_id in ('.$d.')'))));
+                    $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','job_id in ('.$d.')'))));
+                    //$this->set('training_manuals',$this->Document->find('count',array('conditions'=>array('document_type'=>'training_manuals','job_id in ('.$d.')'))));
                 }
                 else
                 {
                     $this->set('contract','0');
-                    $this->set('post_order','0');
-                    $this->set('audits','0');
-                    $this->set('training_manuals','0');
+                    $this->set('evidence','0');
+                    $this->set('template','0');
+                    //$this->set('training_manuals','0');
                 }
             }
             else
@@ -66,9 +72,9 @@ class DashboardController extends AppController
                 $q=$this->Member->find('first',array('conditions'=>array('email'=>$this->Session->read('email'))));
                 $id=$q['Member']['id'];
                 $this->set('contract',$this->Document->find('count',array('conditions'=>array('document_type'=>'contract','addedBy'=>$id))));
-                $this->set('post_order',$this->Document->find('count',array('conditions'=>array('document_type'=>'post_order','addedBy'=>$id))));
-                $this->set('audits',$this->Document->find('count',array('conditions'=>array('document_type'=>'audits','addedBy'=>$id))));
-                $this->set('training_manuals',$this->Document->find('count',array('conditions'=>array('document_type'=>'training_manuals','addedBy'=>$id))));
+                $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','addedBy'=>$id))));
+                $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','addedBy'=>$id))));
+                //$this->set('training_manuals',$this->Document->find('count',array('conditions'=>array('document_type'=>'training_manuals','addedBy'=>$id))));
             }
         }
         $uri = $_SERVER['REQUEST_URI'];
@@ -160,11 +166,19 @@ class DashboardController extends AppController
             
             for($i=0;$i<sizeof($arr)-1;$i++)
             {
-                $this->Email->from    = $this->Session->read('email');
-                $this->Email->to = $arr[$i];
-                $this->Email->subject = $_POST['subject'];
+                $emails = new CakeEmail();
+                $emails->from($this->Session->read('email'));
+                $tos = $this->User->find('first'); 
+                $to = $tos['User']['email'];
+                //die();
+                $emails->to($arr[$i]);
+                $emails->subject($_POST['subject']);
+                $emails->emailFormat('html');
+                //$this->Email->from    = $this->Session->read('email');
+                //$this->Email->to = $arr[$i];
+                //$this->Email->subject = $_POST['subject'];
                 $message="You have recieved an email from ".$sender." on Strike Website. Please Login to see the message";
-                $this->Email->send($message);
+                $emails->send($message);
                 $this->Session->setFlash('Email Send Successfully.');
             }
             

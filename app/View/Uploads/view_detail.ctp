@@ -31,6 +31,22 @@
         <td><?php echo $doc['Document']['description']; ?></td>
     </tr>
     <tr>
+        <td><b>Document Type</b></td>
+        <td><?php echo $type = ucwords($doc['Document']['document_type']); ?></td>
+    </tr>
+    <?php if($type == 'Evidence'){ ?>
+    <tr>
+        <td><b>Evidence Type</b></td>
+        <td><?php echo $doc['Document']['evidence_type'];?></a></td>
+    </tr>
+    
+    <tr>
+        <td><b>Incident Date</b></td>
+        <td><?php echo $doc['Document']['incident_date'];?></a></td>
+    </tr>    
+        
+    <?php } ?>
+    <tr>
         <td><b>Uploaded By</b></td>
         <td><?php if($doc['Document']['addedBy'] != 0){$q = $member->find('first',array('conditions'=>array('id'=>$doc['Document']['addedBy'])));if($q){echo "<a href='".$base_url."members/view/".$q['Member']['id']."'>".$q['Member']['full_name']."</a>";}}else echo "Admin";?></td>
     </tr>
