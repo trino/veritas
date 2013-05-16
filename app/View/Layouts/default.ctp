@@ -56,6 +56,38 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <script type="text/javascript">
    
     $(function(){
+        $('.contact_check').live('change',function(){
+           var id_con = $(this).attr('id');
+           var ar_con = id_con.split('__'); 
+           if($(this).is(':checked')) 
+           list_email($(this).attr('id'));
+           else
+           { 
+            alert('#'+ar_con[2]+'__'+ar_con[1]);
+                $('#'+ar_con[2]+'__'+ar_con[1]).remove();
+               var ar = new Array();
+               ar[0] = ar_con[1];
+               ar[1] = ar_con[2];
+               
+               $('#receipient_id').val($('#receipient_id').val().replace(ar[1]+',',''));
+    	       $('#recipients').val($('#recipients').val().replace(ar[0]+',',''));
+               if($('#name').html().replace(' ','') == '' || $('#name').html().replace(' ','') == ' ' )
+               {
+                $('#send_email').attr('disabled','disabled');
+               }
+           }
+           
+        });
+        $('#contacts_modal').click(function(){
+         $('.dialog-modals').load('<?php echo $base_url.'members/loadall';?>');
+               $('.dialog-modals').dialog({
+                    
+                    width: 550,
+                    height:500,
+                    title:'Add Contacts to Email',
+                    
+               });
+               });
         $('#send_email').attr('disabled','disabled');
         $('.del_email').live('click',function(){
            var ems = $(this).attr('id');
@@ -227,7 +259,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 					{
 						var em=$('#name').val();
 						var ema=$('#recipients').val();
-						var e=value.split('_');
+						var e=value.split('__');
 						var i= $('#receipient_id').val();
 						var id;
                         var ema2 = $('#name').html();
@@ -284,16 +316,16 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 							
 							<div class="left inputs">
 								<div class="subjectLine">
-									<input type="text" name="subject" placeholder="Subject" class="required" />
+									<input type="text" name="subject" placeholder="Subject" class="required" style="margin-bottom: 0;width: calc(100% - 10px);" />
 								</div>
 								<div class="recipientsLine">
                                     <div id="name" style="height: 19px; width: calc(100% - 10px); background: white; border: 1px solid #ccc;padding:2px 4px;margin-bottom: 1px;color:#AAA;">Recipients</div>
 <!--									<input type="text" name="name" id="name" placeholder="Recipients (Separate with comma)" class="required" />--> 
 								</div>
 							
-								<a href="javascript:void(0)" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a>
+								<a href="javascript:void(0)" id="contacts_modal" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a>
 								
-								<div id="email" style="display: none;">
+								<!--<div id="email" style="display: none;">
 									<?php foreach($mems as $m) {
 									   if(!$this->Session->read('admin'))
                                        {
@@ -312,7 +344,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 											<a class="buttonV" href="javascript:void(0)" onclick="list_email(this.id)" id="<?php echo $ad['User']['name_avatar']."_0_".$ad['User']['email']; ?>"><?php echo $ad['User']['name_avatar']; ?></a>
 										<?php }
 									?>
-								</div>
+								</div>-->
 							
 								<!-- <div><div class="left"><input type="text" name="attachments" placeholder="Attachments" id="attachment" readonly="" style="background: #e5f5f5;" /></div><a class="left" href="javascript:void(0)" id="attach">Attach</a><div class="clear"></div></div>-->
 
@@ -320,6 +352,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 								<input type="hidden" name="response" id="resp" />
 								<input type="hidden" name="receipient_id" id="receipient_id" value="" />
 								<input type="submit" name="submit" value="Send" class="buttonV" id="send_email" />
+                                
 							</div>
 						</form>
 					</div>
@@ -490,7 +523,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		
 	</div><!-- rightContent -->
 </div><!-- fullContainer -->
-
+<div class="dialog-modals"></div>
 
 	<?php //echo $this->element('sql_dump'); ?>
 </body>
