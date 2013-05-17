@@ -143,18 +143,22 @@ class UploadsController extends AppController
                     $base_url = "http://localhost/veritas/";
                 else
                     $base_url ="/";
+                
+                
                 foreach($mails as $m)
                 {
                     $mem_id = $m['Jobmember']['member_id'];
-                    $t = $this->Member->find('first',array('conditions'=>array('id'=>$mem_id)));
-                    $to = $t['Member']['email'];
-                    $emails = new CakeEmail();
-                    $emails->from($adminEmail);
-                    $emails->to($to);
-                    $emails->subject("A new Evidence Uploaded.");
-                    $emails->emailFormat('html');
-                    $message="A new Evidence is uploaded to your job.<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/> Please <a href='".$base_url."'>Click Here</a> to Login";
-                    $emails->send($message);
+                    if($t = $this->Member->find('first',array('conditions'=>array('id'=>$mem_id))))
+                    {
+                        $to = $t['Member']['email'];
+                        $emails = new CakeEmail();
+                        $emails->from($adminEmail);
+                        $emails->to($to);
+                        $emails->subject("A new Evidence Uploaded.");
+                        $emails->emailFormat('html');
+                        $message="A new Evidence is uploaded to your job.<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/> Please <a href='".$base_url."'>Click Here</a> to Login";
+                        $emails->send($message);
+                    }    
                 }
                 
                //die(); 
@@ -312,15 +316,15 @@ class UploadsController extends AppController
 	    $this->set('mems',$this->Member);
         $this->set('jo_bs',$this->Job);
 		if ($type =="contract"){$type2="Contracts";}
-		else if ($type =="post_order"){$type2="Post Orders";}
-		else if ($type =="audits"){$type2="Audits";}
+		else if ($type =="evidence"){$type2="Evidence";}
+		else if ($type =="template"){$type2="Templates";}
 		else if ($type =="training_manuals"){$type2="Training Manuals";}
 		else {$type2="";}
 		$this->set('title2',$type2);
 		
         if($this->Session->read('avatar'))
         {
-            $do=$this->Document->find('all',array('conditions'=>array('document_type'=>$type)));
+            $do=$this->Document->find('all',array('conditions'=>array('document_type'=>$type),'order by'=>'job_id'));
             if($do)
             $this->set('doc',$do);
             else
@@ -344,9 +348,9 @@ class UploadsController extends AppController
                     }
                 $d=rtrim($data,',');
                 if($jid != 0)
-                $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'job_id'=>$jid)));
+                    $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'job_id'=>$jid),'order by'=>'job_id'));
                 else
-                $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'job_id IN ('.$data.'0)')));
+                    $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'job_id IN ('.$data.'0)','order by'=>'job_id')));
                 if($do)
                     $this->set('doc',$do);
                 else
@@ -357,7 +361,7 @@ class UploadsController extends AppController
             {
                 $q=$this->Member->find('first',array('conditions'=>array('email'=>$this->Session->read('email'))));
                 $id=$q['Member']['id'];
-                $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'addedBy'=>$id,'job_id'=>$jid)));
+                $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'addedBy'=>$id,'job_id'=>$jid),'order by'=>'job_id'));
                 if($do)
                 $this->set('doc',$do);
                 else
