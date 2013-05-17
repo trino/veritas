@@ -43,7 +43,7 @@ else
          $arr[]=$doc[$k]['Document']['job_id'];   
         ?>
         
-        <tr><td><strong>Job :</strong></td><td colspan="3"><strong><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Document']['job_id'])));if($get2)echo $get2['Job']['title']; ?></strong></td></tr>
+        <tr style="background: grey;color:#FFF;"><td colspan="4"><strong>Job :</strong><strong><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Document']['job_id'])));if($get2)echo $get2['Job']['title']; ?></strong></tr>
         
         <?php
         }
@@ -53,7 +53,7 @@ else
             {
                 $arr[]=$doc[$k]['Document']['job_id'];
                 ?>
-                <tr><td><strong>Job :</strong></td><td colspan="3"><strong><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Document']['job_id'])));if($get2)echo $get2['Job']['title']; ?></strong></td></tr>
+                <tr style="background: grey;color:#FFF;"><td colspan="4"><strong>Job :</strong><strong><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Document']['job_id'])));if($get2)echo $get2['Job']['title']; ?></strong></tr>
                 <?php
             }
         }
