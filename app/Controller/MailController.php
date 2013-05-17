@@ -105,7 +105,12 @@ class MailController extends AppController
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'];
                 if($_SERVER['SERVER_NAME'] == 'localhost')
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
-                $message="You have recieved an email from ".$sender." on Strike Website. <br/><a href='".$base_url."'>Check your message, click here</a>";
+                $message="You have recieved an email from ".$sender." on Strike Website. <br/><a href='".$base_url."'>Check your message, click here</a><br/>
+                <p>
+                <b>Subject : </b>".$arr['subject']."<br/>
+                <b>Message : </b>".$arr['message']."
+                </p>
+                ";
                 $emails->send($message);
         }
         $data = $this->Mail->find('first',array('conditions'=>array('id'=>$id)));
@@ -302,7 +307,12 @@ class MailController extends AppController
             $base_url = 'http://'.$_SERVER['SERVER_NAME'];
             if($_SERVER['SERVER_NAME'] == 'localhost')
             $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
-            $message="You have recieved an email from ".$sender." on Strike Website. <br/><a href='".$base_url."'>Check your message, click here</a>";           
+            $message="You have recieved an email from ".$sender." on Strike Website. <br/><a href='".$base_url."'>Check your message, click here</a><br/>
+                <p>
+                <b>Subject : </b>".$_POST['subject']."<br/>
+                <b>Message : </b>".$arr['message']."
+                </p>
+                ";           
             $emails->send($message);
             $this->Session->setFlash('Email Send Successfully.');
             $this->redirect(str_replace('veritas/','',$return));
@@ -380,7 +390,12 @@ class MailController extends AppController
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'];
                 if($_SERVER['SERVER_NAME'] == 'localhost')
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
-                $message="You have recieved an email from ".$sender." on Strike Website. <br/><a href='".$base_url."'>Check your message, click here</a>";
+                $message="You have recieved an email from ".$sender." on Strike Website. <br/><a href='".$base_url."'>Check your message, click here</a><br/>
+                <p>
+                <b>Subject : </b>".$arr['subject']."<br/>
+                <b>Message : </b>".$arr['message']."
+                </p>
+                ";
                 $emails->send($message);
                 }}
                 }
