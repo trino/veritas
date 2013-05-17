@@ -79,7 +79,7 @@ class AdminController extends AppController {
                 $log['date'] =  date('Y-m-d');
                 $log['time'] =  date('H:i:s');
                 $log['fullname'] = "";
-                $log['username'] = "Anonymous User";
+                $log['username'] = $un;
                 $log['member_id'] = -100;
                 $log['document_id'] = 0;
                 $log['event_type'] = "User Login";

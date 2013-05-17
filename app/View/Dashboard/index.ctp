@@ -13,10 +13,6 @@
 		<a href="<?=$base_url;?>">Home</a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
-
-
-
-
 <div class="documentsDashboard">
 <?php if($this->Session->read('view')=='1') { ?>
 
@@ -111,7 +107,7 @@
 
 
 
-<?php if($this->Session->read('avatar')){
+<?php //if($this->Session->read('avatar')){
     if($activity)
 {?>
 
@@ -130,7 +126,28 @@
 <?php
 
     foreach($activity as $a)
-    {?>
+    {
+        if($this->Session->read('user'))
+        {
+            if($a['Event_log']['document_id']!=0)
+            {
+                //echo $a['Event_log']['document_id'];
+                $d = $job_id->find('first',array('conditions'=>array('id'=>$a['Event_log']['document_id'])));
+                $jid = $d['Document']['job_id'];
+                //echo $jm;
+                $job_member = explode(',',$jm);
+            }   
+                
+        }
+        else
+        {
+            $job_member = array();
+            $jid = '1';
+        }
+        ?>
+        <?php if(in_array($jid,$job_member) || $this->Session->read('admin'))
+        {
+        ?>
         <tr>
             <td><?php echo $a['Event_log']['date']; ?></td>
             <td><?php echo $a['Event_log']['time'];?></td>
@@ -143,7 +160,7 @@
                      echo "<a href='".$base_url."members/view/".$a['Event_log']['member_id']."'>".$a['Event_log']['username']."</a>";
                 }
                 else
-                    echo $a['Event_log']['username'];
+                     echo $a['Event_log']['username'];
                 
                              
                     
@@ -154,6 +171,7 @@
             <td><?php if($a['Event_log']['document_id']!=0){ ?><a href="<?php echo $base_url; ?>uploads/view_detail/<?php echo $a['Event_log']['document_id'];?>"><?php echo $a['Event_log']['event']; ?></a><?php } else { echo $a['Event_log']['event'];} ?></td>
         </tr>
     <?php } 
+        }
  ?>
  </table>
 
@@ -170,7 +188,8 @@
 
 
 
-<?php } } ?> 
+<?php } 
+//} ?> 
 <script>
 $(function(){
    initialize('attach');
