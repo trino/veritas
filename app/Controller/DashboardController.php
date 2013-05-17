@@ -34,9 +34,19 @@ class DashboardController extends AppController
              //$this->set('activity',$this->paginate('Document'));
              $this->set('added',$this->Member->find('all'));
              $this->set('activity', $this->paginate('Event_log'));
+             
         }
         else
         {
+              $this->paginate = array('limit'=>10,'order'=>'date desc ,time desc');
+             //$this->set('activity',$this->paginate('Document'));
+             $this->set('activity', $this->paginate('Event_log', array('event_type '=>'Upload Document')));
+             $this->set('job_id', $this->Document);
+             $id = $this->Session->read('id');
+             $jo = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$id)));
+             //var_dump($jo['Jobmember']['job_id']);
+             $this->set('jm',$jo['Jobmember']['job_id']);
+             
             if($this->Session->read('see'))
             {
                 $q=$this->Member->find('first',array('conditions'=>array('email'=>$this->Session->read('email'))));
@@ -45,7 +55,9 @@ class DashboardController extends AppController
                     $this->set('canview',$canview);
                 if($canupdate = $this->Canupload->find('first', array('conditions'=>array('member_id'=>$id))))
                     $this->set('canupdate',$canupdate);
+                    
                 $jo=$this->Jobmember->find('all',array('conditions'=>array('member_id'=>$id)));
+                
                 if($jo)
                 {
                     $data="";
