@@ -70,8 +70,33 @@
 <tr><td><b>Image</b></td><td><input type="file" class="" name="image" /></td></tr>
 <tr><td><b>Phone</b></td><td><input type="text" name="phone" /></td></tr>
 <tr><td><b>Password</b></td><td><input type="password" class="required" name="password" /></td></tr>
-<tr><td><b>Can View Files</b></td><td><input type="checkbox" name="canView" /></td></tr>
-<tr><td><b>Can Upload Files</b></td><td><input type="checkbox" name="canUpdate" /></td></tr>
+<tr><td><b>Can View Files</b></td><td><input type="checkbox" name="canView" id="canView"  /></td></tr>
+<tr class="canviewfiles" style="display: none;">
+<td colspan="2">
+<table width="50%">
+<tr>
+<td><span>Contracts </span><input type="checkbox" name="canView_contracts"  /></td>
+<td><span>Evidence </span><input type="checkbox" name="canView_evidence"  /></td>
+<td><span>Templates </span><input type="checkbox" name="canView_templates"  /></td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr><td><b>Can Upload Files</b></td><td><input type="checkbox" name="canUpdate" id="canUpdate"  /></td></tr>
+<tr class="canuploadfiles" style="display:none;">
+<td colspan="2">
+<table width="50%">
+<tr>
+<td><span>Contracts </span><input type="checkbox" name="canUpload_contracts"/></td>
+<td><span>Evidence </span><input type="checkbox" name="canUpload_evidence"  /></td>
+<td><span>Templates </span><input type="checkbox" name="canUpload_templates"  /></td>
+</tr>
+</table>
+</td>
+</tr>
+<!--<tr><td><b>Can View Files</b></td><td><input type="checkbox" name="canView" /></td></tr>
+<tr><td><b>Can Upload Files</b></td><td><input type="checkbox" name="canUpdate" /></td></tr>-->
 <tr><td><b>Can Send Email</b></td><td><input type="checkbox" name="canEmail" /></td></tr>
 <!-- <div class="checks"><div class="left">Is Supervisor</div><div class="right"><input type="checkbox" name="isSupervisor" /></div><div class="clear"></div></div>
 <div class="checks"><div class="left">Is Employee</div><div class="right"><input type="checkbox" name="isEmployee" /></div><div class="clear"></div></div> -->
@@ -80,3 +105,31 @@
 </form>
 
 </div>
+<script>
+$(function(){
+   
+  
+        
+    $('#canUpdate').click(function(){
+        if($('#canUpdate').is(':checked'))
+            $('.canuploadfiles').show();
+        else
+            $('.canuploadfiles').hide();
+    
+    }); 
+           
+    $('#canView').click(function(){
+        if($('#canView').is(':checked'))
+            $('.canviewfiles').show();
+        else
+            $('.canviewfiles').hide();
+            
+    
+    });         
+       
+  
+        
+        
+    
+});
+</script>

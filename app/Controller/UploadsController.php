@@ -2,6 +2,8 @@
 class UploadsController extends AppController
 {
     public $helpers = array('Html');
+    var $components = array('Email');
+    var $base;
     function __construct(CakeRequest $request, CakeResponse $response)
     {
         $this->loadModel('Document');
@@ -9,11 +11,11 @@ class UploadsController extends AppController
         $this->loadModel('Jobmember');
         $this->loadModel('Job');
         $this->loadModel('Image');
+        $this->loadModel('User');
         $this->loadModel('Doc');
         $this->loadModel('Video');
         $this->loadModel('Youtube');
         $this->loadModel('Event_log');
-        
         
         
         parent::__construct($request,$response);
@@ -86,16 +88,22 @@ class UploadsController extends AppController
         }
     }
     
-    function upload($id)
+    function upload($ids)
     {
+        $this->loadModel('Canupload');
         if($this->Session->read('user'))
         {
            if($this->Session->read('upload')!='1')
            {
             $this->redirect('/jobs');
            } 
-        }  
-        
+        }
+        if($this->Session->read('user'))
+        { 
+            $id = $this->Session->read('id');
+           if($canupdate = $this->Canupload->find('first', array('conditions'=>array('member_id'=>$id))))
+                    $this->set('canupdate',$canupdate);  
+        }
         if(isset($_POST['submit']))
         {
             $uri = $_SERVER['REQUEST_URI'];
@@ -115,13 +123,42 @@ class UploadsController extends AppController
                 else
                     $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/documents/';
             if(!$this->Session->read('admin'))   
-            $id=$this->Session->read('id');
+                $id=$this->Session->read('id');
             else
-            $id=0;
+                $id=0;
             $arr['location'] = $_POST['location'];
             $arr['title'] = $_POST['title'];
             $arr['description'] = $_POST['description'];
             $arr['document_type'] = $_POST['document_type'];
+            if($_POST['document_type']== 'evidence')
+            {
+                $arr['incident_date'] = $_POST['incident_date'];
+                //$arr['desc'] = $_POST['desc'];
+                $arr['evidence_type'] = $_POST['evidence_type'];
+                $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$ids.',%'), array('job_id'=>$ids),array('job_id LIKE'=>'%,'.$ids.',%'),array('job_id LIKE'=>'%,'.$ids)))));
+                //var_dump($mails);
+                $aE = $this->User->find('first');
+                echo $adminEmail = $aE['User']['email'];
+                if($_SERVER['SERVER_NAME']=='localhost')
+                    $base_url = "http://localhost/veritas/";
+                else
+                    $base_url ="/";
+                foreach($mails as $m)
+                {
+                    $mem_id = $m['Jobmember']['member_id'];
+                    $t = $this->Member->find('first',array('conditions'=>array('id'=>$mem_id)));
+                    $to = $t['Member']['email'];
+                    $emails = new CakeEmail();
+                    $emails->from($adminEmail);
+                    $emails->to($to);
+                    $emails->subject("A new Evidence Uploaded.");
+                    $emails->emailFormat('html');
+                    $message="A new Evidence is uploaded to your job.<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/> Please <a href='".$base_url."'>Click Here</a> to Login";
+                    $emails->send($message);
+                }
+                
+               //die(); 
+            }
             $arr['date'] = date('Y-m-d H:i:s');
             $arr['job_id'] = $_POST['job'];
             $arr['addedBy'] = $id;
@@ -138,7 +175,7 @@ class UploadsController extends AppController
             //$img = $rand.'.'.end($ext_arr);
             //$imgs = $_POST['image'];
             //$vid = $_POST['video'];
-            $you=$_POST['youtube'];
+            //$you=$_POST['youtube'];
             /*
             for($i=1;$i<=$imgs;$i++)
             {
@@ -212,6 +249,7 @@ class UploadsController extends AppController
                 }
             }
             */
+            /*
             for($i=1;$i<=$you;$i++)
             {
                 if($_POST['youtube_'.$i]!="")
@@ -222,6 +260,7 @@ class UploadsController extends AppController
                 $this->Youtube->save($y);   
                 }        
             }
+            */
             $this->Session->setFlash('Data Saved Successfully.');
             $log['date'] =  date('Y-m-d');
             $log['time'] =  date('H:i:s');
@@ -244,7 +283,7 @@ class UploadsController extends AppController
             $this->Event_log->create();
             $this->Event_log->save($log);
         }
-        $this->set('job_id',$id);
+        $this->set('job_id',$ids);
     }
     
     public function view($id)

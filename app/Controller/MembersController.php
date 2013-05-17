@@ -42,6 +42,8 @@ class MembersController extends AppController
     }
     public function add()
     {
+        $this->loadModel('Canview');
+        $this->loadModel('Canupload');
         if(isset($_POST['email'])){
             $email = $_POST['email'];
         $q=$this->Member->find('first',array('conditions'=>array('email'=>$email)));
@@ -142,7 +144,7 @@ class MembersController extends AppController
             //	imagejpeg($virtual_image, $destination);
             
             $arr['full_name']=$_POST['full_name'];
-            $arr['name_avatar'] = $_POST['avatar'];
+            //$arr['name_avatar'] = $_POST['avatar'];
             $arr['title'] = $_POST['title'];
             $arr['address'] = $_POST['address'];
             $arr['email'] = $_POST['email'];
@@ -156,6 +158,7 @@ class MembersController extends AppController
             if(isset($_POST['canUpdate']))
             {
                 $arr['canUpdate'] = 1;
+                
             }
             if(isset($_POST['canEmail']))
             {
@@ -171,6 +174,30 @@ class MembersController extends AppController
             }
             $this->Member->create();
             $this->Member->save($arr);
+            
+            $id = $this->Member->id;
+            if(isset($_POST['canView']))
+            {
+                $this->Canview->deleteAll(array('member_id'=>$id));
+                $canview['member_id'] = $id;
+                $canview['contracts'] = (isset($_POST['canView_contracts']))? '1' : '0'  ;
+                $canview['evidence'] = (isset($_POST['canView_evidence']))? '1' : '0'  ;
+                $canview['templates'] = (isset($_POST['canView_templates']))? '1' : '0'  ;;
+                $this->Canview->create();
+                $this->Canview->save($canview);
+            }
+            if(isset($_POST['canUpdate']))
+            {
+                $this->Canupload->deleteAll(array('member_id'=>$id));
+                $canupdate['member_id'] = $id;
+                $canupdate['contracts'] = (isset($_POST['canUpload_contracts']))? '1' : '0'  ;
+                $canupdate['evidence'] = (isset($_POST['canUpload_evidence']))? '1' : '0'  ;
+                $canupdate['templates'] = (isset($_POST['canUpload_templates']))? '1' : '0'  ;;
+                $this->Canupload->create();
+                $this->Canupload->save($canupdate);  
+                
+            }
+            
             $this->Session->setFlash('Data Saved Successfully.');
             $this->redirect('index');
              
@@ -179,11 +206,22 @@ class MembersController extends AppController
     public function edit($id)
     {
         $this->loadModel('Member');
+        $this->loadModel('Canview');
+        $this->loadModel('Canupload');
+        
         if(!$this->Session->read('avatar'))
             $this->redirect('/admin');
         if($mem = $this->Member->find('first',array('conditions'=>array('id'=>$id))))
             $image = $mem['Member']['image'];
+        
+        //if($mem['Member']['canUpload']== '1')
+           $u = $this->Canupload->find('first', array('conditions'=>array('member_id'=>$id)));     
+        //if($mem['Member']['canView']== '1')
+           $v = $this->Canview->find('first', array('conditions'=>array('member_id'=>$id)));     
+        
         $this->set('m',$mem);
+        $this->set('u',$u);
+        $this->set('v',$v);
         if(isset($_POST['submit']))
         {
             if($_POST['email'])
@@ -284,7 +322,7 @@ class MembersController extends AppController
             
             $this->Member->id = $id;
             $this->Member->saveField('full_name',$_POST['full_name']);
-            $this->Member->saveField('name_avatar',$_POST['avatar']);
+            //$this->Member->saveField('name_avatar',$_POST['avatar']);
             $this->Member->saveField('title',$_POST['title']);
             $this->Member->saveField('address',$_POST['address']);
             if(isset($img))
@@ -295,6 +333,13 @@ class MembersController extends AppController
             if(isset($_POST['canView']))
             {
                 $this->Member->saveField('canView', 1);
+                $this->Canview->deleteAll(array('member_id'=>$id));
+                $canview['member_id'] = $id;
+                $canview['contracts'] = (isset($_POST['canView_contracts']))? '1' : '0'  ;
+                $canview['evidence'] = (isset($_POST['canView_evidence']))? '1' : '0'  ;
+                $canview['templates'] = (isset($_POST['canView_templates']))? '1' : '0'  ;;
+                $this->Canview->create();
+                $this->Canview->save($canview);
             }
             else
             {
@@ -303,6 +348,14 @@ class MembersController extends AppController
             if(isset($_POST['canUpdate']))
             {
                 $this->Member->saveField('canUpdate', 1);
+                $this->Canupload->deleteAll(array('member_id'=>$id));
+                $canupdate['member_id'] = $id;
+                $canupdate['contracts'] = (isset($_POST['canUpload_contracts']))? '1' : '0'  ;
+                $canupdate['evidence'] = (isset($_POST['canUpload_evidence']))? '1' : '0'  ;
+                $canupdate['templates'] = (isset($_POST['canUpload_templates']))? '1' : '0'  ;;
+                $this->Canupload->create();
+                $this->Canupload->save($canupdate);
+                //die();
             }
             else
             {
@@ -311,6 +364,7 @@ class MembersController extends AppController
             if(isset($_POST['canEmail']))
             {
                 $this->Member->saveField('canEmail', 1);
+                
             }
             else
             {

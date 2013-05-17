@@ -38,7 +38,7 @@ foreach($mem as $m)
     ?>
   
     	<tr>
-			<td style="width:40px;"><div style="background-color:#dddddd;width:40px; height:40px;"><a href="<?php echo $base_url.'members/view/'.$m['Member']['id']; ?>"><?php echo $this->Html->image('uploads/'.$m['Member']['image'], array('alt' => '')); ?></a></div> </td>
+			<td style="width:40px;"><div style="background-color:#dddddd;width:40px; height:40px; text-align:center;"><a href="<?php echo $base_url.'members/view/'.$m['Member']['id']; ?>"><?php echo $this->Html->image('uploads/'.$m['Member']['image'], array('alt' => '','style'=>"max-height: 100%; max-width:100%;")); ?></a></div> </td>
     		<td class="infos"><a href="<?php echo $base_url.'members/view/'.$m['Member']['id']; ?>"><?php echo $m['Member']['title']." ".$m['Member']['full_name']; ?></a></td>
     		<td>
     <?php 	echo $this->Html->link(

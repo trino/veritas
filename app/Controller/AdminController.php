@@ -30,24 +30,8 @@ class AdminController extends AppController {
         $q = $this->User->find('first',array('conditions'=>array('email'=>$un,'password'=>$pw)));
         $qu = $this->Member->find('first',array('conditions'=>array('email'=>$un,'password'=>$pw)));
         
-        if($query = $this->Member->find('first',array('conditions'=>array('email'=>$un,'password <>'=>$pw))))
-        {
-            
-            $log['date'] =  date('Y-m-d');
-            $log['time'] =  date('H:i:s');
-            $log['fullname'] = $query['Member']['full_name'];
-            $log['username'] = $un;
-            $log['member_id'] = $query['Member']['id'];
-            $log['document_id'] = 0;
-            $log['event_type'] = "User Login";
-            $log['event'] = "Login Failed: Invalid Password";
-            $this->Event_log->create();
-            $this->Event_log->save($log);
-            $this->Session->setFlash('Username and Password does not match');
-            $this->redirect('/');
-             
-        }
-        elseif($q)
+        
+        if($q)
         {
             
             $this->Session->write(array('admin'=>1,'avatar'=>$q['User']['name_avatar'],'email'=>$q['User']['email'],'image'=>$q['User']['picture'],'id'=>$q['User']['id'],'view'=>'1'));
@@ -70,6 +54,23 @@ class AdminController extends AppController {
                 $this->Event_log->create();
                 $this->Event_log->save($log);     
                 $this->redirect('/dashboard');
+        }
+        elseif($query = $this->Member->find('first',array('conditions'=>array('email'=>$un,'password <>'=>$pw))))
+        {
+            
+            $log['date'] =  date('Y-m-d');
+            $log['time'] =  date('H:i:s');
+            $log['fullname'] = $query['Member']['full_name'];
+            $log['username'] = $un;
+            $log['member_id'] = $query['Member']['id'];
+            $log['document_id'] = 0;
+            $log['event_type'] = "User Login";
+            $log['event'] = "Login Failed: Invalid Password";
+            $this->Event_log->create();
+            $this->Event_log->save($log);
+            $this->Session->setFlash('Username and Password does not match');
+            $this->redirect('/');
+             
         }
         else
         {

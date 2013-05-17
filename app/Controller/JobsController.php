@@ -365,6 +365,8 @@ class JobsController extends AppController
     
     public function view($id)
     {
+        $this->loadModel('Canupload');
+        $this->loadModel('Canview');
       if($this->Session->read('avatar') || $this->Session->read('user'))
         {
              
@@ -373,10 +375,18 @@ class JobsController extends AppController
             $this->redirect('/admin');
            
         $this->set('job',$this->Job->find('first',array('conditions'=>array('id'=>$id))));
+        if($this->Session->read('user'))
+        {
+            $ids = $this->Session->read('id');
+            if($canview = $this->Canview->find('first',array('conditions'=>array('member_id'=>$ids))))
+                $this->set('canview',$canview);
+            if($canupdate = $this->Canupload->find('first', array('conditions'=>array('member_id'=>$ids))))
+                $this->set('canupdate',$canupdate);
+        }    
         $this->set('contract',$this->Document->find('count',array('conditions'=>array('job_id'=>$id,'document_type'=>'contract'))));
-        $this->set('post_order',$this->Document->find('count',array('conditions'=>array('document_type'=>'post_order','job_id'=>$id))));
-        $this->set('audits',$this->Document->find('count',array('conditions'=>array('document_type'=>'audits','job_id'=>$id))));
-        $this->set('training_manuals',$this->Document->find('count',array('conditions'=>array('document_type'=>'training_manuals','job_id'=>$id))));
+        $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','job_id'=>$id))));
+        $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','job_id'=>$id))));
+        //$this->set('training_manuals',$this->Document->find('count',array('conditions'=>array('document_type'=>'training_manuals','job_id'=>$id))));
         $this->set('keys', $this->Key_contact->find('all', array('conditions'=>array('job_id'=>$id))));
     }
     
