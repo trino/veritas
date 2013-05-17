@@ -310,4 +310,80 @@ class MailController extends AppController
             
         }
     }
+    public function replyall()
+    {
+        
+            if($this->Session->read('avatar'))
+            {
+                $sender = 'admin';
+                $sender_id = '0';
+            }
+            else if($this->Session->read('user'))
+            {
+                $sender = $this->Session->read('user');
+                $sender_id = $this->Session->read('id');
+            }
+                $arr['sender'] = $sender;
+                $arr['subject'] = $_POST['subject'];
+                $arr['message'] = $_POST['reply'];
+                $arr['sender_id'] = $sender_id;
+                $arr['status'] = 'unread';
+                $arr['date'] = date('Y-m-d H:i:s');
+                $arr['parent'] = $_POST['mail_id'];
+                $par = $this->Mail->find('first',array('conditions'=>array('id'=>$arr['parent'])));
+                $q = $this->Mail->find('all',array('conditions'=>array('OR'=>array(array('parent'=>$arr['parent']),array('id'=>$arr['parent']),array('sender'=>$par['Mail']['sender'],'subject'=>$par['Mail']['subject'],'message'=>$par['Mail']['message'],'date'=>$par['Mail']['date'],'parent'=>0)))));
+                foreach($q as $qs)
+                {
+                    $arrays[] = $qs['Mail']['recipients_id'];
+                    $arrays[] = $qs['Mail']['sender_id'];
+                }
+                if(isset($arrays))
+                {
+                    $i = 0;
+                    foreach($arrays as $ar)
+                    {
+                        if($i == 0)
+                        $arr_final[] = $ar;
+                        else
+                        if(!in_array($ar,$arr_final))
+                        $arr_final[] = $ar;
+                        $i++; 
+                    }
+                }
+                //var_dump($arr_final);die();
+                if(isset($arr_final))
+                {
+                foreach($arr_final as $af){    
+                //$arr['recipients_id'] = $_POST['recipient_id'];
+                if($af != $sender_id){
+                $arr['recipients_id'] = $af;
+                if($af!=0)
+                {
+                    $r = $this->Member->find('first',array('conditions'=>array('id'=>$af)));
+                    $receiver = $r['Member']['email'];
+                }
+                else{
+                $r = $this->User->find('first');
+                $receiver = $r['User']['email'];
+                }
+            
+                
+                $this->Mail->create();
+                $this->Mail->save($arr);
+                $this->set('success','You have replied to this message.');
+                $emails = new CakeEmail();
+                $emails->from(array('noreply@strike.com'=>'Strike Management'));
+            
+                $emails->emailFormat('html');
+                $emails->to($receiver);
+                $emails->subject($_POST['subject']);
+                $base_url = 'http://'.$_SERVER['SERVER_NAME'];
+                if($_SERVER['SERVER_NAME'] == 'localhost')
+                $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
+                $message="You have recieved an email from ".$sender." on Strike Website. <br/><a href='".$base_url."'>Check your message, click here</a>";
+                $emails->send($message);
+                }}
+                }
+                $this->redirect('read/'.$arr['parent']);
+    }
 }

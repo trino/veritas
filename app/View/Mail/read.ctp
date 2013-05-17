@@ -56,11 +56,17 @@ foreach($all as $a){
     <table id="span<?php echo $j;?>" class="clickable">
     <tr class="show"><td> <b>Sent By:</b> <?php if($a['Mail']['sender_id']=='0')echo 'Admin';else{
         $qs = $member->find('first',array('conditions'=>array('id'=>$a['Mail']['sender_id'])));
+        if($qs)
         echo $qs['Member']['full_name'];
+        else
+        echo "Member Deleted";
         
     } ?> &nbsp; [<?php echo $a['Mail']['date'];?>] &nbsp; ( <strong>To</strong> : <?php if($a['Mail']['recipients_id']=='0')echo 'Admin';else{
         $qs2 = $member->find('first',array('conditions'=>array('id'=>$a['Mail']['recipients_id'])));
+        if($qs2)
         echo $qs2['Member']['full_name'];
+        else
+        echo "Member Deleted";
         
     } ?> )</td></tr>
     <tr><td><?php echo $a['Mail']['message']; ?></td></tr>
@@ -106,13 +112,13 @@ $parents = $a['Mail']['id'];
 
 
 <div id="reply" style="padding:15px;">
-<form action="" method="post">
+<form action="" method="post" id="replyform">
     <textarea name="reply" style="height:100px;width:420px;"></textarea>
     <input type="hidden" name="mail_id" value="<?php echo $parents;?>" />
     <input type="hidden" name="recipient_id" value="<?php echo $reqs; ?>" />
     <input type="hidden" name="recipient_email" value="<?php echo $reqs_email; ?>" />
     <input type="hidden" name="subject" value="<?php echo $sub; ?>" />
-    <br /><input type="submit" name="submit" value="Reply" class="btn btn-primary reg-company" />
+    <br /><input type="submit" name="submit" value="Reply" class="btn btn-primary reg-company replybtn" /> &nbsp; <a href="javascript:void(0)" style="height: 6px;padding-bottom: 15px;" class="replyall btn btn-primary">Reply All</a>
 </form>
 <?php
 /*
@@ -127,6 +133,13 @@ $parents = $a['Mail']['id'];
 */?>
 </div>
 <script>
+$(function(){
+   $('.replyall').click(function(){
+    alert('test');
+    $('#replyform').attr('action','<?php echo $base_url;?>mail/replyall');
+    $('.replybtn').click();
+   }); 
+});
 /*
 $(function(){
     
