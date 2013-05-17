@@ -366,7 +366,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 				
 				
 				
-				<div class="buttonBarContainer">
+				<!--<div class="buttonBarContainer">
 				<div class="buttonBar">
 					<div class="v1ButtonBarB">
 						<a href="<?=$base_url;?>dashboard" class="fullLink">
@@ -480,7 +480,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 						</a>
 					</div>			
 
-				</div><!-- buttonBar -->
+				</div>
 				</div><!-- buttonBarContainer -->
 				
 				
