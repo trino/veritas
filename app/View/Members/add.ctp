@@ -67,7 +67,7 @@
 <tr><td><b>Title</b></td><td><input type="text" class="required" name="title" /></td></tr>
 <tr><td><b>Address</b></td><td><input type="text" class="required" name="address" /></td></tr>
 <tr><td><b>Email</b></td><td><input type="text" id="emails" class="required email" name="email" onchange="check_email()" /><span id="response"></span></td></tr>
-<tr><td><b>Image</b></td><td><input type="file" class="required" name="image" /></td></tr>
+<tr><td><b>Image</b></td><td><input type="file" class="" name="image" /></td></tr>
 <tr><td><b>Phone</b></td><td><input type="text" name="phone" /></td></tr>
 <tr><td><b>Password</b></td><td><input type="password" class="required" name="password" /></td></tr>
 <tr><td><b>Can View Files</b></td><td><input type="checkbox" name="canView" /></td></tr>

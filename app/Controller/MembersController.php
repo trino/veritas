@@ -18,7 +18,7 @@ class MembersController extends AppController
         $this->layout = 'modal_layout';
         $this->loadModel('Job');
         $this->loadModel('Jobmember');
-        if($this->Session->read('Admin'))
+        if($this->Session->read('admin'))
         $this->set('job',$this->Job->find('all',array('order'=>'title')));
         else
         {
@@ -32,6 +32,8 @@ class MembersController extends AppController
                 $arr = '('.$jobs.')';
                 $this->set('job',$this->Job->find('all',array('order'=>'title','conditions'=>array('id IN '.$arr))));
             }
+            else
+            $this->set('job',false);
         }
         $this->set('member',$this->Member);
         $this->set('job_model',$this->Job);
@@ -52,6 +54,7 @@ class MembersController extends AppController
         $this->redirect('/admin');
         if(isset($_POST['submit']))
         {
+            if(isset($_FILES['image']['name']) && $_FILES['image']['name']){
             $uri = $_SERVER['REQUEST_URI'];
                 $uri = str_replace('/',' ',$uri);
                 $uri = str_replace(' ','/',trim($uri));
@@ -129,6 +132,10 @@ class MembersController extends AppController
                     imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
                 	imagejpeg($virtual_image, $destination);
                     break; 
+            }}
+            else
+            {
+                $img = 'generic_user.jpg';
             }    
                 //$image = imagecreatefromjpeg($destination);
             //	imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
@@ -273,8 +280,6 @@ class MembersController extends AppController
                 	imagejpeg($virtual_image, $destination);
                     break; 
             }
-            
-            
             }
             
             $this->Member->id = $id;

@@ -92,11 +92,14 @@ class MailController extends AppController
                 $arr['status'] = 'unread';
                 $arr['date'] = date('Y-m-d H:i:s');
                 $arr['parent'] = $_POST['mail_id'];
+                
                 $this->Mail->create();
                 $this->Mail->save($arr);
                 $this->set('success','You have replied to this message.');
                 $emails = new CakeEmail();
-                $emails->from($this->Session->read('email'));
+                $emails->from(array('noreply@strike.com'=>'Strike Management'));
+            
+                $emails->emailFormat('html');
                 $emails->to($receiver);
                 $emails->subject($_POST['subject']);
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'];
@@ -287,16 +290,22 @@ class MailController extends AppController
             
             for($i=0;$i<sizeof($arr)-1;$i++)
             {
-                $this->Email->from    = $this->Session->read('email');
-                $this->Email->to = trim($arr[$i]);
-                $this->Email->subject = $_POST['subject'];
-                $base_url = 'http://'.$_SERVER['SERVER_NAME'];
-                if($_SERVER['SERVER_NAME'] == 'localhost')
-                $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
-                $message="You have recieved an email from ".$sender." on Strike Website. <br/><a href='".$base_url."'>Check your message, click here</a>";
-                $this->Email->send($message);
-                $this->Session->setFlash('Email Send Successfully.');
-                $this->redirect(str_replace('veritas/','',$return));
+                $emails = new CakeEmail();
+            $emails->from($this->Session->read('email'));
+            
+            $to = trim($arr[$i]);
+            //die();
+            $emails->from(array('noreply@strike.com'=>'Strike Management'));
+            $emails->to($to);
+            $emails->subject($_POST['subject']);
+            $emails->emailFormat('html');
+            $base_url = 'http://'.$_SERVER['SERVER_NAME'];
+            if($_SERVER['SERVER_NAME'] == 'localhost')
+            $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
+            $message="You have recieved an email from ".$sender." on Strike Website. <br/><a href='".$base_url."'>Check your message, click here</a>";           
+            $emails->send($message);
+            $this->Session->setFlash('Email Send Successfully.');
+            $this->redirect(str_replace('veritas/','',$return));
             }
             
         }

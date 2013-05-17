@@ -63,6 +63,7 @@ class JobsController extends AppController
             $this->redirect('/admin');
         if(isset($_POST['submit']))
         {
+            if(isset($_FILES['image']['name'])&&$_FILES['image']['name']){
                 $uri = $_SERVER['REQUEST_URI'];
                 $uri = str_replace('/',' ',$uri);
                 $uri = str_replace(' ','/',trim($uri));
@@ -127,7 +128,9 @@ class JobsController extends AppController
                 	imagejpeg($virtual_image, $destination);
                     break; 
             } 
-                
+                }
+                else
+                $img = 'generic_job.jpg';
                 
             //$image=$_FILES['image']['name'];
             $arr['title'] = $_POST['title'];
