@@ -135,7 +135,7 @@ $parents = $a['Mail']['id'];
 <script>
 $(function(){
    $('.replyall').click(function(){
-    alert('test');
+    
     $('#replyform').attr('action','<?php echo $base_url;?>mail/replyall');
     $('.replybtn').click();
    }); 

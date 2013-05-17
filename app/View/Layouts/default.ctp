@@ -56,20 +56,34 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <script type="text/javascript">
    
     $(function(){
-        $('.contact_check').live('change',function(){
-           var id_con = $(this).attr('id');
+        $('.loading input').live('change',function(){
+           var id_con = $(this).attr('class');
            var ar_con = id_con.split('__'); 
            if($(this).is(':checked')) 
-           list_email($(this).attr('id'));
+           list_email($(this).attr('class'));
            else
-           { 
-            alert('#'+ar_con[2]+'__'+ar_con[1]);
-                $('#'+ar_con[2]+'__'+ar_con[1]).remove();
+           {
+            var cl = $(this).attr('class');
+            var arr_cl = cl.split(' ');
+            cl = arr_cl[0];
+            $('.'+cl).each(function(){
+               if($(this).is(':checked'))
+               {
+                $(this).click();
+               } 
+            });
+            
+            $('.del_email').each(function(){
+                if($(this).attr('id') == ar_con[2]+'__'+ar_con[1])
+                $(this).remove();
+            });
+                
                var ar = new Array();
-               ar[0] = ar_con[1];
-               ar[1] = ar_con[2];
+               ar[0] = ar_con[2];
+               ar[1] = ar_con[1];
                
                $('#receipient_id').val($('#receipient_id').val().replace(ar[1]+',',''));
+               $('#recipients').val($('#recipients').val().replace(' ',''));
     	       $('#recipients').val($('#recipients').val().replace(ar[0]+',',''));
                if($('#name').html().replace(' ','') == '' || $('#name').html().replace(' ','') == ' ' )
                {
@@ -287,14 +301,14 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 						if(ema=="")
 						{
 						  
-							email=e[2]+', ';
+							email=e[2]+',';
                             var ema2 = '<a href="javascript:void(0)" id="'+e[2]+'__'+e[1]+'" class="del_email">'+e[0]+' [x],'+'</a> ';
                             del_em = ema2;
 						}
 						else
 						{
 						  
-						    ema = ema.replace(e[2]+', ','');
+						    ema = ema.replace(e[2]+',','');
                             ema2 = ema2.replace('<a href="javascript:void(0)" id="'+e[2]+'__'+e[1]+'" class="del_email">'+e[0]+' [x],'+'</a> ','');                            
 							email=ema+e[2]+',';
                             del_em = ema2+'<a href="javascript:void(0)" id="'+e[2]+'__'+e[1]+'" class="del_email">'+e[0]+' [x],'+'</a> ';

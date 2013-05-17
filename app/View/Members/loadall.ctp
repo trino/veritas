@@ -20,7 +20,7 @@ if($job)
 foreach($job as $j)
 {
     ?>
-    <div class="lists" style="width: 300px;">
+    <div class="lists loading" style="width: 300px;">
         
         <div class="title"><b><?php echo $j['Job']['title'];?></b></div>
         <?php
@@ -35,7 +35,7 @@ foreach($job as $j)
                 if($this->Session->read('id')!=$m['Member']['id']){    
                 echo "<div><div style='float:left'>".$m['Member']['full_name']."</div>";
                 ?>
-                <div style="float: right;"><input type="checkbox" class="contact_check" id="<?php echo $m['Member']['full_name'].'__'.$m['Member']['id'].'__'.$m['Member']['email'];?>" /></div>
+                <div style="float: right;"><input type="checkbox" class="<?php echo $m['Member']['full_name'].'__'.$m['Member']['id'].'__'.$m['Member']['email'];?>" /></div>
                 <div style="clear:both;"></div></div>
                 <?php
             }
@@ -44,7 +44,7 @@ foreach($job as $j)
             {
                echo "<div><div style='float:left'>".$m['Member']['full_name']."</div>";
                 ?>
-                <div style="float: right;"><input type="checkbox" class="contact_check" id="<?php echo $m['Member']['full_name'].'__'.$m['Member']['id'].'__'.$m['Member']['email'];?>" /></div>
+                <div style="float: right;"><input type="checkbox" class="<?php echo $m['Member']['full_name'].'__'.$m['Member']['id'].'__'.$m['Member']['email'];?>" /></div>
                 <div style="clear:both;"></div></div>
                 <?php 
             }
