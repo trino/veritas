@@ -88,6 +88,68 @@ class UploadsController extends AppController
         }
     }
     
+    function delete($id)
+    {
+        
+        if(!$this->Document->delete($id))
+        {
+              if($_SERVER['SERVER_NAME']=='localhost')
+                {
+                    $path = $_SERVER['DOCUMENT_ROOT'].'veritas/app/webroot/img/documents/';
+                }
+                else
+                    $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/documents/';
+                    
+            //echo $path;
+            
+            if($images = $this->Image->find('all',array('conditions'=>array('document_id'=>$id))))
+            {
+                var_dump($images);
+                foreach($images as $im)
+                {
+                     unlink($path.$im['Image']['image']);
+                     $this->Image->delete($im['Image']['id']);
+                }
+            }
+            //die();
+            if($docs = $this->Doc->find('all',array('conditions'=>array('document_id'=>$id))))
+            foreach($images as $im)
+            {
+                 unlink($path.$im['Doc']['doc']);
+                 $this->Doc->delete($im['Doc']['id']);
+            }
+            
+            if($videos = $this->Video->find('all',array('conditions'=>array('document_id'=>$id))))
+            foreach($images as $im)
+            {
+                 unlink($path.$im['Video']['video']);
+                 $this->Video->delete($im['Video']['id']);
+            }
+            $this->Session->setFlash('Document Succesfully Deleted.');
+            $this->redirect('/dashboard');
+        }
+        
+    }
+    
+    function document_edit($eid)
+    {
+        $this->loadModel('Canupload');
+        if($this->Session->read('user'))
+        {
+           if($this->Session->read('upload')!='1')
+           {
+            $this->redirect('/jobs');
+           } 
+        }
+        if($this->Session->read('user'))
+        { 
+            $id = $this->Session->read('id');
+           if($canupdate = $this->Canupload->find('first', array('conditions'=>array('member_id'=>$id))))
+                    $this->set('canupdate',$canupdate);  
+        }
+        $this->set('doc',$this->Document->findById($eid));
+
+    }
     function upload($ids)
     {
         $this->loadModel('Canupload');
@@ -407,12 +469,20 @@ class UploadsController extends AppController
         {
             $this->redirect('/jobs');
         }
-        $this->set('doc',$this->Document->find('first',array('conditions'=>array('id'=>$id))));
-        $this->set('do',$this->Doc->find('all',array('conditions'=>array('document_id'=>$id))));
-        $this->set('image',$this->Image->find('all',array('conditions'=>array('document_id'=>$id))));
-        $this->set('vid',$this->Video->find('all',array('conditions'=>array('document_id'=>$id))));
-        $this->set('you',$this->Youtube->find('all',array('conditions'=>array('document_id'=>$id))));
-        $this->set('member',$this->Member);
+        if($this->Document->find('first',array('conditions'=>array('id'=>$id))))
+        {
+            $this->set('doc',$this->Document->find('first',array('conditions'=>array('id'=>$id))));
+            $this->set('do',$this->Doc->find('all',array('conditions'=>array('document_id'=>$id))));
+            $this->set('image',$this->Image->find('all',array('conditions'=>array('document_id'=>$id))));
+            $this->set('vid',$this->Video->find('all',array('conditions'=>array('document_id'=>$id))));
+            $this->set('you',$this->Youtube->find('all',array('conditions'=>array('document_id'=>$id))));
+            $this->set('member',$this->Member);
+        }
+        else
+        {
+            $this->Session->setFlash('Sorry! This Document is Already Deleted.');
+            $this->redirect('/dashboard');
+        }
     }
     
     public function edit($id)
