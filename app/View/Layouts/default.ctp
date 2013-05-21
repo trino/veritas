@@ -56,6 +56,33 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <script type="text/javascript">
    
     $(function(){
+        $('.doc').live('change',function(){
+           var val = $(this).val();
+           if($(this).is(':checked'))
+           {
+            if($('#attachments').val() != ''){
+            var txts = $('#attachments').val()+','+$(this).val();
+            $('#attachments').val($('#attachments').val()+','+$(this).val());
+            $('.attachments').text(txts);
+            }
+            else{
+            $('#attachments').val($(this).val());
+            $('.attachments').html($(this).val());
+            }
+           }
+           else
+           {
+            var txt = $('#attachments').val().replace(','+$(this).val(),'');
+            $('#attachments').val($('#attachments').val().replace(','+$(this).val(),''));
+            $('.attachments').text(txt);
+            $('#attachments').val($('#attachments').val().replace($(this).val()+',',''));
+            var txt2 = $('#attachments').val().replace($(this).val()+',','');            
+            $('.attachments').text(txt2);
+            $('#attachments').val($('#attachments').val().replace($(this).val(),''));
+            var txt3 = $('#attachments').val().replace($(this).val(),'');            
+            $('.attachments').text(txt3);
+           } 
+        });
         $('.loading input').live('change',function(){
            var id_con = $(this).attr('class');
            var ar_con = id_con.split('__'); 
@@ -99,6 +126,16 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
                     width: 550,
                     height:500,
                     title:'Add Contacts to Email',
+                    
+               });
+               });
+               $('.attachment').click(function(){
+         $('.dialog-modals').load('<?php echo $base_url.'uploads/loadall';?>');
+               $('.dialog-modals').dialog({
+                    
+                    width: 550,
+                    height:500,
+                    title:'Attach files to Email',
                     
                });
                });
@@ -337,7 +374,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <!--									<input type="text" name="name" id="name" placeholder="Recipients (Separate with comma)" class="required" />--> 
 								</div>
 							
-								<a href="javascript:void(0)" id="contacts_modal" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a>
+								<a href="javascript:void(0)" id="contacts_modal" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a> <a href="javascript:void(0);" class="buttonV attachment">Attach Documents</a>
 								
 								<!--<div id="email" style="display: none;">
 									<?php foreach($mems as $m) {
@@ -365,10 +402,13 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 								<input type="hidden" name="recipients" id="recipients" value="" />
 								<input type="hidden" name="response" id="resp" />
 								<input type="hidden" name="receipient_id" id="receipient_id" value="" />
+                                <input type="hidden" name="attachments" id="attachments" value="" />
 								<input type="submit" name="submit" value="Send" class="buttonV" id="send_email" />
+                                <div class="clear"></div>
                                 
 							</div>
 						</form>
+                        <div><b>Attachments :</b><span class="attachments"></span></div>
 					</div>
 
 					<div class="clearfix" ></div>

@@ -7,8 +7,8 @@ $ad = $this->requestAction($base_url.'/dashboard/get_user');
         {
             ?>
             <div class="title"><b>Administrator</b></div>
-            <div class="lists" style="width: 300px;">
-            <div style="float:right;"><input type="checkbox" class="contact_check" id="<?php echo $ad['User']['name_avatar']."__0__".$ad['User']['email']; ?>" /></div>
+            <div class="lists loading" style="width: 300px;">
+            <div style="float:right;"><input type="checkbox" class="<?php echo $ad['User']['name_avatar']."__0__".$ad['User']['email']; ?>" /></div>
             <div style="float:left">Admin</div>
             <div style="clear:both;"></div>
             </div>

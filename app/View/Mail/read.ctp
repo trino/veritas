@@ -1,4 +1,6 @@
 <?php include_once('inc.php');?>
+<?php echo $this->Html->css('prettyPhoto'); ?>
+<?php echo $this->Html->script('jquery.prettyPhoto'); ?>
 <?php if(isset($success)){?><div id="flashMessage" class="message"><?php echo $success;?></div><?php }?>
 <h3 class="page-title">
 	<?php echo $subj;?>
@@ -70,6 +72,56 @@ foreach($all as $a){
         
     } ?> )</td></tr>
     <tr><td><?php echo $a['Mail']['message']; ?></td></tr>
+    <?php
+    if($a['Mail']['attachment'])
+    { 
+    ?>
+    <tr><td><strong>Attachments:</strong></td></tr>
+    <?php
+    $doc_arr = explode(',',$a['Mail']['attachment']);
+    ?>
+    <?php
+    $k=0;
+    foreach($doc_arr as $doc)
+    {
+        
+        $ext_arr = explode('.',$doc);
+        $ext = end($ext_arr);
+        $ext_doc = array('doc','docx','txt','pdf','xls','xlsx','ppt','pptx','cmd');
+        $ext_img = array('jpg','png','gif','jpeg','bmp');
+        if(in_array($ext,$ext_doc))
+        {
+            if($_SERVER['SERVER_NAME']=='localhost')
+            $url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas/img/documents/'.$doc;
+            else
+            $url = 'http://'.$_SERVER['SERVER_NAME'].'/img/documents/'.$doc;
+            $path = "https://docs.google.com/viewer?url=".$url;
+            ?>
+            <tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a href="<?php echo $path;?>">View</a></td></tr>
+            <?php
+        }
+        else
+        if(in_array($ext,$ext_img))
+        {
+            ?>
+            <tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a href="<?php echo $base_url;?>img/documents/<?php echo $doc; ?>" rel="prettyPhoto[gallery1]"><?php echo $this->Html->image('documents/'.$doc,array('width'=>'100','height'=>'100')); ?></a></td></tr>
+            <?php
+        }
+        else
+        {
+            ?>
+            <tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; 
+            <a href="javascript:void(0);" onclick="video(this.id)" id="<?php echo $doc; ?>">View</a> </div>
+            </td></tr>
+            <?php
+        }
+    ?>    
+    
+    
+    <?php 
+    }
+    }
+    ?>
     <tr><td>&nbsp;</td></tr>
     </table>
     <?php
@@ -110,7 +162,17 @@ $parents = $a['Mail']['id'];
 
 
 
-
+<div id="myElement"></div>
+                <script type="text/javascript">
+                    function video(value)
+                    {
+                        jwplayer("myElement").setup({
+                        file: "<?php echo $base_url;?>img/documents/"+value,
+                        image: "<?php echo $base_url;?>img/documents/ZaideesVID-Clip1.flv"
+                    });
+                    }
+                    
+                </script>
 <div id="reply" style="padding:15px;">
 <form action="" method="post" id="replyform">
     <textarea name="reply" style="height:100px;width:420px;"></textarea>

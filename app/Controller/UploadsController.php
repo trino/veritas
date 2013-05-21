@@ -32,7 +32,22 @@ class UploadsController extends AppController
                $this->redirect('/');  
       
     }
-    
+    function loadall()
+    {
+        $this->layout = "modal_layout";
+        $job = $this->Job;
+        $doc = $this->Document;
+        $jm = $this->Jobmember;
+        $docs = $this->Doc;
+        $imgs = $this->Image;
+        $vdos = $this->Video;
+        $this->set('job',$job);
+        $this->set('doc',$doc);
+        $this->set('jm',$jm);
+        $this->set('docs',$docs);
+        $this->set('imgs',$imgs);
+        $this->set('vdos',$vdos);
+    }
     function index()
     {
 			if($this->Session->read('avatar') || $this->Session->read('supervisor') || $this->Session->read('employee'))
