@@ -201,7 +201,23 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 
 </table>
 </td></tr>
-<tr><td><b>Images/Videos/Docs</b></td><td><div class="right"><input type="file" name="document_1" class="required" /><a href="javascript:void(0)" onclick="add_document()" class="btn btn-primary">Add</a></div><div id="doc"></div></td></tr>
+<tr><td><b>Images/Videos/Docs</b></td><td><div class="right">
+<input type="file" name="document_1" class="required" />
+<a href="javascript:void(0)" onclick="add_document()" class="btn btn-primary">Add</a></div><div id="doc"></div>
+<?php 
+//var_dump($attach);
+/*
+if($attach)
+{
+    
+?>
+<div id='document_<?php echo $attach['id']; ?>'><div></div class='inputs'>
+<div class='left'></div>
+<div class='right'><input type='file' name='document_<?php echo $attach['id'];?>' value="<?php echo $attach['file'];?>" />
+<a href='javascript:void(0);' onclick='remove_document();' class='btn btn-danger'>Remove</a></div>
+<div class='clear'></div></div>
+<?php } */?>
+</td></tr>
 <!--
 <tr><td><b>Images</b></td><td><div class="right"><input type="file" name="image_1" /><a href="javascript:void(0);" onclick="add_image()" class="btn btn-primary">Add</a><span id="remove_img" style="display: none;"> &nbsp; <a href="javascript:void(0);" onclick="remove_image();" class="btn btn-danger">Remove</a></span></div><div id="img"></div></td></tr>
 
@@ -209,6 +225,7 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 
 <tr><td><b>Youtube Link</b></td><td><div class="right"><input type="text" name="youtube_1" />  &nbsp; <a href="javascript:void(0);" onclick="add_youtube()" class="btn btn-primary">Add</a><span id="remove_youtube" style="display: none;"> &nbsp; <a href="javascript:void(0);" onclick="remove_youtube();" class="btn btn-danger">Remove</a></span></div><div id="you"></div></td></tr>
 -->
+
 </table>
 </div>
 
@@ -240,11 +257,15 @@ $(function(){
          $('.extra_evidence').show();
     
 });
-function limitText(limitField, limitCount, limitNum) {
-if (limitField.value.length > limitNum) {
-limitField.value = limitField.value.substring(0, limitNum);
-} else {
-limitCount.value = limitNum - limitField.value.length;
-}
+function limitText(limitField, limitCount, limitNum)
+{
+    if (limitField.value.length > limitNum) 
+    {
+        limitField.value = limitField.value.substring(0, limitNum);
+    }
+     else
+    {
+        limitCount.value = limitNum - limitField.value.length;
+    }
 }
 </script>

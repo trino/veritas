@@ -132,7 +132,7 @@
             if($a['Event_log']['document_id']!=0)
             {
                 //echo $a['Event_log']['document_id'];
-                $d = $job_id->find('first',array('conditions'=>array('id'=>$a['Event_log']['document_id'])));
+                if($d = $job_id->find('first',array('conditions'=>array('id'=>$a['Event_log']['document_id']))))
                 $jid = $d['Document']['job_id'];
                 //echo $jm;
                 $job_member = explode(',',$jm);

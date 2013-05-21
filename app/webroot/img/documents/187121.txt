@@ -1,0 +1,65 @@
+GIT
+
+> There are few commands in GIT that we need to know in git
+  -> Clone
+  -> Push
+  -> Pull
+> Though there are lot more, these three command will be sufficient for you.
+
+> Once we have installed git in our pc you will find a software called gitbash which is a console application to use git
+> There are gui for git also, but I prefer using gitbash
+
+> The main concept here is extracting the files from github (or other git repositary), working on those files in out local computer, then push the changes to the repositary again, and pull in order to get the changes in your computer that were done by other.
+
+For eg. Deepak and Manjul wants to work on same git repositary i.e. elearning. So both, Deepal and Manul use clone command to extract the files from repositary, Manjul makes some changes and use push command in order to push the changes to repositary. Similarly, Deepak also make some changes and push to the repositary. Now Manjul wants to see the changes made by Deepak, so Manjul will use pull command to get the changes of Deepak in his computer, similarly, Deepak can also use pulll command in order to get the changes of Manjul
+
+This is a simple concept. Now lets try understand it step by step
+
+> The first thing that we need to do is let the repositary recocnize our computer. For this we need to generate a deploy key/SSH key and add that to the repositary. In order to generate the deploy key we need to run this command in git bash
+
+   -> ssh-keygen -t rsa
+   -> It will then ask for location. Just choose the default location by pressing ENTER
+   -> Then it will ask for Password. Use 8 digit password [this password needs to be entered during push and pull]
+   -> The it will generate some files inside the default location i.e. C:/Users/Computer_name(deepak)/.ssh/
+   -> YOu will see a two files named id_rsa. Open the file with extension pub in notepad
+   -> Copy the entire text in the file (This is your SSH key)
+
+> You can mail me that SSH/Deploy key, I will add that to repositary
+> Once your key is added, now you can clone, push and pull into/from repositary
+
+> After we have added the key to the repositary, now its time to clone/extract from the repositary, for this we will use git command "clone". But before that we need to mention the path where we want to clone. so, open the git bash and type
+
+ -> cd /c/wamp/www/    [or cd /c/xampp/htdocs/] as per need
+
+> This will change the directory to your server root
+
+> now your can use clone command, so enter this command in the gitbash
+ -> git clone git@github.com:webnepal/elearning.git
+ -> Here git@github.com:webnepal/elearning.git is the repositary url[ssh url] or our project
+ -> This will ask for the password, use the same password that you used above
+ -> This will create a folder called elearning in your www or htdocs and pull all the project files
+
+> Now in order to push or pull you need to change the directory to 
+ -> cd /c/wamp/www/elearning
+
+> To push the changes to repositary use these three commands
+ -> git add .               [this will add the new files that you have created to be ready to be pushed]
+ -> git commit -m "any message like login page"            [This will push the files to the git server]
+ -> git push             [This will push the files to the required repositary]
+ -> This will ask for password, use the same password
+
+> To get the updated files to your computer use pull command this way
+  -> git pull
+  -> THis will ask for password, use the same password
+
+> Some times, when multiple users work on same file, conflicts may arise, its easy to resolve conflict using GIT gui, Manjul must have done that in SVN, but if you are completely working using console [Gitbash], then you need to open the files that has conflict and remove the unnecessary codes like 
+
+HEAD>>>>>>>>>>>>>>>>>>>>>>>>>>>
+876875453423232434334535454....
+<<<<<<<<<<<<<<<<<<<<<< etc
+ and also check if same code are being repeated, and then use push command again, and then pull it again
+
+> I hope this will be sufficient for you guys to work on GIT, let me know if you have any doubts,
+
+[Note: when you are working on multiple repositary, you will need to generate new SSH key, which has different procedure, will discuss that when we will work on next project].
+

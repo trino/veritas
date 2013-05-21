@@ -104,7 +104,6 @@ class UploadsController extends AppController
             
             if($images = $this->Image->find('all',array('conditions'=>array('document_id'=>$id))))
             {
-                var_dump($images);
                 foreach($images as $im)
                 {
                      unlink($path.$im['Image']['image']);
@@ -113,14 +112,14 @@ class UploadsController extends AppController
             }
             //die();
             if($docs = $this->Doc->find('all',array('conditions'=>array('document_id'=>$id))))
-            foreach($images as $im)
+            foreach($docs as $im)
             {
                  unlink($path.$im['Doc']['doc']);
                  $this->Doc->delete($im['Doc']['id']);
             }
             
             if($videos = $this->Video->find('all',array('conditions'=>array('document_id'=>$id))))
-            foreach($images as $im)
+            foreach($videos as $im)
             {
                  unlink($path.$im['Video']['video']);
                  $this->Video->delete($im['Video']['id']);
@@ -145,9 +144,167 @@ class UploadsController extends AppController
         { 
             $id = $this->Session->read('id');
            if($canupdate = $this->Canupload->find('first', array('conditions'=>array('member_id'=>$id))))
-                    $this->set('canupdate',$canupdate);  
+             $this->set('canupdate',$canupdate);  
         }
+        if($images = $this->Image->find('all',array('conditions'=>array('document_id'=>$eid))))
+        {
+            
+            foreach($images as $im)
+            {
+                 $attach['id'][]= $im['Image']['id'];
+                 $attach['file'][]= $im['Image']['image'];
+            }
+        }
+        
+        if($docs = $this->Doc->find('all',array('conditions'=>array('document_id'=>$eid))))
+        foreach($docs as $im)
+        {
+              $attach['id'][]= $im['Doc']['id'];
+              $attach['file'][]= $im['Doc']['doc'];
+        }
+        
+        if($videos = $this->Video->find('all',array('conditions'=>array('document_id'=>$eid))))
+        foreach($videos as $im)
+        {
+              $attach['id'][] = $im['Video']['id'];
+              $attach['file'][] = $im['Video']['video'];
+        }
+        //var_dump($attach);die();
         $this->set('doc',$this->Document->findById($eid));
+        $this->set('attach',$attach);
+        if(isset($_POST['submit']))
+        {
+            $uri = $_SERVER['REQUEST_URI'];
+                $uri = str_replace('/',' ',$uri);
+                $uri = str_replace(' ','/',trim($uri));
+                if($uri!='uploads'){
+                $arr_uri = explode('/',$uri);
+                $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/documents/';
+                }
+                else
+                $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/documents/';
+                
+                 if($_SERVER['SERVER_NAME']=='localhost')
+                {
+                    $path = $_SERVER['DOCUMENT_ROOT'].'veritas/app/webroot/img/documents/';
+                }
+                else
+                    $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/documents/';
+            if(!$this->Session->read('admin'))   
+                $id=$this->Session->read('id');
+            else
+                $id=0;
+                
+            //$arr['location'] = $_POST['location'];
+            $arr['title'] = $_POST['title'];
+            $arr['description'] = $_POST['description'];
+            $arr['document_type'] = $_POST['document_type'];
+            if($_POST['document_type']== 'evidence')
+            {
+                $arr['incident_date'] = $_POST['incident_date'];
+                //$arr['desc'] = $_POST['desc'];
+                $arr['evidence_type'] = $_POST['evidence_type'];
+                $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$ids.',%'), array('job_id'=>$ids),array('job_id LIKE'=>'%,'.$ids.',%'),array('job_id LIKE'=>'%,'.$ids)))));
+                //var_dump($mails);
+                $aE = $this->User->find('first');
+                echo $adminEmail = $aE['User']['email'];
+                if($_SERVER['SERVER_NAME']=='localhost')
+                    $base_url = "http://localhost/veritas/";
+                else
+                    $base_url ="/";
+                
+                
+                foreach($mails as $m)
+                {
+                    $mem_id = $m['Jobmember']['member_id'];
+                    if($t = $this->Member->find('first',array('conditions'=>array('id'=>$mem_id))))
+                    {
+                        $to = $t['Member']['email'];
+                        $emails = new CakeEmail();
+                        $emails->from($adminEmail);
+                        $emails->to($to);
+                        $emails->subject("A new Evidence Uploaded.");
+                        $emails->emailFormat('html');
+                        $message="A new Evidence is uploaded to your job.<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/> Please <a href='".$base_url."'>Click Here</a> to Login";
+                        $emails->send($message);
+                    }    
+                }
+                
+               //die(); 
+            }
+            $arr['date'] = date('Y-m-d H:i:s');
+            $arr['job_id'] = $_POST['job'];
+            $arr['addedBy'] = $id;
+            $this->Document->create();
+            $this->Document->save($arr);
+            $id=$this->Document->id;
+            $doc = $_POST['document'];
+            
+            $ext_doc = array('doc','docx','txt','pdf','xls','xlsx','ppt','pptx','cmd');
+            $ext_img = array('jpg','png','gif','jpeg','bmp');
+            
+            
+            //$ext_arr = explode('.',$_FILES['document_'.$i]['name']);
+            //$img = $rand.'.'.end($ext_arr);
+            //$imgs = $_POST['image'];
+            //$vid = $_POST['video'];
+            //$you=$_POST['youtube'];
+            /*
+            for($i=1;$i<=$imgs;$i++)
+            {
+                if($_FILES['image_'.$i]['tmp_name']!="")
+                {
+                $source=$_FILES['image_'.$i]['tmp_name'];
+                $rand = rand(100000,999999);
+                $ext_arr = explode('.',$_FILES['image_'.$i]['name']);
+                $img = $rand.'.'.end($ext_arr);
+                $destination = $path.$img;
+                //$destination = $path.$_FILES['image_'.$i]['name'];
+                move_uploaded_file($source,$destination);
+                $im['document_id'] = $id;
+                $im['image'] = $img;
+                
+                $this->Image->create();
+                $this->Image->save($im);
+                }
+            }
+            */
+            for($i=1;$i<=$doc;$i++)
+            {
+                if($_FILES['document_'.$i]['tmp_name']!="")
+                {
+                $source=$_FILES['document_'.$i]['tmp_name'];
+                $rand = rand(100000,999999);
+                $ext_arr = explode('.',$_FILES['document_'.$i]['name']);
+                $extn = end($ext_arr);
+                $img = $rand.'.'.end($ext_arr);
+                $lower_ext = strtolower($extn);
+                $destination = $path.$img;
+                //$destination = $path.$_FILES['document_'.$i]['name'];
+                move_uploaded_file($source,$destination);
+                $d['document_id'] = $id;
+                
+                if(in_array($lower_ext,$ext_doc)){
+                    $d['doc'] = $img;
+                $this->Doc->create();
+                $this->Doc->save($d);
+                }
+                else
+                if(in_array($lower_ext,$ext_img)){
+                    $d['image'] = $img;
+                    $this->Image->create();
+                $this->Image->save($d);
+                }
+                else
+                {
+                    $d['video'] = $img;
+                    $this->Video->create();
+                $this->Video->save($d);
+                }
+            }
+            }
+        
+        
 
     }
     function upload($ids)
