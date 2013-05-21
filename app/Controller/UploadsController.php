@@ -569,6 +569,7 @@ class UploadsController extends AppController
 		else if ($type =="training_manuals"){$type2="Training Manuals";}
 		else {$type2="";}
 		$this->set('title2',$type2);
+        $this->set('link',$type);
 		
         if($this->Session->read('avatar'))
         {
@@ -598,7 +599,7 @@ class UploadsController extends AppController
                 if($jid != 0)
                     $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'job_id'=>$jid),'order by'=>'job_id'));
                 else
-                    $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'job_id IN ('.$data.'0)','order by'=>'job_id')));
+                    $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'job_id IN('.$data.'0)'),'order by'=>'job_id'));
                 if($do)
                     $this->set('doc',$do);
                 else
@@ -648,7 +649,7 @@ class UploadsController extends AppController
         {
            if($this->Session->read('view')!='1')
            {
-            $this->redirect('/jobs');
+                $this->redirect('/jobs');
            } 
         }  
         else
@@ -662,6 +663,7 @@ class UploadsController extends AppController
             $this->set('image',$this->Image->find('all',array('conditions'=>array('document_id'=>$id))));
             $this->set('vid',$this->Video->find('all',array('conditions'=>array('document_id'=>$id))));
             $this->set('you',$this->Youtube->find('all',array('conditions'=>array('document_id'=>$id))));
+            $this->set('job',$this->Job);
             $this->set('member',$this->Member);
         }
         else

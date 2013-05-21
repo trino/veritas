@@ -75,9 +75,9 @@
 <td colspan="2">
 <table width="50%">
 <tr>
-<td><span>Contracts </span><input type="checkbox" name="canView_contracts"  /></td>
-<td><span>Evidence </span><input type="checkbox" name="canView_evidence"  /></td>
-<td><span>Templates </span><input type="checkbox" name="canView_templates"  /></td>
+<td><span>Contracts </span><input type="checkbox" name="canView_contracts"  />
+<span>Evidence </span><input type="checkbox" name="canView_evidence"  />
+<span>Templates </span><input type="checkbox" name="canView_templates"  /></td>
 </tr>
 </table>
 </td>
@@ -88,9 +88,9 @@
 <td colspan="2">
 <table width="50%">
 <tr>
-<td><span>Contracts </span><input type="checkbox" name="canUpload_contracts"/></td>
-<td><span>Evidence </span><input type="checkbox" name="canUpload_evidence"  /></td>
-<td><span>Templates </span><input type="checkbox" name="canUpload_templates"  /></td>
+<td><span>Contracts </span><input type="checkbox" name="canUpload_contracts"/>
+<span>Evidence </span><input type="checkbox" name="canUpload_evidence"  />
+<span>Templates </span><input type="checkbox" name="canUpload_templates"  /></td>
 </tr>
 </table>
 </td>

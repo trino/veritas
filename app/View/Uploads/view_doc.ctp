@@ -9,7 +9,7 @@
 	<li>
 		<i class="icon-home"></i>
 		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>uploads/view_doc/contract">Documents: <?=$title2;?></a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>uploads/view_doc/<?=$link;?>">Documents: <?=$title2;?></a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
 

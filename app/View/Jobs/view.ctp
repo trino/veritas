@@ -123,6 +123,30 @@
         <td><?php echo $job['Job']['title']; ?></td>
     </tr>
     <tr>
+        <td><b>Assigned To</b></td>
+        <td> <?php 
+            foreach($member as $m)
+            {
+                foreach($jobmember as $jm)
+                {
+                    if($m['Member']['id']==$jm['Jobmember']['member_id'])
+                    {
+                        $job_id=$jm['Jobmember']['job_id'];
+                        $ji=explode(',',$job_id);
+                        
+                        for($i=0;$i<sizeof($ji);$i++)
+                        {
+                            if($ji[$i]==$job['Job']['id'])
+                            {
+                                echo "<a href='".$base_url."members/view/".$m['Member']['id']."'>".$m['Member']['title']." ".$m['Member']['full_name']."</a>, ";
+                            }
+                        }
+                    }
+                }   
+            }
+               ?></td>
+    </tr>
+     <tr>
         <td><b>Description</b></td>
         <td><?php echo $job['Job']['description']; ?></td>
     </tr>
@@ -143,7 +167,12 @@
 	
 <?php 
 if($this->Session->read('upload')=='1' || $this->Session->read('admin'))
-echo $this->Html->link('Upload a Document','/uploads/upload/'.$job['Job']['id'],array('class'=>'btn btn-primary')); 
+    echo $this->Html->link('Upload a Document','/uploads/upload/'.$job['Job']['id'],array('class'=>'btn btn-primary'))."  "; 
+if($this->Session->read('admin'))
+{
+    echo $this->Html->link('Edit','/jobs/edit/'.$job['Job']['id'],array('class'=>'btn btn-info'))."  ";
+    echo $this->Html->link('Delete','/jobs/delete/'.$job['Job']['id'],array('class'=>'btn btn-danger'), "Confrim Delete Job?");
+}
 ?>
 
 
