@@ -144,8 +144,9 @@ class UploadsController extends AppController
         { 
             $id = $this->Session->read('id');
            if($canupdate = $this->Canupload->find('first', array('conditions'=>array('member_id'=>$id))))
-             $this->set('canupdate',$canupdate);  
+                    $this->set('canupdate',$canupdate);  
         }
+        /*
         if($images = $this->Image->find('all',array('conditions'=>array('document_id'=>$eid))))
         {
             
@@ -169,20 +170,18 @@ class UploadsController extends AppController
               $attach['id'][] = $im['Video']['id'];
               $attach['file'][] = $im['Video']['video'];
         }
-        //var_dump($attach);die();
-        $this->set('doc',$this->Document->findById($eid));
-        $this->set('attach',$attach);
+        */
         if(isset($_POST['submit']))
         {
             $uri = $_SERVER['REQUEST_URI'];
                 $uri = str_replace('/',' ',$uri);
                 $uri = str_replace(' ','/',trim($uri));
                 if($uri!='uploads'){
-                $arr_uri = explode('/',$uri);
-                $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/documents/';
+                    $arr_uri = explode('/',$uri);
+                    $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/documents/';
                 }
                 else
-                $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/documents/';
+                    $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/documents/';
                 
                  if($_SERVER['SERVER_NAME']=='localhost')
                 {
@@ -194,7 +193,6 @@ class UploadsController extends AppController
                 $id=$this->Session->read('id');
             else
                 $id=0;
-                
             //$arr['location'] = $_POST['location'];
             $arr['title'] = $_POST['title'];
             $arr['description'] = $_POST['description'];
@@ -204,10 +202,11 @@ class UploadsController extends AppController
                 $arr['incident_date'] = $_POST['incident_date'];
                 //$arr['desc'] = $_POST['desc'];
                 $arr['evidence_type'] = $_POST['evidence_type'];
-                $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$ids.',%'), array('job_id'=>$ids),array('job_id LIKE'=>'%,'.$ids.',%'),array('job_id LIKE'=>'%,'.$ids)))));
+                
+                $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$_POST['job'].',%'), array('job_id'=>$_POST['job']),array('job_id LIKE'=>'%,'.$_POST['job'].',%'),array('job_id LIKE'=>'%,'.$_POST['job'])))));
                 //var_dump($mails);
                 $aE = $this->User->find('first');
-                echo $adminEmail = $aE['User']['email'];
+                $adminEmail = $aE['User']['email'];
                 if($_SERVER['SERVER_NAME']=='localhost')
                     $base_url = "http://localhost/veritas/";
                 else
@@ -235,74 +234,88 @@ class UploadsController extends AppController
             $arr['date'] = date('Y-m-d H:i:s');
             $arr['job_id'] = $_POST['job'];
             $arr['addedBy'] = $id;
-            $this->Document->create();
-            $this->Document->save($arr);
-            $id=$this->Document->id;
+            $this->Document->id= $eid;
+            //var_dump($arr);
+            foreach($arr as $k => $v)
+            {
+                //echo $k.",".$v;
+                $this->Document->saveField($k,$v);
+            }
+            
+            
+            $id = $this->Document->id;
+            
             $doc = $_POST['document'];
             
             $ext_doc = array('doc','docx','txt','pdf','xls','xlsx','ppt','pptx','cmd');
             $ext_img = array('jpg','png','gif','jpeg','bmp');
-            
-            
-            //$ext_arr = explode('.',$_FILES['document_'.$i]['name']);
-            //$img = $rand.'.'.end($ext_arr);
-            //$imgs = $_POST['image'];
-            //$vid = $_POST['video'];
-            //$you=$_POST['youtube'];
-            /*
-            for($i=1;$i<=$imgs;$i++)
-            {
-                if($_FILES['image_'.$i]['tmp_name']!="")
-                {
-                $source=$_FILES['image_'.$i]['tmp_name'];
-                $rand = rand(100000,999999);
-                $ext_arr = explode('.',$_FILES['image_'.$i]['name']);
-                $img = $rand.'.'.end($ext_arr);
-                $destination = $path.$img;
-                //$destination = $path.$_FILES['image_'.$i]['name'];
-                move_uploaded_file($source,$destination);
-                $im['document_id'] = $id;
-                $im['image'] = $img;
-                
-                $this->Image->create();
-                $this->Image->save($im);
-                }
-            }
-            */
+            $this->Doc->deleteAll(array('document_id'=>$id));
+            $this->Image->deleteAll(array('document_id'=>$id));
+            $this->Video->deleteAll(array('document_id'=>$id));
             for($i=1;$i<=$doc;$i++)
             {
                 if($_FILES['document_'.$i]['tmp_name']!="")
                 {
-                $source=$_FILES['document_'.$i]['tmp_name'];
-                $rand = rand(100000,999999);
-                $ext_arr = explode('.',$_FILES['document_'.$i]['name']);
-                $extn = end($ext_arr);
-                $img = $rand.'.'.end($ext_arr);
-                $lower_ext = strtolower($extn);
-                $destination = $path.$img;
+                    $source=$_FILES['document_'.$i]['tmp_name'];
+                    $rand = rand(100000,999999);
+                    $ext_arr = explode('.',$_FILES['document_'.$i]['name']);
+                    $extn = end($ext_arr);
+                    $img = $rand.'.'.end($ext_arr);
+                    $lower_ext = strtolower($extn);
+                    $destination = $path.$img;
+                
                 //$destination = $path.$_FILES['document_'.$i]['name'];
+                
                 move_uploaded_file($source,$destination);
+                
                 $d['document_id'] = $id;
                 
                 if(in_array($lower_ext,$ext_doc)){
+                    
                     $d['doc'] = $img;
-                $this->Doc->create();
-                $this->Doc->save($d);
+                    $this->Doc->create();
+                    $this->Doc->save($d);
                 }
-                else
-                if(in_array($lower_ext,$ext_img)){
+                elseif(in_array($lower_ext,$ext_img)){
+                    
                     $d['image'] = $img;
                     $this->Image->create();
-                $this->Image->save($d);
+                    $this->Image->save($d);
                 }
                 else
                 {
+                    
                     $d['video'] = $img;
                     $this->Video->create();
-                $this->Video->save($d);
+                    $this->Video->save($d);
                 }
             }
             }
+            
+            $this->Session->setFlash('Data Saved Successfully.');
+            $log['date'] =  date('Y-m-d');
+            $log['time'] =  date('H:i:s');
+            if($this->Session->read('admin'))
+            {
+                $log['fullname'] = 'ADMIN('.$this->Session->read('avatar').')';
+                $log['username'] = $this->Session->read('email');
+                $log['member_id'] = 0;
+            }
+            else
+            {
+                
+                $log['fullname'] = $this->Session->read('user');
+                $log['username'] = $this->Session->read('email');
+                $log['member_id'] = $this->Session->read('id');   
+            }
+            $log['event'] = "Upload ".$_POST['document_type'];
+            $log['document_id'] = $id;
+            $log['event_type'] = "Upload Document";
+            $this->Event_log->create();
+            $this->Event_log->save($log);
+        }
+        
+        $this->set('doc',$this->Document->findById($eid));
         
         
 
@@ -357,7 +370,7 @@ class UploadsController extends AppController
                 $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$ids.',%'), array('job_id'=>$ids),array('job_id LIKE'=>'%,'.$ids.',%'),array('job_id LIKE'=>'%,'.$ids)))));
                 //var_dump($mails);
                 $aE = $this->User->find('first');
-                echo $adminEmail = $aE['User']['email'];
+                 $adminEmail = $aE['User']['email'];
                 if($_SERVER['SERVER_NAME']=='localhost')
                     $base_url = "http://localhost/veritas/";
                 else
@@ -545,9 +558,9 @@ class UploadsController extends AppController
         {
             $do=$this->Document->find('all',array('conditions'=>array('document_type'=>$type),'order by'=>'job_id'));
             if($do)
-            $this->set('doc',$do);
+                $this->set('doc',$do);
             else
-            $this->set('message','No Document Available');
+                $this->set('message','No Document Available');
         }
         else if($this->Session->read('user'))
         {
