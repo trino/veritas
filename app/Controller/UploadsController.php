@@ -264,13 +264,14 @@ class UploadsController extends AppController
             
             $ext_doc = array('doc','docx','txt','pdf','xls','xlsx','ppt','pptx','cmd');
             $ext_img = array('jpg','png','gif','jpeg','bmp');
-            $this->Doc->deleteAll(array('document_id'=>$id));
-            $this->Image->deleteAll(array('document_id'=>$id));
-            $this->Video->deleteAll(array('document_id'=>$id));
+            
             for($i=1;$i<=$doc;$i++)
             {
                 if($_FILES['document_'.$i]['tmp_name']!="")
                 {
+                    $this->Doc->deleteAll(array('document_id'=>$id));
+                    $this->Image->deleteAll(array('document_id'=>$id));
+                    $this->Video->deleteAll(array('document_id'=>$id));
                     $source=$_FILES['document_'.$i]['tmp_name'];
                     $rand = rand(100000,999999);
                     $ext_arr = explode('.',$_FILES['document_'.$i]['name']);
