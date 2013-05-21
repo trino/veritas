@@ -8,6 +8,7 @@ class SearchController extends AppController
         //die('here');
         $this->loadModel('Document');
         $this->loadModel('Member');
+        $this->loadModel('Job');
         if(!$this->Session->read('email'))
         $this->redirect('/dashboard');
         $search = $_GET['search'];
@@ -20,6 +21,7 @@ class SearchController extends AppController
             $docs = $this->Document->find('all',array('conditions'=>array('addedBy'=>$this->Session->read('id'),'title LIKE'=>'%'.$search.'%'))); 
         }
         $this->set('member',$this->Member);
+        $this->set('jo_bs',$this->Job);
         $this->set('docs',$docs);
         
     }

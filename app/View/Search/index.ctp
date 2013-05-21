@@ -29,8 +29,35 @@ if($docs)
             <th>Option</th>
         </tr>
     <?php
-    foreach($docs as $d)
-    {?>
+    
+    $m=0;
+    foreach($docs as $k=>$d)
+    {
+        $m++;
+        
+        if($m==1)
+        {
+         $arr[]=$docs[$k]['Document']['job_id'];   
+        ?>
+        
+        <tr style="background: grey;color:#FFF;"><td colspan="5"><strong>Job :</strong><strong><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Document']['job_id'])));if($get2)echo $get2['Job']['title']; ?></strong></tr>
+        
+        <?php
+        }
+        else
+        {
+            if(!in_array($docs[$k]['Document']['job_id'],$arr))
+            {
+                $arr[]=$docs[$k]['Document']['job_id'];
+                ?>
+                <tr style="background: grey;color:#FFF;"><td colspan="5"><strong>Job :</strong><strong><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Document']['job_id'])));if($get2)echo $get2['Job']['title']; ?></strong></tr>
+                <?php
+            }
+        }
+     
+   
+       ?>
+    
        <tr>
             <td><?php echo $d['Document']['title']; ?></td>
             <!--<td><?php echo $d['Document']['location']; ?></td>-->
