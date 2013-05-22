@@ -52,7 +52,7 @@ if($job){
 	        <tr>
                 <th colspan="2">Company</th>
                 <?php if($this->Session->read('avatar')) { ?><th>Assigned to</th><?php }?>
-                <th style="width:250px;">Options</th>
+                <th style="width:350px;">Options</th>
             </tr>
     <?php        
 foreach($job as $j)
@@ -89,10 +89,15 @@ foreach($job as $j)
     </td>
 
         <td>
-    <?php 
+    
+        <?php echo $this->Html->link('View','/jobs/view/'.$j['Job']['id'],array('class'=>'btn btn-primary')); ?>
+           <?php 
+            if($this->Session->read('upload')=='1' || $this->Session->read('admin'))
+            echo $this->Html->link('Quick Upload','/uploads/upload/'.$j['Job']['id'],array('class'=>'btn btn-primary'))." ";
+        	
     if($this->Session->read('avatar'))
     {
-    echo $this->Html->link(
+        echo $this->Html->link(
 					'Edit',
 					'/jobs/edit/'.$j['Job']['id'],
                     array('class'=>'btn btn-primary')
@@ -100,10 +105,10 @@ foreach($job as $j)
 			?> <?php echo $this->Html->link(
 					'Delete',
 					'/jobs/delete/'.$j['Job']['id'],
-                    array('class'=>'btn btn-primary'),"Are you sure deleting this job?"
-				);
-		}	?>
-        <?php echo $this->Html->link('View','/jobs/view/'.$j['Job']['id'],array('class'=>'btn btn-primary')); ?>
+                    array('class'=>'btn btn-danger'),"Are you sure deleting this job?"
+				)." ";
+		}
+       ?>
     </td>
         </tr>
     

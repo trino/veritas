@@ -264,13 +264,14 @@ class UploadsController extends AppController
             
             $ext_doc = array('doc','docx','txt','pdf','xls','xlsx','ppt','pptx','cmd');
             $ext_img = array('jpg','png','gif','jpeg','bmp');
-            $this->Doc->deleteAll(array('document_id'=>$id));
-            $this->Image->deleteAll(array('document_id'=>$id));
-            $this->Video->deleteAll(array('document_id'=>$id));
+            
             for($i=1;$i<=$doc;$i++)
             {
                 if($_FILES['document_'.$i]['tmp_name']!="")
                 {
+                    $this->Doc->deleteAll(array('document_id'=>$id));
+                    $this->Image->deleteAll(array('document_id'=>$id));
+                    $this->Video->deleteAll(array('document_id'=>$id));
                     $source=$_FILES['document_'.$i]['tmp_name'];
                     $rand = rand(100000,999999);
                     $ext_arr = explode('.',$_FILES['document_'.$i]['name']);
@@ -568,6 +569,7 @@ class UploadsController extends AppController
 		else if ($type =="training_manuals"){$type2="Training Manuals";}
 		else {$type2="";}
 		$this->set('title2',$type2);
+        $this->set('link',$type);
 		
         if($this->Session->read('avatar'))
         {
@@ -597,7 +599,7 @@ class UploadsController extends AppController
                 if($jid != 0)
                     $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'job_id'=>$jid),'order by'=>'job_id'));
                 else
-                    $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'job_id IN ('.$data.'0)','order by'=>'job_id')));
+                    $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'job_id IN('.$data.'0)'),'order by'=>'job_id'));
                 if($do)
                     $this->set('doc',$do);
                 else
@@ -647,7 +649,7 @@ class UploadsController extends AppController
         {
            if($this->Session->read('view')!='1')
            {
-            $this->redirect('/jobs');
+                $this->redirect('/jobs');
            } 
         }  
         else
@@ -661,6 +663,7 @@ class UploadsController extends AppController
             $this->set('image',$this->Image->find('all',array('conditions'=>array('document_id'=>$id))));
             $this->set('vid',$this->Video->find('all',array('conditions'=>array('document_id'=>$id))));
             $this->set('you',$this->Youtube->find('all',array('conditions'=>array('document_id'=>$id))));
+            $this->set('job',$this->Job);
             $this->set('member',$this->Member);
         }
         else

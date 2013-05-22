@@ -388,6 +388,8 @@ class JobsController extends AppController
         $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','job_id'=>$id))));
         //$this->set('training_manuals',$this->Document->find('count',array('conditions'=>array('document_type'=>'training_manuals','job_id'=>$id))));
         $this->set('keys', $this->Key_contact->find('all', array('conditions'=>array('job_id'=>$id))));
+        $this->set('member',$this->Member->find('all'));
+        $this->set('jobmember',$this->Jobmember->find('all'));
     }
     
     public function view_doc($type,$id)

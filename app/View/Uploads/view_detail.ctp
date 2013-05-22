@@ -31,9 +31,14 @@
         <td><?php echo $doc['Document']['description']; ?></td>
     </tr>
     <tr>
+        <td><b>Job Title</b></td>
+        <td><?php $j = $job->findById($doc['Document']['job_id']); echo $j['Job']['title'] ; ?></td>
+    </tr>
+    <tr>
         <td><b>Document Type</b></td>
         <td><?php echo $type = ucwords($doc['Document']['document_type']); ?></td>
     </tr>
+    
     <?php if($type == 'Evidence'){ ?>
     <tr>
         <td><b>Evidence Type</b></td>
