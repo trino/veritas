@@ -31,6 +31,7 @@
 <?php 
     foreach($email as $e)
     {  
+        echo $e['Mail']['parent'];
         if($e['Mail']['parent'] == 0)
         $check_child_status = $mails->find('first',array('conditions'=>array('parent'=>$e['Mail']['id'],'status'=>'unread')));
         else
@@ -41,7 +42,84 @@
         
     <tr style="<?php echo $style;?>">
         <td><?php echo $this->Html->link($e['Mail']['sender'],'/mail/read/'.$e['Mail']['id'],array('style'=>'')); if($e['Mail']['status']=='unread'){echo "</b>";} ?></td>
-        <td><?php if($e['Mail']['recipients_id'] == 0)echo 'Admin';else{$get = $mems->find('first',array('conditions'=>array('id'=>$e['Mail']['recipients_id'])));if($get)echo "<a href='".$base_url."mail/read/".$e['Mail']['id']."'>".$get['Member']['full_name']."</a>";}?></td>
+        <td>
+        <?php 
+           $reply_arr = $count->find('all',array('conditions'=>array('parent'=>0,'subject'=>$e['Mail']['subject'],'message'=>$e['Mail']['message'],'date'=>$e['Mail']['date'])));
+        
+        
+            $reply_arr2 = $count->find('all',array('conditions'=>array('parent'=>$e['Mail']['id'])));
+        
+        $reply = array();
+            if($reply_arr)
+            {
+                
+                
+                foreach($reply_arr as $ras)
+                {
+                    $ra=$ras['Mail']['recipients_id'];
+                
+                    if($this->Session->read('admin')){
+                    if($ra!=$e['Mail']['sender_id']){  
+                    if(!in_array($ra,$reply))    
+                    $reply[] = $ra;
+                    }
+                    }
+                    else
+                    {
+                        if($ra!=$e['Mail']['sender_id'])
+                        {
+                            if(!in_array($ra,$reply))
+                            $reply[] = $ra;
+                            
+                        }
+                    }
+                    
+                }
+                unset($reply_arr);
+                
+                
+            }
+            if($reply_arr2)
+            {
+                foreach($reply_arr2 as $ras)
+                {
+                    $ra=$ras['Mail']['recipients_id'];
+                    if($ra!=$e['Mail']['sender_id']){
+                    if($ra != 0){
+                    if(!in_array($ra,$reply))
+                    $reply[] = $ra;
+                    
+                    }
+                    else
+                    {
+                        if( $ra!=$e['Mail']['sender_id'])
+                        {
+                            if(!in_array($ra,$reply))
+                            $reply[] = $ra;
+                            
+                        }
+                    }
+                }
+            }
+            unset($reply_arr2);
+            }
+        if($reply)
+        {
+            $z=0;
+            foreach($reply as $r)
+            {
+                $z++;
+                if($z!=1)
+                {
+                    echo ', ';
+                }
+                if($r == 0)echo 'Admin';else{$get = $mems->find('first',array('conditions'=>array('id'=>$r)));if($get)echo "<a href='".$base_url."mail/read/".$e['Mail']['id']."'>".$get['Member']['full_name']."</a>";  }
+                      
+            }
+        }
+        ?>
+        
+        </td>
         <td><?php echo $this->Html->link($e['Mail']['subject'].(($cnt!=0)? "(".$cnt.")" : ""),'/mail/read/'.$e['Mail']['id'],array('style'=>'')); ?></td>
         <td><?php echo $e['Mail']['date']; ?></td>
         <td>

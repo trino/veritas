@@ -62,7 +62,7 @@ class MailController extends AppController
     {
         
     
-        
+        $this->set('mailing',$this->Mail);
         if($this->Session->read('avatar') || $this->Session->read('user'))
         {
             

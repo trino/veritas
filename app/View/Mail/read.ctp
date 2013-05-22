@@ -29,6 +29,8 @@
 $i=0;
 $j = 0;
 foreach($all as $a){
+    if(isset($re_test))
+    unset($re_test);
     $j++;
     if($a['Mail']['parent']!=0)
     $parents = $a['Mail']['parent'];
@@ -63,14 +65,66 @@ foreach($all as $a){
         else
         echo "Member Deleted";
         
-    } ?> &nbsp; [<?php echo $a['Mail']['date'];?>] &nbsp; ( <strong>To</strong> : <?php if($a['Mail']['recipients_id']=='0')echo 'Admin';else{
+    } ?> &nbsp; [<?php echo $a['Mail']['date'];?>] &nbsp; ( <strong>To</strong> : <?php if($a['Mail']['recipients_id']=='0'){echo 'Admin';$re_test[] = 'Admin';}else{
         $qs2 = $member->find('first',array('conditions'=>array('id'=>$a['Mail']['recipients_id'])));
-        if($qs2)
+        if($qs2){
         echo $qs2['Member']['full_name'];
+        $re_test[] = $qs2['Member']['full_name'];
+        
+        }
         else
         echo "Member Deleted";
         
-    } ?> )</td></tr>
+    }
+    if($a['Mail']['parent']==0)
+        {
+            $replies = $mailing->find('all',array('conditions'=>array('parent'=>0,'subject'=>$a['Mail']['subject'],'message'=>$a['Mail']['message'],'date'=>$a['Mail']['date'])));
+            if($replies)
+            {
+                if(isset($qs2))
+                unset($qs2);
+                //$re_test = array();
+                foreach($replies as $reps)
+                {
+                    
+                    if($reps['Mail']['recipients_id']==0)
+                    $qs2['Member']['full_name'] = 'Admin';
+                    else 
+                    $qs2 = $member->find('first',array('conditions'=>array('id'=>$reps['Mail']['recipients_id'])));
+                    
+                    if($qs2){
+                    
+                    if(!in_array($qs2['Member']['full_name'],$re_test)){
+                    $re_test[] = $qs2['Member']['full_name'];
+                    echo ', '.$qs2['Member']['full_name'];}}   
+                }
+            }
+        }
+        else
+        {
+            $replies = $mailing->find('all',array('conditions'=>array('subject'=>$a['Mail']['subject'],'message'=>$a['Mail']['message'],'date'=>$a['Mail']['date'],'sender_id'=>$a['Mail']['sender_id'])));
+            if($replies)
+            {
+                //$re_test = array();
+                if(isset($qs2))
+                unset($qs2);
+                foreach($replies as $reps)
+                {
+                    
+                    if($reps['Mail']['recipients_id']==0)
+                    $qs2['Member']['full_name'] = 'Admin';
+                    else 
+                    $qs2 = $member->find('first',array('conditions'=>array('id'=>$reps['Mail']['recipients_id'])));
+                    if($qs2){
+                        
+                    if(!in_array($qs2['Member']['full_name'],$re_test)){
+                    $re_test[] = $qs2['Member']['full_name'];    
+                    echo ', '.$qs2['Member']['full_name'];}}   
+                }
+            }
+        }
+    
+     ?> )</td></tr>
     <tr><td><?php echo $a['Mail']['message']; ?></td></tr>
     <?php
     if($a['Mail']['attachment'])
