@@ -31,7 +31,7 @@
 <?php 
     foreach($email as $e)
     {  
-        echo $e['Mail']['parent'];
+        //echo $e['Mail']['parent'];
         if($e['Mail']['parent'] == 0)
         $check_child_status = $mails->find('first',array('conditions'=>array('parent'=>$e['Mail']['id'],'status'=>'unread')));
         else
