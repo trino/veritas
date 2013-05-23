@@ -77,7 +77,9 @@
 <tr>
 <td><span>Contracts </span><input type="checkbox" name="canView_contracts"  />
 <span>Evidence </span><input type="checkbox" name="canView_evidence"  />
-<span>Templates </span><input type="checkbox" name="canView_templates"  /></td>
+<span>Templates </span><input type="checkbox" name="canView_templates"  />
+<span>Client Memo </span><input type="checkbox" name="canView_client_memo"  />
+</td>
 </tr>
 </table>
 </td>
@@ -90,7 +92,9 @@
 <tr>
 <td><span>Contracts </span><input type="checkbox" name="canUpload_contracts"/>
 <span>Evidence </span><input type="checkbox" name="canUpload_evidence"  />
-<span>Templates </span><input type="checkbox" name="canUpload_templates"  /></td>
+<span>Templates </span><input type="checkbox" name="canUpload_templates"  />
+<span>Client Memo </span><input type="checkbox" name="canUpload_client_memo"  />
+</td>
 </tr>
 </table>
 </td>

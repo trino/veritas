@@ -258,6 +258,8 @@ class UploadsController extends AppController
                 
                //die(); 
             }
+            if($_POST['document_type']=='client_memo')
+                $arr['client_memo'] = $_POST['client_memo'];
             $arr['date'] = date('Y-m-d H:i:s');
             $arr['job_id'] = $_POST['job'];
             $arr['addedBy'] = $id;
@@ -435,6 +437,10 @@ class UploadsController extends AppController
                 
                //die(); 
             }
+            elseif($_POST['document_type']== 'client_memo')
+            {
+                $arr['client_memo']= $_POST['client_memo'];
+            }
             $arr['date'] = date('Y-m-d H:i:s');
             $arr['job_id'] = $_POST['job'];
             $arr['addedBy'] = $id;
@@ -590,7 +596,7 @@ class UploadsController extends AppController
 		if ($type =="contract"){$type2="Contracts";}
 		else if ($type =="evidence"){$type2="Evidence";}
 		else if ($type =="template"){$type2="Templates";}
-		else if ($type =="training_manuals"){$type2="Training Manuals";}
+		else if ($type =="client_memo"){$type2="Client Memo";}
 		else {$type2="";}
 		$this->set('title2',$type2);
         $this->set('link',$type);

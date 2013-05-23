@@ -345,7 +345,8 @@ class MembersController extends AppController
                 $canview['member_id'] = $id;
                 $canview['contracts'] = (isset($_POST['canView_contracts']))? '1' : '0'  ;
                 $canview['evidence'] = (isset($_POST['canView_evidence']))? '1' : '0'  ;
-                $canview['templates'] = (isset($_POST['canView_templates']))? '1' : '0'  ;;
+                $canview['templates'] = (isset($_POST['canView_templates']))? '1' : '0'  ;
+                $canview['client_memo'] = (isset($_POST['canView_client_memo']))? '1' : '0'  ;
                 $this->Canview->create();
                 $this->Canview->save($canview);
             }
@@ -360,7 +361,9 @@ class MembersController extends AppController
                 $canupdate['member_id'] = $id;
                 $canupdate['contracts'] = (isset($_POST['canUpload_contracts']))? '1' : '0'  ;
                 $canupdate['evidence'] = (isset($_POST['canUpload_evidence']))? '1' : '0'  ;
-                $canupdate['templates'] = (isset($_POST['canUpload_templates']))? '1' : '0'  ;;
+                $canupdate['templates'] = (isset($_POST['canUpload_templates']))? '1' : '0'  ;
+                $canupdate['client_memo'] = (isset($_POST['canUpload_client_memo']))? '1' : '0'  ;
+                
                 $this->Canupload->create();
                 $this->Canupload->save($canupdate);
                 //die();

@@ -173,6 +173,9 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
     <?php if((isset($canupdate['Canupload']['templates'])&& $canupdate['Canupload']['templates']=='1') || $this->Session->read('admin')){?>
     <option value="template" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='template') echo "selected='selected'"?>>Templates</option>
     <?php }?>
+    <?php if((isset($canupdate['Canupload']['client_memo'])&& $canupdate['Canupload']['client_memo']=='1') || $this->Session->read('admin')){?>
+    <option value="client_memo" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='client_memo') echo "selected='selected'"?>>Client Memo</option>
+    <?php }?>
     <!--<option value="training_manuals">Training Manuals</option>-->
 </select>
 </div></td>
@@ -201,8 +204,21 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 
 </table>
 </td></tr>
+<tr class="extra_memo" style="display: none;">
+<td colspan="2">
+<table>
+<tr><td><b>Client Memo</b></td>
+<td>
+<textarea name="client_memo" class="required">
+<?php if(isset($doc['Document']['client_memo'])) echo $doc['Document']['client_memo'];?>
+</textarea>
+</td>
+</tr>
+
+</table>
+</td></tr>
 <tr><td><b>Images/Videos/Docs</b></td><td><div class="right">
-<input type="file" name="document_1" class="required" />
+<input type="file" name="document_1" />
 <a href="javascript:void(0)" onclick="add_document()" class="btn btn-primary">Add</a></div><div id="doc"></div>
 <?php 
 //var_dump($attach);
@@ -250,12 +266,18 @@ $(function(){
         if(doctype == 'evidence')
             $('.extra_evidence').show();
         else
-            $('.extra_evidence').hide();    
+            $('.extra_evidence').hide();
+        if(doctype == 'client_memo')
+           $('.extra_memo').show();
+        else
+            $('.extra_memo').hide();      
     });
     
     if($('#document_type').val() == 'evidence')
          $('.extra_evidence').show();
-    
+    if($('#document_type').val() == 'client_memo')
+           $('.extra_memo').show();
+       
 });
 function limitText(limitField, limitCount, limitNum)
 {
