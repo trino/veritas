@@ -23,7 +23,7 @@ $(function(){
 <!--<tr><td><b>Avatar</b></td><td><input type="text" name="avatar" value="<?php echo $m['Member']['name_avatar'];?>" class="required" /></td></tr>-->
 <tr><td><b>Title</b></td><td><input type="text" name="title" value="<?php echo $m['Member']['title'];?>" class="required" /></td></tr>
 <tr><td><b>Address</b></td><td><input type="text" name="address" value="<?php echo $m['Member']['address'];?>" class="required" /></td></tr>
-<tr><td><b>Email</b></td><td><input type="text" name="email" value="<?php echo $m['Member']['email'];?>" class="required" /></td></tr>
+<tr><td><b>Email</b></td><td><input type="text" name="email" value="<?php echo $m['Member']['email'];?>" class="" /></td></tr>
 <tr><td><b>Image</b></td><td><input type="file" class="" name="image" /> <img src="<?php echo $base_url."img/uploads/".$m['Member']['image'];?>" /></td></tr>
 <tr><td><b>Phone</b></td><td><input type="text" name="phone" value="<?php echo $m['Member']['phone'];?>" /></td></tr>
 <tr><td><b>Password</b></td><td><input type="password" name="password" value="<?php echo $m['Member']['password'];?>" class="required" /></td></tr>
@@ -56,6 +56,9 @@ $(function(){
 </tr>
 
 <tr><td><b>Can Send Email</b></td><td><input type="checkbox" name="canEmail" <?php if($m['Member']['canEmail']==1){?>checked="checked"<?php }?> /></td></tr>
+<tr><td><b>Receive email when someone sends me message</b></td><td><input class="receive" type="checkbox" name="receive1" <?php if($m['Member']['receive1']==1){?>checked="checked"<?php }?> /></td></tr>
+<tr><td><b>Receive email when document is uploaded</b></td><td><input class="receive" type="checkbox" name="receive2" <?php if($m['Member']['receive2']==1){?>checked="checked"<?php }?> /></td></tr>
+
 <!--<div class="checks"><div class="left">Is Supervisor</div><div class="right"><input type="checkbox" name="isSupervisor" <?php if($m['Member']['isSupervisor']==1){?>checked="checked"<?php }?> /></div><div class="clear"></div></div>
 <div class="checks"><div class="left">Is Employee</div><div class="right"><input type="checkbox" name="isEmployee" <?php if($m['Member']['isEmployee']==1){?>checked="checked"<?php }?> /></div><div class="clear"></div></div> -->
 <tr><td><div class="submit"><input type="submit" class="btn btn-primary" value="Save Changes" name="submit"/></div></td></tr>
@@ -64,7 +67,21 @@ $(function(){
 </div>
 <script>
 $(function(){
-   
+   $('.receive').change(function(){
+       var check = 0;
+       $('.receive').each(function(){
+        if($(this).is(':checked'))
+        {
+            check = 1;
+        }
+       }); 
+       if(check == 1)
+       {
+        $('.email').addClass('required');
+       }
+       else
+       $('.email').removeClass('required');
+    });
    if($('#canUpdate').is(':checked'))
         $('.canuploadfiles').show();
    

@@ -164,6 +164,14 @@ class MembersController extends AppController
             {
                 $arr['canEmail'] = 1;
             }
+            if(isset($_POST['receive1']))
+            {
+                $arr['receive1'] = 1;
+            }
+            if(isset($_POST['receive2']))
+            {
+                $arr['receive2'] = 1;
+            }
             if(isset($_POST['isSupervisor']))
             {
                 $arr['isSupervisor'] = 1;
@@ -373,6 +381,18 @@ class MembersController extends AppController
             {
                 $this->Member->saveField('canEmail',0);
             }
+            if(isset($_POST['receive1']))
+            {
+                $this->Member->saveField('receive1',1);
+            }
+            else
+            $this->Member->saveField('receive1',0);
+            if(isset($_POST['receive2']))
+            {
+                $this->Member->saveField('receive2',1);
+            }
+            else
+            $this->Member->saveField('receive2',0);
             if(!$this->Session->read('avatar'))
             {
                 $this->Session->email($_POST['email']);
