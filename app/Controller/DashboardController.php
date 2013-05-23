@@ -49,7 +49,7 @@ class DashboardController extends AppController
              
             if($this->Session->read('see'))
             {
-                $q=$this->Member->find('first',array('conditions'=>array('email'=>$this->Session->read('email'))));
+                $q=$this->Member->find('first',array('conditions'=>array('id'=>$this->Session->read('id'))));
                 $id=$q['Member']['id'];
                 if($canview = $this->Canview->find('first',array('conditions'=>array('member_id'=>$id))))
                     $this->set('canview',$canview);
@@ -81,7 +81,7 @@ class DashboardController extends AppController
             }
             else
             {
-                $q=$this->Member->find('first',array('conditions'=>array('email'=>$this->Session->read('email'))));
+                $q=$this->Member->find('first',array('conditions'=>array('id'=>$this->Session->read('id'))));
                 $id=$q['Member']['id'];
                 $this->set('contract',$this->Document->find('count',array('conditions'=>array('document_type'=>'contract','addedBy'=>$id))));
                 $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','addedBy'=>$id))));
@@ -418,7 +418,7 @@ class DashboardController extends AppController
         }
         else
         {
-            $val = $this->Member->find('count',array('conditions'=>array('email'=>$this->Session->read('email'),'password'=>$pass)));
+            $val = $this->Member->find('count',array('conditions'=>array('id'=>$this->Session->read('id'),'password'=>$pass)));
         }
         if($val>0)
         {

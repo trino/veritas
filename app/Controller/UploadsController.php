@@ -67,7 +67,7 @@ class UploadsController extends AppController
         }
         else if($this->Session->read('supervisor'))
         {
-            $q=$this->Member->find('first',array('conditions'=>array('email'=>$this->Session->read('email'))));
+            $q=$this->Member->find('first',array('conditions'=>array('id'=>$this->Session->read('id'))));
             $id=$q['Member']['id'];
              $this->set('contract',$this->Document->find('count',array('conditions'=>array('document_type'=>'contract','addedBy'=>$id))));
             $this->set('post_order',$this->Document->find('count',array('conditions'=>array('document_type'=>'post_order','addedBy'=>$id))));
@@ -77,7 +77,7 @@ class UploadsController extends AppController
         }
         else if($this->Session->read('employee'))
         {
-            $q=$this->Member->find('first',array('conditions'=>array('email'=>$this->Session->read('email'))));
+            $q=$this->Member->find('first',array('conditions'=>array('id'=>$this->Session->read('id'))));
             $id=$q['Member']['id'];
             $jo=$this->Jobmember->find('all',array('conditions'=>array('member_id'=>$id)));
             if($jo)
@@ -608,7 +608,7 @@ class UploadsController extends AppController
             if($this->Session->read('see'))
             {
                 //die('here');
-                $q=$this->Member->find('first',array('conditions'=>array('email'=>$this->Session->read('email'))));
+                $q=$this->Member->find('first',array('conditions'=>array('id'=>$this->Session->read('id'))));
                 $id=$q['Member']['id'];
                 $this->set('update',$q['Member']['canUpdate']);
                 $jo=$this->Jobmember->find('all',array('conditions'=>array('member_id'=>$id)));
@@ -632,7 +632,7 @@ class UploadsController extends AppController
             }
             else
             {
-                $q=$this->Member->find('first',array('conditions'=>array('email'=>$this->Session->read('email'))));
+                $q=$this->Member->find('first',array('conditions'=>array('id'=>$this->Session->read('id'))));
                 $id=$q['Member']['id'];
                 $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'addedBy'=>$id,'job_id'=>$jid),'order by'=>'job_id'));
                 if($do)
@@ -643,7 +643,7 @@ class UploadsController extends AppController
         }
         else if($this->Session->read('employee'))
         {
-            $q=$this->Member->find('first',array('conditions'=>array('email'=>$this->Session->read('email'))));
+            $q=$this->Member->find('first',array('conditions'=>array('id'=>$this->Session->read('id'))));
             $id=$q['Member']['id'];
             $this->set('update',$q['Member']['canUpdate']);
             $jo=$this->Jobmember->find('all',array('conditions'=>array('member_id'=>$id)));

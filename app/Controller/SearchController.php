@@ -9,7 +9,7 @@ class SearchController extends AppController
         $this->loadModel('Document');
         $this->loadModel('Member');
         $this->loadModel('Job');
-        if(!$this->Session->read('email'))
+        if(!$this->Session->read('id'))
         $this->redirect('/dashboard');
         $search = $_GET['search'];
         if($this->Session->read('avatar'))

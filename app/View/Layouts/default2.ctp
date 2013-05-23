@@ -114,7 +114,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <body>
 	<div id="container">
 		<div id="header">
-        <?php if($this->Session->read('email')){?><h1><form action="<?php echo $base_url;?>search" method="get"><input type="text" name="search" style="margin-top: 10px;" placeholder="Search Document" /> <input type="submit" class="btn btn-info" value="Search" /></form></h1><?php }?>
+        <?php if($this->Session->read('id')){?><h1><form action="<?php echo $base_url;?>search" method="get"><input type="text" name="search" style="margin-top: 10px;" placeholder="Search Document" /> <input type="submit" class="btn btn-info" value="Search" /></form></h1><?php }?>
         <?php 
         if($this->Session->read('avatar')){?>
 			<h1>Welcome <?php echo $this->Session->read('avatar');?></h1>

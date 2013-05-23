@@ -33,7 +33,7 @@ class JobsController extends AppController
         }
         else if($this->Session->read('user'))
         {
-            $q=$this->Member->find('first',array('conditions'=>array('email'=>$this->Session->read('email'))));
+            $q=$this->Member->find('first',array('conditions'=>array('id'=>$this->Session->read('id'))));
             $id=$q['Member']['id'];
             $jo=$this->Jobmember->find('all',array('conditions'=>array('member_id'=>$id)));
             $data="";

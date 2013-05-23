@@ -236,7 +236,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 	<div id="rightColumn">
 		<div id="rightHeader">
-			<?php if($this->Session->read('email')){?>
+			<?php if($this->Session->read('id')){?>
 				<div class="headSearch">
 				<form action="<?php echo $base_url;?>search" method="get" id="searchDocuments">
 					<div class="searchInput">
