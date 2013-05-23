@@ -73,6 +73,7 @@ class MailController extends AppController
         }
         if(isset($_POST['submit']))
         {
+            $check=0;
             $arr['recipients_id'] = $_POST['recipient_id'];
             $receiver = $_POST['recipient_email'];
             if($this->Session->read('avatar'))
@@ -111,7 +112,26 @@ class MailController extends AppController
                 <b>Message : </b>".$arr['message']."
                 </p>
                 ";
+                if($receiver){
+                $ch_id = $_POST['recipient_id'];
+                if($ch_id!=0)
+                {
+                    $test = $this->Member->findById($ch_id);
+                    if($test)
+                    {
+                        if($test['Member']['receive1']==1 || $test['Member']['receive2']==1)
+                        {
+                            $check=1;
+                        }
+                        else
+                        $check=0;
+                    }
+                }
+                else
+                $check =1;   
+                if($check==1)
                 $emails->send($message);
+                }
         }
         $data = $this->Mail->find('first',array('conditions'=>array('id'=>$id)));
         $par = $data['Mail']['parent'];
@@ -218,6 +238,7 @@ class MailController extends AppController
     }
     public function send()
     {
+        $check=0;
         $return = urldecode($_GET['return']);
         $return = str_replace('/',' ',$return);
         $return = trim($return);
@@ -297,7 +318,7 @@ class MailController extends AppController
             for($i=0;$i<sizeof($arr)-1;$i++)
             {
                 $emails = new CakeEmail();
-            $emails->from($this->Session->read('email'));
+            //$emails->from($this->Session->read('email'));
             
             $to = trim($arr[$i]);
             //die();
@@ -314,7 +335,21 @@ class MailController extends AppController
                 <b>Message : </b>".$data['message']."
                 </p>
                 ";           
-            $emails->send($message);
+            if($to){
+                $checks = $this->Member->find('first',array('conditions'=>array('email'=>$to)));
+                if($checks)
+                {
+                    if($checks['Member']['receive1']==1 || $checks['Member']['receive2']==1)
+                    $check = 1;
+                    else
+                    $check =0;
+                }
+                else
+                $check =1;
+                
+                if($check == 1)
+                $emails->send($message);
+                }
             $emails->reset();
             $this->Session->setFlash('Email Send Successfully.');
             
@@ -325,6 +360,7 @@ class MailController extends AppController
     }
     public function replyall()
     {
+        $check=0;
         
             if($this->Session->read('avatar'))
             {
@@ -399,7 +435,22 @@ class MailController extends AppController
                 <b>Message : </b>".$arr['message']."
                 </p>
                 ";
+                if($receiver){                    
+                if($af!=0)
+                {
+                    $checks = $this->Member->findById($af);
+                    if($checks['Member']['receive1']==1 || $checks['Member']['receive2']==1)
+                    $check =1;
+                    else
+                    $check =0;
+                    
+                    
+                }
+                else
+                $check =1;
+                if($check == 1)
                 $emails->send($message);
+                }
                 $emails->reset();
                 }}
                 }

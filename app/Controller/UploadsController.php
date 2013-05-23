@@ -235,12 +235,24 @@ class UploadsController extends AppController
                     {
                         $to = $t['Member']['email'];
                         $emails = new CakeEmail();
-                        $emails->from($adminEmail);
+                        $emails->from(array('noreply@strike.com'=>'Strike Management'));
                         $emails->to($to);
                         $emails->subject("A new Evidence Uploaded.");
                         $emails->emailFormat('html');
                         $message="A new Evidence is uploaded to your job.<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/> Please <a href='".$base_url."'>Click Here</a> to Login";
+                        if($to){
+                        $checks = $this->Member->find('first',array('conditions'=>array('email'=>$to)));
+                        $check=0;
+                        if($checks)
+                        {
+                            if($checks['Member']['receive1']==1 ||$checks['Member']['receive2']==1)
+                            $check=1;
+                            else
+                            $check=0;
+                        }    
+                        if($check==1)
                         $emails->send($message);
+                        }
                     }    
                 }
                 
@@ -400,12 +412,24 @@ class UploadsController extends AppController
                     {
                         $to = $t['Member']['email'];
                         $emails = new CakeEmail();
-                        $emails->from($adminEmail);
+                        $emails->from(array('noreply@strike.com'=>'Strike Management'));
                         $emails->to($to);
                         $emails->subject("A new Evidence Uploaded.");
                         $emails->emailFormat('html');
                         $message="A new Evidence is uploaded to your job.<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/> Please <a href='".$base_url."'>Click Here</a> to Login";
+                        if($to){
+                        $checks = $this->Member->find('first',array('conditions'=>array('email'=>$to)));
+                        $check=0;
+                        if($checks)
+                        {
+                            if($checks['Member']['receive1']==1 ||$checks['Member']['receive2']==1)
+                            $check=1;
+                            else
+                            $check=0;
+                        }    
+                        if($check==1)
                         $emails->send($message);
+                        }
                     }    
                 }
                 
