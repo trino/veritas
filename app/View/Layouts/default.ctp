@@ -240,7 +240,8 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 				<div class="headSearch">
 				<form action="<?php echo $base_url;?>search" method="get" id="searchDocuments">
 					<div class="searchInput">
-					<input type="text" name="search" style="margin-top: 10px;" placeholder="Documents Search" /> 
+					<input type="text" name="search" style="margin-top: 10px;" placeholder="Documents Search" />
+                    <!--<input type="hidden" name="date" value="asc" /> -->
 					</div>
 					<div class="searchButton">
 					<a href="javascript:{}" onclick="document.getElementById('searchDocuments').submit();" class="btn icn-only"><i class="icon-search"></i></a>

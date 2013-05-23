@@ -32,14 +32,21 @@
     </tr>
     <tr>
         <td><b>Job Title</b></td>
-        <td><?php $j = $job->findById($doc['Document']['job_id']); echo $j['Job']['title'] ; ?></td>
+        <td><?php if($j = $job->findById($doc['Document']['job_id'])) echo $j['Job']['title'] ; ?></td>
     </tr>
     <tr>
         <td><b>Document Type</b></td>
-        <td><?php echo $type = ucwords($doc['Document']['document_type']); ?></td>
+        <td><?php echo $type = ucwords(str_replace('_',' ',$doc['Document']['document_type'])); ?></td>
     </tr>
     
-    <?php if($type == 'Evidence'){ ?>
+    <?php if($type == 'Client Memo')
+    { ?>
+     <tr>
+        <td><b>Client Memo</b></td>
+        <td><?php echo $doc['Document']['client_memo'];?></a></td>
+    </tr>   
+    <?php }
+ ?>    <?php if($type == 'Evidence'){ ?>
     <tr>
         <td><b>Evidence Type</b></td>
         <td><?php echo $doc['Document']['evidence_type'];?></a></td>

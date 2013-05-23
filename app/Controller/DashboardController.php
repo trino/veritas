@@ -29,7 +29,7 @@ class DashboardController extends AppController
             $this->set('contract',$this->Document->find('count',array('conditions'=>array('document_type'=>'contract'))));
             $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence'))));
             $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template'))));
-            //$this->set('training_manuals',$this->Document->find('count',array('conditions'=>array('document_type'=>'training_manuals'))));
+            $this->set('client_memo',$this->Document->find('count',array('conditions'=>array('document_type'=>'client_memo'))));
               $this->paginate = array('limit'=>10,'order'=>'date desc ,time desc');
              //$this->set('activity',$this->paginate('Document'));
              $this->set('added',$this->Member->find('all'));
@@ -69,6 +69,7 @@ class DashboardController extends AppController
                     $this->set('contract',$this->Document->find('count',array('conditions'=>array('document_type'=>'contract','job_id in ('.$d.')'))));
                     $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','job_id in ('.$d.')'))));
                     $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','job_id in ('.$d.')'))));
+                    $this->set('client_memo',$this->Document->find('count',array('conditions'=>array('document_type'=>'client_memo','job_id in ('.$d.')'))));
                     //$this->set('training_manuals',$this->Document->find('count',array('conditions'=>array('document_type'=>'training_manuals','job_id in ('.$d.')'))));
                 }
                 else

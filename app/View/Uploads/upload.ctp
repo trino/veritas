@@ -173,6 +173,9 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
     <?php if((isset($canupdate['Canupload']['templates'])&& $canupdate['Canupload']['templates']=='1') || $this->Session->read('admin')){?>
     <option value="template">Templates</option>
     <?php }?>
+     <?php if((isset($canupdate['Canupload']['client_memo'])&& $canupdate['Canupload']['client_memo']=='1') || $this->Session->read('admin')){?>
+    <option value="client_memo">Client Memo</option>
+    <?php }?>
     <!--<option value="training_manuals">Training Manuals</option>-->
 </select>
 </div></td>
@@ -197,6 +200,17 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 </tr>
 <tr><td><strong>Date of Incident</strong></td>
 <td><input type="text" value="" class="incident_date required" name="incident_date" /></td></tr>
+
+</table>
+</td></tr>
+<tr class="extra_memo" style="display: none;">
+<td colspan="2">
+<table>
+<tr><td><b>Client Memo</b></td>
+<td>
+<textarea name="client_memo" class="required"></textarea>
+</td>
+</tr>
 
 </table>
 </td></tr>
@@ -232,7 +246,11 @@ $(function(){
         if(doctype == 'evidence')
             $('.extra_evidence').show();
         else
-            $('.extra_evidence').hide();    
+            $('.extra_evidence').hide();
+       if(doctype == 'client_memo')
+           $('.extra_memo').show();
+        else
+            $('.extra_memo').hide();         
     });
 });
 function limitText(limitField, limitCount, limitNum) {

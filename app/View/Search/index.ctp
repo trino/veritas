@@ -16,6 +16,12 @@
 <?php
 if($docs)
 {
+    /*
+    if($date=='asc')
+        $date = 'desc';
+    else
+        $date = 'asc'; 
+        */  
     ?>
 <div id="table">
 
@@ -24,8 +30,9 @@ if($docs)
             <th>Title</th>
             <!--<th>Location</th>-->
             <th>Description</th>
+            <th>Category</th>
             <th>Uploaded By</th>
-            <th>Uploaded On</th>
+            <th><!--<a href="<?php echo $base_url."search?search=".$search."&date=".$date;?>">--><?php echo $this->Paginator->sort('date','Uploaded On');?><!--</a>--></th>
             <th>Option</th>
         </tr>
     <?php
@@ -37,10 +44,10 @@ if($docs)
         
         if($m==1)
         {
-         $arr[]=$docs[$k]['Document']['job_id'];   
+            $arr[]=$docs[$k]['Document']['job_id'];   
         ?>
         
-        <tr style="background: grey;color:#FFF;"><td colspan="5"><strong>Job :</strong><strong><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Document']['job_id'])));if($get2)echo $get2['Job']['title']; ?></strong></tr>
+        <tr style="background: grey;color:#FFF;"><td colspan="6"><strong>Job :</strong><strong><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Document']['job_id'])));if($get2)echo $get2['Job']['title']; ?></strong></tr>
         
         <?php
         }
@@ -50,7 +57,7 @@ if($docs)
             {
                 $arr[]=$docs[$k]['Document']['job_id'];
                 ?>
-                <tr style="background: grey;color:#FFF;"><td colspan="5"><strong>Job :</strong><strong><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Document']['job_id'])));if($get2)echo $get2['Job']['title']; ?></strong></tr>
+                <tr style="background: grey;color:#FFF;"><td colspan="6"><strong>Job :</strong><strong><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Document']['job_id'])));if($get2)echo $get2['Job']['title']; ?></strong></tr>
                 <?php
             }
         }
@@ -62,6 +69,7 @@ if($docs)
             <td><?php echo $d['Document']['title']; ?></td>
             <!--<td><?php echo $d['Document']['location']; ?></td>-->
             <td><?php echo $d['Document']['description']; ?></td>
+            <td><?php echo $d['Document']['document_type']; ?></td>
             <td><?php if($d['Document']['addedBy'] != 0){$q = $member->find('first',array('conditions'=>array('id'=>$d['Document']['addedBy'])));if($q){echo "<a href='".$base_url."members/view/".$q['Member']['id']."'>".$q['Member']['full_name']."</a>";}}else echo "Admin";?></td>
             <td><?php echo $d['Document']['date'];?></td>
             <td><?php echo $this->Html->link('View','/uploads/view_detail/'.$d['Document']['id'], array('class'=>'btn btn-primary'));  ?>
@@ -74,7 +82,13 @@ if($docs)
  </table>
 
 </div>
-
+<div class="pagination2">
+<ul>
+<?php echo $this->Paginator->prev('«', array('tag' => 'li')); ?>
+<?php echo str_replace(" | ","",$this->Paginator->numbers(array('tag' => 'li'))); ?>
+<?php echo $this->Paginator->next('»', array('tag' => 'li')); ?>
+</ul>
+</div>
     <?php
 } else {echo"No Search Results";}
 ?>
