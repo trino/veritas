@@ -311,13 +311,15 @@ class MailController extends AppController
             $message="You have recieved an email from ".$sender." on Strike Website. <br/><a href='".$base_url."'>Check your message, click here</a><br/>
                 <p>
                 <b>Subject : </b>".$_POST['subject']."<br/>
-                <b>Message : </b>".$arr['message']."
+                <b>Message : </b>".$data['message']."
                 </p>
                 ";           
             $emails->send($message);
+            $emails->reset();
             $this->Session->setFlash('Email Send Successfully.');
-            $this->redirect(str_replace('veritas/','',$return));
+            
             }
+            $this->redirect(str_replace('veritas/','',$return));
             
         }
     }
@@ -398,6 +400,7 @@ class MailController extends AppController
                 </p>
                 ";
                 $emails->send($message);
+                $emails->reset();
                 }}
                 }
                 $this->redirect('read/'.$arr['parent']);
