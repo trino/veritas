@@ -120,7 +120,7 @@
         ?>
         
         </td>
-        <td><?php echo $this->Html->link($e['Mail']['subject'].(($cnt!=0)? "(".$cnt.")" : ""),'/mail/read/'.$e['Mail']['id'],array('style'=>'')); ?></td>
+        <td><?php echo $this->Html->link($e['Mail']['subject']/*.(($cnt!=0)? "(".$cnt.")" : "")*/,'/mail/read/'.$e['Mail']['id'],array('style'=>'')); ?></td>
         <td><?php echo $e['Mail']['date']; ?></td>
         <td>
 		<?php echo $this->Html->link('View','/mail/read/'.$e['Mail']['id'],array('class'=>'btn btn-primary')); ?>

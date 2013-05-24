@@ -379,6 +379,7 @@ class MailController extends AppController
                 $arr['status'] = 'unread';
                 $arr['date'] = date('Y-m-d H:i:s');
                 $arr['parent'] = $_POST['mail_id'];
+                $arr['is_replyall'] = 1;
                 $par = $this->Mail->find('first',array('conditions'=>array('id'=>$arr['parent'])));
                 $q = $this->Mail->find('all',array('conditions'=>array('OR'=>array(array('parent'=>$arr['parent']),array('id'=>$arr['parent']),array('sender'=>$par['Mail']['sender'],'subject'=>$par['Mail']['subject'],'message'=>$par['Mail']['message'],'date'=>$par['Mail']['date'],'parent'=>0)))));
                 foreach($q as $qs)
