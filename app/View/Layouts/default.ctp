@@ -56,6 +56,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <script type="text/javascript">
    
     $(function(){
+        $('.close_modal').live('click',function(){
+            $('.ui-dialog-titlebar-close').click();
+        });
         $('.doc').live('change',function(){
            var val = $(this).val();
            if($(this).is(':checked'))

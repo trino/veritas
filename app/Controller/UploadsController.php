@@ -235,7 +235,7 @@ class UploadsController extends AppController
                     {
                         $to = $t['Member']['email'];
                         $emails = new CakeEmail();
-                        $emails->from(array('noreply@strike.com'=>'Strike Management'));
+                        $emails->from(array('noreply@veritas.com'=>'Veritas'));
                         $emails->to($to);
                         $emails->subject("A new Evidence Uploaded.");
                         $emails->emailFormat('html');
@@ -414,7 +414,7 @@ class UploadsController extends AppController
                     {
                         $to = $t['Member']['email'];
                         $emails = new CakeEmail();
-                        $emails->from(array('noreply@strike.com'=>'Strike Management'));
+                        $emails->from(array('noreply@veritas.com'=>'Veritas'));
                         $emails->to($to);
                         $emails->subject("A new Evidence Uploaded.");
                         $emails->emailFormat('html');
