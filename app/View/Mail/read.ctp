@@ -28,10 +28,28 @@
 <?php 
 $i=0;
 $j = 0;
+$k=0;
+$rep['is_replyall']='2';
+$rep['date'] = '';
 foreach($all as $a){
+    
     if(isset($re_test))
     unset($re_test);
     $j++;
+    
+    if($a['Mail']['is_replyall']==1){
+        if($a['Mail']['is_replyall']==1 && $a['Mail']['date'] == $rep['date'])
+        continue;
+        else
+        {
+        $rep['is_replyall'] = 1;
+        $rep['date'] = $a['Mail']['date'];
+        }    
+        }
+        else
+        $show=1;
+    
+    
     if($a['Mail']['parent']!=0)
     $parents = $a['Mail']['parent'];
     if($i==0)
@@ -108,6 +126,7 @@ foreach($all as $a){
                 //$re_test = array();
                 if(isset($qs2))
                 unset($qs2);
+                
                 foreach($replies as $reps)
                 {
                     
@@ -183,34 +202,6 @@ foreach($all as $a){
 }
 if(!isset($parents))
 $parents = $a['Mail']['id'];
-/*
-?>
-
-<tr><td><label>Sent By:</label><b><?php echo $name; ?></b> <?php echo $sender; ?> </td></tr>
-<tr><td><label>Subject :</label><?php echo $email['Mail']['subject']; ?></td></tr>
-<tr><td><label>Message:</label><?php echo $email['Mail']['message']; ?></td></tr>
-<tr><td>
-    <?php
-        foreach($reply as $r)
-        {
-            if($r['Mail']['sender_id']=='0')
-            {
-                echo "Sent By : <b>Admin</b>";
-            }
-            else
-            {
-                foreach($member as $m)
-                {
-                    if($m['Member']['id']==$r['Mail']['sender_id'])
-                    {
-                        echo "Sent By : <b>".$m['Member']['full_name']."</b>";
-                    }
-                }    
-            }
-            echo "<br>Message ".$r['Mail']['message']."<br>";
-        }
-    ?>
-</td></tr>*/
 ?>
 </table>
 
@@ -232,7 +223,7 @@ $parents = $a['Mail']['id'];
     <textarea name="reply" style="height:100px;width:420px;"></textarea>
     <input type="hidden" name="mail_id" value="<?php echo $parents;?>" />
     <input type="hidden" name="recipient_id" value="<?php echo $reqs; ?>" />
-    <input type="hidden" name="recipient_email" value="<?php echo $reqs_email; ?>" />
+    <input type="hidden" name="recipient_email" value="<?php echo $reqs_email;?>" />
     <input type="hidden" name="subject" value="<?php echo $sub; ?>" />
     <br /><input type="submit" name="submit" value="Reply" class="btn btn-primary reg-company replybtn" /> &nbsp; <a href="javascript:void(0)" style="height: 6px;padding-bottom: 15px;" class="replyall btn btn-primary">Reply All</a>
 </form>
@@ -250,8 +241,7 @@ $parents = $a['Mail']['id'];
 </div>
 <script>
 $(function(){
-   $('.replyall').click(function(){
-    
+    $('.replyall').click(function(){    
     $('#replyform').attr('action','<?php echo $base_url;?>mail/replyall');
     $('.replybtn').click();
    }); 
