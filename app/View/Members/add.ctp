@@ -46,10 +46,33 @@
             }
         });
     }
+     function check_name()
+    {
+        //alert('test');
+        var full_name = $('#full_name').val();
+        $.ajax(
+        {
+            url: 'check_name',
+            type: 'post',
+            data: 'full_name='+full_name,
+            success:function(response)
+            {
+                if(response=="1")
+                {
+                    $('#response1').html('Someone with the same name as yours is already signed up.');
+                }
+                else
+                {
+                    $('#response1').html('');
+                }
+            }
+        });
+    }
     function valid()
     {
         var val=$('#response').html();
-        if(val=="")
+        var val1=$('#response1').html();
+        if(val=="" && val1=='')
         {
             return true;
         }
@@ -62,7 +85,7 @@
 <div id="table">
 <form id="my_form" action="" method="post" enctype="multipart/form-data" onsubmit="return valid();">
 <table>
-<tr><td style="width:140px;"><b>Full Name</b></td><td><input type="text" class="required" name="full_name" /></td></tr>
+<tr><td style="width:140px;"><b>Full Name</b></td><td><input type="text" id="full_name" class="required" name="full_name" onchange="check_name()" /><span id="response1"></span></td></tr>
 <!--<tr><td><b>Avatar</b></td><td><input type="text" name="avatar" value="" class="required" /></td></tr>-->
 <tr><td><b>Title</b></td><td><input type="text" class="required" name="title" /></td></tr>
 <tr><td><b>Address</b></td><td><input type="text" class="required" name="address" /></td></tr>
@@ -75,10 +98,10 @@
 <td colspan="2">
 <table width="50%">
 <tr>
-<td><span>Contracts </span><input type="checkbox" name="canView_contracts"  />
-<span>Evidence </span><input type="checkbox" name="canView_evidence"  />
-<span>Templates </span><input type="checkbox" name="canView_templates"  />
-<span>Client Memo </span><input type="checkbox" name="canView_client_memo"  />
+<td><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span><input type="checkbox" name="canView_contracts"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="canView_evidence"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="canView_templates"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Memo </span><input type="checkbox" name="canView_client_memo"  />
 </td>
 </tr>
 </table>
@@ -90,10 +113,10 @@
 <td colspan="2">
 <table width="50%">
 <tr>
-<td><span>Contracts </span><input type="checkbox" name="canUpload_contracts"/>
-<span>Evidence </span><input type="checkbox" name="canUpload_evidence"  />
-<span>Templates </span><input type="checkbox" name="canUpload_templates"  />
-<span>Client Memo </span><input type="checkbox" name="canUpload_client_memo"  />
+<td><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span><input type="checkbox" name="canUpload_contracts"/>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="canUpload_evidence"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="canUpload_templates"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Memo </span><input type="checkbox" name="canUpload_client_memo"  />
 </td>
 </tr>
 </table>

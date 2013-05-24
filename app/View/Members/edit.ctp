@@ -19,7 +19,7 @@ $(function(){
 <div id="table">
 <form action="" method="post" id="add_form" enctype="multipart/form-data">
 <table>
-<tr><td style="width:140px;"><b>Full Name</b></td><td><input type="text" name="full_name" value="<?php echo $m['Member']['full_name'];?>" class="required" /></td></tr>
+<tr><td style="width:140px;"><b>Full Name</b></td><td><input type="text" name="full_name" id="full_name" value="<?php echo $m['Member']['full_name'];?>" class="required" /></td></tr>
 <!--<tr><td><b>Avatar</b></td><td><input type="text" name="avatar" value="<?php echo $m['Member']['name_avatar'];?>" class="required" /></td></tr>-->
 <tr><td><b>Title</b></td><td><input type="text" name="title" value="<?php echo $m['Member']['title'];?>" class="required" /></td></tr>
 <tr><td><b>Address</b></td><td><input type="text" name="address" value="<?php echo $m['Member']['address'];?>" class="required" /></td></tr>
@@ -32,10 +32,10 @@ $(function(){
 <td colspan="2">
 <table width="50%">
 <tr>
-<td><span>Contracts </span><input type="checkbox" name="canView_contracts" <?php if(isset($v['Canview']['contracts']) && $v['Canview']['contracts']==1){?>checked="checked"<?php }?> />
-<span> Evidence </span><input type="checkbox" name="canView_evidence" <?php if(isset($v['Canview']['evidence']) && $v['Canview']['evidence']==1){?>checked="checked"<?php }?> />
-<span> Templates </span><input type="checkbox" name="canView_templates" <?php if(isset($v['Canview']['templates']) && $v['Canview']['templates']==1){?>checked="checked"<?php }?> />
-<span> Client Memo </span><input type="checkbox" name="canView_client_memo" <?php if(isset($v['Canview']['client_memo']) && $v['Canview']['client_memo']==1){?>checked="checked"<?php }?> /></td>
+<td><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span><input type="checkbox" name="canView_contracts" <?php if(isset($v['Canview']['contracts']) && $v['Canview']['contracts']==1){?>checked="checked"<?php }?> />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Evidence </span><input type="checkbox" name="canView_evidence" <?php if(isset($v['Canview']['evidence']) && $v['Canview']['evidence']==1){?>checked="checked"<?php }?> />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Templates </span><input type="checkbox" name="canView_templates" <?php if(isset($v['Canview']['templates']) && $v['Canview']['templates']==1){?>checked="checked"<?php }?> />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Client Memo </span><input type="checkbox" name="canView_client_memo" <?php if(isset($v['Canview']['client_memo']) && $v['Canview']['client_memo']==1){?>checked="checked"<?php }?> /></td>
 </tr>
 </table>
 </td>
@@ -46,10 +46,11 @@ $(function(){
 <td colspan="2">
 <table width="50%">
 <tr>
-<td><span>Contracts </span><input type="checkbox" name="canUpload_contracts" <?php if(isset($u['Canupload']['contracts']) && $u['Canupload']['contracts']==1){?>checked="checked"<?php }?> />
-<span> Evidence </span><input type="checkbox" name="canUpload_evidence" <?php if(isset($u['Canupload']['evidence']) && $u['Canupload']['evidence']==1){?>checked="checked"<?php }?> />
-<span> Templates </span><input type="checkbox" name="canUpload_templates" <?php if(isset($u['Canupload']['templates']) && $u['Canupload']['templates']==1){?>checked="checked"<?php }?> />
-<span> Client Memo </span><input type="checkbox" name="canUpload_client_memo" <?php if(isset($u['Canupload']['client_memo']) && $u['Canupload']['client_memo']==1){?>checked="checked"<?php }?> /></td>
+<td><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span>
+<input type="checkbox" name="canUpload_contracts" <?php if(isset($u['Canupload']['contracts']) && $u['Canupload']['contracts']==1){?>checked="checked"<?php }?> />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Evidence </span><input type="checkbox" name="canUpload_evidence" <?php if(isset($u['Canupload']['evidence']) && $u['Canupload']['evidence']==1){?>checked="checked"<?php }?> />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Templates </span><input type="checkbox" name="canUpload_templates" <?php if(isset($u['Canupload']['templates']) && $u['Canupload']['templates']==1){?>checked="checked"<?php }?> />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Client Memo </span><input type="checkbox" name="canUpload_client_memo" <?php if(isset($u['Canupload']['client_memo']) && $u['Canupload']['client_memo']==1){?>checked="checked"<?php }?> /></td>
 </tr>
 </table>
 </td>
