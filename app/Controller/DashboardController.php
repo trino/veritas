@@ -190,7 +190,7 @@ class DashboardController extends AppController
                 //$this->Email->from    = $this->Session->read('email');
                 //$this->Email->to = $arr[$i];
                 //$this->Email->subject = $_POST['subject'];
-                $message="You have recieved an email from ".$sender." on Strike Website. Please Login to see the message";
+                $message="You have recieved an email from ".$sender." on Veritas. Please Login to see the message";
                 $emails->send($message);
                 $this->Session->setFlash('Email Send Successfully.');
             }

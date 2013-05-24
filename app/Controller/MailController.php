@@ -98,7 +98,7 @@ class MailController extends AppController
                 $this->Mail->save($arr);
                 $this->set('success','You have replied to this message.');
                 $emails = new CakeEmail();
-                $emails->from(array('noreply@strike.com'=>'Strike Management'));
+                $emails->from(array('noreply@veritas.com'=>'Veritas'));
             
                 $emails->emailFormat('html');
                 $emails->to($receiver);
@@ -106,7 +106,7 @@ class MailController extends AppController
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'];
                 if($_SERVER['SERVER_NAME'] == 'localhost')
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
-                $message="You have recieved an email from ".$sender." on Strike Website. <br/><a href='".$base_url."'>Check your message, click here</a><br/>
+                $message="You have recieved an email from ".$sender." on Veritas. <br/><a href='".$base_url."'>Check your message, click here</a><br/>
                 <p>
                 <b>Subject : </b>".$arr['subject']."<br/>
                 <b>Message : </b>".$arr['message']."
@@ -322,14 +322,14 @@ class MailController extends AppController
             
             $to = trim($arr[$i]);
             //die();
-            $emails->from(array('noreply@strike.com'=>'Strike Management'));
+            $emails->from(array('noreply@veritas.com'=>'Veritas'));
             $emails->to($to);
             $emails->subject($_POST['subject']);
             $emails->emailFormat('html');
             $base_url = 'http://'.$_SERVER['SERVER_NAME'];
             if($_SERVER['SERVER_NAME'] == 'localhost')
             $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
-            $message="You have recieved an email from ".$sender." on Strike Website. <br/><a href='".$base_url."'>Check your message, click here</a><br/>
+            $message="You have recieved an email from ".$sender." on Veritas. <br/><a href='".$base_url."'>Check your message, click here</a><br/>
                 <p>
                 <b>Subject : </b>".$_POST['subject']."<br/>
                 <b>Message : </b>".$data['message']."
@@ -422,7 +422,7 @@ class MailController extends AppController
                 $this->Mail->save($arr);
                 $this->set('success','You have replied to this message.');
                 $emails = new CakeEmail();
-                $emails->from(array('noreply@strike.com'=>'Strike Management'));
+                $emails->from(array('noreply@veritas.com'=>'Veritas'));
             
                 $emails->emailFormat('html');
                 $emails->to($receiver);
@@ -430,7 +430,7 @@ class MailController extends AppController
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'];
                 if($_SERVER['SERVER_NAME'] == 'localhost')
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
-                $message="You have recieved an email from ".$sender." on Strike Website. <br/><a href='".$base_url."'>Check your message, click here</a><br/>
+                $message="You have recieved an email from ".$sender." on Veritas. <br/><a href='".$base_url."'>Check your message, click here</a><br/>
                 <p>
                 <b>Subject : </b>".$arr['subject']."<br/>
                 <b>Message : </b>".$arr['message']."
