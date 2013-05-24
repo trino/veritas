@@ -525,7 +525,7 @@ class MembersController extends AppController
     {
         $this->loadModel('Member');
               
-        $c=$this->Member->find('count',array('conditions'=>array('full_name'=>$name,'id <>'=>$id)));
+        $c=$this->Member->find('count',array('conditions'=>array('full_name LIKE'=>$name,'id <>'=>$id)));
         
 
         if($c>0)
