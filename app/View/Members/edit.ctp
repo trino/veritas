@@ -93,7 +93,12 @@ $(function(){
         if($('#canUpdate').is(':checked'))
             $('.canuploadfiles').show();
         else
+        {
             $('.canuploadfiles').hide();
+            $('.canuploadfiles input:checkbox').each(function(){
+                $(this).removeAttr('checked');
+            });
+        }
     
     }); 
            
@@ -101,7 +106,12 @@ $(function(){
         if($('#canView').is(':checked'))
             $('.canviewfiles').show();
         else
+        {
             $('.canviewfiles').hide();
+            $('.canviewfiles input:checkbox').each(function(){
+                $(this).removeAttr('checked');
+            });
+        }
             
     
     });         
