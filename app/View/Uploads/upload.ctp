@@ -227,8 +227,8 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 <td><input type="text" value="" name="activity_date[]" class="activity_date required" /></td>
 <td><textarea name="activity_desc[]" class="required"></textarea>   <button id="activity_more" class="btn btn-primary">+Add More</button></td>
 </tr>
-<tr><td colspan="3"><div class="activity_more">
-</div>
+<tr><td colspan="3" style="padding: 0;"><table class="activity_more">
+</table>
 </td></tr>
 </table>
 </td></tr>
@@ -259,9 +259,9 @@ $(function(){
     $('#activity_more').click(function(){
         
        var more = '<tr>'+
-'<td><input type="text" value="" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
-'<td><input type="text" value="" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
-'<td><textarea name="activity_desc[]"></textarea>   <button onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</button></td>'+
+'<td style="padding:5px 0;"><input type="text" value="" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
+'<td style="padding:5px 0;"><input type="text" value="" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
+'<td style="padding:5px 0;"><textarea name="activity_desc[]"></textarea>   <button onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</button></td>'+
 '</tr>'
        $('.activity_more').append(more); 
        

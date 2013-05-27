@@ -19,6 +19,7 @@
 include('inc.php');
 $mems = $this->requestAction($base_url.'/dashboard/get_email_list');
 $ad = $this->requestAction($base_url.'/dashboard/get_user');
+$jobs = $this->requestAction($base_url.'/dashboard/get_jobs');
 //echo  $base_url;
 $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
 ?>
@@ -243,7 +244,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<div id="rightHeader">
 			<?php if($this->Session->read('id')){?>
 				<div class="headSearch">
-				<form action="<?php echo $base_url;?>search" method="get" id="searchDocuments">
+				<form action="<?php echo $base_url;?>search" method="get" id="searchDocuments" style="float: left;">
 					<div class="searchInput">
 					<input type="text" name="search" style="margin-top: 10px;" placeholder="Documents Search" />
                     <!--<input type="hidden" name="date" value="asc" /> -->
@@ -252,6 +253,24 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 					<a href="javascript:{}" onclick="document.getElementById('searchDocuments').submit();" class="btn icn-only"><i class="icon-search"></i></a>
 					</div>
 				</form>
+                <div style="float: right;padding:10px 0 0 10px;">
+                <select onchange="window.location = '<?php echo $base_url?>jobs/view/'+$(this).val();">
+                <option>Go To</option>
+                <?php
+                if($jobs)
+                {
+                    foreach($jobs as $jo)
+                    {
+                        ?>
+                        <option value="<?php echo $jo['Job']['id'];?>"><?php echo $jo['Job']['title'];?></option>
+                        <?php
+                    }
+                } 
+                ?>
+                
+                </select>
+                </div>
+                <div class="clearfix"></div>
 				</div><!-- headSearch -->
 			<?php }?>
 			

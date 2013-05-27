@@ -487,4 +487,10 @@ class DashboardController extends AppController
         }
          $this->set('page',$this->Page->find('first'));
     }
+    public function get_jobs()
+    {
+        $this->loadModel('Job');
+        $q = $this->Job->find('all',array('order'=>'title'));
+        return $q;
+    }
 }
