@@ -39,10 +39,10 @@
         <td><?php echo $type = ucwords(str_replace('_',' ',$doc['Document']['document_type'])); ?></td>
     </tr>
     
-    <?php if($type == 'Client Memo')
+    <?php if($type == 'Other')
     { ?>
      <tr>
-        <td><b>Client Memo</b></td>
+        <td><b>Client</b></td>
         <td><?php echo $doc['Document']['client_memo'];?></a></td>
     </tr>   
     <?php }
