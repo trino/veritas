@@ -237,7 +237,7 @@ class UploadsController extends AppController
                         $to = $t['Member']['email'];
                         $emails = new CakeEmail();
                         $emails->from(array('noreply@veritas.com'=>'Veritas'));
-                        
+                        $emails->to($to);
                         $emails->subject("A new Evidence Uploaded.");
                         $emails->emailFormat('html');
                         $message="A new Evidence is uploaded to your job.<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/> Please <a href='".$base_url."'>Click Here</a> to Login";
@@ -251,10 +251,8 @@ class UploadsController extends AppController
                             else
                             $check=0;
                         }    
-                        if($check==1){
-                        $emails->to($to);
+                        if($check==1)
                         $emails->send($message);
-                        }
                         }
                     }    
                 }
@@ -441,7 +439,7 @@ class UploadsController extends AppController
                         $to = $t['Member']['email'];
                         $emails = new CakeEmail();
                         $emails->from(array('noreply@veritas.com'=>'Veritas'));
-                        
+                        $emails->to($to);
                         $emails->subject("A new Evidence Uploaded.");
                         $emails->emailFormat('html');
                         $message="A new Evidence is uploaded to your job.<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/> Please <a href='".$base_url."'>Click Here</a> to Login";
@@ -455,10 +453,8 @@ class UploadsController extends AppController
                             else
                             $check=0;
                         }    
-                        if($check==1){
-                        $emails->to($to);
+                        if($check==1)
                         $emails->send($message);
-                        }
                         }
                     }    
                 }
@@ -720,6 +716,7 @@ class UploadsController extends AppController
     
     function view_detail($id)
     {
+        $this->loadModel('Activity');
         if($this->Session->read('user') || $this->Session->read('avatar'))
         {
            if($this->Session->read('view')!='1')
@@ -733,7 +730,10 @@ class UploadsController extends AppController
         }
         if($this->Document->find('first',array('conditions'=>array('id'=>$id))))
         {
-            $this->set('doc',$this->Document->find('first',array('conditions'=>array('id'=>$id))));
+            $doc = $this->Document->find('first',array('conditions'=>array('id'=>$id)));
+            if($doc['Document']['document_type']== 'other')
+                $this->set('activity',$this->Activity->find('all',array('conditions'=>array('document_id'=>$id))));
+            $this->set('doc', $doc);
             $this->set('do',$this->Doc->find('all',array('conditions'=>array('document_id'=>$id))));
             $this->set('image',$this->Image->find('all',array('conditions'=>array('document_id'=>$id))));
             $this->set('vid',$this->Video->find('all',array('conditions'=>array('document_id'=>$id))));

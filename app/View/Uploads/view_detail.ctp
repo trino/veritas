@@ -42,9 +42,21 @@
     <?php if($type == 'Other')
     { ?>
      <tr>
-        <td><b>Client</b></td>
+        <td><b>Client Memo</b></td>
         <td><?php echo $doc['Document']['client_memo'];?></a></td>
-    </tr>   
+    </tr>
+    <?php if($activity){?>
+        <tr><td colspan="2"><strong>Activity</strong></td></tr>
+        <tr><td colspan="2">
+        <table>
+        <thead><th>Time</th><th>Date</th><th>Description</th></thead>
+        <?php foreach($activity as $act)
+              {?>
+        <tr><td><?php echo $act['Activity']['time'];?></td><td><?php echo $act['Activity']['date'];?></td><td><?php echo $act['Activity']['desc'];?></td></tr>
+        <?php } ?> 
+        </table></td></tr>
+    <?php } ?> 
+     
     <?php }
  ?>    <?php if($type == 'Evidence'){ ?>
     <tr>
