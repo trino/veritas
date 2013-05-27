@@ -205,14 +205,15 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 </td></tr>
 <tr class="extra_memo" style="display: none;">
 <td colspan="2">
-<table>
+
+<!--<table>
 
 <thead><th><b>Client Memo</b></th>
 <th>
 <textarea name="client_memo" class="required"></textarea>
 </th>
 </thead>
-</table>
+</table>-->
 <table>
 <thead>
 <th colspan="3"><strong>Acitivity</strong></th></thead>
