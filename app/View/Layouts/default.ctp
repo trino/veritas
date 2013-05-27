@@ -37,6 +37,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		//echo $this->Html->css('cake.generic');
         echo $this->Html->css('bootstrap.min');
         echo $this->Html->css('style');
+        echo $this->Html->css('jquery.timepicker');
         echo $this->Html->script('jquery');
         echo $this->Html->script('ajaxupload.3.6');
         echo $this->Html->script('jquery.validate');
