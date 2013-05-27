@@ -89,26 +89,26 @@
     <?php } ?>
 
 	<!-- tien-repsonsive div class="span3 responsive" data-tablet="span6" data-desktop="span3"-->
-	<!--
+	<?php if((isset($canview['Canview']['other']) && $canview['Canview']['other']=='1')|| $this->Session->read('admin')){?>
     <div class="dashboard-stat dashboard-stat-last yellow">
 	<div class="whiteCorner"></div>
-	<a href="<?=$base_url;?>uploads/view_doc/training_manuals/<?php echo $job['Job']['id'];?>" class="overallLink more">
+	<a href="<?=$base_url;?>uploads/view_doc/other/<?php echo $job['Job']['id'];?>" class="overallLink more">
 	<div class="visual">
 	<i class="icon-book"></i>
 	</div>
 	<div class="details">
-	<div class="number"><?=$training_manuals;?></div>
-	<div class="desc">Training Manuals</div>
+	<div class="number"><?=$other;?></div>
+	<div class="desc">Other</div>
 	</div>
 	<div class="more2">
-	View All <?=$training_manuals;?> Documents <i class="icon-arrow-right m-icon-white"></i>
+	View All <?=$other;?> Documents <i class="icon-arrow-right m-icon-white"></i>
 	</div>	
 	</a>
 	<div class="dusk2"></div>
 	</div>
-    -->
+    
 	
-<?php } ?>
+<?php }} ?>
 </div><!-- Documents Dashboard -->
 
 

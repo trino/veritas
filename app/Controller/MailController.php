@@ -101,7 +101,7 @@ class MailController extends AppController
                 $emails->from(array('noreply@veritas.com'=>'Veritas'));
             
                 $emails->emailFormat('html');
-                $emails->to($receiver);
+                
                 $emails->subject($_POST['subject']);
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'];
                 if($_SERVER['SERVER_NAME'] == 'localhost')
@@ -130,7 +130,10 @@ class MailController extends AppController
                 else
                 $check =1;   
                 if($check==1)
+                {
+                $emails->to($receiver);
                 $emails->send($message);
+                }
                 }
         }
         $data = $this->Mail->find('first',array('conditions'=>array('id'=>$id)));
@@ -318,12 +321,10 @@ class MailController extends AppController
             for($i=0;$i<sizeof($arr)-1;$i++)
             {
                 $emails = new CakeEmail();
-            //$emails->from($this->Session->read('email'));
+                $to = trim($arr[$i]);
             
-            $to = trim($arr[$i]);
-            //die();
             $emails->from(array('noreply@veritas.com'=>'Veritas'));
-            $emails->to($to);
+            
             $emails->subject($_POST['subject']);
             $emails->emailFormat('html');
             $base_url = 'http://'.$_SERVER['SERVER_NAME'];
@@ -335,7 +336,7 @@ class MailController extends AppController
                 <b>Message : </b>".$data['message']."
                 </p>
                 ";           
-            if($to){
+            if(str_replace(' ','',$to)){
                 $checks = $this->Member->find('first',array('conditions'=>array('email'=>$to)));
                 if($checks)
                 {
@@ -347,16 +348,20 @@ class MailController extends AppController
                 else
                 $check =1;
                 
-                if($check == 1)
+                if($check == 1){
+                $emails->to($to);
                 $emails->send($message);
+                
+                }
                 }
             $emails->reset();
             $this->Session->setFlash('Email Send Successfully.');
             
             }
-            $this->redirect(str_replace('veritas/','',$return));
+            
             
         }
+        $this->redirect(str_replace('veritas/','',$return));
     }
     public function replyall()
     {
@@ -425,7 +430,7 @@ class MailController extends AppController
                 $emails->from(array('noreply@veritas.com'=>'Veritas'));
             
                 $emails->emailFormat('html');
-                $emails->to($receiver);
+                
                 $emails->subject($_POST['subject']);
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'];
                 if($_SERVER['SERVER_NAME'] == 'localhost')
@@ -449,8 +454,11 @@ class MailController extends AppController
                 }
                 else
                 $check =1;
-                if($check == 1)
+                if($check == 1){
+                    //echo 'test';die();
+                $emails->to($receiver);
                 $emails->send($message);
+                }
                 }
                 $emails->reset();
                 }}
