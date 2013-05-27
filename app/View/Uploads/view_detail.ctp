@@ -41,10 +41,10 @@
     
     <?php if($type == 'Other')
     { ?>
-     <tr>
+     <!--<tr>
         <td><b>Client Memo</b></td>
         <td><?php echo $doc['Document']['client_memo'];?></a></td>
-    </tr>
+    </tr>-->
     <?php if($activity){?>
         <tr><td colspan="2"><strong>Activity</strong></td></tr>
         <tr><td colspan="2">

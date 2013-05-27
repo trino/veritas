@@ -261,7 +261,7 @@ class UploadsController extends AppController
             }
             if($_POST['document_type']=='other')
             {
-                $arr['client_memo'] = $_POST['client_memo'];
+                //$arr['client_memo'] = $_POST['client_memo'];
                 $this->Activity->deleteAll(array('document_id'=>$eid));
                 $activity['document_id'] = $eid;
                 foreach($_POST['activity_time'] as $k=>$v)
@@ -463,7 +463,7 @@ class UploadsController extends AppController
             }
             elseif($_POST['document_type']== 'other')
             {
-                $arr['client_memo']= $_POST['client_memo'];
+                //$arr['client_memo']= $_POST['client_memo'];
                 
             }
             $arr['date'] = date('Y-m-d H:i:s');

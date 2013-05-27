@@ -206,7 +206,7 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 </td></tr>
 <tr class="extra_memo" style="display: none;">
 <td colspan="2">
-<table>
+<!--<table>
 <tr><td><b>Client Memo</b></td>
 <td>
 <textarea name="client_memo" class="required">
@@ -215,7 +215,7 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 </td>
 </tr>
 
-</table>
+</table>-->
 <table>
 <thead>
 <th colspan="3"><strong>Acitivity</strong></th></thead>
