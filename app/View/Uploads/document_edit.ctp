@@ -218,7 +218,7 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 </table>-->
 <table>
 <thead>
-<th colspan="3"><strong>Acitivity</strong></th></thead>
+<th colspan="3"><strong>Activity</strong></th></thead>
 <thead>
 <th>Time</th>
 <th>Date</th>
