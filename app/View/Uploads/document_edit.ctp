@@ -222,14 +222,14 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 <thead>
 <th>Time</th>
 <th>Date</th>
-<th>Description &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="activity_more" class="btn btn-primary" value="+Add More"/></th>
+<th>Description &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="activity_more" class="btn btn-primary">+Add More</button></th>
 </thead>
 <?php foreach($activity as $act)
 {?>
 <tr>
 <td><input type="text" value="<?php echo $act['Activity']['time'];?>" name="activity_time[]" class="activity_time required" /></td>
 <td><input type="text" value="<?php echo $act['Activity']['date'];?>" name="activity_date[]" class="activity_date required" /></td>
-<td><textarea name="activity_desc[]"><?php echo $act['Activity']['desc'];?></textarea>  <input type="button" value="Remove" onclick="$(this).parent().parent().remove();" class="btn btn-danger"/></td>
+<td><textarea name="activity_desc[]"><?php echo $act['Activity']['desc'];?></textarea>  <button onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</button></td>
 </tr>
 <?php }?>
 <!--<tr>
@@ -282,15 +282,20 @@ if($attach)
 </form>
 <script>
 $(function(){
-    
+    var test=1;
      //Add More acitvity
     $('#activity_more').click(function(){
      var more = '<tr>'+
-        '<td><input type="text" value="" name="activity_time[]" class="activity_time" /></td>'+
-        '<td><input type="text" value="" name="activity_date[]" class="activity_date"  /></td>'+
-        '<td><textarea name="activity_desc[]"></textarea>   <input type="button" onclick="$(this).parent().parent().remove();" class="btn btn-danger" value="Remove"/></td>'+
+        '<td><input type="text" value="" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
+        '<td><input type="text" value="" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
+        '<td><textarea name="activity_desc[]"></textarea>   <button onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</button></td>'+
         '</tr>'
-               $('.activity_more').append(more); 
+               $('.activity_more').append(more);
+               $('.test'+test).each(function(){
+        $(this).click();
+        $(this).blur();
+       });
+       test++; 
     });
     
     $('.activity_date').live('click',function(){

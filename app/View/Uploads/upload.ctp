@@ -224,7 +224,7 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 <tr>
 <td><input type="text" value="" name="activity_time[]" class="activity_time required" /></td>
 <td><input type="text" value="" name="activity_date[]" class="activity_date required" /></td>
-<td><textarea name="activity_desc[]" class="required"></textarea>   <input type="button" id="activity_more" class="btn btn-primary" value="+Add More"/></td>
+<td><textarea name="activity_desc[]" class="required"></textarea>   <button id="activity_more" class="btn btn-primary">+Add More</button></td>
 </tr>
 <tr><td colspan="3"><div class="activity_more">
 </div>
@@ -254,13 +254,21 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 <script>
 $(function(){
     //Add More acitvity
+    var test=1;
     $('#activity_more').click(function(){
+        
        var more = '<tr>'+
-'<td><input type="text" value="" name="activity_time[]" class="activity_time" /></td>'+
-'<td><input type="text" value="" name="activity_date[]" class="activity_date"  /></td>'+
-'<td><textarea name="activity_desc[]"></textarea>   <input type="button" onclick="$(this).parent().parent().remove();" class="btn btn-danger" value="Remove"/></td>'+
+'<td><input type="text" value="" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
+'<td><input type="text" value="" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
+'<td><textarea name="activity_desc[]"></textarea>   <button onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</button></td>'+
 '</tr>'
        $('.activity_more').append(more); 
+       
+       $('.test'+test).each(function(){
+        $(this).click();
+        $(this).blur();
+       });
+       test++;
     });
     
     $('.activity_date').live('click',function(){
@@ -293,6 +301,10 @@ $(function(){
             $('.extra_memo').hide();
             $('#document_1').addClass('required');         
         }
+        $('.extra_memo input').each(function(){
+        $(this).click();
+        $(this).blur();
+       });
     });
 });
 
