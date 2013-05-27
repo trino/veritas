@@ -68,7 +68,7 @@ $(function(){
 </div>
 <script>
 $(function(){
-   $('.receive').change(function(){
+   /*$('.receive').change(function(){
        var check = 0;
        $('.receive').each(function(){
         if($(this).is(':checked'))
@@ -82,7 +82,7 @@ $(function(){
        }
        else
        $('.email').removeClass('required');
-    });
+    });*/
    if($('#canUpdate').is(':checked'))
         $('.canuploadfiles').show();
    

@@ -138,7 +138,7 @@
 $(function(){
    
    
-    $('.receive').change(function(){
+    /*$('.receive').change(function(){
        var check = 0;
        $('.receive').each(function(){
         if($(this).is(':checked'))
@@ -152,7 +152,7 @@ $(function(){
        }
        else
        $('.email').removeClass('required');
-    });
+    });*/
         
     $('#canUpdate').click(function(){
         if($('#canUpdate').is(':checked'))
