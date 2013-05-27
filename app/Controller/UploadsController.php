@@ -148,6 +148,7 @@ class UploadsController extends AppController
     function document_edit($eid)
     {
         $this->loadModel('Canupload');
+        $this->loadModel('Activity');
         if($this->Session->read('user'))
         {
            if($this->Session->read('upload')!='1')
@@ -258,8 +259,27 @@ class UploadsController extends AppController
                 
                //die(); 
             }
-            if($_POST['document_type']=='client_memo')
+            if($_POST['document_type']=='other')
+            {
                 $arr['client_memo'] = $_POST['client_memo'];
+                $this->Activity->deleteAll(array('document_id'=>$eid));
+                $activity['document_id'] = $eid;
+                foreach($_POST['activity_time'] as $k=>$v)
+                {
+                    if($v!="")
+                    {
+                        $activity['time'] = $v;
+                        $activity['date'] = $_POST['activity_date'][$k];
+                        $activity['desc'] = $_POST['activity_desc'][$k];
+                        $this->Activity->create();
+                        $this->Activity->save($activity);
+                    }
+                     
+                }
+                
+                
+                
+            }
             $arr['date'] = date('Y-m-d H:i:s');
             $arr['job_id'] = $_POST['job'];
             $arr['addedBy'] = $id;
@@ -344,8 +364,11 @@ class UploadsController extends AppController
             $this->Event_log->create();
             $this->Event_log->save($log);
         }
+        $doc = $this->Document->findById($eid);
+        if($doc['Document']['document_type'] == 'other')
+            $this->set('activity', $this->Activity->find('all',array('conditions'=>array('document_id'=>$eid))));
+        $this->set('doc', $doc);
         
-        $this->set('doc',$this->Document->findById($eid));
         
         
 
@@ -353,6 +376,7 @@ class UploadsController extends AppController
     function upload($ids)
     {
         $this->loadModel('Canupload');
+        $this->loadModel('Activity');
         if($this->Session->read('user'))
         {
            if($this->Session->read('upload')!='1')
@@ -437,9 +461,10 @@ class UploadsController extends AppController
                 
                //die(); 
             }
-            elseif($_POST['document_type']== 'client_memo')
+            elseif($_POST['document_type']== 'other')
             {
                 $arr['client_memo']= $_POST['client_memo'];
+                
             }
             $arr['date'] = date('Y-m-d H:i:s');
             $arr['job_id'] = $_POST['job'];
@@ -447,6 +472,22 @@ class UploadsController extends AppController
             $this->Document->create();
             $this->Document->save($arr);
             $id=$this->Document->id;
+            if($_POST['document_type']== 'other')
+            {
+                $activity['document_id'] = $id;
+                foreach($_POST['activity_time'] as $k=>$v)
+                {
+                    if($v != "")
+                    {
+                        $activity['time'] = $v;
+                        $activity['date'] = $_POST['activity_date'][$k];
+                        $activity['desc'] = $_POST['activity_desc'][$k];
+                        $this->Activity->create();
+                        $this->Activity->save($activity);
+                    }
+                     
+                }
+            }
             $doc = $_POST['document'];
             
             $ext_doc = array('doc','docx','txt','pdf','xls','xlsx','ppt','pptx','cmd');

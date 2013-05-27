@@ -173,8 +173,8 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
     <?php if((isset($canupdate['Canupload']['templates'])&& $canupdate['Canupload']['templates']=='1') || $this->Session->read('admin')){?>
     <option value="template">Templates</option>
     <?php }?>
-     <?php if((isset($canupdate['Canupload']['client_memo'])&& $canupdate['Canupload']['client_memo']=='1') || $this->Session->read('admin')){?>
-    <option value="client_memo">Client Memo</option>
+     <?php if((isset($canupdate['Canupload']['other'])&& $canupdate['Canupload']['other']=='1') || $this->Session->read('admin')){?>
+    <option value="other">Other</option>
     <?php }?>
     <!--<option value="training_manuals">Training Manuals</option>-->
 </select>
@@ -206,12 +206,29 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 <tr class="extra_memo" style="display: none;">
 <td colspan="2">
 <table>
-<tr><td><b>Client Memo</b></td>
-<td>
-<textarea name="client_memo" class="required"></textarea>
-</td>
-</tr>
 
+<thead><th><b>Client Memo</b></th>
+<th>
+<textarea name="client_memo" class="required"></textarea>
+</th>
+</thead>
+</table>
+<table>
+<thead>
+<th colspan="3"><strong>Acitivity</strong></th></thead>
+<thead>
+<th>Time</th>
+<th>Date</th>
+<th>Description</th>
+</thead>
+<tr>
+<td><input type="text" value="" name="activity_time[]" class="activity_time required" /></td>
+<td><input type="text" value="" name="activity_date[]" class="activity_date required" /></td>
+<td><textarea name="activity_desc[]" class="required"></textarea>   <input type="button" id="activity_more" class="btn btn-primary" value="+Add More"/></td>
+</tr>
+<tr><td colspan="3"><div class="activity_more">
+</div>
+</td></tr>
 </table>
 </td></tr>
 <tr><td><b>Images/Videos/Docs</b></td><td><div class="right"><input type="file" name="document_1" class="required" id='document_1' /><a href="javascript:void(0)" onclick="add_document()" class="btn btn-primary">Add</a></div><div id="doc"></div></td></tr>
@@ -236,8 +253,27 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 </form>
 <script>
 $(function(){
+    //Add More acitvity
+    $('#activity_more').click(function(){
+       var more = '<tr>'+
+'<td><input type="text" value="" name="activity_time[]" class="activity_time" /></td>'+
+'<td><input type="text" value="" name="activity_date[]" class="activity_date"  /></td>'+
+'<td><textarea name="activity_desc[]"></textarea>   <input type="button" onclick="$(this).parent().parent().remove();" class="btn btn-danger" value="Remove"/></td>'+
+'</tr>'
+       $('.activity_more').append(more); 
+    });
     
+    $('.activity_date').live('click',function(){
+        $(this).datepicker({dateFormat: 'yy-mm-dd'});
+    });
+    $('.activity_time').live('click',function(){
+        $(this).timepicker();
+    });
+    //$('.activity_date').datepicker({dateFormat: 'yy-mm-dd'} );
     $('.incident_date').datepicker({dateFormat: 'yy-mm-dd'} );
+    
+    
+    
     $('#document_type').change(function()
     {
         var doctype = $(this).val();
@@ -247,7 +283,7 @@ $(function(){
             $('.extra_evidence').show();
         else
             $('.extra_evidence').hide();
-       if(doctype == 'client_memo')
+       if(doctype == 'other')
        {
            $('.extra_memo').show();
            $('#document_1').removeClass('required');
@@ -259,6 +295,7 @@ $(function(){
         }
     });
 });
+
 function limitText(limitField, limitCount, limitNum) {
 if (limitField.value.length > limitNum) {
 limitField.value = limitField.value.substring(0, limitNum);
