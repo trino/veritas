@@ -176,7 +176,7 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
     <?php if((isset($canupdate['Canupload']['report'])&& $canupdate['Canupload']['report']=='1') || $this->Session->read('admin')){?>
     <option value="report" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='report') echo "selected='selected'"?>>Report</option>
     <?php }?>
-    <?php if((isset($canupdate['Canupload']['client_memo'])&& $canupdate['Canupload']['client_memo']=='1') || $this->Session->read('admin')){?>
+    <?php if((isset($canupdate['Canupload']['client_memo'])&& $canupdate['Canupload']['client_memo']=='1') ){?>
     <option value="client_memo" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='client_memo') echo "selected='selected'"?>>Client Memo</option>
     <?php }?>
     <!--<option value="training_manuals">Training Manuals</option>-->

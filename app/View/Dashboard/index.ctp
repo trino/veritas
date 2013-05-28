@@ -108,7 +108,7 @@
 
 
 <?php //if($this->Session->read('avatar')){
-    if($activity && $jm!="")
+    if($activity && (isset($jm) && $jm !=""))
 {?>
 
 <div id="table">

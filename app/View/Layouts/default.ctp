@@ -543,7 +543,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 						</a>
 					</div>			-->
 					<div class="v1ButtonBarB">
-						<a href="" class="fullLink">
+                        <a href="<?php echo $base_url;?>feedback" class="fullLink">
 							<div  class="glassButton">
 							<div  class="full8ButtonB">
 
