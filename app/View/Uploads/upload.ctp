@@ -176,6 +176,9 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
      <?php if((isset($canupdate['Canupload']['report'])&& $canupdate['Canupload']['report']=='1') || $this->Session->read('admin')){?>
     <option value="report">Report</option>
     <?php }?>
+    <?php if((isset($canupdate['Canupload']['client_memo'])&& $canupdate['Canupload']['client_memo']=='1') || $this->Session->read('admin')){?>
+    <option value="client_memo">Client Memo</option>
+    <?php }?>
     <!--<option value="training_manuals">Training Manuals</option>-->
 </select>
 </div></td>
@@ -218,9 +221,9 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 <thead>
 <!--<th colspan="3"><strong>Activity Log</strong></th></thead>-->
 <thead><th>Report Type</th>
-<th>
+<th colspan="2">
 <select name="report_type" class="required">
-    <option value="">Select report type</option>
+    <option value="">Select Report Type</option>
     <option value="1">Activity Log</option>
     <option value="2">Mobile Inspection</option>
     <option value="3">Mobile Security</option>
@@ -236,7 +239,8 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 <tr>
 <td><input type="text" value="" name="activity_time[]" class="activity_time required" /></td>
 <td><input type="text" value="" name="activity_date[]" class="activity_date required" /></td>
-<td><textarea name="activity_desc[]" class="required"></textarea>   <a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></td>
+<td><textarea name="activity_desc[]" class="required"></textarea>   
+<a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></td>
 </tr>
 <tr><td colspan="3" style="padding: 0;"><table class="activity_more">
 </table>

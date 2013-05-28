@@ -645,7 +645,7 @@ class UploadsController extends AppController
 		if ($type =="contract"){$type2="Contracts";}
 		else if ($type =="evidence"){$type2="Evidence";}
 		else if ($type =="template"){$type2="Templates";}
-		else if ($type =="client_memo"){$type2="Client Memo";}
+		else if ($type =="report"){$type2="Report";}
 		else {$type2="";}
 		$this->set('title2',$type2);
         $this->set('link',$type);
@@ -739,7 +739,7 @@ class UploadsController extends AppController
         if($this->Document->find('first',array('conditions'=>array('id'=>$id))))
         {
             $doc = $this->Document->find('first',array('conditions'=>array('id'=>$id)));
-            if($doc['Document']['document_type']== 'other')
+            if($doc['Document']['document_type']== 'report')
                 $this->set('activity',$this->Activity->find('all',array('conditions'=>array('document_id'=>$id))));
             $this->set('doc', $doc);
             $this->set('do',$this->Doc->find('all',array('conditions'=>array('document_id'=>$id))));

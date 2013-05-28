@@ -174,7 +174,10 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
     <option value="template" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='template') echo "selected='selected'"?>>Templates</option>
     <?php }?>
     <?php if((isset($canupdate['Canupload']['report'])&& $canupdate['Canupload']['report']=='1') || $this->Session->read('admin')){?>
-    <option value="report" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='report') echo "selected='selected'"?>>Other</option>
+    <option value="report" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='report') echo "selected='selected'"?>>Report</option>
+    <?php }?>
+    <?php if((isset($canupdate['Canupload']['client_memo'])&& $canupdate['Canupload']['client_memo']=='1') || $this->Session->read('admin')){?>
+    <option value="client_memo" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='client_memo') echo "selected='selected'"?>>Client Memo</option>
     <?php }?>
     <!--<option value="training_manuals">Training Manuals</option>-->
 </select>
@@ -248,8 +251,8 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 <td><input type="text" value="" name="activity_date[]" class="activity_date" /></td>
 <td><textarea name="activity_desc[]"></textarea>  </td>
 </tr>-->
-<tr><td colspan="3"><div class="activity_more">
-</div>
+<tr><td colspan="3" style="padding: 0;"><table class="activity_more">
+</table>
 </td></tr>
 </table>
 
@@ -297,9 +300,9 @@ $(function(){
      //Add More acitvity
     $('#activity_more').click(function(){
      var more = '<tr>'+
-        '<td><input type="text" value="" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
-        '<td><input type="text" value="" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
-        '<td><textarea name="activity_desc[]"></textarea>   <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>'+
+        '<td style="padding:5px 0;"><input type="text" value="" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
+        '<td style="padding:5px 0;"><input type="text" value="" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
+        '<td style="padding:5px 0;"><textarea name="activity_desc[]"></textarea>   <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>'+
         '</tr>'
                $('.activity_more').append(more);
                $('.test'+test).each(function(){
@@ -329,13 +332,22 @@ $(function(){
         if(doctype == 'report')
            $('.extra_memo').show();
         else
-            $('.extra_memo').hide();      
+            $('.extra_memo').hide();
+        $('.extra_memo input').each(function(){
+        $(this).click();
+        $(this).blur();
+       });      
     });
     
     if($('#document_type').val() == 'evidence')
          $('.extra_evidence').show();
     if($('#document_type').val() == 'report')
            $('.extra_memo').show();
+           
+           $('.extra_memo input').each(function(){
+        $(this).click();
+        $(this).blur();
+        });
        
 });
 function limitText(limitField, limitCount, limitNum)
