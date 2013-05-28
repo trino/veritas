@@ -76,8 +76,10 @@ $(function(){
             { ?>
                 <tr><td><b>Address</b></td><td><input type="text" name="address" value="<?php echo $user['Member']['address']; ?>" class="required" /></td></tr>
                <tr><td><b>Phone </b></td><td><input type="text" name="phone" value="<?php echo $user['Member']['phone']; ?>" class="required" /></td></tr>
-            <?php }
-        ?> 
+            
+        <tr><td><b>Receive email when someone sends me message</b></td><td><input class="receive" type="checkbox" name="receive1" <?php if($user['Member']['receive1']==1){?>checked="checked"<?php }?> /></td></tr>
+        <tr><td><b>Receive email when document is uploaded</b></td><td><input class="receive" type="checkbox" name="receive2" <?php if($user['Member']['receive2']==1){?>checked="checked"<?php }?> /></td></tr>
+<?php }?>
         <tr><td><input type="submit" name="submit" value="Save Changes" class="btn btn-primary" onclick="if($('#old_password').val() != '' && $('#passw').val() == ''){$('#passw').addClass('error');return false;}else return true;" /></td></tr>
     </table>
     </form>

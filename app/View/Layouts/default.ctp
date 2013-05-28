@@ -303,7 +303,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 					</div>
 					<div class="links">
 					<?php  echo $this->Html->link('<i class="icon-user"></i>'.' '.$this->Session->read('user'),'/dashboard/settings',array('escape' => false,)); ?><br/>
-					<?php  echo $this->Html->link('<i class="icon-warning-sign"></i> '.'User Support','/dashboard/contact',array('escape' => false,)); ?>
+					<?php  echo $this->Html->link('<i class="icon-warning-sign"></i> '.'User Support','/dashboard/contactus',array('escape' => false,)); ?>
 					</div>
 					<!--div class="companyLogo">
 					<?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => '', 'class'=>'image'))?>
