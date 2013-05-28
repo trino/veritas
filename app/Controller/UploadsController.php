@@ -260,11 +260,12 @@ class UploadsController extends AppController
                 
                //die(); 
             }
-            if($_POST['document_type']=='other')
+            if($_POST['document_type']=='report')
             {
                 //$arr['client_memo'] = $_POST['client_memo'];
                 $this->Activity->deleteAll(array('document_id'=>$eid));
                 $activity['document_id'] = $eid;
+                $activity['report_type'] = $_POST['report_type'];
                 foreach($_POST['activity_time'] as $k=>$v)
                 {
                     if($v!="")
@@ -366,8 +367,11 @@ class UploadsController extends AppController
             $this->Event_log->save($log);
         }
         $doc = $this->Document->findById($eid);
-        if($doc['Document']['document_type'] == 'other')
+        if($doc['Document']['document_type'] == 'report')
+        {
+            $this->set('ac', $this->Activity->find('first',array('conditions'=>array('document_id'=>$eid))));
             $this->set('activity', $this->Activity->find('all',array('conditions'=>array('document_id'=>$eid))));
+        }
         $this->set('doc', $doc);
         
         
@@ -475,9 +479,10 @@ class UploadsController extends AppController
             $this->Document->create();
             $this->Document->save($arr);
             $id=$this->Document->id;
-            if($_POST['document_type']== 'other')
+            if($_POST['document_type']== 'report')
             {
                 $activity['document_id'] = $id;
+                $activity['report_type'] = $_POST['report_type'];
                 foreach($_POST['activity_time'] as $k=>$v)
                 {
                     if($v != "")

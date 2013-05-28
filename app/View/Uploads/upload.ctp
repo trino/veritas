@@ -173,8 +173,8 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
     <?php if((isset($canupdate['Canupload']['templates'])&& $canupdate['Canupload']['templates']=='1') || $this->Session->read('admin')){?>
     <option value="template">Templates</option>
     <?php }?>
-     <?php if((isset($canupdate['Canupload']['other'])&& $canupdate['Canupload']['other']=='1') || $this->Session->read('admin')){?>
-    <option value="other">Other</option>
+     <?php if((isset($canupdate['Canupload']['report'])&& $canupdate['Canupload']['report']=='1') || $this->Session->read('admin')){?>
+    <option value="report">Report</option>
     <?php }?>
     <!--<option value="training_manuals">Training Manuals</option>-->
 </select>
@@ -216,7 +216,18 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 </table>-->
 <table>
 <thead>
-<th colspan="3"><strong>Activity</strong></th></thead>
+<!--<th colspan="3"><strong>Activity Log</strong></th></thead>-->
+<thead><th>Report Type</th>
+<th>
+<select name="report_type" class="required">
+    <option value="">Select report type</option>
+    <option value="1">Activity Log</option>
+    <option value="2">Mobile Inspection</option>
+    <option value="3">Mobile Security</option>
+    <option value="4">Security Occurance</option>
+</select>
+</th>
+</thead>
 <thead>
 <th>Time</th>
 <th>Date</th>
@@ -225,7 +236,7 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 <tr>
 <td><input type="text" value="" name="activity_time[]" class="activity_time required" /></td>
 <td><input type="text" value="" name="activity_date[]" class="activity_date required" /></td>
-<td><textarea name="activity_desc[]" class="required"></textarea>   <button id="activity_more" class="btn btn-primary">+Add More</button></td>
+<td><textarea name="activity_desc[]" class="required"></textarea>   <a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></td>
 </tr>
 <tr><td colspan="3" style="padding: 0;"><table class="activity_more">
 </table>
@@ -261,7 +272,7 @@ $(function(){
        var more = '<tr>'+
 '<td style="padding:5px 0;"><input type="text" value="" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
 '<td style="padding:5px 0;"><input type="text" value="" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
-'<td style="padding:5px 0;"><textarea name="activity_desc[]"></textarea>   <button onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</button></td>'+
+'<td style="padding:5px 0;"><textarea name="activity_desc[]"></textarea>   <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>'+
 '</tr>'
        $('.activity_more').append(more); 
        
@@ -292,7 +303,7 @@ $(function(){
             $('.extra_evidence').show();
         else
             $('.extra_evidence').hide();
-       if(doctype == 'other')
+       if(doctype == 'report')
        {
            $('.extra_memo').show();
            $('#document_1').removeClass('required');
