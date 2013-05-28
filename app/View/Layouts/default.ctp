@@ -254,8 +254,8 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 					</div>
 				</form>
                 <div style="float: right;padding:10px 0 0 10px;">
-                <select onchange="window.location = '<?php echo $base_url?>jobs/view/'+$(this).val();">
-                <option>Go To</option>
+                <select onchange="if($(this).val()){window.location = '<?php echo $base_url?>jobs/view/'+$(this).val();}">
+                <option>Go To Job</option>
                 <?php
                 if($jobs)
                 {
