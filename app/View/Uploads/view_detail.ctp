@@ -39,14 +39,20 @@
         <td><?php echo $type = ucwords(str_replace('_',' ',$doc['Document']['document_type'])); ?></td>
     </tr>
     
-    <?php if($type == 'Other')
+    <?php if($type == 'Report')
     { ?>
      <!--<tr>
         <td><b>Client Memo</b></td>
         <td><?php echo $doc['Document']['client_memo'];?></a></td>
     </tr>-->
-    <?php if($activity){?>
-        <tr><td colspan="2"><strong>Activity</strong></td></tr>
+    
+    <?php if($activity){
+        $r_types = array('','Activity Log','Mobile Inspection','Mobile Security','Security Occurance');
+        ?>
+        <tr>
+        <td><strong>Report Type</strong></td>
+        <td><?php echo $r_types[$activity[0]['Activity']['report_type']];?></td>
+        </tr>
         <tr><td colspan="2">
         <table>
         <thead><th>Time</th><th>Date</th><th>Description</th></thead>

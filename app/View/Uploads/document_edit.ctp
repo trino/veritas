@@ -173,8 +173,11 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
     <?php if((isset($canupdate['Canupload']['templates'])&& $canupdate['Canupload']['templates']=='1') || $this->Session->read('admin')){?>
     <option value="template" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='template') echo "selected='selected'"?>>Templates</option>
     <?php }?>
+    <?php if((isset($canupdate['Canupload']['report'])&& $canupdate['Canupload']['report']=='1') || $this->Session->read('admin')){?>
+    <option value="report" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='report') echo "selected='selected'"?>>Report</option>
+    <?php }?>
     <?php if((isset($canupdate['Canupload']['client_memo'])&& $canupdate['Canupload']['client_memo']=='1') || $this->Session->read('admin')){?>
-    <option value="other" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='other') echo "selected='selected'"?>>Other</option>
+    <option value="client_memo" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='client_memo') echo "selected='selected'"?>>Client Memo</option>
     <?php }?>
     <!--<option value="training_manuals">Training Manuals</option>-->
 </select>
@@ -217,19 +220,30 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 
 </table>-->
 <table>
-<thead>
+<!--<thead>
 <th colspan="3"><strong>Activity</strong></th></thead>
-<thead>
+<thead>-->
+<thead><th>Report Type</th>
+<th>
+<select name="report_type" class="required">
+    <option value="">Select report type</option>
+    <option value="1" <?php  if($ac['Activity']['report_type'] == '1') echo "selected='selected'"; ?> >Activity Log</option>
+    <option value="2" <?php  if($ac['Activity']['report_type'] == '2') echo "selected='selected'"; ?>>Mobile Inspection</option>
+    <option value="3" <?php  if($ac['Activity']['report_type'] == '3') echo "selected='selected'"; ?>>Mobile Security</option>
+    <option value="4" <?php  if($ac['Activity']['report_type'] == '4') echo "selected='selected'"; ?>>Security Occurance</option>
+</select>
+</th>
+</thead>
 <th>Time</th>
 <th>Date</th>
-<th>Description &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="activity_more" class="btn btn-primary">+Add More</button></th>
+<th>Description &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></th>
 </thead>
 <?php foreach($activity as $act)
 {?>
 <tr>
 <td><input type="text" value="<?php echo $act['Activity']['time'];?>" name="activity_time[]" class="activity_time required" /></td>
 <td><input type="text" value="<?php echo $act['Activity']['date'];?>" name="activity_date[]" class="activity_date required" /></td>
-<td><textarea name="activity_desc[]"><?php echo $act['Activity']['desc'];?></textarea>  <button onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</button></td>
+<td><textarea name="activity_desc[]"><?php echo $act['Activity']['desc'];?></textarea>  <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>
 </tr>
 <?php }?>
 <!--<tr>
@@ -237,8 +251,8 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 <td><input type="text" value="" name="activity_date[]" class="activity_date" /></td>
 <td><textarea name="activity_desc[]"></textarea>  </td>
 </tr>-->
-<tr><td colspan="3"><div class="activity_more">
-</div>
+<tr><td colspan="3" style="padding: 0;"><table class="activity_more">
+</table>
 </td></tr>
 </table>
 
@@ -286,9 +300,9 @@ $(function(){
      //Add More acitvity
     $('#activity_more').click(function(){
      var more = '<tr>'+
-        '<td><input type="text" value="" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
-        '<td><input type="text" value="" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
-        '<td><textarea name="activity_desc[]"></textarea>   <button onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</button></td>'+
+        '<td style="padding:5px 0;"><input type="text" value="" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
+        '<td style="padding:5px 0;"><input type="text" value="" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
+        '<td style="padding:5px 0;"><textarea name="activity_desc[]"></textarea>   <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>'+
         '</tr>'
                $('.activity_more').append(more);
                $('.test'+test).each(function(){
@@ -315,16 +329,25 @@ $(function(){
             $('.extra_evidence').show();
         else
             $('.extra_evidence').hide();
-        if(doctype == 'other')
+        if(doctype == 'report')
            $('.extra_memo').show();
         else
-            $('.extra_memo').hide();      
+            $('.extra_memo').hide();
+        $('.extra_memo input').each(function(){
+        $(this).click();
+        $(this).blur();
+       });      
     });
     
     if($('#document_type').val() == 'evidence')
          $('.extra_evidence').show();
-    if($('#document_type').val() == 'other')
+    if($('#document_type').val() == 'report')
            $('.extra_memo').show();
+           
+           $('.extra_memo input').each(function(){
+        $(this).click();
+        $(this).blur();
+        });
        
 });
 function limitText(limitField, limitCount, limitNum)

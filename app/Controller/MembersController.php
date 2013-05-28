@@ -191,7 +191,7 @@ class MembersController extends AppController
                 $canview['contracts'] = (isset($_POST['canView_contracts']))? '1' : '0'  ;
                 $canview['evidence'] = (isset($_POST['canView_evidence']))? '1' : '0'  ;
                 $canview['templates'] = (isset($_POST['canView_templates']))? '1' : '0'  ;
-                $canview['other'] = (isset($_POST['canView_client_memo']))? '1' : '0'  ;
+                $canview['report'] = (isset($_POST['canView_client_memo']))? '1' : '0'  ;
                 $this->Canview->create();
                 $this->Canview->save($canview);
             }
@@ -202,7 +202,7 @@ class MembersController extends AppController
                 $canview['contracts'] =  '0';
                 $canview['evidence'] =  '0';
                 $canview['templates'] = '0';
-                $canview['other'] = '0';
+                $canview['report'] = '0';
                 $this->Canview->create();
                 $this->Canview->save($canview);
                 
@@ -214,7 +214,8 @@ class MembersController extends AppController
                 $canupdate['contracts'] = (isset($_POST['canUpload_contracts']))? '1' : '0'  ;
                 $canupdate['evidence'] = (isset($_POST['canUpload_evidence']))? '1' : '0'  ;
                 $canupdate['templates'] = (isset($_POST['canUpload_templates']))? '1' : '0'  ;
-                $canupdate['other'] = (isset($_POST['canUpload_client_memo']))? '1' : '0'  ;
+                $canupdate['report'] = (isset($_POST['canUpload_client_memo']))? '1' : '0'  ;
+                $canupdate['client_memo'] = (isset($_POST['canUpload_client_memo1']))? '1' : '0'  ;
                 
                 $this->Canupload->create();
                 $this->Canupload->save($canupdate);  
@@ -227,7 +228,8 @@ class MembersController extends AppController
                 $canupdate['contracts'] = '0'  ;
                 $canupdate['evidence'] = '0'  ;
                 $canupdate['templates'] = '0' ;
-                $canupdate['other'] = '0' ;
+                $canupdate['report'] = '0' ;
+                $canupdate['client_memo'] = '0' ;
                 $this->Canupload->create();
                 $this->Canupload->save($canupdate);
             }
@@ -381,7 +383,7 @@ class MembersController extends AppController
                 $canview['contracts'] = (isset($_POST['canView_contracts']))? '1' : '0'  ;
                 $canview['evidence'] = (isset($_POST['canView_evidence']))? '1' : '0'  ;
                 $canview['templates'] = (isset($_POST['canView_templates']))? '1' : '0'  ;
-                $canview['other'] = (isset($_POST['canView_client_memo']))? '1' : '0'  ;
+                $canview['report'] = (isset($_POST['canView_client_memo']))? '1' : '0'  ;
                 $this->Canview->create();
                 $this->Canview->save($canview);
             }
@@ -393,7 +395,7 @@ class MembersController extends AppController
                 $canview['contracts'] = '0'  ;
                 $canview['evidence'] = '0'  ;
                 $canview['templates'] = '0'  ;
-                $canview['other'] = '0'  ;
+                $canview['report'] = '0'  ;
                 $this->Canview->create();
                 $this->Canview->save($canview);
             }
@@ -405,8 +407,8 @@ class MembersController extends AppController
                 $canupdate['contracts'] = (isset($_POST['canUpload_contracts']))? '1' : '0'  ;
                 $canupdate['evidence'] = (isset($_POST['canUpload_evidence']))? '1' : '0'  ;
                 $canupdate['templates'] = (isset($_POST['canUpload_templates']))? '1' : '0'  ;
-                $canupdate['other'] = (isset($_POST['canUpload_client_memo']))? '1' : '0'  ;
-                
+                $canupdate['report'] = (isset($_POST['canUpload_client_memo']))? '1' : '0'  ;
+                $canupdate['client_memo'] = (isset($_POST['canUpload_client_memo1']))? '1' : '0'  ;
                 $this->Canupload->create();
                 $this->Canupload->save($canupdate);
                 //die();
@@ -419,7 +421,8 @@ class MembersController extends AppController
                 $canupdate['contracts'] = '0'  ;
                 $canupdate['evidence'] = '0'  ;
                 $canupdate['templates'] = '0'  ;
-                $canupdate['other'] = '0'  ;
+                $canupdate['report'] = '0'  ;
+                $canupdate['client_memo'] = '0'  ;
             }
             if(isset($_POST['canEmail']))
             {

@@ -101,7 +101,7 @@
 <td><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span><input type="checkbox" name="canView_contracts"  />
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="canView_evidence"  />
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="canView_templates"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Other </span><input type="checkbox" name="canView_client_memo"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report </span><input type="checkbox" name="canView_client_memo"  />
 </td>
 </tr>
 </table>
@@ -116,7 +116,8 @@
 <td><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span><input type="checkbox" name="canUpload_contracts"/>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="canUpload_evidence"  />
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="canUpload_templates"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Other </span><input type="checkbox" name="canUpload_client_memo"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report </span><input type="checkbox" name="canUpload_client_memo"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Memo </span><input type="checkbox" name="canUpload_client_memo1"  />
 </td>
 </tr>
 </table>
