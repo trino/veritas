@@ -445,7 +445,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 				
 				
 				
-				<!--<div class="buttonBarContainer">
+				<div class="buttonBarContainer">
 				<div class="buttonBar">
 					<div class="v1ButtonBarB">
 						<a href="<?=$base_url;?>dashboard" class="fullLink">
@@ -463,7 +463,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 						</a>
 					</div>
 					<div class="v1ButtonBarB">
-						<a href="" class="fullLink">
+						<a href="<?php echo $base_url;?>search?search=" class="fullLink">
 							<div  class="glassButton">
 							<div  class="full8ButtonB">
 
@@ -471,7 +471,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 									<i class="icon-copy"></i>
 								</div>
 								<div class="caption active33">
-									Button
+									Documents
 								</div>
 								<div class="dusk"></div> 
 							</div>
@@ -479,7 +479,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 						</a>
 					</div>				
 					<div class="v1ButtonBarB">
-						<a href="" class="fullLink">
+						<a href="<?php echo $base_url;?>keycontacts" class="fullLink">
 							<div  class="glassButton">
 							<div  class="full8ButtonB">
 
@@ -487,14 +487,14 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 									<i class="icon-group"></i>
 								</div>
 								<div class="caption">
-									Button
+									Key Contacts
 								</div>
 								<div class="dusk"></div> 
 							</div>
 							</div>
 						</a>
 					</div>				
-					<div class="v1ButtonBarB">
+		<!--			<div class="v1ButtonBarB">
 						<a href="" class="fullLink">
 							<div  class="glassButton">
 							<div  class="full8ButtonB">
@@ -503,7 +503,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 									<i class="icon-time"></i>
 								</div>
 								<div class="caption">
-									Button
+									Key Contacts
 								</div>
 								<div class="dusk"></div> 
 							</div>
@@ -541,7 +541,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 							</div>
 							</div>
 						</a>
-					</div>			
+					</div>			-->
 					<div class="v1ButtonBarB">
 						<a href="" class="fullLink">
 							<div  class="glassButton">
@@ -551,7 +551,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 									<i class="icon-star-empty"></i>
 								</div>
 								<div class="caption">
-									Button
+									Feedback
 								</div>
 								<div class="dusk"></div> 
 							</div>
