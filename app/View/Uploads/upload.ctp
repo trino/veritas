@@ -248,7 +248,7 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 </td></tr>
 <!--<tr><td><b>Description</b></td><td><div class="right"><textarea cols="35" name="description" class="required"></textarea></div></td></tr>-->
 
-<tr><td><b>Images/Videos/Docs</b></td><td><div class="right"><input type="file" name="document_1" class="required" id='document_1' /><a href="javascript:void(0)" onclick="add_document()" class="btn btn-primary">Add</a></div><div id="doc"></div></td></tr>
+<tr><td><b>Images/Videos/Docs</b></td><td><div class="right"><input type="file" name="document_1" class="" id='document_1' /><a href="javascript:void(0)" onclick="add_document()" class="btn btn-primary">Add</a></div><div id="doc"></div></td></tr>
 <!--
 <tr><td><b>Images</b></td><td><div class="right"><input type="file" name="image_1" /><a href="javascript:void(0);" onclick="add_image()" class="btn btn-primary">Add</a><span id="remove_img" style="display: none;"> &nbsp; <a href="javascript:void(0);" onclick="remove_image();" class="btn btn-danger">Remove</a></span></div><div id="img"></div></td></tr>
 
