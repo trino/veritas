@@ -378,6 +378,14 @@ class DashboardController extends AppController
                 $this->Member->id = $this->Session->read('id');
                 $this->Member->saveField('full_name',$_POST['name']);
                 $this->Member->saveField('email',$_POST['email']);
+                if(isset($_POST['receive1']))
+                $this->Member->saveField('receive1',1);
+                else
+                $this->Member->saveField('receive1',0);
+                if(isset($_POST['receive2']))
+                $this->Member->saveField('receive2',1);
+                else
+                $this->Member->saveField('receive2',0);
                 if($_POST['password']!='')
                 $this->Member->saveField('password',$_POST['password']);
                 $this->Member->saveField('address', $_POST['address']);
