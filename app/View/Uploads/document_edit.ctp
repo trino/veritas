@@ -151,16 +151,8 @@ function remove_youtube()
 <table>
 
 <tr style="display: none;"><td style="width:140px;"><b>Location</b></td><td><div class="right"><input type="text" name="location" class="" /></div></td></tr>
-<tr><td><b>Title</b></td><td><div class="right"><input type="text" name="title" class="required" value="<?php if(isset($doc['Document']['title'])) echo $doc['Document']['title'];?>" /></div></td></tr>
-<tr><td><strong>Description</strong></td>
-<td><textarea name="description" class="required" class="text_area_long" cols="10" rows="5" id="repl" onKeyDown="limitText(this.form.description,this.form.countdown,70);"
-onKeyUp="limitText(this.form.description,this.form.countdown,70);"><?php if(isset($doc['Document']['description'])) echo $doc['Document']['description'];?></textarea>
-<br />
-<font size="1">(Maximum characters: 70)<br />
-You have <input readonly type="text" name="countdown" id="countssss" style="background:none; border:0; padding:0; margin:0; text-align:center; border-radius:none; width:30px; box-shadow:none;" value="70" /> characters left.</font><br />
-</td></tr>
-<!--<tr><td><b>Description</b></td><td><div class="right"><textarea cols="35" name="description" class="required"></textarea></div></td></tr>-->
-<tr><td><b>Documnet Type</b></td>
+<!--<tr><td><b>Title</b></td><td><div class="right"><input type="text" name="title" class="required" value="<?php if(isset($doc['Document']['title'])) echo $doc['Document']['title'];?>" /></div></td></tr>-->
+<tr><td><b>Document Type</b></td>
 <td><div class="right">
 <select name="document_type" class="required" id="document_type">
     <option value="">Choose documnet type</option>
@@ -227,10 +219,10 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 <th>
 <select name="report_type" class="required">
     <option value="">Select report type</option>
-    <option value="1" <?php  if($ac['Activity']['report_type'] == '1') echo "selected='selected'"; ?> >Activity Log</option>
-    <option value="2" <?php  if($ac['Activity']['report_type'] == '2') echo "selected='selected'"; ?>>Mobile Inspection</option>
-    <option value="3" <?php  if($ac['Activity']['report_type'] == '3') echo "selected='selected'"; ?>>Mobile Security</option>
-    <option value="4" <?php  if($ac['Activity']['report_type'] == '4') echo "selected='selected'"; ?>>Security Occurance</option>
+    <option value="1" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '1') echo "selected='selected'"; ?> >Activity Log</option>
+    <option value="2" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '2') echo "selected='selected'"; ?>>Mobile Inspection</option>
+    <option value="3" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '3') echo "selected='selected'"; ?>>Mobile Security</option>
+    <option value="4" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '4') echo "selected='selected'"; ?>>Security Occurance</option>
 </select>
 </th>
 </thead>
@@ -238,7 +230,10 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 <th>Date</th>
 <th>Description &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></th>
 </thead>
-<?php foreach($activity as $act)
+
+<?php
+if(isset($activity)&&$activity) 
+foreach($activity as $act)
 {?>
 <tr>
 <td><input type="text" value="<?php echo $act['Activity']['time'];?>" name="activity_time[]" class="activity_time required" /></td>
@@ -257,6 +252,15 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 </table>
 
 </td></tr>
+<tr><td><strong>Description</strong></td>
+<td><textarea name="description" class="required" class="text_area_long" cols="10" rows="5" id="repl" onKeyDown="limitText(this.form.description,this.form.countdown,70);"
+onKeyUp="limitText(this.form.description,this.form.countdown,70);"><?php if(isset($doc['Document']['description'])) echo $doc['Document']['description'];?></textarea>
+<br />
+<font size="1">(Maximum characters: 70)<br />
+You have <input readonly type="text" name="countdown" id="countssss" style="background:none; border:0; padding:0; margin:0; text-align:center; border-radius:none; width:30px; box-shadow:none;" value="70" /> characters left.</font><br />
+</td></tr>
+<!--<tr><td><b>Description</b></td><td><div class="right"><textarea cols="35" name="description" class="required"></textarea></div></td></tr>-->
+
 <tr><td><b>Images/Videos/Docs</b></td><td><div class="right">
 <input type="file" name="document_1" />
 <a href="javascript:void(0)" onclick="add_document()" class="btn btn-primary">Add</a></div><div id="doc"></div>

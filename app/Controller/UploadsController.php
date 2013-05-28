@@ -210,7 +210,7 @@ class UploadsController extends AppController
             else
                 $id=0;
             //$arr['location'] = $_POST['location'];
-            $arr['title'] = $_POST['title'];
+            $arr['title'] = ucfirst($_POST['document_type']);
             $arr['description'] = $_POST['description'];
             $arr['document_type'] = $_POST['document_type'];
             if($_POST['document_type']== 'evidence')
@@ -418,7 +418,7 @@ class UploadsController extends AppController
             else
                 $id=0;
             $arr['location'] = $_POST['location'];
-            $arr['title'] = $_POST['title'];
+            $arr['title'] = ucfirst($_POST['document_type']);
             $arr['description'] = $_POST['description'];
             $arr['document_type'] = $_POST['document_type'];
             if($_POST['document_type']== 'evidence')

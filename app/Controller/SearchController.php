@@ -9,6 +9,7 @@ class SearchController extends AppController
         $this->loadModel('Document');
         $this->loadModel('Member');
         $this->loadModel('Job');
+        $this->loadModel('Activity');
 
         if(!$this->Session->read('id'))
         $this->redirect('/dashboard');
@@ -61,6 +62,7 @@ class SearchController extends AppController
         $this->set('member',$this->Member);
         $this->set('jo_bs',$this->Job);
         $this->set('docs',$docs);
+        $this->set('activity',$this->Activity);
         
     }
 }

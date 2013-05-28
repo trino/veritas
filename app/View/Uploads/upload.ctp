@@ -151,15 +151,6 @@ function remove_youtube()
 <table>
 
 <tr style="display: none;"><td style="width:140px;"><b>Location</b></td><td><div class="right"><input type="text" name="location" class="" /></div></td></tr>
-<tr><td><b>Title</b></td><td><div class="right"><input type="text" name="title" class="required" /></div></td></tr>
-<tr><td><strong>Description</strong></td>
-<td><textarea name="description" class="required" class="text_area_long" cols="10" rows="5" id="repl" onKeyDown="limitText(this.form.description,this.form.countdown,70);"
-onKeyUp="limitText(this.form.description,this.form.countdown,70);"></textarea>
-<br />
-<font size="1">(Maximum characters: 70)<br />
-You have <input readonly type="text" name="countdown" id="countssss" style="background:none; border:0; padding:0; margin:0; text-align:center; border-radius:none; width:30px; box-shadow:none;" value="70" /> characters left.</font><br />
-</td></tr>
-<!--<tr><td><b>Description</b></td><td><div class="right"><textarea cols="35" name="description" class="required"></textarea></div></td></tr>-->
 <tr><td><b>Documnet Type</b></td>
 <td><div class="right">
 <select name="document_type" class="required" id="document_type">
@@ -247,6 +238,16 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 </td></tr>
 </table>
 </td></tr>
+<!--<tr><td><b>Title</b></td><td><div class="right"><input type="text" name="title" class="required" /></div></td></tr>-->
+<tr><td><strong>Description</strong></td>
+<td><textarea name="description" class="required" class="text_area_long" cols="10" rows="5" id="repl" onKeyDown="limitText(this.form.description,this.form.countdown,70);"
+onKeyUp="limitText(this.form.description,this.form.countdown,70);"></textarea>
+<br />
+<font size="1">(Maximum characters: 70)<br />
+You have <input readonly type="text" name="countdown" id="countssss" style="background:none; border:0; padding:0; margin:0; text-align:center; border-radius:none; width:30px; box-shadow:none;" value="70" /> characters left.</font><br />
+</td></tr>
+<!--<tr><td><b>Description</b></td><td><div class="right"><textarea cols="35" name="description" class="required"></textarea></div></td></tr>-->
+
 <tr><td><b>Images/Videos/Docs</b></td><td><div class="right"><input type="file" name="document_1" class="required" id='document_1' /><a href="javascript:void(0)" onclick="add_document()" class="btn btn-primary">Add</a></div><div id="doc"></div></td></tr>
 <!--
 <tr><td><b>Images</b></td><td><div class="right"><input type="file" name="image_1" /><a href="javascript:void(0);" onclick="add_image()" class="btn btn-primary">Add</a><span id="remove_img" style="display: none;"> &nbsp; <a href="javascript:void(0);" onclick="remove_image();" class="btn btn-danger">Remove</a></span></div><div id="img"></div></td></tr>
