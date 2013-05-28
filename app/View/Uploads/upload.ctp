@@ -308,7 +308,7 @@ $(function(){
             $('.extra_evidence').show();
         else
             $('.extra_evidence').hide();
-       if(doctype == 'report')
+       /*if(doctype == 'report')
        {
            $('.extra_memo').show();
            $('#document_1').removeClass('required');
@@ -317,7 +317,7 @@ $(function(){
         {
             $('.extra_memo').hide();
             $('#document_1').addClass('required');         
-        }
+        }*/
         $('.extra_memo input').each(function(){
         $(this).click();
         $(this).blur();
