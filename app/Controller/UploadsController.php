@@ -691,9 +691,9 @@ class UploadsController extends AppController
                 $id=$q['Member']['id'];
                 $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'addedBy'=>$id,'job_id'=>$jid),'order by'=>'job_id'));
                 if($do)
-                $this->set('doc',$do);
+                    $this->set('doc',$do);
                 else
-                $this->set('message','No Document Available');
+                    $this->set('message','No Document Available');
             }
         }
         else if($this->Session->read('employee'))
@@ -719,6 +719,8 @@ class UploadsController extends AppController
             else
             $this->set('message','No Document Available');
         }
+        else
+            $this->set('message','No Document Available');
         
     }
     

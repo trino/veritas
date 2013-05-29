@@ -20,7 +20,7 @@ if(isset($message))
 {
     echo $message;
 }
-else
+elseif(isset($doc))
 {
     ?>
     <div id="table">

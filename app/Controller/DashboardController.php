@@ -38,13 +38,16 @@ class DashboardController extends AppController
         }
         else
         {
-              $this->paginate = array('limit'=>10,'order'=>'date desc ,time desc');
-             //$this->set('activity',$this->paginate('Document'));
-             $this->set('activity', $this->paginate('Event_log', array('event_type '=>'Upload Document')));
+              
              $this->set('job_id', $this->Document);
              $id = $this->Session->read('id');
              if($jo = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$id))))
+             {
                 $this->set('jm',$jo['Jobmember']['job_id']);
+                $this->paginate = array('limit'=>10,'order'=>'date desc ,time desc');
+             //$this->set('activity',$this->paginate('Document'));
+                $this->set('activity', $this->paginate('Event_log', array('event_type '=>'Upload Document')));
+             }
              else
                 $this->set('jm','');
              
