@@ -18,14 +18,18 @@
 <?php echo $this->Html->script('jquery.prettyPhoto'); ?>
 <div id="table">
 <table>
-    <tr>
+    <!--<tr>
         <td style="width:140px;"><b>Title</b></td>
         <td><?php echo $doc['Document']['title']; ?></td>
     </tr>
-    <!--<tr>
+    <tr>
         <td><b>Location</b></td>
         <td><?php echo $doc['Document']['location']; ?></td>
     </tr> -->
+    <tr>
+        <td><b>Document Type</b></td>
+        <td><?php echo $type = ucwords(str_replace('_',' ',$doc['Document']['document_type'])); ?></td>
+    </tr>
     <tr>
         <td><b>Description</b></td>
         <td><?php echo $doc['Document']['description']; ?></td>
@@ -34,10 +38,7 @@
         <td><b>Job Title</b></td>
         <td><?php if($j = $job->findById($doc['Document']['job_id'])) echo $j['Job']['title'] ; ?></td>
     </tr>
-    <tr>
-        <td><b>Document Type</b></td>
-        <td><?php echo $type = ucwords(str_replace('_',' ',$doc['Document']['document_type'])); ?></td>
-    </tr>
+    
     
     <?php if($type == 'Report')
     { ?>

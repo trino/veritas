@@ -27,10 +27,8 @@ if($docs)
 
     <table>
         <tr>
-            <th><?php echo $this->Paginator->sort('title','Title');?></th>
-            <!--<th>Location</th>-->
-            <th><?php echo $this->Paginator->sort('description','Description');?></th>
-            <th><?php echo $this->Paginator->sort('document_type','Category');?></th>
+            <th><?php echo $this->Paginator->sort('document_type','Document Type');?></th>
+            <th><?php echo $this->Paginator->sort('description','Description');?></th>            
             <th><?php echo $this->Paginator->sort('addedBy','Uploaded By');?></th>
             <th><!--<a href="<?php echo $base_url."search?search=".$search."&date=".$date;?>">--><?php echo $this->Paginator->sort('date','Uploaded On');?><!--</a>--></th>
             <th>Option</th>
