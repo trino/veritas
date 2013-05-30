@@ -30,7 +30,7 @@ class SearchController extends AppController
         {
             
             if($search != '')
-            $this->paginate = array('conditions'=>array('title LIKE'=>'%'.$search.'%'),'order'=>array('job_id'),'limit'=>10);
+            $this->paginate = array('conditions'=>array('OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%'))),'order'=>array('job_id'),'limit'=>10);
             else
             $this->paginate = array('order'=>array('job_id'),'limit'=>10);
             $docs = $this->paginate('Document');
