@@ -94,6 +94,7 @@ foreach($all as $a){
         echo "Member Deleted";
         
     }
+    $repss=0;
     if($a['Mail']['parent']==0)
         {
             $replies = $mailing->find('all',array('conditions'=>array('parent'=>0,'subject'=>$a['Mail']['subject'],'message'=>$a['Mail']['message'],'date'=>$a['Mail']['date'])));
@@ -113,6 +114,7 @@ foreach($all as $a){
                     if($qs2){
                     
                     if(!in_array($qs2['Member']['full_name'],$re_test)){
+                        $repss++;
                     $re_test[] = $qs2['Member']['full_name'];
                     echo ', '.$qs2['Member']['full_name'];}}   
                 }
@@ -137,6 +139,7 @@ foreach($all as $a){
                     if($qs2){
                         
                     if(!in_array($qs2['Member']['full_name'],$re_test)){
+                        $repss++;
                     $re_test[] = $qs2['Member']['full_name'];    
                     echo ', '.$qs2['Member']['full_name'];}}   
                 }
@@ -225,7 +228,11 @@ $parents = $a['Mail']['id'];
     <input type="hidden" name="recipient_id" value="<?php echo $reqs; ?>" />
     <input type="hidden" name="recipient_email" value="<?php echo $reqs_email;?>" />
     <input type="hidden" name="subject" value="<?php echo $sub; ?>" />
-    <br /><input type="submit" name="submit" value="Reply" class="btn btn-primary reg-company replybtn" /> &nbsp; <a href="javascript:void(0)" style="height: 6px;padding-bottom: 15px;" class="replyall btn btn-primary">Reply All</a>
+    <br /><input type="submit" name="submit" value="Reply" class="btn btn-primary reg-company replybtn" />&nbsp;
+    <?php if(isset($repss)&&$repss>0){?>
+    
+    &nbsp; <a href="javascript:void(0)" style="height: 6px;padding-bottom: 15px;" class="replyall btn btn-primary">Reply All</a>
+    <?php }?>
 </form>
 <?php
 /*
