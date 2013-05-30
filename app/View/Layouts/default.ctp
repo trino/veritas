@@ -557,7 +557,23 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 							</div>
 							</div>
 						</a>
-					</div>			
+					</div>
+                    <div class="v1ButtonBarB">
+						<a href="<?php echo $base_url;?>uploads/go" class="fullLink">
+							<div  class="glassButton">
+							<div  class="full8ButtonB">
+
+								<div class="icon active33">
+									<i class="icon-copy"></i>
+								</div>
+								<div class="caption active33">
+									Upload
+								</div>
+								<div class="dusk"></div> 
+							</div>
+							</div>
+						</a>
+					</div>				
 
 				</div>
 				</div><!-- buttonBarContainer -->

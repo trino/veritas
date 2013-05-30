@@ -32,6 +32,36 @@ class UploadsController extends AppController
                $this->redirect('/');  
       
     }
+    function go()
+    {
+        if($this->Session->read('admin'))
+        {
+            $this->redirect('/jobs');
+        }
+        else
+        {
+            $this->loadModel('Jobmember');
+            $jobs = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
+                $job_id = 'all';
+                if($jobs)
+                {
+                    $job_ids = $jobs['Jobmember']['job_id'];
+                    if(str_replace(',','',$job_ids)==$job_ids)
+                    {
+                        $job_id=$job_ids;
+                    }
+                    else
+                    $job_id = 'all';
+                }
+                if($job_id and $job_id!='all')
+                {
+                    $this->redirect('/uploads/upload/'.$job_id);
+                }
+                else
+                $this->redirect('/jobs');
+                
+        }
+    }
     function loadall()
     {
         $this->layout = "modal_layout";
