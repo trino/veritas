@@ -303,6 +303,47 @@ class JobsController extends AppController
         if(!$this->Session->read('avatar'))
         $this->redirect('/admin');
         $this->Job->delete($id);
+        $this->loadModel('Jobmember');
+        $q = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id'=>$id),array('job_id LIKE'=>$id.',%'),array('job_id LIKE'=>'%,'.$id),array('job_id LIKE'=>'%,'.$id.',%')))));
+        if($q)
+        {
+            foreach($q as $j)
+            {
+                $this->Jobmember->id = $j['Jobmember']['id'];
+                $job_id = $j['Jobmember']['job_id'];
+                $job_id = str_replace(','.$id.',',',',$job_id);
+                if($job_id[0]==$id && $job_id[1]==',')
+                {
+                    $job_ids = '';
+                    for($i=2;$i<strlen($job_id);$i++)
+                    {
+                        $job_ids .= $job_id[$i];
+                    }
+                    if($job_ids!='')
+                    $job_id = $job_ids;
+                }
+                if(str_replace(',','',$job_id)!=$job_id)
+                {
+                    
+                    if($job_id[strlen($job_id)-1] == $id && $job_id[strlen($job_id)-2] == ','){
+                    $job_ids = '';
+                    for($i=0;$i<(strlen($job_id)-2);$i++)
+                    {
+                        $job_ids .= $job_id[$i];
+                    } 
+                    if($job_ids!='')   
+                    $job_id = $job_ids;
+                    }
+                }
+                else
+                {
+                    if($job_id == $id)
+                    $job_id ='';
+                }
+                //echo $job_id;die();
+                $this->Jobmember->saveField('job_id',$job_id);
+            }
+        }
         $this->Session->setFlash('Data Deleted Successfully');
         $this->redirect('index');
     }

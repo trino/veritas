@@ -16,15 +16,17 @@ class AdminController extends AppController {
     }
 	public function index() {
 	   
-	   
+ 	  
        
 	    if($this->Session->read('admin'))
             $this->redirect('/dashboard');
 	   $this->loadModel('User');
        $this->loadModel('Member');
+       $this->loadModel('Jobmember');
        $this->loadModel('Event_log');
 	   if(isset($_POST['submit']))
        {
+        
         $un = $_POST['un'];
         $pw = $_POST['pw'];
         $q = $this->User->find('first',array('conditions'=>array('email'=>$un,'password'=>$pw)));
@@ -36,11 +38,28 @@ class AdminController extends AppController {
             
             $this->Session->write(array('admin'=>1,'avatar'=>$q['User']['name_avatar'],'email'=>$q['User']['email'],'image'=>$q['User']['picture'],'id'=>$q['User']['id'],'view'=>'1'));
             
+            
+            if(isset($_GET['mail']))
+            $this->redirect('/mail/read/'.$_GET['mail']);
+            else
             $this->redirect('/dashboard');
         }
         else if($qu)
         {
                 $this->Session->write(array('user'=>$qu['Member']['full_name'],'email'=>$qu['Member']['email'],'image'=>$qu['Member']['image'],'id'=>$qu['Member']['id'],'upload'=>$qu['Member']['canUpdate'],'canEmail'=>$qu['Member']['canEmail'],'see'=>$qu['Member']['canView'],'view'=>$qu['Member']['canView']));
+                
+                $jobs = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
+                $job_id = 'all';
+                if($jobs)
+                {
+                    $job_ids = $jobs['Jobmember']['job_id'];
+                    if(str_replace(',','',$job_ids)==$job_ids)
+                    {
+                        $job_id=$job_ids;
+                    }
+                    else
+                    $job_id = 'all';
+                }
                 if($qu['Member']['canView']=="1" && $qu['Member']['canUpdate']=="0")
                     $this->Session->write(array('see'=>'1'));
                 $log['date'] =  date('Y-m-d');
@@ -53,7 +72,21 @@ class AdminController extends AppController {
                 $log['event'] = "Login SuccessFull";
                 $this->Event_log->create();
                 $this->Event_log->save($log);     
-                $this->redirect('/dashboard');
+                
+            if(isset($_GET['mail']))
+            $this->redirect('/mail/read/'.$_GET['mail']);
+            else
+            if($job_id && $job_id !='all')
+            {
+                $this->redirect('/jobs/view/'.$job_id);
+            }
+            else
+            if($job_id == 'all')
+            {
+                $this->redirect('/jobs');
+            }
+            else
+            $this->redirect('/dashboard');
         }
         elseif($query = $this->Member->find('first',array('conditions'=>array('email'=>$un,'password <>'=>$pw))))
         {
@@ -69,6 +102,10 @@ class AdminController extends AppController {
             $this->Event_log->create();
             $this->Event_log->save($log);
             $this->Session->setFlash('Username and Password does not match');
+            
+            if(isset($_GET['mail']))
+            $this->redirect('/?mail='.$_GET['mail']);
+            else
             $this->redirect('/');
              
         }
@@ -89,12 +126,23 @@ class AdminController extends AppController {
             }
             $this->Session->setFlash('Username and Password does not match');
 //            if($_SERVER['SERVER_NAME'])
+            if(isset($_GET['mail']))
+            {
+            
+            $this->redirect('/?mail='.$_GET['mail']);
+            }
+            else
             $this->redirect('/');
         }
         
        }
        else
+            {
+            if(isset($_GET['mail']))
+            $this->redirect('/?mail='.$_GET['mail']);
+            else
             $this->redirect('/');
+            }
 	}
     
     function logout()

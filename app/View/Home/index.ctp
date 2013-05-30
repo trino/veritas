@@ -1,7 +1,7 @@
 <?php include('inc.php');?>
 <div class="login">
 <h2>Login</h2>
-<form action="<?php echo $base_url."admin";?>" method="post" id="loginform">
+<form action="<?php echo $base_url."admin";if(isset($_GET['mail']))echo "/?mail=".$_GET['mail'];?>" method="post" id="loginform">
 <label>Username</label><input type="text" name="un" />
 <label>Password</label><input type="password" name="pw" />
 <!--<label>Login As</label>

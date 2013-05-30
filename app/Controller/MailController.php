@@ -13,7 +13,19 @@ class MailController extends AppController
         $this->loadModel('Mail');
         $this->loadModel('User');
         $this->loadModel('Member');
+        
          
+    }
+    function beforeFilter()
+    {
+        if($this->Session->read('avatar') || $this->Session->read('user'))
+        {
+            
+        }
+        else
+        {
+            $this->redirect('/admin');
+        }
     }
     
     function index()
@@ -106,7 +118,8 @@ class MailController extends AppController
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'];
                 if($_SERVER['SERVER_NAME'] == 'localhost')
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
-                $message="You have recieved an email from ".$sender." on Veritas. <br/><a href='".$base_url."'>Check your message, click here</a><br/>
+                
+                $message="You have recieved an email from ".$sender." on Veritas. <br/><a href='".$base_url."/?mail=".$arr['parent']."'>Check your message, click here</a><br/>
                 <p>
                 <b>Subject : </b>".$arr['subject']."<br/>
                 <b>Message : </b>".$arr['message']."
@@ -327,10 +340,28 @@ class MailController extends AppController
             
             $emails->subject($_POST['subject']);
             $emails->emailFormat('html');
+            if(isset($che))
+            unset($che);
+            if($to !=''){
+            $che = $this->Member->find('first',array('conditions'=>array('email'=>$to)));    
+            if(!$che){
+            if(isset($che))
+            unset($che);    
+            $che['Member']['id'] = 0;
+            }
+            $url = $this->Mail->find('first',array('conditions'=>array('message'=>$data['message'],'subject'=>$_POST['subject'],'recipients_id'=>$che['Member']['id']),'order'=>'id DESC'));
+                        
+            }
+            if(isset($url)&&$url)
+            {
+                $link = '/?mail='.$url['Mail']['id'];
+            }
+            else
+            $link = '';
             $base_url = 'http://'.$_SERVER['SERVER_NAME'];
             if($_SERVER['SERVER_NAME'] == 'localhost')
             $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
-            $message="You have recieved an email from ".$sender." on Veritas. <br/><a href='".$base_url."'>Check your message, click here</a><br/>
+            $message="You have recieved an email from ".$sender." on Veritas. <br/><a href='".$base_url.$link."'>Check your message, click here</a><br/>
                 <p>
                 <b>Subject : </b>".$_POST['subject']."<br/>
                 <b>Message : </b>".$data['message']."
@@ -435,7 +466,7 @@ class MailController extends AppController
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'];
                 if($_SERVER['SERVER_NAME'] == 'localhost')
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
-                $message="You have recieved an email from ".$sender." on Veritas. <br/><a href='".$base_url."'>Check your message, click here</a><br/>
+                $message="You have recieved an email from ".$sender." on Veritas. <br/><a href='".$base_url."/?mail=".$arr['parent']."'>Check your message, click here</a><br/>
                 <p>
                 <b>Subject : </b>".$arr['subject']."<br/>
                 <b>Message : </b>".$arr['message']."

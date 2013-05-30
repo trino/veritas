@@ -399,7 +399,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <!--									<input type="text" name="name" id="name" placeholder="Recipients (Separate with comma)" class="required" />--> 
 								</div>
 							
-								<a href="javascript:void(0)" id="contacts_modal" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a> <!--<a href="javascript:void(0);" class="buttonV attachment">Attach Documents</a>-->
+								<a href="javascript:void(0)" id="contacts_modal" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a> <a href="javascript:void(0);" class="buttonV attachment">Attach Documents</a>
 								
 								<!--<div id="email" style="display: none;">
 									<?php foreach($mems as $m) {
@@ -557,7 +557,23 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 							</div>
 							</div>
 						</a>
-					</div>			
+					</div>
+                    <div class="v1ButtonBarB">
+						<a href="<?php echo $base_url;?>uploads/go" class="fullLink">
+							<div  class="glassButton">
+							<div  class="full8ButtonB">
+
+								<div class="icon active33">
+									<i class="icon-copy"></i>
+								</div>
+								<div class="caption active33">
+									Upload
+								</div>
+								<div class="dusk"></div> 
+							</div>
+							</div>
+						</a>
+					</div>				
 
 				</div>
 				</div><!-- buttonBarContainer -->
