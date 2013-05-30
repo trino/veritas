@@ -30,6 +30,26 @@
         <td><b>Document Type</b></td>
         <td><?php echo $type = ucwords(str_replace('_',' ',$doc['Document']['document_type'])); ?></td>
     </tr>
+     <?php if($type == 'Client Memo'){?>
+    <tr>
+        <td><strong>Time</strong></td>
+        <td><?php echo $memo['Clientmemo']['time'];?></td>
+    </tr>
+    <tr>
+        <td><strong>Date</strong></td>
+        <td><?php echo $memo['Clientmemo']['date'];?></td>
+    </tr>
+    <tr>
+        <td><strong>Memo type</strong></td>
+        <td><?php echo $memo['Clientmemo']['memo_type'];?></td>
+    </tr>
+    <tr>
+        <td><strong>Guard Name</strong></td>
+        <td><?php echo $memo['Clientmemo']['guard_name'];?></td>
+    </tr>        
+            
+    <?php } ?>
+   
     <tr>
         <td><b>Description</b></td>
         <td><?php echo $doc['Document']['description']; ?></td>

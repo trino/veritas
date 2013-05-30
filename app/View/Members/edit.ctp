@@ -60,8 +60,20 @@ $(function(){
 
 <tr><td><b>Can Send Email</b></td><td><input type="checkbox" name="canEmail" <?php if($m['Member']['canEmail']==1){?>checked="checked"<?php }?> /></td></tr>
 <tr><td><b>Receive email when someone sends me message</b></td><td><input class="receive" type="checkbox" name="receive1" <?php if($m['Member']['receive1']==1){?>checked="checked"<?php }?> /></td></tr>
-<tr><td><b>Receive email when document is uploaded</b></td><td><input class="receive" type="checkbox" name="receive2" <?php if($m['Member']['receive2']==1){?>checked="checked"<?php }?> /></td></tr>
-
+<tr><td><b>Receive email when document is uploaded</b></td><td><input class="receive" type="checkbox" id="receive2" name="receive2" <?php if($m['Member']['receive2']==1){?>checked="checked"<?php }?> /></td></tr>
+<tr class="upload_more" style="display: none;" >
+<td colspan="2" >
+<table width="50%">
+<tr>
+<td><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span><input type="checkbox" name="Email_contracts" <?php if(isset($e['Emailupload']['contracts']) && $e['Emailupload']['contracts']==1){?>checked="checked"<?php }?>/>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="Email_evidence" <?php if(isset($e['Emailupload']['evidence']) && $e['Emailupload']['evidence']==1){?>checked="checked"<?php }?>  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="Email_templates" <?php if(isset($e['Emailupload']['templates']) && $e['Emailupload']['templates']==1){?>checked="checked"<?php }?> />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report </span><input type="checkbox" name="Email_client_memo" <?php if(isset($e['Emailupload']['report']) && $e['Emailupload']['report']==1){?>checked="checked"<?php }?> />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Memo </span><input type="checkbox" name="Email_client_memo1" <?php if(isset($e['Emailupload']['client_memo']) && $e['Emailupload']['client_memo']==1){?>checked="checked"<?php }?> />
+</td>
+</tr>
+</table>
+</td></tr>
 <!--<div class="checks"><div class="left">Is Supervisor</div><div class="right"><input type="checkbox" name="isSupervisor" <?php if($m['Member']['isSupervisor']==1){?>checked="checked"<?php }?> /></div><div class="clear"></div></div>
 <div class="checks"><div class="left">Is Employee</div><div class="right"><input type="checkbox" name="isEmployee" <?php if($m['Member']['isEmployee']==1){?>checked="checked"<?php }?> /></div><div class="clear"></div></div> -->
 <tr><td><div class="submit"><input type="submit" class="btn btn-primary" value="Save Changes" name="submit"/></div></td></tr>
@@ -90,6 +102,9 @@ $(function(){
    
    if($('#canView').is(':checked'))
         $('.canviewfiles').show();
+    
+    if($('#receive2').is(':checked'))
+        $('.upload_more').show();
         
     $('#canUpdate').click(function(){
         if($('#canUpdate').is(':checked'))
@@ -116,7 +131,20 @@ $(function(){
         }
             
     
-    });         
+    });  
+    $('#receive2').click(function(){
+        if($('#receive2').is(':checked'))
+            $('.upload_more').show();
+        else
+        {
+            $('.upload_more').hide();
+            $('.upload_more input:checkbox').each(function(){
+                $(this).removeAttr('checked');
+            });
+        }
+            
+    
+    });            
        
    //$('#canView').toggle(function(){$('.canviewfiles').toogle;});
    //$('#canUpdate').toggle(function(){$('.canuploadfiles').toogle;});

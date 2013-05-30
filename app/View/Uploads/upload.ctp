@@ -174,6 +174,35 @@ function remove_youtube()
 </select>
 </div></td>
 </tr>
+<tr class="client_more" style="display: none;">
+<td colspan="2">
+<table>
+<tr>
+<td>Time </td>
+<td><input type="text" value="" name="memo_time" class="activity_time required" /></td>
+</tr>
+<tr>
+<td>Date</td>
+<td><input type="text" value="" name="memo_date" class="activity_date required" /></td>
+</tr>
+<tr>
+<td>Memo Type</td>
+<td>
+<select name="memo_type" class="memo_type">
+    <option value="">Select Memo Type</option>
+    <option value="observation">Observation</option>
+    <option value="feedback">Feeback</option>
+    <option value="non_compilance">Non-Compilance</option>
+    <option value="great_job">Great Job</option>
+</select>
+</td>
+</tr>
+<td>Gaurd Name</td>
+<td><input type="text" value="" name="guard_name" class="required" /></td>
+</tr>
+</table>
+</td>
+</tr>
 <tr class="extra_evidence" style="display: none;">
 <td colspan="2">
 <table>
@@ -223,19 +252,19 @@ function remove_youtube()
 </th>
 </thead>
 <thead>
-<th>Time</th>
-<th>Date</th>
+<th width="30%">Time</th>
+<th width="28%">Date</th>
 <th>Description</th>
 </thead>
 <tr>
 <td><input type="text" value="" name="activity_time[]" class="activity_time required" /></td>
 <td><input type="text" value="" name="activity_date[]" class="activity_date required" /></td>
-<td><textarea name="activity_desc[]" class="required"></textarea>   
-<a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></td>
+<td><textarea name="activity_desc[]" class="required"></textarea>   </td>
 </tr>
 <tr><td colspan="3" style="padding: 0;"><table class="activity_more">
 </table>
 </td></tr>
+<tr><td colspan="3"><a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></td></tr>
 </table>
 </td></tr>
 <!--<tr><td><b>Title</b></td><td><div class="right"><input type="text" name="title" class="required" /></div></td></tr>-->
@@ -272,11 +301,18 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 $(function(){
     //Add More acitvity
     var test=1;
+    var d = new Date;
+    $('.activity_time').val(d.getHours()+':'+d.getMinutes());
+    var da = d.getFullYear()+'-'+Number(d.getMonth()+1)+'-'+d.getDate();
+    $('.activity_date').val(da);
+    
+    //alert(t);
     $('#activity_more').click(function(){
-        
+        var t = new Date;
+        var dt = t.getFullYear()+'-'+Number(t.getMonth()+1)+'-'+t.getDate();
        var more = '<tr>'+
-'<td style="padding:5px 0;"><input type="text" value="" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
-'<td style="padding:5px 0;"><input type="text" value="" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
+'<td style="padding:5px 0;"><input type="text" value="'+t.getHours()+':'+t.getMinutes()+'" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
+'<td style="padding:5px 0;"><input type="text" value="'+dt+'" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
 '<td style="padding:5px 0;"><textarea name="activity_desc[]"></textarea>   <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>'+
 '</tr>'
        $('.activity_more').append(more); 
@@ -313,15 +349,27 @@ $(function(){
            $('.extra_memo').show();
            //$('#document_1').removeClass('required');
        }    
-        else
+       else
         {
             $('.extra_memo').hide();
            // $('#document_1').addClass('required');         
         }
+        
+        if(doctype == 'client_memo')
+            $('.client_more').show();
+        else
+            $('.client_more').hide();        
+        
+        
         $('.extra_memo input').each(function(){
         $(this).click();
         $(this).blur();
        });
+        $('.client_more input').each(function(){
+        $(this).click();
+        $(this).blur();
+       });
+       
     });
 });
 
