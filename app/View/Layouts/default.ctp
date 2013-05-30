@@ -399,7 +399,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <!--									<input type="text" name="name" id="name" placeholder="Recipients (Separate with comma)" class="required" />--> 
 								</div>
 							
-								<a href="javascript:void(0)" id="contacts_modal" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a> <!--<a href="javascript:void(0);" class="buttonV attachment">Attach Documents</a>-->
+								<a href="javascript:void(0)" id="contacts_modal" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a> <a href="javascript:void(0);" class="buttonV attachment">Attach Documents</a>
 								
 								<!--<div id="email" style="display: none;">
 									<?php foreach($mems as $m) {
