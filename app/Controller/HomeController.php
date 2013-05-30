@@ -64,7 +64,10 @@ class HomeController extends AppController {
                 $log['event'] = "Login SuccessFull";
                 $this->Event_log->create();
                 $this->Event_log->save($log); 
-                $this->redirect('/dashboard');
+                if(isset($_GET['mail']))
+            $this->redirect('/mail/read/'.$_GET['mail']);
+            else
+            $this->redirect('/');
         }
         else
         {
@@ -83,6 +86,9 @@ class HomeController extends AppController {
             }
         
             $this->Session->setFlash('Username and Password do not match');
+            if(isset($_GET['mail']))
+            $this->redirect('/?mail='.$_GET['mail']);
+            else
             $this->redirect('/');
         }
         

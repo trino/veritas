@@ -16,7 +16,7 @@ class AdminController extends AppController {
     }
 	public function index() {
 	   
-	   
+ 	  
        
 	    if($this->Session->read('admin'))
             $this->redirect('/dashboard');
@@ -25,6 +25,7 @@ class AdminController extends AppController {
        $this->loadModel('Event_log');
 	   if(isset($_POST['submit']))
        {
+        
         $un = $_POST['un'];
         $pw = $_POST['pw'];
         $q = $this->User->find('first',array('conditions'=>array('email'=>$un,'password'=>$pw)));
@@ -36,6 +37,10 @@ class AdminController extends AppController {
             
             $this->Session->write(array('admin'=>1,'avatar'=>$q['User']['name_avatar'],'email'=>$q['User']['email'],'image'=>$q['User']['picture'],'id'=>$q['User']['id'],'view'=>'1'));
             
+            
+            if(isset($_GET['mail']))
+            $this->redirect('/mail/read/'.$_GET['mail']);
+            else
             $this->redirect('/dashboard');
         }
         else if($qu)
@@ -53,7 +58,11 @@ class AdminController extends AppController {
                 $log['event'] = "Login SuccessFull";
                 $this->Event_log->create();
                 $this->Event_log->save($log);     
-                $this->redirect('/dashboard');
+                
+            if(isset($_GET['mail']))
+            $this->redirect('/mail/read/'.$_GET['mail']);
+            else
+            $this->redirect('/dashboard');
         }
         elseif($query = $this->Member->find('first',array('conditions'=>array('email'=>$un,'password <>'=>$pw))))
         {
@@ -69,6 +78,10 @@ class AdminController extends AppController {
             $this->Event_log->create();
             $this->Event_log->save($log);
             $this->Session->setFlash('Username and Password does not match');
+            
+            if(isset($_GET['mail']))
+            $this->redirect('/?mail='.$_GET['mail']);
+            else
             $this->redirect('/');
              
         }
@@ -89,12 +102,23 @@ class AdminController extends AppController {
             }
             $this->Session->setFlash('Username and Password does not match');
 //            if($_SERVER['SERVER_NAME'])
+            if(isset($_GET['mail']))
+            {
+            
+            $this->redirect('/?mail='.$_GET['mail']);
+            }
+            else
             $this->redirect('/');
         }
         
        }
        else
+            {
+            if(isset($_GET['mail']))
+            $this->redirect('/?mail='.$_GET['mail']);
+            else
             $this->redirect('/');
+            }
 	}
     
     function logout()
