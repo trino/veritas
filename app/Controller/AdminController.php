@@ -22,6 +22,7 @@ class AdminController extends AppController {
             $this->redirect('/dashboard');
 	   $this->loadModel('User');
        $this->loadModel('Member');
+       $this->loadModel('Jobmember');
        $this->loadModel('Event_log');
 	   if(isset($_POST['submit']))
        {
@@ -46,6 +47,19 @@ class AdminController extends AppController {
         else if($qu)
         {
                 $this->Session->write(array('user'=>$qu['Member']['full_name'],'email'=>$qu['Member']['email'],'image'=>$qu['Member']['image'],'id'=>$qu['Member']['id'],'upload'=>$qu['Member']['canUpdate'],'canEmail'=>$qu['Member']['canEmail'],'see'=>$qu['Member']['canView'],'view'=>$qu['Member']['canView']));
+                
+                $jobs = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
+                $job_id = 'all';
+                if($jobs)
+                {
+                    $job_ids = $jobs['Jobmember']['job_id'];
+                    if(str_replace(',','',$job_ids)==$job_ids)
+                    {
+                        $job_id=$job_ids;
+                    }
+                    else
+                    $job_id = 'all';
+                }
                 if($qu['Member']['canView']=="1" && $qu['Member']['canUpdate']=="0")
                     $this->Session->write(array('see'=>'1'));
                 $log['date'] =  date('Y-m-d');
@@ -61,6 +75,16 @@ class AdminController extends AppController {
                 
             if(isset($_GET['mail']))
             $this->redirect('/mail/read/'.$_GET['mail']);
+            else
+            if($job_id && $job_id !='all')
+            {
+                $this->redirect('/jobs/view/'.$job_id);
+            }
+            else
+            if($job_id == 'all')
+            {
+                $this->redirect('/jobs');
+            }
             else
             $this->redirect('/dashboard');
         }
