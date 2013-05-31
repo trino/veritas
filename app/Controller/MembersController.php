@@ -44,6 +44,7 @@ class MembersController extends AppController
     {
         $this->loadModel('Canview');
         $this->loadModel('Canupload');
+        $this->loadModel('Emailupload');
         if(isset($_POST['email'])){
             $email = $_POST['email'];
         $q=$this->Member->find('first',array('conditions'=>array('email'=>$email)));
@@ -207,6 +208,7 @@ class MembersController extends AppController
                 $this->Canview->save($canview);
                 
             }
+            
             if(isset($_POST['canUpdate']))
             {
                 $this->Canupload->deleteAll(array('member_id'=>$id));
@@ -234,6 +236,34 @@ class MembersController extends AppController
                 $this->Canupload->save($canupdate);
             }
             
+            if(isset($_POST['receive2']))
+            {
+                
+                $this->Emailupload->deleteAll(array('member_id'=>$id));
+                $emailupload['member_id'] = $id;
+                $emailupload['contract'] = (isset($_POST['Email_contracts']))? '1' : '0'  ;
+                $emailupload['evidence'] = (isset($_POST['Email_evidence']))? '1' : '0'  ;
+                $emailupload['template'] = (isset($_POST['Email_templates']))? '1' : '0'  ;
+                $emailupload['report'] = (isset($_POST['Email_client_memo']))? '1' : '0'  ;
+                $emailupload['client_memo'] = (isset($_POST['Email_client_memo1']))? '1' : '0'  ;
+                
+                $this->Emailupload->create();
+                $this->Emailupload->save($emailupload);  
+                
+            }
+            else
+            {
+                $this->Emailupload->deleteAll(array('member_id'=>$id));
+                $emailupload['member_id'] = $id;
+                $emailupload['contract'] = '0'  ;
+                $emailupload['evidence'] = '0'  ;
+                $emailupload['template'] = '0' ;
+                $emailupload['report'] = '0' ;
+                $emailupload['client_memo'] = '0' ;
+                $this->Emailupload->create();
+                $this->Emailupload->save($emailupload);
+            }
+            
             $this->Session->setFlash('Data Saved Successfully.');
             $this->redirect('index');
              
@@ -244,6 +274,7 @@ class MembersController extends AppController
         $this->loadModel('Member');
         $this->loadModel('Canview');
         $this->loadModel('Canupload');
+        $this->loadModel('Emailupload');
         
         if(!$this->Session->read('avatar'))
             $this->redirect('/admin');
@@ -253,11 +284,14 @@ class MembersController extends AppController
         //if($mem['Member']['canUpload']== '1')
            $u = $this->Canupload->find('first', array('conditions'=>array('member_id'=>$id)));     
         //if($mem['Member']['canView']== '1')
-           $v = $this->Canview->find('first', array('conditions'=>array('member_id'=>$id)));     
+           $v = $this->Canview->find('first', array('conditions'=>array('member_id'=>$id)));  
+           
+           $e = $this->Emailupload->find('first', array('conditions'=>array('member_id'=>$id)));   
         
         $this->set('m',$mem);
         $this->set('u',$u);
         $this->set('v',$v);
+        $this->set('e',$e);
         if(isset($_POST['submit']))
         {
             if($_POST['email'])
@@ -423,6 +457,33 @@ class MembersController extends AppController
                 $canupdate['templates'] = '0'  ;
                 $canupdate['report'] = '0'  ;
                 $canupdate['client_memo'] = '0'  ;
+            }
+            if(isset($_POST['receive2']))
+            {
+                
+                $this->Emailupload->deleteAll(array('member_id'=>$id));
+                $emailupload['member_id'] = $id;
+                $emailupload['contract'] = (isset($_POST['Email_contracts']))? '1' : '0'  ;
+                $emailupload['evidence'] = (isset($_POST['Email_evidence']))? '1' : '0'  ;
+                $emailupload['template'] = (isset($_POST['Email_templates']))? '1' : '0'  ;
+                $emailupload['report'] = (isset($_POST['Email_client_memo']))? '1' : '0'  ;
+                $emailupload['client_memo'] = (isset($_POST['Email_client_memo1']))? '1' : '0'  ;
+                
+                $this->Emailupload->create();
+                $this->Emailupload->save($emailupload);  
+                
+            }
+            else
+            {
+                $this->Emailupload->deleteAll(array('member_id'=>$id));
+                $emailupload['member_id'] = $id;
+                $emailupload['contract'] = '0'  ;
+                $emailupload['evidence'] = '0'  ;
+                $emailupload['template'] = '0' ;
+                $emailupload['report'] = '0' ;
+                $emailupload['client_memo'] = '0' ;
+                $this->Emailupload->create();
+                $this->Emailupload->save($emailupload);
             }
             if(isset($_POST['canEmail']))
             {

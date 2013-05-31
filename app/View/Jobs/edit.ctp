@@ -52,8 +52,9 @@ $(function(){
 
 <?php } ?>
 </td></tr>
-<tr><td colspan="2"><a href="javascript:void(0);" id="add_key"><strong>+ Add Key Contact</strong></a></td></tr>
 <tr><td colspan="2" class="add_more"></td></tr>
+<tr><td colspan="2"><a href="javascript:void(0);" id="add_key"><strong>+ Add Key Contact</strong></a></td></tr>
+
 </table>
 </div>
 

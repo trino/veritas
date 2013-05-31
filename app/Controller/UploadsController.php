@@ -179,6 +179,8 @@ class UploadsController extends AppController
     {
         $this->loadModel('Canupload');
         $this->loadModel('Activity');
+        $this->loadModel('Emailupload');
+        $this->loadModel('Clientmemo');
         if($this->Session->read('user'))
         {
            if($this->Session->read('upload')!='1')
@@ -190,7 +192,8 @@ class UploadsController extends AppController
         { 
             $id = $this->Session->read('id');
            if($canupdate = $this->Canupload->find('first', array('conditions'=>array('member_id'=>$id))))
-                    $this->set('canupdate',$canupdate);  
+                    $this->set('canupdate',$canupdate);
+              
         }
         /*
         if($images = $this->Image->find('all',array('conditions'=>array('document_id'=>$eid))))
@@ -249,7 +252,47 @@ class UploadsController extends AppController
                 //$arr['desc'] = $_POST['desc'];
                 $arr['evidence_type'] = $_POST['evidence_type'];
                 
-                $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$_POST['job'].',%'), array('job_id'=>$_POST['job']),array('job_id LIKE'=>'%,'.$_POST['job'].',%'),array('job_id LIKE'=>'%,'.$_POST['job'])))));
+                
+               //die(); 
+            }
+            if($_POST['document_type']=='report')
+            {
+                //$arr['client_memo'] = $_POST['client_memo'];
+                $this->Activity->deleteAll(array('document_id'=>$eid));
+                $activity['document_id'] = $eid;
+                $activity['report_type'] = $_POST['report_type'];
+                foreach($_POST['activity_time'] as $k=>$v)
+                {
+                    if($v!="")
+                    {
+                        $activity['time'] = $v;
+                        $activity['date'] = $_POST['activity_date'][$k];
+                        $activity['desc'] = $_POST['activity_desc'][$k];
+                        $this->Activity->create();
+                        $this->Activity->save($activity);
+                    }
+                     
+                }
+                
+                
+                
+            }
+            elseif($_POST['document_type']== 'client_memo')
+            {
+                
+                $this->Clientmemo->deleteAll(array('document_id'=>$eid));
+                $client['document_id'] = $eid;
+                $client['memo_type'] = $_POST['memo_type'];
+                $client['guard_name'] = $_POST['guard_name'];
+                $client['time'] = $_POST['memo_time'];
+                $client['date'] = $_POST['memo_date'];
+                $this->Clientmemo->create();
+                $this->Clientmemo->save($client);
+                
+                
+                
+            }
+            $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$_POST['job'].',%'), array('job_id'=>$_POST['job']),array('job_id LIKE'=>'%,'.$_POST['job'].',%'),array('job_id LIKE'=>'%,'.$_POST['job'])))));
                 //var_dump($mails);
                 $aE = $this->User->find('first');
                 $adminEmail = $aE['User']['email'];
@@ -262,6 +305,8 @@ class UploadsController extends AppController
                 foreach($mails as $m)
                 {
                     $mem_id = $m['Jobmember']['member_id'];
+                    if($emailupload = $this->Emailupload->findByMemberId($mem_id))
+                    if($emailupload['Emailupload'][$_POST['document_type']] == 1 )
                     if($t = $this->Member->find('first',array('conditions'=>array('id'=>$mem_id))))
                     {
                         $to = $t['Member']['email'];
@@ -288,30 +333,7 @@ class UploadsController extends AppController
                     }    
                 }
                 
-               //die(); 
-            }
-            if($_POST['document_type']=='report')
-            {
-                //$arr['client_memo'] = $_POST['client_memo'];
-                $this->Activity->deleteAll(array('document_id'=>$eid));
-                $activity['document_id'] = $eid;
-                $activity['report_type'] = $_POST['report_type'];
-                foreach($_POST['activity_time'] as $k=>$v)
-                {
-                    if($v!="")
-                    {
-                        $activity['time'] = $v;
-                        $activity['date'] = $_POST['activity_date'][$k];
-                        $activity['desc'] = $_POST['activity_desc'][$k];
-                        $this->Activity->create();
-                        $this->Activity->save($activity);
-                    }
-                     
-                }
-                
-                
-                
-            }
+            
             $arr['date'] = date('Y-m-d H:i:s');
             $arr['job_id'] = $_POST['job'];
             $arr['addedBy'] = $id;
@@ -402,6 +424,10 @@ class UploadsController extends AppController
             $this->set('ac', $this->Activity->find('first',array('conditions'=>array('document_id'=>$eid))));
             $this->set('activity', $this->Activity->find('all',array('conditions'=>array('document_id'=>$eid))));
         }
+        elseif($doc['Document']['document_type'] == 'client_memo')
+        {
+            $this->set('memo',$this->Clientmemo->findByDocumentId($eid));
+        }
         $this->set('doc', $doc);
         
         
@@ -412,6 +438,7 @@ class UploadsController extends AppController
     {
         $this->loadModel('Canupload');
         $this->loadModel('Activity');
+        $this->loadModel('Emailupload');
         if($this->Session->read('user'))
         {
            if($this->Session->read('upload')!='1')
@@ -448,7 +475,7 @@ class UploadsController extends AppController
             else
                 $id=0;
             $arr['location'] = $_POST['location'];
-            $arr['title'] = ucfirst($_POST['document_type']);
+            $arr['title'] = ucfirst(str_replace("_"," ",$_POST['document_type']));
             $arr['description'] = $_POST['description'];
             $arr['document_type'] = $_POST['document_type'];
             if($_POST['document_type']== 'evidence')
@@ -456,8 +483,16 @@ class UploadsController extends AppController
                 $arr['incident_date'] = $_POST['incident_date'];
                 //$arr['desc'] = $_POST['desc'];
                 $arr['evidence_type'] = $_POST['evidence_type'];
-                $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$ids.',%'), array('job_id'=>$ids),array('job_id LIKE'=>'%,'.$ids.',%'),array('job_id LIKE'=>'%,'.$ids)))));
+                
+                
+               //die(); 
+            }
+            
+            //Email
+            
+            $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$ids.',%'), array('job_id'=>$ids),array('job_id LIKE'=>'%,'.$ids.',%'),array('job_id LIKE'=>'%,'.$ids)))));
                 //var_dump($mails);
+                
                 $aE = $this->User->find('first');
                  $adminEmail = $aE['User']['email'];
                 if($_SERVER['SERVER_NAME']=='localhost')
@@ -469,40 +504,43 @@ class UploadsController extends AppController
                 foreach($mails as $m)
                 {
                     $mem_id = $m['Jobmember']['member_id'];
+                    if($emailupload = $this->Emailupload->findByMemberId($mem_id))
+                    if($emailupload['Emailupload'][$_POST['document_type']] == 1 )
                     if($t = $this->Member->find('first',array('conditions'=>array('id'=>$mem_id))))
                     {
-                        $to = $t['Member']['email'];
+                        $to = $t['Member']['email']; 
                         $emails = new CakeEmail();
                         $emails->from(array('noreply@veritas.com'=>'Veritas'));
                         
-                        $emails->subject("A new Evidence Uploaded.");
+                        $emails->subject("A new Document Uploaded.");
                         $emails->emailFormat('html');
-                        $message="A new Evidence is uploaded to your job.<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/> Please <a href='".$base_url."'>Click Here</a> to Login";
-                        if($to){
-                        $checks = $this->Member->find('first',array('conditions'=>array('email'=>$to)));
-                        $check=0;
+                        if($_POST['document_type']== 'evidence')
+                            $message="A new Document is uploaded to your job.<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/> Please <a href='".$base_url."'>Click Here</a> to Login";
+                        else
+                            $message="A new Document is uploaded to your job.<br/> Please <a href='".$base_url."'>Click Here</a> to Login";
+                        if($to)
+                        {
+                            $checks = $this->Member->find('first',array('conditions'=>array('email'=>$to)));
+                            $check=0;
                         if($checks)
                         {
-                            if($checks['Member']['receive1']==1 ||$checks['Member']['receive2']==1)
-                            $check=1;
+                            if($checks['Member']['receive1']==1 || $checks['Member']['receive2']==1)
+                                $check=1;
                             else
-                            $check=0;
+                                $check=0;
                         }    
-                        if($check==1){
+                        if($check==1)
+                        {
                             $emails->to($to);
-                        $emails->send($message);
+                            $emails->send($message);
+                            $emails->reset();
                         }
+                        
                         }
                     }    
                 }
                 
-               //die(); 
-            }
-            elseif($_POST['document_type']== 'other')
-            {
-                //$arr['client_memo']= $_POST['client_memo'];
-                
-            }
+            //Email Ends// 
             $arr['date'] = date('Y-m-d H:i:s');
             $arr['job_id'] = $_POST['job'];
             $arr['addedBy'] = $id;
@@ -525,6 +563,20 @@ class UploadsController extends AppController
                     }
                      
                 }
+            }
+            elseif($_POST['document_type']== 'client_memo')
+            {
+                $this->loadModel('Clientmemo');
+                $client['document_id'] = $id;
+                $client['memo_type'] = $_POST['memo_type'];
+                $client['guard_name'] = $_POST['guard_name'];
+                $client['time'] = $_POST['memo_time'];
+                $client['date'] = $_POST['memo_date'];
+                $this->Clientmemo->create();
+                $this->Clientmemo->save($client);
+                
+                
+                
             }
             $doc = $_POST['document'];
             
@@ -757,6 +809,7 @@ class UploadsController extends AppController
     function view_detail($id)
     {
         $this->loadModel('Activity');
+        $this->loadModel('Clientmemo');
         if($this->Session->read('user') || $this->Session->read('avatar'))
         {
            if($this->Session->read('view')!='1')
@@ -773,6 +826,8 @@ class UploadsController extends AppController
             $doc = $this->Document->find('first',array('conditions'=>array('id'=>$id)));
             if($doc['Document']['document_type']== 'report')
                 $this->set('activity',$this->Activity->find('all',array('conditions'=>array('document_id'=>$id))));
+            elseif($doc['Document']['document_type'] == 'client_memo')
+                $this->set('memo',$this->Clientmemo->findByDocumentId($id));
             $this->set('doc', $doc);
             $this->set('do',$this->Doc->find('all',array('conditions'=>array('document_id'=>$id))));
             $this->set('image',$this->Image->find('all',array('conditions'=>array('document_id'=>$id))));

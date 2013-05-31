@@ -175,6 +175,35 @@ function remove_youtube()
 </select>
 </div></td>
 </tr>
+<tr class="client_more" style="display: none;">
+<td colspan="2">
+<table>
+<tr>
+<td>Time </td>
+<td><input type="text" value="<?php if(isset($memo) && $memo['Clientmemo']['time']) echo $memo['Clientmemo']['time'];?>" name="memo_time" class="activity_time required" /></td>
+</tr>
+<tr>
+<td>Date</td>
+<td><input type="text" value="<?php if(isset($memo) && $memo['Clientmemo']['date']) echo $memo['Clientmemo']['date'];?>" name="memo_date" class="activity_date required" /></td>
+</tr>
+<tr>
+<td>Memo Type</td>
+<td>
+<select name="memo_type" class="memo_type">
+    <option value="">Select Memo Type</option>
+    <option value="observation" <?php if(isset($memo) && $memo['Clientmemo']['memo_type']=='observation') echo "selected='selected'";?>>Observation</option>
+    <option value="feedback" <?php if(isset($memo) && $memo['Clientmemo']['memo_type']=='feedback') echo "selected='selected'";?>>Feeback</option>
+    <option value="non_compilance" <?php if(isset($memo) && $memo['Clientmemo']['memo_type']=='non_compilance') echo "selected='selected'";?>>Non-Compilance</option>
+    <option value="great_job" <?php if(isset($memo) && $memo['Clientmemo']['memo_type']=='great_job') echo "selected='selected'";?>>Great Job</option>
+</select>
+</td>
+</tr>
+<td>Gaurd Name</td>
+<td><input type="text" value="<?php if(isset($memo) && $memo['Clientmemo']['guard_name']) echo $memo['Clientmemo']['guard_name'];?>" name="guard_name" class="required" /></td>
+</tr>
+</table>
+</td>
+</tr>
 <tr class="extra_evidence" style="display: none;">
 <td colspan="2">
 <table>
@@ -228,19 +257,23 @@ function remove_youtube()
 </thead>
 <th>Time</th>
 <th>Date</th>
-<th>Description &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></th>
+<th>Description &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
 </thead>
 
 <?php
 if(isset($activity)&&$activity) 
 foreach($activity as $act)
-{?>
+{
+    $t = explode(":",$act['Activity']['time']);
+    $time = $t[0].":".$t[1];
+    ?>
 <tr>
-<td><input type="text" value="<?php echo $act['Activity']['time'];?>" name="activity_time[]" class="activity_time required" /></td>
+<td><input type="text" value="<?php echo $time;?>" name="activity_time[]" class="activity_time required" /></td>
 <td><input type="text" value="<?php echo $act['Activity']['date'];?>" name="activity_date[]" class="activity_date required" /></td>
 <td><textarea name="activity_desc[]"><?php echo $act['Activity']['desc'];?></textarea>  <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>
 </tr>
 <?php }?>
+
 <!--<tr>
 <td><input type="text" value="" name="activity_time[]" class="activity_time" /></td>
 <td><input type="text" value="" name="activity_date[]" class="activity_date" /></td>
@@ -250,7 +283,7 @@ foreach($activity as $act)
 </table>
 </td></tr>
 </table>
-
+<tr><td><a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></td></tr>
 </td></tr>
 <tr><td><strong>Description</strong></td>
 <td><textarea name="description" class="required" class="text_area_long" cols="10" rows="5" id="repl" onKeyDown="limitText(this.form.description,this.form.countdown,70);"
@@ -294,7 +327,7 @@ if($attach)
 <input type="hidden" name="video" id="video" value="1" />
 <input type="hidden" name="youtube" id="youtube" value="1" />
 <input type="hidden" name="job" value="<?php echo $doc['Document']['job_id']; ?>" />
-<div class="submit"><input type="submit" class="btn btn-primary" value="Upload Document" name="submit"/></div>
+<div class="submit"><input type="submit" class="btn btn-primary" value="Save Document" name="submit"/></div>
 
 
 </form>
@@ -303,11 +336,13 @@ $(function(){
     var test=1;
      //Add More acitvity
     $('#activity_more').click(function(){
-     var more = '<tr>'+
-        '<td style="padding:5px 0;"><input type="text" value="" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
-        '<td style="padding:5px 0;"><input type="text" value="" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
-        '<td style="padding:5px 0;"><textarea name="activity_desc[]"></textarea>   <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>'+
-        '</tr>'
+     var t = new Date;
+        var dt = t.getFullYear()+'-'+Number(t.getMonth()+1)+'-'+t.getDate();
+       var more = '<tr>'+
+'<td style="padding:5px 0;"><input type="text" value="'+t.getHours()+':'+t.getMinutes()+'" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
+'<td style="padding:5px 0;"><input type="text" value="'+dt+'" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
+'<td style="padding:5px 0;"><textarea name="activity_desc[]"></textarea>   <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>'+
+'</tr>';
                $('.activity_more').append(more);
                $('.test'+test).each(function(){
         $(this).click();
@@ -337,18 +372,32 @@ $(function(){
            $('.extra_memo').show();
         else
             $('.extra_memo').hide();
+        if(doctype == 'client_memo')
+           $('.client_more').show();
+        else
+            $('.client_more').hide();
+                
         $('.extra_memo input').each(function(){
         $(this).click();
         $(this).blur();
-       });      
+       }); 
+       $('.client_more input').each(function(){
+        $(this).click();
+        $(this).blur();
+        });   
     });
     
     if($('#document_type').val() == 'evidence')
          $('.extra_evidence').show();
     if($('#document_type').val() == 'report')
            $('.extra_memo').show();
-           
-           $('.extra_memo input').each(function(){
+    if($('#document_type').val() == 'client_memo')
+            $('.client_more').show();       
+    $('.extra_memo input').each(function(){
+        $(this).click();
+        $(this).blur();
+        });
+    $('.client_more input').each(function(){
         $(this).click();
         $(this).blur();
         });

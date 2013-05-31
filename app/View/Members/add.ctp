@@ -127,7 +127,20 @@
 <tr><td><b>Can Upload Files</b></td><td><input type="checkbox" name="canUpdate" /></td></tr>-->
 <tr><td><b>Can Send Email</b></td><td><input type="checkbox" name="canEmail" /></td></tr>
 <tr><td><b>Receive email when someone sends me message</b></td><td><input class="receive" type="checkbox" name="receive1" /></td></tr>
-<tr><td><b>Receive email when document is uploaded</b></td><td><input class="receive" type="checkbox" name="receive2" /></td></tr>
+<tr><td><b>Receive email when document is uploaded</b></td><td><input class="receive" type="checkbox" name="receive2" id="receive2" /></td></tr>
+<tr class="upload_more" style="display: none;" >
+<td colspan="2" >
+<table width="50%">
+<tr>
+<td><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span><input type="checkbox" name="Email_contracts"/>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="Email_evidence"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="Email_templates"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report </span><input type="checkbox" name="Email_client_memo"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Memo </span><input type="checkbox" name="Email_client_memo1"  />
+</td>
+</tr>
+</table>
+</td></tr>
 <!-- <div class="checks"><div class="left">Is Supervisor</div><div class="right"><input type="checkbox" name="isSupervisor" /></div><div class="clear"></div></div>
 <div class="checks"><div class="left">Is Employee</div><div class="right"><input type="checkbox" name="isEmployee" /></div><div class="clear"></div></div> -->
 <tr><td><div class="submit"><input type="submit" class="btn btn-primary" value="Add User" name="submit"/></div></td></tr>
@@ -180,7 +193,21 @@ $(function(){
         }
             
     
-    });             
+    }); 
+    
+    $('#receive2').click(function(){
+        if($('#receive2').is(':checked'))
+            $('.upload_more').show();
+        else
+        {
+            $('.upload_more').hide();
+            $('.upload_more input:checkbox').each(function(){
+                $(this).removeAttr('checked');
+            });
+        }
+            
+    
+    });               
        
   
         
