@@ -189,7 +189,7 @@ function remove_youtube()
 <tr>
 <td>Feedback Type</td>
 <td>
-<select name="memo_type" class="memo_type">
+<select name="memo_type" class="memo_type required">
     <option value="">Select Feedback Type</option>
     <option value="observation" <?php if(isset($memo) && $memo['Clientmemo']['memo_type']=='observation') echo "selected='selected'";?>>Observation</option>
     <option value="feedback" <?php if(isset($memo) && $memo['Clientmemo']['memo_type']=='feedback') echo "selected='selected'";?>>Feeback</option>

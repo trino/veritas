@@ -78,6 +78,7 @@ class AdminController extends AppController {
             else
             if($job_id && $job_id !='all')
             {
+                $this->Session->write('job_id',$job_id);
                 $this->redirect('/jobs/view/'.$job_id);
             }
             else

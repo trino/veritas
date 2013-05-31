@@ -214,7 +214,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 		<?php if($this->Session->read('avatar') || $this->Session->read('user')){ ?>
 
-			<div class="logo"><a href="<?php echo $base_url;?>dashboard"><?php echo $this->Html->image('/img/logoVeritas01.png');?></a></div>
+			<div class="logo"><a href="<?php if(!$this->Session->read('job_id')){echo $base_url;?>dashboard<?php }else echo $base_url.'jobs/view/'.$this->Session->read('job_id');?>"><?php echo $this->Html->image('/img/logoVeritas01.png');?></a></div>
 			
 			
 			<div class="poweredBy">

@@ -4,6 +4,7 @@ class DashboardController extends AppController
     var $components = array('Email');
     public function index()
     {
+        
         if($this->Session->read('avatar') || $this->Session->read('user'))
         {
             //die('here');
@@ -13,7 +14,13 @@ class DashboardController extends AppController
             //die('there');
             $this->redirect('/admin');
         }
-            
+        
+       if(isset($_GET['mail']))
+            $this->redirect('/mail/read/'.$_GET['mail']);
+        if($this->Session->read('job_id'))
+        {
+            $this->redirect('/jobs/view/'.$this->Session->read('job_id'));
+        }     
         $this->loadModel('Member');
         $this->loadModel('Mail');
         $this->loadModel('User');

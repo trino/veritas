@@ -188,7 +188,7 @@ function remove_youtube()
 <tr>
 <td>Feedback Type</td>
 <td>
-<select name="memo_type" class="memo_type">
+<select name="memo_type" class="memo_type required">
     <option value="">Select Feedback Type</option>
     <option value="observation">Observation</option>
     <option value="feedback">Feeback</option>
