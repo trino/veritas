@@ -736,7 +736,7 @@ class UploadsController extends AppController
 		
         if($this->Session->read('avatar'))
         {
-            $do=$this->Document->find('all',array('conditions'=>array('document_type'=>$type),'order by'=>'job_id'));
+            $do=$this->Document->find('all',array('conditions'=>array('document_type'=>$type,'draft'=>0),'order by'=>'job_id'));
             if($do)
                 $this->set('doc',$do);
             else
@@ -760,9 +760,9 @@ class UploadsController extends AppController
                     }
                 $d=rtrim($data,',');
                 if($jid != 0)
-                    $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'job_id'=>$jid),'order by'=>'job_id'));
+                    $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'draft'=>0,'job_id'=>$jid),'order by'=>'job_id'));
                 else
-                    $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'job_id IN('.$data.'0)'),'order by'=>'job_id'));
+                    $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'draft'=>0,'job_id IN('.$data.'0)'),'order by'=>'job_id'));
                 if($do)
                     $this->set('doc',$do);
                 else
@@ -773,7 +773,7 @@ class UploadsController extends AppController
             {
                 $q=$this->Member->find('first',array('conditions'=>array('id'=>$this->Session->read('id'))));
                 $id=$q['Member']['id'];
-                $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'addedBy'=>$id,'job_id'=>$jid),'order by'=>'job_id'));
+                $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'draft'=>0,'addedBy'=>$id,'job_id'=>$jid),'order by'=>'job_id'));
                 if($do)
                     $this->set('doc',$do);
                 else
@@ -794,7 +794,7 @@ class UploadsController extends AppController
                 $data.=$j['Jobmember']['job_id'].",";
             }
             $d=rtrim($data,',');
-                $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'job_id in ('.$d.')')));
+                $do = $this->Document->find('all',array('conditions'=>array('draft'=>0,'document_type'=>$type,'job_id in ('.$d.')')));
                 if($do)
                     $this->set('doc',$do);
                 else
