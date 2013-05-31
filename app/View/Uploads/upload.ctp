@@ -306,8 +306,7 @@ $(function(){
        $('.draftval').val("1");
        $('.activity_desc').removeClass('required');
        $('.activity_date').removeClass('required');
-       $('.activity_time').removeClass('required');
-       $('.reporttype').removeClass('required'); 
+       $('.activity_time').removeClass('required'); 
        $('#repl').removeClass('required');
        $('.sbtbtn').click();
     });
