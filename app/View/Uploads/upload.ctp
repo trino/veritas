@@ -167,8 +167,8 @@ function remove_youtube()
      <?php if((isset($canupdate['Canupload']['report'])&& $canupdate['Canupload']['report']=='1') || $this->Session->read('admin')){?>
     <option value="report">Report</option>
     <?php }?>
-    <?php if((isset($canupdate['Canupload']['client_memo'])&& $canupdate['Canupload']['client_memo']=='1') ){?>
-    <option value="client_memo">Client Memo</option>
+    <?php if((isset($canupdate['Canupload']['client_feedback'])&& $canupdate['Canupload']['client_feedback']=='1') ){?>
+    <option value="client_feedback">Client Feedback</option>
     <?php }?>
     <!--<option value="training_manuals">Training Manuals</option>-->
 </select>
@@ -186,10 +186,10 @@ function remove_youtube()
 <td><input type="text" value="" name="memo_date" class="activity_date required" /></td>
 </tr>
 <tr>
-<td>Memo Type</td>
+<td>Feedback Type</td>
 <td>
 <select name="memo_type" class="memo_type">
-    <option value="">Select Memo Type</option>
+    <option value="">Select Feedback Type</option>
     <option value="observation">Observation</option>
     <option value="feedback">Feeback</option>
     <option value="non_compilance">Non-Compilance</option>
@@ -381,7 +381,7 @@ $(function(){
            // $('#document_1').addClass('required');         
         }
         
-        if(doctype == 'client_memo')
+        if(doctype == 'client_feedback')
             $('.client_more').show();
         else
             $('.client_more').hide();        

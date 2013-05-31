@@ -168,8 +168,8 @@ function remove_youtube()
     <?php if((isset($canupdate['Canupload']['report'])&& $canupdate['Canupload']['report']=='1') || $this->Session->read('admin')){?>
     <option value="report" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='report') echo "selected='selected'"?>>Report</option>
     <?php }?>
-    <?php if((isset($canupdate['Canupload']['client_memo'])&& $canupdate['Canupload']['client_memo']=='1') ){?>
-    <option value="client_memo" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='client_memo') echo "selected='selected'"?>>Client Memo</option>
+    <?php if((isset($canupdate['Canupload']['client_feedback'])&& $canupdate['Canupload']['client_feedback']=='1') ){?>
+    <option value="client_feedback" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='client_feedback') echo "selected='selected'"?>>Client Feedback</option>
     <?php }?>
     <!--<option value="training_manuals">Training Manuals</option>-->
 </select>
@@ -187,10 +187,10 @@ function remove_youtube()
 <td><input type="text" value="<?php if(isset($memo) && $memo['Clientmemo']['date']) echo $memo['Clientmemo']['date'];?>" name="memo_date" class="activity_date required" /></td>
 </tr>
 <tr>
-<td>Memo Type</td>
+<td>Feedback Type</td>
 <td>
 <select name="memo_type" class="memo_type">
-    <option value="">Select Memo Type</option>
+    <option value="">Select Feedback Type</option>
     <option value="observation" <?php if(isset($memo) && $memo['Clientmemo']['memo_type']=='observation') echo "selected='selected'";?>>Observation</option>
     <option value="feedback" <?php if(isset($memo) && $memo['Clientmemo']['memo_type']=='feedback') echo "selected='selected'";?>>Feeback</option>
     <option value="non_compilance" <?php if(isset($memo) && $memo['Clientmemo']['memo_type']=='non_compilance') echo "selected='selected'";?>>Non-Compilance</option>
@@ -234,7 +234,7 @@ function remove_youtube()
 <tr><td><b>Client Memo</b></td>
 <td>
 <textarea name="client_memo" class="required">
-<?php if(isset($doc['Document']['client_memo'])) echo $doc['Document']['client_memo'];?>
+<?php if(isset($doc['Document']['client_feedback'])) echo $doc['Document']['client_feedback'];?>
 </textarea>
 </td>
 </tr>
@@ -389,7 +389,7 @@ $(function(){
             $('.draftspan').hide();
             $('.draftval').val("0");
             }
-        if(doctype == 'client_memo')
+        if(doctype == 'client_feedback')
            $('.client_more').show();
         else
             $('.client_more').hide();
@@ -411,7 +411,7 @@ $(function(){
         $('.draftspan').show();
            $('.extra_memo').show();
            }
-    if($('#document_type').val() == 'client_memo')
+    if($('#document_type').val() == 'client_feedback')
             $('.client_more').show();       
     $('.extra_memo input').each(function(){
         $(this).click();

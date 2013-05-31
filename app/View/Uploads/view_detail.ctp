@@ -30,7 +30,7 @@
         <td><b>Document Type</b></td>
         <td><?php echo $type = ucwords(str_replace('_',' ',$doc['Document']['document_type'])); ?></td>
     </tr>
-     <?php if($type == 'Client Memo'){?>
+     <?php if($type == 'Client Feedback'){?>
     <tr>
         <td><strong>Time</strong></td>
         <td><?php echo $memo['Clientmemo']['time'];?></td>
@@ -64,7 +64,7 @@
     { ?>
      <!--<tr>
         <td><b>Client Memo</b></td>
-        <td><?php echo $doc['Document']['client_memo'];?></a></td>
+        <td><?php echo $doc['Document']['client_feedback'];?></a></td>
     </tr>-->
     
     <?php if($activity){
