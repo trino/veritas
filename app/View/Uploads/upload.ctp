@@ -213,7 +213,7 @@ function remove_youtube()
 <!--<th colspan="3"><strong>Activity Log</strong></th></thead>-->
 <thead><th>Report Type</th>
 <th colspan="2">
-<select name="report_type" class="required">
+<select name="report_type" class="required reporttype">
     <option value="">Select Report Type</option>
     <option value="1">Activity Log</option>
     <option value="2">Mobile Inspection</option>
@@ -230,7 +230,7 @@ function remove_youtube()
 <tr>
 <td><input type="text" value="" name="activity_time[]" class="activity_time required" /></td>
 <td><input type="text" value="" name="activity_date[]" class="activity_date required" /></td>
-<td><textarea name="activity_desc[]" class="required"></textarea>   
+<td><textarea name="activity_desc[]" class="required activity_desc"></textarea>   
 <a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></td>
 </tr>
 <tr><td colspan="3" style="padding: 0;"><table class="activity_more">
@@ -264,12 +264,22 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 <input type="hidden" name="video" id="video" value="1" />
 <input type="hidden" name="youtube" id="youtube" value="1" />
 <input type="hidden" name="job" value="<?php echo $job_id; ?>" />
-<div class="submit"><input type="submit" class="btn btn-primary" value="Upload Document" name="submit"/></div>
+<input type="hidden" class="draftval" name="draft" value="0" />
+<div class="submit"><input type="submit" class="btn btn-primary" style="float: left;" value="Upload Document" name="submit"/> <span style="display: none;float:left;" class="draftspan"><a class="draft" href="javascript:void(0)" style="margin-left: 15px;" class="btn btn-primary">Save as Draft</a></span></div>
 
 
 </form>
 <script>
 $(function(){
+    $('.draft').click(function(){
+       $('.draftval').val("1");
+       $('.activity_desc').removeClass('required');
+       $('.activity_date').removeClass('required');
+       $('.activity_time').removeClass('required');
+       $('.reporttype').removeClass('required'); 
+       $('#repl').removeClass('required');
+       $('#my_form').submit();
+    });
     //Add More acitvity
     var test=1;
     $('#activity_more').click(function(){
@@ -304,18 +314,24 @@ $(function(){
         var doctype = $(this).val();
         
         
-        if(doctype == 'evidence')
+        if(doctype == 'evidence'){
             $('.extra_evidence').show();
+            $('.draftspan').hide();
+            }
         else
             $('.extra_evidence').hide();
        if(doctype == 'report')
        {
            $('.extra_memo').show();
+           $('.draftspan').show();
+           
            //$('#document_1').removeClass('required');
        }    
         else
         {
             $('.extra_memo').hide();
+            $('.draftspan').hide();
+            $('.draftval').val("0");
            // $('#document_1').addClass('required');         
         }
         $('.extra_memo input').each(function(){
