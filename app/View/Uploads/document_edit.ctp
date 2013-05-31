@@ -246,7 +246,7 @@ function remove_youtube()
 <thead>-->
 <thead><th>Report Type</th>
 <th>
-<select name="report_type" class="required">
+<select name="report_type" class="required reporttype">
     <option value="">Select report type</option>
     <option value="1" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '1') echo "selected='selected'"; ?> >Activity Log</option>
     <option value="2" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '2') echo "selected='selected'"; ?>>Mobile Inspection</option>
