@@ -328,7 +328,7 @@ if($attach)
 <input type="hidden" name="youtube" id="youtube" value="1" />
 <input type="hidden" name="job" value="<?php echo $doc['Document']['job_id']; ?>" />
 <input type="hidden" class="draftval" name="draft" value="0" />
-<div class="submit"><input type="submit" class="btn btn-primary" style="float: left;" value="Upload Document" name="submit"/> <span style="display: none;float:left;" class="draftspan"><a href="javascript:void(0)" style="margin-left: 15px;" class="draft btn btn-primary">Save as Draft</a></span></div>
+<div class="submit"><input type="submit" class="btn btn-primary sbtbtn" style="float: left;" value="Upload Document" name="submit"/><?php if(!$this->Session->read('admin')){?> <span style="display: none;float:left;" class="draftspan"><a href="javascript:void(0)" style="margin-left: 15px;" class="draft btn btn-primary">Save as Draft</a></span><?php }?></div>
 
 
 </form>
@@ -339,9 +339,10 @@ $(function(){
        $('.activity_desc').removeClass('required');
        $('.activity_date').removeClass('required');
        $('.activity_time').removeClass('required');
-       $('.reporttype').removeClass('required'); 
+        
        $('#repl').removeClass('required');
-       $('#my_form').submit();
+       $('.sbtbtn').click();
+       
     });
     var test=1;
      //Add More acitvity
@@ -376,12 +377,18 @@ $(function(){
         
         if(doctype == 'evidence')
             $('.extra_evidence').show();
+            $('.draftspan').hide();
         else
             $('.extra_evidence').hide();
-        if(doctype == 'report')
+        if(doctype == 'report'){
            $('.extra_memo').show();
-        else
+           $('.draftspan').show();
+           }
+        else{
             $('.extra_memo').hide();
+            $('.draftspan').hide();
+            $('.draftval').val("0");
+            }
         if(doctype == 'client_memo')
            $('.client_more').show();
         else
