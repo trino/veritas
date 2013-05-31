@@ -7,7 +7,7 @@
 	<li>
 		<i class="icon-home"></i>
 		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>uploads/draft"></a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>uploads/draft">Drafts</a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
 
