@@ -8,7 +8,7 @@ if($this->Session->read('admin'))
                 <h3 style="font-size: 15px;"><?php echo $q2['Job']['title'];?></h3>
                 
                 <?php
-                $q3 = $doc->find('all',array('conditions'=>array('job_id'=>$q2['Job']['id'])));
+                $q3 = $doc->find('all',array('conditions'=>array('job_id'=>$q2['Job']['id'],'draft'=>0)));
                 if($q3)
                 {
                     foreach($q3 as $do)
@@ -113,7 +113,7 @@ else
                 <h3 style="font-size: 15px;"><?php echo $q2['Job']['title'];?></h3>
                 
                 <?php
-                $q3 = $doc->find('all',array('conditions'=>array('job_id'=>$q2['Job']['id'])));
+                $q3 = $doc->find('all',array('conditions'=>array('job_id'=>$q2['Job']['id'],'draft'=>0)));
                 if($q3)
                 {
                     foreach($q3 as $do)
@@ -205,3 +205,4 @@ else
     }
 }
 ?>
+<button class="close_modal" style="background: blue;padding:5px 15px;color:#FFF;border:none;border-radius:5px">Close</button>

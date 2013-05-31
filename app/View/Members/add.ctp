@@ -117,7 +117,7 @@
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="canUpload_evidence"  />
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="canUpload_templates"  />
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report </span><input type="checkbox" name="canUpload_client_memo"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Memo </span><input type="checkbox" name="canUpload_client_memo1"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Feedback </span><input type="checkbox" name="canUpload_client_memo1"  />
 </td>
 </tr>
 </table>
@@ -136,7 +136,7 @@
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="Email_evidence"  />
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="Email_templates"  />
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report </span><input type="checkbox" name="Email_client_memo"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Memo </span><input type="checkbox" name="Email_client_memo1"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Feedback </span><input type="checkbox" name="Email_client_memo1"  />
 </td>
 </tr>
 </table>

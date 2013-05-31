@@ -278,7 +278,7 @@ class UploadsController extends AppController
                 
                 
             }
-            elseif($_POST['document_type']== 'client_memo')
+            elseif($_POST['document_type']== 'client_feedback')
             {
                 
                 $this->Clientmemo->deleteAll(array('document_id'=>$eid));
@@ -425,7 +425,7 @@ class UploadsController extends AppController
             $this->set('ac', $this->Activity->find('first',array('conditions'=>array('document_id'=>$eid))));
             $this->set('activity', $this->Activity->find('all',array('conditions'=>array('document_id'=>$eid))));
         }
-        elseif($doc['Document']['document_type'] == 'client_memo')
+        elseif($doc['Document']['document_type'] == 'client_feedback')
         {
             $this->set('memo',$this->Clientmemo->findByDocumentId($eid));
         }
@@ -566,7 +566,7 @@ class UploadsController extends AppController
                      
                 }
             }
-            elseif($_POST['document_type']== 'client_memo')
+            elseif($_POST['document_type']== 'client_feedback')
             {
                 $this->loadModel('Clientmemo');
                 $client['document_id'] = $id;
@@ -740,7 +740,7 @@ class UploadsController extends AppController
 		
         if($this->Session->read('avatar'))
         {
-            $do=$this->Document->find('all',array('conditions'=>array('document_type'=>$type),'order by'=>'job_id'));
+            $do=$this->Document->find('all',array('conditions'=>array('document_type'=>$type,'draft'=>0),'order by'=>'job_id'));
             if($do)
                 $this->set('doc',$do);
             else
@@ -764,9 +764,9 @@ class UploadsController extends AppController
                     }
                 $d=rtrim($data,',');
                 if($jid != 0)
-                    $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'job_id'=>$jid),'order by'=>'job_id'));
+                    $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'draft'=>0,'job_id'=>$jid),'order by'=>'job_id'));
                 else
-                    $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'job_id IN('.$data.'0)'),'order by'=>'job_id'));
+                    $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'draft'=>0,'job_id IN('.$data.'0)'),'order by'=>'job_id'));
                 if($do)
                     $this->set('doc',$do);
                 else
@@ -777,7 +777,7 @@ class UploadsController extends AppController
             {
                 $q=$this->Member->find('first',array('conditions'=>array('id'=>$this->Session->read('id'))));
                 $id=$q['Member']['id'];
-                $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'addedBy'=>$id,'job_id'=>$jid),'order by'=>'job_id'));
+                $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'draft'=>0,'addedBy'=>$id,'job_id'=>$jid),'order by'=>'job_id'));
                 if($do)
                     $this->set('doc',$do);
                 else
@@ -798,7 +798,7 @@ class UploadsController extends AppController
                 $data.=$j['Jobmember']['job_id'].",";
             }
             $d=rtrim($data,',');
-                $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'job_id in ('.$d.')')));
+                $do = $this->Document->find('all',array('conditions'=>array('draft'=>0,'document_type'=>$type,'job_id in ('.$d.')')));
                 if($do)
                     $this->set('doc',$do);
                 else
@@ -832,7 +832,7 @@ class UploadsController extends AppController
             $doc = $this->Document->find('first',array('conditions'=>array('id'=>$id)));
             if($doc['Document']['document_type']== 'report')
                 $this->set('activity',$this->Activity->find('all',array('conditions'=>array('document_id'=>$id))));
-            elseif($doc['Document']['document_type'] == 'client_memo')
+            elseif($doc['Document']['document_type'] == 'client_feedback')
                 $this->set('memo',$this->Clientmemo->findByDocumentId($id));
             $this->set('doc', $doc);
             $this->set('do',$this->Doc->find('all',array('conditions'=>array('document_id'=>$id))));

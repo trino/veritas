@@ -4,6 +4,7 @@ class DashboardController extends AppController
     var $components = array('Email');
     public function index()
     {
+        
         if($this->Session->read('avatar') || $this->Session->read('user'))
         {
             //die('here');
@@ -13,7 +14,13 @@ class DashboardController extends AppController
             //die('there');
             $this->redirect('/admin');
         }
-            
+        
+       if(isset($_GET['mail']))
+            $this->redirect('/mail/read/'.$_GET['mail']);
+        if($this->Session->read('job_id'))
+        {
+            $this->redirect('/jobs/view/'.$this->Session->read('job_id'));
+        }     
         $this->loadModel('Member');
         $this->loadModel('Mail');
         $this->loadModel('User');
@@ -29,7 +36,7 @@ class DashboardController extends AppController
             $this->set('contract',$this->Document->find('count',array('conditions'=>array('document_type'=>'contract'))));
             $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence'))));
             $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template'))));
-            $this->set('report',$this->Document->find('count',array('conditions'=>array('document_type'=>'report'))));
+            $this->set('report',$this->Document->find('count',array('conditions'=>array('document_type'=>'report','draft'=>0))));
               $this->paginate = array('limit'=>10,'order'=>'date desc ,time desc');
              //$this->set('activity',$this->paginate('Document'));
              $this->set('added',$this->Member->find('all'));
@@ -73,7 +80,7 @@ class DashboardController extends AppController
                     $this->set('contract',$this->Document->find('count',array('conditions'=>array('document_type'=>'contract','job_id in ('.$d.')'))));
                     $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','job_id in ('.$d.')'))));
                     $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','job_id in ('.$d.')'))));
-                    $this->set('report',$this->Document->find('count',array('conditions'=>array('document_type'=>'report','job_id in ('.$d.')'))));
+                    $this->set('report',$this->Document->find('count',array('conditions'=>array('draft'=>0,'document_type'=>'report','job_id in ('.$d.')'))));
                     //$this->set('training_manuals',$this->Document->find('count',array('conditions'=>array('document_type'=>'training_manuals','job_id in ('.$d.')'))));
                 }
                 else

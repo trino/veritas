@@ -418,6 +418,8 @@ class JobsController extends AppController
     
     public function view($id)
     {
+        if($id=='all')
+        $this->redirect('index');
         $this->loadModel('Canupload');
         $this->loadModel('Canview');
       if($this->Session->read('avatar') || $this->Session->read('user'))

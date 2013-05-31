@@ -13,7 +13,7 @@ class FeedbackController extends AppController
         if($this->Session->read('avatar'))
         {
             
-            $this->paginate = array('conditions'=>array('document_type'=>'client_memo'),'order'=>array('job_id'),'limit'=>10);
+            $this->paginate = array('conditions'=>array('document_type'=>'client_feedback'),'order'=>array('job_id'),'limit'=>10);
             $docs = $this->paginate('Document');
             //$docs = $this->Document->find('all',array('conditions'=>array('title LIKE'=>'%'.$search.'%')));
         }
@@ -31,7 +31,7 @@ class FeedbackController extends AppController
                 $jid = '('.'99999999999'.')';
             
                 //echo 2;die();
-            $this->paginate = array('conditions'=>array('document_type'=>'client_memo','job_id IN'.$jid),'order'=>array('job_id'),'limit'=>10);
+            $this->paginate = array('conditions'=>array('document_type'=>'client_feedback','job_id IN'.$jid),'order'=>array('job_id'),'limit'=>10);
             
             $docs = $this->paginate('Document');
             //$docs = $this->Document->find('all',array('conditions'=>array('addedBy'=>$this->Session->read('id'),'title LIKE'=>'%'.$search.'%'))); 

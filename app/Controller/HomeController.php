@@ -16,8 +16,14 @@ class HomeController extends AppController {
     }
 	public function index() {
 	$this->layout = 'login';
-	    if($this->Session->read('id'))        
+	    if($this->Session->read('id'))
+        {
+        if(isset($_GET['mail']))    
+        $this->redirect('/dashboard/?mail='.$_GET['mail']);
+        else
         $this->redirect('/dashboard');
+        }
+        
 	   $this->loadModel('User');
        $this->loadModel('Event_log');
        $this->loadModel('Member');
