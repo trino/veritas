@@ -220,7 +220,7 @@ class UploadsController extends AppController
               $attach['file'][] = $im['Video']['video'];
         }
         */
-        if(isset($_POST['submit']))
+        if(isset($_POST['document_type']))
         {
             $uri = $_SERVER['REQUEST_URI'];
                 $uri = str_replace('/',' ',$uri);
@@ -246,6 +246,7 @@ class UploadsController extends AppController
             $arr['title'] = ucfirst($_POST['document_type']);
             $arr['description'] = $_POST['description'];
             $arr['document_type'] = $_POST['document_type'];
+            $arr['draft'] = $_POST['draft'];
             if($_POST['document_type']== 'evidence')
             {
                 $arr['incident_date'] = $_POST['incident_date'];
@@ -452,7 +453,7 @@ class UploadsController extends AppController
            if($canupdate = $this->Canupload->find('first', array('conditions'=>array('member_id'=>$id))))
                     $this->set('canupdate',$canupdate);  
         }
-        if(isset($_POST['submit']))
+        if(isset($_POST['document_type']))
         {
             $uri = $_SERVER['REQUEST_URI'];
                 $uri = str_replace('/',' ',$uri);
@@ -487,6 +488,7 @@ class UploadsController extends AppController
                 
                //die(); 
             }
+            $arr['draft'] = $_POST['draft'];
             
             //Email
             
@@ -856,4 +858,13 @@ class UploadsController extends AppController
             $this->Session->setFlash('Data Saved Successfully.');
         }
     }
+    public function draft()
+    {
+        if($this->Session->read('admin'))
+            $this->redirect('/dashboard');
+        $drafts = $this->Document->find('all',array('conditions'=>array('draft'=>'1','addedBy'=>$this->Session->read('id'))));
+        
+        $this->set('drafts',$drafts);
+    }
+    
 }
