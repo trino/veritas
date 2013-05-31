@@ -205,3 +205,4 @@ else
     }
 }
 ?>
+<button class="close_modal" style="background: blue;padding:5px 15px;color:#FFF;border:none;border-radius:5px">Close</button>
