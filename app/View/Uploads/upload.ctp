@@ -313,16 +313,26 @@ $(function(){
     //Add More acitvity
     var test=1;
     var d = new Date;
-    $('.activity_time').val(d.getHours()+':'+d.getMinutes());
+    var  mins ='';
+    if(d.getMinutes()<10)
+        mins = "0"+d.getMinutes();
+    else
+        mins = d.getMinutes();    
+    $('.activity_time').val(d.getHours()+':'+mins);
     var da = d.getFullYear()+'-'+Number(d.getMonth()+1)+'-'+d.getDate();
     $('.activity_date').val(da);
     
     //alert(t);
     $('#activity_more').click(function(){
         var t = new Date;
+        var  mis ='';
+    if(t.getMinutes()<10)
+        mis = "0"+t.getMinutes();
+    else
+        mis = t.getMinutes(); 
         var dt = t.getFullYear()+'-'+Number(t.getMonth()+1)+'-'+t.getDate();
        var more = '<tr>'+
-'<td style="padding:5px 0;"><input type="text" value="'+t.getHours()+':'+t.getMinutes()+'" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
+'<td style="padding:5px 0;"><input type="text" value="'+t.getHours()+':'+mis+'" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
 '<td style="padding:5px 0;"><input type="text" value="'+dt+'" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
 '<td style="padding:5px 0;"><textarea name="activity_desc[]"></textarea>   <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>'+
 '</tr>'
