@@ -375,9 +375,9 @@ $(function(){
         var doctype = $(this).val();
         
         
-        if(doctype == 'evidence')
+        if(doctype == 'evidence'){
             $('.extra_evidence').show();
-            $('.draftspan').hide();
+            $('.draftspan').hide();}
         else
             $('.extra_evidence').hide();
         if(doctype == 'report'){
@@ -407,7 +407,10 @@ $(function(){
     if($('#document_type').val() == 'evidence')
          $('.extra_evidence').show();
     if($('#document_type').val() == 'report')
+    {
+        $('.draftspan').show();
            $('.extra_memo').show();
+           }
     if($('#document_type').val() == 'client_memo')
             $('.client_more').show();       
     $('.extra_memo input').each(function(){

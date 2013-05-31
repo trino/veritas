@@ -13,7 +13,7 @@
 
  
     <?php if(count($drafts)>0){?>
-    <table>
+    <table style="width: 100%;" class="table">
     <thead><th>Document Type</th><th>Description</th><th>Added On</th><th>Option</th></thead>
 <?php
 foreach($drafts as $d)

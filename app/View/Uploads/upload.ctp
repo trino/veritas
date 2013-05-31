@@ -260,8 +260,7 @@ function remove_youtube()
 <td><input type="text" value="" name="activity_time[]" class="activity_time required" /></td>
 <td><input type="text" value="" name="activity_date[]" class="activity_date required" /></td>
 
-<td><textarea name="activity_desc[]" class="required activity_desc"></textarea>   
-<a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></td>
+<td><textarea name="activity_desc[]" class="required activity_desc"></textarea></td>
 </tr>
 <tr><td colspan="3" style="padding: 0;"><table class="activity_more">
 </table>
