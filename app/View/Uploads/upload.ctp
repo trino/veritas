@@ -296,7 +296,7 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 <input type="hidden" name="youtube" id="youtube" value="1" />
 <input type="hidden" name="job" value="<?php echo $job_id; ?>" />
 <input type="hidden" class="draftval" name="draft" value="0" />
-<div class="submit"><input type="submit" class="btn btn-primary" style="float: left;" value="Upload Document" name="submit"/> <span style="display: none;float:left;" class="draftspan"><a href="javascript:void(0)" style="margin-left: 15px;" class="draft btn btn-primary">Save as Draft</a></span></div>
+<div class="submit"><input type="submit" class="btn btn-primary sbtbtn" style="float: left;" value="Upload Document" name="submit"/> <span style="display: none;float:left;" class="draftspan"><a href="javascript:void(0)" style="margin-left: 15px;" class="draft btn btn-primary">Save as Draft</a></span></div>
 
 
 </form>
@@ -309,7 +309,7 @@ $(function(){
        $('.activity_time').removeClass('required');
        $('.reporttype').removeClass('required'); 
        $('#repl').removeClass('required');
-       $('#my_form').submit();
+       $('.sbtbtn').click();
     });
     //Add More acitvity
     var test=1;

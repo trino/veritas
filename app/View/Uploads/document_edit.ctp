@@ -270,7 +270,7 @@ foreach($activity as $act)
 <tr>
 <td><input type="text" value="<?php echo $time;?>" name="activity_time[]" class="activity_time required" /></td>
 <td><input type="text" value="<?php echo $act['Activity']['date'];?>" name="activity_date[]" class="activity_date required" /></td>
-<td><textarea name="activity_desc[]"><?php echo $act['Activity']['desc'];?></textarea>  <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>
+<td><textarea name="activity_desc[]" class="activity_desc"><?php echo $act['Activity']['desc'];?></textarea>  <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>
 </tr>
 <?php }?>
 
@@ -327,12 +327,22 @@ if($attach)
 <input type="hidden" name="video" id="video" value="1" />
 <input type="hidden" name="youtube" id="youtube" value="1" />
 <input type="hidden" name="job" value="<?php echo $doc['Document']['job_id']; ?>" />
-<div class="submit"><input type="submit" class="btn btn-primary" value="Save Document" name="submit"/></div>
+<input type="hidden" class="draftval" name="draft" value="0" />
+<div class="submit"><input type="submit" class="btn btn-primary" style="float: left;" value="Upload Document" name="submit"/> <span style="display: none;float:left;" class="draftspan"><a href="javascript:void(0)" style="margin-left: 15px;" class="draft btn btn-primary">Save as Draft</a></span></div>
 
 
 </form>
 <script>
 $(function(){
+    $('.draft').click(function(){
+       $('.draftval').val("1");
+       $('.activity_desc').removeClass('required');
+       $('.activity_date').removeClass('required');
+       $('.activity_time').removeClass('required');
+       $('.reporttype').removeClass('required'); 
+       $('#repl').removeClass('required');
+       $('#my_form').submit();
+    });
     var test=1;
      //Add More acitvity
     $('#activity_more').click(function(){
