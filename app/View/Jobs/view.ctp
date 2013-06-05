@@ -49,7 +49,7 @@
 		<div class="whiteCorner"></div>								
 		<a href="<?=$base_url;?>uploads/view_doc/evidence/<?php echo $job['Job']['id'];?>" class="overallLink more">									
 			<div class="visual">										
-				<i class="icon-shopping-cart"></i>									
+				<i class="icon-legal"></i>									
 			</div>									
 			<div class="details">										
 				<div class="number"><?=$evidence;?></div>										
@@ -70,7 +70,7 @@
 		<div class="whiteCorner"></div>
 		<a href="<?=$base_url;?>uploads/view_doc/template/<?php echo $job['Job']['id'];?>" class="overallLink more">
 		<div class="visual">
-		<i class="icon-legal"></i>
+		<i class="icon-leaf"></i>
 		</div>
 		<div class="details">
 		<div class="number">

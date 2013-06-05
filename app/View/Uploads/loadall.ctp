@@ -1,3 +1,8 @@
+<script>
+$(function(){
+    
+});
+</script>
 <?php
 if($this->Session->read('admin'))
 {
@@ -205,4 +210,24 @@ else
     }
 }
 ?>
-<button class="close_modal" style="background: blue;padding:5px 15px;color:#FFF;border:none;border-radius:5px">Close</button>
+<button class="close_modal" style="background: blue;padding:5px 15px;color:#FFF;border:none;border-radius:5px">Attach</button>
+<script>
+$(function(){
+    
+    var arr_id = $('#attachments').val();
+    
+       var spl = arr_id.split(',');
+       var size = spl.length;
+       
+    $('.doc').each(function(){
+       var id = $(this).val();        
+       for(var i =0;i<size;i++)
+       {
+        if(spl[i] == id && !($(this).is(':checked')))
+        $(this).click();
+        
+       }    
+       
+    });
+});
+</script>

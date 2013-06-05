@@ -324,7 +324,7 @@ class MailController extends AppController
                 $data['recipients_id'] = $d[$i];
                 $data['subject'] = $_POST['subject'];
                 $data['message'] = $_POST['message'];
-                $data['attachment'] = $_POST['attachments'];
+                $data['attachment'] = str_replace(' ','',$_POST['attachments']);
                 $data['status'] = 'unread';
                 $data['date'] = date('Y-m-d H:i:s');
                 $this->Mail->create();

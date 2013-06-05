@@ -190,7 +190,7 @@ border:1px solid #cccccc;
     width: calc(100% - 12px);
 	height: -moz-calc(100% - 12px);
     height: -webkit-calc(100% - 12px);
-    height: calc(100% - 12px);
+    height: calc(100% - -15px);
 	border-radius:0px;
 }
 .subjectLine, .recipientsLine{
@@ -246,7 +246,7 @@ a.buttonV{
     width: -moz-calc(50% - 5px);
     width: -webkit-calc(50% - 5px);
     width: calc(50% - 5px);
-	height:77px;
+	height:76px;
 	margin:0px !important;
 	padding:0px !important;
 }
@@ -588,7 +588,7 @@ Import fonts
 
 #table { border: 1px solid #9D9C9C; width: 100%; margin-bottom: 15px; clear:both;}
 #table h2{ background: #555; color: #FFF; font-size: 18px; font-weight:300; padding: 8px; line-height:18px; margin:0px;  font-family: 'Oxygen', sans-serif;}
-#table table{ width: 98%; margin: 10px auto;  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+#table table{ width: 98%;   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;}
 #table table th{ text-align: left;}

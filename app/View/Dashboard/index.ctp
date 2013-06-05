@@ -44,7 +44,7 @@
 		<div class="whiteCorner"></div>								
 		<a href="<?=$base_url;?>uploads/view_doc/evidence" class="overallLink more">									
 			<div class="visual">										
-				<i class="icon-shopping-cart"></i>									
+				<i class="icon-legal"></i>									
 			</div>									
 			<div class="details">										
 				<div class="number"><?=$evidence;?></div>										
@@ -64,7 +64,7 @@
 		<div class="whiteCorner"></div>
 		<a href="<?=$base_url;?>uploads/view_doc/template" class="overallLink more">
 		<div class="visual">
-		<i class="icon-legal"></i>
+		<i class="icon-leaf"></i>
 		</div>
 		<div class="details">
 		<div class="number">
@@ -168,7 +168,7 @@
             </td>
             <td><?php echo $a['Event_log']['fullname'];?></td>
             <td><?php echo $a['Event_log']['event_type']; ?></td>
-            <td><?php if($a['Event_log']['document_id']!=0){ ?><a href="<?php echo $base_url; ?>uploads/view_detail/<?php echo $a['Event_log']['document_id'];?>"><?php echo $a['Event_log']['event']; ?></a><?php } else { echo $a['Event_log']['event'];} ?></td>
+            <td><?php if($a['Event_log']['document_id']!=0){ ?><a href="<?php echo $base_url; ?>uploads/view_detail/<?php echo $a['Event_log']['document_id'];?>"><?php echo str_replace('Ful','ful',$a['Event_log']['event']); ?></a><?php } else { echo str_replace('Ful','ful',$a['Event_log']['event']);} ?></td>
         </tr>
     <?php } 
         }
