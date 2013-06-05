@@ -279,6 +279,7 @@ class DashboardController extends AppController
         $this->loadModel('Member');
         $this->loadModel('Mail');
         $this->loadModel('User');
+        $this->loadModel('Emailupload');
         if(isset($_POST['submit']))
         {
             //if()
@@ -390,13 +391,41 @@ class DashboardController extends AppController
                 $this->Member->saveField('full_name',$_POST['name']);
                 $this->Member->saveField('email',$_POST['email']);
                 if(isset($_POST['receive1']))
-                $this->Member->saveField('receive1',1);
+                    $this->Member->saveField('receive1',1);
                 else
-                $this->Member->saveField('receive1',0);
+                    $this->Member->saveField('receive1',0);
+                    
                 if(isset($_POST['receive2']))
-                $this->Member->saveField('receive2',1);
+                    $this->Member->saveField('receive2',1);
                 else
-                $this->Member->saveField('receive2',0);
+                    $this->Member->saveField('receive2',0);
+                if(isset($_POST['receive2']))
+                {
+                    
+                    $this->Emailupload->deleteAll(array('member_id'=>$this->Session->read('id')));
+                    $emailupload['member_id'] = $this->Session->read('id');
+                    $emailupload['contract'] = (isset($_POST['Email_contracts']))? '1' : '0'  ;
+                    $emailupload['evidence'] = (isset($_POST['Email_evidence']))? '1' : '0'  ;
+                    $emailupload['template'] = (isset($_POST['Email_templates']))? '1' : '0'  ;
+                    $emailupload['report'] = (isset($_POST['Email_client_memo']))? '1' : '0'  ;
+                    $emailupload['client_feedback'] = (isset($_POST['Email_client_memo1']))? '1' : '0'  ;
+                    
+                    $this->Emailupload->create();
+                    $this->Emailupload->save($emailupload);  
+                    
+                }
+                else
+                {
+                    $this->Emailupload->deleteAll(array('member_id'=>$this->Session->read('id')));
+                    $emailupload['member_id'] = $this->Session->read('id');
+                    $emailupload['contract'] = '0'  ;
+                    $emailupload['evidence'] = '0'  ;
+                    $emailupload['template'] = '0' ;
+                    $emailupload['report'] = '0' ;
+                    $emailupload['client_feedback'] = '0' ;
+                    $this->Emailupload->create();
+                    $this->Emailupload->save($emailupload);
+                }
                 if($_POST['password']!='')
                 $this->Member->saveField('password',$_POST['password']);
                 $this->Member->saveField('address', $_POST['address']);
@@ -421,6 +450,8 @@ class DashboardController extends AppController
         else
         {
             $this->set('user',$this->Member->find('first',array('conditions'=>array('id'=>$this->Session->read('id')))));
+            $e = $this->Emailupload->find('first', array('conditions'=>array('member_id'=>$this->Session->read('id'))));
+            $this->set('e',$e);
         }
         
     }

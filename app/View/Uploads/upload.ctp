@@ -267,9 +267,10 @@ function remove_youtube()
 </td></tr>
 <tr><td colspan="3"><a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></td></tr>
 </table>
-</td></tr>
+</td>
+</tr>
 <!--<tr><td><b>Title</b></td><td><div class="right"><input type="text" name="title" class="required" /></div></td></tr>-->
-<tr><td><strong>Description</strong></td>
+<tr><td class="main_desc"><strong>Description</strong></td>
 <td><textarea name="description" class="required" class="text_area_long" cols="10" rows="5" id="repl" onKeyDown="limitText(this.form.description,this.form.countdown,70);"
 onKeyUp="limitText(this.form.description,this.form.countdown,70);"></textarea>
 <br />
@@ -370,6 +371,7 @@ $(function(){
        {
            $('.extra_memo').show();
            $('.draftspan').show();
+           $('.main_desc').html("<strong>Additional Notes</strong>");
            
            //$('#document_1').removeClass('required');
        }    
@@ -378,6 +380,7 @@ $(function(){
             $('.extra_memo').hide();
             $('.draftspan').hide();
             $('.draftval').val("0");
+            $('.main_desc').html("<strong>Description</strong>");
            // $('#document_1').addClass('required');         
         }
         
