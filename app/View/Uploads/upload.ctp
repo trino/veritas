@@ -252,7 +252,7 @@ function remove_youtube()
 </th>
 </thead>
 <thead>
-<th width="18%">Date
+<th width="18%">Date</th>
 <th width="16%">Time</th>
 <th>Description</th>
 </thead>
