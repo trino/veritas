@@ -67,8 +67,8 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
            if($(this).is(':checked'))
            {
             if($('#attachments').val() != ''){
-            var txts = $('#attachments').val()+','+$(this).val();
-            $('#attachments').val($('#attachments').val()+','+$(this).val());
+            var txts = $('#attachments').val()+', '+$(this).val();
+            $('#attachments').val($('#attachments').val()+', '+$(this).val());
             $('.attachments').text(txts);
             }
             else{
@@ -78,11 +78,11 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
            }
            else
            {
-            var txt = $('#attachments').val().replace(','+$(this).val(),'');
-            $('#attachments').val($('#attachments').val().replace(','+$(this).val(),''));
+            var txt = $('#attachments').val().replace(', '+$(this).val(),'');
+            $('#attachments').val($('#attachments').val().replace(', '+$(this).val(),''));
             $('.attachments').text(txt);
-            $('#attachments').val($('#attachments').val().replace($(this).val()+',',''));
-            var txt2 = $('#attachments').val().replace($(this).val()+',','');            
+            $('#attachments').val($('#attachments').val().replace($(this).val()+', ',''));
+            var txt2 = $('#attachments').val().replace($(this).val()+', ','');            
             $('.attachments').text(txt2);
             $('#attachments').val($('#attachments').val().replace($(this).val(),''));
             var txt3 = $('#attachments').val().replace($(this).val(),'');            
@@ -393,10 +393,10 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 							
 							<div class="left inputs">
 								<div class="subjectLine">
-									<input type="text" name="subject" placeholder="Subject" class="required" style="margin-bottom: 0;width: calc(100% - 10px);" />
+									<input type="text" name="subject" placeholder="Subject" class="required" style="margin-bottom: 7px;width: calc(100% - 10px);" />
 								</div>
 								<div class="recipientsLine">
-                                    <div id="name" style="height: 19px; width: calc(100% - 10px); background: white; border: 1px solid #ccc;padding:2px 4px;margin-bottom: 1px;color:#AAA;">Recipients</div>
+                                    <div id="name" style="height: 19px; width: calc(100% - 10px); background: white; border: 1px solid #ccc;padding:2px 4px;margin-bottom: 7px;color:#AAA;">Recipients</div>
 <!--									<input type="text" name="name" id="name" placeholder="Recipients (Separate with comma)" class="required" />--> 
 								</div>
 							
@@ -434,7 +434,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
                                 
 							</div>
 						</form>
-                        <!--<div><b>Attachments :</b><span class="attachments"></span></div>-->
+                        <div style="margin-left: calc( 50% + 5px);padding-top:80px;">
+                        <hr style="margin-bottom: 8px;" />
+                        <b>Attachments :</b><span class="attachments"></span></div>
 					</div>
 
 					<div class="clearfix" ></div>

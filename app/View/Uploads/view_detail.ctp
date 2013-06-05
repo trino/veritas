@@ -17,7 +17,7 @@
 <?php echo $this->Html->css('prettyPhoto'); ?>
 <?php echo $this->Html->script('jquery.prettyPhoto'); ?>
 <div id="table">
-<table>
+<table class="table">
     <!--<tr>
         <td style="width:140px;"><b>Title</b></td>
         <td><?php echo $doc['Document']['title']; ?></td>
@@ -32,12 +32,12 @@
     </tr>
      <?php if($type == 'Client Feedback'){?>
     <tr>
-        <td><strong>Time</strong></td>
-        <td><?php echo $memo['Clientmemo']['time'];?></td>
-    </tr>
-    <tr>
         <td><strong>Date</strong></td>
         <td><?php echo $memo['Clientmemo']['date'];?></td>
+    </tr>
+    <tr>
+        <td><strong>Time</strong></td>
+        <td><?php echo $memo['Clientmemo']['time'];?></td>
     </tr>
     <tr>
         <td><strong>Memo type</strong></td>
@@ -76,10 +76,10 @@
         </tr>
         <tr><td colspan="2">
         <table>
-        <thead><th>Time</th><th>Date</th><th>Description</th></thead>
+        <thead><th>Date</th><th>Time</th><th>Description</th></thead>
         <?php foreach($activity as $act)
               {?>
-        <tr><td><?php echo $act['Activity']['time'];?></td><td><?php echo $act['Activity']['date'];?></td><td><?php echo $act['Activity']['desc'];?></td></tr>
+        <tr><td><?php echo $act['Activity']['date'];?></td><td><?php echo $act['Activity']['time'];?></td><td><?php echo $act['Activity']['desc'];?></td></tr>
         <?php } ?> 
         </table></td></tr>
     <?php } ?> 
@@ -193,8 +193,38 @@
 }  
 ?>
 </div>
+<?php
+if($type == 'Report')
+{
+    ?>
+    <input type="button" onclick="PrintElem('#table');" value="Print" class="btn btn-primary" />
+    <?php
+}
+?>
 <script type="text/javascript" charset="utf-8">
 			$(document).ready(function(){
 			$(".gallery:first a[rel^='prettyPhoto']").prettyPhoto({animation_speed:'normal',theme:'light_square',slideshow:3000, autoplay_slideshow: false});
                 });
-   </script>
+   
+
+    function PrintElem(elem)
+    {
+        Popup($(elem).html());
+    }
+
+    function Popup(data) 
+    {
+        var mywindow = window.open('', 'my div', 'height=400,width=600');
+        mywindow.document.write('');
+        /*optional stylesheet*/ mywindow.document.write('<link rel="stylesheet" type="text/css" href="<?php echo $base_url;?>css/bootstrap.min.css" />');
+        
+        mywindow.document.write('<div style="font-size:12px;">'+data+'</div>');
+        
+
+        mywindow.print();
+        mywindow.close();
+
+        return true;
+    }
+
+</script>

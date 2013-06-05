@@ -58,4 +58,26 @@ foreach($job as $j)
 }
 
 ?>
-<button class="close_modal" style="background: blue;padding:5px 15px;color:#FFF;border:none;border-radius:5px">Close</button>
+<button class="close_modal" style="background: blue;padding:5px 15px;color:#FFF;border:none;border-radius:5px">Add</button>
+<script>
+$(function(){
+    
+    var arr_id = $('#receipient_id').val();
+    
+       var spl = arr_id.split(',');
+       var size = spl.length;
+       
+    $('.loading input').each(function(){
+       var cl = $(this).attr('class');
+       var arr = cl.split('__'); 
+       var id = arr[1];  
+       for(var i =0;i<size;i++)
+       {
+        if(spl[i] == id && !($(this).is(':checked')))
+        $(this).click();
+        
+       }    
+       
+    });
+});
+</script>

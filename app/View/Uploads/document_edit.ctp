@@ -296,7 +296,7 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 
 <tr><td><b>Images/Videos/Docs</b></td><td><div class="right">
 <input type="file" name="document_1" />
-<a href="javascript:void(0)" onclick="add_document()" class="btn btn-primary">Add</a></div><div id="doc"></div>
+<!--<a href="javascript:void(0)" onclick="add_document()" class="btn btn-primary">Add</a>--></div><div id="doc"></div>
 <?php 
 //var_dump($attach);
 /*
