@@ -1,5 +1,9 @@
 <?php include_once('inc.php');?>
-
+<script>
+$(function(){
+   $('#datefilter').validate(); 
+});
+</script>
 <h3 class="page-title">
 	Documents Search
 </h3>
@@ -23,6 +27,12 @@ if($docs)
         $date = 'asc'; 
         */  
     ?>
+    <form action="<?php echo $base_url;?>search" method="get" id="datefilter">
+    <input type="text" value="" name="from" placeholder="Start Date" style="width: 100px; margin-top:10px;" class="datepicker required" />
+    <input type="text" value="" name="to" placeholder="End Date" style="width: 100px; margin-top: 10px;" class="datepicker required" />
+    <input type="hidden" value="<?php if(isset($_GET['search']))echo $_GET['search'];?>" name="search" /> 
+    <input type="submit" value="Go" class="btn btn-primary" />
+    </form>
 <div id="table">
 
     <table>

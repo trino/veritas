@@ -24,15 +24,40 @@ class SearchController extends AppController
             $this->set('search',$_GET['search']);
         }
         else
-            $search = '';         
-    
+            $search = '';    
+                 
+        if(isset($_GET['from']))
+            {
+                $from = $_GET['from'];
+            }    
+            else
+            $from = $_GET['from'];
+            
+        if(isset($_GET['to']))
+            {
+                $to = $_GET['to'];
+            }    
+            else
+            $to = $_GET['to'];  
+              
         if($this->Session->read('avatar'))
         {
             
-            if($search != '')
+            if($search != ''){
+            if(!$from && !$to)
             $this->paginate = array('conditions'=>array('OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%'))),'order'=>array('job_id'),'limit'=>10);
             else
+            if($from && $to)
+            $this->paginate = array('conditions'=>array('OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'`date` >='=>$from, '`date` <='=>$to),'order'=>array('job_id'),'limit'=>10);
+            }
+            else
+            {
+            if(!$from && !$to)
             $this->paginate = array('order'=>array('job_id'),'limit'=>10);
+            else
+            $this->paginate = array('conditions'=>array('`date` >='=>$from, '`date` <='=>$to),'order'=>array('job_id'),'limit'=>10);
+            
+            }
             $docs = $this->paginate('Document');
             //$docs = $this->Document->find('all',array('conditions'=>array('title LIKE'=>'%'.$search.'%')));
         }
@@ -50,7 +75,12 @@ class SearchController extends AppController
             $jid = '('.'99999999999'.')';
             if($search!=''){
                 //echo 1;die();
+            if(!$to && !$from)    
             $this->paginate = array('conditions'=>array('OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'job_id IN'.$jid),'order'=>array('job_id'),'limit'=>10);
+            else
+            if($to && $from)
+            $this->paginate = array('conditions'=>array('OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'`date` >='=>$from, '`date` <='=>$to,'job_id IN'.$jid),'order'=>array('job_id'),'limit'=>10);
+            
             }
             else{
                 //echo 2;die();
