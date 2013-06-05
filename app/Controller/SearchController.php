@@ -5,6 +5,12 @@ class SearchController extends AppController
     public $name = 'Search';
     public function index()
     {
+        $this->loadModel('Doc');
+        $this->loadModel('Image');
+        $this->loadModel('Video');
+        $this->set('do',$this->Doc);
+        $this->set('im',$this->Image);
+        $this->set('v',$this->Video);
         //die('here');
         $this->loadModel('Document');
         $this->loadModel('Member');
@@ -29,14 +35,14 @@ class SearchController extends AppController
                 $from = $_GET['from'];
             }    
             else
-            $from = $_GET['from'];
+            $from = '';
             
         if(isset($_GET['to']))
             {
                 $to = $_GET['to'];
             }    
             else
-            $to = $_GET['to'];  
+            $to = '';  
               
         if($this->Session->read('avatar'))
         {

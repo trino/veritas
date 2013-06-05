@@ -262,7 +262,7 @@ function remove_youtube()
 
 <td><textarea name="activity_desc[]" class="required activity_desc"></textarea></td>
 </tr>
-<tr><td colspan="3" style="padding: 0;"><table class="activity_more">
+<tr><td colspan="3" style="padding: 0;"><table class="activity_more" style="margin-left: 10px;;">
 </table>
 </td></tr>
 <tr><td colspan="3"><a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></td></tr>

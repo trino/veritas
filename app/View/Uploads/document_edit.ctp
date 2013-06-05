@@ -279,7 +279,7 @@ foreach($activity as $act)
 <td><input type="text" value="" name="activity_date[]" class="activity_date" /></td>
 <td><textarea name="activity_desc[]"></textarea>  </td>
 </tr>-->
-<tr><td colspan="3" style="padding: 0;"><table class="activity_more">
+<tr><td colspan="3" style="padding: 0;"><table class="activity_more" style="margin-left: 10px;">
 </table>
 </td></tr>
 </table>

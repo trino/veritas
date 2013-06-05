@@ -40,8 +40,9 @@ if($docs)
             <th><?php echo $this->Paginator->sort('document_type','Document Type');?></th>
             <th><?php echo $this->Paginator->sort('description','Description');?></th>            
             <th><?php echo $this->Paginator->sort('addedBy','Uploaded By');?></th>
-            <th>File</th>
+            
             <th><!--<a href="<?php echo $base_url."search?search=".$search."&date=".$date;?>">--><?php echo $this->Paginator->sort('date','Uploaded On');?><!--</a>--></th>
+            <th>File</th>
             <th>Option</th>
         </tr>
     <?php
@@ -81,8 +82,34 @@ if($docs)
             
             <td><?php if($d['Document']['addedBy'] != 0){$q = $member->find('first',array('conditions'=>array('id'=>$d['Document']['addedBy'])));if($q){echo "<a href='".$base_url."members/view/".$q['Member']['id']."'>".$q['Member']['full_name']."</a>";}}else echo "Admin";?></td>
             
-            <td><?php echo $d['Document']['date'];?></td>
             
+            <td><?php echo $d['Document']['date'];?></td>
+            <td>
+            <?php 
+            $q = $do->find('first',array('conditions'=>array('document_id'=>$d['Document']['id'])));
+            if($q)
+            {
+                echo "<a href='".$base_url."uploads/view_detail/".$d['Document']['id']."'>".$q['Doc']['doc']."</a>";
+            }
+            else
+            {
+               $q2 = $im->find('first',array('conditions'=>array('document_id'=>$d['Document']['id'])));
+                if($q2)
+                {
+                    echo "<a href='".$base_url."uploads/view_detail/".$d['Document']['id']."'>".$q2['Image']['image']."</a>";
+                }
+                else
+                {
+                    $q3 = $im->find('first',array('conditions'=>array('document_id'=>$d['Document']['id'])));
+                    if($q3)
+                    {
+                        echo "<a href='".$base_url."uploads/view_detail/".$d['Document']['id']."'>".$q3['Video']['video']."</a>";
+                    }
+                    
+                }   
+            }
+            ?>
+            </td>
             <td><?php echo $this->Html->link('View','/uploads/view_detail/'.$d['Document']['id'], array('class'=>'btn btn-primary'));  ?>
                 
             </td>
