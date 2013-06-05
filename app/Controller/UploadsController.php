@@ -699,6 +699,10 @@ class UploadsController extends AppController
             $this->Event_log->save($log);
         }
         $this->set('job_id',$ids);
+        $j = $this->Job->findById($ids);
+        $name = $j['Job']['title'];
+        
+        $this->set('job_name',$name);
     }
     
     public function view($id)

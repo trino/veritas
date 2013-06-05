@@ -112,7 +112,7 @@
 {?>
 
 <div id="table">
-<h2>Activity Log</h2>
+<h2><?php echo ($this->Session->read('admin'))? 'Activity Log' : 'Document Log';?></h2>
 <table>
     <tr>
         <th>Date</th>

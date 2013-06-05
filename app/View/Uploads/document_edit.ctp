@@ -255,8 +255,8 @@ function remove_youtube()
 </select>
 </th>
 </thead>
-<th>Time</th>
-<th>Date</th>
+<th width="18%">Date</th>
+<th width="16%">Time</th>
 <th>Description &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
 </thead>
 
@@ -268,8 +268,8 @@ foreach($activity as $act)
     $time = $t[0].":".$t[1];
     ?>
 <tr>
-<td><input type="text" value="<?php echo $time;?>" name="activity_time[]" class="activity_time required" /></td>
 <td><input type="text" value="<?php echo $act['Activity']['date'];?>" name="activity_date[]" class="activity_date required" /></td>
+<td><input type="text" value="<?php echo $time;?>" name="activity_time[]" class="activity_time required" /></td>
 <td><textarea name="activity_desc[]" class="activity_desc"><?php echo $act['Activity']['desc'];?></textarea>  <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>
 </tr>
 <?php }?>
@@ -348,10 +348,15 @@ $(function(){
      //Add More acitvity
     $('#activity_more').click(function(){
      var t = new Date;
+     var mis ='';
         var dt = t.getFullYear()+'-'+Number(t.getMonth()+1)+'-'+t.getDate();
+         if(t.getMinutes()<10)
+        mis = "0"+t.getMinutes();
+    else
+        mis = t.getMinutes(); 
        var more = '<tr>'+
-'<td style="padding:5px 0;"><input type="text" value="'+t.getHours()+':'+t.getMinutes()+'" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
-'<td style="padding:5px 0;"><input type="text" value="'+dt+'" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
+'<td style="padding:5px 0;" width="23%"><input type="text" value="'+dt+'" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
+'<td style="padding:5px 0;" width="24%"><input type="text" value="'+t.getHours()+':'+mis+'" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
 '<td style="padding:5px 0;"><textarea name="activity_desc[]"></textarea>   <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>'+
 '</tr>';
                $('.activity_more').append(more);

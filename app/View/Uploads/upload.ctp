@@ -3,13 +3,13 @@
 
 
 <h3 class="page-title">
-	Upload Document
+	Upload Document For <?php echo $job_name;?>
 </h3>
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
 		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>jobs">Upload Document</a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>jobs">Upload Document  </a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
 
@@ -237,7 +237,7 @@ function remove_youtube()
 </th>
 </thead>
 </table>-->
-<table>
+<table width="60%">
 <thead>
 <!--<th colspan="3"><strong>Activity Log</strong></th></thead>-->
 <thead><th>Report Type</th>
@@ -252,13 +252,13 @@ function remove_youtube()
 </th>
 </thead>
 <thead>
-<th width="30%">Time</th>
-<th width="28%">Date</th>
+<th width="18%">Date
+<th width="16%">Time</th>
 <th>Description</th>
 </thead>
 <tr>
-<td><input type="text" value="" name="activity_time[]" class="activity_time required" /></td>
 <td><input type="text" value="" name="activity_date[]" class="activity_date required" /></td>
+<td><input type="text" value="" name="activity_time[]" class="activity_time required" /></td>
 
 <td><textarea name="activity_desc[]" class="required activity_desc"></textarea></td>
 </tr>
@@ -331,8 +331,8 @@ $(function(){
         mis = t.getMinutes(); 
         var dt = t.getFullYear()+'-'+Number(t.getMonth()+1)+'-'+t.getDate();
        var more = '<tr>'+
-'<td style="padding:5px 0;"><input type="text" value="'+t.getHours()+':'+mis+'" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
-'<td style="padding:5px 0;"><input type="text" value="'+dt+'" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
+'<td style="padding:5px 0;" width="24%"><input type="text" value="'+dt+'" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
+'<td style="padding:5px 0;" width="23%"><input type="text" value="'+t.getHours()+':'+mis+'" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
 '<td style="padding:5px 0;"><textarea name="activity_desc[]"></textarea>   <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>'+
 '</tr>'
        $('.activity_more').append(more); 

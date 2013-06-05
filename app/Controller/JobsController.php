@@ -302,8 +302,20 @@ class JobsController extends AppController
     {
         if(!$this->Session->read('avatar'))
         $this->redirect('/admin');
+        
         $this->Job->delete($id);
         $this->loadModel('Jobmember');
+        $this->loadModel('Document');
+        $docs = $this->Document->findAllByJobId($id);
+        //var_dump($docs);
+        foreach($docs as $d)
+        {
+            $id = $d['Document']['id'];
+            $job_id = '-1';
+            $this->Document->id = $id;
+            $this->Document->saveField('job_id',$job_id);
+            //die();
+        }
         $q = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id'=>$id),array('job_id LIKE'=>$id.',%'),array('job_id LIKE'=>'%,'.$id),array('job_id LIKE'=>'%,'.$id.',%')))));
         if($q)
         {
