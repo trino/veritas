@@ -239,7 +239,11 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		
 		
 	</div><!-- leftColumn -->
-
+    <script>
+    $(function(){
+       $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'}); 
+    });
+    </script>
 
 	<div id="rightColumn">
 		<div id="rightHeader">
@@ -247,6 +251,8 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 				<div class="headSearch">
 				<form action="<?php echo $base_url;?>search" method="get" id="searchDocuments" style="float: left;">
 					<div class="searchInput">
+                    <input type="text" value="" name="from" placeholder="Start Date" style="width: 100px; margin-top:10px;" class="datepicker" />
+                    <input type="text" value="" name="to" placeholder="End Date" style="width: 100px; margin-top: 10px;" class="datepicker" />
 					<input type="text" name="search" style="margin-top: 10px;" placeholder="Documents Search" />
                     <!--<input type="hidden" name="date" value="asc" /> -->
 					</div>
