@@ -285,7 +285,7 @@ foreach($activity as $act)
 </table>
 <tr><td><a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></td></tr>
 </td></tr>
-<tr><td><strong>Description</strong></td>
+<tr><td class="main_desc"><strong>Description</strong></td>
 <td><textarea name="description" class="required" class="text_area_long" cols="10" rows="5" id="repl" onKeyDown="limitText(this.form.description,this.form.countdown,70);"
 onKeyUp="limitText(this.form.description,this.form.countdown,70);"><?php if(isset($doc['Document']['description'])) echo $doc['Document']['description'];?></textarea>
 <br />
@@ -388,11 +388,13 @@ $(function(){
         if(doctype == 'report'){
            $('.extra_memo').show();
            $('.draftspan').show();
+           $('.main_desc').html("<strong>Additional Notes</strong>");
            }
         else{
             $('.extra_memo').hide();
             $('.draftspan').hide();
             $('.draftval').val("0");
+            $('.main_desc').html("<strong>Description</strong>");
             }
         if(doctype == 'client_feedback')
            $('.client_more').show();
@@ -415,6 +417,7 @@ $(function(){
     {
         $('.draftspan').show();
            $('.extra_memo').show();
+           $('.main_desc').html("<strong>Additional Notes</strong>");
            }
     if($('#document_type').val() == 'client_feedback')
             $('.client_more').show();       

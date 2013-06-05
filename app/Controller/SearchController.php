@@ -13,9 +13,7 @@ class SearchController extends AppController
 
         if(!$this->Session->read('id'))
         $this->redirect('/dashboard');
-        
-
-        
+                
         if(isset($_GET['search']))
         {
             $search = $_GET['search'];
@@ -66,13 +64,13 @@ class SearchController extends AppController
             $this->loadModel('Jobmember');
             $job_ids = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
             if($job_ids)
-            $jid =$job_ids['Jobmember']['job_id'];
+                $jid =$job_ids['Jobmember']['job_id'];
             else
-            $jid = '';
+                $jid = '';
             if($jid)
-            $jid = '('.$jid.')';
+                $jid = '('.$jid.')';
             else
-            $jid = '('.'99999999999'.')';
+                $jid = '('.'99999999999'.')';
             if($search!=''){
                 //echo 1;die();
             if(!$to && !$from)    

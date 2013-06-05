@@ -488,6 +488,7 @@ class UploadsController extends AppController
                 
                //die(); 
             }
+            
             $arr['draft'] = $_POST['draft'];
             
             //Email
@@ -816,6 +817,7 @@ class UploadsController extends AppController
     {
         $this->loadModel('Activity');
         $this->loadModel('Clientmemo');
+        
         if($this->Session->read('user') || $this->Session->read('avatar'))
         {
            if($this->Session->read('view')!='1')
@@ -827,6 +829,7 @@ class UploadsController extends AppController
         {
             $this->redirect('/jobs');
         }
+        
         if($this->Document->find('first',array('conditions'=>array('id'=>$id))))
         {
             $doc = $this->Document->find('first',array('conditions'=>array('id'=>$id)));
@@ -834,6 +837,32 @@ class UploadsController extends AppController
                 $this->set('activity',$this->Activity->find('all',array('conditions'=>array('document_id'=>$id))));
             elseif($doc['Document']['document_type'] == 'client_feedback')
                 $this->set('memo',$this->Clientmemo->findByDocumentId($id));
+            
+            $log['date'] = date('Y-m-d');
+            $log['time'] = date('H:i:s');
+            if($this->Session->read('admin'))
+            {
+                $log['fullname'] = 'ADMIN('.$this->Session->read('avatar').')';
+                $log['username'] = $this->Session->read('email');
+                $log['member_id'] = 0;
+            }
+            else
+            {
+                
+                $log['fullname'] = $this->Session->read('user');
+                $log['username'] = $this->Session->read('email');
+                $log['member_id'] = $this->Session->read('id');   
+            }
+            
+            $log['document_id'] = $id;
+            $log['event_type'] = "Document Viewed";
+            $log['event'] = "Viewed ".ucwords($doc['Document']['document_type']);
+            $this->Event_log->create();
+            $this->Event_log->save($log);
+          
+            
+            
+            
             $this->set('doc', $doc);
             $this->set('do',$this->Doc->find('all',array('conditions'=>array('document_id'=>$id))));
             $this->set('image',$this->Image->find('all',array('conditions'=>array('document_id'=>$id))));

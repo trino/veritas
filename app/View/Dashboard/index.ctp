@@ -115,7 +115,7 @@
 <h2><?php echo ($this->Session->read('admin'))? 'Activity Log' : 'Document Log';?></h2>
 <table>
     <tr>
-        <th>Date</th>
+        <th><?php echo $this->Paginator->sort('date','Date'); ?></th>
         <th>Time</th>
         <th>User Name</th>
         <th>Full Name</th>
