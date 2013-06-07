@@ -7,6 +7,7 @@ class FeedbackController extends AppController
    {
     $this->loadModel('Document');
     $this->loadModel('Job');
+    $this->loadModel('Member');
     if(!$this->Session->read('id'))
         $this->redirect('/dashboard');      
     
@@ -39,6 +40,7 @@ class FeedbackController extends AppController
     //$doc = $this->Document->find('all',array('conditions'=>array('document_type'=>'client_memo')));
     $this->set('docs',$docs);
     $this->set('jo_bs',$this->Job);
+    $this->set('member',$this->Member);
    }
     
     

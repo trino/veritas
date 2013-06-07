@@ -133,7 +133,7 @@ class UploadsController extends AppController
         }
     }
     
-    function delete($id)
+    function delete($id, $draft='')
     {
         
         if(!$this->Document->delete($id))
@@ -169,11 +169,28 @@ class UploadsController extends AppController
                  unlink($path.$im['Video']['video']);
                  $this->Video->delete($im['Video']['id']);
             }
+            
+            if(isset($draft) && $draft == 'draft')
+            {
+                $this->Session->setFlash('Draft Succesfully Deleted.');
+                $this->redirect('/uploads/draft'); 
+            }
+            else
+            {
+                $this->Session->setFlash('Document Succesfully Deleted.');
+                $this->redirect('/dashboard');
+            }
+        }
+        if(isset($draft) && $draft == 'draft')
+        {
+            $this->Session->setFlash('Draft Succesfully Deleted.');
+            $this->redirect('/uploads/draft');
+        }
+        else
+        {
             $this->Session->setFlash('Document Succesfully Deleted.');
             $this->redirect('/dashboard');
         }
-         $this->Session->setFlash('Document Succesfully Deleted.');
-            $this->redirect('/dashboard');
         
     }
     
@@ -619,7 +636,13 @@ class UploadsController extends AppController
                 if($_FILES['document_'.$i]['tmp_name']!="")
                 {
                 $source=$_FILES['document_'.$i]['tmp_name'];
-                $rand = rand(100000,999999);
+                if(strlen($arr['description'])>10)
+                    $fname = substr(0,10,$arr['description']);
+                else
+                    $fname = $arr['description'];
+                $fname = str_replace(' ',"_",$fname);
+                $fname = urlencode($fname);
+                $rand = $arr['title']."_".$fname."_".date('Y-m-d_H-i-s');
                 $ext_arr = explode('.',$_FILES['document_'.$i]['name']);
                 $extn = end($ext_arr);
                 $img = $rand.'.'.end($ext_arr);
@@ -700,6 +723,7 @@ class UploadsController extends AppController
             $log['event_type'] = "Upload Document";
             $this->Event_log->create();
             $this->Event_log->save($log);
+            $this->redirect('/dashboard');
         }
         $this->set('job_id',$ids);
         $j = $this->Job->findById($ids);

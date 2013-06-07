@@ -18,7 +18,15 @@
 <?php
 foreach($drafts as $d)
 {?>
-    <tr><td><?php echo $d['Document']['document_type'];?></td><td><?php echo $d['Document']['description'];?></td><td><?php echo $d['Document']['date'];?></td><td><a href="<?php echo $base_url."uploads/document_edit/".$d['Document']['id'];?>" class="btn btn-primary">Edit</a></td></tr>
+    <tr><td><?php echo $d['Document']['document_type'];?></td><td><?php echo $d['Document']['description'];?></td><td><?php echo $d['Document']['date'];?></td><td><a href="<?php echo $base_url."uploads/document_edit/".$d['Document']['id'];?>" class="btn btn-primary">Edit</a>
+    <?php echo $this->Html->link(
+					'Delete',
+					'/uploads/delete/'.$d['Document']['id']."/draft",
+                    array('class'=>'btn btn-danger'),"Are you sure deleting this Draft?"
+				)." ";
+	
+       ?>
+    </td></tr>
 <?php }
 ?>
 </table>
