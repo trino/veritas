@@ -178,13 +178,14 @@ function remove_youtube()
 <td colspan="2">
 <table>
 <tr>
-<td>Time </td>
-<td><input type="text" value="" name="memo_time" class="activity_time required" /></td>
-</tr>
-<tr>
 <td>Date</td>
 <td><input type="text" value="" name="memo_date" class="activity_date required" /></td>
 </tr>
+<tr>
+<td>Time </td>
+<td><input type="text" value="" name="memo_time" class="activity_time required" /></td>
+</tr>
+
 <tr>
 <td>Feedback Type</td>
 <td>
@@ -197,7 +198,7 @@ function remove_youtube()
 </select>
 </td>
 </tr>
-<td>Gaurd Name</td>
+<td>Guard Name</td>
 <td><input type="text" value="" name="guard_name" class="required" /></td>
 </tr>
 </table>

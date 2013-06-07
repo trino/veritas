@@ -29,6 +29,7 @@ if($docs)
         <tr>
             <th><?php echo $this->Paginator->sort('title','Title');?></th>
             <th><?php echo $this->Paginator->sort('description','Description');?></th>
+            <th>Uploaded By</th>
             <th><?php echo $this->Paginator->sort('date','Added On');?></th>
             <th>Option</th>
         </tr>
@@ -65,6 +66,7 @@ if($docs)
        <tr>
             <td><?php echo $d['Document']['title']; ?></td>
             <td><?php echo $d['Document']['description']; ?></td>
+            <td><?php if($d['Document']['addedBy'] != 0){$q = $member->find('first',array('conditions'=>array('id'=>$d['Document']['addedBy'])));if($q){echo "<a href='".$base_url."members/view/".$q['Member']['id']."'>".$q['Member']['full_name']."</a>";}}else echo "Admin";?></td>
             <td><?php echo $d['Document']['date']; ?></td>
             <td><a href="<?php echo $base_url."uploads/view_detail/".$d['Document']['id'];?>" class="btn btn-primary">View Detail</a></td>
             
