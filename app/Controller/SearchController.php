@@ -48,17 +48,18 @@ class SearchController extends AppController
                 $jid = '('.'99999999999'.')';
             if($search!=''){
                 //echo 1;die();
-            $this->paginate = array('conditions'=>array('OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'job_id IN'.$jid),'order'=>array('job_id'),'limit'=>10);
+                $this->paginate = array('conditions'=>array('OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'job_id IN'.$jid),'order'=>array('job_id'),'limit'=>10);
             }
             else{
                 //echo 2;die();
-            $this->paginate = array('conditions'=>array('OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'job_id IN'.$jid),'order'=>array('job_id'),'limit'=>10);
+                $this->paginate = array('conditions'=>array('OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'job_id IN'.$jid),'order'=>array('job_id'),'limit'=>10);
             }
             $docs = $this->paginate('Document');
             //$docs = $this->Document->find('all',array('conditions'=>array('addedBy'=>$this->Session->read('id'),'title LIKE'=>'%'.$search.'%'))); 
         }
         $this->set('member',$this->Member);
         $this->set('jo_bs',$this->Job);
+        
         $this->set('docs',$docs);
         $this->set('activity',$this->Activity);
         

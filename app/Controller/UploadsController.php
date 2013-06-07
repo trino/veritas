@@ -172,6 +172,8 @@ class UploadsController extends AppController
             $this->Session->setFlash('Document Succesfully Deleted.');
             $this->redirect('/dashboard');
         }
+         $this->Session->setFlash('Document Succesfully Deleted.');
+            $this->redirect('/dashboard');
         
     }
     

@@ -64,7 +64,7 @@
 		<div class="whiteCorner"></div>
 		<a href="<?=$base_url;?>uploads/view_doc/template" class="overallLink more">
 		<div class="visual">
-		<i class="icon-leaf"></i>
+		<i class="icon-folder-open"></i>
 		</div>
 		<div class="details">
 		<div class="number">
