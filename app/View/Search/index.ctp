@@ -5,7 +5,16 @@ $(function(){
 });
 </script>
 <h3 class="page-title">
-	Documents Search
+	<?php
+    if(isset($_GET['search']) && $_GET['search'])
+    {
+        echo "Result for : ".$_GET['search'];
+    } 
+    else
+    {
+        echo "All Document Search";
+    }
+    ?>
 </h3>
 <ul class="breadcrumb">
 	<li>
