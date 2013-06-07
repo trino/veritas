@@ -1,5 +1,19 @@
 <?php include_once('inc.php');?>
-
+<style>
+@media print {
+  body * {
+    visibility:hidden;
+  }
+  #table, #table * {
+    visibility:visible;
+  }
+  #table {
+    position:absolute;
+    left:0;
+    top:0;
+  }
+}
+</style>
 
 
 <h3 class="page-title">
@@ -194,12 +208,13 @@
 ?>
 </div>
 <?php
+/*
 if($type == 'Report')
 {
-    ?>
-    <input type="button" onclick="PrintElem('#table');" value="Print" class="btn btn-primary" />
+    */?>
+    <input type="button" onclick="window.print();" value="Print" class="btn btn-primary" />
     <?php
-}
+//}
 ?>
 <script type="text/javascript" charset="utf-8">
 			$(document).ready(function(){
