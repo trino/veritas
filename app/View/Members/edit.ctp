@@ -51,7 +51,7 @@ $(function(){
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Evidence </span><input type="checkbox" name="canUpload_evidence" <?php if(isset($u['Canupload']['evidence']) && $u['Canupload']['evidence']==1){?>checked="checked"<?php }?> />
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Templates </span><input type="checkbox" name="canUpload_templates" <?php if(isset($u['Canupload']['templates']) && $u['Canupload']['templates']==1){?>checked="checked"<?php }?> />
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Report </span><input type="checkbox" name="canUpload_client_memo" <?php if(isset($u['Canupload']['report']) && $u['Canupload']['report']==1){?>checked="checked"<?php }?> />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Client Feedback </span><input type="checkbox" name="canUpload_client_memo1" <?php if(isset($u['Canupload']['client_memo']) && $u['Canupload']['client_memo']==1){?>checked="checked"<?php }?> />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Client Feedback </span><input type="checkbox" name="canUpload_client_memo1" <?php if(isset($u['Canupload']['client_feedbak']) && $u['Canupload']['client_feedback']==1){?>checked="checked"<?php }?> />
 </td>
 </tr>
 </table>
