@@ -636,10 +636,12 @@ class UploadsController extends AppController
                 if($_FILES['document_'.$i]['tmp_name']!="")
                 {
                 $source=$_FILES['document_'.$i]['tmp_name'];
+                
                 if(strlen($arr['description'])>10)
-                    $fname = substr(0,10,$arr['description']);
+                    $fname = substr($arr['description'],0,10);
                 else
                     $fname = $arr['description'];
+                    //echo $fname;die();
                 $fname = str_replace(' ',"_",$fname);
                 $fname = urlencode($fname);
                 $rand = $arr['title']."_".$fname."_".date('Y-m-d_H-i-s');
