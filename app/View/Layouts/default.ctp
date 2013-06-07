@@ -63,22 +63,36 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
         $('.close_modal').live('click',function(){
             $('.ui-dialog-titlebar-close').click();
         });
+        if($('#attachments').val() != ''){
+            $('#att').show();
+            }
+            else
+            $('#att').hide();
         $('.doc').live('change',function(){
            var val = $(this).val();
            if($(this).is(':checked'))
            {
             if($('#attachments').val() != ''){
-            var txts = $('#attachments').val()+', '+$(this).val();
-            $('#attachments').val($('#attachments').val()+', '+$(this).val());
+            if($('#attachments').val()!=$(this).val()){
+            txtss = $('#attachments').val().replace(', '+$(this).val(),''); 
+            txtss = txtss.replace($(this).val()+', ',''); 
+            txtss = txtss.replace($(this).val(),'');  
+            var txts = txtss+', '+$(this).val();
+            $('#attachments').val(txts);
             $('.attachments').text(txts);
+            $('#att').show();
+            }
+            
             }
             else{
+            $('#att').show();    
             $('#attachments').val($(this).val());
             $('.attachments').html($(this).val());
             }
            }
            else
            {
+            
             var txt = $('#attachments').val().replace(', '+$(this).val(),'');
             $('#attachments').val($('#attachments').val().replace(', '+$(this).val(),''));
             $('.attachments').text(txt);
@@ -88,6 +102,11 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
             $('#attachments').val($('#attachments').val().replace($(this).val(),''));
             var txt3 = $('#attachments').val().replace($(this).val(),'');            
             $('.attachments').text(txt3);
+            if($('#attachments').val() != ''){
+                $('#att').show();
+                }
+                else
+                $('#att').hide();
            } 
         });
         $('.loading input').live('change',function(){
@@ -441,7 +460,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 						</form>
                         <div style="margin-left: calc( 50% + 5px);padding-top:80px;">
                         <hr style="margin-bottom: 8px;" />
-                        <b>Attachments :</b><span class="attachments"></span></div>
+                        <b id="att" style="display: none;">Attachments :</b><span class="attachments"></span></div>
 					</div>
 
 					<div class="clearfix" ></div>

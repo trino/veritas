@@ -222,6 +222,7 @@ $parents = $a['Mail']['id'];
                     }
                     
                 </script>
+                <?php if(!isset($_GET['sent'])){?>
 <div id="reply" style="padding:15px;">
 <form action="" method="post" id="replyform">
     <textarea name="reply" style="height:100px;width:420px;" class="required"></textarea>
@@ -247,6 +248,7 @@ $parents = $a['Mail']['id'];
 </form>
 */?>
 </div>
+<?php }?>
 <script>
 $(function(){
     $('#replyform').validate();

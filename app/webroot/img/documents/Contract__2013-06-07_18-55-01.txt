@@ -1,0 +1,21 @@
+hyperpma.com
+
+hyperpma is project management tool all kind of project instructions we get from this tool 
+04:54 PM this is login page of hyperpma
+Tekendra B 04:54 PM Ok.. got that
+Pramod Jaiswal 04:54 PM ur login will be provided by PM
+Tekendra B 04:54 PM Ok.
+Pramod Jaiswal 04:55 PM when u login first time in a day u get a button "start My day" click on that to start u day on hyer
+
+then u get this page 
+04:56 PM here are 2 button Go To Break use that when u go to a hour break and End my Day use that when u end ur day 
+
+Tekendra B 04:57 PM Yes.. got that
+Pramod Jaiswal 04:57 PM we have 1 hour break
+04:58 PM after that click on revisions tab to load assign project list 
+
+
+Pramod Jaiswal 04:59 PM like this 
+05:00 PM here are show ur all assigne projects which is open 
+05:00 PM click on view link to load project
+
