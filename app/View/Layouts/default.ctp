@@ -59,6 +59,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <script type="text/javascript">
    
     $(function(){
+        $('.messageform').validate();
         $('.close_modal').live('click',function(){
             $('.ui-dialog-titlebar-close').click();
         });
@@ -390,7 +391,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 					</script>
 					<div class="message-form">
-						<form id="Form" action="<?php echo $base_url.'mail/send?return='.urlencode($_SERVER['REQUEST_URI']);?>" method="post">
+						<form id="Form" action="<?php echo $base_url.'mail/send?return='.urlencode($_SERVER['REQUEST_URI']);?>" method="post" class="messageform">
 							<div class="left msg">
 								<textarea placeholder="Quick message - Type message here" name="message" class="required message" style=""></textarea>
 							</div>

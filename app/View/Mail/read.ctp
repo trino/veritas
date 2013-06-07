@@ -224,7 +224,7 @@ $parents = $a['Mail']['id'];
                 </script>
 <div id="reply" style="padding:15px;">
 <form action="" method="post" id="replyform">
-    <textarea name="reply" style="height:100px;width:420px;"></textarea>
+    <textarea name="reply" style="height:100px;width:420px;" class="required"></textarea>
     <input type="hidden" name="mail_id" value="<?php echo $parents;?>" />
     <input type="hidden" name="recipient_id" value="<?php echo $reqs; ?>" />
     <input type="hidden" name="recipient_email" value="<?php echo $reqs_email;?>" />
@@ -249,6 +249,7 @@ $parents = $a['Mail']['id'];
 </div>
 <script>
 $(function(){
+    $('#replyform').validate();
     $('.replyall').click(function(){    
     $('#replyform').attr('action','<?php echo $base_url;?>mail/replyall');
     $('.replybtn').click();
