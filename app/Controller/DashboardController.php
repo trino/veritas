@@ -540,7 +540,44 @@ class DashboardController extends AppController
     public function get_jobs()
     {
         $this->loadModel('Job');
+        if($this->Session->read('admin')){
         $q = $this->Job->find('all',array('order'=>'title'));
         return $q;
+        }
+        else
+        {
+            $this->loadModel('Jobmember');
+            if($this->Session->read('id'))
+            {
+                $jm = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
+                if($jm)
+                {
+                    $jids = $jm['Jobmember']['job_id'];
+                    $j_arr = explode(',',$jids);
+                    if($j_arr)
+                    {
+                        $ji = '(';
+                        foreach($j_arr as $jid)
+                        {
+                            
+                            if($ji == '(')
+                            $ji = $ji.$jid;
+                            else
+                            $ji = $ji.','.$jid;
+                            
+                            
+                        }
+                        $ji = $ji.')';
+                        $q = $this->Job->find('all',array('conditions'=>array('id IN'.$ji)));
+                        return $q;
+                    }
+                    else return false;
+                     
+                }
+                else return false;
+            }
+            else
+            return false;
+        }
     }
 }
