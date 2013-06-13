@@ -59,6 +59,16 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <script type="text/javascript">
    
     $(function(){
+        $('.pagination2 .prev a').text('<');
+        $('.pagination2 .next a').text('>');
+        if($('.next').html() == '')
+        {
+            $('.pagination2 .next').text('>');
+        }
+        if($('.prev').html() == '')
+        {
+            $('.pagination2 .prev').text('<');
+        }
         $('.messageform').validate();
         $('.close_modal').live('click',function(){
             $('.ui-dialog-titlebar-close').click();
