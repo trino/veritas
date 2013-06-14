@@ -131,5 +131,6 @@ class SearchController extends AppController
         $this->set('activity',$this->Activity);
         
     }
+    
 }
 ?>

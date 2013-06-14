@@ -159,8 +159,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
          $('.dialog-modals').load('<?php echo $base_url.'members/loadall';?>');
                $('.dialog-modals').dialog({
                     
-                    width: 550,
-                    height:500,
+                    width: 650,
                     title:'Add Contacts to Email',
                     
                });
