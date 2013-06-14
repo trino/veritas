@@ -77,6 +77,7 @@ $(function(){
         ?>
         
        <tr><td style="width:140px;"><b><?php if(!$this->Session->read('admin')){?>Username<?php }else{?>Name<?php }?></b></td><td><input type="text" name="name" value="<?php echo $name ?>" class="required"<?php if($this->Session->read('user')) echo "readonly='readonly'" ;?>/></td></tr>
+
         <!--<tr><td><b>Avatar</b></td><td><input type="text" name="avatar" value="<?php echo $avatar;?>"  /><br />-->
         <tr><td><b>Email</b></td><td><input type="text" name="email" value="<?php echo $email; ?>" id="email" class="email" <?php if($this->Session->read('user')) echo "readonly='readonly'" ;?> /><span id="email_response"></span></td></tr>
         <tr><td><b>Image</b></td><td><?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => ''))?></td></tr>
@@ -86,8 +87,8 @@ $(function(){
         <?php 
             if(!$this->Session->read('avatar'))
             { ?>
-                <tr><td><b>Address</b></td><td><input type="text" name="address" value="<?php echo $user['Member']['address']; ?>" class="required" /></td></tr>
-               <tr><td><b>Phone </b></td><td><input type="text" name="phone" value="<?php echo $user['Member']['phone']; ?>" class="required" /></td></tr>
+                <tr><td><b>Address</b></td><td><input type="text" name="address" value="<?php echo $user['Member']['address']; ?>" class="required" <?php if($this->Session->read('user')) echo "readonly='readonly'" ;?> /></td></tr>
+               <tr><td><b>Phone </b></td><td><input type="text" name="phone" value="<?php echo $user['Member']['phone']; ?>" class="required" <?php if($this->Session->read('user')) echo "readonly='readonly'" ;?> /></td></tr>
             
         <tr><td><b>Receive email when someone sends me message</b></td><td><input class="receive" type="checkbox" name="receive1" <?php if($user['Member']['receive1']==1){?>checked="checked"<?php }?> /></td></tr>
         <tr><td><b>Receive email when document is uploaded</b></td><td><input class="receive" type="checkbox" id="receive2" name="receive2" <?php if($user['Member']['receive2']==1){?>checked="checked"<?php }?> /></td></tr>

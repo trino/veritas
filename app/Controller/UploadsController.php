@@ -927,5 +927,17 @@ class UploadsController extends AppController
         
         $this->set('drafts',$drafts);
     }
+    public function download($file) {
+        //echo APP . 'outside_webroot_dir' . DS; die();
+        $this->viewClass = 'Media';
+        // Download app/outside_webroot_dir/example.zip
+        $params = array(
+            'id'        => $file,
+            'name'      => $file,
+            'download'  => true,
+            'path'      => APP . 'webroot/img/documents/'
+        );
+        $this->set($params);
+    }
     
 }
