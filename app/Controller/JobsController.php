@@ -150,6 +150,7 @@ class JobsController extends AppController
             $key_email = $_POST['key_email'];
             $key_company = $_POST['key_company'];
             $key_number = $_POST['key_number'];
+            $key_type = $_POST['type'];
             
             for($i= 0; $i<count($key_title); $i++)
             {
@@ -161,6 +162,7 @@ class JobsController extends AppController
               $key['email'] = $key_email[$i];
               $key['name'] = $key_name[$i];
               $key['job_id'] = $job_id;
+              $key['type'] = $key_type[$i];
               
               if($key_title[$i]!="")
               {
@@ -273,6 +275,7 @@ class JobsController extends AppController
             $key_name = $_POST['key_name'];
             $key_cell = $_POST['key_cell'];
             $key_email = $_POST['key_email'];
+            $key_type = $_POST['type'];
             
             for($i= 0; $i<count($key_title); $i++)
             {
@@ -282,6 +285,7 @@ class JobsController extends AppController
               $key['cell'] = $key_cell[$i];
               $key['email'] = $key_email[$i];
               $key['name'] = $key_name[$i];
+              $key['type'] = $key_type[$i];
               $key['job_id'] = $job_id;
               if($key_title[$i]!="")
               {
@@ -377,12 +381,13 @@ class JobsController extends AppController
         }*/
         if(isset($_POST['submit']))
         {
-            
-            $this->set('user',$this->Member->find('all',array('conditions'=>array('full_name LIKE'=>$_POST['search']."%"))));
+            $this->paginate = array('conditions'=>array('full_name LIKE'=>$_POST['search']."%"),'limit'=>10);
+            $this->set('user',$this->paginate('Member'));
         }
         else
         {
-            $this->set('user',$this->Member->find('all'));
+            $this->paginate = array('limit'=>10);
+            $this->set('user',$this->paginate('Member'));
         }
         
     }
@@ -442,7 +447,7 @@ class JobsController extends AppController
         $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','job_id'=>$id))));
         $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','job_id'=>$id))));
         $this->set('report',$this->Document->find('count',array('conditions'=>array('document_type'=>'report','job_id'=>$id))));
-        $this->set('keys', $this->Key_contact->find('all', array('conditions'=>array('job_id'=>$id))));
+        $this->set('keys', $this->Key_contact->find('all', array('conditions'=>array('job_id'=>$id),'order'=>'type')));
         $this->set('member',$this->Member->find('all'));
         $this->set('jobmember',$this->Jobmember->find('all'));
     }

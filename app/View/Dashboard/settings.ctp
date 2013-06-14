@@ -64,9 +64,9 @@ $(function(){
 <div id="table">
     <form action="" method="post" id="myform" enctype="multipart/form-data">
         <table>
-       <tr><td style="width:140px;"><b>Name</b></td><td><input type="text" name="name" value="<?php echo $name ?>" class="required" /></td></tr>
+       <tr><td style="width:140px;"><b>Name</b></td><td><input type="text" name="name" value="<?php echo $name ?>" class="required"<?php if($this->Session->read('user')) echo "readonly='readonly'" ;?>/></td></tr>
         <!--<tr><td><b>Avatar</b></td><td><input type="text" name="avatar" value="<?php echo $avatar;?>"  /><br />-->
-        <tr><td><b>Email</b></td><td><input type="text" name="email" value="<?php echo $email; ?>" id="email" class="email" /><span id="email_response"></span></td></tr>
+        <tr><td><b>Email</b></td><td><input type="text" name="email" value="<?php echo $email; ?>" id="email" class="email" <?php if($this->Session->read('user')) echo "readonly='readonly'" ;?> /><span id="email_response"></span></td></tr>
         <tr><td><b>Image</b></td><td><?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => ''))?></td></tr>
         <tr><td><b>New Image</b></td><td><input type="file" name="image"  /><br />
         <tr><td><b>Old password</b></td><td><input type="password" name="old_password" id="old_password" class=""  /><span id="response"></span></td></tr>

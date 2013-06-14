@@ -112,7 +112,7 @@
 {?>
 
 <div id="table">
-<h2><?php echo ($this->Session->read('admin'))? 'Activity Log' : 'Document Log';?></h2>
+<h2><?php echo ($this->Session->read('admin'))? 'Dashboard' : 'Document Log';?></h2>
 <table>
     <tr>
         <th><?php echo $this->Paginator->sort('date','Date'); ?></th>

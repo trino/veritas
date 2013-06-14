@@ -64,6 +64,9 @@ function sort(value)
 
 <table>
 <tr><th>User</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Address</th>
 <th>Options</th></tr>
 <!-- <table>
     <tr>
@@ -94,14 +97,24 @@ function sort(value)
     <?php 
         foreach($user as $u)
         { ?>
-    <tr><td style="width:140px;">
-<?php
-            echo $u['Member']['full_name']; ?></td><td><?php echo $this->Html->link('Assign','assign/'.$u['Member']['id'],array('class' =>'btn btn-primary' )) ?>
+    <tr>
+    <td style="width:140px;"><?php echo $u['Member']['full_name']; ?></td>
+    <td><?php echo $u['Member']['email']; ?></td>
+    <td><?php echo $u['Member']['phone']; ?></td>
+    <td><?php echo $u['Member']['address']; ?></td>
+    <td><?php echo $this->Html->link('Assign','assign/'.$u['Member']['id'],array('class' =>'btn btn-primary' )) ?>
             </td></tr> 
             <?php
         }
     ?>
 </table>
+</div>
+<div class="pagination2">
+<ul>
+<?php echo $this->Paginator->prev('«', array('tag' => 'li')); ?>
+<?php echo str_replace(" | ","",$this->Paginator->numbers(array('tag' => 'li'))); ?>
+<?php echo $this->Paginator->next('»', array('tag' => 'li')); ?>
+</ul>
 </div>
 <input type="hidden" name="emp" id="emp" value="asc" />
 <input type="hidden" name="sup" id="sup" value="asc" />
