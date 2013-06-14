@@ -263,7 +263,8 @@ function remove_youtube()
 
 <td><textarea name="activity_desc[]" class="required activity_desc"></textarea></td>
 </tr>
-<tr><td colspan="3" style="padding: 0;"><table class="activity_more" style="margin-left: 10px;;">
+<tr><td colspan="3" style="padding: 0;">
+<table class="activity_more" style="width: calc(60% + 153px);">
 </table>
 </td></tr>
 <tr><td colspan="3"><a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></td></tr>
@@ -333,9 +334,9 @@ $(function(){
         mis = t.getMinutes(); 
         var dt = t.getFullYear()+'-'+Number(t.getMonth()+1)+'-'+t.getDate();
        var more = '<tr>'+
-'<td style="padding:5px 0;" width="24%"><input type="text" value="'+dt+'" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
-'<td style="padding:5px 0;" width="23%"><input type="text" value="'+t.getHours()+':'+mis+'" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
-'<td style="padding:5px 0;"><textarea name="activity_desc[]"></textarea>   <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>'+
+'<td ><input type="text" value="'+dt+'" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
+'<td ><input type="text" value="'+t.getHours()+':'+mis+'" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
+'<td ><textarea name="activity_desc[]"></textarea>&nbsp;<a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>'+
 '</tr>'
        $('.activity_more').append(more); 
        
