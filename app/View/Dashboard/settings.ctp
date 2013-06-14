@@ -27,6 +27,8 @@
         $email = $user['Member']['email'];
         $password = $user['Member']['password'];
         $name = $user['Member']['full_name'];
+        $fname = $user['Member']['fname'];
+        $lname = $user['Member']['lname'];
         $image = $user['Member']['image'];
         //$avatar = $user['User']['name_avatar'];
     }
@@ -64,11 +66,22 @@ $(function(){
 <div id="table">
     <form action="" method="post" id="myform" enctype="multipart/form-data">
         <table>
-       <tr><td style="width:140px;"><b>Name</b></td><td><input type="text" name="name" value="<?php echo $name ?>" class="required" <?php if($this->Session->read('user')) echo "readonly='readonly'" ;?>/></td></tr>
+        <?php
+        if($this->Session->read('user'))
+        {
+            ?>
+            <tr><td style="width:140px;"><b>First name</b></td><td><input type="text" name="name" value="<?php echo $fname ?>" class="required"<?php if($this->Session->read('user')) echo "readonly='readonly'" ;?>/></td></tr>
+            <tr><td style="width:140px;"><b>List Name</b></td><td><input type="text" name="name" value="<?php echo $lname ?>" class="required"<?php if($this->Session->read('user')) echo "readonly='readonly'" ;?>/></td></tr>    
+            <?php
+        }
+        ?>
+        
+       <tr><td style="width:140px;"><b><?php if(!$this->Session->read('admin')){?>Username<?php }else{?>Name<?php }?></b></td><td><input type="text" name="name" value="<?php echo $name ?>" class="required"<?php if($this->Session->read('user')) echo "readonly='readonly'" ;?>/></td></tr>
+
         <!--<tr><td><b>Avatar</b></td><td><input type="text" name="avatar" value="<?php echo $avatar;?>"  /><br />-->
         <tr><td><b>Email</b></td><td><input type="text" name="email" value="<?php echo $email; ?>" id="email" class="email" <?php if($this->Session->read('user')) echo "readonly='readonly'" ;?> /><span id="email_response"></span></td></tr>
         <tr><td><b>Image</b></td><td><?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => ''))?></td></tr>
-        <tr><td><b>New Image</b></td><td><input type="file" name="image"  /><br />
+        <!--<tr><td><b>New Image</b></td><td><input type="file" name="image"  /><br />-->
         <tr><td><b>Old password</b></td><td><input type="password" name="old_password" id="old_password" class=""  /><span id="response"></span></td></tr>
        <tr><td><b> New Password </b></td><td><input type="password" id="passw" name="password" class="" /></td></tr>
         <?php 
