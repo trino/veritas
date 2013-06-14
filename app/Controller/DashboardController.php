@@ -2,6 +2,21 @@
 class DashboardController extends AppController
 {
     var $components = array('Email');
+    
+    public function beforeFilter()
+    {
+        //parent::__construct();
+         if($this->Session->read('avatar') || $this->Session->read('user'))
+        {
+            //die('here');
+        }
+        else
+        {
+            //die('there');
+            $this->redirect('/admin');
+        }
+        
+    }
     public function index()
     {
         

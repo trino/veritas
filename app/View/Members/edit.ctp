@@ -2,7 +2,44 @@
 <script>
 $(function(){
    $('#add_form').validate(); 
+   
 });
+ function check_name()
+    {
+        //alert('test');
+        var full_name = $('#full_name').val();
+        
+        $.ajax(
+        {
+            url: '<?php echo $base_url;?>members/check_name2',
+            type: 'post',
+            data: 'full_name='+full_name+'&id=<?php echo $m['Member']['id'];?>',
+            success:function(response)
+            {
+                if(response=="1")
+                {
+                    $('.response1').html('Someone with the same name as yours is already signed up.');
+                }
+                else
+                {
+                    $('.response1').html('');
+                }
+            }
+        });
+    }
+ function valid()
+    {
+        //var val=$('#response').html();
+        var val1=$('.response1').html();
+        if( val1=='')
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 </script>
 <h3 class="page-title">
 	Edit <?php echo $m['Member']['full_name'];?>
@@ -17,11 +54,11 @@ $(function(){
 </ul>
 
 <div id="table">
-<form action="" method="post" id="add_form" enctype="multipart/form-data">
+<form action="<?php echo $base_url."members/edit/".$m['Member']['id'];?>" method="post" id="add_form" enctype="multipart/form-data" onsubmit="return valid();">
 <table>
 <tr><td style="width:140px;"><b>First Name</b></td><td><input type="text" name="fname" id="fname" value="<?php echo $m['Member']['fname'];?>" class="" /></td></tr>
 <tr><td style="width:140px;"><b>Last Name</b></td><td><input type="text" name="lname" id="lname" value="<?php echo $m['Member']['lname'];?>" class="" /></td></tr>
-<tr><td style="width:140px;"><b>Username</b></td><td><input type="text" name="full_name" id="full_name" value="<?php echo $m['Member']['full_name'];?>" class="required" /></td></tr>
+<tr><td style="width:140px;"><b>Username</b></td><td><input type="text" name="full_name" id="full_name" value="<?php echo $m['Member']['full_name'];?>" class="required" onchange="check_name()" /><span class="response1"></span></td></tr>
 <!--<tr><td><b>Avatar</b></td><td><input type="text" name="avatar" value="<?php echo $m['Member']['name_avatar'];?>" class="required" /></td></tr>-->
 <tr><td><b>Title</b></td><td><input type="text" name="title" value="<?php echo $m['Member']['title'];?>" class="required" /></td></tr>
 <tr><td><b>Address</b></td><td><input type="text" name="address" value="<?php echo $m['Member']['address'];?>" class="required" /></td></tr>
@@ -61,8 +98,12 @@ $(function(){
 </tr>
 
 <tr><td><b>Can Send Email</b></td><td><input type="checkbox" name="canEmail" <?php if($m['Member']['canEmail']==1){?>checked="checked"<?php }?> /></td></tr>
-<tr><td><b>Receive email when someone sends me message</b></td><td><input class="receive" type="checkbox" name="receive1" <?php if($m['Member']['receive1']==1){?>checked="checked"<?php }?> /></td></tr>
-<tr><td><b>Receive email when document is uploaded</b></td><td><input class="receive" type="checkbox" id="receive2" name="receive2" <?php if($m['Member']['receive2']==1){?>checked="checked"<?php }?> /></td></tr>
+<tr><td><b>Can Edit Notification</b></td><td><input type="checkbox" name="canEdit" id="canEdit" <?php if($m['Member']['canEdit']==1){?>checked="checked"<?php }?> /></td></tr>
+<tr class="canEdit" style="display: none;">
+<td colspan="2">
+<table width="50%">
+<tr><td><b>Receive email when someone sends me message</b>&nbsp;&nbsp;&nbsp;&nbsp;<input class="receive" type="checkbox" name="receive1" <?php if($m['Member']['receive1']==1){?>checked="checked"<?php }?> /></td></tr>
+<tr><td><b>Receive email when document is uploaded</b>&nbsp;&nbsp;&nbsp;&nbsp;<input class="receive" type="checkbox" id="receive2" name="receive2" <?php if($m['Member']['receive2']==1){?>checked="checked"<?php }?> /></td></tr>
 <tr class="upload_more" style="display: none;" >
 <td colspan="2" >
 <table width="50%">
@@ -74,6 +115,8 @@ $(function(){
 <!--<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Feedback </span><input type="checkbox" name="Email_clint_memo1" <?php if(isset($e['Emailupload']['client_feedback']) && $e['Emailupload']['client_feedback']==1){?>checked="checked"<?php }?> />-->
 </td>
 </tr>
+</table>
+</td></tr>
 </table>
 </td></tr>
 <!--<div class="checks"><div class="left">Is Supervisor</div><div class="right"><input type="checkbox" name="isSupervisor" <?php if($m['Member']['isSupervisor']==1){?>checked="checked"<?php }?> /></div><div class="clear"></div></div>
@@ -107,6 +150,9 @@ $(function(){
     
     if($('#receive2').is(':checked'))
         $('.upload_more').show();
+    
+    if($('#canEdit').is(':checked'))
+        $('.canEdit').show();
         
     $('#canUpdate').click(function(){
         if($('#canUpdate').is(':checked'))
@@ -146,7 +192,19 @@ $(function(){
         }
             
     
-    });            
+    });  
+     $('#canEdit').click(function(){
+        if($('#canEdit').is(':checked'))
+            $('.canEdit').show();
+        else
+        {
+            $('.canEdit').hide();
+            $('.canEdit input:checkbox').each(function(){
+                $(this).removeAttr('checked');
+            });
+        }
+    
+    });                
        
    //$('#canView').toggle(function(){$('.canviewfiles').toogle;});
    //$('#canUpdate').toggle(function(){$('.canuploadfiles').toogle;});

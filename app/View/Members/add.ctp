@@ -128,8 +128,12 @@
 <!--<tr><td><b>Can View Files</b></td><td><input type="checkbox" name="canView" /></td></tr>
 <tr><td><b>Can Upload Files</b></td><td><input type="checkbox" name="canUpdate" /></td></tr>-->
 <tr><td><b>Can Send Email</b></td><td><input type="checkbox" name="canEmail" /></td></tr>
-<tr><td><b>Receive email when someone sends me message</b></td><td><input class="receive" type="checkbox" name="receive1" /></td></tr>
-<tr><td><b>Receive email when document is uploaded</b></td><td><input class="receive" type="checkbox" name="receive2" id="receive2" /></td></tr>
+<tr><td><b>Can Edit Notification</b></td><td><input type="checkbox" name="canEdit" id="canEdit" /></td></tr>
+<tr class="canEdit" style="display: none;">
+<td colspan="2">
+<table width="50%">
+<tr><td><b>Receive email when someone sends me message</b>&nbsp;&nbsp;&nbsp;&nbsp;<input class="receive" type="checkbox" name="receive1" /></td></tr>
+<tr><td><b>Receive email when document is uploaded</b>&nbsp;&nbsp;&nbsp;&nbsp;<input class="receive" type="checkbox" name="receive2" id="receive2" /></td></tr>
 <tr class="upload_more" style="display: none;" >
 <td colspan="2" >
 <table width="50%">
@@ -141,6 +145,8 @@
 <!--<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Feedback </span><input type="checkbox" name="Email_client_memo1"  />-->
 </td>
 </tr>
+</table>
+</td></tr>
 </table>
 </td></tr>
 <!-- <div class="checks"><div class="left">Is Supervisor</div><div class="right"><input type="checkbox" name="isSupervisor" /></div><div class="clear"></div></div>
@@ -209,7 +215,20 @@ $(function(){
         }
             
     
-    });               
+    });  
+    
+    $('#canEdit').click(function(){
+        if($('#canEdit').is(':checked'))
+            $('.canEdit').show();
+        else
+        {
+            $('.canEdit').hide();
+            $('.canEdit input:checkbox').each(function(){
+                $(this).removeAttr('checked');
+            });
+        }
+    
+    });             
        
   
         
