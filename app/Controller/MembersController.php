@@ -57,6 +57,16 @@ class MembersController extends AppController
         $this->redirect('/admin');
         if(isset($_POST['submit']))
         {
+            if(isset($_POST['img_gender']))
+            {
+                if($_POST['img_gender'] == 'male.png')
+                {
+                    $img = 'male.png';
+                }
+                else
+                $img = 'female.png';
+            }
+            else            
             if(isset($_FILES['image']['name']) && $_FILES['image']['name']){
             $uri = $_SERVER['REQUEST_URI'];
                 $uri = str_replace('/',' ',$uri);
@@ -143,7 +153,8 @@ class MembersController extends AppController
                 //$image = imagecreatefromjpeg($destination);
             //	imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
             //	imagejpeg($virtual_image, $destination);
-            
+            $arr['fname']=$_POST['fname'];
+            $arr['lname']=$_POST['lname'];
             $arr['full_name']=$_POST['full_name'];
             //$arr['name_avatar'] = $_POST['avatar'];
             $arr['title'] = $_POST['title'];
@@ -312,6 +323,16 @@ class MembersController extends AppController
                     $this->redirect('edit/'.$id);
                 }
             }
+            if(isset($_POST['img_gender']))
+            {
+                if($_POST['img_gender'] == 'male.png')
+                {
+                    $img = 'male.png';
+                }
+                else
+                $img = 'female.png';
+            }
+            else
             if($_FILES['image']['name']!= "")
             {
                 $uri = $_SERVER['REQUEST_URI'];
@@ -400,6 +421,8 @@ class MembersController extends AppController
             }
             
             $this->Member->id = $id;
+            $this->Member->saveField('fname',$_POST['fname']);
+            $this->Member->saveField('lname',$_POST['lname']);
             $this->Member->saveField('full_name',$_POST['full_name']);
             //$this->Member->saveField('name_avatar',$_POST['avatar']);
             $this->Member->saveField('title',$_POST['title']);
