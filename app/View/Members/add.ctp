@@ -85,12 +85,14 @@
 <div id="table">
 <form id="my_form" action="" method="post" enctype="multipart/form-data" onsubmit="return valid();">
 <table>
-<tr><td style="width:140px;"><b>Full Name</b></td><td><input type="text" id="full_name" class="required" name="full_name" onchange="check_name()" /><span id="response1"></span></td></tr>
+<tr><td style="width:140px;"><b>First Name</b></td><td><input type="text" name="fname" id="fname" value="" class="" /></td></tr>
+<tr><td style="width:140px;"><b>Last Name</b></td><td><input type="text" name="lname" id="lname" value="" class="" /></td></tr>
+<tr><td style="width:140px;"><b>Username</b></td><td><input type="text" id="full_name" class="required" name="full_name" onchange="check_name()" /><span id="response1"></span></td></tr>
 <!--<tr><td><b>Avatar</b></td><td><input type="text" name="avatar" value="" class="required" /></td></tr>-->
 <tr><td><b>Title</b></td><td><input type="text" class="required" name="title" /></td></tr>
 <tr><td><b>Address</b></td><td><input type="text" class="required" name="address" /></td></tr>
 <tr><td><b>Email</b></td><td><input type="text" id="emails" class="email" name="email" onchange="check_email()" /><span id="response"></span></td></tr>
-<tr><td><b>Image</b></td><td><input type="file" class="" name="image" /></td></tr>
+<tr><td><b>Image:</b></td><td><img src="<?php echo $base_url;?>img/uploads/male.png" style="width: 60px; height:60px;" /> <input type="radio" name="img_gender" value="male.png" /> &nbsp; &nbsp;<img src="<?php echo $base_url;?>img/uploads/female.png" style="width: 60px; height:60px;" /> <input type="radio" name="img_gender" value="female.png" /> &nbsp; &nbsp;<input type="file" class="" name="image" /></td></tr>
 <tr><td><b>Phone</b></td><td><input type="text" name="phone" /></td></tr>
 <tr><td><b>Password</b></td><td><input type="password" class="required" name="password" /></td></tr>
 <tr><td><b>Can View Files</b></td><td><input type="checkbox" name="canView" id="canView"  /></td></tr>
@@ -136,7 +138,7 @@
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="Email_evidence"  />
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="Email_templates"  />
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report </span><input type="checkbox" name="Email_client_memo"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Feedback </span><input type="checkbox" name="Email_client_memo1"  />
+<!--<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Feedback </span><input type="checkbox" name="Email_client_memo1"  />-->
 </td>
 </tr>
 </table>
