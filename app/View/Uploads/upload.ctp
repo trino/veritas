@@ -276,11 +276,11 @@ function remove_youtube()
 onKeyUp="limitText(this.form.description,this.form.countdown,70);"></textarea>
 <br />
 <font size="1">(Maximum characters: 70)<br />
-You have <input readonly type="text" name="countdown" id="countssss" style="background:none; border:0; padding:0; margin:0; text-align:center; border-radius:none; width:30px; box-shadow:none;" value="70" /> characters left.</font><br />
+You have <input readonly="readonly" type="text" name="countdown" id="countssss" style="background:none; border:0; padding:0; margin:0; text-align:center; border-radius:none; width:30px; box-shadow:none;" value="70" /> characters left.</font><br />
 </td></tr>
 <!--<tr><td><b>Description</b></td><td><div class="right"><textarea cols="35" name="description" class="required"></textarea></div></td></tr>-->
 
-<tr><td><b>Images/Videos/Docs</b></td><td><div class="right"><input type="file" name="document_1" class="" id='document_1' /><!--<a href="javascript:void(0)" onclick="add_document()" class="btn btn-primary">Add</a>--></div><div id="doc"></div></td></tr>
+<tr><td><b>Images/Videos/Docs</b></td><td><div class="right"><!--a href="javascript:void(0)" onclick="$('#document_1).trigger('click');" class="btn btn-info">Upload File</a>--><input type="file" name="document_1" class="" id='document_1' value="" style="display: block;" /><!--<a href="javascript:void(0)" onclick="add_document()" class="btn btn-primary">Add</a>--></div><div id="doc"></div></td></tr>
 <!--
 <tr><td><b>Images</b></td><td><div class="right"><input type="file" name="image_1" /><a href="javascript:void(0);" onclick="add_image()" class="btn btn-primary">Add</a><span id="remove_img" style="display: none;"> &nbsp; <a href="javascript:void(0);" onclick="remove_image();" class="btn btn-danger">Remove</a></span></div><div id="img"></div></td></tr>
 
@@ -297,7 +297,7 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 <input type="hidden" name="youtube" id="youtube" value="1" />
 <input type="hidden" name="job" value="<?php echo $job_id; ?>" />
 <input type="hidden" class="draftval" name="draft" value="0" />
-<div class="submit"><input type="submit" class="btn btn-primary sbtbtn" style="float: left;" value="Upload Document" name="submit"/><?php if(!$this->Session->read('admin')){?> <span style="display: none;float:left;" class="draftspan"><a href="javascript:void(0)" style="margin-left: 15px;" class="draft btn btn-primary">Save as Draft</a></span><?php }?></div>
+<div class="submit"><input type="submit" class="btn btn-primary sbtbtn" style="float: left;" value="Submit Document" name="submit"/><?php if(!$this->Session->read('admin')){?> <span style="display: none;float:left;" class="draftspan"><a href="javascript:void(0)" style="margin-left: 15px;" class="draft btn btn-primary">Save as Draft</a></span><?php }?></div>
 
 
 </form>

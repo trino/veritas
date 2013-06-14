@@ -569,6 +569,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 							</div>
 						</a>
 					</div>			-->
+                    <?php if($this->Session->read('admin')){ ?>
 					<div class="v1ButtonBarB">
                         <a href="<?php echo $base_url;?>feedback" class="fullLink">
 							<div  class="glassButton">
@@ -585,6 +586,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 							</div>
 						</a>
 					</div>
+                    <?php }?>
                     <div class="v1ButtonBarB">
 						<a href="<?php echo $base_url;?>uploads/go" class="fullLink">
 							<div  class="glassButton">
