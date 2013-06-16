@@ -1,25 +1,3 @@
-<?php include('inc.php');?>
-<script>
-$(function(){
-    $('.search').change(function(){
-        var name = $(this).val();
-        
-        $.ajax({
-           url: "<?php echo $base_url;?>uploads/searchlist",
-           type: "post",
-           data: "name="+name,
-           success:function(msg)
-           {
-                $('.searchlist').html(msg);
-           } 
-            
-        });
-    });
-});
-</script>
-
-<input type="text" value="" class="search" placeholder="Search Documents" />
-<div class="searchlist" >
 <?php
 
 if($this->Session->read('admin'))
@@ -31,7 +9,7 @@ if($this->Session->read('admin'))
                 <h3 style="font-size: 15px;"><?php echo $q2['Job']['title'];?></h3>
                 
                 <?php
-                $q3 = $doc->find('all',array('conditions'=>array('job_id'=>$q2['Job']['id'],'draft'=>0)));
+                $q3 = $doc->find('all',array('conditions'=>array('job_id'=>$q2['Job']['id'],'draft'=>0,'title LIKE "%'.$name.'%"')));
                 if($q3)
                 {
                     foreach($q3 as $do)
@@ -136,7 +114,7 @@ else
                 <h3 style="font-size: 15px;"><?php echo $q2['Job']['title'];?></h3>
                 
                 <?php
-                $q3 = $doc->find('all',array('conditions'=>array('job_id'=>$q2['Job']['id'],'draft'=>0)));
+                $q3 = $doc->find('all',array('conditions'=>array('job_id'=>$q2['Job']['id'],'draft'=>0,'title LIKE "%'.$name.'%"')));
                 if($q3)
                 {
                     foreach($q3 as $do)
@@ -228,25 +206,3 @@ else
     }
 }
 ?>
-</div>
-<button class="close_modal" style="background: blue;padding:5px 15px;color:#FFF;border:none;border-radius:5px">Attach</button>
-<script>
-$(function(){
-    
-    var arr_id = $('#attachments').val();
-    
-       var spl = arr_id.split(',');
-       var size = spl.length;
-       
-    $('.doc').each(function(){
-       var id = $(this).val();        
-       for(var i =0;i<size;i++)
-       {
-        if(spl[i] == id && !($(this).is(':checked')))
-        $(this).click();
-        
-       }    
-       
-    });
-});
-</script>

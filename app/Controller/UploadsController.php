@@ -78,6 +78,25 @@ class UploadsController extends AppController
         $this->set('imgs',$imgs);
         $this->set('vdos',$vdos);
     }
+    function searchlist()
+    {
+        $name = $_POST['name'];
+        $this->layout = "modal_layout1";
+        $job = $this->Job;
+        $doc = $this->Document;
+        $jm = $this->Jobmember;
+        $docs = $this->Doc;
+        $imgs = $this->Image;
+        $vdos = $this->Video;
+        $this->set('name',$name);
+        $this->set('job',$job);
+        $this->set('doc',$doc);
+        $this->set('jm',$jm);
+        $this->set('docs',$docs);
+        $this->set('imgs',$imgs);
+        $this->set('vdos',$vdos);
+        
+    }
     function index()
     {
 			if($this->Session->read('avatar') || $this->Session->read('supervisor') || $this->Session->read('employee'))
