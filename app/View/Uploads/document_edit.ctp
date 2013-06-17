@@ -255,9 +255,9 @@ function remove_youtube()
 </select>
 </th>
 </thead>
-<th width="18%">Date</th>
-<th width="16%">Time</th>
-<th>Description &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th width="220px">Date</th>
+<th width="220px">Time</th>
+<th width="350px">Description &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
 </thead>
 
 <?php
@@ -268,9 +268,9 @@ foreach($activity as $act)
     $time = $t[0].":".$t[1];
     ?>
 <tr>
-<td><input type="text" value="<?php echo $act['Activity']['date'];?>" name="activity_date[]" class="activity_date required" /></td>
-<td><input type="text" value="<?php echo $time;?>" name="activity_time[]" class="activity_time required" /></td>
-<td><textarea name="activity_desc[]" class="activity_desc"><?php echo $act['Activity']['desc'];?></textarea>  <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>
+<td width="220px"><input type="text" value="<?php echo $act['Activity']['date'];?>" name="activity_date[]" class="activity_date required" /></td>
+<td width="220px"><input type="text" value="<?php echo $time;?>" name="activity_time[]" class="activity_time required" /></td>
+<td width="350px"><textarea name="activity_desc[]" class="activity_desc"><?php echo $act['Activity']['desc'];?></textarea>  <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>
 </tr>
 <?php }?>
 
@@ -279,7 +279,7 @@ foreach($activity as $act)
 <td><input type="text" value="" name="activity_date[]" class="activity_date" /></td>
 <td><textarea name="activity_desc[]"></textarea>  </td>
 </tr>-->
-<tr><td colspan="3" style="padding: 0;"><table class="activity_more" style="margin-left: 10px;">
+<tr><td colspan="3" style="padding: 0;"><table class="activity_more" style="">
 </table>
 </td></tr>
 </table>
@@ -355,9 +355,9 @@ $(function(){
     else
         mis = t.getMinutes(); 
        var more = '<tr>'+
-'<td style="padding:5px 0;" width="23%"><input type="text" value="'+dt+'" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
-'<td style="padding:5px 0;" width="24%"><input type="text" value="'+t.getHours()+':'+mis+'" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
-'<td style="padding:5px 0;"><textarea name="activity_desc[]"></textarea>   <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>'+
+'<td width="220px"><input type="text" value="'+dt+'" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
+'<td width="220px"><input type="text" value="'+t.getHours()+':'+mis+'" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
+'<td width="350px"><textarea name="activity_desc[]"></textarea>   <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>'+
 '</tr>';
                $('.activity_more').append(more);
                $('.test'+test).each(function(){
