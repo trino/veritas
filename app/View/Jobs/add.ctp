@@ -38,7 +38,7 @@ $(function(){
 </div>
 <script>
 $(function(){
-    var add =   '<table width="100%"><tr><td>Contacts Type</td><td colspan="3"><select name="type[]" class="required">'+
+    var add =   '<table width="100%"><tr><td>Contact Type</td><td colspan="3"><select name="type[]" class="required">'+
                 '<option value="">Select Type</option><option value="0">Key Contacts</option><option value="1">Staff Contacts</option>'+
                 '<option value="2">Third Part Contacts</option></select></td></tr>'+
                 '<tr><td><b>Name</b><br/> <input type="text" name="key_name[]" class="required" style="width: 100px;" /></td>'+
