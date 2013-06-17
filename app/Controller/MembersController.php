@@ -40,6 +40,35 @@ class MembersController extends AppController
         $this->set('jm',$this->Jobmember);
         
     }
+    function searchlist()
+    {
+        $name = $_POST['name'];
+        $this->set('name',$name);        
+        $this->layout = 'modal_layout';
+        $this->loadModel('Job');
+        $this->loadModel('Jobmember');
+        if($this->Session->read('admin'))
+        $this->set('job',$this->Job->find('all',array('order'=>'title')));
+        else
+        {
+            $q = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
+            if($q)
+            {
+                
+                $jobs = $q['Jobmember']['job_id'];
+                if(trim($jobs)=='')
+                $jobs='0';
+                $arr = '('.$jobs.')';
+                $this->set('job',$this->Job->find('all',array('order'=>'title','conditions'=>array('id IN '.$arr))));
+            }
+            else
+            $this->set('job',false);
+        }
+        $this->set('member',$this->Member);
+        $this->set('job_model',$this->Job);
+        $this->set('jm',$this->Jobmember);
+        
+    }
     public function add()
     {
         $this->loadModel('Canview');

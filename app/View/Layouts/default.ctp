@@ -59,6 +59,41 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <script type="text/javascript">
    
     $(function(){
+        $('.search').live('change',function(){
+        var name = $(this).val();
+        
+        $('.loads').text('Loading..');
+        $.ajax({
+            
+           url: "<?php echo $base_url;?>uploads/searchlist",
+           type: "post",
+           data: "name="+name,
+           success:function(msg)
+           {
+                $('.loads').text('Load');
+                $('.searchlist').html(msg);
+           } 
+            
+        });
+    });
+        $('.search2').live('change',function(){
+            
+        var name = $(this).val();
+        
+        $('.loads').text('Loading..');
+        $.ajax({
+            
+           url: "<?php echo $base_url;?>members/searchlist",
+           type: "post",
+           data: "name="+name,
+           success:function(msg)
+           {
+                $('.loads').text('Load');
+                $('.searchlist').html(msg);
+           } 
+            
+        });
+    });
         $('.pagination2 .prev a').text('<');
         $('.pagination2 .next a').text('>');
         if($('.next').html() == '')
