@@ -99,11 +99,11 @@ $(function(){
 
 <tr><td><b>Can Send Email</b></td><td><input type="checkbox" name="canEmail" <?php if($m['Member']['canEmail']==1){?>checked="checked"<?php }?> /></td></tr>
 <tr><td><b>Can Edit Notification</b></td><td><input type="checkbox" name="canEdit" id="canEdit" <?php if($m['Member']['canEdit']==1){?>checked="checked"<?php }?> /></td></tr>
-<tr class="canEdit" style="display: none;">
+<!--<tr class="canEdit" style="display: block;">
 <td colspan="2">
-<table width="50%">
-<tr><td><b>Receive email when someone sends me message</b>&nbsp;&nbsp;&nbsp;&nbsp;<input class="receive" type="checkbox" name="receive1" <?php if($m['Member']['receive1']==1){?>checked="checked"<?php }?> /></td></tr>
-<tr><td><b>Receive email when document is uploaded</b>&nbsp;&nbsp;&nbsp;&nbsp;<input class="receive" type="checkbox" id="receive2" name="receive2" <?php if($m['Member']['receive2']==1){?>checked="checked"<?php }?> /></td></tr>
+<table width="50%">-->
+<tr><td><b>Receive email when someone sends me message</b>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input class="receive" type="checkbox" name="receive1" <?php if($m['Member']['receive1']==1){?>checked="checked"<?php }?> /></td></tr>
+<tr><td><b>Receive email when document is uploaded</b>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input class="receive" type="checkbox" id="receive2" name="receive2" <?php if($m['Member']['receive2']==1){?>checked="checked"<?php }?> /></td></tr>
 <tr class="upload_more" style="display: none;" >
 <td colspan="2" >
 <table width="50%">
@@ -117,8 +117,9 @@ $(function(){
 </tr>
 </table>
 </td></tr>
+<!--
 </table>
-</td></tr>
+</td></tr>-->
 <!--<div class="checks"><div class="left">Is Supervisor</div><div class="right"><input type="checkbox" name="isSupervisor" <?php if($m['Member']['isSupervisor']==1){?>checked="checked"<?php }?> /></div><div class="clear"></div></div>
 <div class="checks"><div class="left">Is Employee</div><div class="right"><input type="checkbox" name="isEmployee" <?php if($m['Member']['isEmployee']==1){?>checked="checked"<?php }?> /></div><div class="clear"></div></div> -->
 <tr><td><div class="submit"><input type="submit" class="btn btn-primary" value="Save Changes" name="submit"/></div></td></tr>
@@ -166,7 +167,7 @@ $(function(){
         }
     
     }); 
-           
+    /*       
     $('#canView').click(function(){
         if($('#canView').is(':checked'))
             $('.canviewfiles').show();
@@ -179,7 +180,8 @@ $(function(){
         }
             
     
-    });  
+    }); 
+     
     $('#receive2').click(function(){
         if($('#receive2').is(':checked'))
             $('.upload_more').show();
@@ -193,6 +195,7 @@ $(function(){
             
     
     });  
+    /*
      $('#canEdit').click(function(){
         if($('#canEdit').is(':checked'))
             $('.canEdit').show();
@@ -205,7 +208,7 @@ $(function(){
         }
     
     });                
-       
+     */  
    //$('#canView').toggle(function(){$('.canviewfiles').toogle;});
    //$('#canUpdate').toggle(function(){$('.canuploadfiles').toogle;});
         
