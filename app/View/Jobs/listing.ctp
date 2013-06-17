@@ -63,7 +63,9 @@ function sort(value)
 <div id="table">
 
 <table>
-<tr><th>User</th>
+<tr><th>Username</th>
+<th>First Name</th>
+<th>Last Name</th>
 <th>Email</th>
 <th>Phone</th>
 <th>Address</th>
@@ -99,6 +101,8 @@ function sort(value)
         { ?>
     <tr>
     <td style="width:140px;"><?php echo $u['Member']['full_name']; ?></td>
+    <td><?php echo $u['Member']['fname']; ?></td>
+    <td><?php echo $u['Member']['lname']; ?></td>
     <td><?php echo $u['Member']['email']; ?></td>
     <td><?php echo $u['Member']['phone']; ?></td>
     <td><?php echo $u['Member']['address']; ?></td>

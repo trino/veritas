@@ -151,9 +151,10 @@ $(function(){
     
     if($('#receive2').is(':checked'))
         $('.upload_more').show();
-    
+    /*
     if($('#canEdit').is(':checked'))
         $('.canEdit').show();
+    */
         
     $('#canUpdate').click(function(){
         if($('#canUpdate').is(':checked'))
@@ -167,7 +168,7 @@ $(function(){
         }
     
     }); 
-    /*       
+        
     $('#canView').click(function(){
         if($('#canView').is(':checked'))
             $('.canviewfiles').show();
