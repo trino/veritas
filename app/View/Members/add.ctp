@@ -129,11 +129,11 @@
 <tr><td><b>Can Upload Files</b></td><td><input type="checkbox" name="canUpdate" /></td></tr>-->
 <tr><td><b>Can Send Email</b></td><td><input type="checkbox" name="canEmail" /></td></tr>
 <tr><td><b>Can Edit Notification</b></td><td><input type="checkbox" name="canEdit" id="canEdit" /></td></tr>
-<tr class="canEdit" style="display: none;">
+<!--<tr class="canEdit" style="display: block;">
 <td colspan="2">
-<table width="50%">
-<tr><td><b>Receive email when someone sends me message</b>&nbsp;&nbsp;&nbsp;&nbsp;<input class="receive" type="checkbox" name="receive1" /></td></tr>
-<tr><td><b>Receive email when document is uploaded</b>&nbsp;&nbsp;&nbsp;&nbsp;<input class="receive" type="checkbox" name="receive2" id="receive2" /></td></tr>
+<table width="100%">-->
+<tr><td><b>Receive email when someone sends me message</b>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input class="receive" type="checkbox" name="receive1" /></td></tr>
+<tr><td><b>Receive email when document is uploaded</b>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input class="receive" type="checkbox" name="receive2" id="receive2" /></td></tr>
 <tr class="upload_more" style="display: none;" >
 <td colspan="2" >
 <table width="50%">
@@ -147,8 +147,8 @@
 </tr>
 </table>
 </td></tr>
-</table>
-</td></tr>
+<!--</table>
+</td></tr>-->
 <!-- <div class="checks"><div class="left">Is Supervisor</div><div class="right"><input type="checkbox" name="isSupervisor" /></div><div class="clear"></div></div>
 <div class="checks"><div class="left">Is Employee</div><div class="right"><input type="checkbox" name="isEmployee" /></div><div class="clear"></div></div> -->
 <tr><td><div class="submit"><input type="submit" class="btn btn-primary" value="Add User" name="submit"/></div></td></tr>
@@ -217,6 +217,7 @@ $(function(){
     
     });  
     
+    /*
     $('#canEdit').click(function(){
         if($('#canEdit').is(':checked'))
             $('.canEdit').show();
@@ -228,7 +229,8 @@ $(function(){
             });
         }
     
-    });             
+    }); 
+    */            
        
   
         
