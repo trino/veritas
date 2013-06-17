@@ -150,7 +150,7 @@ function remove_youtube()
 <div id="table">
 <table>
 
-<tr style="display: none;"><td style="width:140px;"><b>Location</b></td><td><div class="right"><input type="text" name="location" class="" /></div></td></tr>
+<tr style="display: none;"><td style=""><b>Location</b></td><td><div class="right"><input type="text" name="location" class="" /></div></td></tr>
 <tr><td><b>Documnet Type</b></td>
 <td><div class="right">
 <select name="document_type" class="required" id="document_type">
@@ -253,18 +253,18 @@ function remove_youtube()
 </th>
 </thead>
 <thead>
-<th width="18%">Date</th>
-<th width="16%">Time</th>
-<th>Description</th>
+<th width="220px">Date</th>
+<th width="220px">Time</th>
+<th width="350px">Description</th>
 </thead>
 <tr>
-<td><input type="text" value="" name="activity_date[]" class="activity_date required" /></td>
-<td><input type="text" value="" name="activity_time[]" class="activity_time required" /></td>
+<td width="220px"><input type="text" value="" name="activity_date[]" class="activity_date required" /></td>
+<td width="220px"><input type="text" value="" name="activity_time[]" class="activity_time required" /></td>
 
-<td><textarea name="activity_desc[]" class="required activity_desc"></textarea></td>
+<td width="350px"><textarea name="activity_desc[]" class="required activity_desc"></textarea></td>
 </tr>
 <tr><td colspan="3" style="padding: 0;">
-<table class="activity_more" style="width: calc(60% + 153px);">
+<table class="activity_more" style="">
 </table>
 </td></tr>
 <tr><td colspan="3"><a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></td></tr>
@@ -334,9 +334,9 @@ $(function(){
         mis = t.getMinutes(); 
         var dt = t.getFullYear()+'-'+Number(t.getMonth()+1)+'-'+t.getDate();
        var more = '<tr>'+
-'<td ><input type="text" value="'+dt+'" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
-'<td ><input type="text" value="'+t.getHours()+':'+mis+'" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
-'<td ><textarea name="activity_desc[]"></textarea>&nbsp;<a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>'+
+'<td width="220px"><input type="text" value="'+dt+'" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
+'<td width="220px"><input type="text" value="'+t.getHours()+':'+mis+'" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
+'<td width="350px"><textarea name="activity_desc[]"></textarea>&nbsp;<a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>'+
 '</tr>'
        $('.activity_more').append(more); 
        
