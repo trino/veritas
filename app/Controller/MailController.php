@@ -32,18 +32,22 @@ class MailController extends AppController
     {
         $this->set('mails',$this->Mail);
         $this->set('mems',$this->Member);
-        if($this->Session->read('avatar'))
+        /*if($this->Session->read('avatar'))
         {
-            $this->paginate=array('conditions'=>array('recipients_id'=>'0','delete_for IN ("s","")'),'limit'=>15,'order'=>array('date'=>'desc'));
+            $this->paginate=array('conditions'=>array('parent'=>0,'recipients_id'=>'0','delete_for IN ("s","")'),'limit'=>15,'order'=>array('date'=>'desc'));
             $em= $this->paginate('Mail');
             $this->set('email',$em);
             
             //$this->set('email',$this->Mail->find('all',array('conditions'=>array('recipients_id'=>'0'))));
-        }
-        else
-        {
+        }*/
+        //else
+        //{
             $arr = array();
-            $test = $this->Mail->find('all',array('conditions'=>array('recipients_id'=>$this->Session->read('id'),'parent <>'=>0)));
+            if(!$this->Session->read('admin'))
+            $recc = $this->Session->read('id');
+            else
+            $recc = 0;
+            $test = $this->Mail->find('all',array('conditions'=>array('recipients_id'=>$recc,'parent <>'=>0)));
             foreach($test as $t)
             {
                 if(!in_array($t['Mail']['parent'],$arr))
@@ -61,11 +65,11 @@ class MailController extends AppController
             $str = str_replace(',',' ',$str);
             $str = trim($str);
             $str = str_replace(' ',',',$str).')';
-            $this->paginate=array('conditions'=>array('OR'=>array('AND'=>array('parent'=>0,'recipients_id'=>$this->Session->read('id'),'delete_for IN("s","")'),'id IN'.$str)),'limit'=>15,'order'=>array('date'=>'desc'));
+            $this->paginate=array('conditions'=>array('OR'=>array('AND'=>array('parent'=>0,'recipients_id'=>$recc,'delete_for IN("s","")'),'id IN'.$str)),'limit'=>15,'order'=>array('date'=>'desc'));
             $em= $this->paginate('Mail');
             $this->set('email',$em);
             //$this->set('email',$this->Mail->find('all',array('conditions'=>array('recipients_id'=>$this->Session->read('id')))));
-        }
+       // }
         $cnt = $this->Mail;
         $this->set('count',$cnt);
     }
@@ -73,7 +77,7 @@ class MailController extends AppController
     function read($id)
     {
         
-    
+        $this->set('mainid',$id);
         $this->set('mailing',$this->Mail);
         if($this->Session->read('avatar') || $this->Session->read('user'))
         {
@@ -173,6 +177,8 @@ class MailController extends AppController
         {
         unset($this->Mail->id);
         $this->Mail->id = $p['Mail']['id'];
+        
+        if(($this->Session->read('user') && $p['Mail']['sender_id']!=$this->Session->read('id')|| ($this->Session->read('admin')&& $p['Mail']['sender_id']!=0)))
         $this->Mail->saveField('status','read');
         }
         

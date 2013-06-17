@@ -55,9 +55,25 @@ foreach($all as $a){
     $parents = $a['Mail']['parent'];
     if($i==0)
     {
-       // if($this->Session->read('admin'))
-        //{
-            if($a['Mail']['sender_id']!=0)
+      if($this->Session->read('admin'))
+      $recc = 0;
+      else
+      $recc =$this->Session->read('id');  
+      $req_arr = $mailing->find('first',array('conditions'=>array('OR'=>array(array('id'=>$mainid),array('parent'=>$mainid),'recipients_id'=>$recc))));
+      $reqs = $req_arr['Mail']['sender_id'];
+      $sub = $req_arr['Mail']['subject'];
+      if($reqs!=0){
+      $q1 = $member->find('first',array('condtions'=>array('id'=>$reqs)));
+                $reqs_email = $q1['Member']['email'];
+                $i++;
+                }
+                else{
+                $q2 = $user->find('first');
+            $reqs_email = $q2['User']['email'];
+            }
+                
+      
+      /*      if($a['Mail']['sender_id']!=0)
             {
                 $reqs = $a['Mail']['sender_id'];
                 $sub = $a['Mail']['subject'];
@@ -66,14 +82,14 @@ foreach($all as $a){
                 $i++;
             }
             
-        //}
+      
         else
         {
             $sub = $a['Mail']['subject'];
             $reqs = 0;
             $q2 = $user->find('first');
             $reqs_email = $q2['User']['email'];
-        }
+        }*/
     }
     ?>
     <table id="span<?php echo $j;?>" class="clickable">

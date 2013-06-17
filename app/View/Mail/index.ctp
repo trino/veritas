@@ -31,11 +31,20 @@
 <?php 
     foreach($email as $e)
     {  
+        
         //echo $e['Mail']['parent'];
+        
+        if($this->Session->read('admin')){if($e['Mail']['sender_id']!=0 && $e['Mail']['status']=='unread')$stcheck=true;}
         if($e['Mail']['parent'] == 0)
-        $check_child_status = $mails->find('first',array('conditions'=>array('parent'=>$e['Mail']['id'],'status'=>'unread')));
+        {
+        if($this->Session->read('user'))    
+        $check_child_status = $mails->find('first',array('conditions'=>array('parent'=>$e['Mail']['id'],'status'=>'unread','sender_id <>'=>$this->Session->read('id'))));
+        else
+        $check_child_status = $mails->find('first',array('conditions'=>array('parent'=>$e['Mail']['id'],'status'=>'unread','sender_id <>'=>0)));
+        }
         else
         $check_child_status = false;
+        
         if($e['Mail']['status']=='unread' || $check_child_status){$style="background-color:#e5e5f5;";}else{$style="";}
         $cnt = $count->find('count',array('conditions'=>array('parent'=>$e['Mail']['id']))); 
         ?>
