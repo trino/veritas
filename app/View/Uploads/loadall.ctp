@@ -1,24 +1,9 @@
 <?php include('inc.php');?>
 <script>
-$(function(){
-    $('.search').change(function(){
-        var name = $(this).val();
-        
-        $.ajax({
-           url: "<?php echo $base_url;?>uploads/searchlist",
-           type: "post",
-           data: "name="+name,
-           success:function(msg)
-           {
-                $('.searchlist').html(msg);
-           } 
-            
-        });
-    });
-});
+
 </script>
 
-<input type="text" value="" class="search" placeholder="Search Documents" />
+<input type="text" value="" class="search" placeholder="Search Documents" style="margin: 0;" /> <a href="javascript:void(0)" class="btn btn-info loads">Load</a>
 <div class="searchlist" >
 <?php
 
