@@ -80,7 +80,7 @@ $(function(){
 
         <!--<tr><td><b>Avatar</b></td><td><input type="text" name="avatar" value="<?php echo $avatar;?>"  /><br />-->
         <tr><td><b>Email</b></td><td><input type="text" name="email" value="<?php echo $email; ?>" id="email" class="email" <?php if($this->Session->read('user')) echo "readonly='readonly'" ;?> /><span id="email_response"></span></td></tr>
-        <tr><td><b>Image</b></td><td><?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => ''))?></td></tr>
+        <tr><td><b>Image</b></td><td><?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => '','style'=>'width:60px;height:60px;'))?></td></tr>
         <!--<tr><td><b>New Image</b></td><td><input type="file" name="image"  /><br />-->
         <tr><td><b>Old password</b></td><td><input type="password" name="old_password" id="old_password" class=""  /><span id="response"></span></td></tr>
        <tr><td><b> New Password </b></td><td><input type="password" id="passw" name="password" class="" /></td></tr>
