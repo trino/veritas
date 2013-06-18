@@ -42,7 +42,12 @@ if($docs)
         $date = 'asc'; 
         */  
     ?>
+<?php
+if(isset($canView) && !isset($noView))
+{
     
+
+?>    
 <div id="table">
 
     <table>
@@ -131,6 +136,7 @@ if($docs)
  </table>
 
 </div>
+
 <div class="pagination2">
 <ul>
 <?php echo $this->Paginator->prev('«', array('tag' => 'li')); ?>
@@ -138,6 +144,16 @@ if($docs)
 <?php echo $this->Paginator->next('»', array('tag' => 'li')); ?>
 </ul>
 </div>
+<?php
+}
+else
+{
+    ?>
+    <div><strong>You have no permission to view the documents</strong></div>
+    <?php
+}
+
+?>
     <?php
 } else {echo"No Search Results";}
 ?>

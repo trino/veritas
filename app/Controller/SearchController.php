@@ -78,6 +78,88 @@ class SearchController extends AppController
         }
         else
         {
+            $this->loadModel('Canview');
+            $qs = $this->Canview->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
+            
+            if($qs['Canview']['contracts'] && $qs['Canview']['evidence'] && $qs['Canview']['templates'] && $qs['Canview']['report'])
+                $arrs  = array('document_type <>'=>'client_feedback');
+                else
+                if($qs['Canview']['contracts'] && $qs['Canview']['evidence'] && $qs['Canview']['templates'])
+                {
+                    $arrs  = array('document_type <>'=>'client_feedback','document_type <>'=>'report');
+                }
+                else
+                if($qs['Canview']['evidence'] && $qs['Canview']['templates'] && $qs['Canview']['report'])
+                {
+                    $arrs  = array('document_type <>'=>'client_feedback','document_type <>'=>'contract');
+                }
+                else
+                if($qs['Canview']['contracts'] && $qs['Canview']['templates'] && $qs['Canview']['report'])
+                {
+                    $arrs  = array('document_type <>'=>'client_feedback','document_type <>'=>'evidence');
+                }
+                else
+                if($qs['Canview']['contracts'] && $qs['Canview']['evidence'] && $qs['Canview']['report'])
+                {
+                    $arrs  = array('document_type <>'=>'client_feedback','document_type <>'=>'template');
+                }
+                else
+                if($qs['Canview']['contracts'] && $qs['Canview']['evidence'])
+                {
+                    $arrs  = array('document_type <>'=>'client_feedback','document_type <>'=>'template','document_type <>'=>'report');
+                }
+                else
+                if($qs['Canview']['contracts'] && $qs['Canview']['report'])
+                {
+                    $arrs  = array('document_type <>'=>'client_feedback','document_type <>'=>'template','document_type <>'=>'evidence');
+                }
+                else
+                if($qs['Canview']['contracts'] && $qs['Canview']['templates'])
+                {
+                    $arrs  = array('document_type <>'=>'client_feedback','document_type <>'=>'report','document_type <>'=>'evidence');
+                }
+                else
+                if($qs['Canview']['report'] && $qs['Canview']['templates'])
+                {
+                    $arrs  = array('document_type <>'=>'client_feedback','document_type <>'=>'evidence','document_type <>'=>'contract');
+                }
+                else
+                if($qs['Canview']['report'] && $qs['Canview']['evidence'])
+                {
+                    $arrs  = array('document_type <>'=>'client_feedback','document_type <>'=>'template','document_type <>'=>'contract');
+                }
+                else
+                if($qs['Canview']['evidence'] && $qs['Canview']['templates'])
+                {
+                    $arrs  = array('document_type <>'=>'client_feedback','document_type <>'=>'contract','document_type <>'=>'report');
+                }
+                else
+                if($qs['Canview']['evidence'])
+                {
+                    $arrs  = array('document_type <>'=>'client_feedback','document_type <>'=>'contract','document_type <>'=>'report','document_type <>'=>'template');
+                }
+                else
+                if($qs['Canview']['contracts'])
+                {
+                    $arrs  = array('document_type <>'=>'client_feedback','document_type <>'=>'evidence','document_type <>'=>'report','document_type <>'=>'template');
+                }
+                else
+                if($qs['Canview']['report'])
+                {
+                    $arrs  = array('document_type <>'=>'client_feedback','document_type <>'=>'contract','document_type <>'=>'evidence','document_type <>'=>'template');
+                }
+                else
+                if($qs['Canview']['templates'])
+                {
+                    $arrs  = array('document_type <>'=>'client_feedback','document_type <>'=>'contract','document_type <>'=>'report','document_type <>'=>'evidence');
+                }
+                else{
+                    //die('here');
+                $arrs = array('document_type <>'=>'client_feedback');
+                $this->set('noView',1);
+                }
+            
+            
             $this->loadModel('Jobmember');
             $job_ids = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
             if($job_ids)
@@ -94,14 +176,18 @@ class SearchController extends AppController
 <<<<<<< HEAD
                 $this->paginate = array('conditions'=>array('OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'job_id IN'.$jid),'order'=>array('job_id'),'limit'=>10);
 ======= */
-            if(!$to && !$from)    
-                $this->paginate = array('conditions'=>array('document_type <>'=>'client_feedback','OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'job_id IN'.$jid),'order'=>array('job_id'),'limit'=>10);
+            
+            if(!$to && !$from){
+                
+                $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'job_id IN'.$jid),'order'=>array('job_id'),'limit'=>10);
+                
+                }
             else
             if($to && $from){
                 if($to!=$from)
-                $this->paginate = array('conditions'=>array('document_type <>'=>'client_feedback','OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'`date` >='=>$from, '`date` <='=>$to,'job_id IN'.$jid),'order'=>array('job_id'),'limit'=>10);
+                $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'`date` >='=>$from, '`date` <='=>$to,'job_id IN'.$jid),'order'=>array('job_id'),'limit'=>10);
                 else
-                $this->paginate = array('conditions'=>array('document_type <>'=>'client_feedback','OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'`date` LIKE "'.$from.'%"','job_id IN'.$jid),'order'=>array('job_id'),'limit'=>10);
+                $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'`date` LIKE "'.$from.'%"','job_id IN'.$jid),'order'=>array('job_id'),'limit'=>10);
                 
                 }
             
@@ -110,19 +196,28 @@ class SearchController extends AppController
             else{
                 //echo 2;die();
                 if(!$to && !$from)
-                $this->paginate = array('conditions'=>array('document_type <>'=>'client_feedback','OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'job_id IN'.$jid),'order'=>array('job_id'),'limit'=>10);
+                $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'job_id IN'.$jid),'order'=>array('job_id'),'limit'=>10);
                 else
                 {
                     if($to==$from)
                     {
-                        $this->paginate = array('conditions'=>array('document_type <>'=>'client_feedback','OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'job_id IN'.$jid,'`date` LIKE "'.$from.'%"'),'order'=>array('job_id'),'limit'=>10);
+                        $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'job_id IN'.$jid,'`date` LIKE "'.$from.'%"'),'order'=>array('job_id'),'limit'=>10);
                     }
                     else
-                    $this->paginate = array('conditions'=>array('document_type <>'=>'client_feedback','OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'job_id IN'.$jid,'`date` >='=>$from,'`date` <='=>$to),'order'=>array('job_id'),'limit'=>10);
+                    $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'job_id IN'.$jid,'`date` >='=>$from,'`date` <='=>$to),'order'=>array('job_id'),'limit'=>10);
                 }
             }
             $docs = $this->paginate('Document');
             //$docs = $this->Document->find('all',array('conditions'=>array('addedBy'=>$this->Session->read('id'),'title LIKE'=>'%'.$search.'%'))); 
+        }
+        if(!$this->Session->read('admin'))
+        {
+            $idu = $this->Session->read('id');
+            $ch = $this->Member->find('first',array('conditions',array('id'=>$idu)));
+            if($ch['Member']['canView'] == 1)
+            {
+                $this->set('canView',1);
+            }
         }
         $this->set('member',$this->Member);
         $this->set('jo_bs',$this->Job);
