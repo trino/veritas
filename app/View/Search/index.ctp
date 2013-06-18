@@ -43,7 +43,7 @@ if($docs)
         */  
     ?>
 <?php
-if(isset($canView) && !isset($noView))
+if((isset($canView) && !isset($noView)) || $this->Session->read('admin'))
 {
     
 
@@ -149,7 +149,7 @@ if(isset($canView) && !isset($noView))
 else
 {
     ?>
-    <div><strong>You have no permission to view the documents</strong></div>
+    <div><strong>You do not have permission to view the documents</strong></div>
     <?php
 }
 
