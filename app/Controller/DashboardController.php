@@ -403,6 +403,8 @@ class DashboardController extends AppController
               else
               {
                 $this->Member->id = $this->Session->read('id');
+                $this->Member->saveField('fname',$_POST['fname']);
+                $this->Member->saveField('lname',$_POST['lname']);
                 $this->Member->saveField('full_name',$_POST['name']);
                 $this->Member->saveField('email',$_POST['email']);
                 if(isset($_POST['receive1']))

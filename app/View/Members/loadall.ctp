@@ -1,6 +1,13 @@
+<style>
+.ui-widget-content,.dialog-modals{background:#313A43!important;color:#FFF;}
+hr{border-top:#313A43 1px solid;}
+.ui-dialog-titlebar{background:#000;color:#EEE;border:1px solid #333;}
+.lists div div div{padding: 3px 0;}
+.title{color:#BBB;padding:10px 0;}
 
+</style>
 <?php include_once('inc.php');?>
-<input type="text" value="" class="search2" placeholder="Search Documents" style="margin: 0;" /> <a href="javascript:void(0)" class="btn btn-info loads">Load</a>
+<input type="text" value="" class="search2" placeholder="Search Documents" style="margin: 0;" /> <a href="javascript:void(0)" class="btn btn-inverse loads" style="color: #FFF;">Load</a>
 <ul style="list-style: none;margin:0;background:#e5e5e5;width:210px;padding:5px;display:none;" id="searchlist">
 </ul>
 <hr />
@@ -67,7 +74,7 @@ foreach($job as $j)
 }
 
 ?>
-<button class="close_modal" style="background: blue;padding:5px 15px;color:#FFF;border:none;border-radius:5px">Add</button>
+<button class="close_modal btn btn-inverse">Add</button>
 </div>
 <script>
 $(function(){

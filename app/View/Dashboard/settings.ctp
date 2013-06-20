@@ -38,7 +38,18 @@
 $(function(){
    $('#passw').val('');
    $('#old_password').val('');
-   $('#myform').validate();
+   $('#myform').validate({
+    rules:{
+     npassword:{
+        equalTo:'#passw'
+     }   
+    },
+    messages:{
+        npassword:{
+            equalTo:'Please enter same password'
+        }
+    }
+   });
    $('#old_password').keypress(function(){
     if($(this).val() == '')
     {
@@ -70,8 +81,8 @@ $(function(){
         if($this->Session->read('user'))
         {
             ?>
-            <tr><td style="width:140px;"><b>First name</b></td><td><input type="text" name="name" value="<?php echo $fname ?>" class="required"<?php if($this->Session->read('user')) echo "readonly='readonly'" ;?>/></td></tr>
-            <tr><td style="width:140px;"><b>List Name</b></td><td><input type="text" name="name" value="<?php echo $lname ?>" class="required"<?php if($this->Session->read('user')) echo "readonly='readonly'" ;?>/></td></tr>    
+            <tr><td style="width:140px;"><b>First name</b></td><td><input type="text" name="fname" value="<?php echo $fname ?>" class="required"<?php if($this->Session->read('user')) echo "readonly='readonly'" ;?>/></td></tr>
+            <tr><td style="width:140px;"><b>List Name</b></td><td><input type="text" name="lname" value="<?php echo $lname ?>" class="required"<?php if($this->Session->read('user')) echo "readonly='readonly'" ;?>/></td></tr>    
             <?php
         }
         ?>
@@ -84,6 +95,7 @@ $(function(){
         <!--<tr><td><b>New Image</b></td><td><input type="file" name="image"  /><br />-->
         <tr><td><b>Old password</b></td><td><input type="password" name="old_password" id="old_password" class=""  /><span id="response"></span></td></tr>
        <tr><td><b> New Password </b></td><td><input type="password" id="passw" name="password" class="" /></td></tr>
+       <tr><td><b> New Password Again </b></td><td><input type="password" id="npassw" name="npassword" class="" /></td></tr>
         <?php 
             if(!$this->Session->read('avatar'))
             { ?>

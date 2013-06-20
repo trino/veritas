@@ -475,6 +475,7 @@ class UploadsController extends AppController
     }
     function upload($ids)
     {
+        $subname = '';
         $this->loadModel('Canupload');
         $this->loadModel('Activity');
         $this->loadModel('Emailupload');
@@ -522,6 +523,7 @@ class UploadsController extends AppController
                 $arr['incident_date'] = $_POST['incident_date'];
                 //$arr['desc'] = $_POST['desc'];
                 $arr['evidence_type'] = $_POST['evidence_type'];
+                $subname = '_'.$_POST['evidence_type'];
                 
                 
                //die(); 
@@ -592,6 +594,10 @@ class UploadsController extends AppController
             {
                 $activity['document_id'] = $id;
                 $activity['report_type'] = $_POST['report_type'];
+                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet');
+                if($_POST['report_type'])
+                $subname = '_'.$act_type[$_POST['report_type']];
+                
                 foreach($_POST['activity_time'] as $k=>$v)
                 {
                     if($v != "")
@@ -663,7 +669,7 @@ class UploadsController extends AppController
                     //echo $fname;die();
                 $fname = str_replace(' ',"_",$fname);
                 $fname = urlencode($fname);
-                $rand = $arr['title']."_".$fname."_".date('Y-m-d_H-i-s');
+                $rand = $arr['title'].$subname."_".$fname."_".date('Y-m-d_H-i-s');
                 $ext_arr = explode('.',$_FILES['document_'.$i]['name']);
                 $extn = end($ext_arr);
                 $img = $rand.'.'.end($ext_arr);

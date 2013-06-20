@@ -15,7 +15,12 @@
 }
 </style>
 
-
+<script>
+    $(function(){
+       
+        
+    });
+  </script>
 <h3 class="page-title">
 	Documents: <?php echo $doc['Document']['title']; ?></td>
 </h3>
@@ -142,7 +147,12 @@
     ?>
     <div class="clear"></div>
 </div>
-<?php if($vid) { ?>
+<?php if($vid) { 
+    
+    ?>
+    
+    <?php
+    /*?>
 <div id="myElement">Loading the player...</div>
 <script type="text/javascript">
     function video(value)
@@ -159,7 +169,7 @@
         image: "<?php echo $base_url;?>img/documents/ZaideesVID-Clip1.flv"
     });
     });
-</script>
+</script><?php */?>
 <div class="video">
 <?php foreach($vid as $v) { ?><input type="hidden" name="first" id="first" value="<?php echo $v['Video']['video']; ?>" /> <?php break; } ?>
     <?php
@@ -168,9 +178,15 @@
 <div class="sub-video"> <?php
         //echo $this->Html->image('video.png', array('alt' => 'video'));
         ?>
-        
-        <a href="javascript:void(0);" onclick="video(this.id)" id="<?php echo $v['Video']['video']; ?>"><?php echo $v['Video']['video']; ?></a> </div>
-        <a href="<?php echo $base_url."uploads/download/".$v['Video']['video']; ?>" class="btn btn-info">Download</a> 
+        <video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="500" height="264"
+      poster=""
+      data-setup="{}" style="background:#000;">
+    <source src="<?php echo $base_url;?>img/documents/<?php echo $v['Video']['video']; ?>" type='video/webm' />
+    <track kind="captions" src="demo.captions.vtt" srclang="en" label="English" />
+  </video>
+        <!--<a href="javascript:void(0);" onclick="video(this.id)" id="<?php echo $v['Video']['video']; ?>"><?php echo $v['Video']['video']; ?></a> </div>-->
+        <br /><a href="<?php echo $base_url."uploads/download/".$v['Video']['video']; ?>" class="btn btn-info">Download</a>
+        <br /><br /> 
     <?php } 
     ?>
 </div>

@@ -116,7 +116,7 @@ if((isset($canView) && !isset($noView)) || $this->Session->read('admin'))
                 }
                 else
                 {
-                    $q3 = $im->find('first',array('conditions'=>array('document_id'=>$d['Document']['id'])));
+                    $q3 = $v->find('first',array('conditions'=>array('document_id'=>$d['Document']['id'])));
                     if($q3)
                     {
                         echo "<a href='".$base_url."uploads/view_detail/".$d['Document']['id']."'>".$q3['Video']['video']."</a>";

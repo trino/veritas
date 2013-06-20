@@ -37,9 +37,11 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 		//echo $this->Html->css('cake.generic');
         echo $this->Html->css('bootstrap.min');
+        //echo $this->Html->css('video-js');
         echo $this->Html->css('style');
         echo $this->Html->css('jquery.timepicker');
         echo $this->Html->script('jquery');
+        //echo $this->Html->script('video');
         echo $this->Html->script('ajaxupload.3.6');
         echo $this->Html->script('jquery.validate');
         echo $this->Html->script('jquery.timepicker');
@@ -50,6 +52,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->fetch('script');
 	?>
     <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300' rel='stylesheet' type='text/css'>
+    
     <script src="<?php echo $base_url;?>jwplayer/jwplayer.js"></script>
     <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
     <script type="text/javascript">jwplayer.key="N+fGwqE9+uBPKzrjO6qyGHWiJJRmw0UtbEU0iA==";</script>
@@ -59,6 +62,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <script type="text/javascript">
    
     $(function(){
+        
         $('.search').live('change',function(){
         var name = $(this).val();
         
@@ -195,7 +199,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
                $('.dialog-modals').dialog({
                     
                     width: 650,
-                    title:'Add Contacts to Email',
+                    title:'Add Contacts to Instant Message',
                     
                });
                });
@@ -203,9 +207,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
          $('.dialog-modals').load('<?php echo $base_url.'uploads/loadall';?>');
                $('.dialog-modals').dialog({
                     
-                    width: 550,
-                    height:500,
-                    title:'Attach files to Email',
+                    width: 650,
+                    
+                    title:'Attach files to Instant Message',
                     
                });
                });
@@ -264,7 +268,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     </script>
     <style>label.error{display: none !important;}
 
-.required.error{border:1px solid red !important;}
+.error{border:1px solid red !important;}
 
 </style>
     
