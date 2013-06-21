@@ -87,7 +87,7 @@
     </tr>-->
     
     <?php if($activity){
-        $r_types = array('','Activity Log','Mobile Inspection','Mobile Security','Security Occurance');
+        $r_types = array('','Activity Log','Mobile Inspection','Mobile Security','Security Occurance','Incident Reports','Sign-off Sheets');
         ?>
         <tr>
         <td><strong>Report Type</strong></td>
@@ -115,6 +115,24 @@
         <td><?php echo $doc['Document']['incident_date'];?></a></td>
     </tr>    
         
+    <?php } ?>
+     <?php if($type == 'Training'){ ?>
+    <tr>
+        <td><b>Training Type</b></td>
+        <td><?php echo $doc['Document']['training_type'];?></a></td>
+    </tr>
+    <?php } ?>
+    <?php if($type == 'SiteOrder'){ ?>
+    <tr>
+        <td><b>Site Order Type</b></td>
+        <td><?php echo $doc['Document']['site_type'];?></a></td>
+    </tr>
+    <?php } ?>
+    <?php if($type == 'Employee'){ ?>
+    <tr>
+        <td><b>Employee Option</b></td>
+        <td><?php echo $doc['Document']['employee_type'];?></a></td>
+    </tr>
     <?php } ?>
     <tr>
         <td><b>Uploaded By</b></td>

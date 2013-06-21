@@ -426,6 +426,11 @@ class DashboardController extends AppController
                     $emailupload['template'] = (isset($_POST['Email_templates']))? '1' : '0'  ;
                     $emailupload['report'] = (isset($_POST['Email_client_memo']))? '1' : '0'  ;
                     $emailupload['client_feedback'] = (isset($_POST['Email_client_memo1']))? '1' : '0'  ;
+                    $emailupload['siteOrder'] = (isset($_POST['Email_siteOrder']))? '1' : '0'  ;
+                    $emailupload['training'] = (isset($_POST['Email_training']))? '1' : '0'  ;
+                    $emailupload['employee'] = (isset($_POST['Email_employee']))? '1' : '0'  ;
+                    $emailupload['KPIAudits'] = (isset($_POST['Email_KPIAudits']))? '1' : '0'  ;
+                
                     
                     $this->Emailupload->create();
                     $this->Emailupload->save($emailupload);  
@@ -439,6 +444,10 @@ class DashboardController extends AppController
                     $emailupload['evidence'] = '0'  ;
                     $emailupload['template'] = '0' ;
                     $emailupload['report'] = '0' ;
+                    $emailupload['siteOrder'] =  '0' ;
+                    $emailupload['training'] =  '0' ;
+                    $emailupload['employee'] =  '0' ;
+                    $emailupload['KPIAudits'] =  '0' ;
                     $emailupload['client_feedback'] = '0' ;
                     $this->Emailupload->create();
                     $this->Emailupload->save($emailupload);

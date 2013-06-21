@@ -167,6 +167,18 @@ function remove_youtube()
      <?php if((isset($canupdate['Canupload']['report'])&& $canupdate['Canupload']['report']=='1') || $this->Session->read('admin')){?>
     <option value="report">Report</option>
     <?php }?>
+    <?php if((isset($canupdate['Canupload']['siteOrder'])&& $canupdate['Canupload']['siteOrder']=='1') || $this->Session->read('admin')){?>
+    <option value="siteOrder">Site Orders</option>
+    <?php }?>
+    <?php if((isset($canupdate['Canupload']['training'])&& $canupdate['Canupload']['training']=='1') || $this->Session->read('admin')){?>
+    <option value="training">Training</option>
+    <?php }?>
+     <?php if((isset($canupdate['Canupload']['employee'])&& $canupdate['Canupload']['employee']=='1') || $this->Session->read('admin')){?>
+    <option value="employee">Employee</option>
+    <?php }?>
+     <?php if((isset($canupdate['Canupload']['KPIAudits'])&& $canupdate['Canupload']['KPIAudits']=='1') || $this->Session->read('admin')){?>
+    <option value="KPIAudits">KPI Audits</option>
+    <?php }?>
     <?php if((isset($canupdate['Canupload']['client_feedback'])&& $canupdate['Canupload']['client_feedback']=='1') ){?>
     <option value="client_feedback">Client Feedback</option>
     <?php }?>
@@ -174,6 +186,57 @@ function remove_youtube()
 </select>
 </div></td>
 </tr>
+<tr class="site_more" style="display: none;">
+<td colspan="2">
+<table>
+<tr>
+<td><strong>Site Order Type</strong></td>
+<td>
+    <select name="site_type" class="required">
+        <option value="">Select Site Order</option>
+        <option value="Post Orders">Post Orders</option>
+        <option value="Operational Memos">Operational Memos</option>
+        <option value="Site Maps">Site Maps</option>
+        <option value="Forms">Forms</option>
+    </select> 
+</td>
+</tr>
+</table>
+</td></tr>
+<tr class="training_more" style="display: none;">
+<td colspan="2">
+<table>
+<tr>
+<td><strong>Health & Safety Manuals</strong></td>
+<td>
+    <select name="training_type" class="required">
+        <option value="">Select Training Options</option>
+        <option value="Health & Safety Manuals">Health & Safety Manuals</option>
+        
+        
+    </select> 
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr class="employee_more" style="display: none;">
+<td colspan="2">
+<table>
+<tr>
+<td><strong>Employee Options</strong></td>
+<td>
+    <select name="employee_type" class="required">
+        <option value="">Select Employee Options</option>
+        <option value="Job Descriptions">Job Descriptions</option>
+        <option value="Drug Free Policy">Drug Free Policy</option>
+        <option value="Schedules">Schedules</option>
+        
+    </select> 
+</td>
+</tr>
+</table>
+</td></tr>
 <tr class="client_more" style="display: none;">
 <td colspan="2">
 <table>
@@ -249,6 +312,8 @@ function remove_youtube()
     <option value="2">Mobile Inspection</option>
     <option value="3">Mobile Security</option>
     <option value="4">Security Occurance</option>
+    <option value="5" >Incident Report</option>
+    <option value="6" >Sign-off Sheets</option>
 </select>
 </th>
 </thead>
@@ -369,6 +434,27 @@ $(function(){
             }
         else
             $('.extra_evidence').hide();
+            
+            
+        if(doctype == 'siteOrder'){
+            $('.site_more').show();
+            //$('.draftspan').hide();
+            }
+        else
+            $('.site_more').hide();
+        
+        if(doctype == 'employee'){
+            $('.employee_more').show();
+            //$('.draftspan').hide();
+            }
+        else
+            $('.employee_more').hide();
+         if(doctype == 'training'){
+            $('.training_more').show();
+            //$('.draftspan').hide();
+            }
+        else
+            $('.training_more').hide();
        if(doctype == 'report')
        {
            $('.extra_memo').show();

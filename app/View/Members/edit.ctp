@@ -74,7 +74,12 @@ $(function(){
 <td><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span><input type="checkbox" name="canView_contracts" <?php if(isset($v['Canview']['contracts']) && $v['Canview']['contracts']==1){?>checked="checked"<?php }?> />
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Evidence </span><input type="checkbox" name="canView_evidence" <?php if(isset($v['Canview']['evidence']) && $v['Canview']['evidence']==1){?>checked="checked"<?php }?> />
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Templates </span><input type="checkbox" name="canView_templates" <?php if(isset($v['Canview']['templates']) && $v['Canview']['templates']==1){?>checked="checked"<?php }?> />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Report </span><input type="checkbox" name="canView_client_memo" <?php if(isset($v['Canview']['report']) && $v['Canview']['report']==1){?>checked="checked"<?php }?> /></td>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Report </span><input type="checkbox" name="canView_client_memo" <?php if(isset($v['Canview']['report']) && $v['Canview']['report']==1){?>checked="checked"<?php }?> />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Site Orders </span><input type="checkbox" name="canView_siteOrder" <?php if(isset($v['Canview']['siteOrder']) && $v['Canview']['siteOrder']==1){?>checked="checked"<?php }?> />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Training </span><input type="checkbox" name="canView_training" <?php if(isset($v['Canview']['training']) && $v['Canview']['training']==1){?>checked="checked"<?php }?> />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Employee </span><input type="checkbox" name="canView_employee" <?php if(isset($v['Canview']['employee']) && $v['Canview']['employee']==1){?>checked="checked"<?php }?> />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="canView_KPIAudits" <?php if(isset($v['Canview']['KPIAudits']) && $v['Canview']['KPIAudits']==1){?>checked="checked"<?php }?> />
+</td>
 </tr>
 </table>
 </td>
@@ -90,6 +95,10 @@ $(function(){
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Evidence </span><input type="checkbox" name="canUpload_evidence" <?php if(isset($u['Canupload']['evidence']) && $u['Canupload']['evidence']==1){?>checked="checked"<?php }?> />
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Templates </span><input type="checkbox" name="canUpload_templates" <?php if(isset($u['Canupload']['templates']) && $u['Canupload']['templates']==1){?>checked="checked"<?php }?> />
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Report </span><input type="checkbox" name="canUpload_client_memo" <?php if(isset($u['Canupload']['report']) && $u['Canupload']['report']==1){?>checked="checked"<?php }?> />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Site Orders </span><input type="checkbox" name="canUpload_siteOrder" <?php if(isset($u['Canupload']['siteOrder']) && $u['Canupload']['siteOrder']==1){?>checked="checked"<?php }?> />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Training </span><input type="checkbox" name="canUpload_training" <?php if(isset($u['Canupload']['training']) && $u['Canupload']['training']==1){?>checked="checked"<?php }?> />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Employee </span><input type="checkbox" name="canUpload_employee" <?php if(isset($u['Canupload']['employee']) && $u['Canupload']['employee']==1){?>checked="checked"<?php }?> />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="canUpload_KPIAudits" <?php if(isset($u['Canupload']['KPIAudits']) && $u['Canupload']['KPIAudits']==1){?>checked="checked"<?php }?> />
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Client Feedback </span><input type="checkbox" name="canUpload_client_memo1" <?php if(isset($u['Canupload']['client_feedback']) && $u['Canupload']['client_feedback']==1){?>checked="checked"<?php }?> />
 </td>
 </tr>
@@ -112,6 +121,11 @@ $(function(){
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="Email_evidence" <?php if(isset($e['Emailupload']['evidence']) && $e['Emailupload']['evidence']==1){?>checked="checked"<?php }?>  />
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="Email_templates" <?php if(isset($e['Emailupload']['template']) && $e['Emailupload']['template']==1){?>checked="checked"<?php }?> />
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report </span><input type="checkbox" name="Email_client_memo" <?php if(isset($e['Emailupload']['report']) && $e['Emailupload']['report']==1){?>checked="checked"<?php }?> />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Site Orders </span><input type="checkbox" name="Email_siteOrder" <?php if(isset($e['Emailupload']['siteOrder']) && $e['Emailupload']['siteOrder']==1){?>checked="checked"<?php }?> />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Training </span><input type="checkbox" name="Email_training" <?php if(isset($e['Emailupload']['training']) && $e['Emailupload']['training']==1){?>checked="checked"<?php }?> />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Employee </span><input type="checkbox" name="Email_employee" <?php if(isset($e['Emailupload']['employee']) && $e['Emailupload']['employee']==1){?>checked="checked"<?php }?> />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="Email_KPIAudits" <?php if(isset($e['Emailupload']['KPIAudits']) && $e['Emailupload']['KPIAudits']==1){?>checked="checked"<?php }?> />
+
 <!--<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Feedback </span><input type="checkbox" name="Email_clint_memo1" <?php if(isset($e['Emailupload']['client_feedback']) && $e['Emailupload']['client_feedback']==1){?>checked="checked"<?php }?> />-->
 </td>
 </tr>

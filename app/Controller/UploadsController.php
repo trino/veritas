@@ -280,11 +280,14 @@ class UploadsController extends AppController
                 $id=$this->Session->read('id');
             else
                 $id=0;
+            unset($arr);
             //$arr['location'] = $_POST['location'];
             $arr['title'] = ucfirst($_POST['document_type']);
             $arr['description'] = $_POST['description'];
             $arr['document_type'] = $_POST['document_type'];
             $arr['draft'] = $_POST['draft'];
+            //var_dump($_POST);
+            //die();
             if($_POST['document_type']== 'evidence')
             {
                 $arr['incident_date'] = $_POST['incident_date'];
@@ -294,7 +297,23 @@ class UploadsController extends AppController
                 
                //die(); 
             }
-            if($_POST['document_type']=='report')
+            elseif($_POST['document_type'] == 'siteOrder')
+            {
+                $arr['site_type'] = $_POST['site_type'];
+                $subname = '_'.$_POST['site_type'];
+            }
+            elseif($_POST['document_type'] == 'employee')
+            {
+                $arr['employee_type'] = $_POST['employee_type'];
+                $subname = '_'.$_POST['employee_type'];
+            }
+            elseif($_POST['document_type'] == 'training')
+            {
+                $arr['training_type'] = $_POST['training_type'];
+                $subname = '_'.$_POST['employee_type'];
+            }
+            
+            elseif($_POST['document_type']=='report')
             {
                 //$arr['client_memo'] = $_POST['client_memo'];
                 $this->Activity->deleteAll(array('document_id'=>$eid));
@@ -527,6 +546,21 @@ class UploadsController extends AppController
                 
                 
                //die(); 
+            }
+            elseif($_POST['document_type'] == 'siteOrder')
+            {
+                $arr['site_type'] = $_POST['site_type'];
+                $subname = '_'.$_POST['site_type'];
+            }
+            elseif($_POST['document_type'] == 'employee')
+            {
+                $arr['employee_type'] == $_POST['employee_type'];
+                $subname = '_'.$_POST['employee_type'];
+            }
+            elseif($_POST['employee_type'] == 'training')
+            {
+                $arr['training_type'] = $_POST['training_type'];
+                $subname = '_'.$_POST['employee_type'];
             }
             
             $arr['draft'] = $_POST['draft'];

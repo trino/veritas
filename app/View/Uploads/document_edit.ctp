@@ -168,6 +168,18 @@ function remove_youtube()
     <?php if((isset($canupdate['Canupload']['report'])&& $canupdate['Canupload']['report']=='1') || $this->Session->read('admin')){?>
     <option value="report" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='report') echo "selected='selected'"?>>Report</option>
     <?php }?>
+     <?php if((isset($canupdate['Canupload']['siteOrder'])&& $canupdate['Canupload']['siteOrder']=='1') || $this->Session->read('admin')){?>
+    <option value="siteOrder" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='siteOrder') echo "selected='selected'"?>>Site Orders</option>
+    <?php }?>
+    <?php if((isset($canupdate['Canupload']['training'])&& $canupdate['Canupload']['training']=='1') || $this->Session->read('admin')){?>
+    <option value="training" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='training') echo "selected='selected'"?>>Training</option>
+    <?php }?>
+     <?php if((isset($canupdate['Canupload']['employee'])&& $canupdate['Canupload']['employee']=='1') || $this->Session->read('admin')){?>
+    <option value="employee" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='employee') echo "selected='selected'"?>>Employee</option>
+    <?php }?>
+     <?php if((isset($canupdate['Canupload']['KPIAudits'])&& $canupdate['Canupload']['KPIAudits']=='1') || $this->Session->read('admin')){?>
+    <option value="KPIAudits" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='KPIAudits') echo "selected='selected'"?>>KPI Audits</option>
+    <?php }?>
     <?php if((isset($canupdate['Canupload']['client_feedback'])&& $canupdate['Canupload']['client_feedback']=='1') ){?>
     <option value="client_feedback" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='client_feedback') echo "selected='selected'"?>>Client Feedback</option>
     <?php }?>
@@ -175,6 +187,57 @@ function remove_youtube()
 </select>
 </div></td>
 </tr>
+<tr class="site_more" style="display: none;">
+<td colspan="2">
+<table>
+<tr>
+<td><strong>Site Order Type</strong></td>
+<td>
+    <select name="site_type" class="required">
+        <option value="">Select Site Order</option>
+        <option value="Post Orders" <?php if(isset($doc['Document']['site_type']) && $doc['Document']['site_type']=='Post Orders') echo "selected='selected'"?> >Post Orders</option>
+        <option value="Operational Memos" <?php if(isset($doc['Document']['site_type']) && $doc['Document']['site_type']=='Operational Memos') echo "selected='selected'"?>>Operational Memos</option>
+        <option value="Site Maps" <?php if(isset($doc['Document']['site_type']) && $doc['Document']['site_type']=='Site Maps') echo "selected='selected'"?>>Site Maps</option>
+        <option value="Forms" <?php if(isset($doc['Document']['site_type']) && $doc['Document']['site_type']=='Forms') echo "selected='selected'"?>>Forms</option>
+    </select> 
+</td>
+</tr>
+</table>
+</td></tr>
+<tr class="training_more" style="display: none;">
+<td colspan="2">
+<table>
+<tr>
+<td><strong>Health & Safety Manuals</strong></td>
+<td>
+    <select name="training_type" class="required">
+        <option value="">Select Training Options</option>
+        <option value="Health & Safety Manuals" <?php if(isset($doc['Document']['training_type']) && $doc['Document']['training_type']=='Health & Safety Manuals') echo "selected='selected'"?>>Health & Safety Manuals</option>
+        
+        
+    </select> 
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr class="employee_more" style="display: none;">
+<td colspan="2">
+<table>
+<tr>
+<td><strong>Employee Options</strong></td>
+<td>
+    <select name="employee_type" class="required">
+        <option value="">Select Employee Options</option>
+        <option value="Job Descriptions"  <?php if(isset($doc['Document']['employee_type']) && $doc['Document']['employee_type']=='Job Descriptions') echo "selected='selected'"?>>Job Descriptions</option>
+        <option value="Drug Free Policy" <?php if(isset($doc['Document']['employee_type']) && $doc['Document']['employee_type']=='Drug Free Policy') echo "selected='selected'"?>>Drug Free Policy</option>
+        <option value="Schedules" <?php if(isset($doc['Document']['employee_type']) && $doc['Document']['employee_type']=='Schedules') echo "selected='selected'"?>>Schedules</option>
+        
+    </select> 
+</td>
+</tr>
+</table>
+</td></tr>
 <tr class="client_more" style="display: none;">
 <td colspan="2">
 <table>
@@ -252,6 +315,8 @@ function remove_youtube()
     <option value="2" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '2') echo "selected='selected'"; ?>>Mobile Inspection</option>
     <option value="3" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '3') echo "selected='selected'"; ?>>Mobile Security</option>
     <option value="4" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '4') echo "selected='selected'"; ?>>Security Occurance</option>
+    <option value="5" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '5') echo "selected='selected'"; ?>>Incident Report</option>
+    <option value="6" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '6') echo "selected='selected'"; ?>>Sign-off Sheets</option>
 </select>
 </th>
 </thead>
@@ -283,7 +348,7 @@ foreach($activity as $act)
 </table>
 </td></tr>
 </table>
-<tr><td><a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></td></tr>
+<tr class="add_more" style="display: none;"><td><a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></td></tr>
 </td></tr>
 <tr><td class="main_desc"><strong>Description</strong></td>
 <td><textarea name="description" class="required" class="text_area_long" cols="10" rows="5" id="repl" onKeyDown="limitText(this.form.description,this.form.countdown,70);"
@@ -385,8 +450,28 @@ $(function(){
             $('.draftspan').hide();}
         else
             $('.extra_evidence').hide();
+        if(doctype == 'siteOrder'){
+            $('.site_more').show();
+            //$('.draftspan').hide();
+            }
+        else
+            $('.site_more').hide();
+        
+        if(doctype == 'employee'){
+            $('.employee_more').show();
+            //$('.draftspan').hide();
+            }
+        else
+            $('.employee_more').hide();
+         if(doctype == 'training'){
+            $('.training_more').show();
+            //$('.draftspan').hide();
+            }
+        else
+            $('.training_more').hide();
         if(doctype == 'report'){
            $('.extra_memo').show();
+           $('.add_more').show();
            $('.draftspan').show();
            $('.main_desc').html("<strong>Additional Notes</strong>");
            }
@@ -413,9 +498,16 @@ $(function(){
     
     if($('#document_type').val() == 'evidence')
          $('.extra_evidence').show();
+    if($('#document_type').val() == 'siteOrder')
+         $('.site_more').show();
+    if($('#document_type').val() == 'training')
+         $('.training_more').show();
+    if($('#document_type').val() == 'employee')
+         $('.employee_more').show();
     if($('#document_type').val() == 'report')
     {
         $('.draftspan').show();
+        $('.add_more').show();
            $('.extra_memo').show();
            $('.main_desc').html("<strong>Additional Notes</strong>");
            }
