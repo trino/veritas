@@ -133,7 +133,7 @@
         <td><?php echo $e['Mail']['date']; ?></td>
         <td>
 		<?php echo $this->Html->link('View','/mail/read/'.$e['Mail']['id'],array('class'=>'btn btn-primary')); ?>
-		<?php echo $this->Html->link('Delete','/mail/delete_mail/reciever/'.$e['Mail']['id'],array('class'=>'btn btn-primary')); ?>
+		<?php //echo $this->Html->link('Delete','/mail/delete_mail/reciever/'.$e['Mail']['id'],array('class'=>'btn btn-primary')); ?>
         </td>
     </tr>
         

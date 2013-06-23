@@ -116,7 +116,7 @@
 <table>
     <tr>
         <th><?php echo $this->Paginator->sort('date','Date'); ?></th>
-        <th>Time</th>
+        
         <th>User Name</th>
         <th>Full Name</th>
         <th>Event Type</th>

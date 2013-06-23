@@ -62,7 +62,7 @@ class AdminController extends AppController {
                 }
                 if($qu['Member']['canView']=="1" && $qu['Member']['canUpdate']=="0")
                     $this->Session->write(array('see'=>'1'));
-                $log['date'] =  date('Y-m-d');
+                $log['date'] =  date('Y-m-d H:i:s');
                 $log['time'] =  date('H:i:s');
                 $log['fullname'] = $qu['Member']['full_name'];
                 $log['username'] = $un;
@@ -93,7 +93,7 @@ class AdminController extends AppController {
         elseif($query = $this->Member->find('first',array('conditions'=>array('email'=>$un,'password <>'=>$pw))))
         {
             
-            $log['date'] =  date('Y-m-d');
+            $log['date'] =  date('Y-m-d H:i:s');
             $log['time'] =  date('H:i:s');
             $log['fullname'] = $query['Member']['full_name'];
             $log['username'] = $un;
@@ -115,7 +115,7 @@ class AdminController extends AppController {
         {
             if(!isset($log))
             {        
-                $log['date'] =  date('Y-m-d');
+                $log['date'] =  date('Y-m-d H:i:s');
                 $log['time'] =  date('H:i:s');
                 $log['fullname'] = "";
                 $log['username'] = $un;

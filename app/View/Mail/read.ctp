@@ -179,7 +179,7 @@ foreach($all as $a){
     {
         
         $ext_arr = explode('.',$doc);
-        $ext = end($ext_arr);
+        $ext = strtolower(end($ext_arr));
         $ext_doc = array('doc','docx','txt','pdf','xls','xlsx','ppt','pptx','cmd');
         $ext_img = array('jpg','png','gif','jpeg','bmp');
         if(in_array($ext,$ext_doc))

@@ -1,5 +1,15 @@
-<?php
+<style>
+.ui-widget-content,.dialog-modals{background:#313A43!important;color:#FFF;}
 
+hr{border-top:#313A43 1px solid;}
+.ui-dialog-titlebar{background:#000;color:#EEE;border:1px solid #333;}
+.lists div div div{padding: 3px 0;}
+.title{color:#BBB;padding:10px 0;}
+
+
+</style>
+<?php
+//if(isset($name) && $name !="")
 if($this->Session->read('admin'))
 {
     
@@ -12,12 +22,19 @@ if($this->Session->read('admin'))
                 $q3 = $doc->find('all',array('conditions'=>array('job_id'=>$q2['Job']['id'],'draft'=>0,'title LIKE "%'.$name.'%"')));
                 if($q3)
                 {
+                    $tests = 0;
                     foreach($q3 as $do)
                     {
+                        $tests++;
+                        if($tests==1)
+                        {
+                            ?>
+                            <h3 style="font-size: 15px;"><?php echo $q2['Job']['title'];?></h3>
+                            <?php
+                        }
                         ?>
-                        <div style="background: #e5e5e5;margin-bottom:5px;padding:5px;border-radius:5px;font-size:13px;">
-                            <b style="font-size: 14px;"><?php echo $do['Document']['title'];?></b>
-                            <br />
+                        
+                            
                             
                              
                             <?php
@@ -25,6 +42,9 @@ if($this->Session->read('admin'))
                             if($documents)
                             {
                                 ?>
+                                <div class="myclass" style="background: margin-bottom:5px;padding:5px;border-radius:5px;font-size:13px;border-bottom:1px solid #e5e5e5;">
+                                <b style="font-size: 14px;"><?php echo $do['Document']['title'];?></b>
+                                <br />
                                 <b style="font-size:13px;">(Documents)</b>
                                 <br />
                             
@@ -41,12 +61,16 @@ if($this->Session->read('admin'))
                                 }
                                 ?>
                                 <p>&nbsp;</p>
+                                </div>
                                 <?php
                             }
                             $images = $imgs->find('all',array('conditions'=>array('document_id'=>$do['Document']['id'])));
                             if($images)
                             {
                                 ?>
+                                <div class="myclass" style="background: margin-bottom:5px;padding:5px;border-radius:5px;font-size:13px;border-bottom:1px solid #e5e5e5;">
+                                <b style="font-size: 14px;"><?php echo $do['Document']['title'];?></b>
+                                <br />
                                 <b style="font-size: 13px;">(Images)</b>
                                 <br />
                             
@@ -63,12 +87,16 @@ if($this->Session->read('admin'))
                                 }
                                 ?>
                                 <p>&nbsp;</p>
+                                </div>
                                 <?php
                             }
                             $videos = $vdos->find('all',array('conditions'=>array('document_id'=>$do['Document']['id'])));
                             if($videos)
                             {
                                 ?>
+                                <div class="myclass" style="background: margin-bottom:5px;padding:5px;border-radius:5px;font-size:13px;border-bottom:1px solid #e5e5e5;">
+                                <b style="font-size: 14px;"><?php echo $do['Document']['title'];?></b>
+                                <br />
                                 <b style="font-size: 13px;">(Videos)</b>
                                 <br />
                             
@@ -85,16 +113,17 @@ if($this->Session->read('admin'))
                                 }
                                 ?>
                                 <p>&nbsp;</p>
+                                </div>
                                 <?php
                             }
                             ?>
                             
-                        </div>
+                        
                         <?php
                     }
                 }}
                 ?>
-                <hr />
+                
                 <?php
             
 }
@@ -117,12 +146,20 @@ else
                 $q3 = $doc->find('all',array('conditions'=>array('job_id'=>$q2['Job']['id'],'draft'=>0,'title LIKE "%'.$name.'%"')));
                 if($q3)
                 {
+                    $test = 0;
                     foreach($q3 as $do)
                     {
+                        $test++;
+                        if($test == 1)
+                        {
+                            ?>
+                            <h3 style="font-size: 15px;"><?php echo $q2['Job']['title'];?></h3>
+                            <?php
+                        }
                         ?>
-                        <div style="background: #e5e5e5;margin-bottom:5px;padding:5px;border-radius:5px;font-size:13px;">
-                            <b style="font-size: 14px;"><?php echo $do['Document']['title'];?></b>
-                            <br />
+                        
+                        
+                            
                             
                              
                             <?php
@@ -130,6 +167,9 @@ else
                             if($documents)
                             {
                                 ?>
+                                <div class="myclass" style="margin-bottom:5px;padding:5px;border-radius:5px;font-size:13px;border-bottom:1px solid #e5e5e5;">
+                                <b style="font-size: 14px;"><?php echo $do['Document']['title'];?></b>
+                            <br />
                                 <b style="font-size: 13px;">(Documents)</b>
                                 <br />
                             
@@ -146,12 +186,16 @@ else
                                 }
                                 ?>
                                 <p>&nbsp;</p>
+                                </div>
                                 <?php
                             }
                             $images = $imgs->find('all',array('conditions'=>array('document_id'=>$do['Document']['id'])));
                             if($images)
                             {
                                 ?>
+                                <div class="myclass" style="margin-bottom:5px;padding:5px;border-radius:5px;font-size:13px;border-bottom:1px solid #e5e5e5;">
+                                <b style="font-size: 14px;"><?php echo $do['Document']['title'];?></b>
+                            <br />
                                 <b style="font-size: 13px;">(Images)</b>
                                 <br />
                             
@@ -168,12 +212,16 @@ else
                                 }
                                 ?>
                                 <p>&nbsp;</p>
+                                </div>
                                 <?php
                             }
                             $videos = $vdos->find('all',array('conditions'=>array('document_id'=>$do['Document']['id'])));
                             if($videos)
                             {
                                 ?>
+                                <div class="myclass" style="margin-bottom:5px;padding:5px;border-radius:5px;font-size:13px;border-bottom:1px solid #e5e5e5;">
+                                <b style="font-size: 14px;"><?php echo $do['Document']['title'];?></b>
+                            <br />
                                 <b style="font-size: 13px;">(Videos)</b>
                                 <br />
                             
@@ -190,16 +238,17 @@ else
                                 }
                                 ?>
                                 <p>&nbsp;</p>
+                                </div>
                                 <?php
                             }
                             ?>
                             
-                        </div>
+                        
                         <?php
                     }
                 }
                 ?>
-                <hr />
+                
                 <?php
             }
         }

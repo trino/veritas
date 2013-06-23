@@ -47,4 +47,4 @@ foreach($job as $j)
 }
 
 ?>
-<button class="close_modal" style="background: blue;padding:5px 15px;color:#FFF;border:none;border-radius:5px">Add</button>
+<button class="close_modal btn btn-inverse" style="">Add</button>

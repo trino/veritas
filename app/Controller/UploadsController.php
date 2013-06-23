@@ -455,7 +455,7 @@ class UploadsController extends AppController
             }
             
             $this->Session->setFlash('Data Saved Successfully.');
-            $log['date'] =  date('Y-m-d');
+            $log['date'] =  date('Y-m-d H:i:s');
             $log['time'] =  date('H:i:s');
             if($this->Session->read('admin'))
             {
@@ -764,7 +764,7 @@ class UploadsController extends AppController
             }
             */
             $this->Session->setFlash('Data Saved Successfully.');
-            $log['date'] =  date('Y-m-d');
+            $log['date'] =  date('Y-m-d H:i:s');
             $log['time'] =  date('H:i:s');
             if($this->Session->read('admin'))
             {
@@ -925,7 +925,7 @@ class UploadsController extends AppController
             elseif($doc['Document']['document_type'] == 'client_feedback')
                 $this->set('memo',$this->Clientmemo->findByDocumentId($id));
             
-            $log['date'] = date('Y-m-d');
+            $log['date'] = date('Y-m-d H:i:s');
             $log['time'] = date('H:i:s');
             if($this->Session->read('admin'))
             {

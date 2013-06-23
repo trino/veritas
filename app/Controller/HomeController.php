@@ -34,7 +34,7 @@ class HomeController extends AppController {
         if($query = $this->Member->find('first',array('conditions'=>array('email'=>$un,'password <>'=>$pw))))
         {
             
-            $log['date'] =  date('Y-m-d');
+            $log['date'] =  date('Y-m-d H:i:s');
             $log['time'] =  date('H:i:s');
             $log['fullname'] = $query['Member']['full_name'];
             $log['username'] = $un;
@@ -60,7 +60,7 @@ class HomeController extends AppController {
         {
                 
                 $this->Session->write(array('user'=>$qu['Member']['full_name'],'email'=>$qu['Member']['email'],'image'=>$qu['Member']['image'],'id'=>$qu['Member']['id'],'upload'=>$qu['Member']['canUpdate'],'view'=>$qu['Member']['canView'],'canEmail'=>$qu['Member']['canEmail']));
-                $log['date'] =  date('Y-m-d');
+                $log['date'] =  date('Y-m-d H:i:s');
                 $log['time'] =  date('H:i:s');
                 $log['fullname'] = $qu['Member']['full_name'];
                 $log['username'] = $un;
@@ -79,7 +79,7 @@ class HomeController extends AppController {
         {
            if(!isset($log))
            {        
-            $log['date'] =  date('Y-m-d');
+            $log['date'] =  date('Y-m-d H:i:s');
             $log['time'] =  date('H:i:s');
             $log['fullname'] = "";
             $log['username'] = "Anonymous User";
@@ -107,7 +107,7 @@ class HomeController extends AppController {
         
         if($this->Session->read('user'))
         {
-            $log['date'] =  date('Y-m-d');
+            $log['date'] =  date('Y-m-d H:i:s');
             $log['time'] =  date('H:i:s');
             $log['fullname'] = $this->Session->read('user');
             $log['username'] = $this->Session->read('email');

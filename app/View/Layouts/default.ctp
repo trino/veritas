@@ -113,10 +113,10 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
             $('.ui-dialog-titlebar-close').click();
         });
         if($('#attachments').val() != ''){
-            $('#att').show();
+                $('#att').show();
             }
             else
-            $('#att').hide();
+                $('#att').hide();
         $('.doc').live('change',function(){
            var val = $(this).val();
            if($(this).is(':checked'))

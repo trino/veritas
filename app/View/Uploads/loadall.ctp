@@ -6,13 +6,14 @@ hr{border-top:#313A43 1px solid;}
 .ui-dialog-titlebar{background:#000;color:#EEE;border:1px solid #333;}
 .lists div div div{padding: 3px 0;}
 .title{color:#BBB;padding:10px 0;}
+.ui-dialog-titlebar-close{background:#FFF;}
 
 </style>
 
 <input type="text" value="" class="search" placeholder="Search Documents" style="margin: 0;" /> <a href="javascript:void(0)" class="btn btn-inverse loads" style="color: #fff;">Load</a>
 <div class="searchlist" >
 <?php
-
+/*
 if($this->Session->read('admin'))
 {
     
@@ -253,7 +254,7 @@ else
             }
         }
     }
-}
+}*/
 ?>
 </div>
 <button class="close_modal btn btn-inverse">Attach</button>
