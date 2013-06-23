@@ -29,6 +29,7 @@ $ad = $this->requestAction($base_url.'/dashboard/get_user');
         }
 ?>
 <div class="searchlist">
+<!--
 <?php        
 if($job)
 foreach($job as $j)
@@ -75,7 +76,7 @@ foreach($job as $j)
 }
 
 ?>
-<button class="close_modal btn btn-inverse">Add</button>
+<button class="close_modal btn btn-inverse">Add</button>-->
 </div>
 <script>
 $(function(){

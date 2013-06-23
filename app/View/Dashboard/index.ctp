@@ -150,7 +150,7 @@
         ?>
         <tr>
             <td><?php echo $a['Event_log']['date']; ?></td>
-            <td><?php echo $a['Event_log']['time'];?></td>
+            
             <td>
                 <?php
                 if($a['Event_log']['member_id']==0)
