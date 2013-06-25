@@ -1,4 +1,4 @@
-123<?php
+<?php
 /**
  *
  * PHP 5
@@ -291,14 +291,14 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			
 			<div class="menu">
 				<?php if($this->Session->read('avatar')){?>
-					<?php  echo $this->Html->link('<i class="icon-globe"></i>'.'User Manager','/members',array('escape' => false,)); ?>
+					<?php  echo $this->Html->link('<i class="icon-user"></i>'.'User Manager','/members',array('escape' => false,)); ?>
 					<?php  //echo $this->Html->link('<i class="icon-user"></i>'.'Company Manager','/comp',array('escape' => false,)); ?>
 					<?php // echo $this->Html->link('<i class="icon-list"></i>'.'Pages','/dashboard/home',array('escape' => false,)); ?>
 				<?php } ?>
 	   			
-				<?php  echo $this->Html->link('<i class="icon-flag"></i>'.'Job Manager','/jobs',array('escape' => false,)); ?>
-				<?php  echo $this->Html->link('<i class="icon-envelope-alt"></i>'.'Mail <span class="notific"></span>','/mail',array('escape' => false,)); ?>
-				<?php if($this->Session->read('user'))  echo $this->Html->link('<i class="icon-envelope"></i>'.'Drafts','/uploads/draft',array('escape'=>false));?>
+				<?php  echo $this->Html->link('<i class="icon-globe"></i>'.'Job Manager','/jobs',array('escape' => false,)); ?>
+				<?php  echo $this->Html->link('<i class="icon-envelope-alt"></i>'.'Instant Message <span class="notific"></span>','/mail',array('escape' => false,)); ?>
+				<?php if($this->Session->read('user'))  echo $this->Html->link('<i class="icon-time"></i>'.'Saved Drafts','/uploads/draft',array('escape'=>false));?>
                 <?php  echo $this->Html->link('<i class="icon-off"></i>'.'Logout','/admin/logout',array('escape' => false,)); ?>
 				<?php //echo $this->Html->link('Document','/uploads'); ?>
 			</div><!-- menu -->
@@ -319,7 +319,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 				<div class="headSearch">
 				<form action="<?php echo $base_url;?>search" method="get" id="searchDocuments" style="float: left;">
 					<div class="searchInput">
-					<input type="text" name="search" style="margin-top: 10px;" placeholder="Documents Search" />
+					<input type="text" name="search" style="margin-top: 10px;" placeholder="Document Search" />
                     <!--<input type="hidden" name="date" value="asc" /> -->
 					</div>
 					<div class="searchButton">
@@ -460,7 +460,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 					<div class="message-form">
 						<form id="Form" action="<?php echo $base_url.'mail/send?return='.urlencode($_SERVER['REQUEST_URI']);?>" method="post" class="messageform">
 							<div class="left msg">
-								<textarea placeholder="Quick message - Type message here" name="message" class="required message" style=""></textarea>
+								<textarea placeholder="Instant Message - Type message here" name="message" class="required message" style=""></textarea>
 							</div>
 							
 							<div class="left inputs">
@@ -472,7 +472,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <!--									<input type="text" name="name" id="name" placeholder="Recipients (Separate with comma)" class="required" />--> 
 								</div>
 							
-								<a href="javascript:void(0)" id="contacts_modal" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a> <a href="javascript:void(0);" class="buttonV attachment">Attach Documents</a>
+								<a href="javascript:void(0)" id="contacts_modal" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a> <a href="javascript:void(0);" class="buttonV attachment"><i class="icon-book"></i> Attach Documents</a>
 								
 								<!--<div id="email" style="display: none;">
 									<?php foreach($mems as $m) {
@@ -552,7 +552,25 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 							</div>
 							</div>
 						</a>
-					</div>				
+					</div>		
+
+                    <div class="v1ButtonBarB">
+						<a href="<?php echo $base_url;?>uploads/go" class="fullLink">
+							<div  class="glassButton">
+							<div  class="full8ButtonB">
+
+								<div class="icon active33">
+									<i class="icon-upload-alt"></i>
+								</div>
+								<div class="caption active33">
+									Upload
+								</div>
+								<div class="dusk"></div> 
+							</div>
+							</div>
+						</a>
+					</div>	
+					
 					<div class="v1ButtonBarB">
 						<a href="<?php echo $base_url;?>keycontacts" class="fullLink">
 							<div  class="glassButton">
@@ -562,7 +580,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 									<i class="icon-group"></i>
 								</div>
 								<div class="caption">
-									Key Contacts
+									Contacts
 								</div>
 								<div class="dusk"></div> 
 							</div>
@@ -635,23 +653,29 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 						</a>
 					</div>
                     <?php }?>
-                    <div class="v1ButtonBarB">
-						<a href="<?php echo $base_url;?>uploads/go" class="fullLink">
+					
+			
+
+					
+					
+									<div class="v1ButtonBarB">
+						<a href="" class="fullLink">
 							<div  class="glassButton">
 							<div  class="full8ButtonB">
 
-								<div class="icon active33">
-									<i class="icon-copy"></i>
+								<div class="icon">
+									<i class="icon-time"></i>
 								</div>
-								<div class="caption active33">
-									Upload
+								<div class="caption">
+									Activity Log
 								</div>
 								<div class="dusk"></div> 
 							</div>
 							</div>
 						</a>
-					</div>				
-
+					</div>		
+					
+					
 				</div>
 				</div><!-- buttonBarContainer -->
 				

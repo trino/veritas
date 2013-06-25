@@ -137,7 +137,7 @@
 </tr>
 <!--<tr><td><b>Can View Files</b></td><td><input type="checkbox" name="canView" /></td></tr>
 <tr><td><b>Can Upload Files</b></td><td><input type="checkbox" name="canUpdate" /></td></tr>-->
-<tr><td><b>Can Send Email</b></td><td><input type="checkbox" name="canEmail" /></td></tr>
+<tr><td><b>Can Send Message</b></td><td><input type="checkbox" name="canEmail" /></td></tr>
 <tr><td><b>Can Edit Notification</b></td><td><input type="checkbox" name="canEdit" id="canEdit" /></td></tr>
 <!--<tr class="canEdit" style="display: block;">
 <td colspan="2">

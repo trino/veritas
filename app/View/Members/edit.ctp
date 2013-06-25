@@ -106,7 +106,7 @@ $(function(){
 </td>
 </tr>
 
-<tr><td><b>Can Send Email</b></td><td><input type="checkbox" name="canEmail" <?php if($m['Member']['canEmail']==1){?>checked="checked"<?php }?> /></td></tr>
+<tr><td><b>Can Send Message</b></td><td><input type="checkbox" name="canEmail" <?php if($m['Member']['canEmail']==1){?>checked="checked"<?php }?> /></td></tr>
 <tr><td><b>Can Edit Notification</b></td><td><input type="checkbox" name="canEdit" id="canEdit" <?php if($m['Member']['canEdit']==1){?>checked="checked"<?php }?> /></td></tr>
 <!--<tr class="canEdit" style="display: block;">
 <td colspan="2">

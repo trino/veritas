@@ -218,9 +218,9 @@ class DashboardController extends AppController
                 //$this->Email->from    = $this->Session->read('email');
                 //$this->Email->to = $arr[$i];
                 //$this->Email->subject = $_POST['subject'];
-                $message="You have recieved an email from ".$sender." on Veritas. Please Login to see the message";
+                $message="You have recieved a message from ".$sender." on Veritas. Please login to see the message";
                 $emails->send($message);
-                $this->Session->setFlash('Email Send Successfully.');
+                $this->Session->setFlash('Message Send Successfully.');
             }
             
         }
@@ -278,13 +278,13 @@ class DashboardController extends AppController
             $base_url = 'http://'.$_SERVER['SERVER_NAME'];
             if($_SERVER['SERVER_NAME'] == 'localhost')
             $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
-            $message="You have recieved an email from ".$email.". <br/>".$message;
+            $message="You have recieved an message from ".$email.". <br/>".$message;
             if($emails->send($message))
             {
-                $this->Session->setFlash("Email Successfully Sent.");
+                $this->Session->setFlash("Message Successfully Sent.");
             }
             else
-              $this->Session->setFlash("Sorry, Email Could not be Sent.");  
+              $this->Session->setFlash("Sorry, message could not be Sent.");  
               
         }
         

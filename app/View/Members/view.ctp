@@ -33,7 +33,7 @@ $arr = array('no','yes');
 <table class="table" style="width: 500px;">
 <tr><td><strong>Can View Documents</strong></td><td><?php echo $arr[$profile['Member']['canView']];?></td></tr>
 <tr><td><strong>Can Upload Documents</strong></td><td><?php echo $arr[$profile['Member']['canUpdate']];?></td></tr>
-<tr><td><strong>Can Email</strong></td><td><?php echo $arr[$profile['Member']['canEmail']];?></td></tr>
+<tr><td><strong>Can Send Message</strong></td><td><?php echo $arr[$profile['Member']['canEmail']];?></td></tr>
 </table>
 </div>
 
