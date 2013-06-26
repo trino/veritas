@@ -351,10 +351,10 @@ foreach($activity as $act)
 <tr class="add_more" style="display: none;"><td><a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></td></tr>
 </td></tr>
 <tr><td class="main_desc"><strong>Description</strong></td>
-<td><textarea name="description" class="required" class="text_area_long" cols="10" rows="5" id="repl" onKeyDown="limitText(this.form.description,this.form.countdown,70);"
+<td><textarea name="description"  class="text_area_long" cols="10" rows="5" id="repl" onKeyDown="limitText(this.form.description,this.form.countdown,70);"
 onKeyUp="limitText(this.form.description,this.form.countdown,70);"><?php if(isset($doc['Document']['description'])) echo $doc['Document']['description'];?></textarea>
 <br />
-<font size="1">(Maximum characters: 70)<br />
+<font size="1" class="desc_bot">(Maximum characters: 70)<br />
 You have <input readonly type="text" name="countdown" id="countssss" style="background:none; border:0; padding:0; margin:0; text-align:center; border-radius:none; width:30px; box-shadow:none;" value="70" /> characters left.</font><br />
 </td></tr>
 <!--<tr><td><b>Description</b></td><td><div class="right"><textarea cols="35" name="description" class="required"></textarea></div></td></tr>-->
@@ -482,10 +482,23 @@ $(function(){
             $('.main_desc').html("<strong>Description</strong>");
             }
         if(doctype == 'client_feedback')
-           $('.client_more').show();
+        {
+            $('.client_more').show();
+            $('.text_area_long').attr('onKeyDown',"limitText(this.form.description,this.form.countdown,500);");
+            $('.text_area_long').attr('OnKeyUp',"limitText(this.form.description,this.form.countdown,500);");
+            $('.desc_bot').html('(Maximum characters: 500)<br />'+
+'You have <input readonly="readonly" type="text" name="countdown" id="countssss" style="background:none; border:0; padding:0; margin:0; text-align:center; border-radius:none; width:30px; box-shadow:none;" value="500" /> characters left.</font><br />');
+        }
         else
-            $('.client_more').hide();
-                
+        {
+            $('.client_more').hide();        
+            $('.text_area_long').attr('onKeyDown',"limitText(this.form.description,this.form.countdown,70);");
+            $('.text_area_long').attr('OnKeyUp',"limitText(this.form.description,this.form.countdown,70);");
+            $('.desc_bot').html('(Maximum characters: 70)<br />'+
+'You have <input readonly="readonly" type="text" name="countdown" id="countssss" style="background:none; border:0; padding:0; margin:0; text-align:center; border-radius:none; width:30px; box-shadow:none;" value="70" /> characters left.</font><br />');
+        
+        }
+        
         $('.extra_memo input').each(function(){
         $(this).click();
         $(this).blur();
@@ -512,7 +525,9 @@ $(function(){
            $('.main_desc').html("<strong>Additional Notes</strong>");
            }
     if($('#document_type').val() == 'client_feedback')
-            $('.client_more').show();       
+            $('.client_more').show(); 
+            
+                  
     $('.extra_memo input').each(function(){
         $(this).click();
         $(this).blur();
