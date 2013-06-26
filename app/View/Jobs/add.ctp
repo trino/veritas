@@ -25,8 +25,8 @@ $(function(){
 <tr><td style="width:140px;"><b>Job Title</b></td><td><input type="text" name="title" class="required" /></td></tr>
 <tr><td><b>Job Description</b></td><td><textarea name="description" class="required" ></textarea></td></tr>
 <tr><td><b>Image</b></td><td><input type="file" name="image" class="" /></td></tr>
-<tr><td><b>Start Date</b></td><td><input type="text" name="start_date" id="start_date" class="required" /></td></tr>
-<tr><td><b>End Date</b></td><td><input type="text" name="end_date" id="end_date" class="required" /></td></tr>
+<tr><td><b>Start Date</b></td><td><input type="text" name="start_date" id="start_date" class="" /></td></tr>
+<tr><td><b>End Date</b></td><td><input type="text" name="end_date" id="end_date" class="" /></td></tr>
 
 <tr><td colspan="2" class="add_more"></td></tr>
 <tr><td colspan="2"><a href="javascript:void(0);" id="add_key"><strong>+ Add Key Contact</strong></a></td></tr>
@@ -41,12 +41,12 @@ $(function(){
     var add =   '<table width="100%"><tr><td>Contact Type</td><td colspan="3"><select name="type[]" class="required">'+
                 '<option value="">Select Type</option><option value="0">Key Contacts</option><option value="1">Staff Contacts</option>'+
                 '<option value="2">Third Part Contacts</option></select></td></tr>'+
-                '<tr><td><b>Name</b><br/> <input type="text" name="key_name[]" class="required" style="width: 100px;" /></td>'+
-                '<td><b>Title</b><br/> <input type="text" name="key_title[]" class="required" style="width: 100px;" /></td>'+
-                '<td><b>Cell Number</b><br/> <input type="text" name="key_cell[]" class="required number" style="width: 100px;" /></td>'+
-                '<td><b>Phone Number</b><br/> <input type="text" name="key_number[]" class="required number" style="width: 100px;" /></td>'+
-                '<td><b>Email</b><br/> <input type="text" name="key_email[]" class="required email" style="width: 100px;" /></td>'+
-                '<td><b>Company</b><br/> <input type="text" name="key_company[]" class="required" style="width: 100px;" /> </td><td><input type="button" onclick="$(this).parent().parent().parent().parent().remove();" class="btn btn-danger" style="margin-top:20px;" value="Remove"/></td></tr>'+
+                '<tr><td><b>Name</b><br/> <input type="text" name="key_name[]" class="" style="width: 100px;" /></td>'+
+                '<td><b>Title</b><br/> <input type="text" name="key_title[]" class="" style="width: 100px;" /></td>'+
+                '<td><b>Cell Number</b><br/> <input type="text" name="key_cell[]" class="" style="width: 100px;" /></td>'+
+                '<td><b>Phone Number</b><br/> <input type="text" name="key_number[]" class="" style="width: 100px;" /></td>'+
+                '<td><b>Email</b><br/> <input type="text" name="key_email[]" class="email" style="width: 100px;" /></td>'+
+                '<td><b>Company</b><br/> <input type="text" name="key_company[]" class="" style="width: 100px;" /> </td><td><input type="button" onclick="$(this).parent().parent().parent().parent().remove();" class="btn btn-danger" style="margin-top:20px;" value="Remove"/></td></tr>'+
                 '</table>';
    $('#add_key').click(function(){
         $('.add_more').append(add);

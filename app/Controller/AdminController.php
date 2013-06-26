@@ -36,7 +36,7 @@ class AdminController extends AppController {
         if($q)
         {
             
-            $this->Session->write(array('admin'=>1,'avatar'=>$q['User']['name_avatar'],'email'=>$q['User']['email'],'image'=>$q['User']['picture'],'id'=>$q['User']['id'],'view'=>'1'));
+            $this->Session->write(array('username'=>'admin','admin'=>1,'avatar'=>$q['User']['name_avatar'],'email'=>$q['User']['email'],'image'=>$q['User']['picture'],'id'=>$q['User']['id'],'view'=>'1'));
             
             
             if(isset($_GET['mail']))
@@ -46,7 +46,7 @@ class AdminController extends AppController {
         }
         else if($qu)
         {
-                $this->Session->write(array('user'=>$qu['Member']['full_name'],'email'=>$qu['Member']['email'],'image'=>$qu['Member']['image'],'id'=>$qu['Member']['id'],'upload'=>$qu['Member']['canUpdate'],'canEmail'=>$qu['Member']['canEmail'],'see'=>$qu['Member']['canView'],'view'=>$qu['Member']['canView']));
+                $this->Session->write(array('user'=>$qu['Member']['full_name'],'username'=>$qu['Member']['full_name'],'email'=>$qu['Member']['email'],'image'=>$qu['Member']['image'],'id'=>$qu['Member']['id'],'upload'=>$qu['Member']['canUpdate'],'canEmail'=>$qu['Member']['canEmail'],'see'=>$qu['Member']['canView'],'view'=>$qu['Member']['canView']));
                 
                 $jobs = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
                 $job_id = 'all';

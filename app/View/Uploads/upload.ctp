@@ -165,7 +165,7 @@ function remove_youtube()
     <option value="template">Templates</option>
     <?php }?>
      <?php if((isset($canupdate['Canupload']['report'])&& $canupdate['Canupload']['report']=='1') || $this->Session->read('admin')){?>
-    <option value="report">Report</option>
+    <option value="report" <?php if($typee){?>selected="selected"<?php }?>>Report</option>
     <?php }?>
     <?php if((isset($canupdate['Canupload']['siteOrder'])&& $canupdate['Canupload']['siteOrder']=='1') || $this->Session->read('admin')){?>
     <option value="siteOrder">Site Orders</option>
@@ -308,7 +308,7 @@ function remove_youtube()
 <th colspan="2">
 <select name="report_type" class="required reporttype">
     <option value="">Select Report Type</option>
-    <option value="1">Activity Log</option>
+    <option value="1" <?php if($typee){?>selected="selected"<?php }?>>Activity Log</option>
     <option value="2">Mobile Inspection</option>
     <option value="3">Mobile Security</option>
     <option value="4">Security Occurance</option>
@@ -421,7 +421,13 @@ $(function(){
     //$('.activity_date').datepicker({dateFormat: 'yy-mm-dd'} );
     $('.incident_date').datepicker({dateFormat: 'yy-mm-dd'} );
     
-    
+    if($('#document_type').val() == 'report')
+    {
+        $('.draftspan').show();
+        $('.add_more').show();
+           $('.extra_memo').show();
+           $('.main_desc').html("<strong>Additional Notes</strong>");
+           }
     
     $('#document_type').change(function()
     {

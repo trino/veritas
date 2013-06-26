@@ -22,7 +22,8 @@
 	<?php if((isset($canview['Canview']['contracts']) && $canview['Canview']['contracts']=='1')|| $this->Session->read('admin')){?>
     <div class="dashboard-stat blue">								
 		<div class="whiteCorner"></div>								
-		<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">		
+		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
+        <a href="<?=$base_url;?>search/index/contract" class="overallLink more">		
 			<div class="visual">										
 				<i class="icon-file"></i>									
 			</div>									
@@ -42,7 +43,8 @@
     <?php if((isset($canview['Canview']['evidence']) && $canview['Canview']['evidence']=='1')|| $this->Session->read('admin')){?>												
 	<div class="dashboard-stat green">								
 		<div class="whiteCorner"></div>								
-		<a href="<?=$base_url;?>uploads/view_doc/evidence" class="overallLink more">									
+		<!--<a href="<?=$base_url;?>uploads/view_doc/evidence" class="overallLink more">-->
+        <a href="<?=$base_url;?>search/index/evidence" class="overallLink more">
 			<div class="visual">										
 				<i class="icon-legal"></i>									
 			</div>									
@@ -62,7 +64,8 @@
     <?php if((isset($canview['Canview']['templates']) && $canview['Canview']['templates']=='1')|| $this->Session->read('admin')){?>
 	<div class="dashboard-stat purple">
 		<div class="whiteCorner"></div>
-		<a href="<?=$base_url;?>uploads/view_doc/template" class="overallLink more">
+		<!--<a href="<?=$base_url;?>uploads/view_doc/template" class="overallLink more">-->
+        <a href="<?=$base_url;?>search/index/template" class="overallLink more">
 		<div class="visual">
 		<i class="icon-folder-open"></i>
 		</div>
@@ -86,7 +89,8 @@
 	<?php if((isset($canview['Canview']['report']) && $canview['Canview']['report']=='1')|| $this->Session->read('admin')){?>
     <div class="dashboard-stat dashboard-stat-last yellow">
 	<div class="whiteCorner"></div>
-	<a href="<?=$base_url;?>uploads/view_doc/report" class="overallLink more">
+	<!--<a href="<?=$base_url;?>uploads/view_doc/report" class="overallLink more">-->
+    <a href="<?=$base_url;?>search/index/report" class="overallLink more">
 	<div class="visual">
 	<i class="icon-book"></i>
 	</div>

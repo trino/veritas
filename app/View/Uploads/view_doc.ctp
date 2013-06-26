@@ -86,8 +86,14 @@ elseif(isset($doc))
             <td><?php echo $d['Document']['description']; ?></td>
             <!--<td><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Document']['job_id'])));if($get2)echo $get2['Job']['title']; ?></td>-->
             <td><?php echo $this->Html->link('View Detail','/uploads/view_detail/'.$d['Document']['id'],array('class'=>'btn btn-primary'));  ?>
+            <?php
+            if($this->Session->read('admin')){
+                
+            
+            ?>
                 <?php echo $this->Html->link('Edit','/uploads/document_edit/'.$d['Document']['id'],array('class'=>'btn btn-info'));  ?>
                 <?php echo $this->Html->link('Delete','/uploads/delete/'.$d['Document']['id'],array('class'=>'btn btn-danger'),"Confirm Delete Document?");  ?>
+                <?php }?>
                 <?php // if($update==1) echo $this->Html->link('Edit','/uploads/edit/'.$d['Document']['id']); ?>
             </td>
             

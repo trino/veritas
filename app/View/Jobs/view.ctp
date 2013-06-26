@@ -27,7 +27,8 @@
     <?php if((isset($canview['Canview']['contracts']) && $canview['Canview']['contracts']=='1')|| $this->Session->read('admin')){?>											
 	<div class="dashboard-stat blue">								
 		<div class="whiteCorner"></div>								
-		<a href="<?=$base_url;?>uploads/view_doc/contract/<?php echo $job['Job']['id'];?>" class="overallLink more">		
+		<!--<a href="<?=$base_url;?>uploads/view_doc/contract/<?php echo $job['Job']['id'];?>" class="overallLink more">-->		
+        <a href="<?=$base_url;?>search/index/contract/<?php echo $job['Job']['id'];?>" class="overallLink more">
 			<div class="visual">										
 				<i class="icon-file"></i>									
 			</div>									
@@ -47,7 +48,8 @@
     <?php if((isset($canview['Canview']['evidence']) && $canview['Canview']['evidence']=='1')|| $this->Session->read('admin')){?>												
 	<div class="dashboard-stat green">								
 		<div class="whiteCorner"></div>								
-		<a href="<?=$base_url;?>uploads/view_doc/evidence/<?php echo $job['Job']['id'];?>" class="overallLink more">									
+		<!--<a href="<?=$base_url;?>uploads/view_doc/evidence/<?php echo $job['Job']['id'];?>" class="overallLink more">-->
+        <a href="<?=$base_url;?>search/index/evidence/<?php echo $job['Job']['id'];?>" class="overallLink more">									
 			<div class="visual">										
 				<i class="icon-legal"></i>									
 			</div>									
@@ -68,7 +70,8 @@
     <?php if((isset($canview['Canview']['templates']) && $canview['Canview']['templates']=='1')|| $this->Session->read('admin')){?>
 	<div class="dashboard-stat purple">
 		<div class="whiteCorner"></div>
-		<a href="<?=$base_url;?>uploads/view_doc/template/<?php echo $job['Job']['id'];?>" class="overallLink more">
+		<!--<a href="<?=$base_url;?>uploads/view_doc/template/<?php echo $job['Job']['id'];?>" class="overallLink more">-->
+        <a href="<?=$base_url;?>search/index/template/<?php echo $job['Job']['id'];?>" class="overallLink more">
 		<div class="visual">
 		<i class="icon-folder-open"></i>
 		</div>
@@ -92,7 +95,8 @@
 	<?php if((isset($canview['Canview']['report']) && $canview['Canview']['report']=='1')|| $this->Session->read('admin')){?>
     <div class="dashboard-stat dashboard-stat-last yellow">
 	<div class="whiteCorner"></div>
-	<a href="<?=$base_url;?>uploads/view_doc/report/<?php echo $job['Job']['id'];?>" class="overallLink more">
+	<!--<a href="<?=$base_url;?>uploads/view_doc/report/<?php echo $job['Job']['id'];?>" class="overallLink more">-->
+    <a href="<?=$base_url;?>search/index/report/<?php echo $job['Job']['id'];?>" class="overallLink more">
 	<div class="visual">
 	<i class="icon-book"></i>
 	</div>
@@ -117,14 +121,20 @@
 
 <div id="table">
 <h2>Job Details</h2>
-<table>
+<table class="table table-bordered">>
     <tr>
         <td style="width:140px;"><b>Job Title</b></td>
         <td><?php echo $job['Job']['title']; ?></td>
     </tr>
     <tr>
         <td><b>Assigned To</b></td>
-        <td> <?php 
+        <td> <?php
+        if($member) {
+            ?>
+            <table>
+            <?php
+            $me = 0;
+            $td=0;
             foreach($member as $m)
             {
                 foreach($jobmember as $jm)
@@ -138,11 +148,43 @@
                         {
                             if($ji[$i]==$job['Job']['id'])
                             {
-                                echo "<a href='".$base_url."members/view/".$m['Member']['id']."'>".$m['Member']['title']." ".$m['Member']['full_name']."</a>, ";
+                                $me++;
+                                if($me%4==1)
+                                echo "<tr>";
+                                echo "<td><a href='".$base_url."members/view/".$m['Member']['id']."'>".$m['Member']['title']." ".$m['Member']['full_name']."</a></td>";
+                                $td++;
+                                if($m%4==0)
+                                echo "</tr>";
                             }
                         }
                     }
                 }   
+            }
+            if($td>0)
+            {
+               if($td%4==1)
+               {
+                
+                echo "<td></td><td></td><td></td></tr>";
+                
+               }
+               if($td%4==2)
+               {
+                
+                echo "<td></td><td></td></tr>";
+                
+               }
+               if($td%4==3)
+               {
+                
+                echo "<td></td></tr>";
+                
+               }
+                
+            }
+            ?>
+            </table>
+            <?php
             }
                ?></td>
     </tr>

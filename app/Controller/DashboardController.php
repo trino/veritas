@@ -606,4 +606,15 @@ class DashboardController extends AppController
             return false;
         }
     }
+    function get_job2()
+    {
+        $this->loadModel('Jobmember');
+        $jm = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
+        if($jm)
+        {
+            return $jm['Jobmember']['job_id'];
+        }
+        else
+        return false;
+    }
 }

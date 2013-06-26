@@ -28,7 +28,10 @@
 
 <table>
             <tr>
-				<th colspan="2">User</th>
+				<th>User</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Assigned Jobs</th>
                 <th style="width:250px;">Options</th>
             </tr>
 <?php
@@ -38,8 +41,71 @@ foreach($mem as $m)
     ?>
   
     	<tr>
-			<td style="width:40px;"><div style="background-color:#dddddd;width:40px; height:40px; text-align:center;"><a href="<?php echo $base_url.'members/view/'.$m['Member']['id']; ?>"><?php echo $this->Html->image('uploads/'.$m['Member']['image'], array('alt' => '','style'=>"max-height: 100%; max-width:100%;")); ?></a></div> </td>
-    		<td class="infos"><a href="<?php echo $base_url.'members/view/'.$m['Member']['id']; ?>"><?php echo $m['Member']['title']." ".$m['Member']['full_name']; ?></a></td>
+			<td style=""><div style="background-color:#dddddd;width:40px; height:40px; text-align:center;"><a href="<?php echo $base_url.'members/view/'.$m['Member']['id']; ?>"><?php echo $this->Html->image('uploads/'.$m['Member']['image'], array('alt' => '','style'=>"max-height: 100%; max-width:100%;")); ?></a></div> </td>
+            <td style=""><?php echo $m['Member']['fname'];?></td>
+            <td style=""><?php echo $m['Member']['lname'];?></td>
+            <td style="">
+            <?php
+            $q = $job_m->find('first',array('conditions',array('member_id'=>$m['Member']['id'])));
+            if($q)
+            {
+                $job_id = $q['Jobmember']['job_id'];
+                $job_arr = explode(',',$job_id);
+                if($job_arr)
+                {
+                    ?>
+                    <table class="table table-bordered">
+                    <?php
+                    for($z=0;$z<count($job_arr);$z++)
+                    {
+                        $y=$z+1;
+                        if($y%4 == 1)
+                        {
+                            ?>
+                            <tr>
+                            <?php
+                        }
+                        $q2 = $job->find('first',array('conditions'=>array('id'=>$job_arr[$z])));
+                        $jobb = $q2['Job']['title'];
+                        ?>
+                        <td><?php echo $jobb;?></td>
+                        <?php
+                        if($y%4==0)
+                        {
+                            ?>
+                            </tr>
+                            <?php
+                        }
+                        
+                    }
+                    if(isset($y)){
+                    if($y%4==1)
+                    {
+                        
+                        echo "<td></td><td></td><td></td></tr>";
+                        
+                    }
+                    if($y%4==2)
+                    {
+                        
+                        echo "<td></td><td></td></tr>";
+                        
+                    }
+                    if($y%4==3)
+                    {
+                        
+                        echo "<td></td></tr>";
+                        
+                    }
+                    }
+                    ?>
+                    </table>
+                    <?php
+                }
+            }
+            ?>
+            </td>
+    		<!--<td class="infos"><a href="<?php echo $base_url.'members/view/'.$m['Member']['id']; ?>"><?php echo $m['Member']['title']." ".$m['Member']['full_name']; ?></a></td>-->
     		<td>
     <?php 	echo $this->Html->link(
 					'Edit',

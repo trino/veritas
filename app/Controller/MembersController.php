@@ -6,6 +6,10 @@ class MembersController extends AppController
     );
     public function index()
     {
+        $this->loadModel('Jobmember');
+        $this->loadModel('Job');
+        $this->set('job',$this->Job);
+        $this->set('job_m',$this->Jobmember);
         if(!$this->Session->read('avatar'))
         $this->redirect('/admin');
         $this->loadModel('Member');

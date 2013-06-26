@@ -94,20 +94,21 @@
 <tr><td><b>Email</b></td><td><input type="text" id="emails" class="email" name="email" onchange="check_email()" /><span id="response"></span></td></tr>
 <tr><td><b>Image:</b></td><td><img src="<?php echo $base_url;?>img/uploads/male.png" style="width: 60px; height:60px;" /> <input type="radio" name="img_gender" value="male.png" /> &nbsp; &nbsp;<img src="<?php echo $base_url;?>img/uploads/female.png" style="width: 60px; height:60px;" /> <input type="radio" name="img_gender" value="female.png" /> &nbsp; &nbsp;<input type="file" class="" name="image" /></td></tr>
 <tr><td><b>Phone</b></td><td><input type="text" name="phone" /></td></tr>
-<tr><td><b>Password</b></td><td><input type="password" class="required" name="password" /></td></tr>
+<tr><td><b>Password</b></td><td><input type="password" class="required" name="password" id="password" /></td></tr>
+<tr><td><b>Repeat Passwotd</b></td><td><input type="password" class="required" name="c_password" /></td></tr>
 <tr><td><b>Can View Files</b></td><td><input type="checkbox" name="canView" id="canView"  /></td></tr>
 <tr class="canviewfiles" style="display: none;">
 <td colspan="2">
 <table width="50%">
 <tr>
-<td><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span><input type="checkbox" name="canView_contracts"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="canView_evidence"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="canView_templates"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report </span><input type="checkbox" name="canView_client_memo"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Site Orders </span><input type="checkbox" name="canView_siteOrder" />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Training </span><input type="checkbox" name="canView_training"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Employee </span><input type="checkbox" name="canView_employee"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="canView_KPIAudits" />
+<td><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span><input type="checkbox" name="canView_contracts" class="vie"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="canView_evidence" class="vie"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="canView_templates" class="vie"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report </span><input type="checkbox" name="canView_client_memo" class="vie"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Site Orders </span><input type="checkbox" name="canView_siteOrder" class="vie" />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Training </span><input type="checkbox" name="canView_training" class="vie"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Employee </span><input type="checkbox" name="canView_employee" class="vie"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="canView_KPIAudits" class="vie" />
 
 </td>
 </tr>
@@ -120,16 +121,16 @@
 <td colspan="2">
 <table width="50%">
 <tr>
-<td><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span><input type="checkbox" name="canUpload_contracts"/>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="canUpload_evidence"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="canUpload_templates"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report </span><input type="checkbox" name="canUpload_client_memo"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Site Orders </span><input type="checkbox" name="canUpload_siteOrder"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Training </span><input type="checkbox" name="canUpload_training"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Employee </span><input type="checkbox" name="canUpload_employee"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="canUpload_KPIAudits" />
+<td><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span><input type="checkbox" name="canUpload_contracts" class="upl"/>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="canUpload_evidence" class="upl"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="canUpload_templates" class="upl"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report </span><input type="checkbox" name="canUpload_client_memo" class="upl"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Site Orders </span><input type="checkbox" name="canUpload_siteOrder" class="upl"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Training </span><input type="checkbox" name="canUpload_training" class="upl"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Employee </span><input type="checkbox" name="canUpload_employee" class="upl"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="canUpload_KPIAudits" class="upl" />
 
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Feedback </span><input type="checkbox" name="canUpload_client_memo1"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Feedback </span><input type="checkbox" name="canUpload_client_memo1" class="upl"  />
 </td>
 </tr>
 </table>
@@ -192,8 +193,13 @@ $(function(){
     });*/
         
     $('#canUpdate').click(function(){
-        if($('#canUpdate').is(':checked'))
+        if($('#canUpdate').is(':checked')){
             $('.canuploadfiles').show();
+            $('.upl').each(function(){
+               if(!($(this).is(':checked')))
+               $(this).click() ;
+            });
+            }
         else
         {
             $('.canuploadfiles').hide();
@@ -205,8 +211,13 @@ $(function(){
     }); 
            
     $('#canView').click(function(){
-        if($('#canView').is(':checked'))
+        if($('#canView').is(':checked')){
             $('.canviewfiles').show();
+            $('.vie').each(function(){
+               if(!($(this).is(':checked')))
+               $(this).click() ;
+            });
+            }
         else
         {
             $('.canviewfiles').hide();

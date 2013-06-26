@@ -20,6 +20,7 @@ include('inc.php');
 $mems = $this->requestAction($base_url.'/dashboard/get_email_list');
 $ad = $this->requestAction($base_url.'/dashboard/get_user');
 $jobs = $this->requestAction($base_url.'/dashboard/get_jobs');
+$job2 = $this->requestAction($base_url.'/dashboard/get_job2');
 //echo  $base_url;
 $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
 ?>
@@ -27,6 +28,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <!DOCTYPE html>
 <html>
 <head>
+
 	<?php echo $this->Html->charset(); ?>
 	<title>
 		Veritas | Intelligence on Demand
@@ -58,9 +60,16 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <script type="text/javascript">jwplayer.key="N+fGwqE9+uBPKzrjO6qyGHWiJJRmw0UtbEU0iA==";</script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
 	<link rel="shortcut icon" href="/img/favicon.ico" />
-	
+	<script type="text/javascript">
+    window.onbeforeunload = function(e) {
+    $.ajax({
+       url: '<?php echo $base_url;?>admin/logout'
+    });
+    
+};
+</script>
     <script type="text/javascript">
-   
+    
     $(function(){
         
         $('.search').live('change',function(){
@@ -266,9 +275,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
         })
     },5000);
     </script>
-    <style>label.error{display: none !important;}
-
-.error{border:1px solid red !important;}
+    <style>label.error{color:red!important;}
 
 </style>
     
@@ -659,7 +666,28 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 					
 					
 									<div class="v1ButtonBarB">
-						<a href="" class="fullLink">
+                                    <?php
+                                    if($this->Session->read('admin'))
+                                    {
+                                        $ur = $base_url.'jobs';
+                                    }
+                                    else
+                                    {
+                                        if($job2)
+                                        {
+                                            if(str_replace(',','',$job2)!=$job2)
+                                            {
+                                                $ur = $base_url.'jobs';    
+                                            }
+                                            else
+                                            $ur = $ur = $base_url.'uploads/upload/'.$job2.'/activity_log';
+                                            
+                                        } 
+                                        else
+                                        $ur = $base_url.'jobs';
+                                    }
+                                    ?>
+						<a href="<?php echo $ur?>" class="fullLink">
 							<div  class="glassButton">
 							<div  class="full8ButtonB">
 

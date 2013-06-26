@@ -373,7 +373,27 @@ class UploadsController extends AppController
                         
                         $emails->subject("A new Evidence Uploaded.");
                         $emails->emailFormat('html');
-                        $message="A new Evidence is uploaded to your job.<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/> Please <a href='".$base_url."'>Click Here</a> to Login";
+                        $jj = $this->Job->find('first',array('conditions'=>array('id'=>$_POST['job'])));
+                        if($jj)
+                        $job_title = $jj['Job']['title'];
+                        else
+                        $job_title = '';
+                        if($_POST['document_type']== 'evidence')
+                            $message="
+                            
+                            A new Document is uploaded to your job.<br/>Job: ".$job_title."<br/>
+                            Document: ".$arr['title']."<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
+                            Upload Date: ".date('Y-m-d')."<br/> Please <a href='".$base_url."'>Click Here</a> to Login";
+                        else
+                            $message="A new Document is uploaded to your job.
+                            <br/>
+                            
+                            Job: ".$job_title."<br/>
+                            Document: ".$arr['title']."<br/>
+                            Who Uploaded: ".$this->Session->read('username')."<br/>
+                            Upload Date: ".date('Y-m-d')."
+
+                            <br/> Please <a href='".$base_url."'>Click Here</a> to Login";
                         if($to){
                         $checks = $this->Member->find('first',array('conditions'=>array('email'=>$to)));
                         $check=0;
@@ -492,8 +512,9 @@ class UploadsController extends AppController
         
 
     }
-    function upload($ids)
+    function upload($ids,$typee='')
     {
+        $this->set('typee',$typee);
         $subname = '';
         $this->loadModel('Canupload');
         $this->loadModel('Activity');
@@ -585,6 +606,11 @@ class UploadsController extends AppController
                     if($emailupload['Emailupload'][$_POST['document_type']] == 1 )
                     if($t = $this->Member->find('first',array('conditions'=>array('id'=>$mem_id))))
                     {
+                        $jj = $this->Job->find('first',array('conditions'=>array('id'=>$ids)));
+                        if($jj)
+                        $job_title = $jj['Job']['title'];
+                        else
+                        $job_title = '';
                         $to = $t['Member']['email']; 
                         $emails = new CakeEmail();
                         $emails->from(array('noreply@veritas.com'=>'Veritas'));
@@ -592,9 +618,21 @@ class UploadsController extends AppController
                         $emails->subject("A new Document Uploaded.");
                         $emails->emailFormat('html');
                         if($_POST['document_type']== 'evidence')
-                            $message="A new Document is uploaded to your job.<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/> Please <a href='".$base_url."'>Click Here</a> to Login";
+                            $message="
+                            
+                            A new Document is uploaded to your job.<br/>Job: ".$job_title."<br/>
+                            Document: ".$arr['title']."<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
+                            Upload Date: ".date('Y-m-d')."<br/> Please <a href='".$base_url."'>Click Here</a> to Login";
                         else
-                            $message="A new Document is uploaded to your job.<br/> Please <a href='".$base_url."'>Click Here</a> to Login";
+                            $message="A new Document is uploaded to your job.
+                            <br/>
+                            
+                            Job: ".$job_title."<br/>
+                            Document: ".$arr['title']."<br/>
+                            Who Uploaded: ".$this->Session->read('username')."<br/>
+                            Upload Date: ".date('Y-m-d')."
+
+                            <br/> Please <a href='".$base_url."'>Click Here</a> to Login";
                         if($to)
                         {
                             $checks = $this->Member->find('first',array('conditions'=>array('email'=>$to)));

@@ -64,7 +64,12 @@ foreach($job as $j)
         <a href="<?php echo $base_url.'jobs/view/'.$j['Job']['id']; ?>"><?php echo $this->Html->image('uploads/'.$j['Job']['image'], array('alt' => '', 'style'=>'max-height:100%; max-width:100%;')); ?></a></td><td><a href="<?php echo $base_url.'jobs/view/'.$j['Job']['id']; ?>"><?php echo $j['Job']['title']?></a></td>
         <?php if($this->Session->read('avatar')) { ?>
             <td style="width: 345px;">
+            <table class="table table-bordered">
+            
+            
         <?php 
+        $me = 0;
+        $td=0;
             foreach($member as $m)
             {
                 foreach($jobmember as $jm)
@@ -78,12 +83,45 @@ foreach($job as $j)
                         {
                             if($ji[$i]==$j['Job']['id'])
                             {
-                                echo "<a href='".$base_url."members/view/".$m['Member']['id']."'>".$m['Member']['title']." ".$m['Member']['full_name']."</a>, ";
+                                $me++;
+                                if($me%4==1)
+                                echo "<tr>";
+                                echo "<td><a href='".$base_url."members/view/".$m['Member']['id']."'>".$m['Member']['title']." ".$m['Member']['full_name']."</a></td>";
+                                $td++;
+                                if($m%4==0)
+                                echo "</tr>";
+                                
+                                
                             }
                         }
                     }
                 }   
             }
+            if($td>0)
+            {
+               if($td%4==1)
+               {
+                
+                echo "<td></td><td></td><td></td></tr>";
+                
+               }
+               if($td%4==2)
+               {
+                
+                echo "<td></td><td></td></tr>";
+                
+               }
+               if($td%4==3)
+               {
+                
+                echo "<td></td></tr>";
+                
+               }
+                
+            }
+            ?>
+            </table>
+            <?php
             }
         ?>
     </td>

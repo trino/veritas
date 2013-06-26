@@ -3,8 +3,9 @@ App::uses('AppController', 'Controller');
 class SearchController extends AppController
 {
     public $name = 'Search';
-    public function index()
+    public function index($type = '',$job_id=0)
     {
+        $this->set('type',$type);
         $this->loadModel('Doc');
         $this->loadModel('Image');
         $this->loadModel('Video');
@@ -62,8 +63,16 @@ class SearchController extends AppController
             }
             else
             {
-            if(!$from && !$to)
+            if(!$from && !$to){
+            if($type!='') {
+            if($job_id!=0)   
+            $this->paginate = array('conditions'=>array('document_type'=>$type,'job_id'=>$job_id),'order'=>'document_type,`date` DESC','limit'=>10);
+            else
+            $this->paginate = array('conditions'=>array('document_type'=>$type),'order'=>'document_type,`date` DESC','limit'=>10);
+            }
+            else                        
             $this->paginate = array('order'=>'document_type,`date` DESC','limit'=>10);
+            }
             else
             {
             if($from != $to)       
@@ -158,6 +167,15 @@ class SearchController extends AppController
                 $arrs = array('document_type <>'=>'client_feedback');
                 $this->set('noView',1);
                 }
+                if($type!='')
+                {
+                    unset($arrs);
+                    if($job_id==0)
+                    $arrs = array('document_type'=>str_replace(array('contracts','templates'),array('contract','template'),$type));
+                    else
+                    $arrs = array('job_id'=>$job_id,'document_type'=>str_replace(array('contracts','templates'),array('contract','template'),$type));
+                    
+                }
             
             
             $this->loadModel('Jobmember');
@@ -178,7 +196,10 @@ class SearchController extends AppController
 ======= */
             
             if(!$to && !$from){
-                
+                if($type)
+                    {
+                     
+                    }
                 $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'job_id IN'.$jid),'order'=>'document_type,`date` DESC','limit'=>10);
                 
                 }
@@ -195,8 +216,10 @@ class SearchController extends AppController
             }
             else{
                 //echo 2;die();
-                if(!$to && !$from)
+                if(!$to && !$from){
+                    
                 $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'job_id IN'.$jid),'order'=>'document_type,`date` DESC','limit'=>10);
+                }
                 else
                 {
                     if($to==$from)
