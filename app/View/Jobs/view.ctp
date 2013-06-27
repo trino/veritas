@@ -121,7 +121,7 @@
 
 <div id="table">
 <h2>Job Details</h2>
-<table class="table table-bordered">>
+<table class="">
     <tr>
         <td style="width:140px;"><b>Job Title</b></td>
         <td><?php echo $job['Job']['title']; ?></td>

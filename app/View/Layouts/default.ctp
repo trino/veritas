@@ -472,7 +472,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 							
 							<div class="left inputs">
 								<div class="subjectLine">
-									<input type="text" name="subject" placeholder="Subject" class="required" style="margin-bottom: 7px;width: calc(100% - 10px);" />
+									<input type="text" name="subject" placeholder="Subject Title" class="required" style="margin-bottom: 7px;width: calc(100% - 10px);" />
 								</div>
 								<div class="recipientsLine">
                                     <div id="name" style="height: 19px; width: calc(100% - 10px); background: white; border: 1px solid #ccc;padding:2px 4px;margin-bottom: 7px;color:#AAA;">Recipients</div>

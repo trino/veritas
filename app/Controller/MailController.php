@@ -392,7 +392,7 @@ class MailController extends AppController
                 }
                 }
             $emails->reset();
-            $this->Session->setFlash('Email Send Successfully.');
+            $this->Session->setFlash('Message Send Successfully.');
             
             }
             
