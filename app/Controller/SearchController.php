@@ -3,18 +3,7 @@ App::uses('AppController', 'Controller');
 class SearchController extends AppController
 {
     public $name = 'Search';
-    public function beforeFind($queryData) {
-    $sticky = array('Document.id' => 'ASC');
-
-    if (is_array($queryData['order'][0])) {
-        $queryData['order'][0] = $sticky + $queryData['order'][0];
-    }
-    else {
-        $queryData['order'][0] = $sticky;
-    }
-
-    return $queryData;
-}
+    
     public function index($type = '',$job_id=0)
     {
         $this->set('type',$type);
@@ -87,7 +76,7 @@ class SearchController extends AppController
             if($job_id!=0)   
             $this->paginate = array('conditions'=>array('document_type'=>$type,'job_id'=>$job_id),'order'=>$order,'limit'=>10);
             else
-            $this->paginate = array('conditions'=>array('document_type'=>$type),$order,'limit'=>10);
+            $this->paginate = array('conditions'=>array('document_type'=>$type),'order'=>$order,'limit'=>10);
             }
             else                        
             $this->paginate = array('order'=>$order,'limit'=>10);
