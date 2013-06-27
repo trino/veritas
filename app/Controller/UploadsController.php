@@ -514,6 +514,11 @@ class UploadsController extends AppController
     }
     function upload($ids,$typee='')
     {
+        $jj = $this->Job->find('first',array('conditions'=>array('id'=>$ids)));
+                        if($jj)
+                        $job_title = $jj['Job']['title'];
+                        else
+                        $job_title = ''; 
         $this->set('typee',$typee);
         $subname = '';
         $this->loadModel('Canupload');
@@ -606,11 +611,7 @@ class UploadsController extends AppController
                     if($emailupload['Emailupload'][$_POST['document_type']] == 1 )
                     if($t = $this->Member->find('first',array('conditions'=>array('id'=>$mem_id))))
                     {
-                        $jj = $this->Job->find('first',array('conditions'=>array('id'=>$ids)));
-                        if($jj)
-                        $job_title = $jj['Job']['title'];
-                        else
-                        $job_title = '';
+                        
                         $to = $t['Member']['email']; 
                         $emails = new CakeEmail();
                         $emails->from(array('noreply@veritas.com'=>'Veritas'));
@@ -693,7 +694,25 @@ class UploadsController extends AppController
                 $client['date'] = $_POST['memo_date'];
                 $this->Clientmemo->create();
                 $this->Clientmemo->save($client);
-                
+                $qa = $this->User->find('first');
+                if($qa)
+                {
+                    $emails = new CakeEmail();
+                        $emails->from(array('noreply@veritas.com'=>'Veritas'));
+                        
+                        $emails->subject("A new Client Feedback Uploaded.");
+                        $emails->emailFormat('html');
+                        
+                            $message="
+                            
+                            A new Client Feedback has been uploaded.<br/>Job: ".$job_title."<br/>
+                            Document: ".$arr['title']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
+                            Upload Date: ".date('Y-m-d')."<br/> Please <a href='".$base_url."'>Click Here</a> to Login";
+                        
+                        $emails->to($qa['User']['email']);
+                            $emails->send($message);
+                            $emails->reset();
+                }
                 
                 
             }

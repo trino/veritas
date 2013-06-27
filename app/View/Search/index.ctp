@@ -6,6 +6,7 @@ $(function(){
 </script>
 <h3 class="page-title">
 	<?php
+    if(!$type){
     if(isset($_GET['search']) && $_GET['search'])
     {
         echo "Result for : ".$_GET['search'];
@@ -13,6 +14,11 @@ $(function(){
     else
     {
         echo "All Document Search";
+    }
+    }
+    else
+    {
+        echo ucfirst($type).'s';
     }
     ?>
 </h3>
