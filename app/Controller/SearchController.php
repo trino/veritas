@@ -3,6 +3,18 @@ App::uses('AppController', 'Controller');
 class SearchController extends AppController
 {
     public $name = 'Search';
+    public function beforeFind($queryData) {
+    $sticky = array('Document.id' => 'ASC');
+
+    if (is_array($queryData['order'][0])) {
+        $queryData['order'][0] = $sticky + $queryData['order'][0];
+    }
+    else {
+        $queryData['order'][0] = $sticky;
+    }
+
+    return $queryData;
+}
     public function index($type = '',$job_id=0)
     {
         $this->set('type',$type);
@@ -43,21 +55,28 @@ class SearchController extends AppController
                 $to = $_GET['to'];
             }    
             else
-            $to = '';  
+                $to = '';  
+            
+            if(isset($_GET['order']))
+            {
+                $order = 'job_id,'.$_GET['order']." ".$_GET['ty'];
+            }
+            else
+                $order = 'job_id,document_type,`date` DESC';
               
         if($this->Session->read('avatar'))
         {
             
             if($search != ''){
             if(!$from && !$to)
-            $this->paginate = array('conditions'=>array('OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%'))),'order'=>'document_type,`date` DESC','limit'=>10);
+            $this->paginate = array('conditions'=>array('OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%'))),'order'=>$order,'limit'=>10);
             else
             if($from && $to)
             {
             if($from != $to)    
-            $this->paginate = array('conditions'=>array('OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'`date` >='=>$from, '`date` <='=>$to),'order'=>'document_type,`date` DESC','limit'=>10);
+            $this->paginate = array('conditions'=>array('OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'`date` >='=>$from, '`date` <='=>$to),'order'=>$order,'limit'=>10);
             else
-            $this->paginate = array('conditions'=>array('OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'`date` LIKE "'.$from.'%"'),'order'=>'document_type,`date` DESC','limit'=>10);
+            $this->paginate = array('conditions'=>array('OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'`date` LIKE "'.$from.'%"'),'order'=>$order,'limit'=>10);
             
             }
             }
@@ -66,19 +85,19 @@ class SearchController extends AppController
             if(!$from && !$to){
             if($type!='') {
             if($job_id!=0)   
-            $this->paginate = array('conditions'=>array('document_type'=>$type,'job_id'=>$job_id),'order'=>'document_type,`date` DESC','limit'=>10);
+            $this->paginate = array('conditions'=>array('document_type'=>$type,'job_id'=>$job_id),'order'=>$order,'limit'=>10);
             else
-            $this->paginate = array('conditions'=>array('document_type'=>$type),'order'=>'document_type,`date` DESC','limit'=>10);
+            $this->paginate = array('conditions'=>array('document_type'=>$type),$order,'limit'=>10);
             }
             else                        
-            $this->paginate = array('order'=>'document_type,`date` DESC','limit'=>10);
+            $this->paginate = array('order'=>$order,'limit'=>10);
             }
             else
             {
             if($from != $to)       
-            $this->paginate = array('conditions'=>array('`date` >='=>$from, '`date` <='=>$to),'order'=>'document_type,`date` DESC','limit'=>10);
+            $this->paginate = array('conditions'=>array('`date` >='=>$from, '`date` <='=>$to),'job_id,order'=>$order,'limit'=>10);
             else
-            $this->paginate = array('conditions'=>array('`date` LIKE "'.$from.'%"'),'order'=>'document_type,`date` DESC','limit'=>10);
+            $this->paginate = array('conditions'=>array('`date` LIKE "'.$from.'%"'),'order'=>$order,'limit'=>10);
             }
             
             }
@@ -200,15 +219,15 @@ class SearchController extends AppController
                     {
                      
                     }
-                $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'job_id IN'.$jid),'order'=>'document_type,`date` DESC','limit'=>10);
+                $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'job_id IN'.$jid),'order'=>$order,'limit'=>10);
                 
                 }
             else
             if($to && $from){
                 if($to!=$from)
-                $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'`date` >='=>$from, '`date` <='=>$to,'job_id IN'.$jid),'order'=>'document_type,`date` DESC','limit'=>10);
+                $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'`date` >='=>$from, '`date` <='=>$to,'job_id IN'.$jid),'order'=>$order,'limit'=>10);
                 else
-                $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'`date` LIKE "'.$from.'%"','job_id IN'.$jid),'order'=>'document_type,`date` DESC','limit'=>10);
+                $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'`date` LIKE "'.$from.'%"','job_id IN'.$jid),'order'=>$order,'limit'=>10);
                 
                 }
             
@@ -218,16 +237,16 @@ class SearchController extends AppController
                 //echo 2;die();
                 if(!$to && !$from){
                     
-                $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'job_id IN'.$jid),'order'=>'document_type,`date` DESC','limit'=>10);
+                $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'job_id IN'.$jid),'order'=>$order,'limit'=>10);
                 }
                 else
                 {
                     if($to==$from)
                     {
-                        $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'job_id IN'.$jid,'`date` LIKE "'.$from.'%"'),'order'=>'document_type,`date` DESC','limit'=>10);
+                        $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'job_id IN'.$jid,'`date` LIKE "'.$from.'%"'),'order'=>$order,'limit'=>10);
                     }
                     else
-                    $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'job_id IN'.$jid,'`date` >='=>$from,'`date` <='=>$to),'order'=>'document_type,`date` DESC','limit'=>10);
+                    $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'job_id IN'.$jid,'`date` >='=>$from,'`date` <='=>$to),'order'=>$order,'limit'=>10);
                 }
             }
             $docs = $this->paginate('Document');

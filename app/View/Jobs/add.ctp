@@ -25,8 +25,8 @@ $(function(){
 <tr><td style="width:140px;"><b>Job Title</b></td><td><input type="text" name="title" class="required" /></td></tr>
 <tr><td><b>Job Description</b></td><td><textarea name="description" class="required" ></textarea></td></tr>
 <tr><td><b>Image</b></td><td><input type="file" name="image" class="" /></td></tr>
-<tr><td><b>Start Date</b></td><td><input type="text" name="start_date" id="start_date" class="" /></td></tr>
-<tr><td><b>End Date</b></td><td><input type="text" name="end_date" id="end_date" class="" /></td></tr>
+<tr><td><b>Start Date</b></td><td><input type="text" name="start_date" id="start_date" class="required" /></td></tr>
+<tr><td><b>End Date</b></td><td><input type="text" name="end_date" id="end_date" class="required" /></td></tr>
 
 <tr><td colspan="2" class="add_more"></td></tr>
 <tr><td colspan="2"><a href="javascript:void(0);" id="add_key"><strong>+ Add Key Contact</strong></a></td></tr>
