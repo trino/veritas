@@ -371,7 +371,7 @@ class UploadsController extends AppController
                         $emails = new CakeEmail();
                         $emails->from(array('noreply@veritas.com'=>'Veritas'));
                         
-                        $emails->subject("A new Evidence Uploaded.");
+                        $emails->subject("A new document has been uploaded.");
                         $emails->emailFormat('html');
                         $jj = $this->Job->find('first',array('conditions'=>array('id'=>$_POST['job'])));
                         if($jj)
@@ -379,21 +379,16 @@ class UploadsController extends AppController
                         else
                         $job_title = '';
                         if($_POST['document_type']== 'evidence')
-                            $message="
-                            
-                            A new Document is uploaded to your job.<br/>Job: ".$job_title."<br/>
+                            $message="Job: ".$job_title."<br/>
                             Document: ".$arr['title']."<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
-                            Upload Date: ".date('Y-m-d')."<br/> Please <a href='".$base_url."'>Click Here</a> to Login";
+                            Upload Date: ".date('Y-m-d')."<br/> Please <a href='".$base_url."'>Click Here</a> to Login<br><br>- The Veritas Team";
                         else
-                            $message="A new Document is uploaded to your job.
-                            <br/>
-                            
+                            $message="
                             Job: ".$job_title."<br/>
                             Document: ".$arr['title']."<br/>
                             Who Uploaded: ".$this->Session->read('username')."<br/>
                             Upload Date: ".date('Y-m-d')."
-
-                            <br/> Please <a href='".$base_url."'>Click Here</a> to Login";
+                            <br/> Please <a href='".$base_url."'>Click Here</a> to Login<br><br>- The Veritas Team";
                         if($to){
                         $checks = $this->Member->find('first',array('conditions'=>array('email'=>$to)));
                         $check=0;
@@ -616,24 +611,21 @@ class UploadsController extends AppController
                         $emails = new CakeEmail();
                         $emails->from(array('noreply@veritas.com'=>'Veritas'));
                         
-                        $emails->subject("A new Document Uploaded.");
+                        $emails->subject("A new document has been uploaded!");
                         $emails->emailFormat('html');
                         if($_POST['document_type']== 'evidence')
                             $message="
-                            
-                            A new Document is uploaded to your job.<br/>Job: ".$job_title."<br/>
+							Job: ".$job_title."<br/>
                             Document: ".$arr['title']."<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
-                            Upload Date: ".date('Y-m-d')."<br/> Please <a href='".$base_url."'>Click Here</a> to Login";
+                            Upload Date: ".date('Y-m-d')."<br/><a href='".$base_url."'>Click Here</a> to login and view the document.";
                         else
-                            $message="A new Document is uploaded to your job.
-                            <br/>
-                            
+                            $message="
                             Job: ".$job_title."<br/>
                             Document: ".$arr['title']."<br/>
                             Who Uploaded: ".$this->Session->read('username')."<br/>
                             Upload Date: ".date('Y-m-d')."
 
-                            <br/> Please <a href='".$base_url."'>Click Here</a> to Login";
+                            <br/><a href='".$base_url."'>Click Here</a> to login and view the document.";
                         if($to)
                         {
                             $checks = $this->Member->find('first',array('conditions'=>array('email'=>$to)));

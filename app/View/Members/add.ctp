@@ -85,13 +85,13 @@
 <div id="table">
 <form id="my_form" action="" method="post" enctype="multipart/form-data" onsubmit="return valid();">
 <table>
-<tr><td style="width:140px;"><b>First Name</b></td><td><input type="text" name="fname" id="fname" value="" class="" /></td></tr>
-<tr><td style="width:140px;"><b>Last Name</b></td><td><input type="text" name="lname" id="lname" value="" class="" /></td></tr>
+<tr><td style="width:140px;"><b>First Name</b></td><td><input type="text" name="fname" id="fname" value="" class="required" /></td></tr>
+<tr><td style="width:140px;"><b>Last Name</b></td><td><input type="text" name="lname" id="lname" value="" class="required" /></td></tr>
 <tr><td style="width:140px;"><b>Username</b></td><td><input type="text" id="full_name" class="required" name="full_name" onchange="check_name()" /><span id="response1"></span></td></tr>
 <!--<tr><td><b>Avatar</b></td><td><input type="text" name="avatar" value="" class="required" /></td></tr>-->
-<tr><td><b>Title</b></td><td><input type="text" class="required" name="title" /></td></tr>
-<tr><td><b>Address</b></td><td><input type="text" class="required" name="address" /></td></tr>
-<tr><td><b>Email</b></td><td><input type="text" id="emails" class="email" name="email" onchange="check_email()" /><span id="response"></span></td></tr>
+<tr><td><b>Title</b></td><td><input type="text" class="" name="title" /></td></tr>
+<tr><td><b>Address</b></td><td><input type="text" class="" name="address" /></td></tr>
+<tr><td><b>Email</b></td><td><input type="text" id="emails" class="email required" name="email" onchange="check_email()" /><span id="response"></span></td></tr>
 <tr><td><b>Image:</b></td><td><img src="<?php echo $base_url;?>img/uploads/male.png" style="width: 60px; height:60px;" /> <input type="radio" name="img_gender" value="male.png" /> &nbsp; &nbsp;<img src="<?php echo $base_url;?>img/uploads/female.png" style="width: 60px; height:60px;" /> <input type="radio" name="img_gender" value="female.png" /> &nbsp; &nbsp;<input type="file" class="" name="image" /></td></tr>
 <tr><td><b>Phone</b></td><td><input type="text" name="phone" /></td></tr>
 <tr><td><b>Password</b></td><td><input type="password" class="required" name="password" id="password" /></td></tr>
@@ -102,9 +102,9 @@
 <table width="50%">
 <tr>
 <td><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span><input type="checkbox" name="canView_contracts" class="vie"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="canView_evidence" class="vie"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="canView_templates" class="vie"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report </span><input type="checkbox" name="canView_client_memo" class="vie"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Evidence </span><input type="checkbox" name="canView_evidence" class="vie"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Templates </span><input type="checkbox" name="canView_templates" class="vie"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Report </span><input type="checkbox" name="canView_client_memo" class="vie"  />
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Site Orders </span><input type="checkbox" name="canView_siteOrder" class="vie" />
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Training </span><input type="checkbox" name="canView_training" class="vie"  />
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Employee </span><input type="checkbox" name="canView_employee" class="vie"  />
@@ -149,14 +149,14 @@
 <td colspan="2" >
 <table width="50%">
 <tr>
-<td><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span><input type="checkbox" name="Email_contracts"/>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="Email_evidence"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="Email_templates"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report </span><input type="checkbox" name="Email_client_memo"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Site Orders </span><input type="checkbox" name="Email_siteOrder"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Training </span><input type="checkbox" name="Email_training"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Employee </span><input type="checkbox" name="Email_employee"  />
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="Email_KPIAudits"  />
+<td><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span><input type="checkbox" name="Email_contracts" class="rec_email"/>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="Email_evidence"  class="rec_email" />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="Email_templates"  class="rec_email" />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report </span><input type="checkbox" name="Email_client_memo"  class="rec_email" />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Site Orders </span><input type="checkbox" name="Email_siteOrder"  class="rec_email" />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Training </span><input type="checkbox" name="Email_training"  class="rec_email" />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Employee </span><input type="checkbox" name="Email_employee"  class="rec_email" />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="Email_KPIAudits"  class="rec_email" />
 
 <!--<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Feedback </span><input type="checkbox" name="Email_client_memo1"  />-->
 </td>
@@ -230,8 +230,13 @@ $(function(){
     }); 
     
     $('#receive2').click(function(){
-        if($('#receive2').is(':checked'))
+        if($('#receive2').is(':checked')){
             $('.upload_more').show();
+			            $('.rec_email').each(function(){
+               if(!($(this).is(':checked')))
+               $(this).click() ;
+            });
+			}
         else
         {
             $('.upload_more').hide();
