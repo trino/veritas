@@ -33,7 +33,7 @@ if($this->Session->read('admin'))
                         if($tests==1)
                         {
                             ?>
-                            <h3 style="font-size: 15px;"><?php echo $q2['Job']['title'];?></h3>
+                            <h3 style="font-size: 15px;"><?php echo stripslashes($q2['Job']['title']);?></h3>
                             <?php
                         }
                         ?>
@@ -154,7 +154,7 @@ else
                         if($test == 1)
                         {
                             ?>
-                            <h3 style="font-size: 15px;"><?php echo $q2['Job']['title'];?></h3>
+                            <h3 style="font-size: 15px;"><?php echo stripslashes($q2['Job']['title']);?></h3>
                             <?php
                         }
                         ?>

@@ -2,14 +2,14 @@
 
 
 <h3 class="page-title">
-	Edit <?php echo $j['Job']['title']; ?>
+	Edit <?php echo stripslashes($j['Job']['title']); ?>
 </h3>
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
 		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
 		<a href="<?=$base_url;?>jobs">Job Manager</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>jobs/edit/<?php echo $j['Job']['id']; ?>">Edit <?php echo $j['Job']['title']; ?></a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>jobs/edit/<?php echo $j['Job']['id']; ?>">Edit <?php echo stripslashes($j['Job']['title']); ?></a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
 

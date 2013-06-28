@@ -16,7 +16,7 @@ if($this->Session->read('admin'))
                 $q12 = $job->find('all');
                 foreach($q12 as $q2){
                 ?>
-                <h3 style="font-size: 15px;"><?php echo $q2['Job']['title'];?></h3>
+                <h3 style="font-size: 15px;"><?php echo stripslashes($q2['Job']['title']);?></h3>
                 
                 <?php
                 $q3 = $doc->find('all',array('conditions'=>array('job_id'=>$q2['Job']['id'],'draft'=>0,'title LIKE "%'.$name.'%"')));
@@ -29,7 +29,7 @@ if($this->Session->read('admin'))
                         if($tests==1)
                         {
                             ?>
-                            <h3 style="font-size: 15px;"><?php echo $q2['Job']['title'];?></h3>
+                            <h3 style="font-size: 15px;"><?php echo stripslashes($q2['Job']['title']);?></h3>
                             <?php
                         }
                         ?>
@@ -140,7 +140,7 @@ else
             {
                 $q2 = $job->find('first',array('conditions'=>array('id'=>trim($j))));
                 ?>
-                <h3 style="font-size: 15px;"><?php echo $q2['Job']['title'];?></h3>
+                <h3 style="font-size: 15px;"><?php echo stripslashes($q2['Job']['title']);?></h3>
                 
                 <?php
                 $q3 = $doc->find('all',array('conditions'=>array('job_id'=>$q2['Job']['id'],'draft'=>0,'title LIKE "%'.$name.'%"')));
@@ -153,7 +153,7 @@ else
                         if($test == 1)
                         {
                             ?>
-                            <h3 style="font-size: 15px;"><?php echo $q2['Job']['title'];?></h3>
+                            <h3 style="font-size: 15px;"><?php echo stripslashes($q2['Job']['title']);?></h3>
                             <?php
                         }
                         ?>

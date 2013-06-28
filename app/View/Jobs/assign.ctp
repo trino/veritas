@@ -74,7 +74,7 @@ $arrs = array();
        
          
     ?>
-    <tr><td style="width:15px;"><input type="checkbox" class="jobs" onclick="option()" name="job[]" value="<?php echo $j['Job']['id']; ?>" <?php if(in_array($j['Job']['id'],$arrs)){echo "checked='checked'";} ?> style="margin-top:-3px;" /> </td><td><?php echo $j['Job']['title']; ?></td></tr>
+    <tr><td style="width:15px;"><input type="checkbox" class="jobs" onclick="option()" name="job[]" value="<?php echo $j['Job']['id']; ?>" <?php if(in_array($j['Job']['id'],$arrs)){echo "checked='checked'";} ?> style="margin-top:-3px;" /> </td><td><?php echo stripslashes($j['Job']['title']); ?></td></tr>
     <?php
     }
 ?>

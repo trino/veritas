@@ -31,7 +31,9 @@
 				<th>User</th>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Assigned Jobs</th>
+                <th>Username</th>
+                <th>Title</th>
+                <!--th>Assigned Jobs</th-->
                 <th style="width:250px;">Options</th>
             </tr>
 <?php
@@ -44,7 +46,9 @@ foreach($mem as $m)
 			<td style=""><div style="background-color:#dddddd;width:40px; height:40px; text-align:center;"><a href="<?php echo $base_url.'members/view/'.$m['Member']['id']; ?>"><?php echo $this->Html->image('uploads/'.$m['Member']['image'], array('alt' => '','style'=>"max-height: 100%; max-width:100%;")); ?></a></div> </td>
             <td style=""><?php echo $m['Member']['fname'];?></td>
             <td style=""><?php echo $m['Member']['lname'];?></td>
-            <td style="">
+            <td style=""><?php echo $m['Member']['full_name'];?></td>
+            <td style=""><?php echo $m['Member']['title'];?></td>
+            <!--td style="">
             <?php
             $q = $job_m->find('first',array('conditions',array('member_id'=>$m['Member']['id'])));
             if($q)
@@ -54,7 +58,7 @@ foreach($mem as $m)
                 if($job_arr)
                 {
                     ?>
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" style="margin:0px;" >
                     <?php
                     for($z=0;$z<count($job_arr);$z++)
                     {
@@ -104,7 +108,7 @@ foreach($mem as $m)
                 }
             }
             ?>
-            </td>
+            </td-->
     		<!--<td class="infos"><a href="<?php echo $base_url.'members/view/'.$m['Member']['id']; ?>"><?php echo $m['Member']['title']." ".$m['Member']['full_name']; ?></a></td>-->
     		<td>
     <?php 	echo $this->Html->link(

@@ -75,7 +75,7 @@
     </tr>
     <tr>
         <td><b>Job Title</b></td>
-        <td><?php if($j = $job->findById($doc['Document']['job_id'])) echo $j['Job']['title'] ; ?></td>
+        <td><?php if($j = $job->findById($doc['Document']['job_id'])) echo stripslashes($j['Job']['title']) ; ?></td>
     </tr>
     
     
