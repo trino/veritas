@@ -3,7 +3,7 @@
 
 
 <h3 class="page-title">
-	Upload Document For <?php echo $job_name;?>
+	Upload Document For <?php echo stripslashes($job_name);?>
 </h3>
 <ul class="breadcrumb">
 	<li>

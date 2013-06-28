@@ -43,7 +43,7 @@ elseif(isset($doc))
          $arr[]=$doc[$k]['Document']['job_id'];   
         ?>
         
-        <tr style="background: grey;color:#FFF;"><td colspan="4"><strong>Job :</strong><strong><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Document']['job_id'])));if($get2)echo $get2['Job']['title']; ?></strong></tr>
+        <tr style="background: grey;color:#FFF;"><td colspan="4"><strong>Job :</strong><strong><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Document']['job_id'])));if($get2)echo stripslashes($get2['Job']['title']); ?></strong></tr>
         
         <?php
         }
@@ -53,7 +53,7 @@ elseif(isset($doc))
             {
                 $arr[]=$doc[$k]['Document']['job_id'];
                 ?>
-                <tr style="background: grey;color:#FFF;"><td colspan="4"><strong>Job :</strong><strong><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Document']['job_id'])));if($get2)echo $get2['Job']['title']; ?></strong></tr>
+                <tr style="background: grey;color:#FFF;"><td colspan="4"><strong>Job :</strong><strong><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Document']['job_id'])));if($get2)echo stripslashes($get2['Job']['title']); ?></strong></tr>
                 <?php
             }
         }
@@ -67,7 +67,7 @@ elseif(isset($doc))
             <td><?php echo $d['Document']['title']; ?></td>
             <td><?php if($d['Document']['addedBy'] == 0)echo 'Admin';else{$get = $mems->find('first',array('conditions'=>array('id'=>$d['Document']['addedBy'])));if($get)echo $get['Member']['full_name'];} ?></td>
             <td><?php echo $d['Document']['description']; ?></td>
-            <!--<td><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Document']['job_id'])));if($get2)echo $get2['Job']['title']; ?></td>-->
+            <!--<td><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Document']['job_id'])));if($get2)echo stripslashes($get2['Job']['title']); ?></td>-->
             <td><?php echo $this->Html->link('View Detail','/uploads/view_detail/'.$d['Document']['id'],array('class'=>'btn btn-primary'));  ?>
             
                 <?php // if($update==1) echo $this->Html->link('Edit','/uploads/edit/'.$d['Document']['id']); ?>

@@ -2,14 +2,14 @@
 
 
 <h3 class="page-title">
-	Job Details: <?php echo $job['Job']['title']; ?>
+	Job Details: <?php echo stripslashes($job['Job']['title']); ?>
 </h3>
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
 		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
 		<a href="<?=$base_url;?>jobs">Job Manager</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>jobs/view/<?php echo $job['Job']['id']; ?>">Job Details: <?php echo $job['Job']['title']; ?></a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>jobs/view/<?php echo $job['Job']['id']; ?>">Job Details: <?php echo stripslashes($job['Job']['title']); ?></a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
 
@@ -124,7 +124,7 @@
 <table class="">
     <tr>
         <td style="width:140px;"><b>Job Title</b></td>
-        <td><?php echo $job['Job']['title']; ?></td>
+        <td><?php echo stripslashes($job['Job']['title']); ?></td>
     </tr>
     <tr>
         <td><b>Assigned To</b></td>
@@ -151,7 +151,7 @@
                                 $me++;
                                 if($me%4==1)
                                 echo "<tr>";
-                                echo "<td><a href='".$base_url."members/view/".$m['Member']['id']."'>".$m['Member']['title']." ".$m['Member']['full_name']."</a></td>";
+                                echo "<td style='width:20px;'><a href='".$base_url."members/view/".$m['Member']['id']."'>"." ".$m['Member']['full_name']."</a></td>";
                                 $td++;
                                 if($m%4==0)
                                 echo "</tr>";

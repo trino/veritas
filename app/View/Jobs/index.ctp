@@ -61,10 +61,10 @@ foreach($job as $j)
     
         <tr><td style="width:40px;"><div style="background-color:#dddddd;width:40px; height:40px; text-align:center;">
             
-        <a href="<?php echo $base_url.'jobs/view/'.$j['Job']['id']; ?>"><?php echo $this->Html->image('uploads/'.$j['Job']['image'], array('alt' => '', 'style'=>'max-height:100%; max-width:100%;')); ?></a></td><td><a href="<?php echo $base_url.'jobs/view/'.$j['Job']['id']; ?>"><?php echo $j['Job']['title']?></a></td>
+        <a href="<?php echo $base_url.'jobs/view/'.$j['Job']['id']; ?>"><?php echo $this->Html->image('uploads/'.$j['Job']['image'], array('alt' => '', 'style'=>'max-height:100%; max-width:100%;')); ?></a></td><td><a href="<?php echo $base_url.'jobs/view/'.$j['Job']['id']; ?>"><?php echo stripslashes($j['Job']['title'])?></a></td>
         <?php if($this->Session->read('avatar')) { ?>
-            <td style="width: 345px;">
-            <table class="table table-bordered">
+            <td style="width: 350px;">
+            <table class="table table-bordered" style="margin:0px;" >
             
             
         <?php 
@@ -86,7 +86,7 @@ foreach($job as $j)
                                 $me++;
                                 if($me%4==1)
                                 echo "<tr>";
-                                echo "<td><a href='".$base_url."members/view/".$m['Member']['id']."'>".$m['Member']['title']." ".$m['Member']['full_name']."</a></td>";
+                                echo "<td style='width:20px;' ><a href='".$base_url."members/view/".$m['Member']['id']."'>"." ".$m['Member']['full_name']."</a></td>";
                                 $td++;
                                 if($m%4==0)
                                 echo "</tr>";

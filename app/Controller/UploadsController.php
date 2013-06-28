@@ -596,7 +596,7 @@ class UploadsController extends AppController
                 if($_SERVER['SERVER_NAME']=='localhost')
                     $base_url = "http://localhost/veritas/";
                 else
-                    $base_url ="/";
+                    $base_url =	 $_SERVER['SERVER_NAME'];
                 
                 
                 foreach($mails as $m)
@@ -687,20 +687,21 @@ class UploadsController extends AppController
                 $this->Clientmemo->create();
                 $this->Clientmemo->save($client);
                 $qa = $this->User->find('first');
+				//debug($qa);exit;
                 if($qa)
                 {
                     $emails = new CakeEmail();
                         $emails->from(array('noreply@veritas.com'=>'Veritas'));
                         
-                        $emails->subject("A new Client Feedback Uploaded.");
+                        $emails->subject("Client Feedback Uploaded.");
                         $emails->emailFormat('html');
                         
                             $message="
                             
-                            A new Client Feedback has been uploaded.<br/>Job: ".$job_title."<br/>
+                            Job: ".$job_title."<br/>
                             Document: ".$arr['title']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
-                            Upload Date: ".date('Y-m-d')."<br/> Please <a href='".$base_url."'>Click Here</a> to Login";
-                        
+                           Upload Date: ".date('Y-m-d')."<br/><a href='".$base_url."'>Click Here</a> to login and view the document.";
+						   
                         $emails->to($qa['User']['email']);
                             $emails->send($message);
                             $emails->reset();

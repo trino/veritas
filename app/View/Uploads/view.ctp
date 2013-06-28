@@ -2,7 +2,7 @@
     <table>
         <tr>
             <td>Job Title</td>
-            <td><?php echo $job['Job']['title']; ?></td>
+            <td><?php echo stripslashes($job['Job']['title']); ?></td>
         </tr>
         <tr>
             <td>Description</td>
