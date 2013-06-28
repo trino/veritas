@@ -75,6 +75,9 @@ class MembersController extends AppController
     }
     public function add()
     {
+        $this->loadModel('Job');
+        $this->loadModel('Jobmember');
+        $this->set('job',$this->Job);
         $this->loadModel('Canview');
         $this->loadModel('Canupload');
         $this->loadModel('Emailupload');
@@ -90,6 +93,7 @@ class MembersController extends AppController
         $this->redirect('/admin');
         if(isset($_POST['submit']))
         {
+            
             if(isset($_POST['img_gender']))
             {
                 if($_POST['img_gender'] == 'male.png')
@@ -343,12 +347,45 @@ class MembersController extends AppController
             
             
             $this->Session->setFlash('Data Saved Successfully.');
+            if(isset($_POST['job']))
+            {
+                $arr['job_id'] = '';
+                $k=0;
+                $this->Jobmember->create();
+                foreach($_POST['job'] as $j)
+                {
+                    $k++;
+                    
+                    if($k==1)
+                    $jarr['job_id'] = $j;
+                    else
+                    {
+                        $jarr['job_id'] = ','.$j;
+                    }
+                        
+                }
+                $jarr['member_id'] = $id;
+                $this->Jobmember->save($jarr);
+            }
             $this->redirect('index');
              
         }
     }
     public function edit($id)
     {
+        
+        $this->loadModel('Job');
+        $this->loadModel('Jobmember');
+        $this->set('job',$this->Job);
+        $qjm = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$id)));
+        if($qjm)
+        {
+            $jobs = $qjm['Jobmember']['job_id'];
+            $arr_j = explode(',',$jobs);
+            $this->set('jm',$arr_j);
+        }
+        else
+        $this->set('jm',array(''));
         $this->loadModel('Member');
         $this->loadModel('Canview');
         $this->loadModel('Canupload');

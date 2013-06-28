@@ -163,6 +163,54 @@
 </tr>
 </table>
 </td></tr>
+<?php
+$q = $job->find('all',array('order'=>'title')); 
+if($q){
+?>
+<tr>
+    <td colspan="2">
+        <table>
+            <tr><td><strong>Assign Jobs to user</strong></td></tr>
+            <?php
+            $i=0; 
+            foreach($q as $j){
+                $i++;
+                if($i%6==1)
+                {
+                    ?>
+                    <tr>
+                    <?php
+                }
+               ?>
+               <td style="width: 15%;"><?php echo $j['Job']['title']?> <input name="job[]" style="margin: 0;" type="checkbox" value="<?php echo $j['Job']['id'];?>" /></td>
+               <?php
+               if($i%6==0)
+               {
+                ?>
+                </tr>
+                <?php
+               } 
+            }
+            if($i%6!=0){
+            $i=$i%6;
+            for($j=$i;$j<6;$j++)
+            {
+                ?>
+                <td style="width: 15%;">&nbsp; &nbsp;</td>
+                <?php
+            }
+            ?>
+            </tr>
+            <?php
+            }            
+            ?>
+        </table>
+    </td>
+</tr>
+<?php    
+}
+?>
+
 <!--</table>
 </td></tr>-->
 <!-- <div class="checks"><div class="left">Is Supervisor</div><div class="right"><input type="checkbox" name="isSupervisor" /></div><div class="clear"></div></div>
