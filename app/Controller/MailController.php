@@ -500,6 +500,7 @@ class MailController extends AppController
                 $emails->reset();
                 }}
                 }
+                $this->Session->setFlash('You have replied to this message.');
                 $this->redirect('read/'.$arr['parent']);
     }
 }

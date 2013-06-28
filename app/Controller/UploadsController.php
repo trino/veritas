@@ -640,6 +640,7 @@ class UploadsController extends AppController
                         if($check==1)
                         {
                             $emails->to($to);
+                            if($to != $this->Session->read('email'))
                             $emails->send($message);
                             $emails->reset();
                         }
