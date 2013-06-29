@@ -470,11 +470,11 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 							
 							
 							<div class="left inputs">
-                                <div class="recipientsLine"  style="float:left; width: calc(80% - 5px);">
-                                    <div id="name" style="height: 19px; background: white; border: 1px solid #ccc;padding:2px 4px;margin-bottom: 7px;color:#AAA;">Recipients</div>
+                                <div class="recipientsLine"  style="width: calc(100% - 6px);">
+                                    <div id="name" style="height: 19px; background: white; border: 1px solid #ccc;padding:2px 4px;margin-bottom: 7px;color:#AAA;"><a href="javascript:void(0);" id="contacts_modal" onclick="show_email();" class="email" style="color: #999;">Recipients</a></div>
 <!--									<input type="text" name="name" id="name" placeholder="Recipients (Separate with comma)" class="required" />--> 
 								</div>
-							    <div style="float:left;margin-left:10px;"><a href="javascript:void(0)" id="contacts_modal" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a></div><div style="clear:both;"></div>
+							    <!--<div style="float:left;margin-left:10px;"><a href="javascript:void(0)" id="contacts_modal" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a></div><div style="clear:both;"></div>-->
 								<div class="subjectLine">
 									<input type="text" name="subject" placeholder="Subject Title" class="required" style="margin-bottom: 7px;width: calc(99% - 10px);" />
 								</div>
