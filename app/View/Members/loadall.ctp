@@ -18,13 +18,15 @@ $ad = $this->requestAction($base_url.'/dashboard/get_user');
         if(!$this->Session->read('admin'))
         {
             ?>
+            <div class="admin">
             <div class="title"><b>Administrator</b></div>
             <div class="lists loading" style="width: 300px;">
             <div style="float:right;"><input type="checkbox" class="<?php echo $ad['User']['name_avatar']."__0__".$ad['User']['email']; ?>" /></div>
             <div style="float:left">Admin</div>
             <div style="clear:both;"></div>
             </div>
-            <hr />
+            </div>
+            
             <?php
         }
 ?>
@@ -70,7 +72,7 @@ foreach($job as $j)
         }
         ?>
     </div>
-    <hr />
+    
     <?php
     
 }
@@ -87,6 +89,7 @@ $(function(){
            data:'term='+term,
            type:'post',
            success:function(res){
+            $('.admin').show();
             $('#searchlist').show();
             
            } 

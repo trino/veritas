@@ -11,7 +11,7 @@ hr{border-top:#313A43 1px solid;}
 </style>
 
 <input type="text" value="" class="search" placeholder="Search Documents" style="margin: 0;" /> <a href="javascript:void(0)" class="btn btn-inverse loads" style="color: #fff;">Load</a>
-<div class="searchlist" >
+<div class="searchlist" style="margin-bottom: 10px;" >
 <?php
 /*
 if($this->Session->read('admin'))

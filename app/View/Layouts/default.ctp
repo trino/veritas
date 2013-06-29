@@ -207,7 +207,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
          $('.dialog-modals').load('<?php echo $base_url.'members/loadall';?>');
                $('.dialog-modals').dialog({
                     
-                    width: 650,
+                    width: 800,
                     title:'Add Contacts to Instant Message',
                     
                });
@@ -216,7 +216,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
          $('.dialog-modals').load('<?php echo $base_url.'uploads/loadall';?>');
                $('.dialog-modals').dialog({
                     
-                    width: 650,
+                    width: 1030,
                     
                     title:'Attach files to Instant Message',
                     
@@ -467,20 +467,19 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 					</script>
 					<div class="message-form">
 						<form id="Form" action="<?php echo $base_url.'mail/send?return='.urlencode($_SERVER['REQUEST_URI']);?>" method="post" class="messageform">
-							<div class="left msg">
-								<textarea placeholder="Instant Message - Type message here" name="message" class="required message" style=""></textarea>
-							</div>
+							
 							
 							<div class="left inputs">
-								<div class="subjectLine">
-									<input type="text" name="subject" placeholder="Subject Title" class="required" style="margin-bottom: 7px;width: calc(100% - 10px);" />
-								</div>
-								<div class="recipientsLine">
-                                    <div id="name" style="height: 19px; width: calc(100% - 10px); background: white; border: 1px solid #ccc;padding:2px 4px;margin-bottom: 7px;color:#AAA;">Recipients</div>
+                                <div class="recipientsLine"  style="float:left; width: calc(80% - 5px);">
+                                    <div id="name" style="height: 19px; background: white; border: 1px solid #ccc;padding:2px 4px;margin-bottom: 7px;color:#AAA;">Recipients</div>
 <!--									<input type="text" name="name" id="name" placeholder="Recipients (Separate with comma)" class="required" />--> 
 								</div>
-							
-								<a href="javascript:void(0)" id="contacts_modal" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a> <a href="javascript:void(0);" class="buttonV attachment"><i class="icon-book"></i> Attach Documents</a>
+							    <div style="float:left;margin-left:10px;"><a href="javascript:void(0)" id="contacts_modal" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a></div><div style="clear:both;"></div>
+								<div class="subjectLine">
+									<input type="text" name="subject" placeholder="Subject Title" class="required" style="margin-bottom: 7px;width: calc(99% - 10px);" />
+								</div>
+								
+								<a href="javascript:void(0);" class="buttonV attachment"><i class="icon-book"></i> Attach Documents</a>
 								
 								<!--<div id="email" style="display: none;">
 									<?php foreach($mems as $m) {
@@ -509,13 +508,20 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 								<input type="hidden" name="response" id="resp" />
 								<input type="hidden" name="receipient_id" id="receipient_id" value="" />
                                 <input type="hidden" name="attachments" id="attachments" value="" />
-								<input type="submit" name="submit" value="Send" class="buttonV" id="send_email" />
+								
                                 <div class="clear"></div>
                                 
 							</div>
+                            <div class="left msg">
+								<textarea placeholder="Instant Message - Type message here" name="message" class="required message" style="height:100%;"></textarea>
+							</div>
+                            <div style="clear:both;"></div>
+                            <div style="margin: 20px 10px;">
+                            <input type="submit" name="submit" value="Send" class="buttonV" id="send_email" />
+                            </div>
 						</form>
-                        <div style="margin-left: calc( 50% + 5px);padding-top:80px;">
-                        <hr style="margin-bottom: 8px;" />
+                        <div style="margin-left: 10px;padding-top:10px;">
+                        
                         <b id="att" style="display: none;">Attachments :</b><span class="attachments"></span></div>
 					</div>
 
