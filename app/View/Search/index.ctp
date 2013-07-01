@@ -53,7 +53,7 @@ if($docs)
 if((isset($canView) && !isset($noView)) || $this->Session->read('admin'))
 {
 $uri = $_SERVER['REQUEST_URI'];    
-$uri = str_replace(array('/veritas/','veritas/','?order=document_type','&order=document_type','?order=description','&order=description','?order=title','&order=title','?order=added_by','&order=added_by','?order=`date`','&order=`date`','?order=%60date%60','&order=%60date%60','&ty=ASC','&ty=DESC'),array('','','','','','','','','',''),$uri);
+$uri = str_replace(array('/veritas/','veritas/','?order=document_type','&order=document_type','?order=description','&order=description','?order=title','&order=title','?order=addedBy','&order=addedBy','?order=`date`','&order=`date`','?order=%60date%60','&order=%60date%60','&ty=ASC','&ty=DESC'),array('','','','','','','','','',''),$uri);
 if(str_replace('search=','',$uri) == $uri)
 {
     $or = '?order=';
