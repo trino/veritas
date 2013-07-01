@@ -29,33 +29,8 @@ $(function(){
 <tr><td><b>End Date</b></td><td><input type="text" name="end_date" id="end_date" class="" /></td></tr>
 
 <tr><td colspan="2" class="add_more"></td></tr>
-<!--<tr><td colspan="2"><a href="javascript:void(0);" id="add_key"><strong>+ Add Key Contact</strong></a></td></tr>-->
-<tr><td colspan="2"><strong>Add Contacts</strong></td></tr>
-<tr><td colspan="2">
-<table>
-<?php 
-$c = 0;
-foreach($kc as $k)
-{
-    if($c==0)
-    {?>
-     <tr>   
-    <?php }
-    $c++;
-    ?>
+<tr><td colspan="2"><a href="javascript:void(0);" id="add_key"><strong>+ Add Key Contact</strong></a></td></tr>
 
-    <td>  <input type="checkbox" name="key_contact[]" value="<?php echo $k['Key_contact']['id'];?>" />  <?php echo $k['Key_contact']['name'];?></td>
-<?php 
-if($c%5==0)
-{
-    $c==0;
-    echo "</tr>";
-}
-}
-?>
-</tr>
-</table>
-</td></tr>
 <tr><td><div class="submit"><input type="submit" class="btn btn-primary" value="Add Job" name="submit"/></td></tr>
 
 </table>

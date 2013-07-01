@@ -11,7 +11,6 @@ class JobsController extends AppController
          $this->loadModel('Job');
          $this->loadModel('Member');
          $this->loadModel('Key_contact');
-         $this->loadModel('Job_contact');
          $this->loadModel('Jobmember');
          $this->loadModel('Document');
     }
@@ -146,15 +145,34 @@ class JobsController extends AppController
             $this->Job->create();
             $this->Job->save($arr);
             
-            $key['job_id'] = $this->Job->id;
-            foreach($_POST['key_contact'] as $k)
+            $job_id = $this->Job->id;
+            $key_title = $_POST['key_title'];
+            $key_name = $_POST['key_name'];
+            $key_cell = $_POST['key_cell'];
+            $key_email = $_POST['key_email'];
+            $key_company = $_POST['key_company'];
+            $key_number = $_POST['key_number'];
+            $key_type = $_POST['type'];
+            
+            for($i= 0; $i<count($key_title); $i++)
             {
-                $key['key_id'] = $k;
-                $this->Job_contact->create();
-                $this->Job_contact->save($key);
+              
+              $key['title'] = $key_title[$i];
+              $key['company'] = $key_company[$i];
+              $key['phone'] = $key_number[$i];
+              $key['cell'] = $key_cell[$i];
+              $key['email'] = $key_email[$i];
+              $key['name'] = $key_name[$i];
+              $key['job_id'] = $job_id;
+              $key['type'] = $key_type[$i];
+              
+              if($key_title[$i]!="")
+              {
+                $this->Key_contact->create();
+                $this->Key_contact->save($key);
+              } 
                 
             }
-                        
             $this->Session->setFlash('Data Saved Successfully');
             $this->redirect('index');
             
@@ -164,9 +182,7 @@ class JobsController extends AppController
      {
         if(!$this->Session->read('avatar'))
         $this->redirect('/admin');
-        $this->set('kc',$this->Key_contact->find('all')); 
-        $jc = $this->Job_contact->find('all',array('conditions'=>array('job_id'=>$id)));
-        $this->set('jc',$jc);   
+        
         if(isset($_POST['submit']))
         {
             $img=$_FILES['image']['name'];
@@ -251,16 +267,35 @@ class JobsController extends AppController
             $this->Job->saveField('date_end',$_POST['end_date']); 
             
             //Key Contacts
-            $this->Job_contact->deleteAll(array('job_id'=>$id));
-            $key['job_id'] = $id;
-            foreach($_POST['key_contact'] as $k)
+            $this->Key_contact->deleteAll(array('job_id'=>$id));
+            
+            $job_id = $id;
+            $key_title = $_POST['key_title'];
+            //var_dump($_POST); die();
+            $key_company = $_POST['key_company'];
+            $key_number = $_POST['key_number'];
+            $key_name = $_POST['key_name'];
+            $key_cell = $_POST['key_cell'];
+            $key_email = $_POST['key_email'];
+            $key_type = $_POST['type'];
+            
+            for($i= 0; $i<count($key_title); $i++)
             {
-                $key['key_id'] = $k;
-                $this->Job_contact->create();
-                $this->Job_contact->save($key);
+              $key['title'] = $key_title[$i];
+              $key['company'] = $key_company[$i];
+              $key['phone'] = $key_number[$i];
+              $key['cell'] = $key_cell[$i];
+              $key['email'] = $key_email[$i];
+              $key['name'] = $key_name[$i];
+              $key['type'] = $key_type[$i];
+              $key['job_id'] = $job_id;
+              if($key_title[$i]!="")
+              {
+                  $this->Key_contact->create();
+                  $this->Key_contact->save($key);
+              }
                 
             }
-            
              
             $this->Session->setFlash('Data Saved Successfully');
             $this->redirect('index'); 

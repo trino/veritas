@@ -35,40 +35,40 @@ $(function(){
 <tr><td><b>End Date</b></td><td><input type="text" class="" name="end_date" id="end_date" value="<?php echo $j['Job']['date_end']; ?>" /></td></tr>
 </table>
 </div>
-<div id="table">
-<table>
-<tr><td colspan="2"><strong>Add Contacts</strong></td></tr>
-<tr><td colspan="2">
-<table>
-<?php 
-$c = 0;
-foreach($jc as $j)
-{
-    $jcontact[] = $j['Job_contact']['key_id'];
-}
-foreach($kc as $k)
-{
-    if($c==0)
-    {?>
-     <tr>   
-    <?php }
-    $c++;
-    ?>
 
-    <td>  <input type="checkbox" name="key_contact[]" value="<?php echo $k['Key_contact']['id'];?>" <?php if(in_array($k['Key_contact']['id'], $jcontact)) echo "checked='checked'";?> />  <?php echo $k['Key_contact']['name'];?></td>
-<?php 
-if($c%5==0)
-{
-    $c==0;
-    echo "</tr>";
-}
-}
-?>
-</tr>
-</table>
+<div id="table">
+<h2>Contacts</h2>
+<table>
+<tr><td><?php foreach($keys as $k){ ?>
+                <table width="100%">
+                <tr>
+                    <td>Contacts Type</td>
+                    <td colspan="3"><select name="type[]" class="required">
+                            <option value="">Select Type</option>
+                            <option value="0"<?php if($k['Key_contact']['type']=='0')echo "Selected='selected'";?>>Key Contacts</option>
+                            <option value="1"<?php if($k['Key_contact']['type']=='1')echo "Selected='selected'";?>>Staff Contacts</option>
+                            <option value="2"<?php if($k['Key_contact']['type']=='2')echo "Selected='selected'";?>>Third Part Contacts</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                
+                <td><b>Name</b><br/><input type="text" name="key_name[]" class="" value="<?php echo $k['Key_contact']['name'];?>" style="width: 100px;" /></td>
+                <td><b>Title</b><br/><input type="text" name="key_title[]" class="" value="<?php echo $k['Key_contact']['title'];?>" style="width: 100px;" /></td>
+                <td><b>Cell Number</b><br/><input type="text" name="key_cell[]" class="" value="<?php echo $k['Key_contact']['cell'];?>" style="width: 100px;" /></td>
+                <td><b>Phone Number</b><br/><input type="text" name="key_number[]" class="" value="<?php echo $k['Key_contact']['phone'];?>" style="width: 100px;" /></td>
+                <td><b>Email</b><br/><input type="text" name="key_email[]" class="email" value="<?php echo $k['Key_contact']['email'];?>" style="width: 100px;" /></td>
+                <td><b>Company</b><br/><input type="text" name="key_company[]" class="" value="<?php echo $k['Key_contact']['company'];?>" style="width: 100px;" /> </td><td valign=""> <input type="button" onclick="$(this).parent().parent().parent().parent().remove();" class="btn btn-danger" value="Remove" style="margin-top:20px;"/></td></tr>
+                </table>
+
+<?php } ?>
 </td></tr>
+<tr><td colspan="2" class="add_more"></td></tr>
+<tr><td colspan="2"><a href="javascript:void(0);" id="add_key"><strong>+ Add Contact</strong></a></td></tr>
+
 </table>
 </div>
+
 <div class="submit"><input type="submit" class="btn btn-primary" value="Save Changes" name="submit"/></div>
 
 </form>
