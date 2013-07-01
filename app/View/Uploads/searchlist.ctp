@@ -9,7 +9,7 @@ hr{border-top:#313A43 1px solid;}
 
 
 </style>
-<div style="width: 1030px;font-weight:bold;margin-top:10px;margin-bottom:5px;"><div class="left" style="width:120px;">Job</div><div class="left" style="width:120px;margin-left:5px;">Title</div><div class="left" style="width:120px;margin-left:5px;">Type</div><div class="left" style="width:480px;margin-left:5px;">File</div><div class="left" style="width:100px;margin-left:5px;">Choose</div><div class="clearfix"></div></div>
+<div style="width: 1030px;font-weight:bold;margin-top:10px;margin-bottom:5px;font-size: 14px;"><div class="left" style="width:120px;">Job</div><div class="left" style="width:120px;margin-left:5px;">Title</div><div class="left" style="width:120px;margin-left:5px;">Type</div><div class="left" style="width:480px;margin-left:5px;">File</div><div class="left" style="width:100px;margin-left:5px;">Choose</div><div class="clearfix"></div></div>
 <?php
 //if(isset($name) && $name !="")
 if($this->Session->read('admin'))
@@ -163,19 +163,19 @@ else
                             {
                                 ?>
                                 
-                                <div  class="left" style="width:120px;"><?php echo $do['Document']['title'];?></div>
+                                <div  class="left" style="width:120px;margin-left:5px;"><?php echo $do['Document']['title'];?></div>
                             
-                                <div class="left" style="width:120px;">Documents</div>
+                                <div class="left" style="width:120px;margin-left:5px;">Documents</div>
                             
                             
                                 <?php
                                 foreach($documents as $dcs)
                                 {
                                     ?>
-                                    <div class="left" style="width:480px;">
+                                    <div class="left" style="width:480px;margin-left:5px;">
                                     <?php echo $dcs['Doc']['doc'];?>
                                     </div>
-                                    <div class="left" style="width:100px;"><input type="checkbox" class="doc" value="<?php echo $dcs['Doc']['doc'];?>" /></div>
+                                    <div class="left" style="width:100px;margin-left:5px;"><input type="checkbox" class="doc" value="<?php echo $dcs['Doc']['doc'];?>" /></div>
                                     <div style="clear:both;"></div>
                                     
                                     <?php
@@ -189,19 +189,19 @@ else
                             {
                                 ?>
                                 
-                                <div  class="left" style="width:120px;"><?php echo $do['Document']['title'];?></div>
+                                <div  class="left" style="width:120px;margin-left:5px;"><?php echo $do['Document']['title'];?></div>
                             
-                                <div class="left" style="width:120px;">Images</div>
+                                <div class="left" style="width:120px;margin-left:5px;">Images</div>
                                 
                             
                                 <?php
                                 foreach($images as $dcs)
                                 {
                                     ?>
-                                    <div class="left" style="width:480px;">
+                                    <div class="left" style="width:480px;margin-left:5px;">
                                         <?php echo $dcs['Image']['image'];?>
                                     </div>
-                                    <div class="left" style="width:100px;"><input type="checkbox" class="doc" value="<?php echo $dcs['Image']['image'];?>" /></div>
+                                    <div class="left" style="width:100px;margin-left:5px;"><input type="checkbox" class="doc" value="<?php echo $dcs['Image']['image'];?>" /></div>
                                     <div style="clear:both;"></div>
                                     
                                     <?php
@@ -215,18 +215,18 @@ else
                             {
                                 ?>
                                
-                                <div class="left" style="width:120px;"><?php echo $do['Document']['title'];?></div>
+                                <div class="left" style="width:120px;margin-left:5px;"><?php echo $do['Document']['title'];?></div>
                             
-                                <div class="left" style="width:120px;">Videos</div>
+                                <div class="left" style="width:120px;margin-left:5px;">Videos</div>
                                 
                             
                                 <?php
                                 foreach($videos as $dcs)
                                 {
                                     ?>
-                                    <div class="left" style="width:480px;">
+                                    <div class="left" style="width:480px;margin-left:5px;">
                                     <?php echo $dcs['Video']['video'];?></div>
-                                    <div class="left" style="width:120px;"><input type="checkbox" class="doc" value="<?php echo $dcs['Video']['video'];?>" /></div>
+                                    <div class="left" style="width:120px;margin-left:5px;"><input type="checkbox" class="doc" value="<?php echo $dcs['Video']['video'];?>" /></div>
                                     <div style="clear:both;"></div>
                                     
                                     <?php
