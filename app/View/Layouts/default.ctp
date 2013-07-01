@@ -470,16 +470,15 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 							
 							
 							<div class="left inputs">
-                                <div class="recipientsLine"  style="width: calc(100% - 6px);">
-                                    <div id="name" style="height: 19px; background: white; border: 1px solid #ccc;padding:2px 4px;margin-bottom: 7px;color:#AAA;"><a href="javascript:void(0);" id="contacts_modal" onclick="show_email();" class="email" style="color: #999;">Recipients</a></div>
+                                <div class="recipientsLine" >
+<div id="name" style="height:20px; background: white; border: 1px solid #ccc;padding:1px 4px 2px 4px;margin-bottom: 5px;width: calc(99% - 9px);color:#AAA;"><a href="javascript:void(0);" id="contacts_modal" onclick="show_email();" class="email" style="color: #999;">Recipients</a></div>
 <!--									<input type="text" name="name" id="name" placeholder="Recipients (Separate with comma)" class="required" />--> 
 								</div>
 							    <!--<div style="float:left;margin-left:10px;"><a href="javascript:void(0)" id="contacts_modal" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a></div><div style="clear:both;"></div>-->
 								<div class="subjectLine">
-									<input type="text" name="subject" placeholder="Subject Title" class="required" style="margin-bottom: 7px;width: calc(99% - 10px);" />
+									<input type="text" name="subject" placeholder="Subject Title" class="required" style="margin-bottom: 7px;width: calc(99% - 9px);" />
 								</div>
 								
-								<a href="javascript:void(0);" class="buttonV attachment"><i class="icon-book"></i> Attach Documents</a>
 								
 								<!--<div id="email" style="display: none;">
 									<?php foreach($mems as $m) {
@@ -513,14 +512,18 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
                                 
 							</div>
                             <div class="left msg">
-								<textarea placeholder="Instant Message - Type message here" name="message" class="required message" style="height:100%;"></textarea>
+<textarea placeholder="Instant Message - Type message here" name="message" class="required message" style="height:72%;"></textarea>
 							</div>
                             <div style="clear:both;"></div>
-                            <div style="margin: 20px 10px;">
-                            <input type="submit" name="submit" value="Send" class="buttonV" id="send_email" />
+                            <div style="margin: 0px 10px;">
+<input style="float:right;" type="submit" name="submit" value="Send" class="buttonV" id="send_email" />
+
+						<a href="javascript:void(0);" class="buttonV attachment" style="float:right;margin-right:8px;"><i class="icon-book"></i> Attach Documents</a>
+
+															
                             </div>
 						</form>
-                        <div style="margin-left: 10px;padding-top:10px;">
+                        <div style="padding-top:10px;">
                         
                         <b id="att" style="display: none;">Attachments :</b><span class="attachments"></span></div>
 					</div>
