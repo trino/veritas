@@ -10,7 +10,7 @@ class SearchController extends AppController
 	
 	            
 					
-        $this->set('base_url',$base_url);
+        //$this->set('base_url',$base_url);
         $this->set('type',$type);
         $this->loadModel('Doc');
         $this->loadModel('Image');
@@ -240,7 +240,7 @@ class SearchController extends AppController
                         $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'job_id IN'.$jid,'`date` LIKE "'.$from.'%"'),'order'=>$order,'limit'=>10);
                     }
                     else
-                    $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'job_id IN'.$jid,'`date` >='=>$from,'`date` <='=>$to),'order'=>$order,'limit'=>10);
+                        $this->paginate = array('conditions'=>array($arrs,'OR'=>array(array('addedBy'=>$this->Session->read('id')),array('addedBy'=>0)),'job_id IN'.$jid,'`date` >='=>$from,'`date` <='=>$to),'order'=>$order,'limit'=>10);
                 }
             }
             $docs = $this->paginate('Document');
