@@ -38,7 +38,7 @@ if($this->Session->read('admin'))
                         
                             
                             
-                            <div class="myclass" style="width: 1030px;">
+                            <div class="myclass" style="width: 1030px;font-size:13px;">
                             <div class="left" style="width:120px;"><?php echo stripslashes($q2['Job']['title']);?></div> 
                             <?php
                             $documents = $docs->find('all',array('conditions'=>array('document_id'=>$do['Document']['id'])));
@@ -104,7 +104,7 @@ if($this->Session->read('admin'))
                                 <div class="left" style="width:120px;margin-left:5px;"><?php echo $do['Document']['title'];?></div>
                                 
                                 <div class="left" style="width:120px;margin-left:5px;">Videos</div>
-                                <br />
+                                
                             
                                 <?php
                                 foreach($videos as $dcs)
@@ -154,7 +154,7 @@ else
                     foreach($q3 as $do)
                     {
                         ?>
-                        <div class="myclass" style="width:1030px;">
+                        <div class="myclass" style="width:1030px;font-size:13px;">
                         <div class="left" style="width:120px;"><?php echo stripslashes($q2['Job']['title']);?></div> 
                         <?php
                         

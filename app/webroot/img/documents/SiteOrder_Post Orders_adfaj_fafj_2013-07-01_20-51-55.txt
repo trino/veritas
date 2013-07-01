@@ -1,0 +1,28 @@
+make upload log report "+add more" line up with other text fields
+user search sometimes doesn’t work when 1 character
+
+edit user / all fields from add users
+do not display job if not assigned (go to job) - my mistake
+pagination issue with search when more than 1 page, next and prev error
+document search error when start date and end date is same
+change activity log to dashboard
+
+
+key contacts or staff contacts or third party contacts
+
+
+only admin can see client feedback
+male female icon or choose file.
+assign job to user pagination, add more fields email phone addresss
+add user firstname lastname, username (log in with username) - usenrame is unique
+report - change upload document change to "submit document" … change choose file to upload file
+add contacts - full name email address and username
+add to contacts - search for name auto populate
+attach files … filter by job and 
+
+ability to download video
+
+user can only change password…
+
+
+admin - ability to edit profile - poassword always enabled
