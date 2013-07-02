@@ -60,14 +60,14 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <script type="text/javascript">jwplayer.key="N+fGwqE9+uBPKzrjO6qyGHWiJJRmw0UtbEU0iA==";</script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
 	<link rel="shortcut icon" href="/img/favicon.ico" />
-	<script type="text/javascript">
-    window.onbeforeunload = function(e) {
-    $.ajax({
-       url: '<?php echo $base_url;?>admin/logout'
-    });
-    
+<!--script type="text/javascript">
+window.onbeforeunload = function(e) {
+$.ajax({
+url: '<?php echo $base_url;?>admin/logout'
+});
+
 };
-</script>
+</script-->
     <script type="text/javascript">
     
     $(function(){
@@ -588,7 +588,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 						</a>
 					</div>	
 					
-					<div class="v1ButtonBarB">
+			<!--			<div class="v1ButtonBarB">
 						<a href="<?php echo $base_url;?>keycontacts" class="fullLink">
 							<div  class="glassButton">
 							<div  class="full8ButtonB">
@@ -604,7 +604,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 							</div>
 						</a>
 					</div>				
-		<!--			<div class="v1ButtonBarB">
+				<div class="v1ButtonBarB">
 						<a href="" class="fullLink">
 							<div  class="glassButton">
 							<div  class="full8ButtonB">

@@ -83,7 +83,7 @@
     }
 </script>
 <div id="table">
-<form id="my_form" action="" method="post" enctype="multipart/form-data" onsubmit="return valid();">
+<form id="my_form"  autocomplete="off"  action="" method="post" enctype="multipart/form-data" onsubmit="return valid();">
 <table>
 <tr><td style="width:140px;"><b>First Name</b></td><td><input type="text" name="fname" id="fname" value="" class="required" /></td></tr>
 <tr><td style="width:140px;"><b>Last Name</b></td><td><input type="text" name="lname" id="lname" value="" class="required" /></td></tr>
