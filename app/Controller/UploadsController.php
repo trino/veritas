@@ -78,8 +78,9 @@ class UploadsController extends AppController
         $this->set('imgs',$imgs);
         $this->set('vdos',$vdos);
     }
-    function searchlist()
+    function searchlist($id=0)
     {
+        $this->set('jid',$id);
         $name = $_POST['name'];
         $this->layout = "modal_layout1";
         $job = $this->Job;

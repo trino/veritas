@@ -71,7 +71,26 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <script type="text/javascript">
     
     $(function(){
+        $('#filter').live('change',function(){
+        if($(this).val()!='')
+        {
+            $('.loads').text('Loading..');
+            var id = $(this).val();
+            var txt = $('.search').val();
+            $.ajax({
+                url: "<?php echo $base_url;?>uploads/searchlist/"+id,
+           type: "post",
+           data: "name="+txt,
+           success:function(msg)
+           {
+                $('.loads').text('Load');
+                $('.searchlist').html(msg);
+           } 
+            });
+            
+        }
         
+    });
         $('.search').live('change',function(){
         var name = $(this).val();
         
@@ -88,6 +107,27 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
            } 
             
         });
+    });
+    $('#filter2').live('change',function(){
+        var id = $(this).val();
+        if($(this).val()!='')
+        {
+            var name = $('.search2').val();
+        
+        $('.loads').text('Loading..');
+        $.ajax({
+            
+           url: "<?php echo $base_url;?>members/searchlist/"+id,
+           type: "post",
+           data: "name="+name,
+           success:function(msg)
+           {
+                $('.loads').text('Load');
+                $('.searchlist').html(msg);
+           } 
+            
+        });
+        }
     });
         $('.search2').live('change',function(){
             
