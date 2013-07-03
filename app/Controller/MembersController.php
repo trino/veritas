@@ -19,6 +19,7 @@ class MembersController extends AppController
     }
     public function loadall()
     {
+        
         $this->layout = 'modal_layout';
         $this->loadModel('Job');
         $this->loadModel('Jobmember');
@@ -44,8 +45,9 @@ class MembersController extends AppController
         $this->set('jm',$this->Jobmember);
         
     }
-    function searchlist()
+    function searchlist($id=0)
     {
+        $this->set('jid',$id);
         $name = $_POST['name'];
         $this->set('name',$name);        
         $this->layout = 'modal_layout';

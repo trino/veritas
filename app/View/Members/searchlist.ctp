@@ -3,6 +3,12 @@
 if($job)
 foreach($job as $j)
 {
+    if($jid)
+                    {
+                        if($jid!=$j['Job']['id'])
+                        continue;
+                        
+                    }
     ?>
     <div class="lists loading" style="width: 770px;font-size:13px;">
         
@@ -17,7 +23,12 @@ foreach($job as $j)
             <?php
             foreach($q as $mem)
             {
-                $m = $member->find('first',array('conditions'=>array('id'=>$mem['Jobmember']['member_id'],'full_name LIKE "%'.$name.'%"')));
+                if($jid && !$name)
+                {
+                    $m = $member->find('first',array('conditions'=>array('id'=>$mem['Jobmember']['member_id'])));
+                }
+                else
+                $m = $member->find('first',array('conditions'=>array('id'=>$mem['Jobmember']['member_id'],'OR'=>array(array('full_name LIKE "%'.$name.'%"'),array('fname LIKE "%'.$name.'%"'),array('lname LIKE "%'.$name.'%"'),array('email LIKE "%'.$name.'%"')))));
                 if($m){
                 
                 if(!$this->Session->read('admin')){

@@ -9,6 +9,7 @@ hr{border-top:#313A43 1px solid;}
 
 
 </style>
+
 <div style="width: 1030px;font-weight:bold;margin-top:10px;margin-bottom:5px;font-size: 14px;"><div class="left" style="width:120px;">Job</div><div class="left" style="width:120px;margin-left:5px;">Title</div><div class="left" style="width:120px;margin-left:5px;">Type</div><div class="left" style="width:480px;margin-left:5px;">File</div><div class="left" style="width:100px;margin-left:5px;">Choose</div><div class="clearfix"></div></div>
 <?php
 //if(isset($name) && $name !="")
@@ -17,10 +18,22 @@ if($this->Session->read('admin'))
     
                 $q12 = $job->find('all');
                 foreach($q12 as $q2){
+                    if($jid)
+                    {
+                        if($jid!=$q2['Job']['id'])
+                        continue;
+                    }
+                    
                 ?>
                 <!--<h3 style="font-size: 15px;"><?php echo stripslashes($q2['Job']['title']);?></h3>-->
                 
                 <?php
+                
+                if($jid && !$name)
+                {
+                    $q3 = $doc->find('all',array('conditions'=>array('job_id'=>$q2['Job']['id'],'draft'=>0)));
+                }
+                else
                 $q3 = $doc->find('all',array('conditions'=>array('job_id'=>$q2['Job']['id'],'draft'=>0,'title LIKE "%'.$name.'%"')));
                 if($q3)
                 {
@@ -142,11 +155,21 @@ else
         {
             foreach($job_array as $j)
             {
+                if($jid)
+                    {
+                        if($jid!=trim($j))
+                        continue;
+                    }
                 $q2 = $job->find('first',array('conditions'=>array('id'=>trim($j))));
                 ?>
                 <!--<h3 style="font-size: 15px;"><?php echo stripslashes($q2['Job']['title']);?></h3>-->
                 
                 <?php
+                if($jid && !$name)
+                {
+                    $q3 = $doc->find('all',array('conditions'=>array('job_id'=>$q2['Job']['id'],'draft'=>0)));
+                }
+                else
                 $q3 = $doc->find('all',array('conditions'=>array('job_id'=>$q2['Job']['id'],'draft'=>0,'title LIKE "%'.$name.'%"')));
                 if($q3)
                 {
