@@ -17,7 +17,7 @@ if($this->Session->read('avatar'))
 					'Add Contact',
 					'/contacts/add',
                     array('class'=>'btn btn-primary reg-company')
-				);
+				) . "<br><br>";
 			?>
             <?php 
    }

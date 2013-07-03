@@ -133,7 +133,7 @@ class JobsController extends AppController
             } 
                 }
                 else
-                $img = 'generic_job.jpg';
+                $img = 'afimaclogo.png';
                 
             //$image=$_FILES['image']['name'];
             $arr['title'] = $_POST['title'];

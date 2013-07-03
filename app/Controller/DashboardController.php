@@ -312,7 +312,7 @@ class DashboardController extends AppController
                 $ch2 = $this->check_password($_POST['old_password']);
                 if(!$ch2)
                 {
-                    $this->Session->setFlash('Old Password Do Not Match');
+                    $this->Session->setFlash('Old Password Does Not Match!');
                     $this->redirect('settings');
                 }
             }
