@@ -41,7 +41,7 @@ hr{border-top:#313A43 1px solid;}
             <?php
             foreach($job_array as $j)
             {
-                $q2 = $job->find('first',array('conditions'=>array('id'=>trim($j))));
+                $q2 = $job_model->find('first',array('conditions'=>array('id'=>trim($j))));
                 if($q2)
                 {
                     ?>
