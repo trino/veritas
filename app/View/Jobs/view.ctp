@@ -241,37 +241,37 @@ if($this->Session->read('admin'))
         $m++;
         if($m==1)
         {
-            $arr[]=$k['Key_contact']['type'];  
+            $arr[]=$k['Job_contact']['type'];  
             
         ?>
         
-        <tr style="background: grey;color:#FFF;"><td colspan="6"><?php if($k['Key_contact']['type']=='0'){ echo "<strong>Key Contacts</strong>"; }elseif($k['Key_contact']['type']=='1')echo "<strong>Staff Contacts</strong>"; else echo "<strong>Third Party Contacts</strong>"; ?></td></tr>
+        <tr style="background: grey;color:#FFF;"><td colspan="6"><?php if($k['Job_contact']['type']=='0'){ echo "<strong>Key Contacts</strong>"; }elseif($k['Job_contact']['type']=='1')echo "<strong>Staff Contacts</strong>"; else echo "<strong>Third Party Contacts</strong>"; ?></td></tr>
         <tr style="border-bottom: 1px solid grey;" ><td><strong>Name</strong></td><td><strong>Title</strong></td><td><strong>Cell Number</strong></td><td><strong>Phone Number</strong></td><td><strong>Email</strong></td><td><strong>Company</strong></td></tr>
         <?php 
         }
         else
         {
-             if(!in_array($k['Key_contact']['type'],$arr))
+             if(!in_array($k['Job_contact']['type'],$arr))
             {
-                $arr[]=$k['Key_contact']['type'];
+                $arr[]=$k['Job_contact']['type'];
                 ?>
               </table>
               
                <table width="100%" style=" border: 1px solid #9D9C9C; clear: both; margin-bottom: 15px;"> 
-              <tr style="background: grey;color:#FFF;"><td colspan="6"><?php if($k['Key_contact']['type']=='0'){ echo "<strong>Key Contacts</strong>"; }elseif($k['Key_contact']['type']=='1')echo "<strong>Staff Contacts</strong>"; else echo "<strong>Third Party Contacts</strong>"; ?></td></tr>  
+              <tr style="background: grey;color:#FFF;"><td colspan="6"><?php if($k['Job_contact']['type']=='0'){ echo "<strong>Key Contacts</strong>"; }elseif($k['Job_contact']['type']=='1')echo "<strong>Staff Contacts</strong>"; else echo "<strong>Third Party Contacts</strong>"; ?></td></tr>  
               <tr style="border-bottom: 1px solid grey;"><td><strong>Name</strong></td><td><strong>Title</strong></td><td><strong>Cell Number</strong></td><td><strong>Phone Number</strong></td><td><strong>Email</strong></td><td><strong>Company</strong></td></tr>
          <?php       
             }
         }
         ?>
-                
+            <?php $ks = $key->findById($k['Job_contact']['key_id']); ?>  
                 <tr style="border-bottom: 1px solid grey;">
-                <td><?php echo $k['Key_contact']['name'];?></td>
-                <td><?php echo $k['Key_contact']['title'];?></td>
-                <td><?php echo $k['Key_contact']['cell'];?></td>
-                <td><?php echo $k['Key_contact']['phone'];?></td>
-                <td><?php echo $k['Key_contact']['email'];?></td>
-                <td><?php echo $k['Key_contact']['company'];?></td>
+                <td><?php echo $ks['Key_contact']['name'];?></td>
+                <td><?php echo $ks['Key_contact']['title'];?></td>
+                <td><?php echo $ks['Key_contact']['cell'];?></td>
+                <td><?php echo $ks['Key_contact']['phone'];?></td>
+                <td><?php echo $ks['Key_contact']['email'];?></td>
+                <td><?php echo $ks['Key_contact']['company'];?></td>
                 </tr>
                 
 

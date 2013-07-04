@@ -17,6 +17,19 @@ class DashboardController extends AppController
         }
         
     }
+    function upload()
+    {
+        if($this->Session->read('user'))
+        {
+        $this->loadModel('Member');
+        $u = $this->Member->findById($this->Session->read('id'));
+        return $u['Member']['canUpdate'];
+        }
+        else
+            return '0';
+        
+        
+    }
     public function index()
     {
         
