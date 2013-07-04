@@ -42,6 +42,7 @@ $(function(){
 <table>
 <?php 
 $c = 0;
+$jcontact = array();
 foreach($jc as $j)
 {
     $jcontact[] = $j['Job_contact']['key_id'];

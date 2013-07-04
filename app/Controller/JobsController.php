@@ -150,6 +150,8 @@ class JobsController extends AppController
             foreach($_POST['key_contact'] as $k)
             {
                 $key['key_id'] = $k;
+                $t = $this->Key_contact->findById($k);
+                $key['type'] = $t['Key_contact']['type'];
                 $this->Job_contact->create();
                 $this->Job_contact->save($key);
                 
@@ -256,6 +258,8 @@ class JobsController extends AppController
             foreach($_POST['key_contact'] as $k)
             {
                 $key['key_id'] = $k;
+                $t = $this->Key_contact->findById($k);
+                $key['type'] = $t['Key_contact']['type'];
                 $this->Job_contact->create();
                 $this->Job_contact->save($key);
                 
@@ -414,7 +418,8 @@ class JobsController extends AppController
         $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','job_id'=>$id))));
         $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','job_id'=>$id))));
         $this->set('report',$this->Document->find('count',array('conditions'=>array('document_type'=>'report','job_id'=>$id))));
-        $this->set('keys', $this->Key_contact->find('all', array('conditions'=>array('job_id'=>$id),'order'=>'type')));
+        $this->set('key',$this->Key_contact);
+        $this->set('keys', $this->Job_cintact->find('all', array('conditions'=>array('job_id'=>$id),'order'=>'type')));
         $this->set('member',$this->Member->find('all'));
         $this->set('jobmember',$this->Jobmember->find('all'));
     }

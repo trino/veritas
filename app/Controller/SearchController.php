@@ -6,11 +6,9 @@ class SearchController extends AppController
     
     public function index($type = '',$job_id=0)
     {
-	
-	
-	            
+	  
 					
-        $this->set('base_url',$base_url);
+        //$this->set('base_url',$base_url);
         $this->set('type',$type);
         $this->loadModel('Doc');
         $this->loadModel('Image');
