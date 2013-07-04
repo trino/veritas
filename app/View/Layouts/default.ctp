@@ -732,7 +732,7 @@ url: '<?php echo $base_url;?>admin/logout'
                                         {
                                             if(str_replace(',','',$job2)!=$job2)
                                             {
-                                                $ur = $base_url.'jobs';    
+                                                $ur = $base_url.'jobs?activity_log=1';    
                                             }
                                             else
                                             $ur = $ur = $base_url.'uploads/upload/'.$job2.'/activity_log';
