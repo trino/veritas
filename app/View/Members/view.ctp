@@ -16,7 +16,7 @@
 
 <table>
 <tr><td style="width:140px;"><b>Full Name</b></td><td> <?php echo $profile['Member']['fname'].' '.$profile['Member']['lname'];?></td></tr>
-<tr><td><b></b></td><td> <img src="<?php echo $base_url."img/uploads/".$profile['Member']['image'];?>" /></td></tr>
+<tr><td><b></b></td><td> <img width=100 src="<?php echo $base_url."img/uploads/".$profile['Member']['image'];?>" /></td></tr>
 <tr><td><b>Username</b></td><td> <?php echo $profile['Member']['full_name'];?></td></tr>
 <tr><td><b>Title</b></td><td> <?php echo $profile['Member']['title'];?></td></tr>
 <tr><td><b>Address</b></td><td> <?php echo $profile['Member']['address'];?></td></tr>

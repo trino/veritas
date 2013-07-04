@@ -4,6 +4,7 @@ class MembersController extends AppController
      public $paginate = array(
         'limit' => 10
     );
+    var $components = array('Email');
     public function index()
     {
         $this->loadModel('Jobmember');
@@ -369,6 +370,33 @@ class MembersController extends AppController
                 $jarr['member_id'] = $id;
                 $this->Jobmember->save($jarr);
             }
+            if($_POST['email']!= "")
+            {   
+                if($_SERVER['SERVER_NAME']=='localhost')
+                   $base_url = "http://localhost/veritas/";
+               else
+                   {
+                       $base_url =         str_replace('//','___',$_SERVER['SERVER_NAME']);
+                       $base_url =  str_replace('/',' ',$_SERVER['SERVER_NAME']);
+                       $base_url = trim($base_url);
+                       $base_url = str_replace(' ','/',$base_url);
+                       $base_url = str_replace('___','//',$base_url);
+                       $base_url = $base_url.'/';
+                   }
+                $emails = new CakeEmail();
+                $emails->from(array('noreply@veritas.com'=>'Veritas'));
+                
+                $emails->subject("New Account Created");
+                $emails->emailFormat('html');
+                $message = "Hi there,<br/>
+                            A new account has been created for you in veritas.<br/>
+                            Your Login Detail:<br/>
+                            Username:".$_POST['email']."<br/>
+                            Password:".$_POST['password']."<br/>
+                            Please <a href='".$base_url."'>Click Here</a> to login.";
+                $emails->to($_POST['email']);
+                $emails->send($message);
+            }
             $this->redirect('index');
              
         }
@@ -671,6 +699,7 @@ class MembersController extends AppController
             {
                 $this->Session->email($_POST['email']);
             }
+            
             
             $this->Session->setFlash('Data Saved Successfully.');
             $this->redirect('index');

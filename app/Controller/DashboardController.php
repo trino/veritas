@@ -17,6 +17,19 @@ class DashboardController extends AppController
         }
         
     }
+    function upload()
+    {
+        if($this->Session->read('user'))
+        {
+        $this->loadModel('Member');
+        $u = $this->Member->findById($this->Session->read('id'));
+        return $u['Member']['canUpdate'];
+        }
+        else
+            return '0';
+        
+        
+    }
     public function index()
     {
         
@@ -312,7 +325,7 @@ class DashboardController extends AppController
                 $ch2 = $this->check_password($_POST['old_password']);
                 if(!$ch2)
                 {
-                    $this->Session->setFlash('Old Password Do Not Match');
+                    $this->Session->setFlash('Old Password Does Not Match!');
                     $this->redirect('settings');
                 }
             }

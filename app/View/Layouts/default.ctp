@@ -21,6 +21,7 @@ $mems = $this->requestAction($base_url.'/dashboard/get_email_list');
 $ad = $this->requestAction($base_url.'/dashboard/get_user');
 $jobs = $this->requestAction($base_url.'/dashboard/get_jobs');
 $job2 = $this->requestAction($base_url.'/dashboard/get_job2');
+$upload = $this->requestAction($base_url.'/dashboard/upload');
 //echo  $base_url;
 $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
 ?>
@@ -614,7 +615,7 @@ url: '<?php echo $base_url;?>admin/logout'
 							</div>
 						</a>
 					</div>		
-
+<?php if($this->Session->read('admin') || $upload=='1'){?>
                     <div class="v1ButtonBarB">
 						<a href="<?php echo $base_url;?>uploads/go" class="fullLink">
 							<div  class="glassButton">
@@ -631,7 +632,7 @@ url: '<?php echo $base_url;?>admin/logout'
 							</div>
 						</a>
 					</div>	
-					
+<?php }?>					
 			<!--			<div class="v1ButtonBarB">
 						<a href="<?php echo $base_url;?>keycontacts" class="fullLink">
 							<div  class="glassButton">
