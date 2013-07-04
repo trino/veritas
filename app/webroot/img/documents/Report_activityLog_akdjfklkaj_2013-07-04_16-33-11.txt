@@ -1,0 +1,68 @@
+> get rid of name, email (for booking ID) – use swiss chalet style page for name, email... instead view reservation leads to a page with digital receipt and reservation details with 2 buttons as “I am the host” and "I am a guest”
+https://web.swisschaletordering.com/Exit41Online/service-mode.htm
+> then proceed with name and email
+> make home page even more attractive
+> popular restaurants, menu items under the search/blue buttons
+> page title – change to dine n dash
+
+Restaurant Profile Page
+> make more attractive
+> add option for more pictures for the restaurant, promotions
+> add map (right side)
+> featured items (promotions) that restaurant selects
+> promotions (% discount if purchase is over $X dollars) -  Entices users to order through us, because it saves them time and money.
+
+Live Res Page
+> move all text to left of boxes
+> make more attractive, maybe have picture on right side with tip for site
+> drop down for party size, not manditory (1-25)
+
+Menu – make look better
+> 2 columns
+> remove served in time
+> instead of add button, have a plus/minus button
+> extra options, select more than 1 option, checkboxes
+> description in pop up similar to question mark that already exists
+> vegetarian/spicy selection
+> add/edit menu image
+> receipt scroll with browser
+
+https://www.grubhub.com/
+Confirmation Page
+> take out CC
+> add booking ID
+> add email the booking ID to guests option
+
+Emails
+> reservation details in email
+> logo in the email
+> reservation details always include HOSTS’ name
+> change email make it look more professional like grubhub
+
+Restaurant End
+> reorganize
+> fix notifications, can’t have notification for every change in order, rather a notification for reservation made, fix layout of order details page (organize food to be in 1 section rather than spread out, think about it from restaurants perspective.
+> take out cc info
+
+Reservation Manager
+> take out cancelled reservations from list (maybe have a page to view cancelled reservations)
+> add calendar with reservations
+> take out already passed reservations
+> reservation history
+> when you change the order details page, can you make the page that prints the order similar to the new order detail page
+
+ADMIN PAGE
+> show all reservations
+> stats per month of restaurant reservations (with history ie previous month)
+
+Misc.
+FAQ - Coming soon
+Terms - Generic
+"disclaimer - 
+Allergy & dietary information
+
+Dine N' Dash tries to accurately copy the item descriptions, allergy information, ingredient information and other information relating to the contents of dishes (""Dietary Information"") from the menus that are provided to us by our partner restaurants.
+
+However, it is the restaurants themselves that prepare the dishes, and are responsible for providing this Dietary Information and ensuring that it is factually accurate. Please use the comments box to specify particular allergies or dietary requirements.
+
+If you are in any doubt about the presence of allergens, the contents of a particular dish or any other Dietary Information, you should confirm with the restaurant directly before ordering from Dine N' Dash."

@@ -189,8 +189,9 @@ foreach($all as $a){
             else
             $url = 'http://'.$_SERVER['SERVER_NAME'].'/img/documents/'.$doc;
             $path = "https://docs.google.com/viewer?url=".$url;
+            $path = $base_url.'uploads/download/'.$doc;
             ?>
-            <tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a href="<?php echo $path;?>">View</a></td></tr>
+            <tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a href="<?php echo $path;?>">Download</a></td></tr>
             <?php
         }
         else

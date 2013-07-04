@@ -64,7 +64,7 @@ $ad = $this->requestAction($base_url.'/dashboard/get_user');
         if(!$this->Session->read('admin'))
         {
             ?>
-            <div class="admin">
+            <div class="admin" style="display: none;">
             <div class="title"><b>Administrator</b></div>
             <div class="lists loading" style="width: 300px;">
             <div style="float:right;"><input type="checkbox" class="<?php echo $ad['User']['name_avatar']."__0__".$ad['User']['email']; ?>" /></div>

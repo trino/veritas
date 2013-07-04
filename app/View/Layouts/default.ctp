@@ -124,6 +124,7 @@ url: '<?php echo $base_url;?>admin/logout'
            {
                 $('.loads').text('Load');
                 $('.searchlist').html(msg);
+                $('.admin').show();
            } 
             
         });
@@ -141,6 +142,7 @@ url: '<?php echo $base_url;?>admin/logout'
            data: "name="+name,
            success:function(msg)
            {
+                $('.admin').show();
                 $('.loads').text('Load');
                 $('.searchlist').html(msg);
            } 
@@ -238,12 +240,13 @@ url: '<?php echo $base_url;?>admin/logout'
     	       $('#recipients').val($('#recipients').val().replace(ar[0]+',',''));
                if($('#name').html().replace(' ','') == '' || $('#name').html().replace(' ','') == ' ' )
                {
+                $('#name').html('<a href="javascript:void(0);" id="contacts_modal" onclick="show_email();" class="email" style="color: #999;">Recipients</a>');
                 $('#send_email').attr('disabled','disabled');
                }
            }
            
         });
-        $('#contacts_modal').click(function(){
+        $('#contacts_modal').live('click',function(){
          $('.dialog-modals').load('<?php echo $base_url.'members/loadall';?>');
                $('.dialog-modals').dialog({
                     
@@ -271,6 +274,7 @@ url: '<?php echo $base_url;?>admin/logout'
 	       $('#recipients').val($('#recipients').val().replace(ar[0]+',',''));
            if($('#name').html().replace(' ','') == '' || $('#name').html().replace(' ','') == ' ' )
            {
+            $('#name').html('<a href="javascript:void(0);" id="contacts_modal" onclick="show_email();" class="email" style="color: #999;">Recipients</a>');
             $('#send_email').attr('disabled','disabled');
            }
            
@@ -734,7 +738,7 @@ url: '<?php echo $base_url;?>admin/logout'
                                             
                                         } 
                                         else
-                                        $ur = $base_url.'jobs';
+                                        $ur = $base_url.'jobs?activity_log=1';
                                     }
                                     ?>
 						<a href="<?php echo $ur?>" class="fullLink">

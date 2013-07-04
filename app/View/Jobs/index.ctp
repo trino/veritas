@@ -131,7 +131,12 @@ foreach($job as $j)
         <?php echo $this->Html->link('View','/jobs/view/'.$j['Job']['id'],array('class'=>'btn btn-primary')); ?>
            <?php 
             if($this->Session->read('upload')=='1' || $this->Session->read('admin'))
+            {
+            if(!isset($_GET['activity_log']))    
             echo $this->Html->link('Quick Upload','/uploads/upload/'.$j['Job']['id'],array('class'=>'btn btn-primary'))." ";
+            else
+             echo $this->Html->link('Quick Upload','/uploads/upload/'.$j['Job']['id'].'/activity_log',array('class'=>'btn btn-primary'))." ";
+            }
         	
     if($this->Session->read('avatar'))
     {

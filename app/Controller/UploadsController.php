@@ -358,7 +358,14 @@ class UploadsController extends AppController
                 if($_SERVER['SERVER_NAME']=='localhost')
                     $base_url = "http://localhost/veritas/";
                 else
-                    $base_url ="/";
+                    {
+                        $base_url =	 str_replace('//','___',$_SERVER['SERVER_NAME']);
+                        $base_url =  str_replace('/',' ',$_SERVER['SERVER_NAME']);
+                        $base_url = trim($base_url);
+                        $base_url = str_replace(' ','/',$base_url);
+                        $base_url = str_replace('___','//',$base_url);
+                        $base_url = $base_url.'/';
+                    }
                 
                 
                 foreach($mails as $m)
@@ -382,14 +389,14 @@ class UploadsController extends AppController
                         if($_POST['document_type']== 'evidence')
                             $message="Job: ".$job_title."<br/>
                             Document: ".$arr['title']."<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
-                            Upload Date: ".date('Y-m-d')."<br/> Please <a href='".$base_url."'>Click Here</a> to Login<br><br>- The Veritas Team";
+                            Upload Date: ".date('Y-m-d')."<br/> Please <a href='".$base_url."uploads/view_detail/".$eid."'>Click Here</a> to Login<br><br>- The Veritas Team";
                         else
                             $message="
                             Job: ".$job_title."<br/>
                             Document: ".$arr['title']."<br/>
                             Who Uploaded: ".$this->Session->read('username')."<br/>
                             Upload Date: ".date('Y-m-d')."
-                            <br/> Please <a href='".$base_url."'>Click Here</a> to Login<br><br>- The Veritas Team";
+                            <br/> Please <a href='".$base_url."uploads/view_detail/".$eid."'>Click Here</a> to Login<br><br>- The Veritas Team";
                         if($to){
                         $checks = $this->Member->find('first',array('conditions'=>array('email'=>$to)));
                         $check=0;
@@ -436,6 +443,9 @@ class UploadsController extends AppController
                     $this->Video->deleteAll(array('document_id'=>$id));
                     $source=$_FILES['document_'.$i]['tmp_name'];
                     $rand = rand(100000,999999);
+                    $whiteSpace = '';
+                $pattern = '/[^a-zA-Z0-9-_'  . $whiteSpace . ']/u';
+                $rand = preg_replace($pattern, '', (string) $rand);
                     $ext_arr = explode('.',$_FILES['document_'.$i]['name']);
                     $extn = end($ext_arr);
                     $img = $rand.'.'.end($ext_arr);
@@ -535,6 +545,7 @@ class UploadsController extends AppController
         }
         if(isset($_POST['document_type']))
         {
+            //var_dump($_FILES);die();
             $uri = $_SERVER['REQUEST_URI'];
                 $uri = str_replace('/',' ',$uri);
                 $uri = str_replace(' ','/',trim($uri));
@@ -596,11 +607,28 @@ class UploadsController extends AppController
                  $adminEmail = $aE['User']['email'];
                 if($_SERVER['SERVER_NAME']=='localhost')
                     $base_url = "http://localhost/veritas/";
-                else
-                    $base_url =	 $_SERVER['SERVER_NAME'];
+                else{
+                        $base_url =	 str_replace('//','___',$_SERVER['SERVER_NAME']);
+                        $base_url =  str_replace('/',' ',$_SERVER['SERVER_NAME']);
+                        $base_url = trim($base_url);
+                        $base_url = str_replace(' ','/',$base_url);
+                        $base_url = str_replace('___','//',$base_url);
+                        $base_url = $base_url.'/';
+                        
+                    }
                 
                 
-                foreach($mails as $m)
+                
+                
+            //Email Ends// 
+            $arr['date'] = date('Y-m-d H:i:s');
+            $arr['job_id'] = $_POST['job'];
+            $arr['addedBy'] = $id;
+            $this->Document->create();
+            $this->Document->save($arr);
+            $id=$this->Document->id;
+            //var_dump($mails);die();
+            foreach($mails as $m)
                 {
                     $mem_id = $m['Jobmember']['member_id'];
                     if($emailupload = $this->Emailupload->findByMemberId($mem_id))
@@ -618,7 +646,7 @@ class UploadsController extends AppController
                             $message="
 							Job: ".$job_title."<br/>
                             Document: ".$arr['title']."<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
-                            Upload Date: ".date('Y-m-d')."<br/><a href='".$base_url."'>Click Here</a> to login and view the document.";
+                            Upload Date: ".date('Y-m-d')."<br/><a href='".$base_url."uploads/view_detail/".$id."'>Click Here</a> to login and view the document.";
                         else
                             $message="
                             Job: ".$job_title."<br/>
@@ -626,7 +654,8 @@ class UploadsController extends AppController
                             Who Uploaded: ".$this->Session->read('username')."<br/>
                             Upload Date: ".date('Y-m-d')."
 
-                            <br/><a href='".$base_url."'>Click Here</a> to login and view the document.";
+                            <br/><a href='".$base_url."uploads/view_detail/".$id."'>Click Here</a> to login and view the document.";
+                            
                         if($to)
                         {
                             $checks = $this->Member->find('first',array('conditions'=>array('email'=>$to)));
@@ -640,6 +669,7 @@ class UploadsController extends AppController
                         }    
                         if($check==1)
                         {
+                            //die($to);
                             $emails->to($to);
                             if($to != $this->Session->read('email'))
                             $emails->send($message);
@@ -649,14 +679,6 @@ class UploadsController extends AppController
                         }
                     }    
                 }
-                
-            //Email Ends// 
-            $arr['date'] = date('Y-m-d H:i:s');
-            $arr['job_id'] = $_POST['job'];
-            $arr['addedBy'] = $id;
-            $this->Document->create();
-            $this->Document->save($arr);
-            $id=$this->Document->id;
             if($_POST['document_type']== 'report')
             {
                 $activity['document_id'] = $id;
@@ -702,7 +724,7 @@ class UploadsController extends AppController
                             
                             Job: ".$job_title."<br/>
                             Document: ".$arr['title']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
-                           Upload Date: ".date('Y-m-d')."<br/><a href='".$base_url."'>Click Here</a> to login and view the document.";
+                           Upload Date: ".date('Y-m-d')."<br/><a href='".$base_url."uploads/view_detail/".$id."'>Click Here</a> to login and view the document.";
 						   
                         $emails->to($qa['User']['email']);
                             $emails->send($message);
@@ -756,6 +778,9 @@ class UploadsController extends AppController
                 $fname = str_replace(' ',"_",$fname);
                 $fname = urlencode($fname);
                 $rand = $arr['title'].$subname."_".$fname."_".date('Y-m-d_H-i-s');
+                $whiteSpace = '';
+                $pattern = '/[^a-zA-Z0-9-_'  . $whiteSpace . ']/u';
+                $rand = preg_replace($pattern, '', (string) $rand);
                 $ext_arr = explode('.',$_FILES['document_'.$i]['name']);
                 $extn = end($ext_arr);
                 $img = $rand.'.'.end($ext_arr);
