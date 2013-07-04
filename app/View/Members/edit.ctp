@@ -60,8 +60,8 @@ $(function(){
 <tr><td style="width:140px;"><b>Last Name</b></td><td><input type="text" name="lname" id="lname" value="<?php echo $m['Member']['lname'];?>" class="" /></td></tr>
 <tr><td style="width:140px;"><b>Username</b></td><td><input type="text" name="full_name" id="full_name" value="<?php echo $m['Member']['full_name'];?>" class="required" onchange="check_name()" /><span class="response1"></span></td></tr>
 <!--<tr><td><b>Avatar</b></td><td><input type="text" name="avatar" value="<?php echo $m['Member']['name_avatar'];?>" class="required" /></td></tr>-->
-<tr><td><b>Title</b></td><td><input type="text" name="title" value="<?php echo $m['Member']['title'];?>" class="required" /></td></tr>
-<tr><td><b>Address</b></td><td><input type="text" name="address" value="<?php echo $m['Member']['address'];?>" class="required" /></td></tr>
+<tr><td><b>Title</b></td><td><input type="text" name="title" value="<?php echo $m['Member']['title'];?>" class="" /></td></tr>
+<tr><td><b>Address</b></td><td><input type="text" name="address" value="<?php echo $m['Member']['address'];?>" class="" /></td></tr>
 <tr><td><b>Email</b></td><td><input type="text" name="email" value="<?php echo $m['Member']['email'];?>" class="" /></td></tr>
 <tr><td><b>Image:</b></td><td><img src="<?php echo $base_url;?>img/uploads/male.png" style="width: 60px; height:60px;" /> <input type="radio" name="img_gender" value="male.png" <?php if($m['Member']['image'] == 'male.png'){?>checked="checked"<?php }?> /> &nbsp; &nbsp;<img src="<?php echo $base_url;?>img/uploads/female.png" style="width: 60px; height:60px;" /> <input type="radio" <?php if($m['Member']['image'] == 'female.png'){?>checked="checked"<?php }?> name="img_gender" value="female.png" /> &nbsp; &nbsp;<input type="file" class="" name="image" /> <?php if($m['Member']['image'] == 'male.png' || $m['Member']['image'] == 'female.png'){}else{?><img src="<?php echo $base_url."img/uploads/".$m['Member']['image'];?>" /><?php }?></td></tr>
 <tr><td><b>Phone</b></td><td><input type="text" name="phone" value="<?php echo $m['Member']['phone'];?>" /></td></tr>

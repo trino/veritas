@@ -11,6 +11,50 @@ hr{border-top:#313A43 1px solid;}
 </style>
 
 <input type="text" value="" class="search" placeholder="Search Documents" style="margin: 0;" /> <a href="javascript:void(0)" class="btn btn-inverse loads" style="color: #fff;">Load</a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong>Filter By Job : </strong><?php if($this->Session->read('admin')){
+    $jo = $job->find('all');
+    if($jo){
+        ?>
+        <select id="filter">
+        <option value="">Select Job</option>
+        <?php
+    foreach($jo as $jj)
+    {
+        ?>
+        <option value="<?php echo $jj['Job']['id']?>"><?php echo $jj['Job']['title']?></option>
+        <?php
+    }
+    ?>
+    </select>
+    <?php
+    }
+    
+    }else{
+    $id = $this->Session->read('id');
+    $q = $jm->find('first',array('conditions'=>array('member_id'=>$id)));
+    if($q)
+    {
+        $job_array = explode(',',$q['Jobmember']['job_id']);
+        if(!empty($job_array))
+        {
+            ?>
+            <select id="filter">
+            <?php
+            foreach($job_array as $j)
+            {
+                $q2 = $job->find('first',array('conditions'=>array('id'=>trim($j))));
+                if($q2)
+                {
+                    ?>
+                    <option value="<?php echo $q2['Job']['id'];?>"><?php echo $q2['Job']['title'];?></option>
+                   <?php
+                }
+            }
+            ?>
+            </select>
+            <?php
+    
+}}}?>
 <div class="searchlist" style="margin-bottom: 10px;" >
 <?php
 /*

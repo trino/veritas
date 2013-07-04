@@ -60,18 +60,37 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <script type="text/javascript">jwplayer.key="N+fGwqE9+uBPKzrjO6qyGHWiJJRmw0UtbEU0iA==";</script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
 	<link rel="shortcut icon" href="/img/favicon.ico" />
-	<script type="text/javascript">
-    window.onbeforeunload = function(e) {
-    $.ajax({
-       url: '<?php echo $base_url;?>admin/logout'
-    });
-    
+<!--script type="text/javascript">
+window.onbeforeunload = function(e) {
+$.ajax({
+url: '<?php echo $base_url;?>admin/logout'
+});
+
 };
-</script>
+</script-->
     <script type="text/javascript">
     
     $(function(){
+        $('#filter').live('change',function(){
+        if($(this).val()!='')
+        {
+            $('.loads').text('Loading..');
+            var id = $(this).val();
+            var txt = $('.search').val();
+            $.ajax({
+                url: "<?php echo $base_url;?>uploads/searchlist/"+id,
+           type: "post",
+           data: "name="+txt,
+           success:function(msg)
+           {
+                $('.loads').text('Load');
+                $('.searchlist').html(msg);
+           } 
+            });
+            
+        }
         
+    });
         $('.search').live('change',function(){
         var name = $(this).val();
         
@@ -88,6 +107,27 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
            } 
             
         });
+    });
+    $('#filter2').live('change',function(){
+        var id = $(this).val();
+        if($(this).val()!='')
+        {
+            var name = $('.search2').val();
+        
+        $('.loads').text('Loading..');
+        $.ajax({
+            
+           url: "<?php echo $base_url;?>members/searchlist/"+id,
+           type: "post",
+           data: "name="+name,
+           success:function(msg)
+           {
+                $('.loads').text('Load');
+                $('.searchlist').html(msg);
+           } 
+            
+        });
+        }
     });
         $('.search2').live('change',function(){
             
@@ -470,16 +510,15 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 							
 							
 							<div class="left inputs">
-                                <div class="recipientsLine"  style="width: calc(100% - 6px);">
-                                    <div id="name" style="height: 19px; background: white; border: 1px solid #ccc;padding:2px 4px;margin-bottom: 7px;color:#AAA;"><a href="javascript:void(0);" id="contacts_modal" onclick="show_email();" class="email" style="color: #999;">Recipients</a></div>
+                                <div class="recipientsLine" >
+<div id="name" style="height:20px; background: white; border: 1px solid #ccc;padding:1px 4px 2px 4px;margin-bottom: 5px;width: calc(99% - 9px);color:#AAA;"><a href="javascript:void(0);" id="contacts_modal" onclick="show_email();" class="email" style="color: #999;">Recipients</a></div>
 <!--									<input type="text" name="name" id="name" placeholder="Recipients (Separate with comma)" class="required" />--> 
 								</div>
 							    <!--<div style="float:left;margin-left:10px;"><a href="javascript:void(0)" id="contacts_modal" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a></div><div style="clear:both;"></div>-->
 								<div class="subjectLine">
-									<input type="text" name="subject" placeholder="Subject Title" class="required" style="margin-bottom: 7px;width: calc(99% - 10px);" />
+									<input type="text" name="subject" placeholder="Subject Title" class="required" style="margin-bottom: 7px;width: calc(99% - 9px);" />
 								</div>
 								
-								<a href="javascript:void(0);" class="buttonV attachment"><i class="icon-book"></i> Attach Documents</a>
 								
 								<!--<div id="email" style="display: none;">
 									<?php foreach($mems as $m) {
@@ -513,14 +552,18 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
                                 
 							</div>
                             <div class="left msg">
-								<textarea placeholder="Instant Message - Type message here" name="message" class="required message" style="height:100%;"></textarea>
+<textarea placeholder="Instant Message - Type message here" name="message" class="required message" style="height:72%;"></textarea>
 							</div>
                             <div style="clear:both;"></div>
-                            <div style="margin: 20px 10px;">
-                            <input type="submit" name="submit" value="Send" class="buttonV" id="send_email" />
+                            <div style="margin: 0px 10px;">
+<input style="float:right;" type="submit" name="submit" value="Send" class="buttonV" id="send_email" />
+
+						<a href="javascript:void(0);" class="buttonV attachment" style="float:right;margin-right:8px;"><i class="icon-book"></i> Attach Documents</a>
+
+															
                             </div>
 						</form>
-                        <div style="margin-left: 10px;padding-top:10px;">
+                        <div style="padding-top:10px;">
                         
                         <b id="att" style="display: none;">Attachments :</b><span class="attachments"></span></div>
 					</div>
@@ -585,7 +628,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 						</a>
 					</div>	
 					
-					<div class="v1ButtonBarB">
+			<!--			<div class="v1ButtonBarB">
 						<a href="<?php echo $base_url;?>keycontacts" class="fullLink">
 							<div  class="glassButton">
 							<div  class="full8ButtonB">
@@ -601,7 +644,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 							</div>
 						</a>
 					</div>				
-		<!--			<div class="v1ButtonBarB">
+				<div class="v1ButtonBarB">
 						<a href="" class="fullLink">
 							<div  class="glassButton">
 							<div  class="full8ButtonB">

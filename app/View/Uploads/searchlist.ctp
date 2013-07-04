@@ -9,7 +9,8 @@ hr{border-top:#313A43 1px solid;}
 
 
 </style>
-<div style="width: 1030px;font-weight:bold;margin-top:10px;margin-bottom:5px;"><div class="left" style="width:120px;">Job</div><div class="left" style="width:120px;margin-left:5px;">Title</div><div class="left" style="width:120px;margin-left:5px;">Type</div><div class="left" style="width:480px;margin-left:5px;">File</div><div class="left" style="width:100px;margin-left:5px;">Choose</div><div class="clearfix"></div></div>
+
+<div style="width: 1030px;font-weight:bold;margin-top:10px;margin-bottom:5px;font-size: 14px;"><div class="left" style="width:120px;">Job</div><div class="left" style="width:120px;margin-left:5px;">Title</div><div class="left" style="width:120px;margin-left:5px;">Type</div><div class="left" style="width:480px;margin-left:5px;">File</div><div class="left" style="width:100px;margin-left:5px;">Choose</div><div class="clearfix"></div></div>
 <?php
 //if(isset($name) && $name !="")
 if($this->Session->read('admin'))
@@ -17,10 +18,22 @@ if($this->Session->read('admin'))
     
                 $q12 = $job->find('all');
                 foreach($q12 as $q2){
+                    if($jid)
+                    {
+                        if($jid!=$q2['Job']['id'])
+                        continue;
+                    }
+                    
                 ?>
                 <!--<h3 style="font-size: 15px;"><?php echo stripslashes($q2['Job']['title']);?></h3>-->
                 
                 <?php
+                
+                if($jid && !$name)
+                {
+                    $q3 = $doc->find('all',array('conditions'=>array('job_id'=>$q2['Job']['id'],'draft'=>0)));
+                }
+                else
                 $q3 = $doc->find('all',array('conditions'=>array('job_id'=>$q2['Job']['id'],'draft'=>0,'title LIKE "%'.$name.'%"')));
                 if($q3)
                 {
@@ -38,7 +51,7 @@ if($this->Session->read('admin'))
                         
                             
                             
-                            <div class="myclass" style="width: 1030px;">
+                            <div class="myclass" style="width: 1030px;font-size:13px;">
                             <div class="left" style="width:120px;"><?php echo stripslashes($q2['Job']['title']);?></div> 
                             <?php
                             $documents = $docs->find('all',array('conditions'=>array('document_id'=>$do['Document']['id'])));
@@ -104,7 +117,7 @@ if($this->Session->read('admin'))
                                 <div class="left" style="width:120px;margin-left:5px;"><?php echo $do['Document']['title'];?></div>
                                 
                                 <div class="left" style="width:120px;margin-left:5px;">Videos</div>
-                                <br />
+                                
                             
                                 <?php
                                 foreach($videos as $dcs)
@@ -142,11 +155,21 @@ else
         {
             foreach($job_array as $j)
             {
+                if($jid)
+                    {
+                        if($jid!=trim($j))
+                        continue;
+                    }
                 $q2 = $job->find('first',array('conditions'=>array('id'=>trim($j))));
                 ?>
                 <!--<h3 style="font-size: 15px;"><?php echo stripslashes($q2['Job']['title']);?></h3>-->
                 
                 <?php
+                if($jid && !$name)
+                {
+                    $q3 = $doc->find('all',array('conditions'=>array('job_id'=>$q2['Job']['id'],'draft'=>0)));
+                }
+                else
                 $q3 = $doc->find('all',array('conditions'=>array('job_id'=>$q2['Job']['id'],'draft'=>0,'title LIKE "%'.$name.'%"')));
                 if($q3)
                 {
@@ -154,7 +177,7 @@ else
                     foreach($q3 as $do)
                     {
                         ?>
-                        <div class="myclass" style="width:1030px;">
+                        <div class="myclass" style="width:1030px;font-size:13px;">
                         <div class="left" style="width:120px;"><?php echo stripslashes($q2['Job']['title']);?></div> 
                         <?php
                         
@@ -163,19 +186,19 @@ else
                             {
                                 ?>
                                 
-                                <div  class="left" style="width:120px;"><?php echo $do['Document']['title'];?></div>
+                                <div  class="left" style="width:120px;margin-left:5px;"><?php echo $do['Document']['title'];?></div>
                             
-                                <div class="left" style="width:120px;">Documents</div>
+                                <div class="left" style="width:120px;margin-left:5px;">Documents</div>
                             
                             
                                 <?php
                                 foreach($documents as $dcs)
                                 {
                                     ?>
-                                    <div class="left" style="width:480px;">
+                                    <div class="left" style="width:480px;margin-left:5px;">
                                     <?php echo $dcs['Doc']['doc'];?>
                                     </div>
-                                    <div class="left" style="width:100px;"><input type="checkbox" class="doc" value="<?php echo $dcs['Doc']['doc'];?>" /></div>
+                                    <div class="left" style="width:100px;margin-left:5px;"><input type="checkbox" class="doc" value="<?php echo $dcs['Doc']['doc'];?>" /></div>
                                     <div style="clear:both;"></div>
                                     
                                     <?php
@@ -189,19 +212,19 @@ else
                             {
                                 ?>
                                 
-                                <div  class="left" style="width:120px;"><?php echo $do['Document']['title'];?></div>
+                                <div  class="left" style="width:120px;margin-left:5px;"><?php echo $do['Document']['title'];?></div>
                             
-                                <div class="left" style="width:120px;">Images</div>
+                                <div class="left" style="width:120px;margin-left:5px;">Images</div>
                                 
                             
                                 <?php
                                 foreach($images as $dcs)
                                 {
                                     ?>
-                                    <div class="left" style="width:480px;">
+                                    <div class="left" style="width:480px;margin-left:5px;">
                                         <?php echo $dcs['Image']['image'];?>
                                     </div>
-                                    <div class="left" style="width:100px;"><input type="checkbox" class="doc" value="<?php echo $dcs['Image']['image'];?>" /></div>
+                                    <div class="left" style="width:100px;margin-left:5px;"><input type="checkbox" class="doc" value="<?php echo $dcs['Image']['image'];?>" /></div>
                                     <div style="clear:both;"></div>
                                     
                                     <?php
@@ -215,18 +238,18 @@ else
                             {
                                 ?>
                                
-                                <div class="left" style="width:120px;"><?php echo $do['Document']['title'];?></div>
+                                <div class="left" style="width:120px;margin-left:5px;"><?php echo $do['Document']['title'];?></div>
                             
-                                <div class="left" style="width:120px;">Videos</div>
+                                <div class="left" style="width:120px;margin-left:5px;">Videos</div>
                                 
                             
                                 <?php
                                 foreach($videos as $dcs)
                                 {
                                     ?>
-                                    <div class="left" style="width:480px;">
+                                    <div class="left" style="width:480px;margin-left:5px;">
                                     <?php echo $dcs['Video']['video'];?></div>
-                                    <div class="left" style="width:120px;"><input type="checkbox" class="doc" value="<?php echo $dcs['Video']['video'];?>" /></div>
+                                    <div class="left" style="width:120px;margin-left:5px;"><input type="checkbox" class="doc" value="<?php echo $dcs['Video']['video'];?>" /></div>
                                     <div style="clear:both;"></div>
                                     
                                     <?php

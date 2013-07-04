@@ -1,10 +1,16 @@
-<div style="width: 770px;padding:5px;"><div style="float:left;width:660px;"><div style="float:left;width:130px;"><strong>Full name</strong></div><div style="float:left;margin-left:5px;width:120px;"><strong>User name</strong></div><div style="float:left;margin-left:5px;width:220px;"><strong>Email</strong></div><div style="float: left;width:120px;"><strong>Job</strong></div><div style="clear: both;"></div></div><div style="float:right;width:100px;">Choose</div><div style="clear: both;"></div></div>
+<div style="width: 770px;padding:5px;font-size:14px;"><div style="float:left;width:660px;"><div style="float:left;width:130px;"><strong>Full name</strong></div><div style="float:left;margin-left:5px;width:120px;"><strong>User name</strong></div><div style="float:left;margin-left:5px;width:220px;"><strong>Email</strong></div><div style="float: left;width:120px;"><strong>Job</strong></div><div style="clear: both;"></div></div><div style="float:right;width:100px;">Choose</div><div style="clear: both;"></div></div>
 <?php     
 if($job)
 foreach($job as $j)
 {
+    if($jid)
+                    {
+                        if($jid!=$j['Job']['id'])
+                        continue;
+                        
+                    }
     ?>
-    <div class="lists loading" style="width: 770px;">
+    <div class="lists loading" style="width: 770px;font-size:13px;">
         
         <!--<div class="title"><b style="text-transform: uppercase;"><?php echo $j['Job']['title'];?></b></div>-->
         
@@ -17,7 +23,12 @@ foreach($job as $j)
             <?php
             foreach($q as $mem)
             {
-                $m = $member->find('first',array('conditions'=>array('id'=>$mem['Jobmember']['member_id'],'full_name LIKE "%'.$name.'%"')));
+                if($jid && !$name)
+                {
+                    $m = $member->find('first',array('conditions'=>array('id'=>$mem['Jobmember']['member_id'])));
+                }
+                else
+                $m = $member->find('first',array('conditions'=>array('id'=>$mem['Jobmember']['member_id'],'OR'=>array(array('full_name LIKE "%'.$name.'%"'),array('fname LIKE "%'.$name.'%"'),array('lname LIKE "%'.$name.'%"'),array('email LIKE "%'.$name.'%"')))));
                 if($m){
                 
                 if(!$this->Session->read('admin')){
