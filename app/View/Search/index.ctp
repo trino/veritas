@@ -39,7 +39,13 @@ $(function(){
 </form>
 
 <?php
-
+if(isset($noView))
+{
+    ?>
+    <div><strong>You do not have permission to view documents.</strong></div>
+    <?php
+}
+else
 if($docs)
 {
     /*
