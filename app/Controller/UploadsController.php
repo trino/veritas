@@ -4,6 +4,7 @@ class UploadsController extends AppController
     public $helpers = array('Html');
     var $components = array('Email');
     var $base;
+    
     function __construct(CakeRequest $request, CakeResponse $response)
     {
         $this->loadModel('Document');
@@ -27,7 +28,21 @@ class UploadsController extends AppController
          //echo $this->Session->read('admin'); die();    
         if($this->Session->read('admin') || $this->Session->read('user') )
         {
-         
+             if($this->Session->read('user'))
+        {
+            $this->loadModel('Member');
+            $this->loadModel('Canupload');
+            $this->loadModel('Canview');
+            $id = $this->Session->read('id');
+            $u = $this->Member->findById($id);
+            if($s = $this->Canupload->findByMemberId($id))
+            foreach($s as $k=>$v)
+            $u['Member'][$k] = $v;
+            if($s = $this->Canview->findByMemberId($id))
+            foreach($s as $k=>$v)
+            $u['Member'][$k] = $v;
+            $this->set('usr1',$u);
+        }
          }
         else
                $this->redirect('/');  
@@ -444,10 +459,10 @@ class UploadsController extends AppController
                     $this->Image->deleteAll(array('document_id'=>$id));
                     $this->Video->deleteAll(array('document_id'=>$id));
                     $source=$_FILES['document_'.$i]['tmp_name'];
-                    $rand = rand(100000,999999);
+                    $rand = $arr['title'].$subname."_".date('Y-m-d_H-i-s');
                     $whiteSpace = '';
-                $pattern = '/[^a-zA-Z0-9-_'  . $whiteSpace . ']/u';
-                $rand = preg_replace($pattern, '', (string) $rand);
+                    $pattern = '/[^a-zA-Z0-9-_'  . $whiteSpace . ']/u';
+                    $rand = preg_replace($pattern, '', (string) $rand);
                     $ext_arr = explode('.',$_FILES['document_'.$i]['name']);
                     $extn = end($ext_arr);
                     $img = $rand.'.'.end($ext_arr);
@@ -771,15 +786,17 @@ class UploadsController extends AppController
                 if($_FILES['document_'.$i]['tmp_name']!="")
                 {
                 $source=$_FILES['document_'.$i]['tmp_name'];
-                
+                /*
                 if(strlen($arr['description'])>10)
                     $fname = substr($arr['description'],0,10);
                 else
                     $fname = $arr['description'];
+                
                     //echo $fname;die();
                 $fname = str_replace(' ',"_",$fname);
                 $fname = urlencode($fname);
-                $rand = $arr['title'].$subname."_".$fname."_".date('Y-m-d_H-i-s');
+                */
+                $rand = $arr['title'].$subname."_".date('Y-m-d_H-i-s');
                 $whiteSpace = '';
                 $pattern = '/[^a-zA-Z0-9-_'  . $whiteSpace . ']/u';
                 $rand = preg_replace($pattern, '', (string) $rand);

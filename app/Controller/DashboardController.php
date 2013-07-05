@@ -17,18 +17,43 @@ class DashboardController extends AppController
         }
         
     }
+    
     function upload()
     {
+        
         if($this->Session->read('user'))
         {
             $this->loadModel('Member');
-            $u = $this->Member->findById($this->Session->read('id'));
+            $id = $this->Session->read('id');
+            $u = $this->Member->findById($id);
+            
             return $u['Member']['canUpdate'];
         }
         else
             return '0';
         
         
+    }
+    function getall()
+    {
+         if($this->Session->read('user'))
+        {
+            $this->loadModel('Member');
+            $this->loadModel('Canupload');
+            $this->loadModel('Canview');
+            $id = $this->Session->read('id');
+            $u = $this->Member->findById($id);
+            if($s = $this->Canupload->findByMemberId($id))
+            foreach($s as $k=>$v)
+            $u['Member'][$k] = $v;
+            if($s = $this->Canview->findByMemberId($id))
+            foreach($s as $k=>$v)
+            $u['Member'][$k] = $v;
+            
+            return $u;
+        }
+        else
+            return '0';
     }
     public function index()
     {

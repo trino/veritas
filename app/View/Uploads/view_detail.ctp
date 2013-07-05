@@ -35,7 +35,18 @@
 
 <?php echo $this->Html->css('prettyPhoto'); ?>
 <?php echo $this->Html->script('jquery.prettyPhoto'); ?>
+
 <div id="table">
+<?php 
+if($doc['Document']['document_type']=='contract')
+    $ty = "contracts";
+elseif($doc['Document']['document_type']=='template')
+    $ty = "templates";
+/*elseif($doc['Document']['document_type'] == 'client_feedback')
+    $ty = "";*/
+else    
+    $ty = $doc['Document']['document_type'];
+if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Member']['Canview'][$ty]=='1')){?>
 <table class="table">
     <!--<tr>
         <td style="width:140px;"><b>Title</b></td>
@@ -251,6 +262,10 @@ if($type == 'Report')
     <input type="button" onclick="window.print();" value="Print" class="btn btn-primary" />
     <?php
 //}
+?>
+<?php }
+    else
+        echo "You are not authorized to view this file.";
 ?>
 <script type="text/javascript" charset="utf-8">
 			$(document).ready(function(){
