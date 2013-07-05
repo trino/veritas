@@ -1,0 +1,42 @@
+Rob'
+Geocode - 18 Oakland Dr, Hamilton ON L8E3Z2
+
+http://localhost/dinendash/restaurants/edit_detail
+remove popup
+save image - breaks other images (Done)
+
+http://localhost/dinendash/restaurants/manage_menu(Done)
+$ spacing
+
+http://localhost/dinendash/restaurants/reservation_edit/VansPizza/1
+remove After minute(s)
+special instructions is not showing 
+
+Discount $0, Tax $13 -  add decimal places
+
+
+when click add without quanitity:
+Total	$NaN
+Tax	$NaN
+Grand Total	$NaN
+
+
+http://localhost/dinendash/reservations
+show reservation ID(Done)
+Replace calendar with date picker (Done)
+
+http://localhost/dinendash/reservations/detail/2
+please space out better (Done)
+add item price (Done)
+
+
+
+http://localhost/dinendash/reservations/date_detail/2013-06-28
+reservation not showing up
+
+
+if reservation is cancelled it needs to be removed
+
+
+
+
