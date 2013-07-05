@@ -13,7 +13,9 @@ class MailController extends AppController
         $this->loadModel('Mail');
         $this->loadModel('User');
         $this->loadModel('Member');
-        
+        $this->loadModel('Doc');
+        $this->loadModel('Image');
+        $this->loadModel('Video');
          
     }
     function beforeFilter()
@@ -76,7 +78,9 @@ class MailController extends AppController
     
     function read($id)
     {
-        
+        $this->set('ddo',$this->Doc);
+        $this->set('dvo',$this->Video);
+        $this->set('dio',$this->Image);
         $this->set('mainid',$id);
         $this->set('mailing',$this->Mail);
         if($this->Session->read('avatar') || $this->Session->read('user'))

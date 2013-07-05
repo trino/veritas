@@ -184,29 +184,53 @@ foreach($all as $a){
         $ext_img = array('jpg','png','gif','jpeg','bmp');
         if(in_array($ext,$ext_doc))
         {
+            $cc = $ddo->find('first',array('conditions',array('doc'=>$doc)));
+            if($cc)
+            $document_id = $cc['Doc']['document_id'];
+            else
+             $document_id = 0;
+             unset($cc);
             if($_SERVER['SERVER_NAME']=='localhost')
             $url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas/img/documents/'.$doc;
             else
             $url = 'http://'.$_SERVER['SERVER_NAME'].'/img/documents/'.$doc;
             $path = "https://docs.google.com/viewer?url=".$url;
-            $path = $base_url.'uploads/download/'.$doc;
+            $path = $base_url.'uploads/view_detail/'.$document_id;
             ?>
-            <tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a href="<?php echo $path;?>">Download</a></td></tr>
+            <?php if($document_id){?><tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a href="<?php echo $path;?>">View</a></td></tr><?php }?>
             <?php
         }
         else
         if(in_array($ext,$ext_img))
         {
+            $cc = $dio->find('first',array('conditions',array('image'=>$doc)));
+            if($cc)
+            $document_id = $cc['Image']['document_id'];
+            else
+             $document_id = 0;
+             unset($cc);
+             $path = $base_url.'uploads/view_detail/'.$document_id;
+             
             ?>
-            <tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a href="<?php echo $base_url;?>img/documents/<?php echo $doc; ?>" rel="prettyPhoto[gallery1]"><?php echo $this->Html->image('documents/'.$doc,array('width'=>'100','height'=>'100')); ?></a></td></tr>
+            <?php if($document_id){?><tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a href="<?php echo $path;?>">View</a></td></tr><?php }?>
+            <!--<tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a href="<?php echo $base_url;?>img/documents/<?php echo $doc; ?>" rel="prettyPhoto[gallery1]"><?php echo $this->Html->image('documents/'.$doc,array('width'=>'100','height'=>'100')); ?></a></td></tr>-->
             <?php
         }
         else
         {
+            $cc = $dvo->find('first',array('conditions',array('video'=>$doc)));
+            if($cc)
+            $document_id = $cc['Video']['document_id'];
+            else
+             $document_id = 0;
+             unset($cc);
+             $path = $base_url.'uploads/view_detail/'.$document_id;
+             
             ?>
-            <tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; 
+            <?php if($document_id){?><tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a href="<?php echo $path;?>">View</a></td></tr><?php }?>
+            <!--<tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; 
             <a href="javascript:void(0);" onclick="video(this.id)" id="<?php echo $doc; ?>">View</a> </div>
-            </td></tr>
+            </td></tr>-->
             <?php
         }
     ?>    

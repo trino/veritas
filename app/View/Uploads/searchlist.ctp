@@ -83,6 +83,7 @@ if($this->Session->read('admin'))
                                 
                                 <?php
                             }
+                            
                             $images = $imgs->find('all',array('conditions'=>array('document_id'=>$do['Document']['id'])));
                             if($images)
                             {
@@ -133,6 +134,18 @@ if($this->Session->read('admin'))
                                 
                                 <?php
                             }
+                            if(!$documents && !$images && !$videos)
+                            {
+                                ?>
+                                <div class="left" style="width:120px;margin-left:5px;">&nbsp;</div>
+                                
+                                <div class="left" style="width:120px;margin-left:5px;">&nbsp;</div>
+                                <div class="left" style="width:480px;margin-left:5px;">&nbsp;</div>
+                                    <div class="left" style="width:100px;margin-left:5px;">&nbsp;</div>
+                                    <?php
+                            }
+                            
+                            
                             ?>
                             </div>
                         
@@ -148,6 +161,15 @@ else
 {
     $id = $this->Session->read('id');
     $q = $jm->find('first',array('conditions'=>array('member_id'=>$id)));
+    $ch = $canV->find('first',array('conditions'=>array('member_id'=>$id)));
+    if($ch)
+    {
+        $ch_arr = array('contract'=>$ch['Canview']['contracts'],'evidence'=>$ch['Canview']['evidence'],'template'=>$ch['Canview']['templates'],'report'=>$ch['Canview']['report'],'siteOrder'=>$ch['Canview']['siteOrder'],'training'=>$ch['Canview']['training'],'employee'=>$ch['Canview']['employee'],'KPIAudits'=>$ch['Canview']['KPIAudits'],'client_feedback'=>$ch['Canview']['client_feedback']);
+    }
+    else
+    {
+        $ch_arr = array('contract'=>0,'evidence'=>0,'template'=>0,'report'=>0,'siteOrder'=>0,'training'=>0,'employee'=>0,'KPIAudits'=>0,'client_feedback'=>0);
+    }
     if($q)
     {
         $job_array = explode(',',$q['Jobmember']['job_id']);
@@ -176,6 +198,9 @@ else
                     $test = 0;
                     foreach($q3 as $do)
                     {
+                        if($ch_arr[$do['Document']['document_type']])
+                        {
+                        
                         ?>
                         <div class="myclass" style="width:1030px;font-size:13px;">
                         <div class="left" style="width:120px;"><?php echo stripslashes($q2['Job']['title']);?></div> 
@@ -258,11 +283,22 @@ else
                                 
                                 <?php
                             }
+                            if(!$documents && !$images && !$videos)
+                            {
+                                ?>
+                                <div class="left" style="width:120px;margin-left:5px;"><?php echo $do['Document']['title'];?></div>
+                                
+                                <div class="left" style="width:120px;margin-left:5px;">--</div>
+                                <div class="left" style="width:480px;margin-left:5px;">--</div>
+                                    <div class="left" style="width:100px;margin-left:5px;">--</div>
+                                    <?php
+                            }
+                            
                             ?>
                             </div>
                         
                         <?php
-                    }
+                    }}
                 }
                 ?>
                 

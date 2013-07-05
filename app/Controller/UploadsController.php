@@ -16,6 +16,7 @@ class UploadsController extends AppController
         $this->loadModel('Video');
         $this->loadModel('Youtube');
         $this->loadModel('Event_log');
+        $this->loadModel('Canview');
         
         
         parent::__construct($request,$response);
@@ -96,6 +97,7 @@ class UploadsController extends AppController
         $this->set('docs',$docs);
         $this->set('imgs',$imgs);
         $this->set('vdos',$vdos);
+        $this->set('canV',$this->Canview);
         
     }
     function index()
