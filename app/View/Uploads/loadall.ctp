@@ -39,6 +39,7 @@ hr{border-top:#313A43 1px solid;}
         {
             ?>
             <select id="filter">
+            <option value="">Select Job</option>
             <?php
             foreach($job_array as $j)
             {
