@@ -92,13 +92,15 @@ url: '<?php echo $base_url;?>admin/logout'
         }
         
     });
-        $('.search').live('change',function(){
+        $('.loads').live('click',function(){
         var name = $(this).val();
-        
+        var urls = '<?php echo $base_url;?>uploads/searchlist';
+        if($('#filter').val()!='')
+         urls = '<?php echo $base_url;?>uploads/searchlist/'+$('#filter').val();
         $('.loads').text('Loading..');
         $.ajax({
             
-           url: "<?php echo $base_url;?>uploads/searchlist",
+           url: urls,
            type: "post",
            data: "name="+name,
            success:function(msg)
@@ -131,14 +133,17 @@ url: '<?php echo $base_url;?>admin/logout'
         });
         }
     });
-        $('.search2').live('change',function(){
+        $('.loads2').live('click',function(){
             
         var name = $(this).val();
         
         $('.loads').text('Loading..');
+        var urls = '<?php echo $base_url;?>members/searchlist';
+        if($('#filter2').val()!='')
+         urls = '<?php echo $base_url;?>members/searchlist/'+$('#filter2').val();
         $.ajax({
             
-           url: "<?php echo $base_url;?>members/searchlist",
+           url: urls,
            type: "post",
            data: "name="+name,
            success:function(msg)

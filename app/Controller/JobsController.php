@@ -422,10 +422,10 @@ class JobsController extends AppController
         }
         else
         {
-            $this->set('contract',$this->Document->find('count',array('conditions'=>array('job_id'=>$id,'document_type'=>'contract','OR'=>array(array('addedBy'=>0),array('addedBy'=>$this->Session->read('id')))))));
-        $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','job_id'=>$id,'OR'=>array(array('addedBy'=>0),array('addedBy'=>$this->Session->read('id')))))));
-        $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','job_id'=>$id,'OR'=>array(array('addedBy'=>0),array('addedBy'=>$this->Session->read('id')))))));
-        $this->set('report',$this->Document->find('count',array('conditions'=>array('document_type'=>'report','job_id'=>$id,'OR'=>array(array('addedBy'=>0),array('addedBy'=>$this->Session->read('id')))))));
+            $this->set('contract',$this->Document->find('count',array('conditions'=>array('job_id'=>$id,'document_type'=>'contract'))));
+        $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','job_id'=>$id))));
+        $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','job_id'=>$id))));
+        $this->set('report',$this->Document->find('count',array('conditions'=>array('document_type'=>'report','job_id'=>$id))));
         }
         
         $this->set('key',$this->Key_contact);

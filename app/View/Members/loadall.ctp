@@ -8,7 +8,7 @@ hr{border-top:#313A43 1px solid;}
 
 </style>
 <?php include_once('inc.php');?>
-<input type="text" value="" class="search2" placeholder="Search Members" style="margin: 0;" /> <a href="javascript:void(0)" class="btn btn-inverse loads" style="color: #FFF;">Load</a>
+<input type="text" value="" class="search2" placeholder="Search Members" style="margin: 0;" /> <a href="javascript:void(0)" class="btn btn-inverse loads2" style="color: #FFF;">Load</a>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong>Filter By Job : </strong><?php if($this->Session->read('admin')){
     $jo = $job;
     if($jo){
@@ -66,12 +66,12 @@ $ad = $this->requestAction($base_url.'/dashboard/get_user');
         {
             ?>
             <div class="admin" style="display: none;">
-            <div class="title"><b>Administrator</b></div>
             <div class="lists loading" style="width: 300px;">
             <div style="float:right;"><input type="checkbox" class="<?php echo $ad['User']['name_avatar']."__0__".$ad['User']['email']; ?>" /></div>
-            <div style="float:left">Admin</div>
+            <div style="float:left">Administrator</div>
             <div style="clear:both;"></div>
             </div>
+            <p>&nbsp;</p>
             </div>
             
             <?php
