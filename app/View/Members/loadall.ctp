@@ -37,7 +37,8 @@ hr{border-top:#313A43 1px solid;}
         if(!empty($job_array))
         {
             ?>
-            <select id="filter">
+            <select id="filter2">
+            <option value="">Select Job</option>
             <?php
             foreach($job_array as $j)
             {
