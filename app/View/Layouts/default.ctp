@@ -351,7 +351,7 @@ url: '<?php echo $base_url;?>admin/logout'
 				<?php  echo $this->Html->link('<i class="icon-globe"></i>'.'Job Manager','/jobs',array('escape' => false,)); ?>
 				<?php  echo $this->Html->link('<i class="icon-envelope-alt"></i>'.'Instant Message <span class="notific"></span>','/mail',array('escape' => false,)); ?>
 				<?php if($this->Session->read('user'))  echo $this->Html->link('<i class="icon-time"></i>'.'Saved Drafts','/uploads/draft',array('escape'=>false));?>
-                <?php if($this->Session->read('admin'))  echo $this->Html->link('<i class="icon-user"></i>'.'Contacts','/contacts',array('escape'=>false));?>
+                <?php if($this->Session->read('admin'))  echo $this->Html->link('<i class="icon-star"></i>'.'Contacts','/contacts',array('escape'=>false));?>
                 <?php  echo $this->Html->link('<i class="icon-off"></i>'.'Logout','/admin/logout',array('escape' => false,)); ?>
 				<?php //echo $this->Html->link('Document','/uploads'); ?>
 			</div><!-- menu -->

@@ -21,9 +21,9 @@ class DashboardController extends AppController
     {
         if($this->Session->read('user'))
         {
-        $this->loadModel('Member');
-        $u = $this->Member->findById($this->Session->read('id'));
-        return $u['Member']['canUpdate'];
+            $this->loadModel('Member');
+            $u = $this->Member->findById($this->Session->read('id'));
+            return $u['Member']['canUpdate'];
         }
         else
             return '0';

@@ -360,16 +360,25 @@ class MembersController extends AppController
                     $k++;
                     
                     if($k==1)
-                    $jarr['job_id'] = $j;
+                        $jarr['job_id'] = $j;
                     else
                     {
-                        $jarr['job_id'] = ','.$j;
+                        $jarr['job_id'] .= ','.$j;
                     }
                         
                 }
                 $jarr['member_id'] = $id;
                 $this->Jobmember->save($jarr);
             }
+            else
+            {
+                $this->Jobmember->create();
+                $arr['job_id'] = '';
+                $jarr['member_id'] = $id;
+                $this->Jobmember->save($jarr);
+                
+            }
+            
             if($_POST['email']!= "")
             {   
                 if($_SERVER['SERVER_NAME']=='localhost')
@@ -413,9 +422,13 @@ class MembersController extends AppController
             $jobs = $qjm['Jobmember']['job_id'];
             $arr_j = explode(',',$jobs);
             $this->set('jm',$arr_j);
+            $this->set('jmid',$qjm['Jobmember']['id']);
         }
         else
-        $this->set('jm',array(''));
+        {
+            $this->set('jmid','0');
+            $this->set('jm',array(''));
+        }
         $this->loadModel('Member');
         $this->loadModel('Canview');
         $this->loadModel('Canupload');
@@ -698,6 +711,33 @@ class MembersController extends AppController
             if(!$this->Session->read('avatar'))
             {
                 $this->Session->email($_POST['email']);
+            }
+            
+            if(isset($_POST['job']))
+            {
+                //var_dump($_POST['job']);
+                $arr['job_id'] = '';
+                $k=0;
+                //echo $_POST['jmid'];
+                 $this->Jobmember->id = $_POST['jmid'];
+                foreach($_POST['job'] as $j)
+                {
+                    
+                    $k++;
+                    if($k==1)
+                        $jarr['job_id'] = $j;
+                    else
+                    {
+                        $jarr['job_id'] .= ','.$j;
+                    }
+                        
+                }
+               // echo $jarr['job_id'];
+                //die();
+                
+                    $this->Jobmember->saveField('job_id',$jarr['job_id']);
+                //$jarr['member_id'] = $id;
+                
             }
             
             

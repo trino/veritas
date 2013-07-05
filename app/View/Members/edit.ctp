@@ -134,7 +134,9 @@ $(function(){
 <?php
 $q = $job->find('all',array('order'=>'title')); 
 if($q){
+     
 ?>
+<input type="hidden" name="jmid" value="<?php echo $jmid; ?>" />
 <tr>
     <td colspan="2">
         <table>
@@ -150,7 +152,9 @@ if($q){
                     <?php
                 }
                ?>
-               <td style="width: 15%;"><?php echo $j['Job']['title']?> <input name="job[]" style="margin: 0;" type="checkbox"  <?php if(in_array($j['Job']['id'],$jm)){?>checked="checked"<?php }?> value="<?php echo $j['Job']['id'];?>" /></td>
+               <td style="width: 15%;"><?php echo $j['Job']['title']?> 
+               <input name="job[]" style="margin: 0;" type="checkbox"  <?php if(in_array($j['Job']['id'],$jm)){?>checked="checked"<?php }?> value="<?php echo $j['Job']['id'];?>" />
+               </td>
                <?php
                if($i%6==0)
                {
