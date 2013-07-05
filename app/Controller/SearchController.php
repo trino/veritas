@@ -100,6 +100,7 @@ class SearchController extends AppController
         {
             $this->loadModel('Canview');
             $qs = $this->Canview->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
+            $che = $this->Member->find('first',array('conditions',array('id'=>$this->Session->read('id'))));
             
             if($qs['Canview']['contracts'] && $qs['Canview']['evidence'] && $qs['Canview']['templates'] && $qs['Canview']['report'])
                 $arrs  = array('document_type <>'=>'client_feedback');
@@ -188,7 +189,8 @@ class SearchController extends AppController
                     
                 }
             
-            
+            if(!$che['Member']['canView'])
+            $this->set('noView',1);
             $this->loadModel('Jobmember');
             $job_ids = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
             if($job_ids)
