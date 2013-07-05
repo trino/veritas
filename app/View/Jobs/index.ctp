@@ -59,7 +59,7 @@ foreach($job as $j)
 {
     ?>
     
-        <tr><td style="width:40px;"><div style="background-color:#dddddd;width:40px; height:40px; text-align:center;">
+        <tr><td style="width:80px;"><div style="text-align:center;">
             
         <a href="<?php echo $base_url.'jobs/view/'.$j['Job']['id']; ?>"><?php echo $this->Html->image('uploads/'.$j['Job']['image'], array('alt' => '', 'style'=>'max-height:100%; max-width:100%;')); ?></a></td><td><a href="<?php echo $base_url.'jobs/view/'.$j['Job']['id']; ?>"><?php echo stripslashes($j['Job']['title'])?></a></td>
         <?php if($this->Session->read('avatar')) { ?>
