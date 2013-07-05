@@ -1,0 +1,35 @@
+http://localhost/veritas/members
+Delete user should have a "confirm delete" button
+
+http://localhost/veritas/jobs
+Delete jobs should have a "confirm delete" button
+
+Signed in as regular user
+http://localhost/veritas/jobs/view/1
+Says 1 contract but sees 0 - and he does have permission to view.
+
+Create a new job with 0 documents - if u click on contract in that job, it goes to page which shows all contracts.
+
+http://localhost/veritas/mail/read/2
+Mail messages still have the "click to hide"
+
+User Support is suppose to be a page with a contact form
+
+If logged out, you can still go to each individual page.  So logout and go here: http://localhost/veritas/uploads/upload/2
+If logged out, you should be forwarded to login page.
+
+Login should not have dropdown - should sign in as user/admin based on account.
+
+Login to regular user breaks on login.
+
+
+Uploading a document, it shouldn't have three separate uploading options "documents, images, videos" they should be combined into one.
+
+Uploading a document, when you click the add button, the "remove" button should be beside each browse option.
+
+
+http://localhost/veritas/dashboard/settings
+Should require password to save changes
+
+http://localhost/veritas/members/edit/1
+Should be able to edit avatar

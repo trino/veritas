@@ -22,6 +22,8 @@ $ad = $this->requestAction($base_url.'/dashboard/get_user');
 $jobs = $this->requestAction($base_url.'/dashboard/get_jobs');
 $job2 = $this->requestAction($base_url.'/dashboard/get_job2');
 $upload = $this->requestAction($base_url.'/dashboard/upload');
+$usr = $this->requestAction($base_url."/dashboard/getall");
+//var_dump($usr);
 //echo  $base_url;
 $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
 ?>
@@ -350,7 +352,7 @@ url: '<?php echo $base_url;?>admin/logout'
 	   			
 				<?php  echo $this->Html->link('<i class="icon-globe"></i>'.'Job Manager','/jobs',array('escape' => false,)); ?>
 				<?php  echo $this->Html->link('<i class="icon-envelope-alt"></i>'.'Instant Message <span class="notific"></span>','/mail',array('escape' => false,)); ?>
-				<?php if($this->Session->read('user'))  echo $this->Html->link('<i class="icon-time"></i>'.'Saved Drafts','/uploads/draft',array('escape'=>false));?>
+				<?php if($this->Session->read('user') && $usr['Member']['canUpdate']==1 && $usr['Member']['Canupload']['report']=='1')  echo $this->Html->link('<i class="icon-time"></i>'.'Saved Drafts','/uploads/draft',array('escape'=>false));?>
                 <?php if($this->Session->read('admin'))  echo $this->Html->link('<i class="icon-user"></i>'.'Contacts','/contacts',array('escape'=>false));?>
                 <?php  echo $this->Html->link('<i class="icon-off"></i>'.'Logout','/admin/logout',array('escape' => false,)); ?>
 				<?php //echo $this->Html->link('Document','/uploads'); ?>
@@ -742,6 +744,7 @@ url: '<?php echo $base_url;?>admin/logout'
                                         $ur = $base_url.'jobs?activity_log=1';
                                     }
                                     ?>
+                    <?php if($this->Session->read('admin')||($usr['Member']['canUpdate']==1 && $usr['Member']['Canupload']['report']=='1')){?>
 						<a href="<?php echo $ur?>" class="fullLink">
 							<div  class="glassButton">
 							<div  class="full8ButtonB">
@@ -755,7 +758,7 @@ url: '<?php echo $base_url;?>admin/logout'
 								<div class="dusk"></div> 
 							</div>
 							</div>
-						</a>
+						</a><?php }?>
 					</div>		
 					
 					
