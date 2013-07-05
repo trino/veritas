@@ -94,13 +94,15 @@ url: '<?php echo $base_url;?>admin/logout'
         }
         
     });
-        $('.search').live('change',function(){
+        $('.loads').live('click',function(){
         var name = $(this).val();
-        
+        var urls = '<?php echo $base_url;?>uploads/searchlist';
+        if($('#filter').val()!='')
+         urls = '<?php echo $base_url;?>uploads/searchlist/'+$('#filter').val();
         $('.loads').text('Loading..');
         $.ajax({
             
-           url: "<?php echo $base_url;?>uploads/searchlist",
+           url: urls,
            type: "post",
            data: "name="+name,
            success:function(msg)
@@ -133,14 +135,17 @@ url: '<?php echo $base_url;?>admin/logout'
         });
         }
     });
-        $('.search2').live('change',function(){
+        $('.loads2').live('click',function(){
             
         var name = $(this).val();
         
         $('.loads').text('Loading..');
+        var urls = '<?php echo $base_url;?>members/searchlist';
+        if($('#filter2').val()!='')
+         urls = '<?php echo $base_url;?>members/searchlist/'+$('#filter2').val();
         $.ajax({
             
-           url: "<?php echo $base_url;?>members/searchlist",
+           url: urls,
            type: "post",
            data: "name="+name,
            success:function(msg)
@@ -352,8 +357,10 @@ url: '<?php echo $base_url;?>admin/logout'
 	   			
 				<?php  echo $this->Html->link('<i class="icon-globe"></i>'.'Job Manager','/jobs',array('escape' => false,)); ?>
 				<?php  echo $this->Html->link('<i class="icon-envelope-alt"></i>'.'Instant Message <span class="notific"></span>','/mail',array('escape' => false,)); ?>
+
 				<?php if($this->Session->read('user') && $usr['Member']['canUpdate']==1 && $usr['Member']['Canupload']['report']=='1')  echo $this->Html->link('<i class="icon-time"></i>'.'Saved Drafts','/uploads/draft',array('escape'=>false));?>
                 <?php if($this->Session->read('admin'))  echo $this->Html->link('<i class="icon-user"></i>'.'Contacts','/contacts',array('escape'=>false));?>
+
                 <?php  echo $this->Html->link('<i class="icon-off"></i>'.'Logout','/admin/logout',array('escape' => false,)); ?>
 				<?php //echo $this->Html->link('Document','/uploads'); ?>
 			</div><!-- menu -->

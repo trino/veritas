@@ -134,10 +134,10 @@ class UploadsController extends AppController
         {
             $q=$this->Member->find('first',array('conditions'=>array('id'=>$this->Session->read('id'))));
             $id=$q['Member']['id'];
-             $this->set('contract',$this->Document->find('count',array('conditions'=>array('document_type'=>'contract','addedBy'=>$id))));
-            $this->set('post_order',$this->Document->find('count',array('conditions'=>array('document_type'=>'post_order','addedBy'=>$id))));
-            $this->set('audits',$this->Document->find('count',array('conditions'=>array('document_type'=>'audits','addedBy'=>$id))));
-            $this->set('training_manuals',$this->Document->find('count',array('conditions'=>array('document_type'=>'training_manuals','addedBy'=>$id))));
+             $this->set('contract',$this->Document->find('count',array('conditions'=>array('document_type'=>'contract'))));
+            $this->set('post_order',$this->Document->find('count',array('conditions'=>array('document_type'=>'post_order'))));
+            $this->set('audits',$this->Document->find('count',array('conditions'=>array('document_type'=>'audits'))));
+            $this->set('training_manuals',$this->Document->find('count',array('conditions'=>array('document_type'=>'training_manuals'))));
             
         }
         else if($this->Session->read('employee'))
@@ -959,7 +959,7 @@ class UploadsController extends AppController
             {
                 $q=$this->Member->find('first',array('conditions'=>array('id'=>$this->Session->read('id'))));
                 $id=$q['Member']['id'];
-                $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'draft'=>0,'addedBy'=>$id,'job_id'=>$jid),'order by'=>'job_id'));
+                $do = $this->Document->find('all',array('conditions'=>array('document_type'=>$type,'draft'=>0,'job_id'=>$jid),'order by'=>'job_id'));
                 if($do)
                     $this->set('doc',$do);
                 else

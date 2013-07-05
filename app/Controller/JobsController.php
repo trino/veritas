@@ -413,11 +413,21 @@ class JobsController extends AppController
                 $this->set('canview',$canview);
             if($canupdate = $this->Canupload->find('first', array('conditions'=>array('member_id'=>$ids))))
                 $this->set('canupdate',$canupdate);
-        }    
+        }   
+        if($this->Session->read('admin')){ 
         $this->set('contract',$this->Document->find('count',array('conditions'=>array('job_id'=>$id,'document_type'=>'contract'))));
         $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','job_id'=>$id))));
         $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','job_id'=>$id))));
         $this->set('report',$this->Document->find('count',array('conditions'=>array('document_type'=>'report','job_id'=>$id))));
+        }
+        else
+        {
+            $this->set('contract',$this->Document->find('count',array('conditions'=>array('job_id'=>$id,'document_type'=>'contract'))));
+        $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','job_id'=>$id))));
+        $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','job_id'=>$id))));
+        $this->set('report',$this->Document->find('count',array('conditions'=>array('document_type'=>'report','job_id'=>$id))));
+        }
+        
         $this->set('key',$this->Key_contact);
         $this->set('keys', $this->Job_contact->find('all', array('conditions'=>array('job_id'=>$id),'order'=>'type')));
         $this->set('member',$this->Member->find('all'));

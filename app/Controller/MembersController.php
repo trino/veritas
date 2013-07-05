@@ -188,7 +188,7 @@ class MembersController extends AppController
             }}
             else
             {
-                $img = 'male.jpg';
+                $img = 'male.png';
             }    
                 //$image = imagecreatefromjpeg($destination);
             //	imagecopyresampled($virtual_image, $image, 0, 0, 0, 0, $width, $height, $w, $h);
