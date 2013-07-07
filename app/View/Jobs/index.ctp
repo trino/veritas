@@ -174,7 +174,7 @@ foreach($job as $j)
 else
 {
     ?>
-    No Job added yet
+    No Jobs.
     <?php
 }
 }

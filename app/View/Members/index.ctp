@@ -149,7 +149,7 @@ foreach($mem as $m)
 else
 {
     ?>
-    No User added yet
+    No Users.
     <?php
 }
 ?>
