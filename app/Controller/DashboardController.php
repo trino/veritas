@@ -90,7 +90,7 @@ class DashboardController extends AppController
             $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence'))));
             $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template'))));
             $this->set('report',$this->Document->find('count',array('conditions'=>array('document_type'=>'report','draft'=>0))));
-              $this->paginate = array('limit'=>10,'order'=>'date desc ,time desc');
+            $this->paginate = array('limit'=>10,'order'=>'date desc ,time desc');
              //$this->set('activity',$this->paginate('Document'));
              $this->set('added',$this->Member->find('all'));
              $this->set('activity', $this->paginate('Event_log'));
@@ -109,8 +109,10 @@ class DashboardController extends AppController
                 $this->set('activity', $this->paginate('Event_log', array('event_type '=>'Upload Document')));
              }
              else
+             {
+               $this->set('activity',''); 
                 $this->set('jm','');
-             
+             }
             if($this->Session->read('see'))
             {
                 $q=$this->Member->find('first',array('conditions'=>array('id'=>$this->Session->read('id'))));
@@ -129,12 +131,21 @@ class DashboardController extends AppController
                     {
                         $data.=$j['Jobmember']['job_id'].",";
                     }
-                    $d=rtrim($data, ",");
-                    $this->set('contract',$this->Document->find('count',array('conditions'=>array('document_type'=>'contract','job_id in ('.$d.')'))));
-                    $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','job_id in ('.$d.')'))));
-                    $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','job_id in ('.$d.')'))));
-                    $this->set('report',$this->Document->find('count',array('conditions'=>array('draft'=>0,'document_type'=>'report','job_id in ('.$d.')'))));
-                    //$this->set('training_manuals',$this->Document->find('count',array('conditions'=>array('document_type'=>'training_manuals','job_id in ('.$d.')'))));
+                    $d= rtrim($data, ",");
+                    if($d != "")
+                    {
+                        $this->set('contract',$this->Document->find('count',array('conditions'=>array('document_type'=>'contract','job_id in ('.$d.')'))));
+                        $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','job_id in ('.$d.')'))));
+                        $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','job_id in ('.$d.')'))));
+                        $this->set('report',$this->Document->find('count',array('conditions'=>array('draft'=>0,'document_type'=>'report','job_id in ('.$d.')'))));
+                    }
+                    else
+                    {
+                        $this->set('contract','0');
+                        $this->set('evidence','0');
+                        $this->set('template','0');
+                        $this->set('report','0');  
+                    }//$this->set('training_manuals',$this->Document->find('count',array('conditions'=>array('document_type'=>'training_manuals','job_id in ('.$d.')'))));
                 }
                 else
                 {
@@ -632,8 +643,11 @@ class DashboardController extends AppController
                             
                         }
                         $ji = $ji.')';
-                        $q = $this->Job->find('all',array('conditions'=>array('id IN'.$ji)));
-                        return $q;
+                        if($ji != "()")
+                        {
+                            $q = $this->Job->find('all',array('conditions'=>array('id IN'.$ji)));
+                            return $q;
+                        }
                     }
                     else return false;
                      
