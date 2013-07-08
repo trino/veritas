@@ -218,6 +218,7 @@ foreach($all as $a){
         }
         else
         {
+            if(!is_numeric($doc)){
             $cc = $dvo->find('first',array('conditions',array('video'=>$doc)));
             if($cc)
             $document_id = $cc['Video']['document_id'];
@@ -225,9 +226,14 @@ foreach($all as $a){
              $document_id = 0;
              unset($cc);
              $path = $base_url.'uploads/view_detail/'.$document_id;
+             }
+             else{
+             $path = $base_url.'uploads/view_detail/'.$doc;
+             $document_id = true;
+             }
              
             ?>
-            <?php if($document_id){?><tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a href="<?php echo $path;?>">View</a></td></tr><?php }?>
+            <?php if($document_id){?><tr><td><strong><?php if(!is_numeric($doc))echo $doc;?></strong>&nbsp; &nbsp; <a href="<?php echo $path;?>">View</a></td></tr><?php }?>
             <!--<tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; 
             <a href="javascript:void(0);" onclick="video(this.id)" id="<?php echo $doc; ?>">View</a> </div>
             </td></tr>-->
