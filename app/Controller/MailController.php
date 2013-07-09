@@ -185,7 +185,7 @@ class MailController extends AppController
         else
         $sent_id = 0;
         //echo $par;die();
-        $all = $this->Mail->find('all',array('conditions'=>array('OR'=>array(array('id'=>$par),array('parent'=>$par)),'OR'=>array(array('sender_id'=>$sent_id),array('recipients_id LIKE'=>$sent_id.',%'),array('recipients_id LIKE'=>'%,'.$sent_id.',%'),array('recipients_id LIKE'=>'%,'.$sent_id),array('recipients_id LIKE'=>$sent_id)))));
+        $all = $this->Mail->find('all',array('conditions'=>array('AND'=>array(array('OR'=>array(array('id'=>$par),array('parent'=>$par))),'OR'=>array(array('sender_id'=>$sent_id),array('recipients_id LIKE'=>$sent_id.',%'),array('recipients_id LIKE'=>'%,'.$sent_id.',%'),array('recipients_id LIKE'=>'%,'.$sent_id),array('recipients_id LIKE'=>$sent_id))))));
         //var_dump($all);die();
         $this->set('all',$all);
         $this->set('member',$this->Member);

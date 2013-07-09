@@ -184,6 +184,7 @@ $parents = $a['Mail']['id'];
     $count_em = $last->find('count',array('conditions'=>array('parent'=>$parents)));
     if($count_em>2)
     $repss=1;
+    else $repss = 0;
     ?>
     <input type="hidden" name="recipient_id" value="<?php echo $reqs; ?>" />
     <input type="hidden" name="recipient_email" value="<?php echo $reqs_email;?>" />
