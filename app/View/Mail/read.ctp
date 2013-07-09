@@ -99,6 +99,7 @@ foreach($all as $a){
             $url = 'http://'.$_SERVER['SERVER_NAME'].'/img/documents/'.$doc;
             $path = "https://docs.google.com/viewer?url=".$url;
             $path = $base_url.'uploads/view_detail/'.$document_id;
+            
             ?>
             <?php if($document_id){?><tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a href="<?php echo $path;?>">View</a></td></tr><?php }?>
             <?php
@@ -136,7 +137,10 @@ foreach($all as $a){
              }
              
             ?>
-            <?php if($document_id){?><tr><td><strong><?php if(!is_numeric($doc))echo $doc;?></strong>&nbsp; &nbsp; <a href="<?php echo $path;?>">View</a></td></tr><?php }?>
+            <?php if($document_id){?><tr><td><strong><?php if(!is_numeric($doc)){echo $doc;}else{
+                $get_doc = $docu->find('first',array('conditions'=>array('id'=>$document_id)));
+                echo $docname = $get_doc['Document']['title'].' '.$get_doc['Document']['date'];
+            }?></strong>&nbsp; &nbsp; <a href="<?php echo $path;?>">View</a></td></tr><?php }?>
             
             <?php
         }

@@ -96,6 +96,8 @@ class MailController extends AppController
         $this->set('mainid',$id);
         $this->set('mailing',$this->Mail);
         $this->set('last',$this->Lastsender);
+        $this->loadModel('Document');
+        $this->set('docu',$this->Document);
         if($this->Session->read('avatar') || $this->Session->read('user'))
         {
             
