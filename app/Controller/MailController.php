@@ -131,7 +131,7 @@ class MailController extends AppController
                 $this->Lastsender->id = $last_model['Lastsender']['id'];                
                 $this->Lastsender->saveField('second',$sender_id);
                 
-                $che = $this->Mailread->find('first',array('conditions'=>array('user'=>$_POST['recipients_id'],'parent'=>$arr['parent'])));
+                $che = $this->Mailread->find('first',array('conditions'=>array('user'=>$_POST['recipient_id'],'parent'=>$arr['parent'])));
                 $this->Mailread->id = $che['Mailread']['id'];
                 $this->Mailread->saveField('status',0);
                 

@@ -42,10 +42,12 @@ foreach($all as $a){
         echo $qs['Member']['full_name'];
         else
         echo "Member Deleted";
-        $recipients = $a['Mail']['recipients_id'];
-        $replies = explode(',',$recipients);
         
-    } ?> &nbsp; [<?php echo $a['Mail']['date'];?>] &nbsp; ( <strong>To</strong> : 
+        
+    }
+    $recipients = $a['Mail']['recipients_id'];
+        $replies = explode(',',$recipients);
+     ?> &nbsp; [<?php echo $a['Mail']['date'];?>] &nbsp; ( <strong>To</strong> : 
     <?php 
     $repss = 0;
     foreach($replies as $reps)

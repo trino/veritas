@@ -54,7 +54,7 @@
         <td>
         
         <?php
-        if(!$this->Session->read('admin'))
+        //if(!$this->Session->read('admin'))
             $allto = $ls->find('all',array('conditions'=>array('parent'=>$e['Mail']['id'],'first <>'=>$e['Mail']['sender_id'])));
         
         
