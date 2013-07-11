@@ -10,10 +10,18 @@ $(function(){
     if(isset($_GET['search']) && $_GET['search'])
     {
         echo "Result for : ".$_GET['search'];
+        if(isset($_GET['from'])&&$_GET['to'])
+        {
+            echo " <span style='font-size:17px;'>(From : ".$_GET['from']." to ".$_GET['to'].")</span>";
+        }
     } 
     else
     {
         echo "All Document Search";
+        if(isset($_GET['from'])&&$_GET['to'])
+        {
+            echo " <span style='font-size:17px;'>(From : ".$_GET['from']." to ".$_GET['to'].")</span>";
+        }
     }
     }
     else
