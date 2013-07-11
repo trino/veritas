@@ -151,7 +151,10 @@
                                 $me++;
                                 if($me%4==1)
                                 echo "<tr>";
+                                if($this->Session->read('admin'))
                                 echo "<td style='width:20px;'><a href='".$base_url."members/view/".$m['Member']['id']."'>"." ".$m['Member']['full_name']."</a></td>";
+                                else
+                                echo "<td style='width:20px;'>".$m['Member']['full_name']."</td>";
                                 $td++;
                                 if($m%4==0)
                                 echo "</tr>";

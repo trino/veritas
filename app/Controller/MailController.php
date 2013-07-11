@@ -87,6 +87,10 @@ class MailController extends AppController
         else
         $user = 0;
         $checks = $this->Mailread->find('first',array('conditions'=>array('parent'=>$id,'user'=>$user)));
+        if(!$checks)
+        {
+            $this->redirect('index');
+        }
         $this->Mailread->id = $checks['Mailread']['id'];
         $this->Mailread->saveField('status',1);
         $this->loadModel('Lastsender');

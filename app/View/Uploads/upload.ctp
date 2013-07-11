@@ -272,7 +272,7 @@ function remove_youtube()
 <table>
 <tr><td><b>Evidence Type</b></td>
 <td>
-<select name="evidence_type" class="required">
+<select name="evidence_type" class="required evtype">
     <option value="">Choose evidence type</option>
     <option value="Incident Report">Incident Report</option>
     <option value="Line Crossing Sheet">Line Crossing Sheet</option>
@@ -495,6 +495,18 @@ $(function(){
 'You have <input readonly="readonly" type="text" name="countdown" id="countssss" style="background:none; border:0; padding:0; margin:0; text-align:center; border-radius:none; width:30px; box-shadow:none;" value="70" /> characters left.</font><br />');
         
         }
+        $('.evtype').change(function(){
+            if($(this).val()=='Shift Summary')
+            {
+        
+            
+            $('.text_area_long').attr('onKeyDown',"limitText(this.form.description,this.form.countdown,500);");
+            $('.text_area_long').attr('OnKeyUp',"limitText(this.form.description,this.form.countdown,500);");
+            $('.desc_bot').html('(Maximum characters: 500)<br />'+
+'You have <input readonly="readonly" type="text" name="countdown" id="countssss" style="background:none; border:0; padding:0; margin:0; text-align:center; border-radius:none; width:30px; box-shadow:none;" value="500" /> characters left.</font><br />');
+        
+            }
+        })
         
         $('.extra_memo input').each(function(){
         $(this).click();
