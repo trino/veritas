@@ -450,6 +450,7 @@ class UploadsController extends AppController
             
             $ext_doc = array('doc','docx','txt','pdf','xls','xlsx','ppt','pptx','cmd');
             $ext_img = array('jpg','png','gif','jpeg','bmp');
+            $ext_video = array('mp4');
             
             for($i=1;$i<=$doc;$i++)
             {
@@ -488,11 +489,16 @@ class UploadsController extends AppController
                     $this->Image->save($d);
                 }
                 else
+                if(in_array($lower_ext,$ext_video))
                 {
                     
                     $d['video'] = $img;
                     $this->Video->create();
                     $this->Video->save($d);
+                }
+                else
+                {
+                    $this->Session->setFlash('Document Updated, but the file couldn\'t be saved due to unknown extension');
                 }
             }
             }
@@ -754,6 +760,7 @@ class UploadsController extends AppController
             
             $ext_doc = array('doc','docx','txt','pdf','xls','xlsx','ppt','pptx','cmd');
             $ext_img = array('jpg','png','gif','jpeg','bmp');
+            $ext_video = array('mp4');
             
             
             //$ext_arr = explode('.',$_FILES['document_'.$i]['name']);
@@ -821,10 +828,15 @@ class UploadsController extends AppController
                 $this->Image->save($d);
                 }
                 else
+                if(in_array($lower_ext,$ext_video))
                 {
                     $d['video'] = $img;
                     $this->Video->create();
                 $this->Video->save($d);
+                }
+                else
+                {
+                    $this->Session->setFlash('Document Saved, but the file couldn\'t be saved due to unknown extension');
                 }
             }
             }

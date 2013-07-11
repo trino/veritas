@@ -37,23 +37,28 @@
         if($this->Session->read('admin')){if($e['Mail']['sender_id']!=0 && $e['Mail']['status']=='unread')$stcheck=true;}
         if($e['Mail']['parent'] == 0)
         {
-        if($this->Session->read('user'))    
-        $check_child_status = $mails->find('first',array('conditions'=>array('parent'=>$e['Mail']['id'],'status'=>'unread','sender_id <>'=>$this->Session->read('id'))));
-        else
-        $check_child_status = $mails->find('first',array('conditions'=>array('parent'=>$e['Mail']['id'],'status'=>'unread','sender_id <>'=>0)));
+        $userr = $this->Session->read('id');
+        if($this->Session->read('admin'))
+        $userr = 0;
+        $check_child_status = $read->find('first',array('conditions'=>array('user'=>$userr,'parent'=>$e['Mail']['id'],'status'=>0)));
         }
         else
         $check_child_status = false;
         
-        if($e['Mail']['status']=='unread' || $check_child_status){$style="background-color:#e5e5f5;";}else{$style="";}
+        if($check_child_status){$style="background-color:#e5e5f5;";}else{$style="";}
         $cnt = $count->find('count',array('conditions'=>array('parent'=>$e['Mail']['id']))); 
         ?>
         
     <tr style="<?php echo $style;?>">
         <td><?php echo $this->Html->link($e['Mail']['sender'],'/mail/read/'.$e['Mail']['id'],array('style'=>'')); if($e['Mail']['status']=='unread'){echo "</b>";} ?></td>
         <td>
-        <?php 
-           $reply_arr = $count->find('all',array('conditions'=>array('parent'=>0,'subject'=>$e['Mail']['subject'],'message'=>$e['Mail']['message'],'date'=>$e['Mail']['date'])));
+        
+        <?php
+        //if(!$this->Session->read('admin'))
+            $allto = $ls->find('all',array('conditions'=>array('parent'=>$e['Mail']['id'],'first <>'=>$e['Mail']['sender_id'])));
+        
+        
+           /*$reply_arr = $count->find('all',array('conditions'=>array('parent'=>0,'subject'=>$e['Mail']['subject'],'message'=>$e['Mail']['message'],'date'=>$e['Mail']['date'])));
         
         
             $reply_arr2 = $count->find('all',array('conditions'=>array('parent'=>$e['Mail']['id'])));
@@ -125,7 +130,19 @@
                 if($r == 0)echo 'Admin';else{$get = $mems->find('first',array('conditions'=>array('id'=>$r)));if($get)echo "<a href='".$base_url."mail/read/".$e['Mail']['id']."'>".$get['Member']['full_name']."</a>";  }
                       
             }
-        }
+        }*/
+        $z=0;
+        foreach($allto as $re)
+            {
+                $r = $re['Lastsender']['first'];
+                $z++;
+                if($z!=1)
+                {
+                    echo ', ';
+                }
+                if($r == 0)echo 'Admin';else{$get = $mems->find('first',array('conditions'=>array('id'=>$r)));if($get)echo "<a href='".$base_url."mail/read/".$e['Mail']['id']."'>".$get['Member']['full_name']."</a>";  }
+                      
+            }
         ?>
         
         </td>

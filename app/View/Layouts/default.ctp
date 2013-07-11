@@ -95,7 +95,7 @@ url: '<?php echo $base_url;?>admin/logout'
         
     });
         $('.loads').live('click',function(){
-        var name = $(this).val();
+        var name = $('.search').val();
         var urls = '<?php echo $base_url;?>uploads/searchlist';
         if($('#filter').val()!='')
          urls = '<?php echo $base_url;?>uploads/searchlist/'+$('#filter').val();
@@ -137,7 +137,7 @@ url: '<?php echo $base_url;?>admin/logout'
     });
         $('.loads2').live('click',function(){
             
-        var name = $(this).val();
+        var name = $('.search2').val();
         
         $('.loads').text('Loading..');
         var urls = '<?php echo $base_url;?>members/searchlist';

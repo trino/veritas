@@ -155,17 +155,25 @@ class AdminController extends AppController {
     
     function email_status()
     {
+        $this->loadModel('Mailread');
+        $user = 0;
+        if(!$this->Session->read('admin'))
+        $user = $this->Session->read('id');
+        echo $c = $this->Mailread->find('count',array('conditions'=>array('user'=>$user,'status'=>0)));
+        die();/*
         $this->loadModel('Mail');
         if($this->Session->read('avatar'))
         {
-            echo $this->Mail->find('count',array('conditions'=>array('recipients_id'=>'0','status'=>'unread','delete_for IN ("s","")')));
+            $recc = 0;
+            echo $this->Mail->find('count',array('conditions'=>array('OR'=>array(array('recipients_id LIKE'=>$recc.',%'),array('recipients_id LIKE'=>'%,'.$recc.',%'),array('recipients_id LIKE'=>'%,'.$recc),array('recipients_id'=>$recc)),'status'=>'unread','delete_for IN ("s","")')));
             die();
         }
         else
         {
-            echo $this->Mail->find('count',array('conditions'=>array('recipients_id'=>$this->Session->read('id'),'status'=>'unread','delete_for IN ("s","")')));
+            $recc = $this->Session->read('id');
+            echo $this->Mail->find('count',array('conditions'=>array('OR'=>array(array('recipients_id LIKE'=>$recc.',%'),array('recipients_id LIKE'=>'%,'.$recc.',%'),array('recipients_id LIKE'=>'%,'.$recc),array('recipients_id'=>$recc)),'status'=>'unread','delete_for IN ("s","")')));
             die();
-        }
+        }*/
     }
     
     

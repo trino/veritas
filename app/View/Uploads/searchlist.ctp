@@ -137,11 +137,11 @@ if($this->Session->read('admin'))
                             if(!$documents && !$images && !$videos)
                             {
                                 ?>
-                                <div class="left" style="width:120px;margin-left:5px;">&nbsp;</div>
+                                <div class="left" style="width:120px;margin-left:5px;"><?php echo $do['Document']['title'];?></div>
                                 
                                 <div class="left" style="width:120px;margin-left:5px;">&nbsp;</div>
-                                <div class="left" style="width:480px;margin-left:5px;">&nbsp;</div>
-                                    <div class="left" style="width:100px;margin-left:5px;">&nbsp;</div>
+                                <div class="left" style="width:480px;margin-left:5px;"><?php echo $do['Document']['title'];?> <?php echo $do['Document']['date'];?></div>
+                                    <div class="left" style="width:100px;margin-left:5px;"><input type="checkbox" class="doc" value="<?php echo $do['Document']['id'];?>" /></div>
                                     <?php
                             }
                             
@@ -289,8 +289,8 @@ else
                                 <div class="left" style="width:120px;margin-left:5px;"><?php echo $do['Document']['title'];?></div>
                                 
                                 <div class="left" style="width:120px;margin-left:5px;">--</div>
-                                <div class="left" style="width:480px;margin-left:5px;">--</div>
-                                    <div class="left" style="width:100px;margin-left:5px;">--</div>
+                                <div class="left" style="width:480px;margin-left:5px;"><?php echo $do['Document']['title'];?> <?php echo $do['Document']['date'];?></div>
+                                    <div class="left" style="width:100px;margin-left:5px;"><input type="checkbox" class="doc" value="<?php echo $do['Document']['id'];?>" /></div>
                                     <?php
                             }
                             

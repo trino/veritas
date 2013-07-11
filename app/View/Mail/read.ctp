@@ -31,66 +31,9 @@ $j = 0;
 $k=0;
 $rep['is_replyall']='2';
 $rep['date'] = '';
-
+//var_dump($all);
 foreach($all as $a){
     
-    if(isset($re_test))
-    unset($re_test);
-    $j++;
-    
-    if($a['Mail']['is_replyall']==1){
-        if($a['Mail']['is_replyall']==1 && $a['Mail']['date'] == $rep['date'])
-        continue;
-        else
-        {
-        $rep['is_replyall'] = 1;
-        $rep['date'] = $a['Mail']['date'];
-        }    
-        }
-        else
-        $show=1;
-    
-    
-    if($a['Mail']['parent']!=0)
-    $parents = $a['Mail']['parent'];
-    if($i==0)
-    {
-      if($this->Session->read('admin'))
-      $recc = 0;
-      else
-      $recc =$this->Session->read('id');  
-      $req_arr = $mailing->find('first',array('conditions'=>array('OR'=>array(array('id'=>$mainid),array('parent'=>$mainid),'recipients_id'=>$recc))));
-      $reqs = $req_arr['Mail']['sender_id'];
-      $sub = $req_arr['Mail']['subject'];
-      if($reqs!=0){
-      $q1 = $member->find('first',array('condtions'=>array('id'=>$reqs)));
-                $reqs_email = $q1['Member']['email'];
-                $i++;
-                }
-                else{
-                $q2 = $user->find('first');
-            $reqs_email = $q2['User']['email'];
-            }
-                
-      
-      /*      if($a['Mail']['sender_id']!=0)
-            {
-                $reqs = $a['Mail']['sender_id'];
-                $sub = $a['Mail']['subject'];
-                $q1 = $member->find('first',array('condtions'=>array('id'=>$reqs)));
-                $reqs_email = $q1['Member']['email'];
-                $i++;
-            }
-            
-      
-        else
-        {
-            $sub = $a['Mail']['subject'];
-            $reqs = 0;
-            $q2 = $user->find('first');
-            $reqs_email = $q2['User']['email'];
-        }*/
-    }
     ?>
     <table id="span<?php echo $j;?>" class="clickable">
     <tr class="show"><td> <b>Sent By:</b> <?php if($a['Mail']['sender_id']=='0')echo 'Admin';else{
@@ -100,68 +43,28 @@ foreach($all as $a){
         else
         echo "Member Deleted";
         
-    } ?> &nbsp; [<?php echo $a['Mail']['date'];?>] &nbsp; ( <strong>To</strong> : <?php if($a['Mail']['recipients_id']=='0'){echo 'Admin';$re_test[] = 'Admin';}else{
-        $qs2 = $member->find('first',array('conditions'=>array('id'=>$a['Mail']['recipients_id'])));
-        if($qs2){
-        echo $qs2['Member']['full_name'];
-        $re_test[] = $qs2['Member']['full_name'];
-        
-        }
-        else
-        echo "Member Deleted";
         
     }
-    $repss=0;
-    if($a['Mail']['parent']==0)
-        {
-            $replies = $mailing->find('all',array('conditions'=>array('parent'=>0,'subject'=>$a['Mail']['subject'],'message'=>$a['Mail']['message'],'date'=>$a['Mail']['date'])));
-            if($replies)
-            {
-                if(isset($qs2))
-                unset($qs2);
-                //$re_test = array();
-                foreach($replies as $reps)
+    $recipients = $a['Mail']['recipients_id'];
+        $replies = explode(',',$recipients);
+     ?> &nbsp; [<?php echo $a['Mail']['date'];?>] &nbsp; ( <strong>To</strong> : 
+    <?php 
+    $repss = 0;
+    foreach($replies as $reps)
                 {
+                    $repss++;
+                    if($repss!=1)
+                    echo ', ';
                     
-                    if($reps['Mail']['recipients_id']==0)
-                    $qs2['Member']['full_name'] = 'Admin';
-                    else 
-                    $qs2 = $member->find('first',array('conditions'=>array('id'=>$reps['Mail']['recipients_id'])));
+                    if($reps==0)
+                    echo 'Admin';
+                    else {
+                    $qs2 = $member->find('first',array('conditions'=>array('id'=>$reps)));
                     
                     if($qs2){
                     
-                    if(!in_array($qs2['Member']['full_name'],$re_test)){
-                        $repss++;
-                    $re_test[] = $qs2['Member']['full_name'];
-                    echo ', '.$qs2['Member']['full_name'];}}   
+                    echo $qs2['Member']['full_name'];}} 
                 }
-            }
-        }
-        else
-        {
-            $replies = $mailing->find('all',array('conditions'=>array('subject'=>$a['Mail']['subject'],'message'=>$a['Mail']['message'],'date'=>$a['Mail']['date'],'sender_id'=>$a['Mail']['sender_id'])));
-            if($replies)
-            {
-                //$re_test = array();
-                if(isset($qs2))
-                unset($qs2);
-                
-                foreach($replies as $reps)
-                {
-                    
-                    if($reps['Mail']['recipients_id']==0)
-                    $qs2['Member']['full_name'] = 'Admin';
-                    else 
-                    $qs2 = $member->find('first',array('conditions'=>array('id'=>$reps['Mail']['recipients_id'])));
-                    if($qs2){
-                        
-                    if(!in_array($qs2['Member']['full_name'],$re_test)){
-                        $repss++;
-                    $re_test[] = $qs2['Member']['full_name'];    
-                    echo ', '.$qs2['Member']['full_name'];}}   
-                }
-            }
-        }
     
      ?> )</td></tr>
     <tr><td><?php echo $a['Mail']['message']; ?></td></tr>
@@ -196,6 +99,7 @@ foreach($all as $a){
             $url = 'http://'.$_SERVER['SERVER_NAME'].'/img/documents/'.$doc;
             $path = "https://docs.google.com/viewer?url=".$url;
             $path = $base_url.'uploads/view_detail/'.$document_id;
+            
             ?>
             <?php if($document_id){?><tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a href="<?php echo $path;?>">View</a></td></tr><?php }?>
             <?php
@@ -213,11 +117,12 @@ foreach($all as $a){
              
             ?>
             <?php if($document_id){?><tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a href="<?php echo $path;?>">View</a></td></tr><?php }?>
-            <!--<tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a href="<?php echo $base_url;?>img/documents/<?php echo $doc; ?>" rel="prettyPhoto[gallery1]"><?php echo $this->Html->image('documents/'.$doc,array('width'=>'100','height'=>'100')); ?></a></td></tr>-->
+           
             <?php
         }
         else
         {
+            if(!is_numeric($doc)){
             $cc = $dvo->find('first',array('conditions',array('video'=>$doc)));
             if($cc)
             $document_id = $cc['Video']['document_id'];
@@ -225,12 +130,18 @@ foreach($all as $a){
              $document_id = 0;
              unset($cc);
              $path = $base_url.'uploads/view_detail/'.$document_id;
+             }
+             else{
+             $path = $base_url.'uploads/view_detail/'.$doc;
+             $document_id = true;
+             }
              
             ?>
-            <?php if($document_id){?><tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a href="<?php echo $path;?>">View</a></td></tr><?php }?>
-            <!--<tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; 
-            <a href="javascript:void(0);" onclick="video(this.id)" id="<?php echo $doc; ?>">View</a> </div>
-            </td></tr>-->
+            <?php if($document_id){?><tr><td><strong><?php if(!is_numeric($doc)){echo $doc;}else{
+                $get_doc = $docu->find('first',array('conditions'=>array('id'=>$document_id)));
+                echo $docname = $get_doc['Document']['title'].' '.$get_doc['Document']['date'];
+            }?></strong>&nbsp; &nbsp; <a href="<?php echo $path;?>">View</a></td></tr><?php }?>
+            
             <?php
         }
     ?>    
@@ -243,51 +154,52 @@ foreach($all as $a){
     <tr><td>&nbsp;</td></tr>
     </table>
     <?php
-    
-}
-if(!isset($parents))
+$parents = $a['Mail']['parent'];    
+if(!$parents)
 $parents = $a['Mail']['id'];
+}
+
+
 ?>
-</table>
-
-
-
-<div id="myElement"></div>
-                <script type="text/javascript">
-                    function video(value)
-                    {
-                        jwplayer("myElement").setup({
-                        file: "<?php echo $base_url;?>img/documents/"+value,
-                        image: "<?php echo $base_url;?>img/documents/ZaideesVID-Clip1.flv"
-                    });
-                    }
-                    
-                </script>
+</table>                
                 <?php if(!isset($_GET['sent'])){?>
 <div id="reply" style="padding:15px;">
 <form action="" method="post" id="replyform">
     <textarea name="reply" style="height:100px;width:420px;" class="required"></textarea>
     <input type="hidden" name="mail_id" value="<?php echo $parents;?>" />
+    <?php
+    if($this->Session->read('admin'))
+    $first = 0;
+    else
+    $first = $this->Session->read('id');
+    $get_parent = $last->find('first',array('conditions'=>array('parent'=>$parents,'first'=>$first)));
+    $reqs = $get_parent['Lastsender']['second'];
+    if($reqs == 0)
+    {
+        $get_par_email = $user->find('first');
+        $reqs_email = $get_par_email['User']['email'];
+    }
+    else
+    {
+        //echo $reqs;
+        $get_par_email = $member->find('first',array('conditions'=>array('id'=>$reqs)));
+        $reqs_email = $get_par_email['Member']['email'];
+    }
+    $count_em = $last->find('count',array('conditions'=>array('parent'=>$parents)));
+    if($count_em>2)
+    $repss=1;
+    else $repss = 0;
+    ?>
     <input type="hidden" name="recipient_id" value="<?php echo $reqs; ?>" />
     <input type="hidden" name="recipient_email" value="<?php echo $reqs_email;?>" />
-    <input type="hidden" name="subject" value="<?php echo $sub; ?>" />
+    <input type="hidden" name="subject" value="<?php echo $subj; ?>" />
     <br /><input type="submit" name="submit" value="Reply" class="btn btn-primary reg-company replybtn" />&nbsp;
     <?php if(isset($repss)&&$repss>0){?>
     
     &nbsp; <a href="javascript:void(0)" style="height: 6px;padding-bottom: 15px;" class="replyall btn btn-primary">Reply All</a>
     <?php }?>
 </form>
-<?php
-/*
-<form action="" method="post">
-    <textarea name="reply" rows="10" cols="35" style="height:100px;"></textarea>
-    <input type="hidden" name="mail_id" value="<?php if($email['Mail']['parent']) echo $r['Mail']['parent']; else echo $email['Mail']['id']; ?>" />
-    <input type="hidden" name="recipient_id" value="<?php echo $email['Mail']['sender_id']; ?>" />
-    <input type="hidden" name="recipient_email" value="<?php echo $sender; ?>" />
-    <input type="hidden" name="subject" value="<?php echo $email['Mail']['subject']; ?>" />
-    <input type="submit" name="submit" value="Reply" class="btn btn-primary reg-company" />
-</form>
-*/?>
+
 </div>
 <?php }?>
 <script>
@@ -298,30 +210,4 @@ $(function(){
     $('.replybtn').click();
    }); 
 });
-/*
-$(function(){
-    
-   $('.clickable tr').hide();
-   $('.clickable').css('background','#e5e5e5');
-   $('.clickable').css('display','block');
-   $('.clickable').css('border-radius','5px');
-   $('.clickable').css('padding','10px');
-   $('.clickable').css('cursor','pointer');
-   $('.show').show();   
-   $('#span<?php echo $j;?> tr').show(); 
-   $('#span<?php echo $j;?>').css('background','none');
-   $('.clickable').toggle(
-   function(){
-    var di = $(this).attr('id');
-    $('#'+di+ ' tr').show();
-    $(this).css('background','none');
-   },
-   function(){
-    var di = $(this).attr('id');
-    $('#'+di+ ' tr').hide();
-    $('.show').show();
-    $(this).css('background','#e5e5e5');
-   }
-   );
-});*/
 </script>

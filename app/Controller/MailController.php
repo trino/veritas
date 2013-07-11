@@ -16,6 +16,7 @@ class MailController extends AppController
         $this->loadModel('Doc');
         $this->loadModel('Image');
         $this->loadModel('Video');
+        $this->loadModel('Mailread');
          
     }
     function beforeFilter()
@@ -32,6 +33,9 @@ class MailController extends AppController
     
     function index()
     {
+        $this->loadModel('Lastsender');
+        $this->set('read',$this->Mailread);
+        $this->set('ls',$this->Lastsender);
         $this->set('mails',$this->Mail);
         $this->set('mems',$this->Member);
         /*if($this->Session->read('avatar'))
@@ -49,7 +53,7 @@ class MailController extends AppController
             $recc = $this->Session->read('id');
             else
             $recc = 0;
-            $test = $this->Mail->find('all',array('conditions'=>array('recipients_id'=>$recc,'parent <>'=>0)));
+            $test = $this->Mail->find('all',array('conditions'=>array('OR'=>array(array('recipients_id LIKE'=>$recc.',%'),array('recipients_id LIKE'=>'%,'.$recc.',%'),array('recipients_id LIKE'=>'%,'.$recc),array('recipients_id'=>$recc)),'parent <>'=>0)));
             foreach($test as $t)
             {
                 if(!in_array($t['Mail']['parent'],$arr))
@@ -67,7 +71,7 @@ class MailController extends AppController
             $str = str_replace(',',' ',$str);
             $str = trim($str);
             $str = str_replace(' ',',',$str).')';
-            $this->paginate=array('conditions'=>array('OR'=>array('AND'=>array('parent'=>0,'recipients_id'=>$recc,'delete_for IN("s","")'),'id IN'.$str)),'limit'=>15,'order'=>array('date'=>'desc'));
+            $this->paginate=array('conditions'=>array('OR'=>array('AND'=>array('parent'=>0,'OR'=>array(array('recipients_id LIKE'=>$recc.',%'),array('recipients_id LIKE'=>'%,'.$recc.',%'),array('recipients_id LIKE'=>'%,'.$recc),array('recipients_id'=>$recc)),'delete_for IN("s","")'),'id IN'.$str)),'limit'=>15,'order'=>array('date'=>'desc'));
             $em= $this->paginate('Mail');
             $this->set('email',$em);
             //$this->set('email',$this->Mail->find('all',array('conditions'=>array('recipients_id'=>$this->Session->read('id')))));
@@ -78,11 +82,22 @@ class MailController extends AppController
     
     function read($id)
     {
+        if(!$this->Session->read('admin'))
+        $user = $this->Session->read('id');
+        else
+        $user = 0;
+        $checks = $this->Mailread->find('first',array('conditions'=>array('parent'=>$id,'user'=>$user)));
+        $this->Mailread->id = $checks['Mailread']['id'];
+        $this->Mailread->saveField('status',1);
+        $this->loadModel('Lastsender');
         $this->set('ddo',$this->Doc);
         $this->set('dvo',$this->Video);
         $this->set('dio',$this->Image);
         $this->set('mainid',$id);
         $this->set('mailing',$this->Mail);
+        $this->set('last',$this->Lastsender);
+        $this->loadModel('Document');
+        $this->set('docu',$this->Document);
         if($this->Session->read('avatar') || $this->Session->read('user'))
         {
             
@@ -95,6 +110,7 @@ class MailController extends AppController
         {
             $check=0;
             $arr['recipients_id'] = $_POST['recipient_id'];
+            
             $receiver = $_POST['recipient_email'];
             if($this->Session->read('avatar'))
             {
@@ -113,6 +129,13 @@ class MailController extends AppController
                 $arr['status'] = 'unread';
                 $arr['date'] = date('Y-m-d H:i:s');
                 $arr['parent'] = $_POST['mail_id'];
+                $last_model = $this->Lastsender->find('first',array('conditions'=>array('parent'=>$arr['parent'],'first'=>$arr['recipients_id'])));
+                $this->Lastsender->id = $last_model['Lastsender']['id'];                
+                $this->Lastsender->saveField('second',$sender_id);
+                
+                $che = $this->Mailread->find('first',array('conditions'=>array('user'=>$_POST['recipient_id'],'parent'=>$arr['parent'])));
+                $this->Mailread->id = $che['Mailread']['id'];
+                $this->Mailread->saveField('status',0);
                 
                 $this->Mail->create();
                 $this->Mail->save($arr);
@@ -158,13 +181,28 @@ class MailController extends AppController
                 }
         }
         $data = $this->Mail->find('first',array('conditions'=>array('id'=>$id)));
+        $par = $data['Mail']['id'];
+        if(!$this->Session->read('admin'))
+        $sent_id = $this->Session->read('id');
+        else
+        $sent_id = 0;
+        //echo $par;die();
+        $all = $this->Mail->find('all',array('conditions'=>array('AND'=>array(array('OR'=>array(array('id'=>$par),array('parent'=>$par))),'OR'=>array(array('sender_id'=>$sent_id),array('recipients_id LIKE'=>$sent_id.',%'),array('recipients_id LIKE'=>'%,'.$sent_id.',%'),array('recipients_id LIKE'=>'%,'.$sent_id),array('recipients_id LIKE'=>$sent_id))))));
+        //var_dump($all);die();
+        $this->set('all',$all);
+        $this->set('member',$this->Member);
+        $this->set('user',$this->User);
+        $subj = $data['Mail']['subject'];
+        $this->set('subj',$subj);
+        /*
+        $data = $this->Mail->find('first',array('conditions'=>array('id'=>$id)));
         $par = $data['Mail']['parent'];
         $subj = $data['Mail']['subject'];
         $this->set('subj',$subj);
         if($par != 0)
         $all = $this->Mail->find('all',array('conditions'=>array('OR'=>array('id'=>$par,'parent'=>$par)),'order'=>'id ASC'));
         else
-        $all = $this->Mail->find('all',array('conditions'=>array('OR'=>array('id'=>$id,'parent'=>$id)),'order'=>'id ASC'));
+        $all = $this->Mail->find('all',array('conditions'=>array('OR'=>array('id'=>$id,'parent'=>$id,)),'order'=>'id ASC'));
         
         $this->set('all',$all);
         $this->set('member',$this->Member);
@@ -184,41 +222,9 @@ class MailController extends AppController
         
         if(($this->Session->read('user') && $p['Mail']['sender_id']!=$this->Session->read('id')|| ($this->Session->read('admin')&& $p['Mail']['sender_id']!=0)))
         $this->Mail->saveField('status','read');
-        }
+        }*/
         
         
-        
-        
-        
-        /*
-        $data = $this->Mail->find('first',array('conditions'=>array('id'=>$id)));
-        $u_id=$data['Mail']['sender_id'];
-        if($u_id=='0')
-        {
-            $em=$this->User->find('first');
-            $sender = $em['User']['email'];
-            $name = 'Admin';
-        }
-        else
-        {
-            $em=$this->Member->find('first',array('conditions'=>array('id'=>$u_id)));
-            $sender = $em['Member']['email'];
-            $name = $em['Member']['full_name'];
-        }
-        $this->set('email',$data);
-        $this->set('name',$name);
-        $this->set('sender',$sender);
-        $p_id=$data['Mail']['parent'];
-        if($p_id=="0")
-        {
-            $this->set('reply',$this->Mail->find('all',array('conditions'=>array('parent'=>$id))));
-        }
-        else
-        {
-            $this->set('reply',$this->Mail->find('all',array('conditions'=>array('id'=>$p_id))));
-        }
-        
-        //$this->set('member',$this->Member->find('all'));*/
         
     }
     
@@ -264,6 +270,7 @@ class MailController extends AppController
     }
     public function send()
     {
+        $this->loadModel('Lastsender');
         $check=0;
         $return = urldecode($_GET['return']);
         $return = str_replace('/',' ',$return);
@@ -303,19 +310,7 @@ class MailController extends AppController
             $arr_att = false;
             
             
-            /*die();
-            $this->Email->to = rtrim($_POST['recipients']);
-            if(isset($a))
-            $this->Email->cc = $a;
-            /*if(isset($arr))
-            $this->Email->to      = trim($arr[0]);
-            else
             
-            */
-            /*if($arr_att){
-               
-            $this->Email->attachments = $arr_att;
-            }*/
             if($this->Session->read('avatar'))
             {
                 $sender_id = '0';
@@ -331,14 +326,52 @@ class MailController extends AppController
             {
                 $data['sender_id'] = $sender_id;
                 $data['sender'] = $sender;
+                if($i==0)
                 $data['recipients_id'] = $d[$i];
+                else
+                $data['recipients_id'] = $data['recipients_id'].','.$d[$i];
+                //echo $data['recipients_id'].' '; 
                 $data['subject'] = $_POST['subject'];
                 $data['message'] = $_POST['message'];
                 $data['attachment'] = str_replace(' ','',$_POST['attachments']);
                 $data['status'] = 'unread';
                 $data['date'] = date('Y-m-d H:i:s');
-                $this->Mail->create();
-                $this->Mail->save($data); 
+                
+            }
+            //die('here');
+            if($data){
+            $this->Mail->create();
+                $this->Mail->save($data);
+                $par = $this->Mail->id; 
+                }
+            for($i=0;$i<sizeof($d);$i++)
+            {
+                if($i==0)
+                {
+                    $this->Mailread->create();
+                $arrr['user'] = $sender_id;
+                $arrr['parent'] = $par;
+                $arrr['status'] = -1;
+                $this->Mailread->save($arrr);
+                }
+                if($i!=(sizeof($d)-1)){
+                $this->Mailread->create();
+                $arrr['user'] = $d[$i];
+                $arrr['parent'] = $par;
+                $arrr['status'] = 0;
+                $this->Mailread->save($arrr);}
+                if($i==0){
+                $da['first'] = $sender_id;
+                $da['parent'] = $par;
+                }
+                else
+                {
+                    $da['first'] = $d[$i-1];
+                    $da['second'] = $sender_id;
+                    $da['parent'] = $par;
+                }
+                $this->Lastsender->create();
+                $this->Lastsender->save($da);
             }
             
             for($i=0;$i<sizeof($arr)-1;$i++)
@@ -406,6 +439,7 @@ class MailController extends AppController
     }
     public function replyall()
     {
+        $this->loadModel('Lastsender');
         $check=0;
         
             if($this->Session->read('avatar'))
@@ -430,7 +464,11 @@ class MailController extends AppController
                 $q = $this->Mail->find('all',array('conditions'=>array('OR'=>array(array('parent'=>$arr['parent']),array('id'=>$arr['parent']),array('sender'=>$par['Mail']['sender'],'subject'=>$par['Mail']['subject'],'message'=>$par['Mail']['message'],'date'=>$par['Mail']['date'],'parent'=>0)))));
                 foreach($q as $qs)
                 {
-                    $arrays[] = $qs['Mail']['recipients_id'];
+                    $reci = $qs['Mail']['recipients_id'];
+                    $arrs = explode(',',$reci);
+                    foreach($arrs as $a){
+                    $arrays[] = $a;
+                    }
                     $arrays[] = $qs['Mail']['sender_id'];
                 }
                 if(isset($arrays))
@@ -449,10 +487,19 @@ class MailController extends AppController
                 //var_dump($arr_final);die();
                 if(isset($arr_final))
                 {
-                foreach($arr_final as $af){    
+                    $z=0;
+                foreach($arr_final as $af){
+                    
                 //$arr['recipients_id'] = $_POST['recipient_id'];
                 if($af != $sender_id){
+                    $z++;
+                $qs = $this->Lastsender->find('first',array('conditions'=>array('parent'=>$arr['parent'],'first'=>$af)));
+                $this->Lastsender->id = $qs['Lastsender']['id'];
+                $this->Lastsender->saveField('second',$sender_id);  
+                if($z==1)  
                 $arr['recipients_id'] = $af;
+                else
+                $arr['recipients_id'] = $arr['recipients_id'].','.$af;
                 if($af!=0)
                 {
                     $r = $this->Member->find('first',array('conditions'=>array('id'=>$af)));
@@ -462,10 +509,12 @@ class MailController extends AppController
                 $r = $this->User->find('first');
                 $receiver = $r['User']['email'];
                 }
+                $checkss = $this->Mailread->find('first',array('conditions'=>array('user'=>$af,'parent'=>$arr['parent'])));
+                $this->Mailread->id = $checkss['Mailread']['id'];
+                $this->Mailread->saveField('status',0);
             
                 
-                $this->Mail->create();
-                $this->Mail->save($arr);
+                
                 $this->set('success','You have replied to this message.');
                 $emails = new CakeEmail();
                 $emails->from(array('noreply@veritas.com'=>'Veritas'));
@@ -503,6 +552,8 @@ class MailController extends AppController
                 }
                 $emails->reset();
                 }}
+                $this->Mail->create();
+                $this->Mail->save($arr);
                 }
                 $this->Session->setFlash('You have replied to this message.');
                 $this->redirect('read/'.$arr['parent']);
