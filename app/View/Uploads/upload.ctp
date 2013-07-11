@@ -413,7 +413,7 @@ $(function(){
     });
     
     $('.activity_date').live('click',function(){
-        $(this).datepicker({dateFormat: 'yy-mm-dd'});
+        $(this).datepicker({dateFormat: 'yy-mm-dd',maxDate: new Date, minDate: new Date(2007, 6, 12) });
     });
     $('.activity_time').live('click',function(){
         $(this).timepicker();
