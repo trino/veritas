@@ -751,7 +751,7 @@ url: '<?php echo $base_url;?>admin/logout'
                                         $ur = $base_url.'jobs?activity_log=1';
                                     }
                                     ?>
-                    <?php if($this->Session->read('admin')||($usr['Member']['canUpdate']==1 && $usr['Member']['Canupload']['report']=='1')){?>
+                    <?php if($this->Session->read('admin')||($usr['Member']['canUpdate']==1 && $usr['Member']['Canupload']['report']=='1' && $upload)){?>
 						<a href="<?php echo $ur?>" class="fullLink">
 							<div  class="glassButton">
 							<div  class="full8ButtonB">

@@ -45,10 +45,14 @@ class JobsController extends AppController
                     $data.=$j['Jobmember']['job_id'].',';
                 }
                 $d=rtrim($data, ",");
+                if($d){
                 $this->paginate = array('conditions'=>'Job.id in ('.$d.')','limit'=>10);
                 $t=$this->paginate('Job');
                 //$t=$this->Job->find('all', array('conditions'=>'Job.id in ('.$d.')'));
                 $this->set('job',$t);
+                }
+                else
+                $this->set('job','');
             }
             else
             {
