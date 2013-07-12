@@ -624,7 +624,7 @@ url: '<?php echo $base_url;?>admin/logout'
 							</div>
 						</a>
 					</div>		
-<?php if($this->Session->read('admin') || $upload=='1'){?>
+<?php if($this->Session->read('admin') || $upload){?>
                     <div class="v1ButtonBarB">
 						<a href="<?php echo $base_url;?>uploads/go" class="fullLink">
 							<div  class="glassButton">
