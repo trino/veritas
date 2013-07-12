@@ -25,9 +25,17 @@ class DashboardController extends AppController
         {
             $this->loadModel('Member');
             $id = $this->Session->read('id');
-            $u = $this->Member->findById($id);
+            $u = $this->Member->findById($id);            
+            if($u['Member']['canUpdate'])
+            {
+                $this->loadModel('Jobmember');
+                $ch = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$id)));
+                if(trim($ch['Jobmember']['job_id']))
+                return true;
+                else
+                return false;
+            }
             
-            return $u['Member']['canUpdate'];
         }
         else
             return '0';

@@ -45,10 +45,14 @@ class JobsController extends AppController
                     $data.=$j['Jobmember']['job_id'].',';
                 }
                 $d=rtrim($data, ",");
+                if($d){
                 $this->paginate = array('conditions'=>'Job.id in ('.$d.')','limit'=>10);
                 $t=$this->paginate('Job');
                 //$t=$this->Job->find('all', array('conditions'=>'Job.id in ('.$d.')'));
                 $this->set('job',$t);
+                }
+                else
+                $this->set('job','');
             }
             else
             {
@@ -434,6 +438,13 @@ class JobsController extends AppController
         if($this->Session->read('user'))
         {
             $ids = $this->Session->read('id');
+            $this->loadModel('Jobmember');
+            $ch = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$ids,'OR'=>array(array('job_id'=>$id),array('job_id LIKE'=>$id.',%'),array('job_id LIKE'=>'%,'.$id.',%'),array('job_id LIKE'=>'%,'.$id)))));
+            if(!$ch)
+            {
+                $this->redirect('index');
+            }
+            
             if($canview = $this->Canview->find('first',array('conditions'=>array('member_id'=>$ids))))
                 $this->set('canview',$canview);
             if($canupdate = $this->Canupload->find('first', array('conditions'=>array('member_id'=>$ids))))

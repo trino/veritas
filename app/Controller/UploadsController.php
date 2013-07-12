@@ -1027,7 +1027,9 @@ class UploadsController extends AppController
         
         if($this->Document->find('first',array('conditions'=>array('id'=>$id))))
         {
+            
             $doc = $this->Document->find('first',array('conditions'=>array('id'=>$id)));
+            $job_id = $doc['Document']['job_id'];
             if($doc['Document']['document_type']== 'report')
                 $this->set('activity',$this->Activity->find('all',array('conditions'=>array('document_id'=>$id))));
             elseif($doc['Document']['document_type'] == 'client_feedback')
@@ -1043,7 +1045,12 @@ class UploadsController extends AppController
             }
             else
             {
-                
+                $ids = $this->Session->read('id');
+                $ch = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$ids,'OR'=>array(array('job_id'=>$job_id),array('job_id LIKE'=>$job_id.',%'),array('job_id LIKE'=>'%,'.$job_id.',%'),array('job_id LIKE'=>'%,'.$job_id)))));
+                if(!$ch)
+                {
+                    $this->redirect('go');
+                }
                 $log['fullname'] = $this->Session->read('user');
                 $log['username'] = $this->Session->read('email');
                 $log['member_id'] = $this->Session->read('id');   
