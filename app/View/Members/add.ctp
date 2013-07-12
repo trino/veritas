@@ -22,7 +22,28 @@
                   equalTo: '#password'
             }
       }
- });  
+      
+ }); 
+ $('#full_name').change(function(){
+        if($(this).val()=='')
+        {
+            $('#emails').addClass('required');
+        }
+        else
+        {
+            $('#emails').removeClass('required');
+        }
+      });
+      $('#emails').change(function(){
+        if($(this).val()=='')
+        {
+            $('#full_name').addClass('required');
+        }
+        else
+        {
+            $('#full_name').removeClass('required');
+        }
+      }); 
      });
     function check_email()
     {
