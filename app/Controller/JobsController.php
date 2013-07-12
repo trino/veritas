@@ -409,6 +409,13 @@ class JobsController extends AppController
         if($this->Session->read('user'))
         {
             $ids = $this->Session->read('id');
+            $this->loadModel('Jobmember');
+            $ch = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$ids,'OR'=>array(array('job_id'=>$id),array('job_id LIKE'=>$id.',%'),array('job_id LIKE'=>'%,'.$id.',%'),array('job_id LIKE'=>'%,'.$id)))));
+            if(!$ch)
+            {
+                $this->redirect('index');
+            }
+            
             if($canview = $this->Canview->find('first',array('conditions'=>array('member_id'=>$ids))))
                 $this->set('canview',$canview);
             if($canupdate = $this->Canupload->find('first', array('conditions'=>array('member_id'=>$ids))))
