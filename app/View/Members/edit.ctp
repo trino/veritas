@@ -8,7 +8,7 @@ $(function(){
     {
         //alert('test');
         var full_name = $('#full_name').val();
-        
+        if(full_name != "")
         $.ajax(
         {
             url: '<?php echo $base_url;?>members/check_name2',
