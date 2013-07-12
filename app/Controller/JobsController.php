@@ -265,6 +265,31 @@ class JobsController extends AppController
                 
             }
             
+            foreach($_POST['key_name'] as $k=>$t)
+            {
+                if($t != "")
+                {
+                    $keys['name'] = $t;
+                    $keys['type'] = $_POST['type'][$k]; 
+                    $keys['email'] = $_POST['key_email'][$k]; 
+                    $keys['cell'] = $_POST['key_cell'][$k];
+                    $keys['title'] = $_POST['key_title'][$k]; 
+                    $keys['company'] = $_POST['key_company'][$k]; 
+                    $keys['phone'] = $_POST['key_number'][$k]; 
+                    $this->Key_contact->create();
+                    $this->Key_contact->save($keys);
+                    $i = $this->Key_contact->id; 
+                    $ke['job_id'] = $id;
+                    $ke['key_id'] = $i;
+                    $ke['type'] = $_POST['type'][$k];
+                    $this->Job_contact->create();
+                    $this->Job_contact->save($ke);
+                    
+                    
+                }
+                
+            }
+            
              
             $this->Session->setFlash('Data Saved Successfully');
             $this->redirect('index'); 
