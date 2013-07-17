@@ -120,11 +120,28 @@ $(function(){
 
         <!--<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Feedback </span><input type="checkbox" name="Email_client_memo1" <?php if(isset($e['Emailupload']['client_memo']) && $e['Emailupload']['client_memo']==1){?>checked="checked"<?php }?> />-->
         </td>
-        </tr>
-        </table>
-        </td></tr>
+        
         <?php }?>
 <?php }?>
+        <?php
+        if($this->Session->read('admin'))
+        {
+            ?>
+            </tr>
+        <tr><td><strong>Show Documents:</strong></td><td> <span>Contracts </span><input type="checkbox" name="show_contracts" />
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="show_evidence"  />
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="show_templates"/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report </span><input type="checkbox" name="show_client_memo"/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Site Orders </span><input type="checkbox" name="show_siteOrder"/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Training </span><input type="checkbox" name="show_training"/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Employee </span><input type="checkbox" name="show_employee"/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="show_KPIAudits"/>
+</td></tr>
+        </table>
+        </td></tr>
+            <?php
+        } 
+        ?>
         <tr><td><input type="submit" name="submit" value="Save Changes" class="btn btn-primary" onclick="if($('#old_password').val() != '' && $('#passw').val() == ''){$('#passw').addClass('error');return false;}else return true;" /></td></tr>
     </table>
     </form>
