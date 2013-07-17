@@ -13,7 +13,9 @@
 		<a href="<?=$base_url;?>">Home</a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
+<?php if($this->Session->read('admin')){?>
 <div class="documentsDashboard">
+
 <?php if($this->Session->read('view')=='1') { ?>
 
 
@@ -193,6 +195,7 @@
 
 
 <?php } 
+}
 //} ?> 
 <script>
 $(function(){

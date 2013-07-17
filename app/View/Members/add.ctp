@@ -49,6 +49,7 @@
     {
         //alert('test');
         var email = $('#emails').val();
+        if(email != "")
         $.ajax(
         {
             url: 'check_email',
@@ -71,6 +72,7 @@
     {
         //alert('test');
         var full_name = $('#full_name').val();
+        if(full_name != "")
         $.ajax(
         {
             url: 'check_name',
