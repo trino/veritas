@@ -70,15 +70,16 @@ if($c%5==0)
 </td></tr>
 </table>
 </div>
+
+<div class="add_more"></div><br />
 <a href="javascript:void(0)" id="add_key" class="btn btn-primary"> +Add Quick Keycontacts </a> <br />
-<div class="add_more"></div>
 <div class="submit"><input type="submit" class="btn btn-primary" value="Save Changes" name="submit"/></div>
 
 </form>
 <script>
 $(function(){
     var add =   '<table width="100%"><tr><td>Contact Type</td><td colspan="3"><select name="type[]" class="required">'+
-                '<option value="">Select Type</option><option value="0">Key Contacts</option><option value="1">Staff Contacts</option>'+
+                '<option value="0">Key Contacts</option><option value="1">Staff Contacts</option>'+
                 '<option value="2">Third Part Contacts</option></select></td></tr>'+
                 '<tr><td><b>Name</b><br/> <input type="text" name="key_name[]" class="" style="width: 100px;" /></td>'+
                 '<td><b>Title</b><br/> <input type="text" name="key_title[]" class="" style="width: 100px;" /></td>'+
