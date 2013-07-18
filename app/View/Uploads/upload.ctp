@@ -419,7 +419,7 @@ $(function(){
         $(this).timepicker();
     });
     //$('.activity_date').datepicker({dateFormat: 'yy-mm-dd'} );
-    $('.incident_date').datepicker({dateFormat: 'yy-mm-dd'} );
+    $('.incident_date').datepicker({dateFormat: 'yy-mm-dd',maxDate: new Date} );
     
     if($('#document_type').val() == 'report')
     {
