@@ -112,7 +112,7 @@
     <div class="dashboard-stat blue">								
 		<div class="whiteCorner"></div>								
 		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
-        <a href="<?=$base_url;?>search/index/contract" class="overallLink more">		
+        <a href="<?=$base_url;?>search/index/siteOrder" class="overallLink more">		
 			<div class="visual">										
 				<i class="icon-file"></i>									
 			</div>									
@@ -131,7 +131,7 @@
     <div class="dashboard-stat blue">								
 		<div class="whiteCorner"></div>								
 		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
-        <a href="<?=$base_url;?>search/index/contract" class="overallLink more">		
+        <a href="<?=$base_url;?>search/index/training" class="overallLink more">		
 			<div class="visual">										
 				<i class="icon-file"></i>									
 			</div>									
@@ -150,7 +150,7 @@
     <div class="dashboard-stat green">								
 		<div class="whiteCorner"></div>								
 		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
-        <a href="<?=$base_url;?>search/index/contract" class="overallLink more">		
+        <a href="<?=$base_url;?>search/index/employee" class="overallLink more">		
 			<div class="visual">										
 				<i class="icon-file"></i>									
 			</div>									
@@ -168,7 +168,7 @@
     <div class="dashboard-stat red">								
 		<div class="whiteCorner"></div>								
 		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
-        <a href="<?=$base_url;?>search/index/contract" class="overallLink more">		
+        <a href="<?=$base_url;?>search/index/KPIAudits" class="overallLink more">		
 			<div class="visual">										
 				<i class="icon-file"></i>									
 			</div>									

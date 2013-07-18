@@ -452,6 +452,8 @@ class JobsController extends AppController
         $this->redirect('index');
         $this->loadModel('Canupload');
         $this->loadModel('Canview');
+        $this->loadModel('AdminDoc');
+        $this->set('admin_doc',$this->AdminDoc->findById('1'));
       if($this->Session->read('avatar') || $this->Session->read('user'))
         {
              
@@ -476,17 +478,27 @@ class JobsController extends AppController
                 $this->set('canupdate',$canupdate);
         }   
         if($this->Session->read('admin')){ 
-        $this->set('contract',$this->Document->find('count',array('conditions'=>array('job_id'=>$id,'document_type'=>'contract'))));
-        $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','job_id'=>$id))));
-        $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','job_id'=>$id))));
-        $this->set('report',$this->Document->find('count',array('conditions'=>array('document_type'=>'report','job_id'=>$id))));
+            $this->set('contract',$this->Document->find('count',array('conditions'=>array('job_id'=>$id,'document_type'=>'contract'))));
+            $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','job_id'=>$id))));
+            $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','job_id'=>$id))));
+            $this->set('report',$this->Document->find('count',array('conditions'=>array('document_type'=>'report','job_id'=>$id))));
+            $this->set('siteOrder',$this->Document->find('count',array('conditions'=>array('document_type'=>'siteOrder','job_id'=>$id))));
+            $this->set('training',$this->Document->find('count',array('conditions'=>array('document_type'=>'training','job_id'=>$id))));
+            $this->set('employee',$this->Document->find('count',array('conditions'=>array('document_type'=>'employee','job_id'=>$id))));
+            $this->set('KPIAudits',$this->Document->find('count',array('conditions'=>array('document_type'=>'KPIAudits','job_id'=>$id))));
+            
         }
         else
         {
             $this->set('contract',$this->Document->find('count',array('conditions'=>array('job_id'=>$id,'document_type'=>'contract'))));
-        $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','job_id'=>$id))));
-        $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','job_id'=>$id))));
-        $this->set('report',$this->Document->find('count',array('conditions'=>array('document_type'=>'report','job_id'=>$id))));
+            $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','job_id'=>$id))));
+            $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','job_id'=>$id))));
+            $this->set('report',$this->Document->find('count',array('conditions'=>array('document_type'=>'report','job_id'=>$id))));
+            $this->set('siteOrder',$this->Document->find('count',array('conditions'=>array('document_type'=>'siteOrder','job_id'=>$id))));
+            $this->set('training',$this->Document->find('count',array('conditions'=>array('document_type'=>'training','job_id'=>$id))));
+            $this->set('employee',$this->Document->find('count',array('conditions'=>array('document_type'=>'employee','job_id'=>$id))));
+            $this->set('KPIAudits',$this->Document->find('count',array('conditions'=>array('document_type'=>'KPIAudits','job_id'=>$id))));
+            
         }
         
         $this->set('key',$this->Key_contact);

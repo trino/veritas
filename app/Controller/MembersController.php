@@ -92,6 +92,8 @@ class MembersController extends AppController
         $this->redirect('add');
         }}
         $this->loadModel('Member');
+        $this->loadModel('AdminDoc');
+        $this->set('admin_doc',$this->AdminDoc->findById('1'));
         if(!$this->Session->read('avatar'))
         $this->redirect('/admin');
         if(isset($_POST['submit']))
@@ -243,14 +245,14 @@ class MembersController extends AppController
             {
                 $this->Canview->deleteAll(array('member_id'=>$id));
                 $canview['member_id'] = $id;
-                $canview['contracts'] = (isset($_POST['canView_contracts']))? '1' : '0'  ;
-                $canview['evidence'] = (isset($_POST['canView_evidence']))? '1' : '0'  ;
-                $canview['templates'] = (isset($_POST['canView_templates']))? '1' : '0'  ;
-                $canview['report'] = (isset($_POST['canView_client_memo']))? '1' : '0'  ;
-                $canview['siteOrder'] = (isset($_POST['canView_siteOrder']))? '1' : '0'  ;
-                $canview['training'] = (isset($_POST['canView_training']))? '1' : '0'  ;
-                $canview['employee'] = (isset($_POST['canView_employee']))? '1' : '0'  ;
-                $canview['KPIAudits'] = (isset($_POST['canView_KPIAudits']))? '1' : '0'  ;
+                $canview['contracts'] = (isset($_POST['canView_contracts'])&& $_POST['canView_contracts']!= '0' )? '1' : '0'  ;
+                $canview['evidence'] = (isset($_POST['canView_evidence'])&& $_POST['canView_templates']!= '0')? '1' : '0'  ;
+                $canview['templates'] = (isset($_POST['canView_templates'])&& $_POST['canView_templates']!= '0')? '1' : '0'  ;
+                $canview['report'] = (isset($_POST['canView_client_memo'])&& $_POST['canView_siteOrder']!= '0')? '1' : '0'  ;
+                $canview['siteOrder'] = (isset($_POST['canView_siteOrder'])&& $_POST['canView_siteOrder']!= '0')? '1' : '0'  ;
+                $canview['training'] = (isset($_POST['canView_training'])&& $_POST['canView_training']!= '0')? '1' : '0'  ;
+                $canview['employee'] = (isset($_POST['canView_employee'])&& $_POST['canView_employee']!= '0')? '1' : '0'  ;
+                $canview['KPIAudits'] = (isset($_POST['canView_KPIAudits'])&& $_POST['canView_KPIAudits']!= '0')? '1' : '0'  ;
                 
                 $this->Canview->create();
                 $this->Canview->save($canview);
@@ -277,14 +279,14 @@ class MembersController extends AppController
             {
                 $this->Canupload->deleteAll(array('member_id'=>$id));
                 $canupdate['member_id'] = $id;
-                $canupdate['contracts'] = (isset($_POST['canUpload_contracts']))? '1' : '0'  ;
-                $canupdate['evidence'] = (isset($_POST['canUpload_evidence']))? '1' : '0'  ;
-                $canupdate['templates'] = (isset($_POST['canUpload_templates']))? '1' : '0'  ;
-                $canupdate['report'] = (isset($_POST['canUpload_client_memo']))? '1' : '0'  ;
-                $canupdate['siteOrder'] = (isset($_POST['canUpload_siteOrder']))? '1' : '0'  ;
-                $canupdate['training'] = (isset($_POST['canUpload_training']))? '1' : '0'  ;
-                $canupdate['employee'] = (isset($_POST['canUpload_employee']))? '1' : '0'  ;
-                $canupdate['KPIAudits'] = (isset($_POST['canUpload_KPIAudits']))? '1' : '0'  ;
+                $canupdate['contracts'] = (isset($_POST['canUpload_contracts'])&& $_POST['canView_KPIAudits']!= '0')? '1' : '0'  ;
+                $canupdate['evidence'] = (isset($_POST['canUpload_evidence'])&& $_POST['canUpload_evidence']!= '0')? '1' : '0'  ;
+                $canupdate['templates'] = (isset($_POST['canUpload_templates'])&& $_POST['canUpload_client_memo']!= '0')? '1' : '0'  ;
+                $canupdate['report'] = (isset($_POST['canUpload_client_memo'])&& $_POST['canUpload_client_memo']!= '0')? '1' : '0'  ;
+                $canupdate['siteOrder'] = (isset($_POST['canUpload_siteOrder'])&& $_POST['canUpload_training']!= '0')? '1' : '0'  ;
+                $canupdate['training'] = (isset($_POST['canUpload_training'])&& $_POST['canUpload_training']!= '0')? '1' : '0'  ;
+                $canupdate['employee'] = (isset($_POST['canUpload_employee'])&& $_POST['canUpload_employee']!= '0')? '1' : '0'  ;
+                $canupdate['KPIAudits'] = (isset($_POST['canUpload_KPIAudits'])&& $_POST['canUpload_KPIAudits']!= '0')? '1' : '0'  ;
                 
                 $canupdate['client_feedback'] = (isset($_POST['canUpload_client_memo1']))? '1' : '0'  ;
                 
@@ -316,14 +318,14 @@ class MembersController extends AppController
                     
                     $this->Emailupload->deleteAll(array('member_id'=>$id));
                     $emailupload['member_id'] = $id;
-                    $emailupload['contract'] = (isset($_POST['Email_contracts']))? '1' : '0'  ;
-                    $emailupload['evidence'] = (isset($_POST['Email_evidence']))? '1' : '0'  ;
-                    $emailupload['template'] = (isset($_POST['Email_templates']))? '1' : '0'  ;
-                    $emailupload['report'] = (isset($_POST['Email_client_memo']))? '1' : '0'  ;
-                    $emailupload['siteOrder'] = (isset($_POST['Email_siteOrder']))? '1' : '0'  ;
-                    $emailupload['training'] = (isset($_POST['Email_training']))? '1' : '0'  ;
-                    $emailupload['employee'] = (isset($_POST['Email_employee']))? '1' : '0'  ;
-                    $emailupload['KPIAudits'] = (isset($_POST['Email_KPIAudits']))? '1' : '0'  ;
+                    $emailupload['contract'] = (isset($_POST['Email_contracts'])&& $_POST['Email_contracts']!= '0')? '1' : '0'  ;
+                    $emailupload['evidence'] = (isset($_POST['Email_evidence'])&& $_POST['Email_evidence']!= '0')? '1' : '0'  ;
+                    $emailupload['template'] = (isset($_POST['Email_templates'])&& $_POST['Email_templates']!= '0')? '1' : '0'  ;
+                    $emailupload['report'] = (isset($_POST['Email_client_memo'])&& $_POST['Email_client_memo']!= '0')? '1' : '0'  ;
+                    $emailupload['siteOrder'] = (isset($_POST['Email_siteOrder'])&& $_POST['Email_siteOrder']!= '0')? '1' : '0'  ;
+                    $emailupload['training'] = (isset($_POST['Email_training'])&& $_POST['Email_training']!= '0')? '1' : '0'  ;
+                    $emailupload['employee'] = (isset($_POST['Email_employee'])&& $_POST['Email_employee']!= '0')? '1' : '0'  ;
+                    $emailupload['KPIAudits'] = (isset($_POST['Email_KPIAudits'])&& $_POST['Email_KPIAudits']!= '0')? '1' : '0'  ;
                 
                     $emailupload['client_feedback'] = (isset($_POST['Email_client_memo1']))? '1' : '0'  ;
                     
@@ -415,6 +417,8 @@ class MembersController extends AppController
         
         $this->loadModel('Job');
         $this->loadModel('Jobmember');
+        $this->loadModel('AdminDoc');
+        $this->set('admin_doc',$this->AdminDoc->findById('1'));
         $this->set('job',$this->Job);
         $qjm = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$id)));
         if($qjm)
@@ -577,14 +581,14 @@ class MembersController extends AppController
                 $this->Member->saveField('canView', 1);
                 $this->Canview->deleteAll(array('member_id'=>$id));
                 $canview['member_id'] = $id;
-                $canview['contracts'] = (isset($_POST['canView_contracts']))? '1' : '0'  ;
-                $canview['evidence'] = (isset($_POST['canView_evidence']))? '1' : '0'  ;
-                $canview['templates'] = (isset($_POST['canView_templates']))? '1' : '0'  ;
-                $canview['report'] = (isset($_POST['canView_client_memo']))? '1' : '0'  ;
-                $canview['siteOrder'] = (isset($_POST['canView_siteOrder']))? '1' : '0'  ;
-                $canview['training'] = (isset($_POST['canView_training']))? '1' : '0'  ;
-                $canview['employee'] = (isset($_POST['canView_employee']))? '1' : '0'  ;
-                $canview['KPIAudits'] = (isset($_POST['canView_KPIAudits']))? '1' : '0'  ;
+                $canview['contracts'] = (isset($_POST['canView_contracts'])&& $_POST['canView_contracts'])? '1' : '0'  ;
+                $canview['evidence'] = (isset($_POST['canView_evidence'])&& $_POST['canView_evidence'])? '1' : '0'  ;
+                $canview['templates'] = (isset($_POST['canView_templates'])&& $_POST['canView_templates'])? '1' : '0'  ;
+                $canview['report'] = (isset($_POST['canView_client_memo'])&& $_POST['canView_client_memo'])? '1' : '0'  ;
+                $canview['siteOrder'] = (isset($_POST['canView_siteOrder'])&& $_POST['canView_siteOrder'])? '1' : '0'  ;
+                $canview['training'] = (isset($_POST['canView_training'])&& $_POST['canView_training'])? '1' : '0'  ;
+                $canview['employee'] = (isset($_POST['canView_employee'])&& $_POST['canView_employee'])? '1' : '0'  ;
+                $canview['KPIAudits'] = (isset($_POST['canView_KPIAudits'])&& $_POST['canUpload_contracts'])? '1' : '0'  ;
                 $this->Canview->create();
                 $this->Canview->save($canview);
             }
@@ -610,14 +614,14 @@ class MembersController extends AppController
                 $this->Member->saveField('canUpdate', 1);
                 $this->Canupload->deleteAll(array('member_id'=>$id));
                 $canupdate['member_id'] = $id;
-                $canupdate['contracts'] = (isset($_POST['canUpload_contracts']))? '1' : '0'  ;
-                $canupdate['evidence'] = (isset($_POST['canUpload_evidence']))? '1' : '0'  ;
-                $canupdate['templates'] = (isset($_POST['canUpload_templates']))? '1' : '0'  ;
-                $canupdate['report'] = (isset($_POST['canUpload_client_memo']))? '1' : '0'  ;
-                $canupdate['siteOrder'] = (isset($_POST['canUpload_siteOrder']))? '1' : '0'  ;
-                $canupdate['training'] = (isset($_POST['canUpload_training']))? '1' : '0'  ;
-                $canupdate['employee'] = (isset($_POST['canUpload_employee']))? '1' : '0'  ;
-                $canupdate['KPIAudits'] = (isset($_POST['canUpload_KPIAudits']))? '1' : '0'  ;
+                $canupdate['contracts'] = (isset($_POST['canUpload_contracts'])&& $_POST['canUpload_contracts'])? '1' : '0'  ;
+                $canupdate['evidence'] = (isset($_POST['canUpload_evidence'])&& $_POST['canUpload_evidence'])? '1' : '0'  ;
+                $canupdate['templates'] = (isset($_POST['canUpload_templates'])&& $_POST['canUpload_templates'])? '1' : '0'  ;
+                $canupdate['report'] = (isset($_POST['canUpload_client_memo'])&& $_POST['canUpload_client_memo'])? '1' : '0'  ;
+                $canupdate['siteOrder'] = (isset($_POST['canUpload_siteOrder'])&& $_POST['canUpload_siteOrder'])? '1' : '0'  ;
+                $canupdate['training'] = (isset($_POST['canUpload_training'])&& $_POST['canUpload_training'])? '1' : '0'  ;
+                $canupdate['employee'] = (isset($_POST['canUpload_employee'])&& $_POST['canUpload_employee'])? '1' : '0'  ;
+                $canupdate['KPIAudits'] = (isset($_POST['canUpload_KPIAudits'])&& $_POST['Email_contracts'])? '1' : '0'  ;
                 $canupdate['client_feedback'] = (isset($_POST['canUpload_client_memo1']))? '1' : '0'  ;
                 $this->Canupload->create();
                 $this->Canupload->save($canupdate);
@@ -644,14 +648,14 @@ class MembersController extends AppController
                 
                 $this->Emailupload->deleteAll(array('member_id'=>$id));
                 $emailupload['member_id'] = $id;
-                $emailupload['contract'] = (isset($_POST['Email_contracts']))? '1' : '0'  ;
-                $emailupload['evidence'] = (isset($_POST['Email_evidence']))? '1' : '0'  ;
-                $emailupload['template'] = (isset($_POST['Email_templates']))? '1' : '0'  ;
-                $emailupload['report'] = (isset($_POST['Email_client_memo']))? '1' : '0'  ;
-                $emailupload['siteOrder'] = (isset($_POST['Email_siteOrder']))? '1' : '0'  ;
-                $emailupload['training'] = (isset($_POST['Email_training']))? '1' : '0'  ;
-                $emailupload['employee'] = (isset($_POST['Email_employee']))? '1' : '0'  ;
-                $emailupload['KPIAudits'] = (isset($_POST['Email_KPIAudits']))? '1' : '0'  ;
+                $emailupload['contract'] = (isset($_POST['Email_contracts'])&& $_POST['Email_contracts'])? '1' : '0'  ;
+                $emailupload['evidence'] = (isset($_POST['Email_evidence'])&& $_POST['Email_evidence'])? '1' : '0'  ;
+                $emailupload['template'] = (isset($_POST['Email_templates'])&& $_POST['Email_templates'])? '1' : '0'  ;
+                $emailupload['report'] = (isset($_POST['Email_client_memo'])&& $_POST['Email_client_memo'])? '1' : '0'  ;
+                $emailupload['siteOrder'] = (isset($_POST['Email_siteOrder'])&& $_POST['Email_siteOrder'])? '1' : '0'  ;
+                $emailupload['training'] = (isset($_POST['Email_training'])&& $_POST['Email_training'])? '1' : '0'  ;
+                $emailupload['employee'] = (isset($_POST['Email_employee'])&& $_POST['Email_employee'])? '1' : '0'  ;
+                $emailupload['KPIAudits'] = (isset($_POST['Email_KPIAudits'])&& $_POST['Email_KPIAudits'])? '1' : '0'  ;
                 $emailupload['client_feedback'] = (isset($_POST['Email_client_memo1']))? '1' : '0'  ;
                 
                 $this->Emailupload->create();

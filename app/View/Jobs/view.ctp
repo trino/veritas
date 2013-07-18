@@ -23,12 +23,11 @@
 <div class="documentsDashboard">
 <?php if($this->Session->read('view')=='1') { ?>
 
-	<!-- tien-repsonsive div class="span3 responsive" data-tablet="span6  fix-offset" data-desktop="span3"-->
-    <?php if((isset($canview['Canview']['contracts']) && $canview['Canview']['contracts']=='1')|| $this->Session->read('admin')){?>											
-	<div class="dashboard-stat blue">								
+	<?php if($admin_doc['AdminDoc']['contracts']=='1' &&((isset($canview['Canview']['contracts']) && $canview['Canview']['contracts']=='1')|| $this->Session->read('admin'))){?>
+    <div class="dashboard-stat blue">								
 		<div class="whiteCorner"></div>								
-		<!--<a href="<?=$base_url;?>uploads/view_doc/contract/<?php echo $job['Job']['id'];?>" class="overallLink more">-->		
-        <a href="<?=$base_url;?>search/index/contract/<?php echo $job['Job']['id'];?>" class="overallLink more">
+		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
+        <a href="<?=$base_url;?>search/index/contract" class="overallLink more">		
 			<div class="visual">										
 				<i class="icon-file"></i>									
 			</div>									
@@ -41,15 +40,15 @@
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
-	</div>	
-    <?php }?>								
+	</div>
+    <?php }?>									
 
 	<!-- tien-repsonsive div class="span3 responsive" data-tablet="span6" data-desktop="span3"-->
-    <?php if((isset($canview['Canview']['evidence']) && $canview['Canview']['evidence']=='1')|| $this->Session->read('admin')){?>												
+    <?php if($admin_doc['AdminDoc']['evidence']=='1' &&((isset($canview['Canview']['evidence']) && $canview['Canview']['evidence']=='1')|| $this->Session->read('admin'))){?>												
 	<div class="dashboard-stat green">								
 		<div class="whiteCorner"></div>								
-		<!--<a href="<?=$base_url;?>uploads/view_doc/evidence/<?php echo $job['Job']['id'];?>" class="overallLink more">-->
-        <a href="<?=$base_url;?>search/index/evidence/<?php echo $job['Job']['id'];?>" class="overallLink more">									
+		<!--<a href="<?=$base_url;?>uploads/view_doc/evidence" class="overallLink more">-->
+        <a href="<?=$base_url;?>search/index/evidence" class="overallLink more">
 			<div class="visual">										
 				<i class="icon-legal"></i>									
 			</div>									
@@ -62,16 +61,15 @@
 			</div>											
 		</a>			
 		<div class="dusk2"></div>					
-	</div>	
-    <?php } ?>									
-
+	</div>										
+    <?php }?>
 
 	<!-- tien-repsonsive div class="span3 responsive" data-tablet="span6" data-desktop="span3"-->
-    <?php if((isset($canview['Canview']['templates']) && $canview['Canview']['templates']=='1')|| $this->Session->read('admin')){?>
+    <?php if($admin_doc['AdminDoc']['templates']=='1' &&((isset($canview['Canview']['templates']) && $canview['Canview']['templates']=='1')|| $this->Session->read('admin'))){?>
 	<div class="dashboard-stat purple">
 		<div class="whiteCorner"></div>
-		<!--<a href="<?=$base_url;?>uploads/view_doc/template/<?php echo $job['Job']['id'];?>" class="overallLink more">-->
-        <a href="<?=$base_url;?>search/index/template/<?php echo $job['Job']['id'];?>" class="overallLink more">
+		<!--<a href="<?=$base_url;?>uploads/view_doc/template" class="overallLink more">-->
+        <a href="<?=$base_url;?>search/index/template" class="overallLink more">
 		<div class="visual">
 		<i class="icon-folder-open"></i>
 		</div>
@@ -80,7 +78,7 @@
 		<?=$template;?>
 		</div>
 		<div class="desc">									
-		Template
+		Templates
 		</div>
 		</div>
 		<div class="more2">
@@ -92,11 +90,11 @@
     <?php } ?>
 
 	<!-- tien-repsonsive div class="span3 responsive" data-tablet="span6" data-desktop="span3"-->
-	<?php if((isset($canview['Canview']['report']) && $canview['Canview']['report']=='1')|| $this->Session->read('admin')){?>
+	<?php if($admin_doc['AdminDoc']['report']=='1' &&((isset($canview['Canview']['report']) && $canview['Canview']['report']=='1')|| $this->Session->read('admin'))){?>
     <div class="dashboard-stat dashboard-stat-last yellow">
 	<div class="whiteCorner"></div>
-	<!--<a href="<?=$base_url;?>uploads/view_doc/report/<?php echo $job['Job']['id'];?>" class="overallLink more">-->
-    <a href="<?=$base_url;?>search/index/report/<?php echo $job['Job']['id'];?>" class="overallLink more">
+	<!--<a href="<?=$base_url;?>uploads/view_doc/report" class="overallLink more">-->
+    <a href="<?=$base_url;?>search/index/report" class="overallLink more">
 	<div class="visual">
 	<i class="icon-book"></i>
 	</div>
@@ -110,9 +108,86 @@
 	</a>
 	<div class="dusk2"></div>
 	</div>
+    <?php } ?>
+
+<?php if($admin_doc['AdminDoc']['site_orders']=='1' &&((isset($canview['Canview']['siteOrder']) && $canview['Canview']['siteOrder']=='1')|| $this->Session->read('admin'))){?>
+    <div class="dashboard-stat blue">								
+		<div class="whiteCorner"></div>								
+		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
+        <a href="<?=$base_url;?>search/index/siteOrder" class="overallLink more">		
+			<div class="visual">										
+				<i class="icon-file"></i>									
+			</div>									
+			<div class="details">										
+				<div class="number"><?php echo $siteOrder;?></div>										
+				<div class="desc">Site Order</div>									
+			</div>									
+			<div class="more2">									
+				View All <?php echo $siteOrder;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+			</div>														
+		</a>								
+		<div class="dusk2"></div>						
+	</div>
+    <?php }?>
+ <?php if($admin_doc['AdminDoc']['training']=='1' &&((isset($canview['Canview']['training']) && $canview['Canview']['training']=='1')|| $this->Session->read('admin'))){?>
+    <div class="dashboard-stat blue">								
+		<div class="whiteCorner"></div>								
+		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
+        <a href="<?=$base_url;?>search/index/training" class="overallLink more">		
+			<div class="visual">										
+				<i class="icon-file"></i>									
+			</div>									
+			<div class="details">										
+				<div class="number"><?php echo $training;?></div>										
+				<div class="desc">Training</div>									
+			</div>									
+			<div class="more2">									
+				View All <?php echo $training;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+			</div>														
+		</a>								
+		<div class="dusk2"></div>						
+	</div>
+    <?php }?>
+ <?php if($admin_doc['AdminDoc']['employee']=='1' &&((isset($canview['Canview']['employee']) && $canview['Canview']['employee']=='1')|| $this->Session->read('admin'))){?>
+    <div class="dashboard-stat green">								
+		<div class="whiteCorner"></div>								
+		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
+        <a href="<?=$base_url;?>search/index/employee" class="overallLink more">		
+			<div class="visual">										
+				<i class="icon-file"></i>									
+			</div>									
+			<div class="details">										
+				<div class="number"><?php echo $employee;?></div>										
+				<div class="desc">Employee</div>									
+			</div>									
+			<div class="more2">									
+				View All <?php echo $employee;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+			</div>														
+		</a>								
+		<div class="dusk2"></div>						
+	</div>
+    <?php }?><?php if($admin_doc['AdminDoc']['kpiaudits']=='1' &&((isset($canview['Canview']['KPIAudits']) && $canview['Canview']['KPIAudits']=='1')|| $this->Session->read('admin'))){?>
+    <div class="dashboard-stat red">								
+		<div class="whiteCorner"></div>								
+		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
+        <a href="<?=$base_url;?>search/index/KPIAudits" class="overallLink more">		
+			<div class="visual">										
+				<i class="icon-file"></i>									
+			</div>									
+			<div class="details">										
+				<div class="number"><?php echo $KPIAudits;?></div>										
+				<div class="desc">KPI Audits</div>									
+			</div>									
+			<div class="more2">									
+				View All <?php echo $KPIAudits;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+			</div>														
+		</a>								
+		<div class="dusk2"></div>						
+	</div>
+    <?php }?>
     
 	
-<?php }} ?>
+<?php } ?>
 </div><!-- Documents Dashboard -->
 
 
