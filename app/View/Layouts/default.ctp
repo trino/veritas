@@ -248,7 +248,7 @@ url: '<?php echo $base_url;?>admin/logout'
     	       $('#recipients').val($('#recipients').val().replace(ar[0]+',',''));
                if($('#name').html().replace(' ','') == '' || $('#name').html().replace(' ','') == ' ' )
                {
-                $('#name').html('<a href="javascript:void(0);" id="contacts_modal" onclick="show_email();" class="email" style="color: #999;">Recipients</a>');
+                $('#name').html('Recipients');
                 $('#send_email').attr('disabled','disabled');
                }
            }
@@ -282,7 +282,7 @@ url: '<?php echo $base_url;?>admin/logout'
 	       $('#recipients').val($('#recipients').val().replace(ar[0]+',',''));
            if($('#name').html().replace(' ','') == '' || $('#name').html().replace(' ','') == ' ' )
            {
-            $('#name').html('<a href="javascript:void(0);" id="contacts_modal" onclick="show_email();" class="email" style="color: #999;">Recipients</a>');
+            $('#name').html('Recipients');
             $('#send_email').attr('disabled','disabled');
            }
            
@@ -525,7 +525,8 @@ url: '<?php echo $base_url;?>admin/logout'
 							
 							<div class="left inputs">
                                 <div class="recipientsLine" >
-<div id="name" style="height:20px; background: white; border: 1px solid #ccc;padding:1px 4px 2px 4px;margin-bottom: 5px;width: calc(99% - 9px);color:#AAA;"><a href="javascript:void(0);" id="contacts_modal" onclick="show_email();" class="email" style="color: #999;">Recipients</a></div>
+<div id="name" style="height: 20px; background: none repeat scroll 0% 0% white; border: 1px solid rgb(204, 204, 204); padding: 1px 4px 2px; margin-bottom: 5px; color: rgb(170, 170, 170); width: calc(99% - 45px); float: left;">Recipients</div>
+&nbsp;<a id="contacts_modal" class="email btn btn-info" style="color: #999;padding:1px 5px;color:#FFF" onclick="show_email();" href="javascript:void(0);">&nbsp;+&nbsp;</a>
 <!--									<input type="text" name="name" id="name" placeholder="Recipients (Separate with comma)" class="required" />--> 
 								</div>
 							    <!--<div style="float:left;margin-left:10px;"><a href="javascript:void(0)" id="contacts_modal" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a></div><div style="clear:both;"></div>-->
