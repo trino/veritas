@@ -248,7 +248,7 @@ url: '<?php echo $base_url;?>admin/logout'
     	       $('#recipients').val($('#recipients').val().replace(ar[0]+',',''));
                if($('#name').html().replace(' ','') == '' || $('#name').html().replace(' ','') == ' ' )
                {
-                $('#name').html('<a href="javascript:void(0);" id="contacts_modal" onclick="show_email();" class="email" style="color: #999;">Recipients</a>');
+                $('#name').html('Recipients');
                 $('#send_email').attr('disabled','disabled');
                }
            }
@@ -282,7 +282,7 @@ url: '<?php echo $base_url;?>admin/logout'
 	       $('#recipients').val($('#recipients').val().replace(ar[0]+',',''));
            if($('#name').html().replace(' ','') == '' || $('#name').html().replace(' ','') == ' ' )
            {
-            $('#name').html('<a href="javascript:void(0);" id="contacts_modal" onclick="show_email();" class="email" style="color: #999;">Recipients</a>');
+            $('#name').html('Recipients');
             $('#send_email').attr('disabled','disabled');
            }
            
@@ -361,7 +361,6 @@ url: '<?php echo $base_url;?>admin/logout'
 				<?php if($this->Session->read('user') && $usr['Member']['canUpdate']==1 && $usr['Member']['Canupload']['report']=='1')  echo $this->Html->link('<i class="icon-time"></i>'.'Saved Drafts','/uploads/draft',array('escape'=>false));?>
                 <?php if($this->Session->read('admin'))  echo $this->Html->link('<i class="icon-star"></i>'.'Contacts','/contacts',array('escape'=>false));?>
 
-                <?php  echo $this->Html->link('<i class="icon-off"></i>'.'Logout','/admin/logout',array('escape' => false,)); ?>
 				<?php //echo $this->Html->link('Document','/uploads'); ?>
 			</div><!-- menu -->
 
@@ -419,7 +418,10 @@ url: '<?php echo $base_url;?>admin/logout'
 					
 					<div class="links">
 					<?php  echo $this->Html->link('<i class="icon-user"></i> '.' '.$this->Session->read('avatar'),'/dashboard/settings',array('escape' => false,)); ?><br/>
-					<?php  echo $this->Html->link('<i class="icon-warning-sign"></i> '.'User Support','/dashboard/contactus',array('escape' => false,)); ?>
+				<?php  echo $this->Html->link('<i class="icon-off"></i>'.' Logout','/admin/logout',array('escape' => false,)); ?><br/>
+				
+				<?php  echo $this->Html->link('<i class="icon-warning-sign"></i> '.'User Support','/dashboard/contactus',array('escape' => false,)); ?>
+
 					</div>
 					
 					<!--div class="companyLogo">
@@ -438,6 +440,8 @@ url: '<?php echo $base_url;?>admin/logout'
 					</div>
 					<div class="links">
 					<?php  echo $this->Html->link('<i class="icon-user"></i>'.' '.$this->Session->read('user'),'/dashboard/settings',array('escape' => false,)); ?><br/>
+									<?php  echo $this->Html->link('<i class="icon-off"></i>'.' Logout','/admin/logout',array('escape' => false,)); ?><br/>
+
 					<?php  echo $this->Html->link('<i class="icon-warning-sign"></i> '.'User Support','/dashboard/contactus',array('escape' => false,)); ?>
 					</div>
 					<!--div class="companyLogo">
@@ -525,7 +529,8 @@ url: '<?php echo $base_url;?>admin/logout'
 							
 							<div class="left inputs">
                                 <div class="recipientsLine" >
-<div id="name" style="height:20px; background: white; border: 1px solid #ccc;padding:1px 4px 2px 4px;margin-bottom: 5px;width: calc(99% - 9px);color:#AAA;"><a href="javascript:void(0);" id="contacts_modal" onclick="show_email();" class="email" style="color: #999;">Recipients</a></div>
+<div id="name" style="height: 20px; background: none repeat scroll 0% 0% white; border: 1px solid rgb(204, 204, 204); padding: 1px 4px 2px; margin-bottom: 5px; color: rgb(170, 170, 170); width: calc(99% - 45px); float: left;">Recipients</div>
+&nbsp;<a id="contacts_modal" class="email btn btn-info" style="color: #999;padding:1px 5px;color:#FFF" onclick="show_email();" href="javascript:void(0);">&nbsp;+&nbsp;</a>
 <!--									<input type="text" name="name" id="name" placeholder="Recipients (Separate with comma)" class="required" />--> 
 								</div>
 							    <!--<div style="float:left;margin-left:10px;"><a href="javascript:void(0)" id="contacts_modal" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a></div><div style="clear:both;"></div>-->
@@ -811,9 +816,10 @@ url: '<?php echo $base_url;?>admin/logout'
 		</div>
 		
 	</div><!-- rightContent -->
+    <div style="clear: both;"></div>
 </div><!-- fullContainer -->
 <div class="dialog-modals"></div>
 
-	<?php //echo $this->element('sql_dump'); ?>
+	<?php //echo "<div style='padding-left:400px;'>".$this->element('sql_dump')."</div>"; ?>
 </body>
 </html>

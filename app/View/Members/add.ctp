@@ -118,7 +118,7 @@
 <tr><td><b>Image:</b></td><td><img src="<?php echo $base_url;?>img/uploads/male.png" style="width: 60px; height:60px;" /> <input type="radio" name="img_gender" value="male.png" /> &nbsp; &nbsp;<img src="<?php echo $base_url;?>img/uploads/female.png" style="width: 60px; height:60px;" /> <input type="radio" name="img_gender" value="female.png" /> &nbsp; &nbsp;<input type="file" class="" name="image" /></td></tr>
 <tr><td><b>Phone</b></td><td><input type="text" name="phone" /></td></tr>
 <tr><td><b>Password</b></td><td><input type="password" class="required" name="password" id="password" /></td></tr>
-<tr><td><b>Repeat Passwotd</b></td><td><input type="password" class="required" name="c_password" /></td></tr>
+<tr><td><b>Repeat Password</b></td><td><input type="password" class="required" name="c_password" /></td></tr>
 <tr><td><b>Can View Files</b></td><td><input type="checkbox" name="canView" id="canView"  /></td></tr>
 <tr class="canviewfiles" style="display: none;">
 <td colspan="2">
