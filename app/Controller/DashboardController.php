@@ -362,14 +362,32 @@ class DashboardController extends AppController
     }            
     public function settings()
     {
+        //echo $this->Session->read('logo');die();
         $this->loadModel('Member');
         $this->loadModel('Mail');
         $this->loadModel('User');
         $this->loadModel('Emailupload');
         $this->loadModel('AdminDoc');
+        $this->loadModel('Logo');
+        $this->set('l',$this->Logo);
         $this->set('admin_doc',$this->AdminDoc->findById('1'));
+        
         if(isset($_POST['submit']))
         {
+            if($_POST['logo'] == 'afimac')
+            {
+                $logo['afimac'] = 1;
+                $logo['asap'] = 0;
+                $this->Session->write('logo','afimaclogo.png');
+            }
+            else{
+            $logo['asap'] = 1;
+            $logo['afimac'] = 0;
+            $this->Session->write('logo','asap.gif');
+            }
+            $this->loadModel('Logo');
+            $this->Logo->id = 1;
+            $this->Logo->save($logo);
             //if()
             if($_POST['email'])
             {

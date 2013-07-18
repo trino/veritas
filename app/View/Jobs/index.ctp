@@ -60,8 +60,8 @@ foreach($job as $j)
     ?>
     
         <tr><td style="width:80px;"><div style="text-align:center;">
-            
-        <a href="<?php echo $base_url.'jobs/view/'.$j['Job']['id']; ?>"><?php echo $this->Html->image('uploads/'.$j['Job']['image'], array('alt' => '', 'style'=>'max-height:100%; max-width:100%;')); ?></a></td><td><a href="<?php echo $base_url.'jobs/view/'.$j['Job']['id']; ?>"><?php echo stripslashes($j['Job']['title'])?></a></td>
+                    
+        <a href="<?php echo $base_url.'jobs/view/'.$j['Job']['id']; ?>"><?php if($j['Job']['image']=='afimaclogo.png' || $j['Job']['image']=='asap.gif')echo $this->Html->image('uploads/'.$this->Session->read('logo'),array('width'=>'100','height'=>'100'));else echo $this->Html->image('uploads/'.$j['Job']['image'],array('style'=>'max-width:100%;max-height:100%;')); ?></a></td><td><a href="<?php echo $base_url.'jobs/view/'.$j['Job']['id']; ?>"><?php echo stripslashes($j['Job']['title'])?></a></td>
         <?php if($this->Session->read('avatar')) { ?>
             <td style="width: 350px;">
             <table class="table table-bordered" style="margin:0px;" >
