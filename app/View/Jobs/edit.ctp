@@ -33,6 +33,36 @@ $(function(){
 <tr><td><b>Image</b></td><td><input type="file" name="image" class="" /> <?php echo $this->Html->image("uploads/".$j['Job']['image']); ?></td></tr>
 <tr><td><b>Start Date</b></td><td><input type="text" class="" name="start_date" id="start_date" value="<?php echo $j['Job']['date_start']; ?>" /></td></tr>
 <tr><td><b>End Date</b></td><td><input type="text" class="" name="end_date" id="end_date" value="<?php echo $j['Job']['date_end']; ?>" /></td></tr>
+<tr><td>Add Members:</td><td>
+<?php if($member){?>
+<table>
+    <?php 
+    $mc = 0;
+    foreach($member as $me){
+        $mc++; 
+        if($mc%4==0){  ?>
+        </tr>
+        <?php }
+        if($mc%4 == 1){?>
+        <tr>
+        <?php }?>
+            <td><input type="checkbox" name="member[]" <?php if(in_array($me['Member']['id'],$mem_arr)){?>checked="checked"<?php }?> value="<?php echo $me['Member']['id'];?>" style="margin: 0;" /> <?php echo $me['Member']['fname'].' '.$me['Member']['lname'].'</td>';
+            }
+            if($mc%4==1)
+            {
+                echo "<td></td><td></td><td></td></tr>";
+            }
+            if($mc%4==2)
+            {
+                echo "<td></td><td></td></tr>";
+            }
+            if($mc%4==3)
+            {
+                echo "<td></td></tr>";
+            }
+            }else{"<b>No Members added</b>";}?>
+</table>
+</td></tr>
 </table>
 </div>
 <div id="table">
@@ -71,8 +101,8 @@ if($c%5==0)
 </table>
 </div>
 
-<div class="add_more"></div><br />
-<a href="javascript:void(0)" id="add_key" class="btn btn-primary"> +Add Quick Keycontacts </a> <br />
+<div class="add_more"></div>
+<a href="javascript:void(0)" id="add_key" class="btn btn-primary"> +Add Quick Keycontacts </a> <br /><br />
 <div class="submit"><input type="submit" class="btn btn-primary" value="Save Changes" name="submit"/></div>
 
 </form>

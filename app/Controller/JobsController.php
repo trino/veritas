@@ -64,12 +64,15 @@ class JobsController extends AppController
     
     public function add()
     {
+        $this->loadModel('Member');
+        $this->set('member',$this->Member->find('all'));
         if(!$this->Session->read('avatar'))
             $this->redirect('/admin');
             
         $this->set('kc',$this->Key_contact->find('all'));    
         if(isset($_POST['submit']))
         {
+            
             if(isset($_FILES['image']['name'])&&$_FILES['image']['name']){
                 $uri = $_SERVER['REQUEST_URI'];
                 $uri = str_replace('/',' ',$uri);
@@ -151,6 +154,30 @@ class JobsController extends AppController
             $this->Job->save($arr);
             
             $key['job_id'] = $this->Job->id;
+            if(isset($_POST['member']))
+            {
+                $me = '';
+                $this->loadModel('Jobmember');
+                foreach($_POST['member'] as $mem)
+                {
+                    $check = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$mem)));
+                    if($check)
+                    {
+                        
+                        $this->Jobmember->id = $check['Jobmember']['id'];
+                        if($check['Jobmember']['job_id']=='')
+                        $this->Jobmember->saveField('job_id',$key['job_id']);
+                        else
+                        $this->Jobmember->saveField('job_id',$check['Jobmember']['job_id'].','.$key['job_id']);
+                    }
+                    else{
+                    $this->Jobmember->create();
+                    $chh['job_id'] = $key['job_id'];
+                    $chh['member_id'] = $mem;
+                    $this->Jobmember->save($chh);
+                    }
+                }
+            }
             $id = $key['job_id'];
             foreach($_POST['key_contact'] as $k)
             {
@@ -193,6 +220,19 @@ class JobsController extends AppController
     }
      public function edit($id)
      {
+        $this->loadModel('Member');
+        $this->set('member',$this->Member->find('all'));
+        $jid = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$id.',%'),array('job_id LIKE'=>'%,'.$id.',%'),array('job_id LIKE'=>'%,'.$id)))));
+        $mem_arr = array();
+        if($jid)
+        {
+            
+            foreach($jid as $jm)
+            {
+                $mem_arr[] = $jm['Jobmember']['member_id'];
+            }
+        }
+        $this->set('mem_arr',$mem_arr);
         if(!$this->Session->read('avatar'))
         $this->redirect('/admin');
         $this->set('kc',$this->Key_contact->find('all')); 
@@ -284,6 +324,33 @@ class JobsController extends AppController
             //Key Contacts
             $this->Job_contact->deleteAll(array('job_id'=>$id));
             $key['job_id'] = $id;
+            if(isset($_POST['member']))
+            {
+                $me = '';
+                $this->loadModel('Jobmember');
+                foreach($_POST['member'] as $mem)
+                {
+                    $check = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$mem)));
+                    if($check)
+                    {
+                        
+                        $this->Jobmember->id = $check['Jobmember']['id'];
+                        if($check['Jobmember']['job_id']=='')
+                        $this->Jobmember->saveField('job_id',$key['job_id']);
+                        else{
+                        $ch = explode(',',$check['Jobmember']['job_id']);
+                        if(!in_array($id,$ch))    
+                        $this->Jobmember->saveField('job_id',$check['Jobmember']['job_id'].','.$key['job_id']);
+                        }
+                    }
+                    else{
+                    $this->Jobmember->create();
+                    $chh['job_id'] = $key['job_id'];
+                    $chh['member_id'] = $mem;
+                    $this->Jobmember->save($chh);
+                    }
+                }
+            }
             foreach($_POST['key_contact'] as $k)
             {
                 $key['key_id'] = $k;

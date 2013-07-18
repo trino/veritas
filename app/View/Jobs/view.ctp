@@ -197,7 +197,7 @@
     </tr>
     <tr>
         <td><b>Image</b></td>
-        <td><?php echo $this->Html->image('uploads/'.$this->Session->read('logo'),array('width'=>'100','height'=>'100')); ?></td>
+        <td><?php if($job['Job']['image']=='afimaclogo.png' || $job['Job']['image']=='asap.gif')echo $this->Html->image('uploads/'.$this->Session->read('logo'),array('width'=>'100','height'=>'100'));else echo $this->Html->image('uploads/'.$job['Job']['image'],array('width'=>'100','height'=>'100')); ?></td>
     </tr>
     <tr>
         <td><b>Date Start</b></td>
