@@ -127,15 +127,16 @@ $(function(){
         if($this->Session->read('admin'))
         {
             ?>
-            </tr>
-        <tr><td><strong>Show Documents:</strong></td><td> <span>Contracts </span><input type="checkbox" name="show_contracts" />
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="show_evidence"  />
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="show_templates"/>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report </span><input type="checkbox" name="show_client_memo"/>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Site Orders </span><input type="checkbox" name="show_siteOrder"/>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Training </span><input type="checkbox" name="show_training"/>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Employee </span><input type="checkbox" name="show_employee"/>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="show_KPIAudits"/>
+        </tr>
+        <tr><td><strong>Show Documents:</strong></td>
+        <td> <span>Contracts </span><input type="checkbox" name="show[contracts]" value="1"  <?php if(isset($admin_doc['AdminDoc']['contracts']) && $admin_doc['AdminDoc']['contracts']=='1' ) echo "checked='checked'";?>  />
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="show[evidence]" value="1" <?php if(isset($admin_doc['AdminDoc']['evidence']) && $admin_doc['AdminDoc']['evidence']=='1' ) echo "checked='checked'";?>   />
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="show[templates]" value="1" <?php if(isset($admin_doc['AdminDoc']['templates']) && $admin_doc['AdminDoc']['templates']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report </span><input type="checkbox" name="show[report]" value="1" <?php if(isset($admin_doc['AdminDoc']['report']) && $admin_doc['AdminDoc']['report']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Site Orders </span><input type="checkbox" name="show[site_orders]" value="1" <?php if(isset($admin_doc['AdminDoc']['site_orders']) && $admin_doc['AdminDoc']['site_orders']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Training </span><input type="checkbox" name="show[training]" value="1" <?php if(isset($admin_doc['AdminDoc']['training']) && $admin_doc['AdminDoc']['training']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Employee </span><input type="checkbox" name="show[employee]" value="1" <?php if(isset($admin_doc['AdminDoc']['employee']) && $admin_doc['AdminDoc']['employee']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="show[kpiaudits]" value="1" <?php if(isset($admin_doc['AdminDoc']['kpiaudits']) && $admin_doc['AdminDoc']['kpiaudits']=='1' ) echo "checked='checked'";?>/>
 </td></tr>
         </table>
         </td></tr>

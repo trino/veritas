@@ -361,7 +361,6 @@ url: '<?php echo $base_url;?>admin/logout'
 				<?php if($this->Session->read('user') && $usr['Member']['canUpdate']==1 && $usr['Member']['Canupload']['report']=='1')  echo $this->Html->link('<i class="icon-time"></i>'.'Saved Drafts','/uploads/draft',array('escape'=>false));?>
                 <?php if($this->Session->read('admin'))  echo $this->Html->link('<i class="icon-star"></i>'.'Contacts','/contacts',array('escape'=>false));?>
 
-                <?php  echo $this->Html->link('<i class="icon-off"></i>'.'Logout','/admin/logout',array('escape' => false,)); ?>
 				<?php //echo $this->Html->link('Document','/uploads'); ?>
 			</div><!-- menu -->
 
@@ -419,7 +418,10 @@ url: '<?php echo $base_url;?>admin/logout'
 					
 					<div class="links">
 					<?php  echo $this->Html->link('<i class="icon-user"></i> '.' '.$this->Session->read('avatar'),'/dashboard/settings',array('escape' => false,)); ?><br/>
-					<?php  echo $this->Html->link('<i class="icon-warning-sign"></i> '.'User Support','/dashboard/contactus',array('escape' => false,)); ?>
+				<?php  echo $this->Html->link('<i class="icon-off"></i>'.' Logout','/admin/logout',array('escape' => false,)); ?><br/>
+				
+				<?php  echo $this->Html->link('<i class="icon-warning-sign"></i> '.'User Support','/dashboard/contactus',array('escape' => false,)); ?>
+
 					</div>
 					
 					<!--div class="companyLogo">
@@ -438,6 +440,8 @@ url: '<?php echo $base_url;?>admin/logout'
 					</div>
 					<div class="links">
 					<?php  echo $this->Html->link('<i class="icon-user"></i>'.' '.$this->Session->read('user'),'/dashboard/settings',array('escape' => false,)); ?><br/>
+									<?php  echo $this->Html->link('<i class="icon-off"></i>'.' Logout','/admin/logout',array('escape' => false,)); ?><br/>
+
 					<?php  echo $this->Html->link('<i class="icon-warning-sign"></i> '.'User Support','/dashboard/contactus',array('escape' => false,)); ?>
 					</div>
 					<!--div class="companyLogo">

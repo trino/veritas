@@ -90,7 +90,8 @@ class DashboardController extends AppController
         $this->loadModel('Event_log');
         $this->loadModel('Canview');
         $this->loadModel('Canupload');
-        
+        $this->loadModel('AdminDoc');
+        $this->set('admin_doc',$this->AdminDoc->findById('1'));
         //$this->set('ad',$this->User->find('first'));
         if($this->Session->read('avatar'))
         {
@@ -98,6 +99,10 @@ class DashboardController extends AppController
             $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence'))));
             $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template'))));
             $this->set('report',$this->Document->find('count',array('conditions'=>array('document_type'=>'report','draft'=>0))));
+            $this->set('siteOrder',$this->Document->find('count',array('conditions'=>array('document_type'=>'siteOrder'))));
+            $this->set('training',$this->Document->find('count',array('conditions'=>array('document_type'=>'training'))));
+            $this->set('employee',$this->Document->find('count',array('conditions'=>array('document_type'=>'employee'))));
+            $this->set('KPIAudits',$this->Document->find('count',array('conditions'=>array('document_type'=>'KPIAudits'))));
             $this->paginate = array('limit'=>10,'order'=>'date desc ,time desc');
              //$this->set('activity',$this->paginate('Document'));
              $this->set('added',$this->Member->find('all'));
@@ -146,13 +151,22 @@ class DashboardController extends AppController
                         $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','job_id in ('.$d.')'))));
                         $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','job_id in ('.$d.')'))));
                         $this->set('report',$this->Document->find('count',array('conditions'=>array('draft'=>0,'document_type'=>'report','job_id in ('.$d.')'))));
+                        $this->set('SiteOrder',$this->Document->find('count',array('conditions'=>array('document_type'=>'siteOrder','job_id in ('.$d.')'))));
+                        $this->set('training',$this->Document->find('count',array('conditions'=>array('document_type'=>'training','job_id in ('.$d.')'))));
+                        $this->set('employee',$this->Document->find('count',array('conditions'=>array('document_type'=>'employee','job_id in ('.$d.')'))));
+                        $this->set('KPIAudits',$this->Document->find('count',array('conditions'=>array('document_type'=>'KPIAudits','job_id in ('.$d.')'))));
                     }
                     else
                     {
                         $this->set('contract','0');
                         $this->set('evidence','0');
                         $this->set('template','0');
-                        $this->set('report','0');  
+                        $this->set('report','0'); 
+                        $this->set('SiteOrder','0'); 
+                        $this->set('training','0'); 
+                        $this->set('employee','0'); 
+                        $this->set('KPIAudits','0'); 
+                         
                     }//$this->set('training_manuals',$this->Document->find('count',array('conditions'=>array('document_type'=>'training_manuals','job_id in ('.$d.')'))));
                 }
                 else
@@ -352,6 +366,8 @@ class DashboardController extends AppController
         $this->loadModel('Mail');
         $this->loadModel('User');
         $this->loadModel('Emailupload');
+        $this->loadModel('AdminDoc');
+        $this->set('admin_doc',$this->AdminDoc->findById('1'));
         if(isset($_POST['submit']))
         {
             //if()
@@ -373,7 +389,19 @@ class DashboardController extends AppController
                     $this->redirect('settings');
                 }
             }
-            
+            $this->AdminDoc->deleteAll(array('id >'=>0));
+            if(isset($_POST['show']))
+            {
+                foreach($_POST['show'] as $k=>$v)
+                {
+                    $sh['id']= '1';
+                    $sh[$k]=$v;
+                }
+                $this->AdminDoc->create();
+                $this->AdminDoc->save($sh);
+                
+            }
+            //die();
             
             if($_FILES['image']['name']!="")
             {

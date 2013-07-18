@@ -151,6 +151,7 @@ class JobsController extends AppController
             $this->Job->save($arr);
             
             $key['job_id'] = $this->Job->id;
+            $id = $key['job_id'];
             foreach($_POST['key_contact'] as $k)
             {
                 $key['key_id'] = $k;
@@ -158,6 +159,30 @@ class JobsController extends AppController
                 $key['type'] = $t['Key_contact']['type'];
                 $this->Job_contact->create();
                 $this->Job_contact->save($key);
+                
+            }
+            foreach($_POST['key_name'] as $k=>$t)
+            {
+                if($t != "")
+                {
+                    $keys['name'] = $t;
+                    $keys['type'] = $_POST['type'][$k]; 
+                    $keys['email'] = $_POST['key_email'][$k]; 
+                    $keys['cell'] = $_POST['key_cell'][$k];
+                    $keys['title'] = $_POST['key_title'][$k]; 
+                    $keys['company'] = $_POST['key_company'][$k]; 
+                    $keys['phone'] = $_POST['key_number'][$k]; 
+                    $this->Key_contact->create();
+                    $this->Key_contact->save($keys);
+                    $i = $this->Key_contact->id; 
+                    $ke['job_id'] = $id;
+                    $ke['key_id'] = $i;
+                    $ke['type'] = $_POST['type'][$k];
+                    $this->Job_contact->create();
+                    $this->Job_contact->save($ke);
+                    
+                    
+                }
                 
             }
                         
