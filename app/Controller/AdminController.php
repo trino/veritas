@@ -35,7 +35,24 @@ class AdminController extends AppController {
         
         if($q)
         {
-            
+            $this->loadModel('Logo');
+            $logo = $this->Logo->find('first');
+            if($logo)
+            {
+                if($logo['Logo']['afimac'] == 1)
+                {
+                    $this->Session->write('logo','afimaclogo.png');
+                }
+                else
+                if($logo['Logo']['asap'] == 1)
+                {
+                    $this->Session->write('logo','asap.gif');
+                }
+                else
+                $this->Session->write('logo','afimaclogo.png');
+            }
+            else
+            $this->Session->write('logo','afimaclogo.png'); 
             $this->Session->write(array('username'=>'admin','admin'=>1,'avatar'=>$q['User']['name_avatar'],'email'=>$q['User']['email'],'image'=>$q['User']['picture'],'id'=>$q['User']['id'],'view'=>'1'));
             
             
@@ -46,6 +63,23 @@ class AdminController extends AppController {
         }
         else if($qu)
         {
+            $logo = $this->Logo->find('first');
+            if($logo)
+            {
+                if($logo['Logo']['afimac'] == 1)
+                {
+                    $this->Session->write('logo','afimaclogo.png');
+                }
+                else
+                if($logo['Logo']['asap'] == 1)
+                {
+                    $this->Session->write('logo','asap.gif');
+                }
+                else
+                $this->Session->write('logo','afimaclogo.png');
+            }
+            else
+            $this->Session->write('logo','afimaclogo.png'); 
                 $this->Session->write(array('user'=>$qu['Member']['full_name'],'username'=>$qu['Member']['full_name'],'email'=>$qu['Member']['email'],'image'=>$qu['Member']['image'],'id'=>$qu['Member']['id'],'upload'=>$qu['Member']['canUpdate'],'canEmail'=>$qu['Member']['canEmail'],'see'=>$qu['Member']['canView'],'view'=>$qu['Member']['canView']));
                 
                 $jobs = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));

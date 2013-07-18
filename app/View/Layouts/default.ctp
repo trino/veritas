@@ -345,7 +345,7 @@ url: '<?php echo $base_url;?>admin/logout'
 			
 			
 			<div class="poweredBy">
-				<table cellspacing="0" cellpadding="0" border="0" width="100%" height="100%"><tr><td valign="middle">Powered By <br/><img src="<?php echo $base_url;?>img/afimaclogo.png" alt=""/></td></tr></table>
+				<table cellspacing="0" cellpadding="0" border="0" width="100%" height="100%"><tr><td valign="middle">Powered By <br/><img src="<?php echo $base_url;?>img/<?php echo $this->Session->read('logo');?>" alt=""/></td></tr></table>
 			</div>
 			
 			<div class="menu">

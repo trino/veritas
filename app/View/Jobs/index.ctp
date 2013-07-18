@@ -61,7 +61,7 @@ foreach($job as $j)
     
         <tr><td style="width:80px;"><div style="text-align:center;">
             
-        <a href="<?php echo $base_url.'jobs/view/'.$j['Job']['id']; ?>"><?php echo $this->Html->image('uploads/'.$j['Job']['image'], array('alt' => '', 'style'=>'max-height:100%; max-width:100%;')); ?></a></td><td><a href="<?php echo $base_url.'jobs/view/'.$j['Job']['id']; ?>"><?php echo stripslashes($j['Job']['title'])?></a></td>
+        <a href="<?php echo $base_url.'jobs/view/'.$j['Job']['id']; ?>"><?php echo $this->Html->image('uploads/'.$this->Session->read('logo'), array('alt' => '', 'style'=>'max-height:100%; max-width:100%;')); ?></a></td><td><a href="<?php echo $base_url.'jobs/view/'.$j['Job']['id']; ?>"><?php echo stripslashes($j['Job']['title'])?></a></td>
         <?php if($this->Session->read('avatar')) { ?>
             <td style="width: 350px;">
             <table class="table table-bordered" style="margin:0px;" >
