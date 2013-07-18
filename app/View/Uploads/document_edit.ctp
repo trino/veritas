@@ -439,7 +439,7 @@ $(function(){
         $(this).timepicker();
     })
     
-    $('.incident_date').datepicker({dateFormat: 'yy-mm-dd'} );
+    $('.incident_date').datepicker({dateFormat: 'yy-mm-dd',maxDate: new Date} );
     $('#document_type').change(function()
     {
         var doctype = $(this).val();
