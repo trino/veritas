@@ -816,9 +816,10 @@ url: '<?php echo $base_url;?>admin/logout'
 		</div>
 		
 	</div><!-- rightContent -->
+    <div style="clear: both;"></div>
 </div><!-- fullContainer -->
 <div class="dialog-modals"></div>
 
-	<?php //echo $this->element('sql_dump'); ?>
+	<?php //echo "<div style='padding-left:400px;'>".$this->element('sql_dump')."</div>"; ?>
 </body>
 </html>
