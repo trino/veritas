@@ -109,7 +109,7 @@
     <?php } ?>
 
 <?php if($admin_doc['AdminDoc']['site_orders']=='1' &&((isset($canview['Canview']['siteOrder']) && $canview['Canview']['siteOrder']=='1')|| $this->Session->read('admin'))){?>
-    <div class="dashboard-stat blue">								
+    <div class="dashboard-stat yellow">								
 		<div class="whiteCorner"></div>								
 		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
         <a href="<?=$base_url;?>search/index/siteOrder" class="overallLink more">		

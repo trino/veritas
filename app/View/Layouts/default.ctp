@@ -530,7 +530,7 @@ url: '<?php echo $base_url;?>admin/logout'
 							<div class="left inputs">
                                 <div class="recipientsLine" >
 <div id="name" style="height: 20px; background: none repeat scroll 0% 0% white; border: 1px solid rgb(204, 204, 204); padding: 1px 4px 2px; margin-bottom: 5px; color: rgb(170, 170, 170); width: calc(99% - 45px); float: left;">Recipients</div>
-&nbsp;<a id="contacts_modal" class="email btn btn-info" style="color: #999;padding:1px 5px;color:#FFF" onclick="show_email();" href="javascript:void(0);">&nbsp;+&nbsp;</a>
+&nbsp;<a id="contacts_modal" class="email btn btn-info" style="padding:1px 6px;color:#FFF" onclick="show_email();" href="javascript:void(0);">&nbsp;+&nbsp;</a>
 <!--									<input type="text" name="name" id="name" placeholder="Recipients (Separate with comma)" class="required" />--> 
 								</div>
 							    <!--<div style="float:left;margin-left:10px;"><a href="javascript:void(0)" id="contacts_modal" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a></div><div style="clear:both;"></div>-->
