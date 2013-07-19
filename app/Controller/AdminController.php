@@ -35,6 +35,7 @@ class AdminController extends AppController {
         
         if($q)
         {
+            
             $this->loadModel('Logo');
             $logo = $this->Logo->find('first');
             if($logo)
@@ -63,6 +64,7 @@ class AdminController extends AppController {
         }
         else if($qu)
         {
+            $this->loadModel('Logo');
             $logo = $this->Logo->find('first');
             if($logo)
             {
@@ -76,13 +78,16 @@ class AdminController extends AppController {
                     $this->Session->write('logo','asap.gif');
                 }
                 else
-                $this->Session->write('logo','afimaclogo.png');
+                    $this->Session->write('logo','afimaclogo.png');
             }
             else
-            $this->Session->write('logo','afimaclogo.png'); 
+                $this->Session->write('logo','afimaclogo.png'); 
+                
                 $this->Session->write(array('user'=>$qu['Member']['full_name'],'username'=>$qu['Member']['full_name'],'email'=>$qu['Member']['email'],'image'=>$qu['Member']['image'],'id'=>$qu['Member']['id'],'upload'=>$qu['Member']['canUpdate'],'canEmail'=>$qu['Member']['canEmail'],'see'=>$qu['Member']['canView'],'view'=>$qu['Member']['canView']));
                 
                 $jobs = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
+                
+                //var_dump($jobs);
                 $job_id = 'all';
                 if($jobs)
                 {
@@ -108,25 +113,25 @@ class AdminController extends AppController {
                 $this->Event_log->save($log);     
                 
             if(isset($_GET['mail']))
-            $this->redirect('/mail/read/'.$_GET['mail']);
+                $this->redirect('/mail/read/'.$_GET['mail']);
             else
-            if($job_id && $job_id !='all')
-            {
-                $this->Session->write('job_id',$job_id);
-                $this->redirect('/jobs/view/'.$job_id);
-            }
+                if($job_id && $job_id !='all')
+                {
+                    $this->Session->write('job_id',$job_id);
+                    $this->redirect('/jobs/view/'.$job_id);
+                }
+                else
+                if($job_id == 'all')
+                {
+                    $this->Session->write('job_id',$job_id);
+                    $this->redirect('/jobs');
+                }
             else
-            if($job_id == 'all')
-            {
-                $this->Session->write('job_id',$job_id);
-                $this->redirect('/jobs');
-            }
-            else
-            $this->redirect('/dashboard');
+                $this->redirect('/dashboard');
         }
-        elseif($query = $this->Member->find('first',array('conditions'=>array('email'=>$un,'password <>'=>$pw))))
+        elseif($query = $this->Member->find('first',array('conditions'=>array('OR'=>array(array('email'=>$un),array('full_name'=>$un)),'password <>'=>$pw))))
         {
-            
+            die('3');
             $log['date'] =  date('Y-m-d H:i:s');
             $log['time'] =  date('H:i:s');
             $log['fullname'] = $query['Member']['full_name'];
@@ -147,6 +152,7 @@ class AdminController extends AppController {
         }
         else
         {
+            die('4');
             if(!isset($log))
             {        
                 $log['date'] =  date('Y-m-d H:i:s');
