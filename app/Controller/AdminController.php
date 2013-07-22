@@ -131,7 +131,7 @@ class AdminController extends AppController {
         }
         elseif($query = $this->Member->find('first',array('conditions'=>array('OR'=>array(array('email'=>$un),array('full_name'=>$un)),'password <>'=>$pw))))
         {
-            die('3');
+            //die('3');
             $log['date'] =  date('Y-m-d H:i:s');
             $log['time'] =  date('H:i:s');
             $log['fullname'] = $query['Member']['full_name'];
@@ -152,7 +152,7 @@ class AdminController extends AppController {
         }
         else
         {
-            die('4');
+            //die('4');
             if(!isset($log))
             {        
                 $log['date'] =  date('Y-m-d H:i:s');
