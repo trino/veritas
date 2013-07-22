@@ -90,19 +90,29 @@ if($c%5==0)
 
 <div class="add_more"></div>
 <a href="javascript:void(0)" id="add_key" class="btn btn-primary"> +Add Quick Keycontacts </a><br /><br /> 
-<div class="submit"><input type="submit" id="submit" class="btn btn-primary" value="Add Job" name="submit" />
+<div class="submit"><input type="submit" id="submit" class="btn btn-primary" value="Add Job" name="submit"  />
 </div>
 
 </form>
 <script>
 $(function(){
+    /*
+    $('.submit input').attr('disabled','disabled');
+$('.fff').change(function(){
+if($(this).val()!='')
+{
+$('.submit input').removeAttr('disabled');
+}
+else
+$('.submit input').attr('disabled','disabled');
+});*/
     var cnt = 0;
     var add =   '<table width="100%"><tr><td>Contact Type</td><td colspan="3"><select name="type[]" class="required">'+
                 '<option value="0">Key Contacts</option><option value="1">Staff Contacts</option>'+
                 '<option value="2">Third Part Contacts</option></select></td></tr>'+
-                '<tr><td><b>Name</b><br/> <input type="text" name="key_name[]" class="" style="width: 100px;" /></td>'+
-                '<td><b>Title</b><br/> <input type="text" name="key_title[]" class="" style="width: 100px;" /></td>'+
-                '<td><b>Cell Number</b><br/> <input type="text" name="key_cell[]" class="" style="width: 100px;" /></td>'+
+                '<tr><td><b>Name</b><br/> <input type="text" name="key_name[]" class="required" style="width: 100px;" /></td>'+
+                '<td><b>Title</b><br/> <input type="text" name="key_title[]" class="required" style="width: 100px;" /></td>'+
+                '<td><b>Cell Number</b><br/> <input type="text" name="key_cell[]" class="required" style="width: 100px;" /></td>'+
                 '<td><b>Phone Number</b><br/> <input type="text" name="key_number[]" class="" style="width: 100px;" /></td>'+
                 '<td><b>Email</b><br/> <input type="text" name="key_email[]" class="email" style="width: 100px;" /></td>'+
                 '<td><b>Company</b><br/> <input type="text" name="key_company[]" class="" style="width: 100px;" /> </td><td><input type="button" onclick="$(this).parent().parent().parent().parent().remove();" class="btn btn-danger" style="margin-top:20px;" value="Remove"/></td></tr>'+
