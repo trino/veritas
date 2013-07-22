@@ -553,6 +553,8 @@ class UploadsController extends AppController
         $this->loadModel('Canupload');
         $this->loadModel('Activity');
         $this->loadModel('Emailupload');
+        $this->loadModel('AdminDoc');
+        $this->set('admin_doc',$this->AdminDoc->findById('1'));
         if($this->Session->read('user'))
         {
            if($this->Session->read('upload')!='1')
@@ -668,7 +670,7 @@ class UploadsController extends AppController
                         if($_POST['document_type']== 'evidence')
                             $message="
 							Job: ".$job_title."<br/>
-                            Document: ".$arr['title']."<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
+                            Document: ".$arr['title']."<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Description: ".$_POST['description']."<br/>Incident Date:".$_POST['incident_date']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
                             Upload Date: ".date('Y-m-d')."<br/><a href='".$base_url."uploads/view_detail/".$id."'>Click Here</a> to login and view the document.";
                         else
                             $message="

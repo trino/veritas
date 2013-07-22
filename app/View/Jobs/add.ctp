@@ -20,7 +20,7 @@ $(function(){
     });
 </script>
 <div id="table">
-<form action="" method="post" id="my_form" enctype="multipart/form-data">
+<form action="" method="post" id="my_form" enctype="multipart/form-data" onsubmit="return false;">
 	<table>
 <tr><td style="width:140px;"><b>Job Title</b></td><td><input type="text" name="title" class="required" /></td></tr>
 <tr><td><b>Job Description</b></td><td><textarea name="description" class="required" ></textarea></td></tr>
@@ -73,7 +73,7 @@ foreach($kc as $k)
     $c++;
     ?>
 
-    <td>  <input type="checkbox" name="key_contact[]" value="<?php echo $k['Key_contact']['id'];?>" />  <?php echo $k['Key_contact']['name'];?></td>
+    <td>  <input type="checkbox" name="key_contact[]" value="<?php echo $k['Key_contact']['id'];?>" class="keysc" />  <?php echo $k['Key_contact']['name'];?></td>
 <?php 
 if($c%5==0)
 {
@@ -89,13 +89,19 @@ if($c%5==0)
 </table>
 
 <div class="add_more"></div>
+<<<<<<< HEAD
 <a style="margin-left:8px;" href="javascript:void(0)" id="add_key" class="btn btn-primary"> +Add Quick Keycontacts </a><br /><br /> 
 <div class="submit"><input style="margin-left:8px;"  type="submit" class="btn btn-primary" value="Add Job" name="submit"/>
+=======
+<a href="javascript:void(0)" id="add_key" class="btn btn-primary"> +Add Quick Keycontacts </a><br /><br /> 
+<div class="submit"><input type="submit" id="submit" class="btn btn-primary" value="Add Job" name="submit" />
+>>>>>>> b15e817e799a44306d19a00b30ce71b4fa503690
 </div>
 
 </form>
 <script>
 $(function(){
+    var cnt = 0;
     var add =   '<table width="100%"><tr><td>Contact Type</td><td colspan="3"><select name="type[]" class="required">'+
                 '<option value="0">Key Contacts</option><option value="1">Staff Contacts</option>'+
                 '<option value="2">Third Part Contacts</option></select></td></tr>'+
@@ -108,6 +114,28 @@ $(function(){
                 '</table>';
    $('#add_key').click(function(){
         $('.add_more').append(add);
-   }); 
+        cnt++;
+   });
+   
+   $('#submit').click(function(){
+   
+   $('.keysc').each(function(){
+            
+        if ($(this).attr("checked")) {
+            cnt++;
+            }
+        
+   });
+   //alert(cnt);
+   if(cnt==0)
+        {
+            alert("Please Select contact.");
+            $('.keysc').focus();
+            return false;
+            
+        }
+        else
+            $('#my_form').submit();
+    });
 });
 </script>
