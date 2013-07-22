@@ -259,7 +259,7 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
 if($type == 'Report')
 {
     */?>
-    <input type="button" onclick="window.print();" value="Print" class="btn btn-primary" />
+    <!--<input type="button" onclick="window.print();" value="Print" class="btn btn-primary" />-->
     <?php
 //}
 ?>
