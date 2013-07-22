@@ -89,8 +89,11 @@ if($c%5==0)
 </table>
 
 <div class="add_more"></div>
+
 <a href="javascript:void(0)" id="add_key" class="btn btn-primary"> +Add Quick Keycontacts </a><br /><br /> 
+
 <div class="submit"><input type="submit" id="submit" class="btn btn-primary" value="Add Job" name="submit"  />
+
 </div>
 
 </form>

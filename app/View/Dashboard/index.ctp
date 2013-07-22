@@ -89,7 +89,7 @@
 
 	<!-- tien-repsonsive div class="span3 responsive" data-tablet="span6" data-desktop="span3"-->
 	<?php if($admin_doc['AdminDoc']['report']=='1' &&((isset($canview['Canview']['report']) && $canview['Canview']['report']=='1')|| $this->Session->read('admin'))){?>
-    <div class="dashboard-stat dashboard-stat-last yellow">
+    <div class="dashboard-stat yellow">
 	<div class="whiteCorner"></div>
 	<!--<a href="<?=$base_url;?>uploads/view_doc/report" class="overallLink more">-->
     <a href="<?=$base_url;?>search/index/report" class="overallLink more">
