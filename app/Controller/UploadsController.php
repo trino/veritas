@@ -553,6 +553,8 @@ class UploadsController extends AppController
         $this->loadModel('Canupload');
         $this->loadModel('Activity');
         $this->loadModel('Emailupload');
+        $this->loadModel('AdminDoc');
+        $this->set('admin_doc',$this->AdminDoc->findById('1'));
         if($this->Session->read('user'))
         {
            if($this->Session->read('upload')!='1')
