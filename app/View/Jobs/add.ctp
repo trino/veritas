@@ -20,7 +20,7 @@ $(function(){
     });
 </script>
 <div id="table">
-<form action="" method="post" id="my_form" enctype="multipart/form-data" onsubmit="return false;">
+<form action="" method="post" id="my_form" enctype="multipart/form-data" >
 	<table>
 <tr><td style="width:140px;"><b>Job Title</b></td><td><input type="text" name="title" class="required" /></td></tr>
 <tr><td><b>Job Description</b></td><td><textarea name="description" class="required" ></textarea></td></tr>
@@ -126,7 +126,7 @@ $('.submit input').attr('disabled','disabled');
    });
    
    $('#submit').click(function(){
-   
+   /*
    $('.keysc').each(function(){
             
         if ($(this).attr("checked")) {
@@ -145,5 +145,6 @@ $('.submit input').attr('disabled','disabled');
         else
             $('#my_form').submit();
     });
+    */
 });
 </script>

@@ -152,11 +152,7 @@ class AdminController extends AppController {
         }
         else
         {
-<<<<<<< HEAD
-          //  die('4');
-=======
-            //die('4');
->>>>>>> b15e817e799a44306d19a00b30ce71b4fa503690
+
             if(!isset($log))
             {        
                 $log['date'] =  date('Y-m-d H:i:s');
