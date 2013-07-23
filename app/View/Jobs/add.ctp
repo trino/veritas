@@ -124,9 +124,9 @@ $('.submit input').attr('disabled','disabled');
         $('.add_more').append(add);
         cnt++;
    });
-   
-   $('#submit').click(function(){
    /*
+   $('#submit').click(function(){
+   
    $('.keysc').each(function(){
             
         if ($(this).attr("checked")) {
@@ -146,5 +146,6 @@ $('.submit input').attr('disabled','disabled');
             $('#my_form').submit();
     });
     */
+    
 });
 </script>
