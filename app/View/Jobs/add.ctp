@@ -90,12 +90,12 @@ if($c%5==0)
 
 <div class="add_more"></div>
 
-<a href="javascript:void(0)" id="add_key" class="btn btn-primary"> +Add Quick Keycontacts </a><br /><br /> 
+<a href="javascript:void(0)" id="add_key" style="margin-left:8px;" class="btn btn-primary">+Add Quick Key Contacts </a><br /><br /> 
 
-<div class="submit"><input type="submit" id="submit" class="btn btn-primary" value="Add Job" name="submit"  />
+<div class="submit"><input type="submit" id="submit" class="btn btn-primary"  style="margin-left:8px;" value="Add Job" name="submit"  />
 
 </div>
-
+</div>
 </form>
 <script>
 $(function(){
