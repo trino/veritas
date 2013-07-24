@@ -94,6 +94,8 @@ $or = '&order=';
     $m=0;
     foreach($docs as $k=>$d)
     {
+        if(strtolower($d['Document']['document_type'])=='client_feedback' && !$this->Session->read('admin'))
+        continue ;
         $m++;
         
         if($m==1)
@@ -116,13 +118,13 @@ $or = '&order=';
             }
         }
      
-   
+       
        ?>
-    
+            
        <tr>
             <td><?php  if($d['Document']['document_type']=='evidence')echo $d['Document']['evidence_type'];elseif($d['Document']['document_type']=='report'){$act = $activity->find('first',array('conditions'=>array('document_id'=>$d['Document']['id'])));if($act){if($act['Activity']['report_type']==1)echo " Activity Log";if($act['Activity']['report_type']==2)echo " Mobile Inspection";if($act['Activity']['report_type']==3)echo " Mobile Security";if($act['Activity']['report_type']==4)echo " Security Occurence";}}else echo $d['Document']['document_type']; ?></td>
             <!--<td><?php echo $d['Document']['location']; ?></td>-->
-            <td><?php echo $d['Document']['description']; ?></td>
+            <td><?php if($d['Document']['document_type']!='client_feedback' || $this->Session->read('admin'))echo $d['Document']['description']; ?></td>
             <!--<td><?php echo $d['Document']['title'];?></td>-->
             <td><?php if($d['Document']['addedBy'] != 0){$q = $member->find('first',array('conditions'=>array('id'=>$d['Document']['addedBy'])));if($q){if($this->Session->read('admin'))echo "<a href='".$base_url."members/view/".$q['Member']['id']."'>".$q['Member']['full_name']."</a>";else echo $q['Member']['full_name'];}}else echo "Admin";?></td>
             
