@@ -94,7 +94,7 @@ $or = '&order=';
     $m=0;
     foreach($docs as $k=>$d)
     {
-        if($d['Document']['document_type']=='client_feedback' && !$this->Session->read('admin'))
+        if(strtolower($d['Document']['document_type'])=='client_feedback' && !$this->Session->read('admin'))
         continue ;
         $m++;
         
