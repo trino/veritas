@@ -711,9 +711,33 @@ url: '<?php echo $base_url;?>admin/logout'
 							</div>
 						</a>
 					</div>			-->
-                    <?php if($this->Session->read('admin')){ ?>
+                    <?php if($this->Session->read('admin') || ($usr['Member']['canUpdate']==1 && $usr['Member']['Canupload']['report']=='1' && $upload)){ 
+                        
+                        
+                                    if($this->Session->read('admin'))
+                                    {
+                                        $ur2 = $base_url.'feedback';
+                                    }
+                                    else
+                                    {
+                                        if($job2)
+                                        {
+                                            if(str_replace(',','',$job2)!=$job2)
+                                            {
+                                                $ur2 = $base_url.'jobs?client_feedback=1';    
+                                            }
+                                            else
+                                            $ur2 = $ur2 = $base_url.'uploads/upload/'.$job2.'/client_feedback';
+                                            
+                                        } 
+                                        else
+                                        $ur2 = $base_url.'jobs?client_feedback=1';
+                                    }
+                                    
+                        
+                        ?>
 					<div class="v1ButtonBarB">
-                        <a href="<?php echo $base_url;?>feedback" class="fullLink">
+                        <a href="<?php echo $ur2;?>" class="fullLink">
 							<div  class="glassButton">
 							<div  class="full8ButtonB">
 

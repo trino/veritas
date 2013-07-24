@@ -135,8 +135,11 @@ foreach($job as $j)
            <?php 
             if($this->Session->read('upload')=='1' || $this->Session->read('admin'))
             {
-            if(!isset($_GET['activity_log']))    
+            if(!isset($_GET['activity_log'])&&!isset($_GET['client_feedback']))    
             echo $this->Html->link('Quick Upload','/uploads/upload/'.$j['Job']['id'],array('class'=>'btn btn-primary'))." ";
+            else
+            if(isset($_GET['client_feedback']))
+            echo $this->Html->link('Quick Upload','/uploads/upload/'.$j['Job']['id'].'/client_feedback',array('class'=>'btn btn-primary'))." ";
             else
              echo $this->Html->link('Quick Upload','/uploads/upload/'.$j['Job']['id'].'/activity_log',array('class'=>'btn btn-primary'))." ";
             }
