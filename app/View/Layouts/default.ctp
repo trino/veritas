@@ -345,7 +345,7 @@ url: '<?php echo $base_url;?>admin/logout'
 			
 			
 			<div class="poweredBy" style="background:transparent;" >
-				<table cellspacing="0" cellpadding="0" border="0" width="100%" height="100%"><tr><td valign="middle"><img style= "width:120px" src="<?php echo $base_url;?>img/<?php if( $this->Session->read('logo')=="afimaclogo.png"){
+				<table cellspacing="0" cellpadding="0" border="0" width="100%" height="100%"><tr><td valign="middle"><img src="<?php echo $base_url;?>img/<?php if( $this->Session->read('logo')=="afimaclogo.png"){
 				echo "afimaclogo2.png";
 				}else				{
 				echo "asap.png";
