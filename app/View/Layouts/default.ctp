@@ -711,7 +711,7 @@ url: '<?php echo $base_url;?>admin/logout'
 							</div>
 						</a>
 					</div>			-->
-                    <?php if($this->Session->read('admin') || ($usr['Member']['canUpdate']==1 && $usr['Member']['Canupload']['report']=='1' && $upload)){ 
+                    <?php if($this->Session->read('admin') || ($usr['Member']['canUpdate']==1 && $usr['Member']['Canupload']['client_feedback']=='1' && $upload)){ 
                         
                         
                                     if($this->Session->read('admin'))
