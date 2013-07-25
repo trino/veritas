@@ -344,8 +344,12 @@ url: '<?php echo $base_url;?>admin/logout'
 			<div class="logo"><a href="<?php if(!$this->Session->read('job_id')){echo $base_url;?>dashboard<?php }else echo $base_url.'jobs/view/'.$this->Session->read('job_id');?>"><?php echo $this->Html->image('/img/logoVeritas01.png');?></a></div>
 			
 			
-			<div class="poweredBy">
-				<table cellspacing="0" cellpadding="0" border="0" width="100%" height="100%"><tr><td valign="middle">Powered By <br/><img src="<?php echo $base_url;?>img/<?php echo $this->Session->read('logo');?>" alt=""/></td></tr></table>
+			<div class="poweredBy" style="background:transparent;" >
+				<table cellspacing="0" cellpadding="0" border="0" width="100%" height="100%"><tr><td valign="middle"><img style= "width:120px" src="<?php echo $base_url;?>img/<?php if( $this->Session->read('logo')=="afimaclogo.png"){
+				echo "afimaclogo2.png";
+				}else				{
+				echo "asap.png";
+				} ?>" /></td></tr></table>
 			</div>
 			
 			<div class="menu">
@@ -523,7 +527,7 @@ url: '<?php echo $base_url;?>admin/logout'
 					}
 
 					</script>
-					<div class="message-form">
+					<div class="message-form" >
 						<form id="Form" action="<?php echo $base_url.'mail/send?return='.urlencode($_SERVER['REQUEST_URI']);?>" method="post" class="messageform">
 							
 							
@@ -571,10 +575,10 @@ url: '<?php echo $base_url;?>admin/logout'
                                 
 							</div>
                             <div class="left msg">
-<textarea placeholder="Instant Message - Type message here" name="message" class="required message" style="height:72%;"></textarea>
+<textarea placeholder="Instant Message - Type message here" name="message" class="required message" style="height:55%;"></textarea>
 							</div>
                             <div style="clear:both;"></div>
-                            <div style="margin: 0px 10px;">
+                            <div style="margin-right:10px;margin-top:-15px;padding-top:-10px;">
 <input style="float:right;" type="submit" name="submit" value="Send" class="buttonV" id="send_email" />
 
 						<a href="javascript:void(0);" class="buttonV attachment" style="float:right;margin-right:8px;"><i class="icon-book"></i> Attach Documents</a>
