@@ -154,7 +154,7 @@ class MailController extends AppController
                 if($_SERVER['SERVER_NAME'] == 'localhost')
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
                 
-                $message="You have recieved a message from ".$sender." on Veritas. <br/><a href='".$base_url."/?mail=".$arr['parent']."'>To check your message, click here</a><br/>
+                $message="You have received a message from ".$sender." on Veritas. <br/><a href='".$base_url."/?mail=".$arr['parent']."'>To check your message, click here</a><br/>
                 <p>
                 <b>Subject : </b>".$arr['subject']."<br/>
                 <b>Message : </b>".$arr['message']."
@@ -408,7 +408,7 @@ class MailController extends AppController
             $base_url = 'http://'.$_SERVER['SERVER_NAME'];
             if($_SERVER['SERVER_NAME'] == 'localhost')
             $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
-            $message="You have recieved a message from ".$sender." on Veritas. <br/><a href='".$base_url.$link."'>To check your message, click here</a><br/>
+            $message="You have received a message from ".$sender." on Veritas. <br/><a href='".$base_url.$link."'>To check your message, click here</a><br/>
                 <p>
                 <b>Subject : </b>".$_POST['subject']."<br/>
                 <b>Message : </b>".$data['message']."
@@ -529,7 +529,7 @@ class MailController extends AppController
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'];
                 if($_SERVER['SERVER_NAME'] == 'localhost')
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
-                $message="You have recieved a message from ".$sender." on Veritas. <br/><a href='".$base_url."/?mail=".$arr['parent']."'>To check your message, click here</a><br/>
+                $message="You have received a message from ".$sender." on Veritas. <br/><a href='".$base_url."/?mail=".$arr['parent']."'>To check your message, click here</a><br/>
                 <p>
                 <b>Subject : </b>".$arr['subject']."<br/>
                 <b>Message : </b>".$arr['message']."
