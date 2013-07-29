@@ -1013,6 +1013,7 @@ class UploadsController extends AppController
     
     function view_detail($id)
     {
+        //die('here');
         $this->loadModel('Activity');
         $this->loadModel('Clientmemo');
         
