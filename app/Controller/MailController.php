@@ -149,17 +149,17 @@ class MailController extends AppController
             
                 $emails->emailFormat('html');
                 
-                $emails->subject($_POST['subject']);
+                $emails->subject('New Email');
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'];
                 if($_SERVER['SERVER_NAME'] == 'localhost')
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
                 
-                $message="You have received a message from ".$sender." on Veritas. <br/><a href='".$base_url."/?mail=".$arr['parent']."'>To check your message, click here</a><br/>
-                <p>
-                <b>Subject : </b>".$arr['subject']."<br/>
-                <b>Message : </b>".$arr['message']."
-                </p>
-                ";
+                $message="
+                You have recieved a message on Veritas.<br/> 
+To check your message, click <a href='".$base_url."/?mail=".$arr['parent']."'>here</a><br/><br/>
+<b>FROM:</b> ".$sender."<br/>
+<b>Subject</b> : ".$_POST['subject']."<br/>
+<b>Message</b> : ".$arr['message'];
                 if($receiver){
                 $ch_id = $_POST['recipient_id'];
                 if($ch_id!=0)
@@ -408,12 +408,13 @@ class MailController extends AppController
             $base_url = 'http://'.$_SERVER['SERVER_NAME'];
             if($_SERVER['SERVER_NAME'] == 'localhost')
             $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
-            $message="You have received a message from ".$sender." on Veritas. <br/><a href='".$base_url.$link."'>To check your message, click here</a><br/>
-                <p>
-                <b>Subject : </b>".$_POST['subject']."<br/>
-                <b>Message : </b>".$data['message']."
-                </p>
-                ";           
+            $message="
+                You have recieved a message on Veritas.<br/> 
+To check your message, click <a href='".$base_url.$link."'>here</a><br/><br/>
+<b>FROM:</b> ".$sender."<br/>
+<b>Subject</b> : ".$_POST['subject']."<br/>
+<b>Message</b> : ".$data['message'];            
+                       
             if(str_replace(' ','',$to)){
                 $checks = $this->Member->find('first',array('conditions'=>array('email'=>$to)));
                 if($checks)

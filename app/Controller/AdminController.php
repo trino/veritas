@@ -60,6 +60,9 @@ class AdminController extends AppController {
             if(isset($_GET['mail']))
             $this->redirect('/mail/read/'.$_GET['mail']);
             else
+            if(isset($_GET['upload']))
+            $this->redirect('/uploads/view_detail/'.$_GET['upload']);
+            else
             $this->redirect('/dashboard');
         }
         else if($qu)
@@ -114,6 +117,9 @@ class AdminController extends AppController {
                 
             if(isset($_GET['mail']))
                 $this->redirect('/mail/read/'.$_GET['mail']);
+            else
+            if(isset($_GET['upload']))
+            $this->redirect('/uploads/view_detail/'.$_GET['upload']);                
             else
                 if($job_id && $job_id !='all')
                 {

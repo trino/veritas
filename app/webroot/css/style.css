@@ -614,7 +614,7 @@ font-size:16px;
 	  font-family: 'Oxygen', sans-serif;
 }
 #response,#response1,.response1{color:red;}
-
+#name{cursor: text;}
 
 
 

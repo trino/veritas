@@ -263,6 +263,15 @@ url: '<?php echo $base_url;?>admin/logout'
                     
                });
                });
+               $('#name').live('click',function(){
+         $('.dialog-modals').load('<?php echo $base_url.'members/loadall';?>');
+               $('.dialog-modals').dialog({
+                    
+                    width: 800,
+                    title:'Add Contacts to Instant Message',
+                    
+               });
+               });               
                $('.attachment').click(function(){
          $('.dialog-modals').load('<?php echo $base_url.'uploads/loadall';?>');
                $('.dialog-modals').dialog({
