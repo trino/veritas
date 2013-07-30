@@ -708,11 +708,6 @@ class UploadsController extends AppController
                 }
             if($_POST['document_type']== 'report')
             {
-<<<<<<< HEAD
-               // die('here');
-=======
-                //die('here');
->>>>>>> bfdb2be4f14e40117371181c423b1b86eef05d8b
                 $activity['document_id'] = $id;
                 $activity['report_type'] = $_POST['report_type'];
                 $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet');

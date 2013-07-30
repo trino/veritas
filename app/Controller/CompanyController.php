@@ -18,7 +18,7 @@
             
             if(isset($_POST['submit']))
             {
-			debug($_POST);
+			//debug($_POST);
                 $un=$_POST['username'];
                 $pw=$_POST['password'];
                 $q=$this->Company->find('first',array('conditions'=>array('email'=>$un,'password'=>$pw)));
