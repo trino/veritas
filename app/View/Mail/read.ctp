@@ -101,7 +101,7 @@ foreach($all as $a){
             $path = $base_url.'uploads/view_detail/'.$document_id;
             
             ?>
-            <?php if($document_id){?><tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a href="<?php echo $path;?>">View</a></td></tr><?php }?>
+            <?php if($document_id){?><tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a target="_blank" href="<?php echo $url;?>">View/Download</a></td></tr><?php }?>
             <?php
         }
         else
@@ -114,9 +114,10 @@ foreach($all as $a){
              $document_id = 0;
              unset($cc);
              $path = $base_url.'uploads/view_detail/'.$document_id;
+             $url = $base_url.'img/documents/'.$doc;
              
             ?>
-            <?php if($document_id){?><tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a href="<?php echo $path;?>">View</a></td></tr><?php }?>
+            <?php if($document_id){?><tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a target="_blank" href="<?php echo $url;?>">View/Downloads</a></td></tr><?php }?>
            
             <?php
         }
@@ -130,17 +131,20 @@ foreach($all as $a){
              $document_id = 0;
              unset($cc);
              $path = $base_url.'uploads/view_detail/'.$document_id;
+             $url = $base_url.'img/documents/'.$doc;
              }
              else{
              $path = $base_url.'uploads/view_detail/'.$doc;
              $document_id = true;
+             $url = $base_url.'uploads/view_detail/'.$doc;
              }
+             
              
             ?>
             <?php if($document_id){?><tr><td><strong><?php if(!is_numeric($doc)){echo $doc;}else{
                 $get_doc = $docu->find('first',array('conditions'=>array('id'=>$document_id)));
                 echo $docname = $get_doc['Document']['title'].' '.$get_doc['Document']['date'];
-            }?></strong>&nbsp; &nbsp; <a href="<?php echo $path;?>">View</a></td></tr><?php }?>
+            }?></strong>&nbsp; &nbsp; <a target="_blank" href="<?php echo $url;?>">View/Download</a></td></tr><?php }?>
             
             <?php
         }
