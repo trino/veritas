@@ -156,8 +156,15 @@ $or = '&order=';
             }
             ?>
             </td>
-            <td><?php echo $this->Html->link('View','/uploads/view_detail/'.$d['Document']['id'], array('class'=>'btn btn-primary'));  ?>
-                
+            <td>
+            <?php echo $this->Html->link('View','/uploads/view_detail/'.$d['Document']['id'], array('class'=>'btn btn-primary'));  ?>
+            
+            <?php if($this->Session->read('admin') || $this->Session->read('id')== $d['Document']['addedBy'] )
+            { 
+                   if(($this->Session->read('admin') && $d['Document']['document_type']!='client_feedback')|| $this->Session->read('user')) 
+                        echo $this->Html->link('Edit','/uploads/document_edit/'.$d['Document']['id'],array('class'=>'btn btn-info'));
+                    echo $this->Html->link('Delete','/uploads/delete/'.$d['Document']['id'],array('class'=>'btn btn-danger'),"Confirm Delete Document?");
+            } ?>    
             </td>
        </tr> 
     <?php }

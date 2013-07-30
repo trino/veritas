@@ -237,6 +237,8 @@ class UploadsController extends AppController
         $this->loadModel('Activity');
         $this->loadModel('Emailupload');
         $this->loadModel('Clientmemo');
+        $this->loadModel('AdminDoc');
+        $this->set('admin_doc',$this->AdminDoc->findById('1'));
         if($this->Session->read('user'))
         {
            if($this->Session->read('upload')!='1')
@@ -706,7 +708,11 @@ class UploadsController extends AppController
                 }
             if($_POST['document_type']== 'report')
             {
+<<<<<<< HEAD
                // die('here');
+=======
+                //die('here');
+>>>>>>> bfdb2be4f14e40117371181c423b1b86eef05d8b
                 $activity['document_id'] = $id;
                 $activity['report_type'] = $_POST['report_type'];
                 $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet');
@@ -1013,6 +1019,7 @@ class UploadsController extends AppController
     
     function view_detail($id)
     {
+        //die('here');
         $this->loadModel('Activity');
         $this->loadModel('Clientmemo');
         

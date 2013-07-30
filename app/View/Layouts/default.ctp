@@ -786,7 +786,7 @@ url: '<?php echo $base_url;?>admin/logout'
                                                 $ur = $base_url.'jobs?activity_log=1';    
                                             }
                                             else
-                                            $ur = $ur = $base_url.'uploads/upload/'.$job2.'/activity_log';
+                                                $ur = $ur = $base_url.'uploads/upload/'.$job2.'/activity_log';
                                             
                                         } 
                                         else

@@ -156,28 +156,28 @@ function remove_youtube()
 <td><div class="right">
 <select name="document_type" class="required" id="document_type">
     <option value="">Choose documnet type</option>
-    <?php if((isset($canupdate['Canupload']['contracts'])&& $canupdate['Canupload']['contracts']=='1') || $this->Session->read('admin')){?>
+    <?php if($admin_doc['AdminDoc']['contracts']=='1' && ((isset($canupdate['Canupload']['contracts'])&& $canupdate['Canupload']['contracts']=='1') || $this->Session->read('admin'))){?>
     <option value="contract" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='contract') echo "selected='selected'"?>>Contracts</option>
     <?php } ?>
-    <?php if((isset($canupdate['Canupload']['evidence'])&& $canupdate['Canupload']['evidence']=='1') || $this->Session->read('admin')){?>
+    <?php if($admin_doc['AdminDoc']['evidence']=='1' && ((isset($canupdate['Canupload']['evidence'])&& $canupdate['Canupload']['evidence']=='1') || $this->Session->read('admin'))){?>
     <option value="evidence" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='evidence') echo "selected='selected'"?>>Evidence</option>
     <?php } ?>
-    <?php if((isset($canupdate['Canupload']['templates'])&& $canupdate['Canupload']['templates']=='1') || $this->Session->read('admin')){?>
+    <?php if($admin_doc['AdminDoc']['templates']=='1' && ((isset($canupdate['Canupload']['templates'])&& $canupdate['Canupload']['templates']=='1') || $this->Session->read('admin'))){?>
     <option value="template" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='template') echo "selected='selected'"?>>Templates</option>
     <?php }?>
-    <?php if((isset($canupdate['Canupload']['report'])&& $canupdate['Canupload']['report']=='1') || $this->Session->read('admin')){?>
+    <?php if($admin_doc['AdminDoc']['report']=='1' && ((isset($canupdate['Canupload']['report'])&& $canupdate['Canupload']['report']=='1') || $this->Session->read('admin'))){?>
     <option value="report" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='report') echo "selected='selected'"?>>Report</option>
     <?php }?>
-     <?php if((isset($canupdate['Canupload']['siteOrder'])&& $canupdate['Canupload']['siteOrder']=='1') || $this->Session->read('admin')){?>
+    <?php if($admin_doc['AdminDoc']['site_orders']=='1' && ((isset($canupdate['Canupload']['siteOrder'])&& $canupdate['Canupload']['siteOrder']=='1') || $this->Session->read('admin'))){?>
     <option value="siteOrder" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='siteOrder') echo "selected='selected'"?>>Site Orders</option>
     <?php }?>
-    <?php if((isset($canupdate['Canupload']['training'])&& $canupdate['Canupload']['training']=='1') || $this->Session->read('admin')){?>
+    <?php if($admin_doc['AdminDoc']['training']=='1' && ((isset($canupdate['Canupload']['training'])&& $canupdate['Canupload']['training']=='1') || $this->Session->read('admin'))){?>
     <option value="training" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='training') echo "selected='selected'"?>>Training</option>
     <?php }?>
-     <?php if((isset($canupdate['Canupload']['employee'])&& $canupdate['Canupload']['employee']=='1') || $this->Session->read('admin')){?>
+     <?php if($admin_doc['AdminDoc']['employee']=='1' && ((isset($canupdate['Canupload']['employee'])&& $canupdate['Canupload']['employee']=='1') || $this->Session->read('admin'))){?>
     <option value="employee" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='employee') echo "selected='selected'"?>>Employee</option>
     <?php }?>
-     <?php if((isset($canupdate['Canupload']['KPIAudits'])&& $canupdate['Canupload']['KPIAudits']=='1') || $this->Session->read('admin')){?>
+     <?php if($admin_doc['AdminDoc']['kpiaudits']=='1' && ((isset($canupdate['Canupload']['KPIAudits'])&& $canupdate['Canupload']['KPIAudits']=='1') || $this->Session->read('admin'))){?>
     <option value="KPIAudits" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='KPIAudits') echo "selected='selected'"?>>KPI Audits</option>
     <?php }?>
     <?php if((isset($canupdate['Canupload']['client_feedback'])&& $canupdate['Canupload']['client_feedback']=='1') ){?>
@@ -347,8 +347,9 @@ foreach($activity as $act)
 <tr><td colspan="3" style="padding: 0;"><table class="activity_more" style="">
 </table>
 </td></tr>
-</table>
 <tr class="add_more" style="display: none;"><td><a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></td></tr>
+</table>
+
 </td></tr>
 <tr><td class="main_desc"><strong>Description</strong></td>
 <td><textarea name="description"  class="text_area_long" cols="10" rows="5" id="repl" onKeyDown="limitText(this.form.description,this.form.countdown,70);"
@@ -478,6 +479,7 @@ $(function(){
         else{
             $('.extra_memo').hide();
             $('.draftspan').hide();
+            $('.addmore').hide();
             $('.draftval').val("0");
             $('.main_desc').html("<strong>Description</strong>");
             }
@@ -523,7 +525,7 @@ $(function(){
         $('.add_more').show();
            $('.extra_memo').show();
            $('.main_desc').html("<strong>Additional Notes</strong>");
-           }
+    }
     if($('#document_type').val() == 'client_feedback')
             $('.client_more').show(); 
             
