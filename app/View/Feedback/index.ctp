@@ -1,7 +1,7 @@
 <?php include_once('inc.php');?>
 
 <h3 class="page-title">
-	Key Contacts
+	Client Feedbacks
 </h3>
 <ul class="breadcrumb">
 	<li>

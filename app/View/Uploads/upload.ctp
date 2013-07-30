@@ -165,7 +165,7 @@ function remove_youtube()
     <option value="template">Templates</option>
     <?php }?>
      <?php if($admin_doc['AdminDoc']['report']=='1' && ((isset($canupdate['Canupload']['report'])&& $canupdate['Canupload']['report']=='1') || $this->Session->read('admin'))){?>
-    <option value="report" <?php if($typee){?>selected="selected"<?php }?>>Report</option>
+    <option value="report" <?php if($typee=='activity_log'){?>selected="selected"<?php }?>>Report</option>
     <?php }?>
     <?php if($admin_doc['AdminDoc']['site_orders']=='1' && ((isset($canupdate['Canupload']['siteOrder'])&& $canupdate['Canupload']['siteOrder']=='1') || $this->Session->read('admin'))){?>
     <option value="siteOrder">Site Orders</option>
@@ -180,7 +180,7 @@ function remove_youtube()
     <option value="KPIAudits">KPI Audits</option>
     <?php }?>
     <?php if((isset($canupdate['Canupload']['client_feedback'])&& $canupdate['Canupload']['client_feedback']=='1') ){?>
-    <option value="client_feedback">Client Feedback</option>
+    <option value="client_feedback" <?php if($typee=='client_feedback'){?>selected="selected"<?php }?>>Client Feedback</option>
     <?php }?>
     <!--<option value="training_manuals">Training Manuals</option>-->
 </select>
@@ -369,6 +369,18 @@ You have <input readonly="readonly" type="text" name="countdown" id="countssss" 
 </form>
 <script>
 $(function(){
+    <?php
+    if($typee=='client_feedback')
+    {
+        ?>
+        $('.client_more').show();
+            $('.text_area_long').attr('onKeyDown',"limitText(this.form.description,this.form.countdown,500);");
+            $('.text_area_long').attr('OnKeyUp',"limitText(this.form.description,this.form.countdown,500);");
+            $('.desc_bot').html('(Maximum characters: 500)<br />'+
+'You have <input readonly="readonly" type="text" name="countdown" id="countssss" style="background:none; border:0; padding:0; margin:0; text-align:center; border-radius:none; width:30px; box-shadow:none;" value="500" /> characters left.</font><br />');
+        <?php
+    }
+    ?>
     $('.draft').click(function(){
        $('.draftval').val("1");
        $('.activity_desc').removeClass('required');

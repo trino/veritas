@@ -671,7 +671,7 @@ class UploadsController extends AppController
                             $message="
 							Job: ".$job_title."<br/>
                             Document: ".$arr['title']."<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Description: ".$_POST['description']."<br/>Incident Date:".$_POST['incident_date']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
-                            Upload Date: ".date('Y-m-d')."<br/><a href='".$base_url."uploads/view_detail/".$id."'>Click Here</a> to login and view the document.";
+                            Upload Date: ".date('Y-m-d')."<br/><a href='".$base_url."?upload=".$id."'>Click Here</a> to login and view the document.";
                         else
                             $message="
                             Job: ".$job_title."<br/>
@@ -679,7 +679,7 @@ class UploadsController extends AppController
                             Who Uploaded: ".$this->Session->read('username')."<br/>
                             Upload Date: ".date('Y-m-d')."
 
-                            <br/><a href='".$base_url."uploads/view_detail/".$id."'>Click Here</a> to login and view the document.";
+                            <br/><a href='".$base_url."?upload=".$id."'>Click Here</a> to login and view the document.";
                             
                         if($to)
                         {
@@ -706,6 +706,7 @@ class UploadsController extends AppController
                 }
             if($_POST['document_type']== 'report')
             {
+                die('here');
                 $activity['document_id'] = $id;
                 $activity['report_type'] = $_POST['report_type'];
                 $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet');
@@ -749,7 +750,7 @@ class UploadsController extends AppController
                             
                             Job: ".$job_title."<br/>
                             Document: ".$arr['title']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
-                           Upload Date: ".date('Y-m-d')."<br/><a href='".$base_url."uploads/view_detail/".$id."'>Click Here</a> to login and view the document.";
+                           Upload Date: ".date('Y-m-d')."<br/><a href='".$base_url."?upload=".$id."'>Click Here</a> to login and view the document.";
 						   
                         $emails->to($qa['User']['email']);
                             $emails->send($message);
@@ -1012,6 +1013,7 @@ class UploadsController extends AppController
     
     function view_detail($id)
     {
+        //die('here');
         $this->loadModel('Activity');
         $this->loadModel('Clientmemo');
         

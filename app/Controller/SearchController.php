@@ -183,9 +183,9 @@ class SearchController extends AppController
                 {
                     unset($arrs);
                     if($job_id==0)
-                    $arrs = array('document_type'=>str_replace(array('contracts','templates'),array('contract','template'),$type));
+                    $arrs = array('document_type <>'=>'client_feedback','document_type'=>str_replace(array('contracts','templates'),array('contract','template'),$type));
                     else
-                    $arrs = array('job_id'=>$job_id,'document_type'=>str_replace(array('contracts','templates'),array('contract','template'),$type));
+                    $arrs = array('document_type <>'=>'client_feedback','job_id'=>$job_id,'document_type'=>str_replace(array('contracts','templates'),array('contract','template'),$type));
                     
                 }
             

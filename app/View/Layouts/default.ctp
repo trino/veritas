@@ -263,6 +263,15 @@ url: '<?php echo $base_url;?>admin/logout'
                     
                });
                });
+               $('#name').live('click',function(){
+         $('.dialog-modals').load('<?php echo $base_url.'members/loadall';?>');
+               $('.dialog-modals').dialog({
+                    
+                    width: 800,
+                    title:'Add Contacts to Instant Message',
+                    
+               });
+               });               
                $('.attachment').click(function(){
          $('.dialog-modals').load('<?php echo $base_url.'uploads/loadall';?>');
                $('.dialog-modals').dialog({
@@ -344,8 +353,12 @@ url: '<?php echo $base_url;?>admin/logout'
 			<div class="logo"><a href="<?php if(!$this->Session->read('job_id')){echo $base_url;?>dashboard<?php }else echo $base_url.'jobs/view/'.$this->Session->read('job_id');?>"><?php echo $this->Html->image('/img/logoVeritas01.png');?></a></div>
 			
 			
-			<div class="poweredBy">
-				<table cellspacing="0" cellpadding="0" border="0" width="100%" height="100%"><tr><td valign="middle">Powered By <br/><img src="<?php echo $base_url;?>img/<?php echo $this->Session->read('logo');?>" alt=""/></td></tr></table>
+			<div class="poweredBy" style="background:transparent;" >
+				<table cellspacing="0" cellpadding="0" border="0" width="100%" height="100%"><tr><td valign="middle"><img src="<?php echo $base_url;?>img/<?php if( $this->Session->read('logo')=="afimaclogo.png"){
+				echo "afimaclogo2.png";
+				}else				{
+				echo "asap.png";
+				} ?>" /></td></tr></table>
 			</div>
 			
 			<div class="menu">
@@ -523,7 +536,7 @@ url: '<?php echo $base_url;?>admin/logout'
 					}
 
 					</script>
-					<div class="message-form">
+					<div class="message-form" >
 						<form id="Form" action="<?php echo $base_url.'mail/send?return='.urlencode($_SERVER['REQUEST_URI']);?>" method="post" class="messageform">
 							
 							
@@ -571,10 +584,10 @@ url: '<?php echo $base_url;?>admin/logout'
                                 
 							</div>
                             <div class="left msg">
-<textarea placeholder="Instant Message - Type message here" name="message" class="required message" style="height:72%;"></textarea>
+<textarea placeholder="Instant Message - Type message here" name="message" class="required message" style="height:55%;"></textarea>
 							</div>
                             <div style="clear:both;"></div>
-                            <div style="margin: 0px 10px;">
+                            <div style="margin-right:10px;margin-top:-15px;padding-top:-10px;">
 <input style="float:right;" type="submit" name="submit" value="Send" class="buttonV" id="send_email" />
 
 						<a href="javascript:void(0);" class="buttonV attachment" style="float:right;margin-right:8px;"><i class="icon-book"></i> Attach Documents</a>
@@ -711,9 +724,33 @@ url: '<?php echo $base_url;?>admin/logout'
 							</div>
 						</a>
 					</div>			-->
-                    <?php if($this->Session->read('admin')){ ?>
+                    <?php if($this->Session->read('admin') || ($usr['Member']['canUpdate']==1 && $usr['Member']['Canupload']['client_feedback']=='1' && $upload)){ 
+                        
+                        
+                                    if($this->Session->read('admin'))
+                                    {
+                                        $ur2 = $base_url.'feedback';
+                                    }
+                                    else
+                                    {
+                                        if($job2)
+                                        {
+                                            if(str_replace(',','',$job2)!=$job2)
+                                            {
+                                                $ur2 = $base_url.'jobs?client_feedback=1';    
+                                            }
+                                            else
+                                            $ur2 = $ur2 = $base_url.'uploads/upload/'.$job2.'/client_feedback';
+                                            
+                                        } 
+                                        else
+                                        $ur2 = $base_url.'jobs?client_feedback=1';
+                                    }
+                                    
+                        
+                        ?>
 					<div class="v1ButtonBarB">
-                        <a href="<?php echo $base_url;?>feedback" class="fullLink">
+                        <a href="<?php echo $ur2;?>" class="fullLink">
 							<div  class="glassButton">
 							<div  class="full8ButtonB">
 

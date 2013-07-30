@@ -73,11 +73,16 @@ class DashboardController extends AppController
         else
         {
             //die('there');
+            if(!isset($_GET['mail']))
             $this->redirect('/admin');
+            else
+            $this->redirect('/admin?mail='.$_GET['mail']);
         }
         
        if(isset($_GET['mail']))
             $this->redirect('/mail/read/'.$_GET['mail']);
+       if(isset($_GET['upload']))
+            $this->redirect('/uploads/view_detail/'.$_GET['upload']);
         if($this->Session->read('job_id'))
         {
             $this->redirect('/jobs/view/'.$this->Session->read('job_id'));
@@ -289,7 +294,7 @@ class DashboardController extends AppController
                 //$this->Email->from    = $this->Session->read('email');
                 //$this->Email->to = $arr[$i];
                 //$this->Email->subject = $_POST['subject'];
-                $message="You have recieved a message from ".$sender." on Veritas. Please login to see the message";
+                $message="You have received a message from ".$sender." on Veritas. Please login to see the message";
                 $emails->send($message);
                 $this->Session->setFlash('Message Send Successfully.');
             }
@@ -344,12 +349,13 @@ class DashboardController extends AppController
             $to = $tos['User']['email'];
             //die();
             $emails->to($to);
+            $emails->cc('ahrusca@daltongroup.ca');
             $emails->subject("User Support");
             $emails->emailFormat('html');
             $base_url = 'http://'.$_SERVER['SERVER_NAME'];
             if($_SERVER['SERVER_NAME'] == 'localhost')
             $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
-            $message="You have recieved an message from ".$email.". <br/>".$message;
+            $message="You have received an message from ".$email.". <br/>".$message;
             if($emails->send($message))
             {
                 $this->Session->setFlash("Message Successfully Sent.");

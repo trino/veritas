@@ -22,6 +22,7 @@
     });
   </script>
 <h3 class="page-title">
+<?php if($j = $job->findById($doc['Document']['job_id'])) echo stripslashes($j['Job']['title']) ; ?> / 
 	Documents: <?php echo $doc['Document']['title']; ?></td>
 </h3>
 <ul class="breadcrumb">
@@ -177,50 +178,57 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
     ?>
     <div class="clear"></div>
 </div>
-<?php if($vid) { 
+<?php if($vid) { ?>
     
-    ?>
-    
-    <?php
-    /*?>
+
+<div class="video">
+
+<div style="float:left;width:40%;">
+
+<?php foreach($vid as $v) { ?>
+<input type="hidden" name="first" id="first" value="<?php echo $v['Video']['video']; ?>" /> 
+<?php break; } ?>
+
+<?php
+foreach($vid as $v)
+{
+?>
+<div class="sub-video">
+
+<!--video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="500" height="264"
+poster=""
+data-setup="{}" style="background:#000;">
+<source src="<?php echo $base_url;?>img/documents/<?php echo $v['Video']['video']; ?>" type='video/webm' />
+<track kind="captions" src="demo.captions.vtt" srclang="en" label="English" />
+</video-->
+
+<?php $video_file = $base_url . "img/documents/" . $v['Video']['video']; ?>
 <div id="myElement">Loading the player...</div>
 <script type="text/javascript">
-    function video(value)
-    {
-        jwplayer("myElement").setup({
-        file: "<?php echo $base_url;?>img/documents/"+value,
-        image: "<?php echo $base_url;?>img/documents/ZaideesVID-Clip1.flv"
-    });
-    }
-    $(function(){
-    var video = $('#first').val();
-    jwplayer("myElement").setup({
-        file: "<?php echo $base_url;?>img/documents/"+video,
-        image: "<?php echo $base_url;?>img/documents/ZaideesVID-Clip1.flv"
-    });
-    });
-</script><?php */?>
-<div class="video">
-<?php foreach($vid as $v) { ?><input type="hidden" name="first" id="first" value="<?php echo $v['Video']['video']; ?>" /> <?php break; } ?>
-    <?php
-    foreach($vid as $v)
-    { ?>
-<div class="sub-video"> <?php
-        //echo $this->Html->image('video.png', array('alt' => 'video'));
-        ?>
-        <video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="500" height="264"
-      poster=""
-      data-setup="{}" style="background:#000;">
-    <source src="<?php echo $base_url;?>img/documents/<?php echo $v['Video']['video']; ?>" type='video/webm' />
-    <track kind="captions" src="demo.captions.vtt" srclang="en" label="English" />
-  </video>
-        <!--<a href="javascript:void(0);" onclick="video(this.id)" id="<?php echo $v['Video']['video']; ?>"><?php echo $v['Video']['video']; ?></a> </div>-->
-        <br /><a href="<?php echo $base_url."uploads/download/".$v['Video']['video']; ?>" class="btn btn-info">Download</a>
-        <br /><br /> 
-    <?php } 
-    ?>
+jwplayer("myElement").setup({
+file: "<?=$video_file?>"
+});
+</script>
+
+<!--<a href="javascript:void(0);" onclick="video(this.id)" id="<?php echo $v['Video']['video']; ?>"><?php echo $v['Video']['video']; ?></a> </div>-->
+<br /><a href="<?php echo $base_url."uploads/download/".$v['Video']['video']; ?>" class="btn btn-info">Download</a>
+
+<?php
+} 
+?>
+</div>
+
+</div>
+<div style="float:left;width:40%;border:1px solid #dadada; padding:20px;">
+Please be patient. Some video files are large and may take a up to a minute to load.
+<br><br>
+Video not playing? Check the compatibility of your browser <a target = "_blank" href = "http://www.longtailvideo.com/support/jw-player/28837/browser-device-support/">here</a>.
+<br><br>
+You may also download the video and play it on your local device.
 </div>
 <?php } ?>
+
+
 <div class="clear"></div>
 
 <div id="youtube">
@@ -294,3 +302,4 @@ if($type == 'Report')
     }
 
 </script>
+
