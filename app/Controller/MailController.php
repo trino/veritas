@@ -155,9 +155,9 @@ class MailController extends AppController
                 $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
                 
                 $message="
-                You have recieved a message on Veritas.<br/> 
+                You have received a message on Veritas.<br/> 
 To check your message, click <a href='".$base_url."/?mail=".$arr['parent']."'>here</a><br/><br/>
-<b>FROM:</b> ".$sender."<br/>
+<b>From:</b> ".$sender."<br/>
 <b>Subject</b> : ".$_POST['subject']."<br/>
 <b>Message</b> : ".$arr['message'];
                 if($receiver){
@@ -409,9 +409,9 @@ To check your message, click <a href='".$base_url."/?mail=".$arr['parent']."'>he
             if($_SERVER['SERVER_NAME'] == 'localhost')
             $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
             $message="
-                You have recieved a message on Veritas.<br/> 
+                You have received a message on Veritas.<br/> 
 To check your message, click <a href='".$base_url.$link."'>here</a><br/><br/>
-<b>FROM:</b> ".$sender."<br/>
+<b>From:</b> ".$sender."<br/>
 <b>Subject</b> : ".$_POST['subject']."<br/>
 <b>Message</b> : ".$data['message'];            
                        
