@@ -65,21 +65,18 @@ class DashboardController extends AppController
     }
     public function index()
     {
-       // echo 2;exit;
+        
         if($this->Session->read('avatar') || $this->Session->read('user'))
         {
             //die('here');
         }
         else
         {
-		       if(isset($_GET['upload'])){echo 123;exit;
-            $this->redirect('/login/?upload='.$_GET['upload']);
-			}
             //die('there');
-            // if(!isset($_GET['mail']))
-            // $this->redirect('/admin');
-            // else
-            // $this->redirect('/admin?mail='.$_GET['mail']);
+            if(!isset($_GET['mail']))
+            $this->redirect('/admin');
+            else
+            $this->redirect('/admin?mail='.$_GET['mail']);
         }
         
        if(isset($_GET['mail']))
