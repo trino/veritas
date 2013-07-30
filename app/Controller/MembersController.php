@@ -87,6 +87,7 @@ class MembersController extends AppController
         if(isset($_POST['email'])){
             $email = $_POST['email'];
         $q=$this->Member->find('first',array('conditions'=>array('email'=>$email)));
+        if(trim($email))
         if($q){
         $this->Session->setFlash('Email already exist');
         $this->redirect('add');
@@ -807,7 +808,8 @@ class MembersController extends AppController
               
         $c=$this->Member->find('count',array('conditions'=>array('email'=>$em,'id <>'=>$id)));
         
-
+        if(!trim($em))
+        return true;
         if($c>0)
         {
             
