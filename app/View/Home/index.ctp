@@ -53,5 +53,6 @@ $(function(){
 </div>
 
 <center>
-<a style="color:#136ea8;" href="mailto:info@afimacglobal.com?subject=Veritas&body=Hello,%0A%0AI'd%20like%20more%20information%20on%20Veritas%20.%0A%0AName%20(first,%20last):%0A%0APhone:%20(%20%20%20%20%20%20)%0A%0AThank%20you,">Please contact me with more<br> information on Veritas</a>
+<a href="mailto:info@afimacglobal.com?subject=Veritas&body=Hello,%0A%0APlease%20contact%20me%20with%20information%20regarding%20Veritas.%0A%0AName%20(first,%20last):%0A%0APhone:%20(%20%20%20%20%20%20)%0A%0AThank%20you,"><img src="<?php echo $base_url . "/img/yespleasecontactme.jpg"; ?>" />
+</a>
 </center>
