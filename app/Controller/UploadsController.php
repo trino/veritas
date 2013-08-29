@@ -702,9 +702,9 @@ class UploadsController extends AppController
                         {
                             //die($to);
                             $emails->to($to);
-                            if($to != $this->Session->read('email'))
-                            $emails->send($message);
-                            $emails->reset();
+                            //if($to != $this->Session->read('email'))
+                            //$emails->send($message);
+                            //$emails->reset();
                         }
                         
                         }
@@ -853,8 +853,7 @@ class UploadsController extends AppController
                 {
                     $this->Session->setFlash('Document Saved, but the file couldn\'t be saved due to unknown extension');
                 }
-                if(isset($img))
-                {
+                
                     if(isset($_POST['emailadd']))
                         {
                             if($_SERVER['SERVER_NAME']=='localhost')
@@ -888,16 +887,18 @@ class UploadsController extends AppController
                                         $activity['time'] = $v;
                                         $activity['date'] = $_POST['activity_date'][$k];
                                         $activity['desc'] = $_POST['activity_desc'][$k];    
-                                        echo "<tr><td>".$activity['date']."</td><td>".$activity['time']."</td><td>".$activity['desc']."</td></tr>";
+                                        $msg = $msg. "<tr><td>".$activity['date']."</td><td>".$activity['time']."</td><td>".$activity['desc']."</td></tr>";
                                         }
                                         
-                                    echo "</table>
+                                    $msg = $msg. "</table>
                                 </td></tr>
                                 <tr><td><strong>Uploaded By</strong></td><td>".$this->Session->read('username')."</td></tr>
                                 <tr><td><strong>Uploaded On</strong></td><td>".date('Y-m-d')."</td></tr>
-                            </table>
-                            <a href='".$base_url."img/documents/".$img."'>View Attachment</a>
+                            </table>";
+                            if(isset($img))                            
+                            $msg = $msg. "<a href='".$base_url."img/documents/".$img."'>View Attachment</a>
                             ";
+                            
                             if($tosend)
                             {
                                 $emails = new CakeEmail();
@@ -912,7 +913,7 @@ class UploadsController extends AppController
                                 
                             }
                         }
-                }
+                
                 
             }
             }
