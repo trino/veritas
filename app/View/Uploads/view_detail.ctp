@@ -219,7 +219,7 @@ file: "<?=$video_file?>"
 </div>
 
 </div>
-<div style="float:left;width:40%;border:1px solid #dadada; padding:20px;">
+<div style="float:left;width:40%;border:1px solid #dadada; padding:20px;margin-left:120px;">
 Please be patient. Some video files are large and may take a up to a minute to load.
 <br><br>
 Video not playing? Check the compatibility of your browser <a target = "_blank" href = "http://www.longtailvideo.com/support/jw-player/28837/browser-device-support/">here</a>.
