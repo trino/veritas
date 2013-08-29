@@ -509,7 +509,16 @@ class UploadsController extends AppController
                 
                 
                 
-                if(isset($_POST['emailadd']))
+                
+                
+                
+                
+                
+                
+                
+            }
+            }
+            if(isset($_POST['emailadd']) && $_POST['emailadd'])
                         {
                             if(isset($jj))
                             unset($jj);
@@ -575,16 +584,8 @@ class UploadsController extends AppController
                                 
                             }
                         }
-                
-                
-                
-                
-                
-                
-            }
-            }
-            
-            $this->Session->setFlash('Data Saved Successfully.');
+                        if($_POST['emailadd'])
+            $this->Session->setFlash('Data Saved Successfully and email sent.');
             $log['date'] =  date('Y-m-d H:i:s');
             $log['time'] =  date('H:i:s');
             if($this->Session->read('admin'))
@@ -779,9 +780,9 @@ class UploadsController extends AppController
                         {
                             //die($to);
                             $emails->to($to);
-                            if($to != $this->Session->read('email'))
-                            $emails->send($message);
-                            $emails->reset();
+                           // if($to != $this->Session->read('email'))
+                            //$emails->send($message);
+                            //$emails->reset();
                         }
                         
                         }
@@ -931,8 +932,14 @@ class UploadsController extends AppController
                     $this->Session->setFlash('Document Saved, but the file couldn\'t be saved due to unknown extension');
                 }
                 
-                    if(isset($_POST['emailadd']))
+                    
+                
+                
+            }
+            }
+            if(isset($_POST['emailadd']) && $_POST['emailadd'])
                         {
+                            //die('here');
                             if($_SERVER['SERVER_NAME']=='localhost')
                     $base_url = "http://localhost/veritas/";
                 else{
@@ -975,7 +982,7 @@ class UploadsController extends AppController
                             if(isset($img))                            
                             $msg = $msg. "<a href='".$base_url."img/documents/".$img."'>View Attachment</a>
                             ";
-                            
+                            //echo $msg;die();
                             if($tosend)
                             {
                                 $emails = new CakeEmail();
@@ -990,10 +997,6 @@ class UploadsController extends AppController
                                 
                             }
                         }
-                
-                
-            }
-            }
             /*
             for($i=1;$i<=$vid;$i++)
             {
@@ -1025,6 +1028,9 @@ class UploadsController extends AppController
                 }        
             }
             */
+            if(isset($_POST['emailadd'] )&& $_POST['emailadd'])
+            $this->Session->setFlash('Data Saved Successfully and email sent.');
+            else
             $this->Session->setFlash('Data Saved Successfully.');
             $log['date'] =  date('Y-m-d H:i:s');
             $log['time'] =  date('H:i:s');
