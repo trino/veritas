@@ -8,6 +8,14 @@ hr{border-top:#313A43 1px solid;}
 .ui-dialog-titlebar-close{background:#FFF;}
 
 </style>
-
-<input type="text" class="emailadd" placeholder="Email Address" /><br />
+<script>
+$(function(){
+   $('#submitemail').click(function(){
+        $('.emailadd').val($('#emailadd').val());
+        $('.sbtbtn').click();
+        
+    }); 
+});
+</script>
+<input type="text" id="emailadd" placeholder="Email Address" /><br />
 <a  href="javascript:void(0);" id="submitemail" class="btn">Send</a>

@@ -731,46 +731,11 @@ class UploadsController extends AppController
                         $activity['desc'] = $_POST['activity_desc'][$k];
                         $this->Activity->create();
                         $this->Activity->save($activity);
-                        if(isset($_POST['email_add']))
-                        {
-                            $tosend = $_POST['email_add'];
-                            $msg = 
-                            
-                            "Hi there,<br/><br/>A Report has been uploaded in Veritas. A copy of its detail is attached below:<br/><br/>
-                            <table border='1' style='width:100%;'>
-                                <tr><td><strong>Document type</strong></td><td>Report</td></tr>
-                                <tr><td><strong>Description</strong></td><td>".$_POST['description']."</td></tr>
-                                <tr><td><strong>Job Title</strong></td><td>".$job_title."</td></tr>
-                                <tr><td><strong>Report Type</strong></td><td>Incident Report</td></tr>
-                                <tr><td><strong>Incident Report Type</strong></td><td>".$_POST['incident_type']."</td></tr>
-                                
-                                <tr><td colspan='2'>
-                                    <table width='100%'>
-                                        <tr><td><strong>Date</strong></td><td><strong>Time</strong></td><td><strong>Description</strong></td></tr>
-                                        <tr><td>".$activity['date']."</td><td>".$activity['time']."</td><td>".$activity['desc']."</td></tr>
-                                        
-                                    </table>
-                                </td></tr>
-                                <tr><td><strong>Uploaded By</strong></td><td>".$this->Session->read('username')."</td></tr>
-                                <tr><td><strong>Uploaded On</strong></td><td>".date('Y-m-d')."</td></tr>
-                            </table>";
-                            if($tosend)
-                            {
-                                $emails = new CakeEmail();
-                                $emails->from(array('noreply@veritas.com'=>'Veritas'));
                         
-                                $emails->subject("A Report has been uploaded");
-                                $emails->emailFormat('html');
-                                $emails->to($tosend);
-                                
-                                $emails->send($msg);
-                                $emails->reset();
-                                
-                            }
-                        }
                     }
                      
                 }
+                
             }
             elseif($_POST['document_type']== 'client_feedback')
             {
@@ -866,7 +831,8 @@ class UploadsController extends AppController
                 $d['document_id'] = $id;
                 
                 if(in_array($lower_ext,$ext_doc)){
-                    $d['doc'] = $img;
+                    
+                    $do = $img;
                 $this->Doc->create();
                 $this->Doc->save($d);
                 }
@@ -887,6 +853,67 @@ class UploadsController extends AppController
                 {
                     $this->Session->setFlash('Document Saved, but the file couldn\'t be saved due to unknown extension');
                 }
+                if(isset($img))
+                {
+                    if(isset($_POST['emailadd']))
+                        {
+                            if($_SERVER['SERVER_NAME']=='localhost')
+                    $base_url = "http://localhost/veritas/";
+                else{
+                        $base_url =	 str_replace('//','___',$_SERVER['SERVER_NAME']);
+                        $base_url =  str_replace('/',' ',$_SERVER['SERVER_NAME']);
+                        $base_url = trim($base_url);
+                        $base_url = str_replace(' ','/',$base_url);
+                        $base_url = str_replace('___','//',$base_url);
+                        $base_url = $base_url.'/';
+                        
+                    }
+                            $tosend = $_POST['emailadd'];
+                            $msg = 
+                            
+                            "Hi there,<br/><br/>A Report has been uploaded in Veritas. A copy of its detail is attached below:<br/><br/>
+                            <table border='1' style='width:100%;'>
+                                <tr><td><strong>Document type</strong></td><td>Report</td></tr>
+                                <tr><td><strong>Description</strong></td><td>".$_POST['description']."</td></tr>
+                                <tr><td><strong>Job Title</strong></td><td>".$job_title."</td></tr>
+                                <tr><td><strong>Report Type</strong></td><td>Incident Report</td></tr>
+                                <tr><td><strong>Incident Report Type</strong></td><td>".$_POST['incident_type']."</td></tr>
+                                
+                                <tr><td colspan='2'>
+                                    <table width='100%'>
+                                        <tr><td><strong>Date</strong></td><td><strong>Time</strong></td><td><strong>Description</strong></td></tr>";
+                                        if(isset($activity))
+                                        unset($activity);
+                                        foreach($_POST['activity_time'] as $k=>$v){
+                                        $activity['time'] = $v;
+                                        $activity['date'] = $_POST['activity_date'][$k];
+                                        $activity['desc'] = $_POST['activity_desc'][$k];    
+                                        echo "<tr><td>".$activity['date']."</td><td>".$activity['time']."</td><td>".$activity['desc']."</td></tr>";
+                                        }
+                                        
+                                    echo "</table>
+                                </td></tr>
+                                <tr><td><strong>Uploaded By</strong></td><td>".$this->Session->read('username')."</td></tr>
+                                <tr><td><strong>Uploaded On</strong></td><td>".date('Y-m-d')."</td></tr>
+                            </table>
+                            <a href='".$base_url."img/documents/".$img."'>View Attachment</a>
+                            ";
+                            if($tosend)
+                            {
+                                $emails = new CakeEmail();
+                                $emails->from(array('noreply@veritas.com'=>'Veritas'));
+                        
+                                $emails->subject("A Report has been uploaded");
+                                $emails->emailFormat('html');
+                                $emails->to($tosend);
+                                
+                                $emails->send($msg);
+                                $emails->reset();
+                                
+                            }
+                        }
+                }
+                
             }
             }
             /*
