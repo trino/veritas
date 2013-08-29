@@ -504,6 +504,83 @@ class UploadsController extends AppController
                 {
                     $this->Session->setFlash('Document Updated, but the file couldn\'t be saved due to unknown extension');
                 }
+                
+                
+                
+                
+                
+                if(isset($_POST['emailadd']))
+                        {
+                            if(isset($jj))
+                            unset($jj);
+                            $jj = $this->Job->find('first',array('conditions'=>array('id'=>$_POST['job'])));
+                        if($jj)
+                        $job_title = $jj['Job']['title'];
+                        else
+                        $job_title = '';
+                            if($_SERVER['SERVER_NAME']=='localhost')
+                    $base_url = "http://localhost/veritas/";
+                else{
+                        $base_url =	 str_replace('//','___',$_SERVER['SERVER_NAME']);
+                        $base_url =  str_replace('/',' ',$_SERVER['SERVER_NAME']);
+                        $base_url = trim($base_url);
+                        $base_url = str_replace(' ','/',$base_url);
+                        $base_url = str_replace('___','//',$base_url);
+                        $base_url = $base_url.'/';
+                        
+                    }
+                            $tosend = $_POST['emailadd'];
+                            $msg = 
+                            
+                            "Hi there,<br/><br/>A Report has been uploaded in Veritas. A copy of its detail is attached below:<br/><br/>
+                            <table border='1' style='width:100%;'>
+                                <tr><td><strong>Document type</strong></td><td>Report</td></tr>
+                                <tr><td><strong>Description</strong></td><td>".$_POST['description']."</td></tr>
+                                <tr><td><strong>Job Title</strong></td><td>".$job_title."</td></tr>
+                                <tr><td><strong>Report Type</strong></td><td>Incident Report</td></tr>
+                                <tr><td><strong>Incident Report Type</strong></td><td>".$_POST['incident_type']."</td></tr>
+                                
+                                <tr><td colspan='2'>
+                                    <table width='100%'>
+                                        <tr><td><strong>Date</strong></td><td><strong>Time</strong></td><td><strong>Description</strong></td></tr>";
+                                        if(isset($activity))
+                                        unset($activity);
+                                        foreach($_POST['activity_time'] as $k=>$v){
+                                        $activity['time'] = $v;
+                                        $activity['date'] = $_POST['activity_date'][$k];
+                                        $activity['desc'] = $_POST['activity_desc'][$k];    
+                                        $msg = $msg. "<tr><td>".$activity['date']."</td><td>".$activity['time']."</td><td>".$activity['desc']."</td></tr>";
+                                        }
+                                        
+                                    $msg = $msg. "</table>
+                                </td></tr>
+                                <tr><td><strong>Uploaded By</strong></td><td>".$this->Session->read('username')."</td></tr>
+                                <tr><td><strong>Uploaded On</strong></td><td>".date('Y-m-d')."</td></tr>
+                            </table>";
+                            if(isset($img))                            
+                            $msg = $msg. "<a href='".$base_url."img/documents/".$img."'>View Attachment</a>
+                            ";
+                            
+                            if($tosend)
+                            {
+                                $emails = new CakeEmail();
+                                $emails->from(array('noreply@veritas.com'=>'Veritas'));
+                        
+                                $emails->subject("A Report has been uploaded");
+                                $emails->emailFormat('html');
+                                $emails->to($tosend);
+                                
+                                $emails->send($msg);
+                                $emails->reset();
+                                
+                            }
+                        }
+                
+                
+                
+                
+                
+                
             }
             }
             
@@ -702,9 +779,9 @@ class UploadsController extends AppController
                         {
                             //die($to);
                             $emails->to($to);
-                            //if($to != $this->Session->read('email'))
-                            //$emails->send($message);
-                            //$emails->reset();
+                            if($to != $this->Session->read('email'))
+                            $emails->send($message);
+                            $emails->reset();
                         }
                         
                         }
