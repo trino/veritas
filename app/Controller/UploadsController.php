@@ -339,6 +339,8 @@ class UploadsController extends AppController
                 $this->Activity->deleteAll(array('document_id'=>$eid));
                 $activity['document_id'] = $eid;
                 $activity['report_type'] = $_POST['report_type'];
+                if(isset($activity['report_type']))
+                    $activity['incident_type'] = $_POST['incident_type'];
                 foreach($_POST['activity_time'] as $k=>$v)
                 {
                     if($v!="")
@@ -549,7 +551,8 @@ class UploadsController extends AppController
                         if($jj)
                         $job_title = $jj['Job']['title'];
                         else
-                        $job_title = ''; 
+                        $job_title = '';
+        if($typee!='email')                 
         $this->set('typee',$typee);
         $subname = '';
         $this->loadModel('Canupload');
@@ -573,7 +576,7 @@ class UploadsController extends AppController
         if(isset($_POST['document_type']))
         {
             //var_dump($_FILES);die();
-            $uri = $_SERVER['REQUEST_URI'];
+                $uri = $_SERVER['REQUEST_URI'];
                 $uri = str_replace('/',' ',$uri);
                 $uri = str_replace(' ','/',trim($uri));
                 if($uri!='uploads'){
@@ -655,6 +658,7 @@ class UploadsController extends AppController
             $this->Document->save($arr);
             $id=$this->Document->id;
             //var_dump($mails);die();
+            
             foreach($mails as $m)
                 {
                     $mem_id = $m['Jobmember']['member_id'];
@@ -706,13 +710,17 @@ class UploadsController extends AppController
                         }
                     }    
                 }
+                
             if($_POST['document_type']== 'report')
             {
                 $activity['document_id'] = $id;
                 $activity['report_type'] = $_POST['report_type'];
+                if(isset($activity['report_type']))
+                    $activity['incident_type'] = $_POST['incident_type'];
+                    
                 $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet');
                 if($_POST['report_type'])
-                $subname = '_'.$act_type[$_POST['report_type']];
+                    $subname = '_'.$act_type[$_POST['report_type']];
                 
                 foreach($_POST['activity_time'] as $k=>$v)
                 {
@@ -723,6 +731,43 @@ class UploadsController extends AppController
                         $activity['desc'] = $_POST['activity_desc'][$k];
                         $this->Activity->create();
                         $this->Activity->save($activity);
+                        if(isset($_POST['email_add']))
+                        {
+                            $tosend = $_POST['email_add'];
+                            $msg = 
+                            
+                            "Hi there,<br/><br/>A Report has been uploaded in Veritas. A copy of its detail is attached below:<br/><br/>
+                            <table border='1' style='width:100%;'>
+                                <tr><td><strong>Document type</strong></td><td>Report</td></tr>
+                                <tr><td><strong>Description</strong></td><td>".$_POST['description']."</td></tr>
+                                <tr><td><strong>Job Title</strong></td><td>".$job_title."</td></tr>
+                                <tr><td><strong>Report Type</strong></td><td>Incident Report</td></tr>
+                                <tr><td><strong>Incident Report Type</strong></td><td>".$_POST['incident_type']."</td></tr>
+                                
+                                <tr><td colspan='2'>
+                                    <table width='100%'>
+                                        <tr><td><strong>Date</strong></td><td><strong>Time</strong></td><td><strong>Description</strong></td></tr>
+                                        <tr><td>".$activity['date']."</td><td>".$activity['time']."</td><td>".$activity['desc']."</td></tr>
+                                        
+                                    </table>
+                                </td></tr>
+                                <tr><td><strong>Uploaded By</strong></td><td>".$this->Session->read('username')."</td></tr>
+                                <tr><td><strong>Uploaded On</strong></td><td>".date('Y-m-d')."</td></tr>
+                            </table>";
+                            if($tosend)
+                            {
+                                $emails = new CakeEmail();
+                                $emails->from(array('noreply@veritas.com'=>'Veritas'));
+                        
+                                $emails->subject("A Report has been uploaded");
+                                $emails->emailFormat('html');
+                                $emails->to($tosend);
+                                
+                                $emails->send($msg);
+                                $emails->reset();
+                                
+                            }
+                        }
                     }
                      
                 }
@@ -1119,4 +1164,9 @@ class UploadsController extends AppController
         $this->set($params);
     }
     
+  public function email($id)
+  {
+    $this->layout = "modal_layout";
+    $this->set('id',$id);
+  }
 }

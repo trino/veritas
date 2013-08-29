@@ -320,6 +320,30 @@ function remove_youtube()
 </select>
 </th>
 </thead>
+<thead class="incident_more" style="display: none;">
+<th>Incident Report Options</th>
+<th colspan="2">
+<select name="incident_type" class="required ">
+    <option value="">Select Incident Report Type</option>
+    <option value="Alarm Activation" <?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Alarm Activation') echo "selected='selected'"; ?>>Alarm Activation</option>
+    <option value="Burglary" <?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Burglary') echo "selected='selected'"; ?>>Burglary</option>
+    <option value="Property Damage" <?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Property Damage') echo "selected='selected'"; ?>>Property Damage</option>
+    <option value="Miscellaneous"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Miscellaneous') echo "selected='selected'"; ?>>Miscellaneous</option>
+    <option value="Shoplift Loss"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Shoplift Loss') echo "selected='selected'"; ?>>Shoplift Loss</option>
+    <option value="Disorderly Person"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Disorderly Person') echo "selected='selected'"; ?>>Disorderly Person</option>
+    <option value="Accident - Employee"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Accident - Employee') echo "selected='selected'"; ?>>Accident - Employee</option>
+    <option value="Shoplift Apprehension"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Shoplift Apprehension') echo "selected='selected'"; ?>>Shoplift Apprehension</option>
+    <option value="Fraud Apprehension"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Fraud Apprehension') echo "selected='selected'"; ?>>Fraud Apprehension</option>
+    <option value="Accident - Customer"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Accident - Customer') echo "selected='selected'"; ?>>Accident - Customer</option>
+    <option value="Shoplift Recovery"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Shoplift Recovery') echo "selected='selected'"; ?>>Shoplift Recovery</option>
+    <option value="Fraud Recovery"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Fraud Recovery') echo "selected='selected'"; ?>>Fraud Recovery</option>
+    <option value="Non-Productive Stop"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Non-Productive Stop') echo "selected='selected'"; ?>>Non-Productive Stop</option>
+    <option value="Suspicion Internal Theft"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Suspicion Internal Theft') echo "selected='selected'"; ?>>Suspicion Internal Theft</option>
+    <option value="Fraud Loss"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Fraud Loss') echo "selected='selected'"; ?>>Fraud Loss</option>
+</select>
+</th>
+</thead>
+<thead>
 <th width="220px">Date</th>
 <th width="220px">Time</th>
 <th width="350px">Description &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
@@ -400,6 +424,20 @@ if($attach)
 </form>
 <script>
 $(function(){
+    
+    if($('.reporttype').val()=='5')
+        $('.incident_more').show();
+    else
+        $('.incident_more').hide();
+     $('.reporttype').change(function(){
+        if($(this).val()=='5')
+        {
+            $('.incident_more').show();
+        }
+        else
+            $('.incident_more').hide();
+    });
+    
     $('.draft').click(function(){
        $('.draftval').val("1");
        $('.activity_desc').removeClass('required');

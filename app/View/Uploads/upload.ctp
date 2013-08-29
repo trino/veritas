@@ -317,6 +317,29 @@ function remove_youtube()
 </select>
 </th>
 </thead>
+<thead class="incident_more" style="display: none;">
+<th>Incident Report Options</th>
+<th colspan="2">
+<select name="incident_type" class="required ">
+    <option value="">Select Incident Report Type</option>
+    <option value="Alarm Activation">Alarm Activation</option>
+    <option value="Burglary">Burglary</option>
+    <option value="Property Damage">Property Damage</option>
+    <option value="Miscellaneous">Miscellaneous</option>
+    <option value="Shoplift Loss">Shoplift Loss</option>
+    <option value="Disorderly Person">Disorderly Person</option>
+    <option value="Accident - Employee">Accident - Employee</option>
+    <option value="Shoplift Apprehension">Shoplift Apprehension</option>
+    <option value="Fraud Apprehension">Fraud Apprehension</option>
+    <option value="Accident - Customer">Accident - Customer</option>
+    <option value="Shoplift Recovery">Shoplift Recovery</option>
+    <option value="Fraud Recovery">Fraud Recovery</option>
+    <option value="Non-Productive Stop">Non-Productive Stop</option>
+    <option value="Suspicion Internal Theft">Suspicion Internal Theft</option>
+    <option value="Fraud Loss">Fraud Loss</option>
+</select>
+</th>
+</thead>
 <thead>
 <th width="220px">Date</th>
 <th width="220px">Time</th>
@@ -363,12 +386,37 @@ You have <input readonly="readonly" type="text" name="countdown" id="countssss" 
 <input type="hidden" name="youtube" id="youtube" value="1" />
 <input type="hidden" name="job" value="<?php echo $job_id; ?>" />
 <input type="hidden" class="draftval" name="draft" value="0" />
-<div class="submit"><input type="submit" class="btn btn-primary sbtbtn" style="float: left;" value="Submit Document" name="submit"/><?php if(!$this->Session->read('admin')){?> <span style="display: none;float:left;" class="draftspan"><a href="javascript:void(0)" style="margin-left: 15px;" class="draft btn btn-primary">Save as Draft</a></span><?php }?></div>
+<input type="hidden" name="emailadd" value="" />
+<div class="submit"><input type="submit" class="btn btn-primary sbtbtn" style="float: left;" value="Submit Document" name="submit"/> <input type="submit" class="btn btn-primary sbtbtn uploademail" style="float: left;margin-left:15px;display:none;" value="Submit Document And Email" name="submite"/> <?php if(!$this->Session->read('admin')){?> <span style="display: none;float:left;" class="draftspan"><a href="javascript:void(0)" style="margin-left: 15px;" class="draft btn btn-primary">Save as Draft</a></span><?php }?></div>
 
 
 </form>
 <script>
 $(function(){
+    $('#submitemail').click(function(){
+        $('.emailadd').val($('.emailadd').val());
+        $('.sbtbtn').click();
+        
+    });
+    $('.uploademail').live('click',function(){
+         $('.dialog-modals').load('<?php echo $base_url.'uploads/email/'.$job_id;?>');
+               $('.dialog-modals').dialog({
+                    
+                    width: 400,
+                    title:'Upload and Email',
+                    
+               });
+               });
+    $('.reporttype').change(function(){
+        if($(this).val()=='5')
+        {
+            $('.incident_more').show();
+            $('.uploademail').show();
+        }
+        else
+            $('.incident_more').hide();
+    });
+    
     <?php
     if($typee=='client_feedback')
     {
