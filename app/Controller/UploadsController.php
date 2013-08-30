@@ -566,9 +566,7 @@ class UploadsController extends AppController
                                 <tr><td><strong>Uploaded By</strong></td><td>".$this->Session->read('username')."</td></tr>
                                 <tr><td><strong>Uploaded On</strong></td><td>".date('Y-m-d')."</td></tr>
                             </table>";
-                            if(isset($img))                            
-                            $msg = $msg. "<a href='".$base_url."img/documents/".$img."'>View Attachment</a>
-                            ";
+                            
                             
                             if($tosend)
                             {
@@ -578,7 +576,8 @@ class UploadsController extends AppController
                                 $emails->subject("A Report has been uploaded");
                                 $emails->emailFormat('html');
                                 $emails->to($tosend);
-                                
+                                if($img)
+                                $emails->attachments = array(APP . 'webroot/img/documents/'.$img);
                                 $emails->send($msg);
                                 $emails->reset();
                                 
@@ -979,9 +978,7 @@ class UploadsController extends AppController
                                 <tr><td><strong>Uploaded By</strong></td><td>".$this->Session->read('username')."</td></tr>
                                 <tr><td><strong>Uploaded On</strong></td><td>".date('Y-m-d')."</td></tr>
                             </table>";
-                            if(isset($img))                            
-                            $msg = $msg. "<a href='".$base_url."img/documents/".$img."'>View Attachment</a>
-                            ";
+                            
                             //echo $msg;die();
                             if($tosend)
                             {
@@ -991,7 +988,8 @@ class UploadsController extends AppController
                                 $emails->subject("A Report has been uploaded");
                                 $emails->emailFormat('html');
                                 $emails->to($tosend);
-                                
+                                if($img)
+                                $emails->attachments = array(APP . 'webroot/img/documents/'.$img);
                                 $emails->send($msg);
                                 $emails->reset();
                                 
