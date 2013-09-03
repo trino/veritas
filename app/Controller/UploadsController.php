@@ -306,6 +306,7 @@ class UploadsController extends AppController
             $arr['description'] = $_POST['description'];
             $arr['document_type'] = $_POST['document_type'];
             $arr['draft'] = $_POST['draft'];
+            $arr['indate']= date('Y-m-d H:i:s');
             //var_dump($_POST);
             //die();
             if($_POST['document_type']== 'evidence')
@@ -313,6 +314,7 @@ class UploadsController extends AppController
                 $arr['incident_date'] = $_POST['incident_date'];
                 //$arr['desc'] = $_POST['desc'];
                 $arr['evidence_type'] = $_POST['evidence_type'];
+                $arr['indate']= $_POST['incident_date'] . ' 00:00:00';
                 
                 
                //die(); 
@@ -677,9 +679,11 @@ class UploadsController extends AppController
             $arr['title'] = ucfirst(str_replace("_"," ",$_POST['document_type']));
             $arr['description'] = $_POST['description'];
             $arr['document_type'] = $_POST['document_type'];
+            $arr['indate'] = date('Y-m-d H:i:s');
             if($_POST['document_type']== 'evidence')
             {
                 $arr['incident_date'] = $_POST['incident_date'];
+                $arr['indate']= $_POST['incident_date'] . ' 00:00:00';
                 //$arr['desc'] = $_POST['desc'];
                 $arr['evidence_type'] = $_POST['evidence_type'];
                 $subname = '_'.$_POST['evidence_type'];
