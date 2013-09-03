@@ -543,9 +543,9 @@ class UploadsController extends AppController
                             $tosend = $_POST['emailadd'];
                             $msg = 
                             
-                            "Hi there,<br/><br/>A Report has been uploaded in Veritas. A copy of its detail is attached below:<br/><br/>
+                            "A report has been uploaded in Veritas. Its details are below:<br/><br/>
                             <table border='1' style='width:100%;'>
-                                <tr><td><strong>Document type</strong></td><td>Report</td></tr>
+                                <tr><td><strong>Document Type</strong></td><td>Report</td></tr>
                                 <tr><td><strong>Description</strong></td><td>".$_POST['description']."</td></tr>
                                 <tr><td><strong>Job Title</strong></td><td>".$job_title."</td></tr>
                                 <tr><td><strong>Report Type</strong></td><td>Incident Report</td></tr>
@@ -575,7 +575,7 @@ class UploadsController extends AppController
                                 $emails = new CakeEmail();
                                 $emails->from(array('noreply@veritas.com'=>'Veritas'));
                         
-                                $emails->subject("A Report has been uploaded");
+                                $emails->subject("A report has been uploaded");
                                 $emails->emailFormat('html');
                                 $emails->to($tosend);
                                 if($img)
@@ -957,9 +957,9 @@ class UploadsController extends AppController
                             $tosend = $_POST['emailadd'];
                             $msg = 
                             
-                            "Hi there,<br/><br/>A Report has been uploaded in Veritas. A copy of its detail is attached below:<br/><br/>
+                            "A report has been uploaded in Veritas. Its details are below:<br/><br/>
                             <table border='1' style='width:100%;'>
-                                <tr><td><strong>Document type</strong></td><td>Report</td></tr>
+                                <tr><td><strong>Document Type</strong></td><td>Report</td></tr>
                                 <tr><td><strong>Description</strong></td><td>".$_POST['description']."</td></tr>
                                 <tr><td><strong>Job Title</strong></td><td>".$job_title."</td></tr>
                                 <tr><td><strong>Report Type</strong></td><td>Incident Report</td></tr>
@@ -989,7 +989,7 @@ class UploadsController extends AppController
                                 $emails = new CakeEmail();
                                 $emails->from(array('noreply@veritas.com'=>'Veritas'));
                         
-                                $emails->subject("A Report has been uploaded");
+                                $emails->subject("A report has been uploaded");
                                 $emails->emailFormat('html');
                                 $emails->to($tosend);
                                 if($img)
