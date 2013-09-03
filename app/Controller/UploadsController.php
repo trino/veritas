@@ -577,7 +577,7 @@ class UploadsController extends AppController
                                 $emails->emailFormat('html');
                                 $emails->to($tosend);
                                 if($img)
-                                $emails->attachments = array(APP . 'webroot/img/documents/'.$img);
+                                $emails->attachments(APP . 'webroot/img/documents/'.$img);
                                 $emails->send($msg);
                                 $emails->reset();
                                 
@@ -989,7 +989,7 @@ class UploadsController extends AppController
                                 $emails->emailFormat('html');
                                 $emails->to($tosend);
                                 if($img)
-                                $emails->attachments = array(APP . 'webroot/img/documents/'.$img);
+                                $emails->attachments(APP . 'webroot/img/documents/'.$img);
                                 $emails->send($msg);
                                 $emails->reset();
                                 

@@ -11,6 +11,26 @@ hr{border-top:#313A43 1px solid;}
 <script>
 $(function(){
    $('#submitemail').click(function(){
+        
+        if($('#emailadd').val()=='')
+        {
+            alert('Invalid email address');
+            return false;
+        }
+        else
+        {
+            if($('#emailadd').val().replace('@','')==$('#emailadd').val()){
+            alert('Invalid email address');
+            return false;
+            }
+            else
+            if($('#emailadd').val().replace('.','')==$('#emailadd').val()){
+            alert('Invalid email address');
+            return false;
+            
+            }
+            
+        }
         $('.emailadd').val($('#emailadd').val());
         $('.sbtbtn').click();
         
@@ -18,4 +38,4 @@ $(function(){
 });
 </script>
 <input type="text" id="emailadd" placeholder="Email Address" /><br />
-<a  href="javascript:void(0);" id="submitemail" class="btn">Send</a>
+<a  href="javascript:void(0);" id="submitemail" class="btn">Upload and Send</a>
