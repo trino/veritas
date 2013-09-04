@@ -67,7 +67,7 @@ if($docs)
 if((isset($canView) && !isset($noView)) || $this->Session->read('admin'))
 {
 $uri = $_SERVER['REQUEST_URI'];    
-$uri = str_replace(array('/veritas/','veritas/','?order=document_type','&order=document_type','?order=description','&order=description','?order=title','&order=title','?order=addedBy','&order=addedBy','?order=`indate`','&order=`indate`','?order=%60indate%60','&order=%60indate%60','&ty=ASC','&ty=DESC'),array('','','','','','','','','',''),$uri);
+$uri = str_replace(array('/veritas/','veritas/','?order=document_type','&order=document_type','?order=description','&order=description','?order=title','&order=title','?order=addedBy','&order=addedBy','?order=incident_date','&order=incident_date','?order=`date`','&order=`date`','?order=%60date%60','&order=%60date%60','&ty=ASC','&ty=DESC'),array('','','','','','','','','','','',''),$uri);
 if(str_replace('search=','',$uri) == $uri)
 {
     $or = '?order=';
@@ -85,7 +85,8 @@ $or = '&order=';
             <!--<th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'title&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='title') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Title</a><?php //echo $this->Paginator->sort('title','Title');?></th>-->           
             <th width="10%"><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'addedBy&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='addedBy') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Uploaded By</a><?php //echo $this->Paginator->sort('addedBy','Uploaded By');?></th>
             
-            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'`indate`&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='`indate`') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Uploaded On</a><?php //echo $this->Paginator->sort('date','Uploaded On');?><!--</a>--></th>
+            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'`date`&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='`date`') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Uploaded On</a><?php //echo $this->Paginator->sort('date','Uploaded On');?><!--</a>--></th>
+            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'incident_date&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='incident_date') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Incident Date</a><?php //echo $this->Paginator->sort('date','Uploaded On');?><!--</a>--></th>
             <th>File</th>
             <th>Option</th>
         </tr>
@@ -129,7 +130,8 @@ $or = '&order=';
             <td><?php if($d['Document']['addedBy'] != 0){$q = $member->find('first',array('conditions'=>array('id'=>$d['Document']['addedBy'])));if($q){if($this->Session->read('admin'))echo "<a href='".$base_url."members/view/".$q['Member']['id']."'>".$q['Member']['full_name']."</a>";else echo $q['Member']['full_name'];}}else echo "Admin";?></td>
             
             
-            <td><?php if($d['Document']['document_type']=='evidence') echo $d['Document']['incident_date']; else echo $d['Document']['date'];?></td>
+            <td><?php echo $d['Document']['date'];?></td>
+            <td><?php echo $d['Document']['incident_date'];?></td>
             <td>
             <?php 
             $q = $do->find('first',array('conditions'=>array('document_id'=>$d['Document']['id'])));
