@@ -416,7 +416,9 @@ $(function(){
     <?php
     if($typee=='client_feedback')
     {
+        
         ?>
+        $('.uploademail').hide();
         $('.client_more').show();
             $('.text_area_long').attr('onKeyDown',"limitText(this.form.description,this.form.countdown,500);");
             $('.text_area_long').attr('OnKeyUp',"limitText(this.form.description,this.form.countdown,500);");
@@ -426,6 +428,7 @@ $(function(){
     }
     ?>
     $('.draft').click(function(){
+        
        $('.draftval').val("1");
        $('.activity_desc').removeClass('required');
        $('.activity_date').removeClass('required');
@@ -491,6 +494,7 @@ $(function(){
         
         
         if(doctype == 'evidence'){
+            $('.uploademail').hide();
             $('.extra_evidence').show();
             $('.draftspan').hide();
             }
@@ -499,6 +503,7 @@ $(function(){
             
             
         if(doctype == 'siteOrder'){
+            $('.uploademail').hide();
             $('.site_more').show();
             //$('.draftspan').hide();
             }
@@ -506,12 +511,14 @@ $(function(){
             $('.site_more').hide();
         
         if(doctype == 'employee'){
+            $('.uploademail').hide();
             $('.employee_more').show();
             //$('.draftspan').hide();
             }
         else
             $('.employee_more').hide();
          if(doctype == 'training'){
+            $('.uploademail').hide();
             $('.training_more').show();
             //$('.draftspan').hide();
             }
@@ -536,6 +543,7 @@ $(function(){
         
         if(doctype == 'client_feedback')
         {
+            $('.uploademail').hide();
             $('.client_more').show();
             $('.text_area_long').attr('onKeyDown',"limitText(this.form.description,this.form.countdown,500);");
             $('.text_area_long').attr('OnKeyUp',"limitText(this.form.description,this.form.countdown,500);");
