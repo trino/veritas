@@ -1,0 +1,65 @@
+- category names after theyre created, and to move categories (right now the last category edited is on the bottom so sometimes our entrees are listed AFTER desserts) -  (Done)
+
+- quick links on the menu page for each category, and the "top" button next to each category that takes user back to top of page (Done)
+
+- sometimes when a host logs back into his existing reservation, a space is added in front of the email and phone number so you can't click proceed to menu, and its hard to realize what the problem is until u see a small space before the email/phone number causing the issue!(Done)
+
+- we need the booking ID to appear in the my reservation box below restaurant, time, and host when logged into a group booking (Done)
+
+- right now it allows you to make a reservation for 4 ppl but make more than 4 different guests place orders (only want to allow the guests to be maxed out at desingated party size) (DOne)
+
+- you can have a party of zero and it still works (Done)
+
+- NEED a cancel reservation button, need to notify us on admin panel about a cancelled reservation so we can tell restaurant! (Done)
+
+- edit category (Done)
+
+- reservation cancel - redirect to homepage (Done)
+
+- VIEW live menu needs to be on restaurant profile page (done)
+
+--
+
+- restaurant profile page pics are not working other than first main pic (can we make additional restaurant pics show up below the profile picture to fill up the space next to the business hours?) - works on our end
+
+- on INTERNET EXPLORER the picture is displayed as much smaller than it should be for the menu (see attached image) - this is impt as all corporate users in downtown would run into this issue - cant reproduce on our version of IE...please see attached.
+
+- 'Steve Yoon' meal is suddenly missing from restaurants end and users digital receipt. Refer to first pic from email earlier for his actual order. Not sure how this happened but basically the order disappeared.-CANT FIND ISSUE
+
+- Is there any way to make it so that the "added" sign that comes up when u add an item switches back to just "Add" after and then being allowed to add 1 additional quanitity of the same item rather than changing the quantity to 2  - DID NOT DO, TOO DIFFICULT
+
+- one more thing... - when you put quotations or apostrophe's in description boxes, it becomes a /  - cant reproduce 
+
+- when you order a certain quanitity of an item, and want to change that quantity afterwards, a "NAN error shows up, and adds a $0 an extra line of math that messes up digital receipt -  CANNOT REPRODUCE ERROR
+
+--
+
+ROB IS WORKING ON BELOW:
+
+- Set default restaurant image. This will be difficult to do as it requires additional steps - a quick work around is to change the first image to the desired default.
+
+- I moved "Fruit Salad" to the top of the category in the restaurant menu page. However, on the view live menu page, "Fruit Salad" appears at the bottom of the list still. (see attached) (Done)
+
+- when you login as the host of a reservation, extra lines appear on the digital receipt, especially when adding new items or changing the order  (Did not find)
+
+- guests who don't place any sort of order should be automatically removed from the reservation details page (Done)
+
+- Below is users end but digital showing wrong items (Done)
+
+- so i just made a reservation, logged back in as the host and changed the party size from 4 to 5...the digital receipt completely messed up and the order in the restaurant end also went haywire (Done)
+
+- we also need a confirmation of the receipt sent to the user by email...
+
+
+
+---
+NEW ITEMS
+
+restaurant prfoile image bug...
+sorting category
+
+email receipt to all diners... even when u edit it
+cancel reservation for host and diner... FOR BOTH SUPER ADMIN AND RESTAURANT ADMIN
+
+
+

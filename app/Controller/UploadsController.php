@@ -914,6 +914,7 @@ class UploadsController extends AppController
                 if(in_array($lower_ext,$ext_doc)){
                     
                     $do = $img;
+                    $d['doc'] = $img;
                 $this->Doc->create();
                 $this->Doc->save($d);
                 }
