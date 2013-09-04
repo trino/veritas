@@ -543,7 +543,7 @@ class UploadsController extends AppController
                             $tosend = $_POST['emailadd'];
                             $msg = 
                             
-                            "A report has been uploaded in Veritas. Its details are below:<br/><br/>
+                            "A report has been uploaded in Veritas. Please see below for more detail.<br/><br/>
                             <table border='1' style='width:100%;'>
                                 <tr><td><strong>Document Type</strong></td><td>Report</td></tr>
                                 <tr><td><strong>Description</strong></td><td>".$_POST['description']."</td></tr>
@@ -575,7 +575,7 @@ class UploadsController extends AppController
                                 $emails = new CakeEmail();
                                 $emails->from(array('noreply@veritas.com'=>'Veritas'));
                         
-                                $emails->subject("A report has been uploaded");
+                                $emails->subject("Veritas - Report Uploaded");
                                 $emails->emailFormat('html');
                                 $emails->to($tosend);
                                 if($img)
@@ -586,7 +586,7 @@ class UploadsController extends AppController
                             }
                         }
                         if($_POST['emailadd'])
-            $this->Session->setFlash('Data Saved Successfully and email sent.');
+            $this->Session->setFlash('Data Saved Successfully, Email Sent.');
             $log['date'] =  date('Y-m-d H:i:s');
             $log['time'] =  date('H:i:s');
             if($this->Session->read('admin'))
@@ -957,7 +957,7 @@ class UploadsController extends AppController
                             $tosend = $_POST['emailadd'];
                             $msg = 
                             
-                            "A report has been uploaded in Veritas. Its details are below:<br/><br/>
+                            "A report has been uploaded in Veritas. Please see below for more detail.<br/><br/>
                             <table border='1' style='width:100%;'>
                                 <tr><td><strong>Document Type</strong></td><td>Report</td></tr>
                                 <tr><td><strong>Description</strong></td><td>".$_POST['description']."</td></tr>
@@ -989,7 +989,7 @@ class UploadsController extends AppController
                                 $emails = new CakeEmail();
                                 $emails->from(array('noreply@veritas.com'=>'Veritas'));
                         
-                                $emails->subject("A report has been uploaded");
+                                $emails->subject("Veritas - Report Uploaded");
                                 $emails->emailFormat('html');
                                 $emails->to($tosend);
                                 if($img)
@@ -1031,7 +1031,7 @@ class UploadsController extends AppController
             }
             */
             if(isset($_POST['emailadd'] )&& $_POST['emailadd'])
-            $this->Session->setFlash('Data Saved Successfully and email sent.');
+            $this->Session->setFlash('Data Saved Successfully, Email Sent.');
             else
             $this->Session->setFlash('Data Saved Successfully.');
             $log['date'] =  date('Y-m-d H:i:s');
@@ -1044,7 +1044,6 @@ class UploadsController extends AppController
             }
             else
             {
-                
                 $log['fullname'] = $this->Session->read('user');
                 $log['username'] = $this->Session->read('email');
                 $log['member_id'] = $this->Session->read('id');   

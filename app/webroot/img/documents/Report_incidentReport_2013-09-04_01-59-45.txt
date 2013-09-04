@@ -1,0 +1,87 @@
+What I need to happen is when I set-up a customer, then login to type up a report, hit submit and have the entire report go in email format to a specific email address. 
+
+Sorry I also need to see the attached “Type of Incident” all options in the drop down for the Incident Report.  Is it possible to add this somehow?  So it would need to be Report … Incident Report … then these categories as types of incident reports.
+
+[  ] Alarm Activation	
+[  ] Burglary	
+[  ] Property Damage	
+[  ] Miscellaneous
+[  ] Shoplift Loss	
+[  ] Disorderly Person	
+[  ] Accident - Employee	
+[  ] Shoplift Apprehension	
+[  ] Fraud Apprehension	
+[  ] Accident - Customer	
+[  ] Shoplift Recovery	
+[  ] Fraud Recovery	
+[  ] Non-Productive Stop	
+[  ] Suspicion Internal Theft	
+[  ] Fraud Loss
+
+
+
+
+IMAC0003
+
+
+
+
+Nonviolent Confrontation Management
+golder@imac-training.com
+Pass436993
+
+
+c2abe1d1969f57ca4d5ae43bebbf7b96
+
+
+
+
+
+
+xtra vrn olive oil + butter + lemon pepper
+
+
+canola oil for deep fryer
+
+
+
+
+--------------------------
+
+
+
+
+
+
+hi rony
+can we use one restaurant as a test right now? its better to do it on live server.
+while we are walking through the steps we can discuss how to improve each one
+
+it will take us 30 mins to go through eveyrhting ub titll be worth it
+
+and i am sorry moving forward i cannot guarentee bugs, i employ people and i must charge you per hour.
+- because some thing may not be bugs so jus tto be on the safe side i have to charge for it
+thats industry standards
+
+
+
+
+
+
+BUGS
+
+- food Items don't move up sometimes in the menu (having trouble with Guirei menu because item's have an actual code number so they need to be in order)
+- need to place the approval back in for new restaurants
+- the statistics section of the admin panel still doesn't work properly, errors between the results for each month and the actual reservations that month
+
+CHANGES
+
+- need to highlight that our service has "No fees" maybe write "Full Service Reservations - No Fees" where you use to have the motto at the top
+ - please figure out a way to integrate that into home page, we think it might be    a barrier from ppl trying our service
+
+- THE VIEW MENU FEATURE - people are getting confused when they click this, thinking they can add items and make a reservation even with the live reservation link on the side - its not noticable enough
+- POTENTIAL FIXES - take off the qty and ADD from this version of the menu
+- Make a pop up appear that says you need to click on live reservation before you can place an order if someone tries to add an item
+- anything else you can think of to fix this problem - we've got this particular problem with a lot of users!
+
+That's it for now, haven't found any new bugs or anything
