@@ -1,0 +1,41 @@
+BUGS
+
+- food Items don't move up sometimes in the menu (having trouble with Guirei menu because item's have an actual code number so they need to be in order)
+- need to place the approval back in for new restaurants
+- the statistics section of the admin panel still doesn't work properly, errors between the results for each month and the actual reservations that month
+
+when editing item  the complimentary items dont show up
+
+in the email, have party size
+
+if you dont type in name and email... it takes you in as the host
+
+if you dont complete menu, do not show in digital receipt....
+
+
+
+CHANGES
+
+- need to highlight that our service has "No fees" maybe write "Full Service Reservations - No Fees" where you use to have the motto at the top
+ - please figure out a way to integrate that into home page, we think it might be    a barrier from ppl trying our service
+
+- THE VIEW MENU FEATURE - people are getting confused when they click this, thinking they can add items and make a reservation even with the live reservation link on the side - its not noticable enough
+- POTENTIAL FIXES - take off the qty and ADD from this version of the menu
+- Make a pop up appear that says you need to click on live reservation before you can place an order if someone tries to add an item
+- anything else you can think of to fix this problem - we've got this particular problem with a lot of users!
+
+That's it for now, haven't found any new bugs or anything
+
+
+Currently 10 people have orders, but no one else is being allowed on. (max party size reached)
+
+
+
+
+---
+
+you can still send email when it is blank
+change send to: upload and send
+
+do not make Description required
+attachment is not being sent

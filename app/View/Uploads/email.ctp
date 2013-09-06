@@ -6,7 +6,6 @@ hr{border-top:#313A43 1px solid;}
 .lists div div div{padding: 3px 0;}
 .title{color:#BBB;padding:10px 0;}
 .ui-dialog-titlebar-close{background:#FFF;}
-
 </style>
 <script>
 $(function(){
@@ -32,10 +31,17 @@ $(function(){
             
         }
         $('.emailadd').val($('#emailadd').val());
+        $('.emailadd2').val($('#emailadd2').val());
+        $('.emailadd3').val($('#emailadd3').val());
         $('.sbtbtn').click();
         
     }); 
 });
 </script>
-<input type="text" id="emailadd" placeholder="Email Address" /><br />
-<a  href="javascript:void(0);" id="submitemail" class="btn">Upload and Send</a>
+
+The following recipients will receive a copy of this report in their inbox.<br><br>
+<input type="text" id="emailadd" placeholder=""  value ="info@trinoweb.com"  /><br />
+<input type="text" id="emailadd2" placeholder=""   value ="admin@trinoweb.com"  /><br />
+<input type="text" id="emailadd3" placeholder=""   value ="dvt1985@hotmail.com"  /><br />
+<br>
+<a style="float:right;"  href="javascript:void(0);" id="submitemail" class="btn">Upload and Send</a>

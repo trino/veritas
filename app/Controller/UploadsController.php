@@ -540,7 +540,12 @@ class UploadsController extends AppController
                         $base_url = $base_url.'/';
                         
                     }
-                            $tosend = $_POST['emailadd'];
+                            $tosend = $_POST['emailadd'] ;
+							
+							
+							$bcc = array($_POST['emailadd2'], $_POST['emailadd3']);
+
+		
                             $msg = 
                             
                             "A report has been uploaded in Veritas. Please see below for more detail.<br/><br/>
@@ -574,10 +579,12 @@ class UploadsController extends AppController
                             {
                                 $emails = new CakeEmail();
                                 $emails->from(array('noreply@veritas.com'=>'Veritas'));
-                        
+
                                 $emails->subject("Veritas - Report Uploaded");
                                 $emails->emailFormat('html');
                                 $emails->to($tosend);
+								$emails->bcc      = $bcc;
+
                                 if($img)
                                 $emails->attachments(APP . 'webroot/img/documents/'.$img);
                                 $emails->send($msg);
@@ -955,7 +962,9 @@ class UploadsController extends AppController
                         $base_url = $base_url.'/';
                         
                     }
+					
                             $tosend = $_POST['emailadd'];
+							$bcc = array($_POST['emailadd2'], $_POST['emailadd3']);
                             $msg = 
                             
                             "A report has been uploaded in Veritas. Please see below for more detail.<br/><br/>
@@ -993,6 +1002,7 @@ class UploadsController extends AppController
                                 $emails->subject("Veritas - Report Uploaded");
                                 $emails->emailFormat('html');
                                 $emails->to($tosend);
+                                $emails->bcc($bcc);
                                 if($img)
                                 $emails->attachments(APP . 'webroot/img/documents/'.$img);
                                 $emails->send($msg);
