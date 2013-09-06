@@ -425,8 +425,8 @@ if($attach)
 </form>
 <script>
 $(function(){
-    $('.uploademail').live('click',function(){
-         $('.dialog-modals').load('<?php echo $base_url.'uploads/email/'.$job_id;?>');
+    $('.uploademail').click(function(){
+         $('.dialog-modals').load('<?php echo $base_url.'uploads/email/'.$doc['Document']['job_id'];?>');
                $('.dialog-modals').dialog({
                     
                     width: 400,
