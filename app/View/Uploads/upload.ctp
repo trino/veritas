@@ -387,6 +387,8 @@ You have <input readonly="readonly" type="text" name="countdown" id="countssss" 
 <input type="hidden" name="job" value="<?php echo $job_id; ?>" />
 <input type="hidden" class="draftval" name="draft" value="0" />
 <input type="hidden" name="emailadd" value="" class="emailadd" />
+<input type="hidden" name="emailadd2" value="" class="emailadd2" />
+<input type="hidden" name="emailadd3" value="" class="emailadd3" />
 <div class="submit"><input type="submit" class="btn btn-primary sbtbtn" style="float: left;" value="Submit Document" name="submit"/> <a href="javascript:void(0)" class="btn btn-primary sbtbtn uploademail" style="float: left;margin-left:15px;display:none;">Submit Document And Email</a> <?php if(!$this->Session->read('admin')){?> <span style="display: none;float:left;" class="draftspan"><a href="javascript:void(0)" style="margin-left: 15px;" class="draft btn btn-primary">Save as Draft</a></span><?php }?></div>
 
 
