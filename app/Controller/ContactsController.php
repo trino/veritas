@@ -2,6 +2,7 @@
 class ContactsController extends AppController
 {
     public $name = 'contacts';
+    var $components = array('Email');
     public function index($jid=-1)
     {
         //die('here');
@@ -208,6 +209,28 @@ class ContactsController extends AppController
         $this->redirect('index');                  
             
         
+    }
+    function email()
+    {
+        $message= $_POST['msg'];
+        $ema = str_replace(',',' ',$_POST['email']);
+        $ema = trim($ema);
+        $ema = str_replace(' ',',',$ema);
+        $email = explode(',',$ema);
+        foreach($email as $e){
+        $emails = new CakeEmail();
+                        $emails->from(array('noreply@veritas.com'=>'Veritas'));
+                        
+                        $emails->subject("Message from Admin.");
+                        $emails->emailFormat('html');
+                        
+                            $message="Hi there,<br/><br/>You have received a new message from Veritas' admin.<br/><br/>Message:<br/>".$message;
+						   
+                        $emails->to($e);
+                            $emails->send($message);
+                            $emails->reset();
+                            }
+                            die('here');
     }
     
 }

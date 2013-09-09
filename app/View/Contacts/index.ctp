@@ -52,6 +52,7 @@ if($docs)
             <th><?php echo $this->Paginator->sort('name','Name');?></th>
             <th><?php echo $this->Paginator->sort('email','Email');?></th>
             <th><?php echo $this->Paginator->sort('type','Contact type');?></th>
+            <th>Select to send email</th>
             <!--<th><?php echo $this->Paginator->sort('job_id','Job');?></th>
             <th><?php echo $this->Paginator->sort('phone','Phone');?></th>
             <th><?php echo $this->Paginator->sort('company','Company');?></th>-->
@@ -109,6 +110,7 @@ if($docs)
             <td><?php echo $d['Key_contact']['name']; ?></td>
             <td><?php echo $d['Key_contact']['email']; ?></td>
             <td><?php echo $type[$d['Key_contact']['type']];?></td>
+            <td><input type="checkbox" value="<?php echo $d['Key_contact']['email'];?>" class="emails" /></td>
             <!--<td><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Key_contact']['job_id'])));if($get2)echo $get2['Job']['title']; ?></td>-->
             
             <td><a href="<?php echo $base_url.'contacts/edit/'.$d['Key_contact']['id'];?>" class="btn btn-primary">Edit</a> | <?php echo $this->Html->link(
@@ -130,11 +132,58 @@ if($docs)
 <?php echo $this->Paginator->next('»', array('tag' => 'li')); ?>
 </ul>
 </div>
+<div class="clear"></div>
+<p>&nbsp;</p>
+<div style="padding-top: 15px;">
+    <strong>Message</strong><br />
+    <textarea class="messages" style="width: 300px;height:90px;"></textarea><br />
+    <a href="javascript:void(0);" class="btn btn-primary sendemail">Send Email</a> <img src="<?php echo $base_url;?>img/ajax-loader.gif" style="display: none;" id="img" />
+</div>
     <?php
 } else {echo"No Search Results";}
 ?>
 <script>
 $(function(){
+    $('.sendemail').click(function(){
+        var ema = '';
+       $('.emails').each(function(){
+        if($(this).is(':checked')){
+        var vall = $(this).val();    
+        ema = ema+vall+',';
+        }
+        else
+        ema = ema.replace(vall+',','');
+                
+       });
+       if(ema == ''){
+       alert('Please select a key contact');
+       return;
+       }
+       else
+       if($('.messages').val()=='')
+       {
+        alert('Please enter a message');
+        return;
+       }
+       else
+       {
+        $('.sendemail').text('Sending..');
+        $('#img').show();
+        $('.sendemail').attr('disabled','disabled');
+        $.ajax({
+           url:'<?php echo $base_url;?>/contacts/email',
+           data:'email='+ema+'&msg='+$('.messages').val(),
+           type:'post',
+           success:function(){
+            $('.sendemail').text('Send Email');
+            $('.sendemail').removeAttr('disabled');
+            $('#img').hide();
+            alert('Email sent successfully');
+           } 
+        });
+       }
+        
+    });
    $('#jobs').change(function(){
     var id = $(this).val();
     var url = '<?php echo $base_url;?>contacts/index/'+id;
