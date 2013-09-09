@@ -17,9 +17,18 @@ if($this->Session->read('avatar'))
 					'Add Contact',
 					'/contacts/add',
                     array('class'=>'btn btn-primary reg-company')
+				) . "  ";
+ echo $this->Html->link(
+					'Upload Contact',
+					'/contacts/upload',
+                    array('class'=>'btn btn-primary reg-company')
 				) . "<br><br>";
 			?>
-            <?php 
+            <?php
+            $jobs = $jbs->find('all'); 
+            if($jobs){?><strong>Sort by Job</strong> : <select id="jobs"><option value="-1" <?php if($select == -1){?>selected="selected"<?php }?>>Select Job</option><option value="0" <?php if($select == 0){?>selected="selected"<?php }?>>No Job assigned</option><?php foreach($jobs as $js){?><option value="<?php echo $js['Job']['id'];?>" <?php if($select == $js['Job']['id']){?>selected="selected"<?php }?>><?php echo $js['Job']['title'];?></option><?php } ?></select><?php }?>
+            <?php
+             
    }
 
    ?>
@@ -124,3 +133,12 @@ if($docs)
     <?php
 } else {echo"No Search Results";}
 ?>
+<script>
+$(function(){
+   $('#jobs').change(function(){
+    var id = $(this).val();
+    var url = '<?php echo $base_url;?>contacts/index/'+id;
+    window.location = url;
+   }); 
+});
+</script>

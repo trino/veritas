@@ -2,9 +2,10 @@
 class ContactsController extends AppController
 {
     public $name = 'contacts';
-    public function index()
+    public function index($jid=-1)
     {
         //die('here');
+        $this->set('select',$jid);
         $this->loadModel('Key_contact');
         $this->loadModel('Member');
         $this->loadModel('Job');
@@ -14,8 +15,13 @@ class ContactsController extends AppController
     
         if($this->Session->read('avatar'))
         {
-            
+            if($jid==-1)
             $this->paginate = array('order'=>array('job_id'),'limit'=>10);
+            else
+            if($jid==0)
+            $this->paginate = array('conditions'=>'id NOT IN (SELECT key_id FROM job_contacts)','order'=>array('job_id'),'limit'=>10);
+            else
+            $this->paginate = array('conditions'=>'id IN (SELECT key_id FROM job_contacts WHERE job_id = '.$jid.')','order'=>array('job_id'),'limit'=>10);
             $docs = $this->paginate('Key_contact');
             //$docs = $this->Document->find('all',array('conditions'=>array('title LIKE'=>'%'.$search.'%')));
         }
@@ -41,7 +47,85 @@ class ContactsController extends AppController
         $this->set('member',$this->Member);
         $this->set('jo_bs',$this->Job);
         $this->set('docs',$docs);
+        $this->set('jbs',$this->Job);
         
+    }
+    
+    function upload()
+    {
+        $this->loadModel('Key_contact'); 
+        $this->loadModel('Job_contact');
+        
+        if(isset($_POST['submit'])){
+         $file = $_FILES['contacts']['tmp_name'];
+         $no=0;
+         $yes=0;
+         $handle = fopen($file,"r");
+       
+        //loop through the csv file and insert into database
+        do {
+            if ($data[0]) {
+                $key_title = $data[3];
+                $key_company = $data[4];
+                $key_number = $data[5];
+                $key_name = $data[0];
+                $key_cell = $data[2];
+                $key_email = $data[1];
+                $key_type = $data[6];
+                $job_id = $data[7];
+                
+                $key['title'] = $key_title;
+              $key['company'] = $key_company;
+              $key['phone'] = $key_number;
+              $key['cell'] = $key_cell;
+              $key['email'] = $key_email;
+              $key['name'] = $key_name;
+              $key['type'] = $key_type;
+              //if($this->Key_contact->find('first',array('conditions'=>array('email'=>$key['email'],'type'=>$key['type'],'name'=>$key['name'],'cell'=>$key['cell']))))
+              if($this->Key_contact->find('first',array('conditions'=>array('email'=>$key['email']))))
+              {
+                $no++;
+                              
+             }
+             else
+             {
+                $yes++;
+                $this->Key_contact->create();
+                $this->Key_contact->save($key);
+                echo $k = $this->Key_contact->id;
+                //die();
+                if($job_id!="" || $job_id!='0')
+                {
+                    $job['job_id'] = $job_id;
+                    $job['key_id'] = $k;
+                    //$t = $this->Key_contact->findById($k);
+                    $job['type'] = $key['type'];
+                    //var_dump($job);die();
+                    $this->Job_contact->create();
+                    $this->Job_contact->save($job);
+                    
+                    
+                }                
+             }  
+            }
+        } while ($data = fgetcsv($handle,1000,",","'"));
+        if($no !=0 && $yes!=0)
+            $msg ="Contact succesfully Uploaded But Some Duplicate Record Found And Was Not Uploaded.";
+        elseif($no==0&&$yes!=0)
+        {
+            $msg ="Contact succesfully Uploaded";
+        }
+        elseif($yes==0 && $no!=0)
+        {
+            $msg = "Duplicate Records Found And Was Not Uploaded";
+        }
+        else
+        {
+            $msg = "Sorry, No Contact Was Uploaded.";
+        }
+        $this->Session->setFlash($msg);
+        $this->redirect('index'); 
+        }
     }
     function add()
     {
@@ -119,13 +203,11 @@ class ContactsController extends AppController
         if($this->Key_contact->delete($id))
             $this->Session->setFlash("Contact Successfully Deleted");
         else
-            $this->Session->setFlash("Sorry Contact Couldnot Be Deleted.");
+            $this->Session->setFlash("Sorry Contact Couldnot Be Deleted.");           
             
-            
-        $this->redirect('index');
-            
-            
+        $this->redirect('index');                  
             
         
     }
+    
 }

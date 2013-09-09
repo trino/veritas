@@ -29,8 +29,10 @@ class JobsController extends AppController
         {
             $this->paginate = array('conditions'=>array('isApproved'=>'1'),'limit'=>10);
             $this->set('job',$this->paginate('Job'));
+            
             $this->set('member',$this->Member->find('all'));
             $this->set('jobmember',$this->Jobmember->find('all'));
+            
         }
         else if($this->Session->read('user'))
         {
