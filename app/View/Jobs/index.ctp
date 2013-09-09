@@ -52,6 +52,7 @@ if($job){
 	        <tr>
                 <th colspan="2">Company</th>
                 <?php if($this->Session->read('avatar')) { ?><th>Assigned to</th><?php }?>
+                <th>Job id</th>
                 <th style="width:350px;">Options</th>
             </tr>
     <?php        
@@ -128,6 +129,7 @@ foreach($job as $j)
             }
         ?>
     </td>
+    <td><?php echo $j['Job']['id'];?></td>
 
         <td>
     
