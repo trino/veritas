@@ -66,19 +66,21 @@ class ContactsController extends AppController
         //loop through the csv file and insert into database
         do {
             if ($data[0]) {
-                $key_title = $data[3];
-                $key_company = $data[4];
-                $key_number = $data[5];
+                $key_title = $data[4];
+                $key_company = $data[5];
+                $key_number = $data[6];
                 $key_name = $data[0];
                 $key_cell = $data[2];
+                $key_cellular = $data[3];
                 $key_email = $data[1];
-                $key_type = $data[6];
-                $job_id = $data[7];
+                $key_type = $data[7];
+                $job_id = $data[8];
                 
                 $key['title'] = $key_title;
               $key['company'] = $key_company;
               $key['phone'] = $key_number;
               $key['cell'] = $key_cell;
+              $key['cellular_provider'] = $key_cellular;
               $key['email'] = $key_email;
               $key['name'] = $key_name;
               $key['type'] = $key_type;
@@ -139,6 +141,7 @@ class ContactsController extends AppController
             $key_name = $_POST['key_name'];
             $key_cell = $_POST['key_cell'];
             $key_email = $_POST['key_email'];
+            $key_cellular = $_POST['key_cellular'];
             $key_type = $_POST['type'];
             
             
@@ -149,6 +152,7 @@ class ContactsController extends AppController
               $key['email'] = $key_email;
               $key['name'] = $key_name;
               $key['type'] = $key_type;
+              $key['cellular_provider'] = $key_cellular;
               //$key['job_id'] = $job_id;
               $this->Key_contact->create();
               $this->Key_contact->save($key);
@@ -173,6 +177,7 @@ class ContactsController extends AppController
             $key_name = $_POST['key_name'];
             $key_cell = $_POST['key_cell'];
             $key_email = $_POST['key_email'];
+            $key_cellular = $_POST['key_cellular'];
             $key_type = $_POST['type'];
             
             
@@ -183,6 +188,7 @@ class ContactsController extends AppController
               $key['email'] = $key_email;
               $key['name'] = $key_name;
               $key['type'] = $key_type;
+              $key['cellular_provider'] = $key_cellular;
               //$key['job_id'] = $job_id;
               $this->Key_contact->id = $id;
               foreach($key as $k=>$v)
@@ -230,8 +236,113 @@ class ContactsController extends AppController
                             $emails->send($message);
                             $emails->reset();
                             $message = "";
+                            $this->Session->setFlash('Email Send successfully');
                             }
                             die('here');
+    }
+    function sms()
+    {
+        $message= $_POST['msg'];
+        $ema = str_replace(',',' ',$_POST['email']);
+        $ema = trim($ema);
+        $ema = str_replace(' ',',',$ema);
+        $email = explode(',',$ema);
+        foreach($email as $e){
+        $emails = new CakeEmail();
+                        $emails->from(array('noreply@veritas.com'=>'Veritas'));
+                        
+                        $emails->subject("Message from Admin.");
+                        $emails->emailFormat('html');
+                        
+                            $message="Hi there,<br/><br/>You have received a new message from Veritas' admin.<br/><br/>Message:<br/>".$message;
+						$q = $this->Key_contact->find('first',array('conditions'=>array('email'=>$e)));
+                        $carrier = $this->generate_carrier($q['Key_contact']['cellular_provider']);
+                        if($carrier){   
+                            $emails->to($q['Key_contact']['cell'].$carrier);
+                            $emails->send($message);
+                            $emails->reset();
+                            $message = "";
+                            $this->Session->setFlash('Email Send successfully');
+                            }
+                            }
+                            die('here');
+    }
+    function generate_carrier($c)
+    {
+      
+  // Bell
+  // number@txt.bell.ca or
+
+  // Fido
+  // number@sms.fido.ca
+
+  // Telus Mobility
+  // number@msg.telus.com (SMS)
+
+  // Koodo Mobile
+  // number@msg.telus.com
+
+  // Wind Mobile
+  // number@txt.windmobile.ca
+
+  // Lynx Mobility
+  // number@sms.lynxmobility.com
+
+  // MTS Mobility
+  // number@text.mtsmobility.com
+
+  // PC Telecom
+  // number@mobiletxt.ca
+
+  // Aliant
+  // number@sms.wirefree.informe.ca
+
+  // SaskTel
+  // number@sms.sasktel.com
+
+  // Virgin Mobile
+  // number@vmobile.ca
+        if(strtolower($c)=='vmobile')
+        return '@vmobile.ca';
+        else
+        if(strtolower($c)=='rogers')
+        return '@pcs.rogers.com';
+        else
+        if(strtolower($c)=='sasktel')
+        return '@sms.sasktel.com';
+        else
+        if(strtolower($c)=='aliant')
+        return '@sms.wirefree.informe.ca';
+        else
+        if(strtolower($c)=='pc telecom')
+        return '@mobiletxt.ca';
+        else
+        if(strtolower($c)=='mts mobility')
+        return '@text.mtsmobility.com';
+        else
+        if(strtolower($c)=='lynx mobility')
+        return '@sms.lynxmobility.com';
+        else
+        if(strtolower($c)=='wind mobile')
+        return '@txt.windmobile.ca';
+        else
+        if(strtolower($c)=='vmobile')
+        return '@vmobile.ca';
+        else
+        if(strtolower($c)=='koodo mobile')
+        return '@msg.telus.com';
+        else
+        if(strtolower($c)=='telus mobility')
+        return '@msg.telus.com';
+        else
+        if(strtolower($c)=='fido')
+        return '@sms.fido.ca';
+        else
+        if(strtolower($c)=='bell')
+        return '@txt.bell.ca';
+        else
+        return '';
+        
     }
     
 }

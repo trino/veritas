@@ -17,7 +17,7 @@
  
     <tr>
         <td>Contacts Type</td>
-        <td colspan="3"><select name="type" class="required">
+        <td colspan="6"><select name="type" class="required">
                 <option value="">Select Type</option>
                 <option value="0">Key Contacts</option>
                 <option value="1">Staff Contacts</option>
@@ -30,6 +30,22 @@
     <td><b>Name</b><br/><input type="text" name="key_name" class="required" value="" style="width: 100px;" /></td>
     <td><b>Title</b><br/><input type="text" name="key_title" class="" value="" style="width: 100px;" /></td>
     <td><b>Cell Number</b><br/><input type="text" name="key_cell" class="" value="" style="width: 100px;" /></td>
+    <td><b>Cellular Carrier</b><br />
+    <select name="key_cellular" class="required">
+        <option value="Rogers">Rogers</option>
+        <option value="Bell">Bell</option>
+        <option value="Fido">Fido</option>
+        <option value="Telus Mobility">Telus Mobility</option>
+        <option value="Koodo Mobile">Koodo Mobile</option>
+        <option value="Wind Mobile">Wind Mobile</option>
+        <option value="Lynx Mobility">Lynx Mobility</option>
+        <option value="MTS Mobility">MTS Mobility</option>
+        <option value="PC Telecom">PC Telecom</option>
+        <option value="Aliant">Aliant</option>
+        <option value="SaskTel">SaskTel</option>
+        <option value="Virgin Mobile">Virgin Mobile</option>
+    </select>
+    </td>
     <td><b>Phone Number</b><br/><input type="text" name="key_number" class="" value="" style="width: 100px;" /></td>
     <td><b>Email</b><br/><input type="text" name="key_email" class="email required" value="" style="width: 100px;" /></td>
     <td><b>Company</b><br/><input type="text" name="key_company" class="" value="" style="width: 100px;" /> </td></tr>

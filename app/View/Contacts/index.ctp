@@ -127,7 +127,12 @@ if($docs)
             <td rowspan="<?php echo count($docs);?>"><textarea class="messages" style="height: 300px;width:94%;"></textarea>
             <br />
             <br />
-            <a href="javascript:void(0);" class="btn btn-primary sendemail">Send Email</a> <img src="<?php echo $base_url;?>img/ajax-loader.gif" style="display: none;" id="img" /></td>
+            <a href="javascript:void(0);" class="btn btn-primary sendemail">Send Email</a> <a href="javascript:void(0);" class="btn btn-primary sendtxt">Send Text Message</a>
+            <br /><br />
+            <img src="<?php echo $base_url;?>img/ajax-loader.gif" style="display: none;" id="img" />
+            
+            
+            </td>
             <?php }?>
        </tr> 
        <?php }?>
@@ -182,7 +187,47 @@ $(function(){
             $('.sendemail').text('Send Email');
             $('.sendemail').removeAttr('disabled');
             $('#img').hide();
-            alert('Email sent successfully');
+            window.location = '';
+           } 
+        });
+       }
+        
+    });
+    $('.sendtxt').click(function(){
+        var ema = '';
+       $('.emails').each(function(){
+        if($(this).is(':checked')){
+        var vall = $(this).val();    
+        ema = ema+vall+',';
+        }
+        else
+        ema = ema.replace(vall+',','');
+                
+       });
+       if(ema == ''){
+       alert('Please select a key contact');
+       return;
+       }
+       else
+       if($('.messages').val()=='')
+       {
+        alert('Please enter a message');
+        return;
+       }
+       else
+       {
+        $('.sendtxt').text('Sending..');
+        $('#img').show();
+        $('.sendtxt').attr('disabled','disabled');
+        $.ajax({
+           url:'<?php echo $base_url;?>/contacts/sms',
+           data:'email='+ema+'&msg='+$('.messages').val(),
+           type:'post',
+           success:function(){
+            $('.sendtxt').text('Send Text Message');
+            $('.sendtxt').removeAttr('disabled');
+            $('#img').hide();
+            window.location = '';
            } 
         });
        }

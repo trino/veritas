@@ -551,7 +551,7 @@ class UploadsController extends AppController
                             "A report has been uploaded in Veritas. Please see below for more detail.<br/><br/>
                             <table border='1' style='width:100%;'>
                                 <tr><td><strong>Document Type</strong></td><td>Report</td></tr>
-                                <tr><td><strong>Description</strong></td><td>".$_POST['description']."</td></tr>
+                                
                                 <tr><td><strong>Job Title</strong></td><td>".$job_title."</td></tr>
                                 <tr><td><strong>Report Type</strong></td><td>Incident Report</td></tr>
                                 <tr><td><strong>Incident Report Type</strong></td><td>".$_POST['incident_type']."</td></tr>
@@ -570,6 +570,7 @@ class UploadsController extends AppController
                                         
                                     $msg = $msg. "</table>
                                 </td></tr>
+                                <tr><td><strong>Additional notes</strong></td><td>".$_POST['description']."</td></tr>
                                 <tr><td><strong>Uploaded By</strong></td><td>".$this->Session->read('username')."</td></tr>
                                 <tr><td><strong>Uploaded On</strong></td><td>".date('Y-m-d')."</td></tr>
                             </table>";
@@ -614,6 +615,8 @@ class UploadsController extends AppController
             $log['event_type'] = "Upload Document";
             $this->Event_log->create();
             $this->Event_log->save($log);
+            $this->Session->setFlash('Data Saved Successfully.');
+            $this->redirect('/dashboard');
         }
         $doc = $this->Document->findById($eid);
         if($doc['Document']['document_type'] == 'report')
@@ -970,7 +973,7 @@ class UploadsController extends AppController
                             "A report has been uploaded in Veritas. Please see below for more detail.<br/><br/>
                             <table border='1' style='width:100%;'>
                                 <tr><td><strong>Document Type</strong></td><td>Report</td></tr>
-                                <tr><td><strong>Description</strong></td><td>".$_POST['description']."</td></tr>
+                                
                                 <tr><td><strong>Job Title</strong></td><td>".$job_title."</td></tr>
                                 <tr><td><strong>Report Type</strong></td><td>Incident Report</td></tr>
                                 <tr><td><strong>Incident Report Type</strong></td><td>".$_POST['incident_type']."</td></tr>
@@ -989,6 +992,7 @@ class UploadsController extends AppController
                                         
                                     $msg = $msg. "</table>
                                 </td></tr>
+                                <tr><td><strong>Additional notes</strong></td><td>".$_POST['description']."</td></tr>
                                 <tr><td><strong>Uploaded By</strong></td><td>".$this->Session->read('username')."</td></tr>
                                 <tr><td><strong>Uploaded On</strong></td><td>".date('Y-m-d')."</td></tr>
                             </table>";

@@ -309,6 +309,7 @@ function remove_youtube()
 <thead>-->
 <thead><th>Report Type</th>
 <th>
+<?php //var_dump($ac);?>
 <select name="report_type" class="required reporttype">
     <option value="">Select report type</option>
     <option value="1" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '1') echo "selected='selected'"; ?> >Activity Log</option>

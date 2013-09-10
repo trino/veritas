@@ -198,6 +198,7 @@ class JobsController extends AppController
                     $keys['type'] = $_POST['type'][$k]; 
                     $keys['email'] = $_POST['key_email'][$k]; 
                     $keys['cell'] = $_POST['key_cell'][$k];
+                    $keys['cellular_provider'] = $_POST['key_cellular'][$k];
                     $keys['title'] = $_POST['key_title'][$k]; 
                     $keys['company'] = $_POST['key_company'][$k]; 
                     $keys['phone'] = $_POST['key_number'][$k]; 
@@ -371,6 +372,7 @@ class JobsController extends AppController
                     $keys['type'] = $_POST['type'][$k]; 
                     $keys['email'] = $_POST['key_email'][$k]; 
                     $keys['cell'] = $_POST['key_cell'][$k];
+                    $keys['cellular_provider'] = $_POST['key_cellular'][$k];
                     $keys['title'] = $_POST['key_title'][$k]; 
                     $keys['company'] = $_POST['key_company'][$k]; 
                     $keys['phone'] = $_POST['key_number'][$k]; 

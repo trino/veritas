@@ -114,6 +114,22 @@ $(function(){
                 '<tr><td><b>Name</b><br/> <input type="text" name="key_name[]" class="" style="width: 100px;" /></td>'+
                 '<td><b>Title</b><br/> <input type="text" name="key_title[]" class="" style="width: 100px;" /></td>'+
                 '<td><b>Cell Number</b><br/> <input type="text" name="key_cell[]" class="" style="width: 100px;" /></td>'+
+                '<td><b>Cellular Carrier</b><br />'+
+                '<select name="key_cellular[]" class="required">'+
+                '    <option value="Rogers">Rogers</option>'+
+                '    <option value="Bell">Bell</option>'+
+                '    <option value="Fido">Fido</option>'+
+                '    <option value="Telus Mobility">Telus Mobility</option>'+
+                '    <option value="Koodo Mobile">Koodo Mobile</option>'+
+                '    <option value="Wind Mobile">Wind Mobile</option>'+
+                '    <option value="Lynx Mobility">Lynx Mobility</option>'+
+                '    <option value="MTS Mobility">MTS Mobility</option>'+
+                '    <option value="PC Telecom">PC Telecom</option>'+
+                '    <option value="Aliant">Aliant</option>'+
+                '    <option value="SaskTel">SaskTel</option>'+
+                '    <option value="Virgin Mobile">Virgin Mobile</option>'+
+                '</select>'+
+                '</td>'+
                 '<td><b>Phone Number</b><br/> <input type="text" name="key_number[]" class="" style="width: 100px;" /></td>'+
                 '<td><b>Email</b><br/> <input type="text" name="key_email[]" class="email" style="width: 100px;" /></td>'+
                 '<td><b>Company</b><br/> <input type="text" name="key_company[]" class="" style="width: 100px;" /> </td><td><input type="button" onclick="$(this).parent().parent().parent().parent().remove();" class="btn btn-danger" style="margin-top:20px;" value="Remove"/></td></tr>'+
