@@ -44,7 +44,7 @@ if($docs)
         $date = 'asc'; 
         */  
     ?>
-<div id="table">
+<div id="">
 
     <table class="table table-bordered">
         <tr>
@@ -52,12 +52,12 @@ if($docs)
             <th><?php echo $this->Paginator->sort('name','Name');?></th>
             <th><?php echo $this->Paginator->sort('email','Email');?></th>
             <th><?php echo $this->Paginator->sort('type','Contact type');?></th>
-            <th>Cellular carrier</th>
+            <th>Cellular provider</th>
             <th>Email to</th>
             <!--<th><?php echo $this->Paginator->sort('job_id','Job');?></th>
             <th><?php echo $this->Paginator->sort('phone','Phone');?></th>
             <th><?php echo $this->Paginator->sort('company','Company');?></th>-->
-            <th>Options</th>
+            <th style="width: 150px;">Options</th>
             <th style="width: 300px;">Message</th>
         </tr>
     <?php
@@ -114,7 +114,7 @@ if($docs)
             <td><?php echo $d['Key_contact']['name']; ?></td>
             <td><?php echo $d['Key_contact']['email']; ?></td>
             <td><?php echo $type[$d['Key_contact']['type']];?></td>
-            <td></td>
+            <td><?php echo $d['Key_contact']['cellular_provider']; ?></td>
             <td><input type="checkbox" value="<?php echo $d['Key_contact']['email'];?>" class="emails" /></td>
             <!--<td><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Key_contact']['job_id'])));if($get2)echo $get2['Job']['title']; ?></td>-->
             
@@ -223,7 +223,8 @@ $(function(){
            url:'<?php echo $base_url;?>/contacts/sms',
            data:'email='+ema+'&msg='+$('.messages').val(),
            type:'post',
-           success:function(){
+           success:function(res){
+            //alert(res);
             $('.sendtxt').text('Send Text Message');
             $('.sendtxt').removeAttr('disabled');
             $('#img').hide();

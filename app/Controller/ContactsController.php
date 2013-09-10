@@ -62,9 +62,10 @@ class ContactsController extends AppController
          $no=0;
          $yes=0;
          $handle = fopen($file,"r");
-       
+       $ic=0;
         //loop through the csv file and insert into database
         do {
+            $ic++;
             if ($data[0]) {
                 $key_title = $data[4];
                 $key_company = $data[5];
@@ -104,8 +105,10 @@ class ContactsController extends AppController
                     //$t = $this->Key_contact->findById($k);
                     $job['type'] = $key['type'];
                     //var_dump($job);die();
+                    if($ic!=1){
                     $this->Job_contact->create();
                     $this->Job_contact->save($job);
+                    }
                     
                     
                 }                
@@ -242,6 +245,7 @@ class ContactsController extends AppController
     }
     function sms()
     {
+        $this->loadModel('Key_contact');
         $message= $_POST['msg'];
         $ema = str_replace(',',' ',$_POST['email']);
         $ema = trim($ema);
@@ -254,54 +258,22 @@ class ContactsController extends AppController
                         $emails->subject("Message from Admin.");
                         $emails->emailFormat('html');
                         
-                            $message="Hi there,<br/><br/>You have received a new message from Veritas' admin.<br/><br/>Message:<br/>".$message;
+                            
 						$q = $this->Key_contact->find('first',array('conditions'=>array('email'=>$e)));
                         $carrier = $this->generate_carrier($q['Key_contact']['cellular_provider']);
                         if($carrier){   
                             $emails->to($q['Key_contact']['cell'].$carrier);
+                            //echo $q['Key_contact']['cell'].$carrier;die();
                             $emails->send($message);
                             $emails->reset();
                             $message = "";
                             $this->Session->setFlash('Email Send successfully');
                             }
                             }
-                            die('here');
+                            die();
     }
     function generate_carrier($c)
     {
-      
-  // Bell
-  // number@txt.bell.ca or
-
-  // Fido
-  // number@sms.fido.ca
-
-  // Telus Mobility
-  // number@msg.telus.com (SMS)
-
-  // Koodo Mobile
-  // number@msg.telus.com
-
-  // Wind Mobile
-  // number@txt.windmobile.ca
-
-  // Lynx Mobility
-  // number@sms.lynxmobility.com
-
-  // MTS Mobility
-  // number@text.mtsmobility.com
-
-  // PC Telecom
-  // number@mobiletxt.ca
-
-  // Aliant
-  // number@sms.wirefree.informe.ca
-
-  // SaskTel
-  // number@sms.sasktel.com
-
-  // Virgin Mobile
-  // number@vmobile.ca
         if(strtolower($c)=='vmobile')
         return '@vmobile.ca';
         else
