@@ -229,6 +229,7 @@ class ContactsController extends AppController
                         $emails->to($e);
                             $emails->send($message);
                             $emails->reset();
+                            $message = "";
                             }
                             die('here');
     }
