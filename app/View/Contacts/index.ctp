@@ -46,17 +46,19 @@ if($docs)
     ?>
 <div id="table">
 
-    <table>
+    <table class="table table-bordered">
         <tr>
             <th><?php echo $this->Paginator->sort('title','Title');?></th>
             <th><?php echo $this->Paginator->sort('name','Name');?></th>
             <th><?php echo $this->Paginator->sort('email','Email');?></th>
             <th><?php echo $this->Paginator->sort('type','Contact type');?></th>
-            <th>Select to send email</th>
+            <th>Cellular carrier</th>
+            <th>Email to</th>
             <!--<th><?php echo $this->Paginator->sort('job_id','Job');?></th>
             <th><?php echo $this->Paginator->sort('phone','Phone');?></th>
             <th><?php echo $this->Paginator->sort('company','Company');?></th>-->
             <th>Options</th>
+            <th style="width: 300px;">Message</th>
         </tr>
     <?php
     /*
@@ -101,8 +103,10 @@ if($docs)
        </tr> 
     <?php } */
     $type= array('Key Contacts','Staff Contacts','Third Party Contacts');
+    $cc=0;
      foreach($docs as $k=>$d)
     {
+        $cc++;
     
 ?>
 <tr>
@@ -110,6 +114,7 @@ if($docs)
             <td><?php echo $d['Key_contact']['name']; ?></td>
             <td><?php echo $d['Key_contact']['email']; ?></td>
             <td><?php echo $type[$d['Key_contact']['type']];?></td>
+            <td></td>
             <td><input type="checkbox" value="<?php echo $d['Key_contact']['email'];?>" class="emails" /></td>
             <!--<td><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Key_contact']['job_id'])));if($get2)echo $get2['Job']['title']; ?></td>-->
             
@@ -118,8 +123,12 @@ if($docs)
 					'/contacts/delete/'.$d['Key_contact']['id'],
                     array('class'=>'btn btn-danger'),"Are you sure deleting this Contact?"
 				)." ";?></td>
-                
-            </td>
+            <?php if($cc==1){?>    
+            <td rowspan="<?php echo count($docs);?>"><textarea class="messages" style="height: 300px;width:94%;"></textarea>
+            <br />
+            <br />
+            <a href="javascript:void(0);" class="btn btn-primary sendemail">Send Email</a> <img src="<?php echo $base_url;?>img/ajax-loader.gif" style="display: none;" id="img" /></td>
+            <?php }?>
        </tr> 
        <?php }?>
  </table>
@@ -133,12 +142,7 @@ if($docs)
 </ul>
 </div>
 <div class="clear"></div>
-<p>&nbsp;</p>
-<div style="padding-top: 15px;">
-    <strong>Message</strong><br />
-    <textarea class="messages" style="width: 300px;height:90px;"></textarea><br />
-    <a href="javascript:void(0);" class="btn btn-primary sendemail">Send Email</a> <img src="<?php echo $base_url;?>img/ajax-loader.gif" style="display: none;" id="img" />
-</div>
+
     <?php
 } else {echo"No Search Results";}
 ?>
