@@ -32,6 +32,7 @@
     <td><b>Cell Number</b><br/><input type="text" name="key_cell" class="" value="" style="width: 100px;" /></td>
     <td><b>Cellular Carrier</b><br />
     <select name="key_cellular" class="required">
+        <option value="">Others</option>
         <option value="Rogers">Rogers</option>
         <option value="Bell">Bell</option>
         <option value="Fido">Fido</option>

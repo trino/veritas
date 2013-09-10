@@ -1075,6 +1075,7 @@ class UploadsController extends AppController
         $name = $j['Job']['title'];
         
         $this->set('job_name',$name);
+        $this->render('document_edit');
     }
     
     public function view($id)

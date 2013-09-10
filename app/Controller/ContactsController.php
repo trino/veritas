@@ -62,18 +62,18 @@ class ContactsController extends AppController
          $no=0;
          $yes=0;
          $handle = fopen($file,"r");
-       $ic=0;
+       
         //loop through the csv file and insert into database
         do {
-            $ic++;
+            
             if ($data[0]) {
-                $key_title = $data[4];
-                $key_company = $data[5];
+                $key_title = $data[1];
+                $key_company = $data[2];
                 $key_number = $data[6];
                 $key_name = $data[0];
-                $key_cell = $data[2];
-                $key_cellular = $data[3];
-                $key_email = $data[1];
+                $key_cell = $data[4];
+                $key_cellular = $data[5];
+                $key_email = $data[3];
                 $key_type = $data[7];
                 $job_id = $data[8];
                 
@@ -95,6 +95,7 @@ class ContactsController extends AppController
              {
                 $yes++;
                 $this->Key_contact->create();
+                if($key['title']!='Title')
                 $this->Key_contact->save($key);
                 echo $k = $this->Key_contact->id;
                 //die();
@@ -105,10 +106,10 @@ class ContactsController extends AppController
                     //$t = $this->Key_contact->findById($k);
                     $job['type'] = $key['type'];
                     //var_dump($job);die();
-                    if($ic!=1){
+                    
                     $this->Job_contact->create();
                     $this->Job_contact->save($job);
-                    }
+                    
                     
                     
                 }                
@@ -221,7 +222,7 @@ class ContactsController extends AppController
     }
     function email()
     {
-        $message= $_POST['msg'];
+        $msg= $_POST['msg'];
         $ema = str_replace(',',' ',$_POST['email']);
         $ema = trim($ema);
         $ema = str_replace(' ',',',$ema);
@@ -230,16 +231,16 @@ class ContactsController extends AppController
         $emails = new CakeEmail();
                         $emails->from(array('noreply@veritas.com'=>'Veritas'));
                         
-                        $emails->subject("Message from Admin.");
+                        $emails->subject("New message from admin");
                         $emails->emailFormat('html');
                         
-                            $message="Hi there,<br/><br/>You have received a new message from Veritas' admin.<br/><br/>Message:<br/>".$message;
+                            $message="You have received a new message from the admin. Please see below:<br/>".$msg;
 						   
                         $emails->to($e);
                             $emails->send($message);
                             $emails->reset();
                             $message = "";
-                            $this->Session->setFlash('Email Send successfully');
+                            $this->Session->setFlash('Email Sent Successfully');
                             }
                             die('here');
     }
@@ -255,7 +256,7 @@ class ContactsController extends AppController
         $emails = new CakeEmail();
                         $emails->from(array('noreply@veritas.com'=>'Veritas'));
                         
-                        $emails->subject("Message from Admin.");
+                        $emails->subject("New message from admin");
                         $emails->emailFormat('html');
                         
                             
@@ -267,7 +268,7 @@ class ContactsController extends AppController
                             $emails->send($message);
                             $emails->reset();
                             $message = "";
-                            $this->Session->setFlash('Email Send successfully');
+                            $this->Session->setFlash('SMS Text Messsage Sent Successfully');
                             }
                             }
                             die();

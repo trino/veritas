@@ -3,13 +3,13 @@
 
 
 <h3 class="page-title">
-	Edit  Document
+	<?php echo ($this->request->parms['action']=='document_edit')? "Edit  Document":"Upload Document For ".stripslashes($job_name);?>
 </h3>
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
 		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>jobs">Edit Document</a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>jobs"><?php echo($this->request->params['action']=='document_edit')? "Edit":"Upload";?> Document</a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
 
@@ -143,9 +143,9 @@ function remove_youtube()
     }
 }
 </script>
+<?php //var_dump( $this->request->params['action']);?>
 
-
-<form id="my_form" action="" method="post" enctype="multipart/form-data">
+<form id="my_form" action="<?php echo ($this->request->params['action']=='document_edit')? $base_url.'uploads/document_edit':$base_url.'uploads/upload'?>" method="post" enctype="multipart/form-data">
 
 <div id="table">
 <table>
@@ -362,13 +362,17 @@ foreach($activity as $act)
 <td width="220px"><input type="text" value="<?php echo $time;?>" name="activity_time[]" class="activity_time required" /></td>
 <td width="350px"><textarea name="activity_desc[]" class="activity_desc"><?php echo $act['Activity']['desc'];?></textarea>  <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>
 </tr>
-<?php }?>
+<?php }
+else{
+?>
 
-<!--<tr>
-<td><input type="text" value="" name="activity_time[]" class="activity_time" /></td>
-<td><input type="text" value="" name="activity_date[]" class="activity_date" /></td>
-<td><textarea name="activity_desc[]"></textarea>  </td>
-</tr>-->
+<tr>
+<td width="220px"><input type="text" value="" name="activity_date[]" class="activity_date required" /></td>
+<td width="220px"><input type="text" value="" name="activity_time[]" class="activity_time required" /></td>
+
+<td width="350px"><textarea name="activity_desc[]" class="required activity_desc"></textarea></td>
+</tr>
+<?php }?>
 <tr><td colspan="3" style="padding: 0;"><table class="activity_more" style="">
 </table>
 </td></tr>
@@ -417,7 +421,7 @@ if($attach)
 <input type="hidden" name="image" id="image" value="1" />
 <input type="hidden" name="video" id="video" value="1" />
 <input type="hidden" name="youtube" id="youtube" value="1" />
-<input type="hidden" name="job" value="<?php echo $doc['Document']['job_id']; ?>" />
+<input type="hidden" name="job" value="<?php if($this->request->params['action']=='document_edit'){ if(isset($doc['Document']['job_id']))echo $doc['Document']['job_id'];}else echo $job_id; ?>" />
 <input type="hidden" class="draftval" name="draft" value="0" />
 <input type="hidden" name="emailadd" value="" class="emailadd" />
 <input type="hidden" name="emailadd2" value="" class="emailadd2" />
@@ -429,7 +433,13 @@ if($attach)
 <script>
 $(function(){
     $('.uploademail').click(function(){
+        <?php if($this->request->params['action']=='document_edit'){?>
          $('.dialog-modals').load('<?php echo $base_url.'uploads/email/'.$doc['Document']['job_id'];?>');
+         <?php }
+         else
+         {?>
+             $('.dialog-modals').load('<?php echo $base_url.'uploads/email/'.$job_id;?>');
+         <?php } ?>
                $('.dialog-modals').dialog({
                     
                     width: 400,
@@ -466,6 +476,18 @@ $(function(){
        $('.sbtbtn').click();
        
     });
+    //Add More acitvity---------added
+    var test=1;
+    var d = new Date;
+    var  mins ='';
+    if(d.getMinutes()<10)
+        mins = "0"+d.getMinutes();
+    else
+        mins = d.getMinutes();    
+    $('.activity_time').val(d.getHours()+':'+mins);
+    var da = d.getFullYear()+'-'+Number(d.getMonth()+1)+'-'+d.getDate();
+    $('.activity_date').val(da);
+    //-----------------------------------//
     var test=1;
      //Add More acitvity
     $('#activity_more').click(function(){
