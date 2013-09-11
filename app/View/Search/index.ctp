@@ -26,6 +26,8 @@ $(function(){
     }
     else
     {
+        if(isset($jobname))
+        echo $jobname.'/';
         echo ucfirst($type);
     }
     ?>
