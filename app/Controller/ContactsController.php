@@ -211,8 +211,18 @@ class ContactsController extends AppController
     function delete($id)
     {
         $this->loadModel('Key_contact');
-        if($this->Key_contact->delete($id))
+        if($this->Key_contact->delete($id)){
+            $this->loadModel('Job_contact');
+            $q = $this->Job_contact->find('all',array('conditions'=>array('job_id'=>$id)));
+            if($q)
+            {
+                foreach($q as $a)
+                {
+                    $this->Job_contact->delete($a['Job_contact']['id']);
+                }
+            }
             $this->Session->setFlash("Contact Successfully Deleted");
+            }
         else
             $this->Session->setFlash("Sorry Contact Couldnot Be Deleted.");           
             

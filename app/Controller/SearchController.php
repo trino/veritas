@@ -9,6 +9,7 @@ class SearchController extends AppController
 	  
 					
         //$this->set('base_url',$base_url);
+        
         $this->set('type',$type);
         $this->loadModel('Doc');
         $this->loadModel('Image');
@@ -20,6 +21,12 @@ class SearchController extends AppController
         $this->loadModel('Document');
         $this->loadModel('Member');
         $this->loadModel('Job');
+        if($job_id)
+        {
+            $j = $this->Job->find('first',array('conditions'=>array('id'=>$job_id)));
+            $this->set('jobname',$j['Job']['title']);
+            unset($j);
+        }
         $this->loadModel('Activity');
 
         if(!$this->Session->read('id'))

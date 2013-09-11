@@ -410,10 +410,12 @@ class JobsController extends AppController
         //var_dump($docs);
         foreach($docs as $d)
         {
-            $id = $d['Document']['id'];
-            $job_id = '-1';
-            $this->Document->id = $id;
-            $this->Document->saveField('job_id',$job_id);
+            $jid = $d['Document']['id'];
+            //$job_id = '-1';
+            //$this->Document->id = $id;
+            //$this->Document->saveField('job_id',$job_id);
+            $this->Document->delete($jid);
+            
             //die();
         }
         $q = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id'=>$id),array('job_id LIKE'=>$id.',%'),array('job_id LIKE'=>'%,'.$id),array('job_id LIKE'=>'%,'.$id.',%')))));
@@ -576,6 +578,7 @@ class JobsController extends AppController
         $this->set('keys', $this->Job_contact->find('all', array('conditions'=>array('job_id'=>$id),'order'=>'type')));
         $this->set('member',$this->Member->find('all'));
         $this->set('jobmember',$this->Jobmember->find('all'));
+        $this->set('jobb_id',$id);
     }
     
     public function view_doc($type,$id)
