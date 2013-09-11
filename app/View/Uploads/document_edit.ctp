@@ -1,9 +1,14 @@
-<?php include_once('inc.php');?>
+<?php include_once('inc.php');
+if(isset($job_name))
+    $job_n=$job_name;
+else
+    $job_n ="";
+?>
 
 
 
 <h3 class="page-title">
-	<?php echo ($this->request->parms['action']=='document_edit')? "Edit  Document":"Upload Document For ".stripslashes($job_name);?>
+	<?php echo ($this->request->parms['action']=='document_edit')? "Edit  Document":"Upload Document For ".stripslashes($job_n);?>
 </h3>
 <ul class="breadcrumb">
 	<li>
@@ -145,7 +150,7 @@ function remove_youtube()
 </script>
 <?php //var_dump( $this->request->params['action']);?>
 
-<form id="my_form" action="<?php echo ($this->request->params['action']=='document_edit')? $base_url.'uploads/document_edit':$base_url.'uploads/upload'?>" method="post" enctype="multipart/form-data">
+<form id="my_form" action="<?php  if($this->request->params['action']=='upload')echo $base_url.'uploads/upload'?>" method="post" enctype="multipart/form-data">
 
 <div id="table">
 <table>
@@ -461,7 +466,7 @@ $(function(){
             $('.uploademail').show();
         }
         else{
-            $('.uploademail').show();
+            $('.uploademail').hide();
             $('.incident_more').hide();
             }
     });
@@ -560,6 +565,7 @@ $(function(){
             $('.addmore').hide();
             $('.draftval').val("0");
             $('.main_desc').html("<strong>Description</strong>");
+            $('.uploademail').hide();
             }
         if(doctype == 'client_feedback')
         {

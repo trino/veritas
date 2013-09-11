@@ -242,9 +242,8 @@ class UploadsController extends AppController
         if($this->Session->read('user'))
         {
            if($this->Session->read('upload')!='1')
-           {
-            $this->redirect('/jobs');
-           } 
+                $this->redirect('/jobs');
+            
         }
         if($this->Session->read('user'))
         { 
@@ -253,31 +252,7 @@ class UploadsController extends AppController
                     $this->set('canupdate',$canupdate);
               
         }
-        /*
-        if($images = $this->Image->find('all',array('conditions'=>array('document_id'=>$eid))))
-        {
-            
-            foreach($images as $im)
-            {
-                 $attach['id'][]= $im['Image']['id'];
-                 $attach['file'][]= $im['Image']['image'];
-            }
-        }
         
-        if($docs = $this->Doc->find('all',array('conditions'=>array('document_id'=>$eid))))
-        foreach($docs as $im)
-        {
-              $attach['id'][]= $im['Doc']['id'];
-              $attach['file'][]= $im['Doc']['doc'];
-        }
-        
-        if($videos = $this->Video->find('all',array('conditions'=>array('document_id'=>$eid))))
-        foreach($videos as $im)
-        {
-              $attach['id'][] = $im['Video']['id'];
-              $attach['file'][] = $im['Video']['video'];
-        }
-        */
         if(isset($_POST['document_type']))
         {
             $uri = $_SERVER['REQUEST_URI'];
@@ -337,6 +312,7 @@ class UploadsController extends AppController
             
             elseif($_POST['document_type']=='report')
             {
+                //die('2');
                 //$arr['client_memo'] = $_POST['client_memo'];
                 $this->Activity->deleteAll(array('document_id'=>$eid));
                 $activity['document_id'] = $eid;
@@ -506,18 +482,7 @@ class UploadsController extends AppController
                 {
                     $this->Session->setFlash('Document Updated, but the file couldn\'t be saved due to unknown extension');
                 }
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
+        
             }
             }
             if(isset($_POST['emailadd']) && $_POST['emailadd'])
@@ -618,6 +583,7 @@ class UploadsController extends AppController
             $this->Session->setFlash('Data Saved Successfully.');
             $this->redirect('/dashboard');
         }
+        
         $doc = $this->Document->findById($eid);
         if($doc['Document']['document_type'] == 'report')
         {
@@ -634,6 +600,7 @@ class UploadsController extends AppController
         
 
     }
+    
     function upload($ids,$typee='')
     {
         $jj = $this->Job->find('first',array('conditions'=>array('id'=>$ids)));
