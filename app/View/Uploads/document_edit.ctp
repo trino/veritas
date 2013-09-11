@@ -6,7 +6,6 @@ else
 ?>
 
 
-
 <h3 class="page-title">
 	<?php echo ($this->request->parms['action']=='document_edit')? "Edit  Document":"Upload Document For ".stripslashes($job_n);?>
 </h3>
