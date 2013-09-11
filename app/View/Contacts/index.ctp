@@ -52,6 +52,7 @@ if($docs)
             <th><?php echo $this->Paginator->sort('name','Name');?></th>
             <th><?php echo $this->Paginator->sort('email','Email');?></th>
             <th><?php echo $this->Paginator->sort('type','Contact type');?></th>
+            <th>Cell number</th>
             <th>Cellular provider</th>
             <th>Email to</th>
             <!--<th><?php echo $this->Paginator->sort('job_id','Job');?></th>
@@ -114,6 +115,7 @@ if($docs)
             <td><?php echo $d['Key_contact']['name']; ?></td>
             <td><?php echo $d['Key_contact']['email']; ?></td>
             <td><?php echo $type[$d['Key_contact']['type']];?></td>
+            <td><?php echo $d['Key_contact']['cell']; ?></td>
             <td><?php echo $d['Key_contact']['cellular_provider']; ?></td>
             <td><input type="checkbox" value="<?php echo $d['Key_contact']['email'];?>" class="emails" /></td>
             <!--<td><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Key_contact']['job_id'])));if($get2)echo $get2['Job']['title']; ?></td>-->

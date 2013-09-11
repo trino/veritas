@@ -163,7 +163,8 @@ $or = '&order=';
             
             <?php if($this->Session->read('admin') || $this->Session->read('id')== $d['Document']['addedBy'] )
             { 
-                   if(($this->Session->read('admin') && $d['Document']['document_type']!='client_feedback')|| $this->Session->read('user')) {
+                   //if(($this->Session->read('admin') && $d['Document']['document_type']!='client_feedback')|| $this->Session->read('user')) {
+                   if(($this->Session->read('admin') && $d['Document']['document_type']!='client_feedback')) {
                      echo $this->Html->link('Edit','/uploads/document_edit/'.$d['Document']['id'],array('class'=>'btn btn-info'));
                   //  echo $this->Html->link('Delete','/uploads/delete/'.$d['Document']['id'],array('class'=>'btn btn-danger'),"Confirm Delete Document?");
 					}

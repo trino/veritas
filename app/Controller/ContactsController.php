@@ -117,10 +117,10 @@ class ContactsController extends AppController
             }
         } while ($data = fgetcsv($handle,1000,",","'"));
         if($no !=0 && $yes!=0)
-            $msg ="Contact succesfully Uploaded But Some Duplicate Record Found And Was Not Uploaded.";
+            $msg ="Contact Successfully Uploaded But Some Duplicate Record Found And Was Not Uploaded.";
         elseif($no==0&&$yes!=0)
         {
-            $msg ="Contact succesfully Uploaded";
+            $msg ="Contact Successfully Uploaded";
         }
         elseif($yes==0 && $no!=0)
         {
@@ -160,7 +160,7 @@ class ContactsController extends AppController
               //$key['job_id'] = $job_id;
               $this->Key_contact->create();
               $this->Key_contact->save($key);
-             $this->Session->setFlash('Contact succesfully Added.');
+             $this->Session->setFlash('Contact successfully Added.');
              $this->redirect('index'); 
                 
             
@@ -199,7 +199,7 @@ class ContactsController extends AppController
               {
                 $this->Key_contact->saveField($k,$v);
               }
-             $this->Session->setFlash('Contact succesfully edited.');
+             $this->Session->setFlash('Contact Successfully edited.');
              $this->redirect('index'); 
                 
             
