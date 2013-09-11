@@ -505,6 +505,8 @@ class UploadsController extends AppController
                         $base_url = $base_url.'/';
                         
                     }
+                    if(str_replace('http://','',$base_url)==$base_url)
+                    $base_url = 'http://'.$base_url;
                             $tosend = $_POST['emailadd'] ;
 							
 							
@@ -704,6 +706,8 @@ class UploadsController extends AppController
                         $base_url = $base_url.'/';
                         
                     }
+                    if(str_replace('http://','',$base_url)==$base_url)
+                    $base_url = 'http://'.$base_url;
                 
                 
                 

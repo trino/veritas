@@ -26,7 +26,7 @@ $(function(){
     }
     else
     {
-        echo ucfirst($type).'s';
+        echo ucfirst($type);
     }
     ?>
 </h3>
@@ -130,8 +130,8 @@ $or = '&order=';
             <td><?php if($d['Document']['addedBy'] != 0){$q = $member->find('first',array('conditions'=>array('id'=>$d['Document']['addedBy'])));if($q){if($this->Session->read('admin'))echo "<a href='".$base_url."members/view/".$q['Member']['id']."'>".$q['Member']['full_name']."</a>";else echo $q['Member']['full_name'];}}else echo "Admin";?></td>
             
             
-            <td><?php echo $d['Document']['date'];?></td>
-            <td><?php echo $d['Document']['incident_date'];?></td>
+            <td><?php if($d['Document']['date']!='0000-00-00')echo $d['Document']['date'];?></td>
+            <td><?php if($d['Document']['incident_date']!='0000-00-00')echo $d['Document']['incident_date'];?></td>
             <td>
             <?php 
             $q = $do->find('first',array('conditions'=>array('document_id'=>$d['Document']['id'])));
