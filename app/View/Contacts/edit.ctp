@@ -31,6 +31,7 @@
     <td><b>Title</b><br/><input type="text" name="key_title" class="" value="<?php echo $k['Key_contact']['title'];?>" style="width: 100px;" /></td>
     <td><b>Cell Number</b><br/><input type="text" name="key_cell" class="" value="<?php echo $k['Key_contact']['cell'];?>" style="width: 100px;" /></td>
     <td><b>Cellular Carrier</b><br />
+    <select name="key_cellular" class="required">
         <option value="">Others</option>
         <option value="Rogers" <?php if($k['Key_contact']['cellular_provider']=='Rogers')echo "selected='selected'";?>>Rogers</option>
         <option value="Bell" <?php if($k['Key_contact']['cellular_provider']=='Bell')echo "selected='selected'";?>>Bell</option>
