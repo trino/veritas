@@ -216,7 +216,7 @@ class JobsController extends AppController
                 
             }
                         
-            $this->Session->setFlash('Data Saved Successfully');
+            $this->Session->setFlash('Data Saved Successfully.');
             $this->redirect('index');
             
         }
@@ -391,7 +391,7 @@ class JobsController extends AppController
             }
             
              
-            $this->Session->setFlash('Data Saved Successfully');
+            $this->Session->setFlash('Data Saved Successfully.');
             $this->redirect('index'); 
         }
         $this->set('j',$this->Job->find('first',array('conditions'=>array('id'=>$id))));
@@ -458,7 +458,7 @@ class JobsController extends AppController
                 $this->Jobmember->saveField('job_id',$job_id);
             }
         }
-        $this->Session->setFlash('Data Deleted Successfully');
+        $this->Session->setFlash('Data Deleted Successfully.');
         $this->redirect('index');
     }
     public function listing()
