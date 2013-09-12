@@ -418,6 +418,16 @@ class JobsController extends AppController
             
             //die();
         }
+        $this->loadModel('Job_contact');
+        $q = $this->Job_contact->find('all',array('conditions'=>array('job_id'=>$id)));
+            if($q)
+            {
+                foreach($q as $a)
+                {
+                    $this->Job_contact->delete($a['Job_contact']['id']);
+                }
+            }
+            unset($q);
         $q = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id'=>$id),array('job_id LIKE'=>$id.',%'),array('job_id LIKE'=>'%,'.$id),array('job_id LIKE'=>'%,'.$id.',%')))));
         if($q)
         {
