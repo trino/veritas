@@ -26,7 +26,7 @@ if($this->Session->read('avatar'))
 			?>
             <?php
             $jobs = $jbs->find('all'); 
-            if($jobs){?><strong>Sort by Job</strong> : <select id="jobs"><option value="-1" <?php if($select == -1){?>selected="selected"<?php }?>>Select Job</option><option value="0" <?php if($select == 0){?>selected="selected"<?php }?>>No Job assigned</option><?php foreach($jobs as $js){?><option value="<?php echo $js['Job']['id'];?>" <?php if($select == $js['Job']['id']){?>selected="selected"<?php }?>><?php echo $js['Job']['title'];?></option><?php } ?></select><?php }?>
+            if($jobs){?><strong>Filter By</strong> : <select id="jobs"><option value="-1" <?php if($select == -1){?>selected="selected"<?php }?>>Select Job</option><option value="0" <?php if($select == 0){?>selected="selected"<?php }?>>No Job assigned</option><?php foreach($jobs as $js){?><option value="<?php echo $js['Job']['id'];?>" <?php if($select == $js['Job']['id']){?>selected="selected"<?php }?>><?php echo $js['Job']['title'];?></option><?php } ?></select><?php }?>
             <?php
              
    }
@@ -52,9 +52,9 @@ if($docs)
             <th><?php echo $this->Paginator->sort('name','Name');?></th>
             <th><?php echo $this->Paginator->sort('email','Email');?></th>
             <th><?php echo $this->Paginator->sort('type','Contact type');?></th>
-            <th>Cell number</th>
-            <th>Cellular provider</th>
-            <th>Email to</th>
+            <th>Cell Number</th>
+            <th>Cell Carrier</th>
+            <th>Email To</th>
             <!--<th><?php echo $this->Paginator->sort('job_id','Job');?></th>
             <th><?php echo $this->Paginator->sort('phone','Phone');?></th>
             <th><?php echo $this->Paginator->sort('company','Company');?></th>-->
@@ -126,11 +126,15 @@ if($docs)
                     array('class'=>'btn btn-danger'),"Are you sure deleting this Contact?"
 				)." ";?></td>
             <?php if($cc==1){?>    
-            <td rowspan="<?php echo count($docs);?>"><textarea class="messages" style="height: 300px;width:94%;"></textarea>
+            <td rowspan="<?php echo count($docs);?>">
+			Select recipients before sending message. Checkbox to the left.<br><br>
+			<textarea class="messages" style="height: 300px;width:94%;"></textarea>
             <br />
             <br />
             <a href="javascript:void(0);" class="btn btn-primary sendemail">Send Email</a> <a href="javascript:void(0);" class="btn btn-primary sendtxt">Send Text Message</a>
-            <br /><br />
+            
+			
+			<br /><br />
             <img src="<?php echo $base_url;?>img/ajax-loader.gif" style="display: none;" id="img" />
             
             

@@ -32,19 +32,20 @@
     <td><b>Cell Number</b><br/><input type="text" name="key_cell" class="" value="" style="width: 100px;" /></td>
     <td><b>Cellular Carrier</b><br />
     <select name="key_cellular" class="required">
-        <option value="">Others</option>
-        <option value="Rogers">Rogers</option>
+        <option value="">Other</option>
+        <option value="AT&T">AT&T</option>
+        <option value="Boost Mobile">Boost Mobile</option>
+        <option value="Sprint">Sprint</option>
+        <option value="T-Mobile">T-Mobile</option>
+        <option value="US Cellular">US Cellular</option>
+        <option value="Verizon">Verizon</option>
+        <option value="Virgin Mobile">Virgin Mobile</option>
         <option value="Bell">Bell</option>
         <option value="Fido">Fido</option>
-        <option value="Telus Mobility">Telus Mobility</option>
         <option value="Koodo Mobile">Koodo Mobile</option>
+        <option value="Rogers">Rogers</option>
+        <option value="Telus Mobility">Telus Mobility</option>
         <option value="Wind Mobile">Wind Mobile</option>
-        <option value="Lynx Mobility">Lynx Mobility</option>
-        <option value="MTS Mobility">MTS Mobility</option>
-        <option value="PC Telecom">PC Telecom</option>
-        <option value="Aliant">Aliant</option>
-        <option value="SaskTel">SaskTel</option>
-        <option value="Virgin Mobile">Virgin Mobile</option>
     </select>
     </td>
     <td><b>Phone Number</b><br/><input type="text" name="key_number" class="" value="" style="width: 100px;" /></td>
