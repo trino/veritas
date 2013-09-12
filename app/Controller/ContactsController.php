@@ -117,7 +117,7 @@ class ContactsController extends AppController
             }
         } while ($data = fgetcsv($handle,1000,",","'"));
         if($no !=0 && $yes!=0)
-            $msg ="Succes! But there were duplicates, they were not uploaded.";
+            $msg ="Success! But there were duplicates, they were not uploaded.";
         elseif($no==0&&$yes!=0)
         {
             $msg ="Contact successfully uploaded.";
@@ -244,7 +244,7 @@ class ContactsController extends AppController
                         $emails->subject("Veritas - New Message");
                         $emails->emailFormat('html');
                         
-                            $message="You have received a new message from Veritas. Please see below:<br/>".$msg;
+                            $message="You have received a new message from Veritas. Please see below:<br/><br/>".$msg;
 						   
                         $emails->to($e);
                             $emails->send($message);
@@ -264,7 +264,7 @@ class ContactsController extends AppController
         $email = explode(',',$ema);
         foreach($email as $e){
         $emails = new CakeEmail();
-                        $emails->from(array('noreply@veritas.com'=>'Veritas'));
+                        $emails->from(array('reply@veritas.com'=>'Veritas'));
                         
                         $emails->subject("Veritas - Message");
                         $emails->emailFormat('html');
@@ -282,7 +282,7 @@ class ContactsController extends AppController
                             }
 							else
 							{
-							                            $this->Session->setFlash('Failed to send SMS Text Message.');
+							    $this->Session->setFlash('Failed to send SMS Text Message. Could not locate carrier');
 
 							}
                             }
@@ -290,44 +290,85 @@ class ContactsController extends AppController
     }
     function generate_carrier($c)
     {
-        if(strtolower($c)=='vmobile')
-        return '@vmobile.ca';
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        if(strtolower($c)=='at&t')
+        return '@txt.att.net';
         else
-        if(strtolower($c)=='rogers')
-        return '@pcs.rogers.com';
+        if(strtolower($c)=='boost mobile')
+        return '@myboostmobile.com';
         else
-        if(strtolower($c)=='sasktel')
-        return '@sms.sasktel.com';
+        if(strtolower($c)=='sprint')
+        return '@messaging.sprintpcs.com';
         else
-        if(strtolower($c)=='aliant')
-        return '@sms.wirefree.informe.ca';
+        if(strtolower($c)=='t-mobile')
+        return '@tmomail.net';
         else
-        if(strtolower($c)=='pc telecom')
-        return '@mobiletxt.ca';
+        if(strtolower($c)=='us cellular')
+        return '@email.uscc.net';
         else
-        if(strtolower($c)=='mts mobility')
-        return '@text.mtsmobility.com';
+        if(strtolower($c)=='verizon')
+        return '@vtext.com';
         else
-        if(strtolower($c)=='lynx mobility')
-        return '@sms.lynxmobility.com';
+        if(strtolower($c)=='virgin mobile')
+        return '@vmobl.com';
         else
-        if(strtolower($c)=='wind mobile')
-        return '@txt.windmobile.ca';
-        else
-        if(strtolower($c)=='vmobile')
-        return '@vmobile.ca';
-        else
-        if(strtolower($c)=='koodo mobile')
-        return '@msg.telus.com';
-        else
-        if(strtolower($c)=='telus mobility')
-        return '@msg.telus.com';
+        if(strtolower($c)=='bell')
+        return '@txt.bell.ca';
         else
         if(strtolower($c)=='fido')
         return '@sms.fido.ca';
         else
-        if(strtolower($c)=='bell')
-        return '@txt.bell.ca';
+        if(strtolower($c)=='koodo mobile')
+        return '@msg.telus.com';
+        else
+        if(strtolower($c)=='rogers')
+        return '@pcs.rogers.com';
+        else
+        if(strtolower($c)=='telus mobility')
+        return '@msg.telus.com';
+		else
+        if(strtolower($c)=='wind mobile')
+        return '@txt.windmobile.ca';
         else
         return '';
         
