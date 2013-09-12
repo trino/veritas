@@ -213,7 +213,7 @@ class ContactsController extends AppController
         $this->loadModel('Key_contact');
         if($this->Key_contact->delete($id)){
             $this->loadModel('Job_contact');
-            $q = $this->Job_contact->find('all',array('conditions'=>array('job_id'=>$id)));
+            $q = $this->Job_contact->find('all',array('conditions'=>array('key_id'=>$id)));
             if($q)
             {
                 foreach($q as $a)
