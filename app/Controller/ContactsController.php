@@ -5,6 +5,7 @@ class ContactsController extends AppController
     var $components = array('Email');
     public function index($jid=-1)
     {
+        //die($jid);
         //die('here');
         $this->set('select',$jid);
         $this->loadModel('Key_contact');
@@ -20,9 +21,9 @@ class ContactsController extends AppController
             $this->paginate = array('order'=>array('job_id'),'limit'=>10);
             else
             if($jid==0)
-            $this->paginate = array('conditions'=>'id NOT IN (SELECT key_id FROM job_contacts)','order'=>array('job_id'),'limit'=>10);
+            $this->paginate = array('conditions'=>array('id NOT IN (SELECT key_id FROM job_contacts)'),'order'=>array('job_id'),'limit'=>10);
             else
-            $this->paginate = array('conditions'=>'id IN (SELECT key_id FROM job_contacts WHERE job_id = '.$jid.')','order'=>array('job_id'),'limit'=>10);
+            $this->paginate = array('conditions'=>array('id IN (SELECT key_id FROM job_contacts WHERE job_id = '.$jid.')'),'order'=>array('job_id'),'limit'=>10);
             $docs = $this->paginate('Key_contact');
             //$docs = $this->Document->find('all',array('conditions'=>array('title LIKE'=>'%'.$search.'%')));
         }
@@ -99,7 +100,7 @@ class ContactsController extends AppController
                 $this->Key_contact->save($key);
                 echo $k = $this->Key_contact->id;
                 //die();
-                if($job_id!="" || $job_id!='0')
+                if($job_id!="" && $job_id!='0')
                 {
                     $job['job_id'] = $job_id;
                     $job['key_id'] = $k;
