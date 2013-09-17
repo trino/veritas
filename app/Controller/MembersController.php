@@ -204,7 +204,7 @@ class MembersController extends AppController
             $arr['address'] = $_POST['address'];
             $arr['email'] = $_POST['email'];
             $arr['phone'] = $_POST['phone'];
-            $arr['password'] = $_POST['password'];
+            $arr['password'] = md5($_POST['password']);
             $arr['image'] = $img;
             if(isset($_POST['canView']))
             {
@@ -576,7 +576,7 @@ class MembersController extends AppController
             $this->Member->saveField('image',$img);
             $this->Member->saveField('email',$_POST['email']);
             $this->Member->saveField('phone',$_POST['phone']);
-            $this->Member->saveField('password',$_POST['password']);
+            $this->Member->saveField('password',md5($_POST['password']));
             if(isset($_POST['canView']))
             {
                 $this->Member->saveField('canView', 1);
@@ -845,5 +845,24 @@ class MembersController extends AppController
              echo "0";
         }
         die();
+    }
+    function encrypt()
+    {
+        $q = $this->Member->find('all');
+        foreach($q as $a)
+        {
+            $p = $a['Member']['password'];
+            $this->Member->id = $a['Member']['id'];
+            $this->Member->saveField('password',md5($p));
+        }
+        unset($q);
+        $this->loadModel('User');
+        $q = $this->User->find('all');
+        foreach($q as $a)
+        {
+            $p = $a['User']['password'];
+            $this->User->id = $a['User']['id'];
+            $this->User->saveField('password',md5($p));
+        }
     }
 }

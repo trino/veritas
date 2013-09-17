@@ -2,5 +2,7 @@
    RewriteEngine on
    RewriteRule    ^$ app/webroot/    [L]
    RewriteRule    (.*) app/webroot/$1 [L]
+   RewriteCond %{HTTP_HOST} ^bigcitymovers\.ca [NC]
+RewriteRule ^(.*)$ http://www.bigcitymovers.ca/$1 [L,R=301]
    
 </IfModule>

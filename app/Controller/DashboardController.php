@@ -406,7 +406,7 @@ class DashboardController extends AppController
             }
             if($_POST['old_password'])
             {
-                $ch2 = $this->check_password($_POST['old_password']);
+                $ch2 = $this->check_password(md5($_POST['old_password']));
                 if(!$ch2)
                 {
                     $this->Session->setFlash('Old Password Does Not Match!');
@@ -506,7 +506,7 @@ class DashboardController extends AppController
                 $this->User->saveField('name_avatar',$_POST['name']);
                 $this->User->saveField('email',$_POST['email']);
                 if($_POST['password'] != '')
-                $this->User->saveField('password',$_POST['password']);
+                $this->User->saveField('password',md5($_POST['password']));
                 $this->User->saveField('picture',$img);
               }
               else
@@ -562,7 +562,7 @@ class DashboardController extends AppController
                     $this->Emailupload->save($emailupload);
                 }
                 if($_POST['password']!='')
-                $this->Member->saveField('password',$_POST['password']);
+                $this->Member->saveField('password',md5($_POST['password']));
                 $this->Member->saveField('address', $_POST['address']);
                 $this->Member->saveField('phone',$_POST['phone']);
                 $this->Member->saveField('image',$img);
