@@ -597,6 +597,7 @@ Import fonts
 #table table tr:last-child{ border-bottom: none;}
 #table table tr:hover{ background: #f5f5f5;}
 #table table input, table textarea{ margin-bottom: 0;}
+.table .table td{font-size:11px!important;}
 
 
 #flashMessage{

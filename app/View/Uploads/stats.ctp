@@ -1,3 +1,4 @@
+<h3 class="page-title">Upload Report</h3>
 <?php
  $contract = '0';
  $template = '0';
@@ -67,20 +68,19 @@
     }
     unset($v);
 ?>
-Contracts (<?php echo $contract;?> uploads)<br />
-<br />
-Evidence (<?php echo $evidence;?> uploads)<br />
--Incident Report (<?php echo $Incident;?> uploads)<br />
--Line Crossing Sheet (<?php echo $Line;?> uploads)<br />
--Shift Summary (<?php echo $Shift;?> uploads)<br />
--Incident Video (<?php echo $Video;?> uploads)<br />
--Executive Summary (<?php echo $Executive;?> uploads)<br />
--Average Picket Count (<?php echo $Average;?> uploads)<br />
--Victim Statement (<?php echo $Victim;?> uploads)<br />
--Miscellaneous (<?php echo $Miscellaneous;?> uploads)<br />
- <br />
-Templates(<?php echo $template;?> uploads)<br />
-<br />
+<table class="table">
+<tr><th>Contracts</th><th><?php echo $contract;?> uploads</th></tr>
+<tr><th>Evidence</th><th><?php echo $evidence;?> uploads</th></tr>
+<tr><td>Incident Report</td><td><?php echo $Incident;?> uploads</td></tr>
+<tr><td>Line Crossing Sheet</td><td><?php echo $Line;?> uploads</td></tr>
+<tr><td>Shift Summary</td><td><?php echo $Shift;?> uploads</td></tr>
+<tr><td>Incident Video</td><td><?php echo $Video;?> uploads</td></tr>
+<tr><td>Executive Summary</td><td><?php echo $Executive;?> uploads</td></tr>
+<tr><td>Average Picket Count</td><td><?php echo $Average;?> uploads</td></tr>
+<tr><td>Victim Statement</td><td><?php echo $Victim;?> uploads</td></tr>
+<tr><td>Miscellaneous</td><td><?php echo $Miscellaneous;?> uploads</td></tr>
+<tr><th>Templates</th><th><?php echo $template;?> uploads</th></tr>
+
 <?php
 $Activity = 0;
 $Inspection = 0;
@@ -162,30 +162,36 @@ foreach($inc as $v)
 unset($v);
 ?>
 
-Report(<?php echo $report;?> uploads)<br />
--Activity Log(<?php echo $Activity;?> uploads)<br />
--Mobile Inspection(<?php echo $Inspection;?> uploads)<br />
--Mobile Security(<?php echo $Security;?> uploads)<br />
--Security Occurance(<?php echo $Occurance;?> uploads)<br />
--Sign-off Sheets(<?php echo $report;?> uploads)<br />
--Incident Report(<?php echo $Sheets;?> uploads)<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Alarm Activation(<?php echo $a_a;?> uploads)<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Burglary(<?php echo $b;?> uploads)<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Property Damage(<?php echo $p_d;?> uploads)<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Miscellaneous(<?php echo $m;?> uploads)<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Shoplift Loss(<?php echo $s_l;?> uploads)<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Disorderly Person(<?php echo $d_p;?> uploads)<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Accident - Employee(<?php echo $a_e;?> uploads)<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Shoplift Apprehension(<?php echo $s_a;?> uploads)<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Fraud Apprehension(<?php echo $f_a;?> uploads)<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Accident - Customer(<?php echo $a_c;?> uploads)<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Shoplift Recovery(<?php echo $s_r;?> uploads)<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Fraud Recovery(<?php echo $f_r;?> uploads)<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Non-Productive Stop(<?php echo $n_p_s;?> uploads)<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Suspicion Internal Theft(<?php echo $s_i_t;?> uploads)<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Fraud Loss(<?php echo $f_l;?> uploads)<br />
- <br />
-Site orders(<?php echo $siteOrder;?> uploads)<br />
+<tr><th>Report</th><th><?php echo $report;?> uploads</th></tr>
+<tr><td>Activity Log</td><td><?php echo $Activity;?> uploads</td></tr>
+<tr><td>Mobile Inspection</td><td><?php echo $Inspection;?> uploads</td></tr>
+<tr><td>Mobile Security</td><td><?php echo $Security;?> uploads</td></tr>
+<tr><td>Security Occurance</td><td><?php echo $Occurance;?> uploads</td></tr>
+<tr><td>Sign-off Sheets</td><td><?php echo $report;?> uploads</td></tr>
+<tr><td>Incident Report</td><td><?php echo $Sheets;?> uploads</td></tr>
+<tr>
+<td colspan="2"  style="padding-left: 25px;">
+<table class="table">
+<tr><td style="border-top: none;">Alarm Activation</td><td style="border-top: none;"><?php echo $a_a;?> uploads</td></tr>
+<tr><td>Burglary</td><td><?php echo $b;?> uploads</td></tr>
+<tr><td>Property Damage</td><td><?php echo $p_d;?> uploads</td></tr>
+<tr><td>Miscellaneous</td><td><?php echo $m;?> uploads</td></tr>
+<tr><td>Shoplift Loss</td><td><?php echo $s_l;?> uploads</td></tr>
+<tr><td>Disorderly Person</td><td><?php echo $d_p;?> uploads</td></tr>
+<tr><td>Accident - Employee</td><td><?php echo $a_e;?> uploads</td></tr>
+<tr><td>Shoplift Apprehension</td><td><?php echo $s_a;?> uploads</td></tr>
+<tr><td>Fraud Apprehension</td><td><?php echo $f_a;?> uploads</td></tr>
+<tr><td>Accident - Customer</td><td><?php echo $a_c;?> uploads</td></tr>
+<tr><td>Shoplift Recovery</td><td><?php echo $s_r;?> uploads</td></tr>
+<tr><td>Fraud Recovery</td><td><?php echo $f_r;?> uploads</td></tr>
+<tr><td>Non-Productive Stop</td><td><?php echo $n_p_s;?> uploads</td></tr>
+<tr><td>Suspicion Internal Theft</td><td><?php echo $s_i_t;?> uploads</td></tr>
+<tr><td>Fraud Loss</td><td><?php echo $f_l;?> uploads</td></tr>
+</table>
+</td>
+</tr>
+ 
+<tr><th>Site orders</th><th><?php echo $siteOrder;?> uploads</th></tr>
 <?php
 $Post = 0;
 $Operational = 0;
@@ -208,13 +214,14 @@ $ste = $doc->query("SELECT COUNT(*) as cnt, site_type FROM documents WHERE site_
     unset($v);
 ?>
 
--Post Orders(<?php echo $Post;?> uploads)<br />
--Operational Memos(<?php echo $Operational;?> uploads)<br />
--Site Maps(<?php echo $Site_maps;?> uploads)<br />
--Forms(<?php echo $Forms;?> uploads)<br />
-<br />
 
-Training(<?php echo $training;?> uploads)<br />
+<tr><td>Post Orders</td><td><?php echo $Post;?> uploads</td></tr>
+<tr><td>Operational Memos</td><td><?php echo $Operational;?> uploads</td></tr>
+<tr><td>Site Maps</td><td><?php echo $Site_maps;?> uploads</td></tr>
+<tr><td>Forms</td><td><?php echo $Forms;?> uploads</td></tr>
+
+
+<tr><th>Training</th><th><?php echo $training;?> uploads</th></tr>
 <?php
 $health =0;
 $tra = $doc->query("SELECT COUNT(*) as cnt, training_type FROM documents WHERE training_type <>' ' GROUP BY training_type");
@@ -228,9 +235,9 @@ $tra = $doc->query("SELECT COUNT(*) as cnt, training_type FROM documents WHERE t
     }
     unset($v);
 ?>
--Health & Safety Manuals(<?php echo $health;?> uploads)<br />
-<br />
-Employee(<?php echo $employee;?> uploads)<br />
+
+<tr><th>Health & Safety Manuals</th><th><?php echo $health;?> uploads</th></tr>
+<tr><th>Employee</th><th><?php echo $employee;?> uploads</th></tr>
 <?php
 $j_d = 0;
 $d_f_p = 0;
@@ -249,8 +256,9 @@ $emp = $doc->query("SELECT COUNT(*) as cnt, employee_type FROM documents WHERE e
     }
     unset($v);
 ?>
--Job Descriptions(<?php echo $j_d;?> uploads)<br />
--Drug Free Policy(<?php echo $d_f_p;?> uploads)<br />
--Schedules(<?php echo $Schedules;?> uploads)<br />
-<br />
-KPI Audits(<?php echo $KPIAudits;?> uploads)<br />
+<tr><th>Job Descriptions</th><th><?php echo $j_d;?> uploads</th></tr>
+<tr><th>Drug Free Policy</th><th><?php echo $d_f_p;?> uploads</th></tr>
+<tr><th>Schedules</th><th><?php echo $Schedules;?> uploads</th></tr>
+
+<tr><th>KPI Audits</th><th><?php echo $KPIAudits;?> uploads</th></tr>
+</table>
