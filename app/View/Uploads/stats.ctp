@@ -1,4 +1,9 @@
 <h3 class="page-title">Analytics Report</h3>
+<form action="" method="post" id="datefilter">
+    <input type="text" value="" name="from" placeholder="Start Date" style="width: 100px; margin-top:10px;" class="datepicker required" />
+    <input type="text" value="" name="to" placeholder="End Date" style="width: 100px; margin-top: 10px;" class="datepicker required" />
+    <input type="submit" value="Go" class="btn btn-primary" />
+</form>
 <?php
  $contract = '0';
  $template = '0';
@@ -44,8 +49,15 @@
     $Average = 0;
     $Victim = 0;
     $Miscellaneous = 0;
-          
-    $evi = $doc->query("SELECT COUNT(*) as cnt, evidence_type FROM documents WHERE evidence_type <>' ' GROUP BY evidence_type");
+    
+    if(isset($from)&& isset($to))
+       $evi = $doc->query("SELECT COUNT(*) as cnt, evidence_type FROM documents WHERE `date`>='$from' and `date`<='$to' and evidence_type <>' ' GROUP BY evidence_type");   
+    elseif(isset($from))
+        $evi = $doc->query("SELECT COUNT(*) as cnt, evidence_type FROM documents WHERE `date`>='$from' and evidence_type <>' ' GROUP BY evidence_type");
+    elseif(isset($to))
+        $evi = $doc->query("SELECT COUNT(*) as cnt, evidence_type FROM documents WHERE `date`<='$to' and evidence_type <>' ' GROUP BY evidence_type");
+    else
+        $evi = $doc->query("SELECT COUNT(*) as cnt, evidence_type FROM documents WHERE evidence_type <>' ' GROUP BY evidence_type");
     foreach($evi as $v)
     {
          if( $v['documents']['evidence_type']=='Incident Report')
@@ -88,7 +100,14 @@ $Security = 0;
 $Occurance = 0;
 $incident_report = 0;
 $Sheets = 0;
-$rep = $report_type->query("SELECT COUNT(*) as cnt, report_type FROM activities GROUP BY report_type");
+if(isset($from) && isset($to))
+    $rep = $report_type->query("SELECT COUNT(*) as cnt, report_type FROM activities WHERE `date` >='$from' and `date`<='$to' GROUP BY report_type");    
+elseif(isset($from))
+    $rep = $report_type->query("SELECT COUNT(*) as cnt, report_type FROM activities WHERE `date` >='$from' GROUP BY report_type");
+elseif(isset($to))
+    $rep = $report_type->query("SELECT COUNT(*) as cnt, report_type FROM activities WHERE `date`<='$to' GROUP BY report_type");
+else
+    $rep = $report_type->query("SELECT COUNT(*) as cnt, report_type FROM activities GROUP BY report_type");
 
 foreach($rep as $v)
 {
@@ -124,7 +143,15 @@ $f_r = 0;
 $n_p_s = 0;
 $s_i_t = 0;
 
-$inc = $report_type->query("SELECT COUNT(*) as cnt, incident_type FROM activities WHERE incident_type <> ' ' GROUP BY incident_type");
+if(isset($from)&& isset($to))
+       $inc = $report_type->query("SELECT COUNT(*) as cnt, incident_type FROM activities WHERE `date`>='$from' and `date`<='$to' and incident_type <>' ' GROUP BY incident_type");   
+    elseif(isset($from))
+        $inc = $report_type->query("SELECT COUNT(*) as cnt, incident_type FROM activities WHERE `date`>='$from' and incident_type <>' ' GROUP BY incident_type");
+    elseif(isset($to))
+        $inc = $report_type->query("SELECT COUNT(*) as cnt, incident_type FROM activities WHERE `date`<='$to' and incident_type <>' ' GROUP BY incident_type");
+    else
+        $inc = $report_type->query("SELECT COUNT(*) as cnt, incident_type FROM activities WHERE incident_type <>' ' GROUP BY incident_type");
+//$inc = $report_type->query("SELECT COUNT(*) as cnt, incident_type FROM activities WHERE incident_type <> ' ' GROUP BY incident_type");
 foreach($inc as $v)
 {
      if( $v['activities']['incident_type']=='Alarm Activation')
@@ -197,7 +224,15 @@ $Post = 0;
 $Operational = 0;
 $Site_maps = 0;
 $Forms = 0;
-$ste = $doc->query("SELECT COUNT(*) as cnt, site_type FROM documents WHERE site_type <>' ' GROUP BY site_type");
+ if(isset($from)&& isset($to))
+       $ste = $doc->query("SELECT COUNT(*) as cnt, site_type FROM documents WHERE `date`>='$from' and `date`<='$to' and site_type <>' ' GROUP BY site_type");   
+    elseif(isset($from))
+        $ste = $doc->query("SELECT COUNT(*) as cnt, site_type FROM documents WHERE `date`>='$from' and site_type <>' ' GROUP BY site_type");
+    elseif(isset($to))
+        $ste = $doc->query("SELECT COUNT(*) as cnt, site_type FROM documents WHERE `date`<='$to' and site_type <>' ' GROUP BY site_type");
+    else
+        $ste = $doc->query("SELECT COUNT(*) as cnt, site_type FROM documents WHERE site_type <>' ' GROUP BY site_type");
+//$ste = $doc->query("SELECT COUNT(*) as cnt, site_type FROM documents WHERE site_type <>' ' GROUP BY site_type");
     foreach($ste as $v)
     {
          if( $v['documents']['site_type']=='Post Orders')
@@ -224,7 +259,15 @@ $ste = $doc->query("SELECT COUNT(*) as cnt, site_type FROM documents WHERE site_
 <tr><th>Training</th><th><?php echo $training;?> uploads</th></tr>
 <?php
 $health =0;
-$tra = $doc->query("SELECT COUNT(*) as cnt, training_type FROM documents WHERE training_type <>' ' GROUP BY training_type");
+ if(isset($from)&& isset($to))
+       $tra = $doc->query("SELECT COUNT(*) as cnt, training_type FROM documents WHERE `date`>='$from' and `date`<='$to' and training_type <>' ' GROUP BY training_type");   
+    elseif(isset($from))
+        $tra = $doc->query("SELECT COUNT(*) as cnt, training_type FROM documents WHERE `date`>='$from' and training_type <>' ' GROUP BY training_type");
+    elseif(isset($to))
+        $tra = $doc->query("SELECT COUNT(*) as cnt, training_type FROM documents WHERE `date`<='$to' and training_type <>' ' GROUP BY training_type");
+    else
+        $tra = $doc->query("SELECT COUNT(*) as cnt, training_type FROM documents WHERE training_type <>' ' GROUP BY training_type");
+//$tra = $doc->query("SELECT COUNT(*) as cnt, training_type FROM documents WHERE training_type <>' ' GROUP BY training_type");
     foreach($tra as $v)
     {
          if( $v['documents']['training_type']=='Health & Safety Manuals')
@@ -242,7 +285,15 @@ $tra = $doc->query("SELECT COUNT(*) as cnt, training_type FROM documents WHERE t
 $j_d = 0;
 $d_f_p = 0;
 $Schedules = 0;
-$emp = $doc->query("SELECT COUNT(*) as cnt, employee_type FROM documents WHERE employee_type <>' ' GROUP BY employee_type");
+if(isset($from)&& isset($to))
+       $emp = $doc->query("SELECT COUNT(*) as cnt, employee_type FROM documents WHERE `date`>='$from' and `date`<='$to' and employee_type <>' ' GROUP BY employee_type");   
+    elseif(isset($from))
+        $emp = $doc->query("SELECT COUNT(*) as cnt, employee_type FROM documents WHERE `date`>='$from' and employee_type <>' ' GROUP BY employee_type");
+    elseif(isset($to))
+        $emp = $doc->query("SELECT COUNT(*) as cnt, employee_type FROM documents WHERE `date`<='$to' and employee_type <>' ' GROUP BY employee_type");
+    else
+        $emp = $doc->query("SELECT COUNT(*) as cnt, employee_type FROM documents WHERE employee_type <>' ' GROUP BY employee_type");
+//$emp = $doc->query("SELECT COUNT(*) as cnt, employee_type FROM documents WHERE employee_type <>' ' GROUP BY employee_type");
     foreach($emp as $v)
     {
          if( $v['documents']['employee_type']=='Job Descriptions')

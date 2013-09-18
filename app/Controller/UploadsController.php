@@ -52,7 +52,29 @@ class UploadsController extends AppController
     
     function stats()
     {
-        $all = $this->Document->query("SELECT COUNT(*) as cnt, document_type FROM documents GROUP BY document_type");
+        if(isset($_POST['from']) && isset($_POST['to']) && $_POST['from']!="" && $_POST['to']!="")
+        {
+            $from = $_POST['from'];
+            $to = $_POST['to'];
+            $all = $this->Document->query("SELECT COUNT(*) as cnt, document_type FROM documents WHERE `date`>='$from' and `date`<='$to' GROUP BY document_type");
+            $this->set('from',$_POST['from']);
+            $this->set('to', $_POST['to']);
+        }
+        elseif(isset($_POST['from'])&& $_POST['from']!="")
+        {    
+            $from = $_POST['from'];
+            $all = $this->Document->query("SELECT COUNT(*) as cnt, document_type FROM documents WHERE `date`>='$from'  GROUP BY document_type");
+            $this->set('from',$_POST['from']);
+            
+        }
+        elseif(isset($_POST['to']) && $_POST['to']!="")
+        {
+            $to = $_POST['to'];
+            $all = $this->Document->query("SELECT COUNT(*) as cnt, document_type FROM documents WHERE `date`<='$to' GROUP BY document_type");
+            $this->set('to', $_POST['to']);
+        }
+        else
+            $all = $this->Document->query("SELECT COUNT(*) as cnt, document_type FROM documents GROUP BY document_type");
         $report_type = $this->Activity;
         $doc = $this->Document;
         $this->set('report_type',$report_type);
