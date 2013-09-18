@@ -1,4 +1,4 @@
-<h3 class="page-title">Upload Report</h3>
+<h3 class="page-title">Analytics Report</h3>
 <?php
  $contract = '0';
  $template = '0';

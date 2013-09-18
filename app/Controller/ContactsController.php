@@ -3,11 +3,12 @@ class ContactsController extends AppController
 {
     public $name = 'contacts';
     var $components = array('Email');
-    public function index($jid=-1)
+    public function index($jid=-1,$type=-1)
     {
         //die($jid);
         //die('here');
         $this->set('select',$jid);
+        $this->set('type',$type);
         $this->loadModel('Key_contact');
         $this->loadModel('Member');
         $this->loadModel('Job');
@@ -17,13 +18,27 @@ class ContactsController extends AppController
     
         if($this->Session->read('avatar'))
         {
-            if($jid==-1)
+            if($jid==-1 && $type==-1)
             $this->paginate = array('order'=>array('job_id'),'limit'=>10);
             else
-            if($jid==0)
-            $this->paginate = array('conditions'=>array('id NOT IN (SELECT key_id FROM job_contacts)'),'order'=>array('job_id'),'limit'=>10);
+            if($jid!=-1 && $type==-1)
+            {
+                if($jid==0)
+                $this->paginate = array('conditions'=>array('id NOT IN (SELECT key_id FROM job_contacts)'),'order'=>array('job_id'),'limit'=>10);
+                else
+                $this->paginate = array('conditions'=>array('id IN (SELECT key_id FROM job_contacts WHERE job_id = '.$jid.')'),'order'=>array('job_id'),'limit'=>10);
+            }
             else
-            $this->paginate = array('conditions'=>array('id IN (SELECT key_id FROM job_contacts WHERE job_id = '.$jid.')'),'order'=>array('job_id'),'limit'=>10);
+            if($type!=-1 && $jid==-1)
+                {
+                    $this->paginate = array('conditions'=>array('type'=>$type),'order'=>array('job_id'),'limit'=>10);
+                }
+                else
+                if($jid == 0)
+                $this->paginate = array('conditions'=>array('id NOT IN (SELECT key_id FROM job_contacts)','type'=>$type),'order'=>array('job_id'),'limit'=>10);
+                else
+                $this->paginate = array('conditions'=>array('id IN (SELECT key_id FROM job_contacts WHERE job_id = '.$jid.')','type'=>$type),'order'=>array('job_id'),'limit'=>10);
+            
             $docs = $this->paginate('Key_contact');
             //$docs = $this->Document->find('all',array('conditions'=>array('title LIKE'=>'%'.$search.'%')));
         }
