@@ -167,8 +167,8 @@ unset($v);
 <tr><td>Mobile Inspection</td><td><?php echo $Inspection;?> uploads</td></tr>
 <tr><td>Mobile Security</td><td><?php echo $Security;?> uploads</td></tr>
 <tr><td>Security Occurance</td><td><?php echo $Occurance;?> uploads</td></tr>
-<tr><td>Sign-off Sheets</td><td><?php echo $report;?> uploads</td></tr>
-<tr><td>Incident Report</td><td><?php echo $Sheets;?> uploads</td></tr>
+<tr><td>Sign-off Sheets</td><td><?php echo $Sheets;?> uploads</td></tr>
+<tr><td>Incident Report</td><td><?php echo $incident_report;?> uploads</td></tr>
 <tr>
 <td colspan="2"  style="padding-left: 25px;">
 <table class="table">
