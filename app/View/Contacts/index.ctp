@@ -54,7 +54,7 @@ if($docs)
             <th><?php echo $this->Paginator->sort('type','Contact type');?></th>
             <th>Cell Number</th>
             <th>Cell Carrier</th>
-            <th>Email To</th>
+            <th>Email To  <input type="checkbox" class="all" /> <span style="font-size: 12px;">(Select All)</span></th>
             <!--<th><?php echo $this->Paginator->sort('job_id','Job');?></th>
             <th><?php echo $this->Paginator->sort('phone','Phone');?></th>
             <th><?php echo $this->Paginator->sort('company','Company');?></th>-->
@@ -159,6 +159,31 @@ if($docs)
 ?>
 <script>
 $(function(){
+    $('.all').change(function(){
+       if($(this).is(':checked'))
+       {
+        $('.emails').each(function(){
+           if($(this).is(':checked'))
+           {
+            //
+           } 
+           else
+           $(this).click();
+        });
+       }
+       else
+       {
+        $('.emails').each(function(){
+           if($(this).is(':checked'))
+           {
+            $(this).click();
+           } 
+           
+           
+        });
+       }
+        
+    });
     $('.sendemail').click(function(){
         var ema = '';
        $('.emails').each(function(){

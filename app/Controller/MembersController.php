@@ -846,7 +846,7 @@ class MembersController extends AppController
         }
         die();
     }
-    function encrypt()
+    /*function encrypt()
     {
         $q = $this->Member->find('all');
         foreach($q as $a)
@@ -864,5 +864,5 @@ class MembersController extends AppController
             $this->User->id = $a['User']['id'];
             $this->User->saveField('password',md5($p));
         }
-    }
+    }*/
 }
