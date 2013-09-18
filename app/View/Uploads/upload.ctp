@@ -256,7 +256,7 @@ function remove_youtube()
     <option value="">Select Feedback Type</option>
     <option value="observation">Observation</option>
     <option value="feedback">Feeback</option>
-    <option value="non_compilance">Non-Compilance</option>
+    <option value="non_compilance">Non-Compliance</option>
     <option value="great_job">Great Job</option>
 </select>
 </td>
