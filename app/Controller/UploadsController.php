@@ -18,6 +18,7 @@ class UploadsController extends AppController
         $this->loadModel('Youtube');
         $this->loadModel('Event_log');
         $this->loadModel('Canview');
+        $this->loadModel('Activity');
         
         
         parent::__construct($request,$response);
@@ -47,6 +48,19 @@ class UploadsController extends AppController
         else
                $this->redirect('/');  
       
+    }
+    
+    function stats()
+    {
+        $all = $this->Document->query("SELECT COUNT(*) as cnt, document_type FROM documents GROUP BY document_type");
+        $report_type = $this->Activity;
+        $doc = $this->Document;
+        $this->set('report_type',$report_type);
+        $this->set('doc',$doc);
+        $this->set('all',$all);
+        //var_dump($all); //die();
+        
+        
     }
     function go()
     {
