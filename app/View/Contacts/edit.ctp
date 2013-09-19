@@ -1,7 +1,7 @@
  <?php include_once('inc.php');?>
 
 <h3 class="page-title">
-	Edit  Contacts
+	Edit Contacts
 </h3>
 <ul class="breadcrumb">
 	<li>
@@ -34,6 +34,7 @@
     <select name="key_cellular" class="required">
         <option value="">Others</option>
         <option value="Rogers" <?php if($k['Key_contact']['cellular_provider']=='Rogers')echo "selected='selected'";?>>Rogers</option>
+        <option value="AT&T" <?php if($k['Key_contact']['cellular_provider']=='AT&T')echo "selected='selected'";?>>AT&T</option>
         <option value="Bell" <?php if($k['Key_contact']['cellular_provider']=='Bell')echo "selected='selected'";?>>Bell</option>
         <option value="Fido" <?php if($k['Key_contact']['cellular_provider']=='Fido')echo "selected='selected'";?>>Fido</option>
         <option value="Telus Mobility" <?php if($k['Key_contact']['cellular_provider']=='Telus Mobility')echo "selected='selected'";?>>Telus Mobility</option>
