@@ -18,7 +18,7 @@
     <tr>
         <td>Contacts Type</td>
         <td colspan="3"><select name="type" class="required">
-                <option value="">Select Type</option>
+                <option value="">Select Contact Type</option>
                 <option value="0"<?php if($k['Key_contact']['type']=='0')echo "Selected='selected'";?>>Key Contacts</option>
                 <option value="1"<?php if($k['Key_contact']['type']=='1')echo "Selected='selected'";?>>Staff Contacts</option>
                 <option value="2"<?php if($k['Key_contact']['type']=='2')echo "Selected='selected'";?>>Third Part Contacts</option>

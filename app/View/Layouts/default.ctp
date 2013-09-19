@@ -373,7 +373,7 @@ url: '<?php echo $base_url;?>admin/logout'
 
 				<?php if($this->Session->read('user') && $usr['Member']['canUpdate']==1 && $usr['Member']['Canupload']['report']=='1')  echo $this->Html->link('<i class="icon-time"></i>'.'Saved Drafts','/uploads/draft',array('escape'=>false));?>
                 <?php if($this->Session->read('admin'))  echo $this->Html->link('<i class="icon-star"></i>'.'Contacts','/contacts',array('escape'=>false));?>
-                <?php if($this->Session->read('admin'))  echo $this->Html->link('<i class="icon-star"></i>'.'Uploads Report','/uploads/stats',array('escape'=>false));?>
+                <?php if($this->Session->read('admin'))  echo $this->Html->link('<i class="icon-briefcase"></i>'.'Analytics Report','/uploads/stats',array('escape'=>false));?>
 
 				<?php //echo $this->Html->link('Document','/uploads'); ?>
 			</div><!-- menu -->
