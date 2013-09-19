@@ -10,7 +10,7 @@
 <script src="../js/plugins/flot/jquery.flot.orderBars.js"></script>
 <script src="../js/plugins/flot/jquery.flot.tooltip.min.js"></script>
 <script src="../js/plugins/flot/jquery.flot.resize.js"></script>
-<link rel="stylesheet" href="../js/plugins/cirque/cirque.css">	
+<link rel="stylesheet" href="../js/plugins/cirque/cirque.css"/>
 
 <style>
 .chart-holder {
