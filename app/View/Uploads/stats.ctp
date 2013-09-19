@@ -1,3 +1,4 @@
+
 <h3 class="page-title">Analytics Report</h3>
 <form action="" method="post" id="datefilter">
     <input type="text" value="" name="from" placeholder="Start Date" style="width: 100px; margin-top:10px;" class="datepicker required" />
@@ -312,4 +313,5 @@ if(isset($from)&& isset($to))
 <tr><th>Schedules</th><th><?php echo $Schedules;?> uploads</th></tr>
 
 <tr><th>KPI Audits</th><th><?php echo $KPIAudits;?> uploads</th></tr>
+<tr><th>Client Feedback</th><th><?php echo $client_feedback;?> uploads</th></tr>
 </table>

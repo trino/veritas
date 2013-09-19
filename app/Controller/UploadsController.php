@@ -49,6 +49,11 @@ class UploadsController extends AppController
                $this->redirect('/');  
       
     }
+    function graphs()
+    {
+        $all = $this->Document->query("SELECT COUNT( * ) as cnt , `document_type` , DATE( `date` ) DateOnly FROM `documents` GROUP BY `document_type` , DateOnly");
+        $this->set('all', $all);
+    }
     
     function stats()
     {

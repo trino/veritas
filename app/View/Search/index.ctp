@@ -169,7 +169,7 @@ $or = '&order=';
                    if(($this->Session->read('admin') && $d['Document']['document_type']!='client_feedback')) {
                      echo $this->Html->link('Edit','/uploads/document_edit/'.$d['Document']['id'],array('class'=>'btn btn-info'));
                   
-                  //  echo $this->Html->link('Delete','/uploads/delete/'.$d['Document']['id'],array('class'=>'btn btn-danger'),"Confirm Delete Document?");
+                    echo $this->Html->link('Delete','/uploads/delete/'.$d['Document']['id'],array('class'=>'btn btn-danger'),"Confirm Delete Document?");
 					}
                     else
                     if(!$this->Session->read('admin'))
