@@ -26,8 +26,8 @@ if($this->Session->read('avatar'))
 			?>
             <?php
             $jobs = $jbs->find('all'); 
-            if($jobs){?><strong>Filter By</strong> : <select id="jobs"><option value="-1" <?php if($select == -1){?>selected="selected"<?php }?>>Select Job</option><option value="0" <?php if($select == 0){?>selected="selected"<?php }?>>No Job assigned</option><?php foreach($jobs as $js){?><option value="<?php echo $js['Job']['id'];?>" <?php if($select == $js['Job']['id']){?>selected="selected"<?php }?>><?php echo $js['Job']['title'];?></option><?php } ?></select><?php }?>
-            &nbsp; &nbsp;<strong>Filter By</strong> : <select id="con_type" class="required">
+            if($jobs){?><strong>Filter Job</strong> : <select id="jobs"><option value="-1" <?php if($select == -1){?>selected="selected"<?php }?>>Select Job</option><option value="0" <?php if($select == 0){?>selected="selected"<?php }?>>No Job assigned</option><?php foreach($jobs as $js){?><option value="<?php echo $js['Job']['id'];?>" <?php if($select == $js['Job']['id']){?>selected="selected"<?php }?>><?php echo $js['Job']['title'];?></option><?php } ?></select><?php }?>
+            &nbsp; &nbsp;<strong>Filter Contact</strong> : <select id="con_type" class="required">
                 <option value="">Select Type</option>
                 <option value="0"<?php if($type=='0')echo "Selected='selected'";?>>Key Contacts</option>
                 <option value="1"<?php if($type=='1')echo "Selected='selected'";?>>Staff Contacts</option>
@@ -60,7 +60,7 @@ if($docs)
             <th><?php echo $this->Paginator->sort('type','Contact type');?></th>
             <th>Cell Number</th>
             <th>Cell Carrier</th>
-            <th>Email To  <input type="checkbox" class="all" /> <span style="font-size: 12px;">(Select All)</span></th>
+            <th>Send To  <input type="checkbox" class="all" /> <span style="font-size: 12px;">(Select All)</span></th>
             <!--<th><?php echo $this->Paginator->sort('job_id','Job');?></th>
             <th><?php echo $this->Paginator->sort('phone','Phone');?></th>
             <th><?php echo $this->Paginator->sort('company','Company');?></th>-->
