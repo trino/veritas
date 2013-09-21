@@ -314,4 +314,16 @@ if(isset($from)&& isset($to))
 
 <tr><th>KPI Audits</th><th><?php echo $KPIAudits;?> uploads</th></tr>
 <tr><th>Client Feedback</th><th><?php echo $client_feedback;?> uploads</th></tr>
+
 </table>
+<?php
+    $qry ="";
+    if(isset($from) && isset($to))
+        $qry = "?from=$from&to=$to";
+    elseif(isset($from))
+        $qry = "?from=$from";
+    elseif(isset($to))
+        $qry = "?to=$to";
+    
+?>
+<a href="graphs<?php echo $qry;?>" class="btn btn-primary"> Show Graph</a>

@@ -49,11 +49,64 @@ class UploadsController extends AppController
                $this->redirect('/');  
       
     }
+    
     function graphs()
     {
-        $all = $this->Document->query("SELECT COUNT( * ) as cnt , `document_type` , DATE( `date` ) DateOnly FROM `documents` GROUP BY `document_type` , DateOnly");
-        $this->set('all', $all);
-    }
+        //var_dump($_GET);
+        //die();
+        $cond =" ";
+        $cond1 =" ";
+        if(isset($_GET['from']) && isset($_GET['to']))
+        {
+            $from = $_GET['from'];
+            $to = $_GET['to'];
+            $cond = "WHERE `date`>='$from' and `date` <='$to' ";
+            $cond1 = "and `date`>='$from' and `date` <='$to' ";
+        }
+        elseif(isset($_GET['from']))
+        {
+            $from = $_GET['from'];
+            //$to = $_GET['to'];
+            $cond = "WHERE `date` >='$from' ";
+            $cond1 = "and `date`>='$from' ";
+        }
+        elseif(isset($_GET['to']))
+        {
+            //$from = $_GET['from'];
+            $to = $_GET['to'];
+            $cond = "WHERE `date` <='$to' ";
+            $cond1 = " and `date` <='$to' ";
+        }
+        //echo "SELECT COUNT( * ) as cnt , `document_type` , DATE( `date` ) DateOnly FROM `documents` $cond GROUP BY `document_type` , DateOnly";
+        //die();
+        if($all = $this->Document->query("SELECT COUNT( * ) as cnt , `document_type` , DATE( `date` ) DateOnly FROM `documents` $cond GROUP BY `document_type` , DateOnly"))
+            $this->set('all', $all);
+            
+        if($report = $this->Activity->query("SELECT COUNT( * ) as cnt , `report_type` , DATE( `date` ) DateOnly  FROM `activities` $cond GROUP BY `report_type` , DateOnly"))
+            $this->set('report', $report);
+            
+        if($incident = $this->Activity->query("SELECT COUNT( * ) as cnt , `incident_type` , DATE( `date` ) DateOnly FROM `activities` WHERE `incident_type` <> ' ' $cond1 GROUP BY `incident_type` , DateOnly ORDER BY DateOnly"))
+            $this->set('incident', $incident);
+          //  
+        if($evidence = $this->Document->query("SELECT COUNT( * ) as cnt , `evidence_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `evidence_type`<> ' ' $cond1 GROUP BY `evidence_type` , DateOnly"))
+            $this->set('evidence', $evidence);
+        /*  
+        $template = $this->Document->query("SELECT COUNT( * ) as cnt , `template_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `template_type`<> ' ' $cond1 GROUP BY `template_type` , DateOnly");
+            $this->set('template', $template);
+          die();  
+         */  
+        if($site = $this->Document->query("SELECT COUNT( * ) as cnt , `site_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `site_type`<> ' ' $cond1 GROUP BY `site_type` , DateOnly"))
+            $this->set('site', $site);
+            
+        if($training = $this->Document->query("SELECT COUNT( * ) as cnt , `training_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `training_type`<> ' ' $cond1 GROUP BY `training_type` , DateOnly"))
+            $this->set('training', $training);
+            
+        if($employee = $this->Document->query("SELECT COUNT( * ) as cnt , `employee_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `employee_type`<> ' ' $cond1 GROUP BY `employee_type` , DateOnly"))
+            $this->set('employee', $employee);
+        
+    
+    }       
+    
     
     function stats()
     {
