@@ -1,3 +1,4 @@
+<?php //var_dump($all);?>
 <script src="../js/Theme.js"></script>
 <script src="../js/Charts.js"></script>
 
@@ -121,59 +122,79 @@ var client_feedback =[];
 		  //var_dump($all); die();
 			$vals = "";
 			$d = "";
+            $contract_count=0;
+            $report_count=0;
+            $evidence_count=0;
+            $template_count=0;
+            $siteOrder_count=0;
+            $KPIAudits_count=0;
+            $training_count=0;
+            $employee_count=0;
+            $client_feedback_count=0;
 			foreach($all as $ke=>$data)
 			{
+			     
 				$vals .= $data['0']['cnt'];
 				$d .= $data['0']['DateOnly'];
-                if($data['documents']['document_type'] == 'contract'){?>
+                if($data['documents']['document_type'] == 'contract'){$contract_count+=$data['0']['cnt'];?>
 				    contract.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
-				<?php 
+                    
+				<?php
+                 
                 }
                 elseif($data['documents']['document_type'] == 'report')
-                {                
+                {    
+                    $report_count+=$data['0']['cnt'];
                 ?>
                     report.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['documents']['document_type'] == 'evidence')
-                {                
+                {    
+                    $evidence_count+=$data['0']['cnt'];
                 ?>
                     evidence.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 
                 elseif($data['documents']['document_type'] == 'template')
-                {                
+                {        
+                    $template_count+=$data['0']['cnt'];
                 ?>
                     template.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['documents']['document_type'] == 'siteOrder')
-                {                
+                {          
+                    $siteOrder_count+=$data['0']['cnt'];
                 ?>
                     siteOrder.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['documents']['document_type'] == 'KPIAudits')
-                {                
+                {       
+                    $KPIAudits_count+=$data['0']['cnt'];
                 ?>
                     KPIAudits.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['documents']['document_type'] == 'training')
-                {                
+                {         
+                    $training_count+=$data['0']['cnt'];
                 ?>
                     training.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['documents']['document_type'] == 'employee')
-                {                
+                {  
+                    $employee_count+=$data['0']['cnt'];
                 ?>
                     employee.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['documents']['document_type'] == 'client_feedback')
-                {                
+                {     
+                    $client_feedback_count+=$data['0']['cnt'];
                 ?>
                     client_feedback.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
@@ -353,53 +374,71 @@ var Miscellaneous = [];
 <?php 
             $vals = "";
 			$d = "";
+            $incident_report_count = 0;
+            $line_crossing_sheet_count = 0;
+            $shift_summary_count = 0;
+            $incident_video_count = 0;
+            $executive_summary_count = 0;
+            $average_picket_count = 0;
+            $victim_statement_count = 0;
+            $miscellaneous_count = 0;
 			foreach($evidence as $ke=>$data)
 			{
+			    $cnt[]=$data['0']['cnt'];
 				$vals .= $data['0']['cnt'];
 				$d .= $data['0']['DateOnly'];
-                if($data['documents']['evidence_type'] == 'Incident Report'){?>
+                if($data['documents']['evidence_type'] == 'Incident Report'){
+                    $incident_report_count += $data['0']['cnt'];
+                    ?>
 				    Incident.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php 
                 }
                 elseif($data['documents']['evidence_type'] == 'Line Crossing Sheet')
-                {                
+                {            
+                    $line_crossing_sheet_count += $data['0']['cnt'];
                 ?>
                     Line.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['documents']['evidence_type'] == 'Shift Summary')
-                {                
+                {  
+                    $shift_summary_count += $data['0']['cnt'];
                 ?>
                     Video.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 
                 elseif($data['documents']['evidence_type'] == 'Incident Video')
-                {                
+                {     
+                    $incident_video_count += $data['0']['cnt'];
                 ?>
                     Shift.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['documents']['evidence_type'] == 'Executive Summary')
-                {                
+                { 
+                    $executive_summary_count += $data['0']['cnt'];
                 ?>
                     Executive.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['documents']['evidence_type'] == 'Average Picket Count')
-                {                
+                {        
+                    $average_picket_count += $data['0']['cnt'];
                 ?>
                     Average.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['documents']['evidence_type'] == 'Victim Statement')
-                {                
+                {     
+                    $victim_statement_count += $data['0']['cnt'];
                 ?>
                     Victim.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['documents']['evidence_type'] == 'Miscellaneous')
-                {                
+                { 
+                    $miscellaneous_count += $data['0']['cnt'];
                 ?>
                     Miscellaneous.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
@@ -517,41 +556,56 @@ var Sheets = [];
 <?php 
             $vals = "";
 			$d = "";
+            $count1 = 0;
+                 $count2 = 0;
+                 $count3 = 0;
+                 $count4 = 0;
+                 $count5 = 0;
+                 $count6 = 0;
 			foreach($report as $ke=>$data)
 			{
+			     
+			    $cnt[]=$data['0']['cnt'];
 				$vals .= $data['0']['cnt'];
 				$d .= $data['0']['DateOnly'];
-                if($data['activities']['report_type'] == '1'){?>
+                if($data['activities']['report_type'] == '1'){
+                    $count1 +=$data['0']['cnt'];
+                    ?>
 				    Activity.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php 
                 }
                 elseif($data['activities']['report_type'] == '2')
                 {                
+                    $count2 +=$data['0']['cnt'];
                 ?>
                     Inspection.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['activities']['report_type'] == '3')
-                {                
+                {   
+                    $count3 +=$data['0']['cnt'];
                 ?>
                     Security.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 
                 elseif($data['activities']['report_type'] == '4')
-                {                
+                {   
+                    $count4 +=$data['0']['cnt'];
                 ?>
                     Occurance.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['activities']['report_type'] == '5')
-                {                
+                {     
+                    $count5 +=$data['0']['cnt'];
                 ?>
                     incident_report.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['activities']['report_type'] == '6')
-                {                
+                {    
+                    $count6 +=$data['0']['cnt'];
                 ?>
                     Sheets.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
@@ -598,7 +652,7 @@ var Sheets = [];
 		},
 		{
 			data: incident_report,
-			label: 'Incident Report',
+			label: 'Incident Reports',
 			points: { show: true }, 
 			lines: { lineWidth: 2, fill: false } 	
 		}];
@@ -665,90 +719,119 @@ var f_l = [];
 <?php 
             $vals = "";
 			$d = "";
+            $burg = 0;
+            $prop = 0;
+            $misc = 0;
+            $shop = 0;
+            $disord = 0;
+            $acc = 0;
+            $app = 0;
+            $fraud = 0;
+            $acc_cust = 0;
+            $rec1 = 0;
+            $rec2 = 0;
+            $non = 0;
+            $susp=0;
+            $loss = 0;
 			foreach($incident as $ke=>$data)
 			{
-                
+                $cnt[]=$data['0']['cnt'];
 				$vals .= $data['0']['cnt'];
 				$d .= $data['0']['DateOnly'];
-                if($data['activities']['incident_type'] == 'Burglary'){?>
+                if($data['activities']['incident_type'] == 'Burglary'){
+                    $burg += $data['0']['cnt'];
+                    ?>
 				    b.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php 
                 }
                 elseif($data['activities']['incident_type'] == 'Property Damage')
-                {                
+                {  
+                    $prop += $data['0']['cnt'];
                 ?>
                     p_d.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['activities']['incident_type'] == 'Miscellaneous')
-                {                
+                {   
+                    $misc += $data['0']['cnt'];
                 ?>
                     m.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 
                 elseif($data['activities']['incident_type'] == 'Shoplift Loss')
-                {                
+                {   
+                    $shop+= $data['0']['cnt'];
                 ?>
                     s_l.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['activities']['incident_type'] == 'Disorderly Person')
-                {                
+                {    
+                    $disord+= $data['0']['cnt'];
                 ?>
                     d_p.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['activities']['incident_type'] == 'Accident - Employee')
-                {                
+                {   
+                    $acc+= $data['0']['cnt'];
                 ?>
                     a_e.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['activities']['incident_type'] == 'Shoplift Apprehension')
-                {                
+                { 
+                    $app+= $data['0']['cnt'];
                 ?>
                     s_a.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['activities']['incident_type'] == 'Fraud Apprehension')
-                {                
+                {  
+                    $fraud+= $data['0']['cnt'];
                 ?>
                     f_a.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['activities']['incident_type'] == 'Accident - Customer')
-                {                
+                {     
+                    $acc_cust+= $data['0']['cnt'];
                 ?>
                     a_c.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['activities']['incident_type'] == 'Shoplift Recovery')
-                {                
+                {    
+                    $rec1+= $data['0']['cnt'];
                 ?>
                     s_r.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }                
                 elseif($data['activities']['incident_type'] == 'Fraud Recovery')
-                {                
+                {     
+                    $rec2+= $data['0']['cnt'];
                 ?>
                     f_r.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['activities']['incident_type'] == 'Non-Productive Stop')
-                {                
+                {     
+                    $non+= $data['0']['cnt'];
                 ?>
                     n_p_s.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['activities']['incident_type'] == 'Suspicion Internal Theft')
-                {                
+                {   
+                    $susp+= $data['0']['cnt'];
                 ?>
                     s_i_t.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
                 elseif($data['activities']['incident_type'] == 'Fraud Loss')
-                {                
+                {   
+                    $loss+= $data['0']['cnt'];
                 ?>
                     f_l.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
@@ -780,7 +863,7 @@ var f_l = [];
 		},
 		{
 			data: m,
-			label: 'Miscellaneous',
+			label: 'Miscellaneous`',
 			points: { show: true }, 
 			lines: { lineWidth: 2, fill: false } 	
 		},
@@ -905,6 +988,7 @@ var Forms = [];
 			$d = "";
 			foreach($site as $ke=>$data)
 			{
+			    $cnt[]=$data['0']['cnt'];
 				$vals .= $data['0']['cnt'];
 				$d .= $data['0']['DateOnly'];
                 if($data['documents']['site_type'] == 'Post Orders'){?>
@@ -1016,6 +1100,7 @@ var Schedules = [];
 			$d = "";
 			foreach($employee as $ke=>$data)
 			{
+			    $cnt[]=$data['0']['cnt'];
 				$vals .= $data['0']['cnt'];
 				$d .= $data['0']['DateOnly'];
                 if($data['documents']['employee_type'] == 'Job Descriptions'){?>
@@ -1114,6 +1199,7 @@ var health = [];
 			$d = "";
 			foreach($training as $ke=>$data)
 			{
+			    $cnt[]=$data['0']['cnt'];
 				$vals .= $data['0']['cnt'];
 				$d .= $data['0']['DateOnly'];
                 if($data['documents']['training_type'] == 'Health & Safety Manuals'){?>
@@ -1178,6 +1264,85 @@ var plotDetail = $.plot($("#training-chart"),
 <?php    
 }// Training Ends
 ?>
+
+$('.legendLabel').each(function(){
+    if($(this).text()=='Contracts')
+    $(this).text('Contracts (<?php echo $contract_count;?>)');
+    if($(this).text()=='Reports')
+    $(this).text('Reports (<?php echo $report_count;?>)');
+    if($(this).text()=='Templates')
+    $(this).text('Templates (<?php echo $template_count;?>)');
+    if($(this).text()=='Evidence')
+    $(this).text('Evidence (<?php echo $evidence_count;?>)');
+    if($(this).text()=='KPIAudits')
+    $(this).text('KPIAudits (<?php echo $KPIAudits_count;?>)');
+    if($(this).text()=='Training')
+    $(this).text('Training (<?php echo $training_count;?>)');
+    if($(this).text()=='Employee')
+    $(this).text('Employee (<?php echo $employee_count;?>)');
+    if($(this).text()=='Site Order')
+    $(this).text('Site Order (<?php echo $siteOrder_count;?>)');
+    if($(this).text()=='Client Feedback')
+    $(this).text('Client Feedback (<?php echo $client_feedback_count;?>)');
+    if($(this).text()=='Incident Report')
+    $(this).text('Incident Report (<?php echo $incident_report_count;?>)');
+    if($(this).text()=='Line Crossing Sheet')
+    $(this).text('Line Crossing Sheet (<?php echo $line_crossing_sheet_count;?>)');
+    if($(this).text()=='Shift Summary')
+    $(this).text('Shift Summary (<?php echo $shift_summary_count;?>)');
+    if($(this).text()=='Incident Video')
+    $(this).text('Incident Video (<?php echo $incident_video_count;?>)');
+    if($(this).text()=='Executive Summary')
+    $(this).text('Executive Summary (<?php echo $executive_summary_count;?>)');        
+    if($(this).text()=='Average Picket Count')
+    $(this).text('Average Picket Count (<?php echo $average_picket_count;?>)');        
+    if($(this).text()=='Victim Statement')
+    $(this).text('Victim Statement (<?php echo $victim_statement_count;?>)');        
+    if($(this).text()=='Miscellaneous')
+    $(this).text('Miscellaneous (<?php echo $miscellaneous_count;?>)');        
+    if($(this).text()=='Activity Log')
+    $(this).text('Activity Log (<?php echo $count1;?>)');
+    if($(this).text()=='Mobile Inspection')
+    $(this).text('Mobile Inspection (<?php echo $count2;?>)');       
+    if($(this).text()=='Mobile Security')
+    $(this).text('Mobile Security (<?php echo $count3;?>)');
+    if($(this).text()=='Security Occurance')
+    $(this).text('Security Occurance (<?php echo $count4;?>)');
+    if($(this).text()=='Sign-off Sheets')
+    $(this).text('Sign-off Sheets (<?php echo $count5;?>)');
+    if($(this).text()=='Incident Reports')
+    $(this).text('Incident Reports (<?php echo $count6;?>)'); 
+    if($(this).text()=='Burglary')
+    $(this).text('Burglary (<?php echo $burg;?>)');
+    if($(this).text()=='Property Damage')
+    $(this).text('Property Damage (<?php echo $prop;?>)');
+    if($(this).text()=='Miscellaneous`')
+    $(this).text('Miscellaneous` (<?php echo $misc;?>)');       
+    if($(this).text()=='Shoplift Loss')
+    $(this).text('Shoplift Loss (<?php echo $shop;?>)');        
+    if($(this).text()=='Disorderly Person')
+    $(this).text('Disorderly Person (<?php echo $disord;?>)');       
+    if($(this).text()=='Accident - Employee')
+    $(this).text('Accident - Employee (<?php echo $acc;?>)');       
+    if($(this).text()=='Shoplift Apprehension')
+    $(this).text('Shoplift Apprehension (<?php echo $app;?>)');        
+    if($(this).text()=='Fraud Apprehension')
+    $(this).text('Fraud Apprehension (<?php echo $fraud;?>)');        
+    if($(this).text()=='Accident - Customer')
+    $(this).text('Accident - Customer (<?php echo $acc_cust;?>)');
+    if($(this).text()=='Shoplift Recovery')
+    $(this).text('Shoplift Recovery (<?php echo $rec1;?>)');        
+    if($(this).text()=='Fraud Recovery')
+    $(this).text('Fraud Recovery (<?php echo $rec2;?>)');        
+    if($(this).text()=='Non-Productive Stop')
+    $(this).text('Non-Productive Stop (<?php echo $non;?>)');
+    if($(this).text()=='Suspicion Internal Theft')
+    $(this).text('Suspicion Internal Theft (<?php echo $susp;?>)');
+    if($(this).text()=='Fraud Loss')
+    $(this).text('Fraud Loss (<?php echo $loss;?>)'); 
+                 
+    
+});
 });
 </script>
 <div style="margin: 10px 0;">
