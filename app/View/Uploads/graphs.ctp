@@ -17,7 +17,21 @@
     height: 325px;
     width: 150%;
 }
+@media print {
+  body * {
+    visibility:hidden;
+  }
+  #toprint {
+    visibility:visible;
+  }
+  #toprint {
+    position:absolute;
+    left:0;
+    top:0;
+  }
+}
 </style>
+<div id="toprint">
 <?php if(isset($all)){?>
 <div class="span6">
 <h3>Analytic Graph</h3>
@@ -1158,3 +1172,5 @@ var plotDetail = $.plot($("#training-chart"),
 ?>
 });
 </script>
+</div>
+<input type="button" onclick="window.print();" value="Print" class="btn btn-primary" style="margin-top: 10px;" />

@@ -29,7 +29,7 @@
     
     <td><b>Name</b><br/><input type="text" name="key_name" class="required" value="" style="width: 100px;" /></td>
     <td><b>Title</b><br/><input type="text" name="key_title" class="" value="" style="width: 100px;" /></td>
-    <td><b>Cell Number</b><br/><input type="text" name="key_cell" class="" value="" style="width: 100px;" /></td>
+    <td><b>Cell Number</b><br/><input type="text" name="key_cell" class="number" value="" style="width: 100px;" /></td>
     <td><b>Cellular Carrier</b><br />
     <select name="key_cellular" class="required">
         <option value="">Other</option>
@@ -48,7 +48,7 @@
         <option value="Wind Mobile">Wind Mobile</option>
     </select>
     </td>
-    <td><b>Phone Number</b><br/><input type="text" name="key_number" class="" value="" style="width: 100px;" /></td>
+    <td><b>Phone Number</b><br/><input type="text" name="key_number" class="number" value="" style="width: 100px;" /></td>
     <td><b>Email</b><br/><input type="text" name="key_email" class="email required" value="" style="width: 100px;" /></td>
     <td><b>Company</b><br/><input type="text" name="key_company" class="" value="" style="width: 100px;" /> </td></tr>
     

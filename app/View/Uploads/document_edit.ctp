@@ -170,7 +170,7 @@ function remove_youtube()
     <option value="template" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='template') echo "selected='selected'"?>>Templates</option>
     <?php }?>
     <?php if($admin_doc['AdminDoc']['report']=='1' && ((isset($canupdate['Canupload']['report'])&& $canupdate['Canupload']['report']=='1') || $this->Session->read('admin'))){?>
-    <option value="report" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='report') echo "selected='selected'"?>>Report</option>
+    <option value="report" <?php if((isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='report')||$typee=='activity_log') echo "selected='selected'"?>>Report</option>
     <?php }?>
     <?php if($admin_doc['AdminDoc']['site_orders']=='1' && ((isset($canupdate['Canupload']['siteOrder'])&& $canupdate['Canupload']['siteOrder']=='1') || $this->Session->read('admin'))){?>
     <option value="siteOrder" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='siteOrder') echo "selected='selected'"?>>Site Orders</option>
@@ -316,7 +316,7 @@ function remove_youtube()
 <?php //var_dump($ac);?>
 <select name="report_type" class="required reporttype">
     <option value="">Select report type</option>
-    <option value="1" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '1') echo "selected='selected'"; ?> >Activity Log</option>
+    <option value="1" <?php  if((isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '1')||($typee=='activity_log')) echo "selected='selected'"; ?> >Activity Log</option>
     <option value="2" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '2') echo "selected='selected'"; ?>>Mobile Inspection</option>
     <option value="3" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '3') echo "selected='selected'"; ?>>Mobile Security</option>
     <option value="4" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '4') echo "selected='selected'"; ?>>Security Occurance</option>

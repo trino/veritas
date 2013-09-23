@@ -17,7 +17,21 @@
     height: 325px;
     width: 150%;
 }
+@media print {
+  body * {
+    visibility:hidden;
+  }
+  #toprint {
+    visibility:visible;
+  }
+  #toprint {
+    position:absolute;
+    left:0;
+    top:0;
+  }
+}
 </style>
+<div id="toprint">
 <div class="span6">
 <div id="line-chart" class="chart-holder"></div> <!-- /#bar-chart -->
      <div id="masterContainer" style="width: 770px;height:120px;margin-top:10px;"></div>
@@ -261,3 +275,5 @@ $("#masterContainer").bind("plotselected", function (event, ranges) {
 } ?> // twitter ends
 });
 </script>
+</div>
+<input type="button" onclick="window.print();" value="Print" class="btn btn-primary" style="margin-top: 10px;" />
