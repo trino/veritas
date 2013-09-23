@@ -1,10 +1,25 @@
-
+<style>
+@media print {
+  body * {
+    visibility:hidden;
+  }
+  #toprint {
+    visibility:visible;
+  }
+  #toprint {
+    position:absolute;
+    left:0;
+    top:0;
+  }
+}
+</style>
 <h3 class="page-title">Analytics Report</h3>
 <form action="" method="post" id="datefilter">
     <input type="text" value="" name="from" placeholder="Start Date" style="width: 100px; margin-top:10px;" class="datepicker required" />
     <input type="text" value="" name="to" placeholder="End Date" style="width: 100px; margin-top: 10px;" class="datepicker required" />
     <input type="submit" value="Go" class="btn btn-primary" />
 </form>
+
 <?php
  $contract = '0';
  $template = '0';
@@ -81,7 +96,7 @@
     }
     unset($v);
 ?>
-<table class="table">
+<table class="table" id="toprint">
 <tr><th>Contracts</th><th><?php echo $contract;?> uploads</th></tr>
 <tr><th>Evidence</th><th><?php echo $evidence;?> uploads</th></tr>
 <tr><td>Incident Report</td><td><?php echo $Incident;?> uploads</td></tr>
@@ -326,4 +341,4 @@ if(isset($from)&& isset($to))
         $qry = "?to=$to";
     
 ?>
-<a href="graphs<?php echo $qry;?>" class="btn btn-primary"> Show Graph</a>
+<a href="graphs<?php echo $qry;?>" class="btn btn-primary"> Show Graph</a> <input type="button" onclick="window.print();" value="Print Graph" class="btn btn-primary" />

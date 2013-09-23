@@ -783,7 +783,7 @@ class UploadsController extends AppController
             $arr['draft'] = $_POST['draft'];
             
             //Email
-            
+            //echo $ids;die();
             $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$ids.',%'), array('job_id'=>$ids),array('job_id LIKE'=>'%,'.$ids.',%'),array('job_id LIKE'=>'%,'.$ids)))));
                 //var_dump($mails);
                 
@@ -814,16 +814,17 @@ class UploadsController extends AppController
             $this->Document->save($arr);
             $id=$this->Document->id;
             //var_dump($mails);die();
-            
+            //var_dump($mails);die();
             foreach($mails as $m)
                 {
+                    
                     $mem_id = $m['Jobmember']['member_id'];
                     if($emailupload = $this->Emailupload->findByMemberId($mem_id))
                     if($emailupload['Emailupload'][$_POST['document_type']] == 1 )
                     if($t = $this->Member->find('first',array('conditions'=>array('id'=>$mem_id))))
                     {
                         
-                        $to = $t['Member']['email']; 
+                        $to = $t['Member']['email'];
                         $emails = new CakeEmail();
                         $emails->from(array('noreply@veritas.com'=>'Veritas'));
                         
@@ -858,9 +859,9 @@ class UploadsController extends AppController
                         {
                             //die($to);
                             $emails->to($to);
-                           // if($to != $this->Session->read('email'))
-                            //$emails->send($message);
-                            //$emails->reset();
+                            if($to != $this->Session->read('email'))
+                            $emails->send($message);
+                            $emails->reset();
                         }
                         
                         }

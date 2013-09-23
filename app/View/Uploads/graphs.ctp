@@ -39,60 +39,67 @@
     <div id="line-chart" class="chart-holder"></div> <!-- /#bar-chart -->
    
 </div>
+<div style="clear:both;"></div>
 <?php }?>
 <?php if(isset($evidence)){?>
-<div style="clear:both;"></div>
+
 <div class="span6">
 <h3>Evidence Graph</h3>
     <hr />
     <div id="evidence-chart" class="chart-holder"></div> <!-- /#bar-chart -->
    
 </div>
+<div style="clear:both;"></div>
 <?php }?>
 <?php if(isset($report)){?>
-<div style="clear:both;"></div>
+
 <div class="span6">
 <h3>Reports Graph</h3>
     <hr />
     <div id="report-chart" class="chart-holder"></div> <!-- /#bar-chart -->
    
 </div>
+<div style="clear:both;"></div>
 <?php }?>
 <?php if(isset($incident)){?>
-<div style="clear:both;"></div>
+
 <div class="span6">
 <h3>Incident Report Graph</h3>
     <hr />
     <div id="incident-chart" class="chart-holder"></div> <!-- /#bar-chart -->
    
 </div>
+<div style="clear:both;"></div>
 <?php }?>
 <?php if(isset($site)){?>
-<div style="clear:both;"></div>
+
 <div class="span6">
 <h3>Site Orders Graph</h3>
     <hr />
     <div id="site-chart" class="chart-holder"></div> <!-- /#bar-chart -->
    
 </div>
+<div style="clear:both;"></div>
 <?php }?>
 <?php if(isset($employee)){?>
-<div style="clear:both;"></div>
+
 <div class="span6">
 <h3>Employee Graph</h3>
     <hr />
     <div id="employee-chart" class="chart-holder"></div> <!-- /#bar-chart -->
    
 </div>
+<div style="clear:both;"></div>
 <?php }?>
 <?php if(isset($training)){?>
-<div style="clear:both;"></div>
+
 <div class="span6">
 <h3>Training Graph</h3>
     <hr />
     <div id="training-chart" class="chart-holder"></div> <!-- /#bar-chart -->
    
 </div>
+<div style="clear:both;"></div>
 <?php }?>
 <script>
 $(function(){
@@ -1173,4 +1180,4 @@ var plotDetail = $.plot($("#training-chart"),
 });
 </script>
 </div>
-<input type="button" onclick="window.print();" value="Print" class="btn btn-primary" style="margin-top: 10px;" />
+<input type="button" onclick="window.print();" value="Print Report" class="btn btn-primary" style="margin-top: 10px;" />

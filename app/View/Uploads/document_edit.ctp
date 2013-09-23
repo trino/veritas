@@ -149,7 +149,7 @@ function remove_youtube()
 </script>
 <?php //var_dump( $this->request->params['action']);?>
 
-<form id="my_form" action="<?php  if($this->request->params['action']=='upload')echo $base_url.'uploads/upload'?>" method="post" enctype="multipart/form-data">
+<form id="my_form" action="" method="post" enctype="multipart/form-data">
 
 <div id="table">
 <table>
