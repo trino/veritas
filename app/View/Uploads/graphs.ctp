@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="../js/plugins/cirque/cirque.css"/>
 
 <style>
+.tickLabel{color:#000!important;}
 .chart-holder {
     height: 325px;
     width: 150%;
@@ -21,7 +22,7 @@
   body * {
     visibility:hidden;
   }
-  #toprint {
+  #toprint, #toprint * {
     visibility:visible;
   }
   #toprint {
@@ -1179,5 +1180,11 @@ var plotDetail = $.plot($("#training-chart"),
 ?>
 });
 </script>
+<div style="margin: 10px 0;">
+<strong>Printed By : </strong><?php if($this->Session->read('user'))echo ucfirst($this->Session->read('user'));else echo 'Admin';?><br />
+<strong>Generated On : </strong><?php echo date('Y-m-d H:i:s');?>
+
 </div>
-<input type="button" onclick="window.print();" value="Print Report" class="btn btn-primary" style="margin-top: 10px;" />
+
+</div>
+<input type="button" onclick="window.print();" value="Print Graph" class="btn btn-primary" style="margin-top: 10px;" />

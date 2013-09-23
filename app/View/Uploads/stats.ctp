@@ -3,7 +3,7 @@
   body * {
     visibility:hidden;
   }
-  #toprint {
+  #toprint, #toprint * {
     visibility:visible;
   }
   #toprint {
@@ -329,7 +329,14 @@ if(isset($from)&& isset($to))
 
 <tr><th>KPI Audits</th><th><?php echo $KPIAudits;?> uploads</th></tr>
 <tr><th>Client Feedback</th><th><?php echo $client_feedback;?> uploads</th></tr>
+<tr><td colspan="2">
+<div style="margin: 10px 0;">
+<strong>Printed By : </strong><?php if($this->Session->read('user'))echo ucfirst($this->Session->read('user'));else echo 'Admin';?><br />
+<strong>Generated On : </strong><?php echo date('Y-m-d H:i:s');?>
 
+</div>
+
+</td></tr>
 </table>
 <?php
     $qry ="";
@@ -341,4 +348,4 @@ if(isset($from)&& isset($to))
         $qry = "?to=$to";
     
 ?>
-<a href="graphs<?php echo $qry;?>" class="btn btn-primary"> Show Graph</a> <input type="button" onclick="window.print();" value="Print Graph" class="btn btn-primary" />
+<a href="graphs<?php echo $qry;?>" class="btn btn-primary"> Show Graph</a> <a href="javascript:void(0);" onclick="window.print();" class="btn btn-primary">Print Report</a>
