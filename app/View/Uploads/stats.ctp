@@ -13,7 +13,7 @@
   }
 }
 </style>
-<h3 class="page-title">Document Uploads Report</h3>
+
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
@@ -118,7 +118,9 @@ echo "<strong>TO :</strong> ".$_REQUEST['to']."<br/>";
     }
     unset($v);
 ?>
+<a href="graphs<?php echo $qry;?>" class="btn btn-primary"> Show Graph</a> <a href="javascript:void(0);" onclick="window.print();" class="btn btn-primary">Print Report</a>
 <table class="table" id="toprint">
+<tr><td colspan="2" style="border-top: none;"><h3 class="page-title">Document Uploads Report</h3></td></tr>
 <tr><th>Contracts</th><th><?php echo $contract;?> uploads</th></tr>
 <tr><th>Evidence</th><th><?php echo $evidence;?> uploads</th></tr>
 <tr><td>Incident Report</td><td><?php echo $Incident;?> uploads</td></tr>
@@ -376,4 +378,4 @@ if(isset($from)&& isset($to))
         
     
 ?>
-<a href="graphs<?php echo $qry;?>" class="btn btn-primary"> Show Graph</a> <a href="javascript:void(0);" onclick="window.print();" class="btn btn-primary">Print Report</a>
+

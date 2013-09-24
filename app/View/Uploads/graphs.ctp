@@ -1,5 +1,13 @@
 <?php //var_dump($all);?>
-<h3 class="page-title">Document Uploads Report</h3>
+<div style="margin: 10px 0;">
+<strong>Printed By : </strong><?php if($this->Session->read('user'))echo ucfirst($this->Session->read('user'));else echo 'Admin';?><br />
+<strong>Generated On : </strong><?php echo date('Y-m-d H:i:s');?>
+
+</div>
+
+</div>
+<input type="button" onclick="window.print();" value="Print Graph" class="btn btn-primary" style="margin-top: 10px;" />
+
 <script src="../js/Theme.js"></script>
 <script src="../js/Charts.js"></script>
 
@@ -35,6 +43,7 @@
 }
 </style>
 <div id="toprint">
+<h3 class="page-title">Document Uploads Report</h3>
 <?php
 if(isset($_REQUEST['from']))
 echo "<strong>FROM :</strong> ".$_REQUEST['from']." &nbsp; ";
@@ -1368,11 +1377,3 @@ $('.legendLabel').each(function(){
 });
 });
 </script>
-<div style="margin: 10px 0;">
-<strong>Printed By : </strong><?php if($this->Session->read('user'))echo ucfirst($this->Session->read('user'));else echo 'Admin';?><br />
-<strong>Generated On : </strong><?php echo date('Y-m-d H:i:s');?>
-
-</div>
-
-</div>
-<input type="button" onclick="window.print();" value="Print Graph" class="btn btn-primary" style="margin-top: 10px;" />
