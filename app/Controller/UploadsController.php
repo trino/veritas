@@ -371,7 +371,7 @@ class UploadsController extends AppController
         $this->loadModel('Emailupload');
         $this->loadModel('Clientmemo');
         $this->loadModel('AdminDoc');
-        $this->set('admin_doc',$this->AdminDoc->findById('1'));
+        $this->set('admin_doc',$this->AdminDoc->find('first'));
         if($this->Session->read('user'))
         {
            if($this->Session->read('upload')!='1')
@@ -751,7 +751,7 @@ class UploadsController extends AppController
         $this->loadModel('Activity');
         $this->loadModel('Emailupload');
         $this->loadModel('AdminDoc');
-        $this->set('admin_doc',$this->AdminDoc->findById('1'));
+        $this->set('admin_doc',$this->AdminDoc->find('first'));
         if($this->Session->read('user'))
         {
            if($this->Session->read('upload')!='1')
