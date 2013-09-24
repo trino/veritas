@@ -576,7 +576,7 @@ class MembersController extends AppController
             $this->Member->saveField('image',$img);
             $this->Member->saveField('email',$_POST['email']);
             $this->Member->saveField('phone',$_POST['phone']);
-            $chpw = $this->Members->findById($id);
+            $chpw = $this->Member->findById($id);
             if($chpw['Member']['password']!=$_POST['password'])
             $this->Member->saveField('password',md5($_POST['password']));
             if(isset($_POST['canView']))
