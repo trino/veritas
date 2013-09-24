@@ -14,13 +14,10 @@ body{
 #leftColumn{
 	width: 230px;
 	float:left;
-	*background-color: rgba(255,0,0,0.2);
 }
 #rightColumn{
-	float:right;
-    width: -moz-calc(100% - 230px);
-    width: -webkit-calc(100% - 230px);
-    width: calc(100% - 230px);
+	float:left;
+    width: 100%;
 }
 
 
@@ -82,12 +79,10 @@ background-color:#ffffff;
 		box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
 }
 .login input{
-width:100%;
+width:238px;
 padding:5px;
 border:1px solid #cccccc;
-    width: -moz-calc(100% - 12px);
-    width: -webkit-calc(100% - 12px);
-    width: calc(100% - 12px);
+
 }
 .login h2{
   padding: 0px;
@@ -185,12 +180,6 @@ border:1px solid #cccccc;
 .required.message{
 	padding:5px;
 	border:1px solid #cccccc;
-    width: -moz-calc(100% - 12px);
-    width: -webkit-calc(100% - 12px);
-    width: calc(100% - 12px);
-	height: -moz-calc(100% - 12px);
-    height: -webkit-calc(100% - 12px);
-    height: calc(100% - -15px);
 	border-radius:0px;
 }
 .subjectLine, .recipientsLine{
@@ -202,9 +191,6 @@ border:1px solid #cccccc;
 	width:100%;
 	padding:1px 4px;
 	border:1px solid #cccccc;
-    width: -moz-calc(100% - 10px);
-    width: -webkit-calc(100% - 10px);
-    width: calc(100% - 10px);
 	margin:0px 0px 1px;
 	border-radius:0px;
 }
@@ -243,9 +229,7 @@ a.buttonV{
 }
 .message-form .left{
 	float:left;
-    width: -moz-calc(50% - 5px);
-    width: -webkit-calc(50% - 5px);
-    width: calc(50% - 5px);
+    width: 100%;
 	height:76px;
 	margin:0px !important;
 	padding:0px !important;
@@ -377,16 +361,12 @@ Dashboard stats
   margin-bottom: 25px;
   position:relative;
   float:left;
-    width: -moz-calc(25% - 10px);
-    width: -webkit-calc(25% - 10px);
-    width: calc(25% - 10px);
-	margin-right:10px;
+    width: 24%;
+	margin-right:1%;
 }
 .dashboard-stat-last {
 	margin-right:0px;
-    width: -moz-calc(25%);
-    width: -webkit-calc(25%);
-    width: calc(25%);
+    width: 24%;
 }
 
 .dashboard-stat:before,
@@ -608,9 +588,7 @@ background-color:#dff0d8;
 border:1px solid #d6e9c6;
 color:#7ea571;
 font-size:16px;
-    width: -moz-calc(100% - 70px);
-    width: -webkit-calc(100% - 70px);
-    width: calc(100% - 70px);
+    width: auto;
 	border-radius:4px;
 	  font-family: 'Oxygen', sans-serif;
 }
