@@ -1,4 +1,5 @@
 <?php //var_dump($all);?>
+<h3 class="page-title">Document Uploads Report</h3>
 <script src="../js/Theme.js"></script>
 <script src="../js/Charts.js"></script>
 
@@ -34,10 +35,16 @@
 }
 </style>
 <div id="toprint">
+<?php
+if(isset($_REQUEST['from']))
+echo "<strong>FROM :</strong> ".$_REQUEST['from']." &nbsp; ";
+if(isset($_REQUEST['to']))
+echo "<strong>TO :</strong> ".$_REQUEST['to']."<br/><br/>";
+?>
 <?php if(isset($all)){?>
 <div class="span6">
-<h3>Analytic Graph</h3>
-    <hr />
+<h4>All Documents Report</h4>
+    
     <div id="line-chart" class="chart-holder"></div> <!-- /#bar-chart -->
    
 </div>
@@ -46,8 +53,8 @@
 <?php if(isset($evidence)){?>
 
 <div class="span6">
-<h3>Evidence Graph</h3>
-    <hr />
+<h4>Evidence Report</h4>
+    
     <div id="evidence-chart" class="chart-holder"></div> <!-- /#bar-chart -->
    
 </div>
@@ -56,8 +63,8 @@
 <?php if(isset($report)){?>
 
 <div class="span6">
-<h3>Reports Graph</h3>
-    <hr />
+<h4>Reports Report</h4>
+    
     <div id="report-chart" class="chart-holder"></div> <!-- /#bar-chart -->
    
 </div>
@@ -66,8 +73,8 @@
 <?php if(isset($incident)){?>
 
 <div class="span6">
-<h3>Incident Report Graph</h3>
-    <hr />
+<h4>Incident Reports Report</h4>
+    
     <div id="incident-chart" class="chart-holder"></div> <!-- /#bar-chart -->
    
 </div>
@@ -76,8 +83,8 @@
 <?php if(isset($site)){?>
 
 <div class="span6">
-<h3>Site Orders Graph</h3>
-    <hr />
+<h4>Site OrdersReport</h4>
+    
     <div id="site-chart" class="chart-holder"></div> <!-- /#bar-chart -->
    
 </div>
@@ -86,8 +93,8 @@
 <?php if(isset($employee)){?>
 
 <div class="span6">
-<h3>Employee Graph</h3>
-    <hr />
+<h4>EmployeeReport</h4>
+    
     <div id="employee-chart" class="chart-holder"></div> <!-- /#bar-chart -->
    
 </div>
@@ -96,8 +103,8 @@
 <?php if(isset($training)){?>
 
 <div class="span6">
-<h3>Training Graph</h3>
-    <hr />
+<h4>TrainingReport</h4>
+    
     <div id="training-chart" class="chart-holder"></div> <!-- /#bar-chart -->
    
 </div>
@@ -533,7 +540,7 @@ var Miscellaneous = [];
          legend:{        
                 noColumns: 2,
                 position: 'ne',
-                margin:[-350,0],
+                margin:[-384,0],
             }
 };
 var plotDetail = $.plot($("#evidence-chart"),
@@ -557,11 +564,11 @@ var Sheets = [];
             $vals = "";
 			$d = "";
             $count1 = 0;
-                 $count2 = 0;
-                 $count3 = 0;
-                 $count4 = 0;
-                 $count5 = 0;
-                 $count6 = 0;
+             $count2 = 0;
+             $count3 = 0;
+             $count4 = 0;
+             $count5 = 0;
+             $count6 = 0;
 			foreach($report as $ke=>$data)
 			{
 			     
@@ -701,6 +708,7 @@ if(isset($incident))
 {
     //VAR_DUMP($incident);die();
 ?>
+var a_a = [];
 var b =[];
 var p_d = [];
 var m = [];
@@ -719,6 +727,7 @@ var f_l = [];
 <?php 
             $vals = "";
 			$d = "";
+            $a_a = 0;
             $burg = 0;
             $prop = 0;
             $misc = 0;
@@ -738,7 +747,14 @@ var f_l = [];
                 $cnt[]=$data['0']['cnt'];
 				$vals .= $data['0']['cnt'];
 				$d .= $data['0']['DateOnly'];
-                if($data['activities']['incident_type'] == 'Burglary'){
+                if($data['activities']['incident_type'] == 'Alarm Activation'){
+                    $a_a += $data['0']['cnt'];
+                    ?>
+				    a_a.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
+				<?php 
+                }
+                
+                elseif($data['activities']['incident_type'] == 'Burglary'){
                     $burg += $data['0']['cnt'];
                     ?>
 				    b.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
@@ -850,6 +866,11 @@ var f_l = [];
 			var d = [<?php echo $vals; unset($vals); ?>];
 			var dt =[];
             var data= [
+            	{
+			data: a_a,
+			label: 'Alarm Activation',
+            points: { show: true }, 
+		},
 		{
 			data: b,
 			label: 'Burglary',
@@ -1309,9 +1330,11 @@ $('.legendLabel').each(function(){
     if($(this).text()=='Security Occurance')
     $(this).text('Security Occurance (<?php echo $count4;?>)');
     if($(this).text()=='Sign-off Sheets')
-    $(this).text('Sign-off Sheets (<?php echo $count5;?>)');
+    $(this).text('Sign-off Sheets (<?php echo $count6;?>)');
     if($(this).text()=='Incident Reports')
-    $(this).text('Incident Reports (<?php echo $count6;?>)'); 
+    $(this).text('Incident Reports (<?php echo $count5;?>)');
+    if($(this).text()=='Alarm Activation')
+    $(this).text('Alarm Activation (<?php echo $a_a;?>)'); 
     if($(this).text()=='Burglary')
     $(this).text('Burglary (<?php echo $burg;?>)');
     if($(this).text()=='Property Damage')

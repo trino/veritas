@@ -77,6 +77,20 @@ class UploadsController extends AppController
             $cond = "WHERE `date` <='$to' ";
             $cond1 = " and `date` <='$to' ";
         }
+        
+        
+        if(isset($_GET['addedBy']) && $_GET['addedBy']!="" && !(isset($_GET['from'])) && !(isset($_GET['to'])))
+        {
+            $addedBy = $_GET['addedBy'];
+            $cond.= " WHERE addedBy= '$addedBy'";
+            $cond1.= " and addedBy = '$addedBy'";
+        }
+        elseif(isset($_GET['addedBy']) && $_GET['addedBy']!="")
+        {
+            $addedBy = $_GET['addedBy'];
+            $cond.= " and addedBy= '$addedBy'";
+            $cond1.= " and addedBy = '$addedBy'";
+        }
         //echo "SELECT COUNT( * ) as cnt , `document_type` , DATE( `date` ) DateOnly FROM `documents` $cond GROUP BY `document_type` , DateOnly";
         //die();
         if($all = $this->Document->query("SELECT COUNT( * ) as cnt , `document_type` , DATE( `date` ) DateOnly FROM `documents` $cond GROUP BY `document_type` , DateOnly"))
@@ -110,34 +124,45 @@ class UploadsController extends AppController
     
     function stats()
     {
+        $cond = '';
+        $cond1 = '';
+        if(isset($_POST['addedBy']) && $_POST['addedBy']!="")
+        {
+            $addedBy = $_POST['addedBy'];
+            $cond = "WHERE addedBy ='$addedBy'";
+            $cond1 = "and addedBy = '$addedBy'";
+            $this->set('addedBy',$addedBy);
+        }
         if(isset($_POST['from']) && isset($_POST['to']) && $_POST['from']!="" && $_POST['to']!="")
         {
             $from = $_POST['from'];
             $to = $_POST['to'];
-            $all = $this->Document->query("SELECT COUNT(*) as cnt, document_type FROM documents WHERE `date`>='$from' and `date`<='$to' GROUP BY document_type");
+            $all = $this->Document->query("SELECT COUNT(*) as cnt, document_type FROM documents WHERE `date`>='$from' and `date`<='$to' $cond1 GROUP BY document_type");
             $this->set('from',$_POST['from']);
             $this->set('to', $_POST['to']);
         }
         elseif(isset($_POST['from'])&& $_POST['from']!="")
         {    
             $from = $_POST['from'];
-            $all = $this->Document->query("SELECT COUNT(*) as cnt, document_type FROM documents WHERE `date`>='$from'  GROUP BY document_type");
+            $all = $this->Document->query("SELECT COUNT(*) as cnt, document_type FROM documents WHERE `date`>='$from' $cond1  GROUP BY document_type");
             $this->set('from',$_POST['from']);
             
         }
         elseif(isset($_POST['to']) && $_POST['to']!="")
         {
             $to = $_POST['to'];
-            $all = $this->Document->query("SELECT COUNT(*) as cnt, document_type FROM documents WHERE `date`<='$to' GROUP BY document_type");
+            $all = $this->Document->query("SELECT COUNT(*) as cnt, document_type FROM documents WHERE `date`<='$to' $cond1 GROUP BY document_type");
             $this->set('to', $_POST['to']);
         }
         else
-            $all = $this->Document->query("SELECT COUNT(*) as cnt, document_type FROM documents GROUP BY document_type");
+            $all = $this->Document->query("SELECT COUNT(*) as cnt, document_type FROM documents $cond GROUP BY document_type");
         $report_type = $this->Activity;
         $doc = $this->Document;
         $this->set('report_type',$report_type);
         $this->set('doc',$doc);
         $this->set('all',$all);
+        $users = $this->Member->find('all');
+        $this->set('users',$users);
         //var_dump($all); //die();
         
         
@@ -411,6 +436,7 @@ class UploadsController extends AppController
                 $this->Activity->deleteAll(array('document_id'=>$eid));
                 $activity['document_id'] = $eid;
                 $activity['report_type'] = $_POST['report_type'];
+                $activity['addedBy'] = $id;
                 if(isset($activity['report_type']))
                     $activity['incident_type'] = $_POST['incident_type'];
                 foreach($_POST['activity_time'] as $k=>$v)
@@ -580,15 +606,15 @@ class UploadsController extends AppController
             }
             }
             if(isset($_POST['emailadd']) && $_POST['emailadd'])
-                        {
-                            if(isset($jj))
-                            unset($jj);
-                            $jj = $this->Job->find('first',array('conditions'=>array('id'=>$_POST['job'])));
-                        if($jj)
-                        $job_title = $jj['Job']['title'];
-                        else
-                        $job_title = '';
-                            if($_SERVER['SERVER_NAME']=='localhost')
+            {
+                if(isset($jj))
+                    unset($jj);
+                $jj = $this->Job->find('first',array('conditions'=>array('id'=>$_POST['job'])));
+                if($jj)
+                    $job_title = $jj['Job']['title'];
+                else
+                    $job_title = '';
+                if($_SERVER['SERVER_NAME']=='localhost')
                     $base_url = "http://localhost/veritas/";
                 else{
                         $base_url =	 str_replace('//','___',$_SERVER['SERVER_NAME']);
@@ -700,12 +726,12 @@ class UploadsController extends AppController
     function upload($ids,$typee='')
     {
         $jj = $this->Job->find('first',array('conditions'=>array('id'=>$ids)));
-                        if($jj)
-                        $job_title = $jj['Job']['title'];
-                        else
-                        $job_title = '';
+        if($jj)
+            $job_title = $jj['Job']['title'];
+        else
+            $job_title = '';
         if($typee!='email')                 
-        $this->set('typee',$typee);
+            $this->set('typee',$typee);
         $subname = '';
         $this->loadModel('Canupload');
         $this->loadModel('Activity');
@@ -810,6 +836,7 @@ class UploadsController extends AppController
             $arr['date'] = date('Y-m-d H:i:s');
             $arr['job_id'] = $_POST['job'];
             $arr['addedBy'] = $id;
+            $addedBy = $id;
             $this->Document->create();
             $this->Document->save($arr);
             $id=$this->Document->id;
@@ -884,6 +911,7 @@ class UploadsController extends AppController
                     if($v != "")
                     {
                         $activity['time'] = $v;
+                        $activity['addedBy'] = $addedBy;
                         $activity['date'] = $_POST['activity_date'][$k];
                         $activity['desc'] = $_POST['activity_desc'][$k];
                         $this->Activity->create();
