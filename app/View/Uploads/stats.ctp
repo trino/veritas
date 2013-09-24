@@ -13,10 +13,32 @@
   }
 }
 </style>
-<h3 class="page-title">Analytics Report</h3>
+<h3 class="page-title">Document Uploads Report</h3>
+<ul class="breadcrumb">
+	<li>
+		<i class="icon-home"></i>
+		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>uploads/stats">Document Uploads Report</a>
+        
+	</li>
+</ul>
+<?php
+if(isset($_REQUEST['from']))
+echo "<strong>FROM :</strong> ".$_REQUEST['from']." &nbsp; ";
+if(isset($_REQUEST['to']))
+echo "<strong>TO :</strong> ".$_REQUEST['to']."<br/>";
+?>
 <form action="" method="post" id="datefilter">
     <input type="text" value="" name="from" placeholder="Start Date" style="width: 100px; margin-top:10px;" class="datepicker required" />
     <input type="text" value="" name="to" placeholder="End Date" style="width: 100px; margin-top: 10px;" class="datepicker required" />
+    <select name="addedBy" style="margin-top: 10px;">
+        <option value="">Select User</option>
+        <option value="0">Admin</option>
+        <?php foreach($users as $u){?>
+        <option value="<?php echo $u['Member']['id'];?>"><?php echo $u['Member']['full_name'];?></option>
+        <?php }?>
+    </select>
+    
     <input type="submit" value="Go" class="btn btn-primary" />
 </form>
 
@@ -346,6 +368,12 @@ if(isset($from)&& isset($to))
         $qry = "?from=$from";
     elseif(isset($to))
         $qry = "?to=$to";
+    
+    if(isset($addedBy)&& $qry!="")
+        $qry.= "&addedBy=$addedBy";
+    elseif(isset($addedBy) && $qry=="")
+        $qry.= "?addedBy=$addedBy";
+        
     
 ?>
 <a href="graphs<?php echo $qry;?>" class="btn btn-primary"> Show Graph</a> <a href="javascript:void(0);" onclick="window.print();" class="btn btn-primary">Print Report</a>
