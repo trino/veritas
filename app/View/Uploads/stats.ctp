@@ -132,7 +132,15 @@
 <a href="graphs<?php echo $qry;?>" class="btn btn-primary"> Show Graph</a> <a href="javascript:void(0);" onclick="window.print();" class="btn btn-primary">Print Report</a>
 <table class="table" id="toprint">
 <tr><td colspan="2" style="border-top: none;"><h3 class="page-title">Document Uploads Report</h3></td></tr>
-<tr><td colspan="2"><?php
+<tr><td colspan="2" style="border-top: none;>
+<div style="margin: 10px 0;">
+<strong>Printed By : </strong><?php if($this->Session->read('user'))echo ucfirst($this->Session->read('user'));else echo 'Admin';?><br />
+<strong>Generated On : </strong><?php echo date('Y-m-d H:i:s');?>
+
+</div>
+
+</td></tr>
+<tr><td colspan="2" style="border-top: none;><?php
 if(isset($_REQUEST['from']) && $_REQUEST['from'])
 echo "<strong>FROM :</strong> ".$_REQUEST['from']." &nbsp; ";
 if(isset($_REQUEST['to']) && $_REQUEST['to'])
@@ -372,13 +380,6 @@ if(isset($from)&& isset($to))
 
 <tr><th>KPI Audits</th><th><?php echo $KPIAudits;?> uploads</th></tr>
 <tr><th>Client Feedback</th><th><?php echo $client_feedback;?> uploads</th></tr>
-<tr><td colspan="2">
-<div style="margin: 10px 0;">
-<strong>Printed By : </strong><?php if($this->Session->read('user'))echo ucfirst($this->Session->read('user'));else echo 'Admin';?><br />
-<strong>Generated On : </strong><?php echo date('Y-m-d H:i:s');?>
 
-</div>
-
-</td></tr>
 </table>
 
