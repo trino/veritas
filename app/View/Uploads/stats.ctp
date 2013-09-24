@@ -30,7 +30,6 @@
     
 ?>
 
-
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
