@@ -1,12 +1,7 @@
 <?php //var_dump($all);?>
-<div style="margin: 10px 0;">
-<strong>Printed By : </strong><?php if($this->Session->read('user'))echo ucfirst($this->Session->read('user'));else echo 'Admin';?><br />
-<strong>Generated On : </strong><?php echo date('Y-m-d H:i:s');?>
 
-</div>
 
-</div>
-<input type="button" onclick="window.print();" value="Print Graph" class="btn btn-primary" style="margin-top: 10px;" />
+<input type="button" onclick="window.print();" value="Print Graph" class="btn btn-primary" style="margin: 10px;" />
 
 <script src="../js/Theme.js"></script>
 <script src="../js/Charts.js"></script>
@@ -28,12 +23,14 @@
     height: 325px;
     width: 150%;
 }
+
 @media print {
   body * {
     visibility:hidden;
   }
   #toprint, #toprint * {
     visibility:visible;
+    
   }
   #toprint {
     position:absolute;
@@ -44,11 +41,20 @@
 </style>
 <div id="toprint">
 <h3 class="page-title">Document Uploads Report</h3>
+<div style="margin: 10px 0px;">
+<strong>Printed By : </strong><?php if($this->Session->read('user'))echo ucfirst($this->Session->read('user'));else echo 'Admin';?><br />
+<strong>Generated On : </strong><?php echo date('Y-m-d H:i:s');?>
+
+</div>
+
 <?php
-if(isset($_REQUEST['from']))
+if(isset($_REQUEST['from']) && $_REQUEST['from'])
 echo "<strong>FROM :</strong> ".$_REQUEST['from']." &nbsp; ";
-if(isset($_REQUEST['to']))
-echo "<strong>TO :</strong> ".$_REQUEST['to']."<br/><br/>";
+if(isset($_REQUEST['to']) && $_REQUEST['to'])
+echo "<strong>TO :</strong> ".$_REQUEST['to']."<br/>";
+if(isset($by))
+echo "<strong>Uploaded By :</strong>".ucfirst($by);
+echo "<br/>";
 ?>
 <?php if(isset($all)){?>
 <div class="span6">
@@ -549,7 +555,7 @@ var Miscellaneous = [];
          legend:{        
                 noColumns: 2,
                 position: 'ne',
-                margin:[-384,0],
+                margin:[-400,0],
             }
 };
 var plotDetail = $.plot($("#evidence-chart"),
@@ -1377,3 +1383,4 @@ $('.legendLabel').each(function(){
 });
 });
 </script>
+</div>

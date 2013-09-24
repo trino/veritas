@@ -13,6 +13,23 @@
   }
 }
 </style>
+<?php
+    $qry ="";
+    if(isset($from) && isset($to))
+        $qry = "?from=$from&to=$to";
+    elseif(isset($from))
+        $qry = "?from=$from";
+    elseif(isset($to))
+        $qry = "?to=$to";
+    
+    if(isset($addedBy)&& $qry!="")
+        $qry.= "&addedBy=$addedBy";
+    elseif(isset($addedBy) && $qry=="")
+        $qry.= "?addedBy=$addedBy";
+        
+    
+?>
+
 
 <ul class="breadcrumb">
 	<li>
@@ -22,12 +39,7 @@
         
 	</li>
 </ul>
-<?php
-if(isset($_REQUEST['from']))
-echo "<strong>FROM :</strong> ".$_REQUEST['from']." &nbsp; ";
-if(isset($_REQUEST['to']))
-echo "<strong>TO :</strong> ".$_REQUEST['to']."<br/>";
-?>
+
 <form action="" method="post" id="datefilter">
     <input type="text" value="" name="from" placeholder="Start Date" style="width: 100px; margin-top:10px;" class="datepicker required" />
     <input type="text" value="" name="to" placeholder="End Date" style="width: 100px; margin-top: 10px;" class="datepicker required" />
@@ -121,6 +133,14 @@ echo "<strong>TO :</strong> ".$_REQUEST['to']."<br/>";
 <a href="graphs<?php echo $qry;?>" class="btn btn-primary"> Show Graph</a> <a href="javascript:void(0);" onclick="window.print();" class="btn btn-primary">Print Report</a>
 <table class="table" id="toprint">
 <tr><td colspan="2" style="border-top: none;"><h3 class="page-title">Document Uploads Report</h3></td></tr>
+<tr><td colspan="2"><?php
+if(isset($_REQUEST['from']) && $_REQUEST['from'])
+echo "<strong>FROM :</strong> ".$_REQUEST['from']." &nbsp; ";
+if(isset($_REQUEST['to']) && $_REQUEST['to'])
+echo "<strong>TO :</strong> ".$_REQUEST['to']."<br/>";
+if(isset($by))
+echo "<strong>Uploaded By: </strong>".ucfirst($by);
+?></td></tr>
 <tr><th>Contracts</th><th><?php echo $contract;?> uploads</th></tr>
 <tr><th>Evidence</th><th><?php echo $evidence;?> uploads</th></tr>
 <tr><td>Incident Report</td><td><?php echo $Incident;?> uploads</td></tr>
@@ -362,20 +382,4 @@ if(isset($from)&& isset($to))
 
 </td></tr>
 </table>
-<?php
-    $qry ="";
-    if(isset($from) && isset($to))
-        $qry = "?from=$from&to=$to";
-    elseif(isset($from))
-        $qry = "?from=$from";
-    elseif(isset($to))
-        $qry = "?to=$to";
-    
-    if(isset($addedBy)&& $qry!="")
-        $qry.= "&addedBy=$addedBy";
-    elseif(isset($addedBy) && $qry=="")
-        $qry.= "?addedBy=$addedBy";
-        
-    
-?>
 

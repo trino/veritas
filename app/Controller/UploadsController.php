@@ -81,6 +81,13 @@ class UploadsController extends AppController
         
         if(isset($_GET['addedBy']) && $_GET['addedBy']!="" && !(isset($_GET['from'])) && !(isset($_GET['to'])))
         {
+            $this->loadModel('Member');
+            if($_GET['addedBy']!=0){
+            $q = $this->Member->find('first',array('conditions'=>array('id'=>$_GET['addedBy'])));
+            $this->set('by',$q['Member']['full_name']);
+            }
+            else
+            $this->set('by','Admin');
             $addedBy = $_GET['addedBy'];
             $cond.= " WHERE addedBy= '$addedBy'";
             $cond1.= " and addedBy = '$addedBy'";
@@ -128,6 +135,13 @@ class UploadsController extends AppController
         $cond1 = '';
         if(isset($_POST['addedBy']) && $_POST['addedBy']!="")
         {
+            $this->loadModel('Member');
+            if($_POST['addedBy']!=0){
+            $q = $this->Member->find('first',array('conditions'=>array('id'=>$_POST['addedBy'])));
+            $this->set('by',$q['Member']['full_name']);
+            }
+            else
+            $this->set('by','Admin');
             $addedBy = $_POST['addedBy'];
             $cond = "WHERE addedBy ='$addedBy'";
             $cond1 = "and addedBy = '$addedBy'";
