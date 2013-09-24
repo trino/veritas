@@ -346,6 +346,8 @@ url: '<?php echo $base_url;?>admin/logout'
 
 
 <div id="fullContainer">
+<table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
+	<tr><td style="width:230px; padding:0px; vertical-align:top;" valign="top">
 	<div id="leftColumn">
 
 		<?php if($this->Session->read('avatar') || $this->Session->read('user')){ ?>
@@ -388,6 +390,8 @@ url: '<?php echo $base_url;?>admin/logout'
     });
     </script>
 
+	</td><td style="padding:0px;">	
+	
 	<div id="rightColumn">
 		<div id="rightHeader">
 			<?php if($this->Session->read('id')){?>
@@ -468,7 +472,7 @@ url: '<?php echo $base_url;?>admin/logout'
 		</div><!-- rightHeader -->
 
 		
-		
+	
 		
 		<div id="rightContent">
         <?php
@@ -540,65 +544,73 @@ url: '<?php echo $base_url;?>admin/logout'
 					<div class="message-form" >
 						<form id="Form" action="<?php echo $base_url.'mail/send?return='.urlencode($_SERVER['REQUEST_URI']);?>" method="post" class="messageform">
 							
-							
-							<div class="left inputs">
-                                <div class="recipientsLine" >
-<div id="name" style="height: 20px; background: none repeat scroll 0% 0% white; border: 1px solid rgb(204, 204, 204); padding: 1px 4px 2px; margin-bottom: 5px; color: rgb(170, 170, 170); width: calc(99% - 45px); float: left;">Recipients</div>
-&nbsp;<a id="contacts_modal" class="email btn btn-info" style="padding:1px 6px;color:#FFF" onclick="show_email();" href="javascript:void(0);">&nbsp;+&nbsp;</a>
-<!--									<input type="text" name="name" id="name" placeholder="Recipients (Separate with comma)" class="required" />--> 
-								</div>
-							    <!--<div style="float:left;margin-left:10px;"><a href="javascript:void(0)" id="contacts_modal" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a></div><div style="clear:both;"></div>-->
-								<div class="subjectLine">
-									<input type="text" name="subject" placeholder="Subject Title" class="required" style="margin-bottom: 7px;width: calc(99% - 9px);" />
-								</div>
+							<table cellspacing="0" cellpadding="0" border="0" width="100%"><tr><td width="50%">
+								<div class="left inputs">
+									<div class="recipientsLine" >
+									
+										<table cellspacing="0" cellpadding="0" border="0" width="100%"><tr><td style="padding:0px; padding-bottom:4px;">
+											<div id="name" style="height: 20px; background: none repeat scroll 0% 0% white; border: 1px solid rgb(204, 204, 204); padding: 1px 4px 2px; color: rgb(170, 170, 170); width:100%; float: left; font-family: 'Oxygen', sans-serif;">Recipients</div>
+										</td><td style="width:30px;padding:0px; text-align:right;">
+											<a id="contacts_modal" class="email btn btn-info" style="padding:0px;color:#FFF; width:100%; float:right; margin:0px; margin-top:-5px; margin-right:-9px; height:23px;" onclick="show_email();" href="javascript:void(0);">&nbsp;+&nbsp;</a>
+										</td></tr></table>
+										
+										<!--									<input type="text" name="name" id="name" placeholder="Recipients (Separate with comma)" class="required" />--> 
+									</div>
+									<!--<div style="float:left;margin-left:10px;"><a href="javascript:void(0)" id="contacts_modal" onclick="show_email();" class="email buttonV"><i class="icon-group"></i> Contacts</a></div><div style="clear:both;"></div>-->
+									<div class="subjectLine">
+										<input type="text" name="subject" placeholder="Subject Title" class="required" style="margin-bottom: 7px;" />
+									</div>
+									
+									
+									<!--<div id="email" style="display: none;">
+										<?php foreach($mems as $m) {
+										   if(!$this->Session->read('admin'))
+										   {
+											if($m['Member']['id'] == $this->Session->read('id'))
+											{
+												continue;
+											}
+										   }
+										   ?> 
+										
+										<a class="buttonV" href="javascript:void(0)" onclick="list_email(this.id)" id="<?php echo $m['Member']['full_name']."_".$m['Member']['id']."_".$m['Member']['email'];?>"><?php echo $m['Member']['full_name']; ?></a>
+										<?php } ?>
+										<?php 
+											if(!$this->Session->read('avatar'))
+											{?>
+												<a class="buttonV" href="javascript:void(0)" onclick="list_email(this.id)" id="<?php echo $ad['User']['name_avatar']."_0_".$ad['User']['email']; ?>"><?php echo $ad['User']['name_avatar']; ?></a>
+											<?php }
+										?>
+									</div>-->
 								
-								
-								<!--<div id="email" style="display: none;">
-									<?php foreach($mems as $m) {
-									   if(!$this->Session->read('admin'))
-                                       {
-                                        if($m['Member']['id'] == $this->Session->read('id'))
-                                        {
-                                            continue;
-                                        }
-                                       }
-									   ?> 
-                                    
-									<a class="buttonV" href="javascript:void(0)" onclick="list_email(this.id)" id="<?php echo $m['Member']['full_name']."_".$m['Member']['id']."_".$m['Member']['email'];?>"><?php echo $m['Member']['full_name']; ?></a>
-									<?php } ?>
-									<?php 
-										if(!$this->Session->read('avatar'))
-										{?>
-											<a class="buttonV" href="javascript:void(0)" onclick="list_email(this.id)" id="<?php echo $ad['User']['name_avatar']."_0_".$ad['User']['email']; ?>"><?php echo $ad['User']['name_avatar']; ?></a>
-										<?php }
-									?>
-								</div>-->
-							
-								<!-- <div><div class="left"><input type="text" name="attachments" placeholder="Attachments" id="attachment" readonly="" style="background: #e5f5f5;" /></div><a class="left" href="javascript:void(0)" id="attach">Attach</a><div class="clear"></div></div>-->
+									<!-- <div><div class="left"><input type="text" name="attachments" placeholder="Attachments" id="attachment" readonly="" style="background: #e5f5f5;" /></div><a class="left" href="javascript:void(0)" id="attach">Attach</a><div class="clear"></div></div>-->
 
-								<input type="hidden" name="recipients" id="recipients" value="" />
-								<input type="hidden" name="response" id="resp" />
-								<input type="hidden" name="receipient_id" id="receipient_id" value="" />
-                                <input type="hidden" name="attachments" id="attachments" value="" />
-								
-                                <div class="clear"></div>
-                                
-							</div>
-                            <div class="left msg">
-<textarea placeholder="Instant Message - Type message here" name="message" class="required message" style="height:55%;"></textarea>
-							</div>
+									<input type="hidden" name="recipients" id="recipients" value="" />
+									<input type="hidden" name="response" id="resp" />
+									<input type="hidden" name="receipient_id" id="receipient_id" value="" />
+									<input type="hidden" name="attachments" id="attachments" value="" />
+									
+									<div class="clear"></div>
+									
+								</div>
+							</td><td width="50%">
+								<div class="left msg">
+									<textarea placeholder="Instant Message - Type message here" name="message" class="required message" style="height:55%; width:100%;"></textarea>
+								</div>
+							</td></tr></table>
+							
                             <div style="clear:both;"></div>
-                            <div style="margin-right:10px;margin-top:-15px;padding-top:-10px;">
-<input style="float:right;" type="submit" name="submit" value="Send" class="buttonV" id="send_email" />
-
-						<a href="javascript:void(0);" class="buttonV attachment" style="float:right;margin-right:8px;"><i class="icon-book"></i> Attach Documents</a>
-
-															
+							
+                            <div style="margin-top:-25px;padding-top:0px;">
+								<input style="float:right;" type="submit" name="submit" value="Send" class="buttonV" id="send_email" />
+								<a href="javascript:void(0);" class="buttonV attachment" style="float:right;margin-right:8px;"><i class="icon-book"></i> Attach Documents</a>						
                             </div>
+							
 						</form>
                         <div style="padding-top:10px;">
-                        
-                        <b id="att" style="display: none;">Attachments :</b><span class="attachments"></span></div>
+							<b id="att" style="display: none;">Attachments :</b>
+							<span class="attachments"></span>
+						</div>
 					</div>
 
 					<div class="clearfix" ></div>
@@ -854,6 +866,8 @@ url: '<?php echo $base_url;?>admin/logout'
 		</div>
 		
 	</div><!-- rightContent -->
+	</td></tr></table>
+	
     <div style="clear: both;"></div>
 </div><!-- fullContainer -->
 <div class="dialog-modals"></div>
