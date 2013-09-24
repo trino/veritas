@@ -32,6 +32,6 @@ foreach($drafts as $d)
 </table>
 <?php }
 else
-    echo "No Drafts Found!!";
+    echo "No Drafts Found!";
     ?>
 </div>

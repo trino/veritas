@@ -199,7 +199,7 @@ $parents = $a['Mail']['id'];
     <input type="hidden" name="recipient_id" value="<?php echo $reqs; ?>" />
     <input type="hidden" name="recipient_email" value="<?php echo $reqs_email;?>" />
     <input type="hidden" name="subject" value="<?php echo $subj; ?>" />
-    <br /><input type="submit" name="submit" value="Reply" class="btn btn-primary reg-company replybtn" />&nbsp;
+    <br /><br /><input type="submit" name="submit" value="Reply" class="btn btn-primary reg-company replybtn" />&nbsp;
     <?php if(isset($repss)&&$repss>0){?>
     
     &nbsp; <a href="javascript:void(0)" style="height: 6px;padding-bottom: 15px;" class="replyall btn btn-primary">Reply All</a>

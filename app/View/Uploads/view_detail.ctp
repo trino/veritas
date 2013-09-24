@@ -23,13 +23,14 @@
   </script>
 <h3 class="page-title">
 <?php if($j = $job->findById($doc['Document']['job_id'])) echo stripslashes($j['Job']['title']) ; ?> / 
-	Documents: <?php echo $doc['Document']['title']; ?></td>
+	Documents: <?php echo $doc['Document']['title']; ?>
 </h3>
+
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
 		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>uploads/view_detail/<?php echo $doc['Document']['id']; ?></td>">Documents: <?php echo $doc['Document']['title']; ?></td></a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>uploads/view_detail/<?php echo $doc['Document']['id']; ?>">Documents: <?php echo $doc['Document']['title']; ?></a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
 
