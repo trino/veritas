@@ -20,6 +20,7 @@
 
 
 
+
 <div class="documentsDashboard">
 <?php if($this->Session->read('view')=='1') { ?>
 
@@ -188,7 +189,9 @@
     
 	
 <?php } ?>
+
 </div><!-- Documents Dashboard -->
+
 
 
 
@@ -302,6 +305,10 @@ if($this->Session->read('admin'))
 </table>
 
 
+
+
+
+
 </div>
 	
 	
@@ -312,7 +319,7 @@ if($this->Session->read('admin'))
     <?php if(count($keys)>0){
         $m = 0;
         ?>
-    <tr>
+    
         <table width="100%" style=" border: 1px solid #9D9C9C;clear: both; margin-bottom: 15px;">
     <?php 
         foreach($keys as $k){ 
@@ -355,7 +362,7 @@ if($this->Session->read('admin'))
 
 <?php } ?>
         </table>
-    </tr>
+  
    <?php }
    else
    {

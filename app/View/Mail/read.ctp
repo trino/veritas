@@ -24,7 +24,6 @@
 
 <div id="table">
 <h3 style="padding-left:15px;"><?php echo $subj;?></h3>
- <table class="tables">
 <?php 
 $i=0;
 $j = 0;
@@ -35,7 +34,7 @@ $rep['date'] = '';
 foreach($all as $a){
     
     ?>
-    <table id="span<?php echo $j;?>" class="clickable">
+    <table id="span<?php echo $j;?>" class="clickable tables">
     <tr class="show"><td> <b>Sent By:</b> <?php if($a['Mail']['sender_id']=='0')echo 'Admin';else{
         $qs = $member->find('first',array('conditions'=>array('id'=>$a['Mail']['sender_id'])));
         if($qs)
@@ -165,7 +164,10 @@ $parents = $a['Mail']['id'];
 
 
 ?>
-</table>                
+
+
+
+     
                 <?php if(!isset($_GET['sent'])){?>
 <div id="reply" style="padding:15px;">
 <form action="" method="post" id="replyform">
