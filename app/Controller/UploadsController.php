@@ -52,85 +52,117 @@ class UploadsController extends AppController
     
     function graphs()
     {
-        //var_dump($_GET);
-        //die();
-        $cond =" ";
-        $cond1 =" ";
-        if(isset($_GET['from']) && isset($_GET['to']))
-        {
-            $from = $_GET['from'];
-            $to = $_GET['to'];
-            $cond = "WHERE `date`>='$from' and `date` <='$to' ";
-            $cond1 = "and `date`>='$from' and `date` <='$to' ";
-        }
-        elseif(isset($_GET['from']))
-        {
-            $from = $_GET['from'];
-            //$to = $_GET['to'];
-            $cond = "WHERE `date` >='$from' ";
-            $cond1 = "and `date`>='$from' ";
-        }
-        elseif(isset($_GET['to']))
-        {
-            //$from = $_GET['from'];
-            $to = $_GET['to'];
-            $cond = "WHERE `date` <='$to' ";
-            $cond1 = " and `date` <='$to' ";
-        }
-        
-        
-        if(isset($_GET['addedBy']) && $_GET['addedBy']!="" && !(isset($_GET['from'])) && !(isset($_GET['to'])))
-        {
-            $this->loadModel('Member');
-            if($_GET['addedBy']!=0){
-            $q = $this->Member->find('first',array('conditions'=>array('id'=>$_GET['addedBy'])));
-            $this->set('by',$q['Member']['full_name']);
-            }
-            else
-            $this->set('by','Admin');
-            $addedBy = $_GET['addedBy'];
-            $cond.= " WHERE addedBy= '$addedBy'";
-            $cond1.= " and addedBy = '$addedBy'";
-        }
-        elseif(isset($_GET['addedBy']) && $_GET['addedBy']!="")
-        {
-            $addedBy = $_GET['addedBy'];
-            $cond.= " and addedBy= '$addedBy'";
-            $cond1.= " and addedBy = '$addedBy'";
-        }
-        //echo "SELECT COUNT( * ) as cnt , `document_type` , DATE( `date` ) DateOnly FROM `documents` $cond GROUP BY `document_type` , DateOnly";
-        //die();
-        if($all = $this->Document->query("SELECT COUNT( * ) as cnt , `document_type` , DATE( `date` ) DateOnly FROM `documents` $cond GROUP BY `document_type` , DateOnly"))
-            $this->set('all', $all);
-            
-        if($report = $this->Activity->query("SELECT COUNT( * ) as cnt , `report_type` , DATE( `date` ) DateOnly  FROM `activities` $cond GROUP BY `report_type` , DateOnly"))
-            $this->set('report', $report);
-            
-        if($incident = $this->Activity->query("SELECT COUNT( * ) as cnt , `incident_type` , DATE( `date` ) DateOnly FROM `activities` WHERE `incident_type` <> ' ' $cond1 GROUP BY `incident_type` , DateOnly ORDER BY DateOnly"))
-            $this->set('incident', $incident);
-          //  
-        if($evidence = $this->Document->query("SELECT COUNT( * ) as cnt , `evidence_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `evidence_type`<> ' ' $cond1 GROUP BY `evidence_type` , DateOnly"))
-            $this->set('evidence', $evidence);
-        /*  
-        $template = $this->Document->query("SELECT COUNT( * ) as cnt , `template_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `template_type`<> ' ' $cond1 GROUP BY `template_type` , DateOnly");
-            $this->set('template', $template);
-          die();  
-         */  
-        if($site = $this->Document->query("SELECT COUNT( * ) as cnt , `site_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `site_type`<> ' ' $cond1 GROUP BY `site_type` , DateOnly"))
-            $this->set('site', $site);
-            
-        if($training = $this->Document->query("SELECT COUNT( * ) as cnt , `training_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `training_type`<> ' ' $cond1 GROUP BY `training_type` , DateOnly"))
-            $this->set('training', $training);
-            
-        if($employee = $this->Document->query("SELECT COUNT( * ) as cnt , `employee_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `employee_type`<> ' ' $cond1 GROUP BY `employee_type` , DateOnly"))
-            $this->set('employee', $employee);
-        
-    
-    }       
+		//die('here');
+		if($_SERVER['SERVER_NAME']=='localhost')
+		{
+		$base_url = "http://localhost/veritas/";
+		}
+		else{
+		$base_url =	 str_replace('//','___',$_SERVER['SERVER_NAME']);
+		$base_url =  str_replace('/',' ',$_SERVER['SERVER_NAME']);
+		$base_url = trim($base_url);
+		$base_url = str_replace(' ','/',$base_url);
+		$base_url = str_replace('___','//',$base_url);
+		$base_url = $base_url.'/';
+		}
+		
+		$this->set('base_url',  $base_url);
+
+		$cond =" ";
+		$cond1 =" ";
+		if(isset($_GET['from']) && isset($_GET['to']))
+		{
+		$from = $_GET['from'];
+		$to = $_GET['to'];
+		$cond = "WHERE `date`>='$from' and `date` <='$to' ";
+		$cond1 = "and `date`>='$from' and `date` <='$to' ";
+		}
+		elseif(isset($_GET['from']))
+		{
+		$from = $_GET['from'];
+		//$to = $_GET['to'];
+		$cond = "WHERE `date` >='$from' ";
+		$cond1 = "and `date`>='$from' ";
+		}
+		elseif(isset($_GET['to']))
+		{
+		//$from = $_GET['from'];
+		$to = $_GET['to'];
+		$cond = "WHERE `date` <='$to' ";
+		$cond1 = " and `date` <='$to' ";
+		}
+
+
+		// if(isset($_GET['addedBy']) && $_GET['addedBy']!="" && !(isset($_GET['from'])) && !(isset($_GET['to'])))
+		if(isset($_GET['addedBy']) && $_GET['addedBy']!="" && !(isset($_GET['from'])) && !(isset($_GET['to'])))
+		{
+			$this->loadModel('Member');
+			if($_GET['addedBy']!=0){
+			$q = $this->Member->find('first',array('conditions'=>array('id'=>$_GET['addedBy'])));
+			$this->set('by',$q['Member']['full_name']);
+			}
+			else
+			$this->set('by','Admin');
+			$addedBy = $_GET['addedBy'];
+			$cond.= " WHERE addedBy= '$addedBy'";
+			$cond1.= " and addedBy = '$addedBy'";
+		}
+		elseif(isset($_GET['addedBy']) && $_GET['addedBy']!="")
+		{
+			$addedBy = $_GET['addedBy'];
+			$cond.= " and addedBy= '$addedBy'";
+			$cond1.= " and addedBy = '$addedBy'";
+		}
+		
+		//echo "SELECT COUNT( * ) as cnt , `document_type` , DATE( `date` ) DateOnly FROM `documents` $cond GROUP BY `document_type` , DateOnly";
+		//die();
+		if($all = $this->Document->query("SELECT COUNT( * ) as cnt , `document_type` , DATE( `date` ) DateOnly FROM `documents` $cond GROUP BY `document_type` , DateOnly"))
+		$this->set('all', $all);
+
+		if($report = $this->Activity->query("SELECT COUNT( * ) as cnt , `report_type` , DATE( `date` ) DateOnly  FROM `activities` $cond GROUP BY `report_type` , DateOnly"))
+		$this->set('report', $report);
+
+		if($incident = $this->Activity->query("SELECT COUNT( * ) as cnt , `incident_type` , DATE( `date` ) DateOnly FROM `activities` WHERE `incident_type` <> ' ' $cond1 GROUP BY `incident_type` , DateOnly ORDER BY DateOnly"))
+		$this->set('incident', $incident);
+		//  
+		if($evidence = $this->Document->query("SELECT COUNT( * ) as cnt , `evidence_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `evidence_type`<> ' ' $cond1 GROUP BY `evidence_type` , DateOnly"))
+		$this->set('evidence', $evidence);
+		/*  
+		$template = $this->Document->query("SELECT COUNT( * ) as cnt , `template_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `template_type`<> ' ' $cond1 GROUP BY `template_type` , DateOnly");
+		$this->set('template', $template);
+		die();  
+		*/  
+		if($site = $this->Document->query("SELECT COUNT( * ) as cnt , `site_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `site_type`<> ' ' $cond1 GROUP BY `site_type` , DateOnly"))
+		$this->set('site', $site);
+
+		if($training = $this->Document->query("SELECT COUNT( * ) as cnt , `training_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `training_type`<> ' ' $cond1 GROUP BY `training_type` , DateOnly"))
+		$this->set('training', $training);
+
+		if($employee = $this->Document->query("SELECT COUNT( * ) as cnt , `employee_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `employee_type`<> ' ' $cond1 GROUP BY `employee_type` , DateOnly"))
+		$this->set('employee', $employee);
+
+		debug($by);
+	}
     
     
     function stats()
     {
+	
+	                            //die('here');
+                            if($_SERVER['SERVER_NAME']=='localhost')
+                    $base_url = "http://localhost/veritas/";
+                else{
+                        $base_url =	 str_replace('//','___',$_SERVER['SERVER_NAME']);
+                        $base_url =  str_replace('/',' ',$_SERVER['SERVER_NAME']);
+                        $base_url = trim($base_url);
+                        $base_url = str_replace(' ','/',$base_url);
+                        $base_url = str_replace('___','//',$base_url);
+                        $base_url = $base_url.'/';
+                        
+                    }
+										$this->set('base_url',  $base_url);
+					
+					
         $cond = '';
         $cond1 = '';
         if(isset($_POST['addedBy']) && $_POST['addedBy']!="")

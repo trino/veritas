@@ -5,6 +5,7 @@
 
 body{
 	background: url(../img/bg.jpg) repeat-y; 
+	min-height:850px;
 }
 
 #fullContainer{
