@@ -45,7 +45,7 @@ Document Analytics
 
 
 
-<form action="" method="post" id="datefilter">
+<!--form action="" method="post" id="datefilter">
     <input type="text" value="" name="from" placeholder="Start Date" style="width: 100px; margin-top:10px;" class="datepicker required" />
     <input type="text" value="" name="to" placeholder="End Date" style="width: 100px; margin-top: 10px;" class="datepicker required" />
     <select name="addedBy" style="margin-top: 10px;">
@@ -57,7 +57,7 @@ Document Analytics
     </select>
     
     <input type="submit" value="Go" class="btn btn-primary" />
-</form>
+</form-->
 
 <?php
  $contract = '0';
@@ -278,7 +278,7 @@ unset($v);
 <tr><td style="padding-left:30px;">Security Occurrence</td><td><?php echo $Occurance;?> uploads</td></tr>
 <tr><td style="padding-left:30px;">Sign-off Sheets</td><td><?php echo $Sheets;?> uploads</td></tr>
 
-<tr><td style="padding-left:30px;">Incident Report</td><td><?php echo $incident_report;?> uploads</td></tr>
+<tr><td style="padding-left:30px;"><b>Incident Report</b></td><td><b><?php echo $incident_report;?> uploads</b></td></tr>
 <tr style="padding:20px;margin:30px;">
 <tr><td style="padding-left:60px;">Alarm Activation</td><td style=""><?php echo $a_a;?> uploads</td></tr>
 <tr><td style="padding-left:60px;">Burglary</td><td><?php echo $b;?> uploads</td></tr>
@@ -299,7 +299,7 @@ unset($v);
 </tr>
  <tr style="background-color:#efefef;"><th></th><th></th></tr>
 
-<tr><th>Site orders</th><th><?php echo $siteOrder;?> uploads total</th></tr>
+<tr><th>Site Orders</th><th><?php echo $siteOrder;?> uploads total</th></tr>
 <?php
 $Post = 0;
 $Operational = 0;
@@ -398,11 +398,68 @@ if(isset($from)&& isset($to))
 <tr><td style="padding-left:30px;">Job Description</td><td><?php echo $j_d;?> uploads</td></tr>
 <tr><td style="padding-left:30px;">Drug Free Policy</td><td><?php echo $d_f_p;?> uploads</td></tr>
 <tr><td style="padding-left:30px;">Schedules</td><td><?php echo $Schedules;?> uploads</td></tr>
-<tr><td style="padding-left:30px;">KPI Audits</td><td><?php echo $KPIAudits;?> uploads</td></tr>
 
-
-
+<tr style="background-color:#efefef;"><th></th><th></th></tr><tr><th>KPI Audits</th><th><?php echo $KPIAudits;?> uploads total</th></tr>
 <tr style="background-color:#efefef;"><th></th><th></th></tr><tr><th>Client Feedback</th><th><?php echo $client_feedback;?> uploads total</th></tr>
 
-</table>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+$ob = 0;
+$fe = 0;
+$non = 0;
+$sc = 0;
+if(isset($from)&& isset($to))
+       $clientfeedback = $doc->query("SELECT COUNT(*) as cnt, client_feedback FROM documents WHERE `date`>='$from' and `date`<='$to' and client_feedback <>' ' GROUP BY client_feedback");   
+    elseif(isset($from))
+        $clientfeedback = $doc->query("SELECT COUNT(*) as cnt, client_feedback FROM documents WHERE `date`>='$from' and client_feedback <>' ' GROUP BY client_feedback");
+    elseif(isset($to))
+        $clientfeedback = $doc->query("SELECT COUNT(*) as cnt, client_feedback FROM documents WHERE `date`<='$to' and client_feedback <>' ' GROUP BY client_feedback");
+    else
+        $clientfeedback = $doc->query("SELECT COUNT(*) as cnt, client_feedback FROM documents WHERE client_feedback <>' ' GROUP BY client_feedback");
+
+    foreach($clientfeedback as $v)
+    {
+         if( $v['documents']['client_feedback']=='observation')
+            $ob = $v['0']['cnt'];
+         elseif($v['documents']['client_feedback']=='feedback')
+           $fe = $v['0']['cnt'];
+         elseif($v['documents']['client_feedback']=='non_compliance')
+           $non = $v['0']['cnt'];
+         elseif($v['documents']['client_feedback']=='great_job')
+           $sc = $v['0']['cnt'];
+       
+     
+    }
+    unset($v);
+?>
+
+<tr><td style="padding-left:30px;">Observation</td><td><?php echo $ob;?> uploads</td></tr>
+<tr><td style="padding-left:30px;">Feedback</td><td><?php echo $fe;?> uploads</td></tr>
+<tr><td style="padding-left:30px;">Non-Compliance</td><td><?php echo $non;?> uploads</td></tr>
+<tr><td style="padding-left:30px;">Great Job</td><td><?php echo $sc;?> uploads</td></tr>
+
+
+
+
+
+
+
+
+
+
+
+
+</table>

@@ -1,14 +1,8 @@
 <?php //var_dump($all);?>
-
-
-
 <script src="../js/Theme.js"></script>
 <script src="../js/Charts.js"></script>
-
 <script src="../js/plugins/excanvas/excanvas.min.js"></script>
-
 <script src="../js/plugins/cirque/cirque.js"></script>
-
 <script src="../js/plugins/flot/jquery.flot.js"></script>
 <script src="../js/plugins/flot/jquery.flot.pie.js"></script>
 <script src="../js/plugins/flot/jquery.flot.orderBars.js"></script>
@@ -22,14 +16,12 @@
     height: 325px;
     width: 150%;
 }
-
 @media print {
   body * {
     visibility:hidden;
   }
   #toprint, #toprint * {
     visibility:visible;
-    
   }
   #toprint {
     position:absolute;
@@ -40,8 +32,6 @@
 </style>
 
 
-
-
 <h3 class="page-title">
 Document Analytics
 </h3>
@@ -50,20 +40,15 @@ Document Analytics
 		<i class="icon-home"></i>
 		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
 		<a href="<?=$base_url;?>uploads/stats">Document Analytics</a>
-        
 	</li>
 </ul>
 
-
-
 <a href="stats" class="btn btn-primary">Regular Report</a> 
-
 <input type="button" onclick="window.print();" value="Print Report" class="btn btn-primary" style="" />
 <br><br>
 
 
 <div id="toprint">
-
 
 <b>Document Analytics</b>
 <br>
@@ -88,9 +73,6 @@ echo "";
 
 <br>
 
-
-
-
 <!--?php
 if(isset($_REQUEST['from']) && $_REQUEST['from'])
 echo "<strong>FROM :</strong> ".$_REQUEST['from']." &nbsp; ";
@@ -100,76 +82,77 @@ if(isset($by))
 echo "<strong>Uploaded By :</strong>".ucfirst($by);
 echo "<br/>";
 ?-->
+
 <?php if(isset($all)){?>
 <div class="span6">
 <h4>All Documents</h4>
-    
-    <div id="line-chart" class="chart-holder" style="width:100%;"></div> <!-- /#bar-chart -->
-   
+<div id="line-chart" class="chart-holder" style="width:100%;"></div>
 </div>
 <div style="clear:both;"></div>
 <?php }?>
+
+
 <?php if(isset($evidence)){?>
-
 <div class="span6"><br><br>
-<h4>Evidence Report</h4>
-    
-    <div id="evidence-chart" class="chart-holder" style="width:100%;"></div> <!-- /#bar-chart -->
-   
+<h4>Evidence</h4>
+<div id="evidence-chart" class="chart-holder" style="width:100%;"></div>
 </div>
 <div style="clear:both;"></div>
 <?php }?>
+
+
 <?php if(isset($report)){?>
-
 <div class="span6"><br><br>
-<h4>Reports Report</h4>
-    
-    <div id="report-chart" class="chart-holder" style="width:100%;"></div> <!-- /#bar-chart -->
-   
+<h4>Reports</h4>
+<div id="report-chart" class="chart-holder" style="width:100%;"></div>
 </div>
 <div style="clear:both;"></div>
 <?php }?>
-<?php if(isset($incident)){?>
 
+
+<?php if(isset($incident)){?>
 <div class="span6"><br><br>
 <h4>Incident Reports</h4>
-    
-    <div id="incident-chart" class="chart-holder" style="width:100%;"></div> <!-- /#bar-chart -->
-   
+<div id="incident-chart" class="chart-holder" style="width:100%;"></div>
 </div>
 <div style="clear:both;"></div>
 <?php }?>
-<?php if(isset($site)){?>
 
+
+<?php if(isset($site)){?>
 <div class="span6"><br><br>
 <h4>Site Orders</h4>
-    
-    <div id="site-chart" class="chart-holder" style="width:100%;"></div> <!-- /#bar-chart -->
-   
+<div id="site-chart" class="chart-holder" style="width:100%;"></div>
 </div>
 <div style="clear:both;"></div>
 <?php }?>
-<?php if(isset($employee)){?>
 
+
+<?php if(isset($employee)){?>
 <div class="span6"><br><br>
 <h4>Employee</h4>
-    
-    <div id="employee-chart" class="chart-holder" style="width:100%;"></div> <!-- /#bar-chart -->
-   
+<div id="employee-chart" class="chart-holder" style="width:100%;"></div>
 </div>
 <div style="clear:both;"></div>
 <?php }?>
-<?php if(isset($training)){?>
 
+
+<?php
+
+if(isset($client)){?>
 <div class="span6"><br><br>
-
-<h4>Training Report</h4>
-    
-    <div id="training-chart" class="chart-holder" style="width:100%;"></div> <!-- /#bar-chart -->
-   
+<h4>Client Feedback</h4>
+<div id="client-chart" class="chart-holder" style="width:100%;"></div>
+<div id="client-chart" class="chart-holder" style="width:100%;"></div>
 </div>
 <div style="clear:both;"></div>
-<?php }?>
+<?php }
+
+?>
+
+
+
+
 <script>
 $(function(){
 
@@ -600,7 +583,7 @@ var Miscellaneous = [];
          legend:{        
                 noColumns: 2,
                 position: 'ne',
-                margin:[-400,0],
+                margin:[-384,0],
             }
 };
 var plotDetail = $.plot($("#evidence-chart"),
@@ -785,6 +768,7 @@ var s_i_t = [];
 var f_l = [];
 
 <?php 
+
             $vals = "";
 			$d = "";
             $a_a = 0;
@@ -1161,7 +1145,7 @@ var Forms = [];
          legend:{        
                 noColumns: 2,
                 position: 'ne',
-                margin:[-350,0],
+                margin:[-330,0],
             }
 };
 var plotDetail = $.plot($("#site-chart"),
@@ -1170,6 +1154,150 @@ var plotDetail = $.plot($("#site-chart"),
 );
 <?php    
 }// Site Order Ends
+
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+<?
+if(isset($client))
+{
+
+
+?>
+var Observation = [];
+var Feedback = [];
+var Non_compliance = [];
+var Great_job = [];
+<?php 
+            $vals = "";
+			$d = "";
+			foreach($client as $ke=>$data)
+			{
+			    $cnt[]=$data['0']['cnt'];
+				$vals .= $data['0']['cnt'];
+				$d .= $data['0']['DateOnly'];
+                if($data['documents']['client_feedback'] == 'observation'){?>
+				    Observation.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
+				<?php 
+                }
+                elseif($data['documents']['client_feedback'] == 'feedback')
+                {                
+                ?>
+                    Feedback.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
+				<?php
+                }
+                
+                elseif($data['documents']['client_feedback'] == 'non_compliance')
+                {                
+                ?>
+                    Non_compliance.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
+				<?php
+                }
+                elseif($data['documents']['client_feedback'] == 'great_job')
+                {                
+                ?>
+                    Great_job.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
+				<?php
+                }
+                ?>
+        
+			<?php	
+				if((count($client)-1)!= $ke)
+				{
+					$vals .= " ,";
+					$d .= " ,";
+				}	
+			}
+			
+			?>
+			var d = [<?php echo $vals; unset($vals); ?>];
+			var dt =[];
+            var data= [
+		{
+			data: Observation,
+			label: 'Observation',
+            points: { show: true }, 
+		},
+		{
+			data: Feedback,
+			label: 'Feedback',
+			points: { show: true }, 
+			lines: { lineWidth: 2, fill: false } 	
+		},
+		{
+			data: Non_compliance,
+			label: 'Non Compliance',
+			points: { show: true }, 
+			lines: { lineWidth: 2, fill: false } 	
+		},
+		{
+			data: Great_job,
+			label: 'Great Job',
+			points: { show: true }, 
+			lines: { lineWidth: 2, fill: false } 	
+		}];
+ var detailOptions = {            
+		 series: {
+			lines: { show: true, lineWidth: 2 },
+			shadowSize: 1
+		},
+		points: { 
+			show: true, 
+			radius: 4, 
+			fill: true
+		},
+		tooltip: true,
+		tooltipOpts: {
+			content: '%s: %y'
+		},
+		grid: {  
+			hoverable: true,               
+			
+		},
+		yaxis:{
+			color:"#8400FF"
+		},
+		xaxis:{
+			mode:"time",timeformat: '%y-%m-%d',
+			color:"#8400FF"
+		},
+		selection:{
+			mode: "y"
+		},
+         legend:{        
+                noColumns: 2,
+                position: 'ne',
+                margin:[-290,0],
+            }
+};
+var plotDetail = $.plot($("#client-chart"),
+	data,
+	detailOptions
+);
+<?php    
+}// Site Order Ends
+?>
+
+
+
+
+
+
+
+
+
+<?php
 if(isset($employee))
 {
 ?>
@@ -1261,7 +1389,7 @@ var Schedules = [];
          legend:{        
                 noColumns: 2,
                 position: 'ne',
-                margin:[-350,0],
+                margin:[-330,0],
             }
 };
 var plotDetail = $.plot($("#employee-chart"),
@@ -1276,6 +1404,8 @@ if(isset($training))
 var health = [];
 
 <?php 
+
+/*
             $vals = "";
 			$d = "";
 			foreach($training as $ke=>$data)
@@ -1335,7 +1465,7 @@ var health = [];
          legend:{        
                 noColumns: 2,
                 position: 'ne',
-                margin:[-350,0],
+                margin:[-200,0],
             }
 };
 var plotDetail = $.plot($("#training-chart"),
@@ -1343,9 +1473,12 @@ var plotDetail = $.plot($("#training-chart"),
 	detailOptions
 );
 <?php    
-}// Training Ends
-?>
 
+*/
+}
+// Training Ends
+?>
+/*
 $('.legendLabel').each(function(){
     if($(this).text()=='Contracts')
     $(this).text('Contracts (<?php echo $contract_count;?>)');
@@ -1423,9 +1556,10 @@ $('.legendLabel').each(function(){
     $(this).text('Suspicion Internal Theft (<?php echo $susp;?>)');
     if($(this).text()=='Fraud Loss')
     $(this).text('Fraud Loss (<?php echo $loss;?>)'); 
-                 
-    
 });
+
+
+*/
 });
 </script>
 </div>

@@ -212,8 +212,6 @@ function remove_youtube()
     <select name="training_type" class="required">
         <option value="">Select Training Options</option>
         <option value="Health & Safety Manuals">Health & Safety Manuals</option>
-        
-        
     </select> 
 </td>
 </tr>
@@ -231,7 +229,6 @@ function remove_youtube()
         <option value="Job Descriptions">Job Descriptions</option>
         <option value="Drug Free Policy">Drug Free Policy</option>
         <option value="Schedules">Schedules</option>
-        
     </select> 
 </td>
 </tr>
@@ -256,7 +253,7 @@ function remove_youtube()
     <option value="">Select Feedback Type</option>
     <option value="observation">Observation</option>
     <option value="feedback">Feeback</option>
-    <option value="non_compilance">Non-Compliance</option>
+    <option value="non_compliance">Non-Compliance</option>
     <option value="great_job">Great Job</option>
 </select>
 </td>

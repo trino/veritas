@@ -20,7 +20,6 @@ class UploadsController extends AppController
         $this->loadModel('Canview');
         $this->loadModel('Activity');
         
-        
         parent::__construct($request,$response);
         
     }
@@ -70,31 +69,31 @@ class UploadsController extends AppController
 
 		$cond =" ";
 		$cond1 =" ";
+		/*
 		if(isset($_GET['from']) && isset($_GET['to']))
 		{
-		$from = $_GET['from'];
-		$to = $_GET['to'];
-		$cond = "WHERE `date`>='$from' and `date` <='$to' ";
-		$cond1 = "and `date`>='$from' and `date` <='$to' ";
+			$from = $_GET['from'];
+			$to = $_GET['to'];
+			$cond = "WHERE `date`>='$from' and `date` <='$to' ";
+			$cond1 = "and `date`>='$from' and `date` <='$to' ";
 		}
 		elseif(isset($_GET['from']))
 		{
-		$from = $_GET['from'];
-		//$to = $_GET['to'];
-		$cond = "WHERE `date` >='$from' ";
-		$cond1 = "and `date`>='$from' ";
+			$from = $_GET['from'];
+			//$to = $_GET['to'];
+			$cond = "WHERE `date` >='$from' ";
+			$cond1 = "and `date`>='$from' ";
 		}
 		elseif(isset($_GET['to']))
 		{
-		//$from = $_GET['from'];
-		$to = $_GET['to'];
-		$cond = "WHERE `date` <='$to' ";
-		$cond1 = " and `date` <='$to' ";
+			//$from = $_GET['from'];
+			$to = $_GET['to'];
+			$cond = "WHERE `date` <='$to' ";
+			$cond1 = " and `date` <='$to' ";
 		}
 
-
 		// if(isset($_GET['addedBy']) && $_GET['addedBy']!="" && !(isset($_GET['from'])) && !(isset($_GET['to'])))
-		if(isset($_GET['addedBy']) && $_GET['addedBy']!="" && !(isset($_GET['from'])) && !(isset($_GET['to'])))
+		if(isset($_GET['addedBy']) && $_GET['addedBy']!="")
 		{
 			$this->loadModel('Member');
 			if($_GET['addedBy']!=0){
@@ -113,7 +112,7 @@ class UploadsController extends AppController
 			$cond.= " and addedBy= '$addedBy'";
 			$cond1.= " and addedBy = '$addedBy'";
 		}
-		
+*/
 		//echo "SELECT COUNT( * ) as cnt , `document_type` , DATE( `date` ) DateOnly FROM `documents` $cond GROUP BY `document_type` , DateOnly";
 		//die();
 		if($all = $this->Document->query("SELECT COUNT( * ) as cnt , `document_type` , DATE( `date` ) DateOnly FROM `documents` $cond GROUP BY `document_type` , DateOnly"))
@@ -124,7 +123,7 @@ class UploadsController extends AppController
 
 		if($incident = $this->Activity->query("SELECT COUNT( * ) as cnt , `incident_type` , DATE( `date` ) DateOnly FROM `activities` WHERE `incident_type` <> ' ' $cond1 GROUP BY `incident_type` , DateOnly ORDER BY DateOnly"))
 		$this->set('incident', $incident);
-		//  
+		
 		if($evidence = $this->Document->query("SELECT COUNT( * ) as cnt , `evidence_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `evidence_type`<> ' ' $cond1 GROUP BY `evidence_type` , DateOnly"))
 		$this->set('evidence', $evidence);
 		/*  
@@ -135,33 +134,32 @@ class UploadsController extends AppController
 		if($site = $this->Document->query("SELECT COUNT( * ) as cnt , `site_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `site_type`<> ' ' $cond1 GROUP BY `site_type` , DateOnly"))
 		$this->set('site', $site);
 
+		if($client = $this->Document->query("SELECT COUNT( * ) as cnt , `client_feedback` , DATE( `date` ) DateOnly FROM `documents` WHERE `client_feedback`<> ' ' $cond1 GROUP BY `client_feedback` , DateOnly"))
+		$this->set('client', $client);
+		
 		if($training = $this->Document->query("SELECT COUNT( * ) as cnt , `training_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `training_type`<> ' ' $cond1 GROUP BY `training_type` , DateOnly"))
 		$this->set('training', $training);
 
 		if($employee = $this->Document->query("SELECT COUNT( * ) as cnt , `employee_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `employee_type`<> ' ' $cond1 GROUP BY `employee_type` , DateOnly"))
 		$this->set('employee', $employee);
-
-		debug($by);
 	}
-    
     
     function stats()
     {
-	
-	                            //die('here');
-                            if($_SERVER['SERVER_NAME']=='localhost')
-                    $base_url = "http://localhost/veritas/";
-                else{
-                        $base_url =	 str_replace('//','___',$_SERVER['SERVER_NAME']);
-                        $base_url =  str_replace('/',' ',$_SERVER['SERVER_NAME']);
-                        $base_url = trim($base_url);
-                        $base_url = str_replace(' ','/',$base_url);
-                        $base_url = str_replace('___','//',$base_url);
-                        $base_url = $base_url.'/';
-                        
-                    }
-										$this->set('base_url',  $base_url);
-					
+		//die('here');
+		if($_SERVER['SERVER_NAME']=='localhost')
+		$base_url = "http://localhost/veritas/";
+		else{
+		$base_url =	 str_replace('//','___',$_SERVER['SERVER_NAME']);
+		$base_url =  str_replace('/',' ',$_SERVER['SERVER_NAME']);
+		$base_url = trim($base_url);
+		$base_url = str_replace(' ','/',$base_url);
+		$base_url = str_replace('___','//',$base_url);
+		$base_url = $base_url.'/';
+
+		}
+		$this->set('base_url',  $base_url);
+
 					
         $cond = '';
         $cond1 = '';
@@ -420,6 +418,8 @@ class UploadsController extends AppController
         
         if(isset($_POST['document_type']))
         {
+		
+
             $uri = $_SERVER['REQUEST_URI'];
                 $uri = str_replace('/',' ',$uri);
                 $uri = str_replace(' ','/',trim($uri));
@@ -472,7 +472,7 @@ class UploadsController extends AppController
             elseif($_POST['document_type'] == 'training')
             {
                 $arr['training_type'] = $_POST['training_type'];
-                $subname = '_'.$_POST['employee_type'];
+                $subname = '_'.$_POST['training_type'];
             }
             
             elseif($_POST['document_type']=='report')
@@ -506,10 +506,13 @@ class UploadsController extends AppController
                 
                 $this->Clientmemo->deleteAll(array('document_id'=>$eid));
                 $client['document_id'] = $eid;
-                $client['memo_type'] = $_POST['memo_type'];
+                $client['client_feedback'] = $_POST['memo_type'];
                 $client['guard_name'] = $_POST['guard_name'];
                 $client['time'] = $_POST['memo_time'];
                 $client['date'] = $_POST['memo_date'];
+				
+		
+				
                 $this->Clientmemo->create();
                 $this->Clientmemo->save($client);
                 
@@ -799,7 +802,6 @@ class UploadsController extends AppController
         }
         if(isset($_POST['document_type']))
         {
-            //var_dump($_FILES);die();
                 $uri = $_SERVER['REQUEST_URI'];
                 $uri = str_replace('/',' ',$uri);
                 $uri = str_replace(' ','/',trim($uri));
@@ -832,9 +834,7 @@ class UploadsController extends AppController
                 //$arr['desc'] = $_POST['desc'];
                 $arr['evidence_type'] = $_POST['evidence_type'];
                 $subname = '_'.$_POST['evidence_type'];
-                
-                
-               //die(); 
+              
             }
             elseif($_POST['document_type'] == 'siteOrder')
             {
@@ -843,15 +843,22 @@ class UploadsController extends AppController
             }
             elseif($_POST['document_type'] == 'employee')
             {
-                $arr['employee_type'] == $_POST['employee_type'];
-                $subname = '_'.$_POST['employee_type'];
+                $arr['employee_type'] = $_POST['employee_type'];
+                echo $subname = '_'.$_POST['employee_type'];
+
             }
-            elseif($_POST['employee_type'] == 'training')
+            elseif($_POST['document_type'] == 'training')
             {
                 $arr['training_type'] = $_POST['training_type'];
-                $subname = '_'.$_POST['employee_type'];
+                $subname = '_'.$_POST['training_type'];
+				//debug($arr);exit;
             }
-            
+                        elseif($_POST['document_type'] == 'client_feedback')
+            {
+                $arr['client_feedback'] = $_POST['memo_type'];
+                $subname = '_'.$_POST['memo_type'];
+				//debug($arr);exit;
+            }
             $arr['draft'] = $_POST['draft'];
             
             //Email
@@ -883,6 +890,8 @@ class UploadsController extends AppController
             $arr['job_id'] = $_POST['job'];
             $arr['addedBy'] = $id;
             $addedBy = $id;
+			
+		//	debug($arr);exit;
             $this->Document->create();
             $this->Document->save($arr);
             $id=$this->Document->id;
@@ -1083,12 +1092,9 @@ class UploadsController extends AppController
                 }
                 else
                 {
-                    $this->Session->setFlash('Document Saved, but the file couldn\'t be saved due to unknown extension');
+                    $this->Session->setFlash('Document Saved, but the file couldn\'t be saved due to an unknown extension.');
                 }
-                
-                    
-                
-                
+
             }
             }
             if(isset($_POST['emailadd']) && $_POST['emailadd'])
