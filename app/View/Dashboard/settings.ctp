@@ -170,8 +170,7 @@ $(function(){
         ?>
             <td><strong>Powered By:</strong></td><td><input type="radio" name="logo" value="afimac" style="margin: 0;" <?php if($logo['Logo']['afimac']==1){?>checked="checked"<?php }?> /> <img src="<?php echo $base_url?>img/afimaclogo.png"  /> &nbsp; &nbsp; <input type="radio" name="logo" value="asap" style="margin: 0;" <?php if($logo['Logo']['asap']==1){?>checked="checked"<?php }?>  /> <img src="<?php echo $base_url?>img/asap.gif"  /></td>
         </tr>
-        </table>
-        </td></tr>
+
             <?php
         } 
         ?>
