@@ -69,7 +69,7 @@ class UploadsController extends AppController
 
 		$cond =" ";
 		$cond1 =" ";
-		/*
+
 		if(isset($_GET['from']) && isset($_GET['to']))
 		{
 			$from = $_GET['from'];
@@ -77,6 +77,8 @@ class UploadsController extends AppController
 			$cond = "WHERE `date`>='$from' and `date` <='$to' ";
 			$cond1 = "and `date`>='$from' and `date` <='$to' ";
 		}
+		
+				/*
 		elseif(isset($_GET['from']))
 		{
 			$from = $_GET['from'];
@@ -92,7 +94,8 @@ class UploadsController extends AppController
 			$cond1 = " and `date` <='$to' ";
 		}
 
-		// if(isset($_GET['addedBy']) && $_GET['addedBy']!="" && !(isset($_GET['from'])) && !(isset($_GET['to'])))
+		 if(isset($_GET['addedBy']) && $_GET['addedBy']!="" && !(isset($_GET['from'])) && !(isset($_GET['to'])))
+		
 		if(isset($_GET['addedBy']) && $_GET['addedBy']!="")
 		{
 			$this->loadModel('Member');
@@ -106,13 +109,27 @@ class UploadsController extends AppController
 			$cond.= " WHERE addedBy= '$addedBy'";
 			$cond1.= " and addedBy = '$addedBy'";
 		}
-		elseif(isset($_GET['addedBy']) && $_GET['addedBy']!="")
+		else
+		
+		*/
+		
+		
+		if(isset($_GET['addedBy']) && $_GET['addedBy']!="")
 		{
 			$addedBy = $_GET['addedBy'];
 			$cond.= " and addedBy= '$addedBy'";
 			$cond1.= " and addedBy = '$addedBy'";
+			
+			            if($_POST['addedBy']!=0){
+            $q = $this->Member->find('first',array('conditions'=>array('id'=>$_POST['addedBy'])));
+            $this->set('by',$q['Member']['full_name']);
+            }
+            else
+			{
+            $this->set('by','Admin');
+			}
 		}
-*/
+
 		//echo "SELECT COUNT( * ) as cnt , `document_type` , DATE( `date` ) DateOnly FROM `documents` $cond GROUP BY `document_type` , DateOnly";
 		//die();
 		if($all = $this->Document->query("SELECT COUNT( * ) as cnt , `document_type` , DATE( `date` ) DateOnly FROM `documents` $cond GROUP BY `document_type` , DateOnly"))
@@ -126,11 +143,11 @@ class UploadsController extends AppController
 		
 		if($evidence = $this->Document->query("SELECT COUNT( * ) as cnt , `evidence_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `evidence_type`<> ' ' $cond1 GROUP BY `evidence_type` , DateOnly"))
 		$this->set('evidence', $evidence);
-		/*  
+		/*
 		$template = $this->Document->query("SELECT COUNT( * ) as cnt , `template_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `template_type`<> ' ' $cond1 GROUP BY `template_type` , DateOnly");
 		$this->set('template', $template);
-		die();  
-		*/  
+		*/
+		
 		if($site = $this->Document->query("SELECT COUNT( * ) as cnt , `site_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `site_type`<> ' ' $cond1 GROUP BY `site_type` , DateOnly"))
 		$this->set('site', $site);
 
