@@ -1,9 +1,0 @@
-http://localhost/dinendash/admin/restaurants/
-remove edit
-
-http://localhost/dinendash/admin/reservations/
-make sortable... when click on reservation you should be able to view details
-make details look like this: http://localhost/dinendash/reservations/detail/4
-
-http://localhost/dinendash/admin/stats/
-remove this page

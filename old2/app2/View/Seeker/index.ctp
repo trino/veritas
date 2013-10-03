@@ -1,1 +1,0 @@
-<h1>Welcome <?php echo $this->Session->read('user'); ?></h1>

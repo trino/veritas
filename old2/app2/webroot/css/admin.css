@@ -1,9 +1,0 @@
-*{
-	margin: 0;
-	padding: 0;
-}
-#wrap{ max-width: 980px; width: 100%; margin:0 auto;}
-form h1{ font-family: Tahoma; font-size: 30px; color: grey; text-align: center;}
-
-.login{ width: 262px; margin: 0 auto; padding-top: 50px}
-.border{ padding: 20px; border: 1px solid #afacac; border-radius: 5px;}

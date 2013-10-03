@@ -1,3 +1,0 @@
-#order deny,allow
-#deny from all
-#allow from 24.36.161.100 and 24.36.68.18
