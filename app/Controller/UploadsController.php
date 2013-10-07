@@ -1460,4 +1460,8 @@ class UploadsController extends AppController
     $this->layout = "modal_layout";
     $this->set('id',$id);
   }
+  public function loss_prevention()
+  {
+    
+  }
 }
