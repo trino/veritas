@@ -583,14 +583,14 @@ class UploadsController extends AppController
                         if($_POST['document_type']== 'evidence')
                             $message="Job: ".$job_title."<br/>
                             Document: ".$arr['title']."<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
-                            Upload Date: ".date('Y-m-d')."<br/> Please <a href='".$base_url."uploads/view_detail/".$eid."'>Click Here</a> to Login<br><br>- The Veritas Team";
+                            Upload Date: ".date('Y-m-d')."<br/> Please <a href='".$base_url."?upload=".$eid."'>Click Here</a> to Login<br><br>- The Veritas Team";
                         else
                             $message="
                             Job: ".$job_title."<br/>
                             Document: ".$arr['title']."<br/>
                             Who Uploaded: ".$this->Session->read('username')."<br/>
                             Upload Date: ".date('Y-m-d')."
-                            <br/> Please <a href='".$base_url."uploads/view_detail/".$eid."'>Click Here</a> to Login<br><br>- The Veritas Team";
+                            <br/> Please <a href='".$base_url."?upload=".$eid."'>Click Here</a> to Login<br><br>- The Veritas Team";
                         if($to){
                         $checks = $this->Member->find('first',array('conditions'=>array('email'=>$to)));
                         $check=0;
@@ -605,10 +605,9 @@ class UploadsController extends AppController
                         $emails->to($to);
                         $emails->send($message);}
                         }
-                    }    
+                    }
                 }
-                
-            
+
             $arr['date'] = date('Y-m-d H:i:s');
             $arr['job_id'] = $_POST['job'];
             $arr['addedBy'] = $id;
