@@ -418,6 +418,27 @@ class UploadsController extends AppController
         $this->loadModel('Emailupload');
         $this->loadModel('Clientmemo');
         $this->loadModel('AdminDoc');
+        
+        $this->loadModel('StoreInfo');
+            $this->set('store',$this->StoreInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+        $this->loadModel('SubjectInfo');
+            $this->set('subject',$this->SubjectInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+         
+        $this->loadModel('SpecialistInfo');
+            $this->set('special',$this->SpecialistInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+        $this->loadModel('ProductDInfo');
+            $this->set('product',$this->ProductDInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+        $this->loadModel('PoliceInfo');
+            $this->set('police',$this->PoliceInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+        $this->loadModel('JuvenileInfo');
+            $this->set('juv',$this->JuvenileInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+        $this->loadModel('NoticeInfo');
+            $this->set('notice',$this->NoticeInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+        $this->loadModel('AdditionalInfo');
+            $this->set('add',$this->AdditionalInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+        $this->loadModel('ItemInfo');
+            $this->set('item',$this->ItemInfo->find('all', array('conditions'=>array('doc_id'=>$eid))));
+            
         $this->set('admin_doc',$this->AdminDoc->find('first'));
         if($this->Session->read('user'))
         {
@@ -502,6 +523,102 @@ class UploadsController extends AppController
                 $activity['addedBy'] = $id;
                 if(isset($activity['report_type']))
                     $activity['incident_type'] = $_POST['incident_type'];
+                    
+                if($_POST['report_type']=='7')
+                {
+                    
+                    $this->StoreInfo->deleteAll(array('doc_id'=>$eid));
+                    $store['doc_id'] = $eid;
+                    foreach($_POST['store'] as $k=>$v)
+                    {
+                        $store[$k] = $v ;
+                    }
+                    unset($v, $k);
+                    $this->StoreInfo->save($store);
+                    
+                    $this->SubjectInfo->deleteAll(array('doc_id'=>$eid));
+                    $subject['doc_id'] = $eid;
+                    foreach($_POST['subject'] as $k=>$v)
+                    {
+                       $subject[$k] = $v; 
+                    }
+                    unset($v , $k);
+                    $this->SubjectInfo->save($subject);
+                    
+                    $this->SpecialistInfo->deleteAll(array('doc_id'=>$eid));
+                    $special['doc_id'] = $eid;
+                    foreach($_POST['specialist'] as $k=>$v)
+                    {
+                       $special[$k] = $v; 
+                    }
+                    unset($v , $k);
+                    $this->SpecialistInfo->save($special);
+                    
+                    $this->ProductDInfo->deleteAll(array('doc_id'=>$eid));
+                    $product['doc_id'] = $eid;
+                    foreach($_POST['product'] as $k=>$v)
+                    {
+                       $product[$k] = $v; 
+                    }
+                    unset($v , $k);
+                    $this->ProductDInfo->save($product);
+                    
+                    $this->PoliceInfo->deleteAll(array('doc_id'=>$eid));
+                    $police['doc_id'] = $eid;
+                    foreach($_POST['police'] as $k=>$v)
+                    {
+                       $police[$k] = $v; 
+                    }
+                    unset($v , $k);
+                    $this->PoliceInfo->save($police);
+                    
+                    $this->JuvenileInfo->deleteAll(array('doc_id'=>$eid));
+                    $juvenile['doc_id'] = $eid;
+                    foreach($_POST['juvenile'] as $k=>$v)
+                    {
+                       $juvenile[$k] = $v; 
+                    }
+                    unset($v , $k);
+                    $this->JuvenileInfo->save($juvenile);
+                    
+                    $this->NoticeInfo->deleteAll(array('doc_id'=>$eid));
+                    $notice['doc_id'] = $eid;
+                    foreach($_POST['notice'] as $k=>$v)
+                    {
+                       $notice[$k] = $v; 
+                    }
+                    unset($v , $k);
+                    $this->NoticeInfo->save($notice);
+                    
+                    $this->AdditionalInfo->deleteAll(array('doc_id'=>$eid));
+                    $add['doc_id'] = $eid;
+                    foreach($_POST['additional'] as $k=>$v)
+                    {
+                       $add[$k] = $v; 
+                    }
+                    unset($v , $k);
+                    $this->AdditionalInfo->save($add);
+                    
+                    $this->ItemInfo->deleteAll(array('doc_id'=>$eid));
+                    $ii=-1;
+                    $arr['case'] = $_POST['item_case'];
+                    $arr['doc_id'] = $eid ;
+                    for($i=0;$i<8;$i++)//$_POST['item'] as $key=>$val)
+                    {
+                        
+                        $this->ItemInfo->create();
+                        $arr['ids'] = $_POST['item']['id'][$i];
+                        $arr['desc'] = $_POST['item']['desc'][$i];
+                        $arr['sku'] = $_POST['item']['sku'][$i];
+                        $arr['price'] = $_POST['item']['price'][$i];
+                        $this->ItemInfo->save($arr);
+                    }
+                    //die();
+                    //var_dump($item); die();
+                    //var_dump($_POST['item']); die();
+                    
+                }    
+                    
                 foreach($_POST['activity_time'] as $k=>$v)
                 {
                     if($v!="")
@@ -974,10 +1091,103 @@ class UploadsController extends AppController
                 if(isset($activity['report_type']))
                     $activity['incident_type'] = $_POST['incident_type'];
                     
-                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet');
+                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention');
                 if($_POST['report_type'])
                     $subname = '_'.$act_type[$_POST['report_type']];
                 
+                if($_POST['report_type']=='7')
+                {
+                    $this->loadModel('StoreInfo');
+                    $store['doc_id'] = $id;
+                    foreach($_POST['store'] as $k=>$v)
+                    {
+                        $store[$k] = $v ;
+                    }
+                    unset($v, $k);
+                    $this->StoreInfo->save($store);
+                    
+                    $this->loadModel('SubjectInfo');
+                    $subject['doc_id'] = $id;
+                    foreach($_POST['subject'] as $k=>$v)
+                    {
+                       $subject[$k] = $v; 
+                    }
+                    unset($v , $k);
+                    $this->SubjectInfo->save($subject);
+                    
+                    $this->loadModel('SpecialistInfo');
+                    $special['doc_id'] = $id;
+                    foreach($_POST['specialist'] as $k=>$v)
+                    {
+                       $special[$k] = $v; 
+                    }
+                    unset($v , $k);
+                    $this->SpecialistInfo->save($special);
+                    
+                    $this->loadModel('ProductDInfo');
+                    $product['doc_id'] = $id;
+                    foreach($_POST['product'] as $k=>$v)
+                    {
+                       $product[$k] = $v; 
+                    }
+                    unset($v , $k);
+                    $this->ProductDInfo->save($product);
+                    
+                    $this->loadModel('PoliceInfo');
+                    $police['doc_id'] = $id;
+                    foreach($_POST['police'] as $k=>$v)
+                    {
+                       $police[$k] = $v; 
+                    }
+                    unset($v , $k);
+                    $this->PoliceInfo->save($police);
+                    
+                    $this->loadModel('JuvenileInfo');
+                    $juvenile['doc_id'] = $id;
+                    foreach($_POST['juvenile'] as $k=>$v)
+                    {
+                       $juvenile[$k] = $v; 
+                    }
+                    unset($v , $k);
+                    $this->JuvenileInfo->save($juvenile);
+                    
+                    $this->loadModel('NoticeInfo');
+                    $notice['doc_id'] = $id;
+                    foreach($_POST['notice'] as $k=>$v)
+                    {
+                       $notice[$k] = $v; 
+                    }
+                    unset($v , $k);
+                    $this->NoticeInfo->save($notice);
+                    
+                    $this->loadModel('AdditionalInfo');
+                    $add['doc_id'] = $id;
+                    foreach($_POST['additional'] as $k=>$v)
+                    {
+                       $add[$k] = $v; 
+                    }
+                    unset($v , $k);
+                    $this->AdditionalInfo->save($add);
+                    
+                    $this->loadModel('ItemInfo');
+                    $ii=-1;
+                    $arr['case'] = $_POST['item_case'];
+                    $arr['doc_id'] = $id ;
+                    for($i=0;$i<8;$i++)//$_POST['item'] as $key=>$val)
+                    {
+                        
+                        $this->ItemInfo->create();
+                        $arr['ids'] = $_POST['item']['id'][$i];
+                        $arr['desc'] = $_POST['item']['desc'][$i];
+                        $arr['sku'] = $_POST['item']['sku'][$i];
+                        $arr['price'] = $_POST['item']['price'][$i];
+                        $this->ItemInfo->save($arr);
+                    }
+                    //die();
+                    //var_dump($item); die();
+                    //var_dump($_POST['item']); die();
+                    
+                }
                 foreach($_POST['activity_time'] as $k=>$v)
                 {
                     if($v != "")
@@ -1372,7 +1582,33 @@ class UploadsController extends AppController
             $doc = $this->Document->find('first',array('conditions'=>array('id'=>$id)));
             $job_id = $doc['Document']['job_id'];
             if($doc['Document']['document_type']== 'report')
-                $this->set('activity',$this->Activity->find('all',array('conditions'=>array('document_id'=>$id))));
+            {
+                $eid = $id;
+                $act = $this->Activity->find('all',array('conditions'=>array('document_id'=>$id)));
+                $this->set('activity', $act);
+                $this->loadModel('StoreInfo');
+                if($act[0]['Activity']['report_type'] == '7')
+                {
+                    $this->set('store',$this->StoreInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+                    $this->loadModel('SubjectInfo');
+                        $this->set('subject',$this->SubjectInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+                     
+                    $this->loadModel('SpecialistInfo');
+                        $this->set('special',$this->SpecialistInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+                    $this->loadModel('ProductDInfo');
+                        $this->set('product',$this->ProductDInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+                    $this->loadModel('PoliceInfo');
+                        $this->set('police',$this->PoliceInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+                    $this->loadModel('JuvenileInfo');
+                        $this->set('juv',$this->JuvenileInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+                    $this->loadModel('NoticeInfo');
+                        $this->set('notice',$this->NoticeInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+                    $this->loadModel('AdditionalInfo');
+                        $this->set('add',$this->AdditionalInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+                    $this->loadModel('ItemInfo');
+                        $this->set('item',$this->ItemInfo->find('all', array('conditions'=>array('doc_id'=>$eid))));
+                }
+            }
             elseif($doc['Document']['document_type'] == 'client_feedback')
                 $this->set('memo',$this->Clientmemo->findByDocumentId($id));
             

@@ -100,11 +100,12 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
     </tr>-->
     
     <?php if($activity){
-        $r_types = array('','Activity Log','Mobile Inspection','Mobile Security','Security Occurance','Incident Reports','Sign-off Sheets');
+        $r_types = array('','Activity Log','Mobile Inspection','Mobile Security','Security Occurance','Incident Reports','Sign-off Sheets','Loss Prevention');
         ?>
         <tr>
         <td><strong>Report Type</strong></td>
         <td><?php echo $r_types[$activity[0]['Activity']['report_type']];?></td>
+        </tr>
         <?php if($activity[0]['Activity']['incident_type']!=""){
             ?>
         <tr>
@@ -112,7 +113,12 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         <td><?php echo $activity[0]['Activity']['incident_type'];?></td>
         </tr>
         <?php }?>
+        
+        <?php if($activity[0]['Activity']['report_type']=='7'){?>
+        <tr id="loss_prevention">
+        <td colspan="2"> <?php include('loss_prevention.php');?></td>
         </tr>
+        <?php }?>
         <tr><td colspan="2">
         <table>
         <thead><th>Date</th><th>Time</th><th>Description</th></thead>

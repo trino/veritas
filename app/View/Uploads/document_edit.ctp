@@ -3,6 +3,7 @@ if(isset($job_name))
     $job_n=$job_name;
 else
     $job_n ="";
+    //var_dump($subject);
 ?>
 
 
@@ -322,6 +323,7 @@ function remove_youtube()
     <option value="4" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '4') echo "selected='selected'"; ?>>Security Occurance</option>
     <option value="5" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '5') echo "selected='selected'"; ?>>Incident Report</option>
     <option value="6" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '6') echo "selected='selected'"; ?>>Sign-off Sheets</option>
+    <option value="7" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '7') echo "selected='selected'"; ?>>Loss Prevention</option>
 </select>
 </th>
 </thead>
@@ -348,6 +350,9 @@ function remove_youtube()
 </select>
 </th>
 </thead>
+<tr style="display: none;" id="loss_prevention">
+<td colspan="3"> <?php include('loss_prevention.php');?></td>
+</tr>
 <thead>
 <th width="220px">Date</th>
 <th width="220px">Time</th>
@@ -445,8 +450,7 @@ $job_id = 0;
 </form>
 <script>
 $(function(){
-    
-    $('.uploademail').click(function(){
+      $('.uploademail').click(function(){
         <?php if($this->request->params['action']=='document_edit'){?>
          $('.dialog-modals').load('<?php echo $base_url.'uploads/email/'.$doc['Document']['job_id'];?>');
          <?php }
@@ -463,21 +467,36 @@ $(function(){
                });
     if($('.reporttype').val()=='5'){
         $('.uploademail').show();
-        $('.incident_more').show();}
+        $('.incident_more').show();
+        }
     else{
         $('.uploademail').hide();
         $('.incident_more').hide();
         }
+        
+    if($('.reporttype').val()=='7')
+    
+        $('#loss_prevention').show();
+    
+    else
+        $('#loss_prevention').hide();
+        
      $('.reporttype').change(function(){
         if($(this).val()=='5')
         {
             $('.incident_more').show();
             $('.uploademail').show();
         }
-        else{
+        else
+        {
             $('.uploademail').hide();
             $('.incident_more').hide();
-            }
+        }
+        if($(this).val()=='7')
+            $('#loss_prevention').show();
+        else
+            $('#loss_prevention').hide();
+            
     });
     
     $('.draft').click(function(){
@@ -531,7 +550,13 @@ $(function(){
     $('.activity_time').live('click',function(){
         $(this).timepicker();
     })
-    
+    $('.reporttype').change(function(){
+       var inc_type = $(this).val(); 
+       if(inc_type=='7')
+            $('#loss_prevention').show();
+       else
+            $('#loss_prevention').hide();
+    });
     $('.incident_date').datepicker({dateFormat: 'yy-mm-dd',maxDate: new Date} );
     $('#document_type').change(function()
     {
@@ -622,7 +647,7 @@ $(function(){
     if($('#document_type').val() == 'client_feedback')
             $('.client_more').show(); 
             
-                  
+                 
     $('.extra_memo input').each(function(){
         $(this).click();
         $(this).blur();
