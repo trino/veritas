@@ -67,18 +67,7 @@ class UploadsController extends AppController
 		
 		$this->set('base_url',  $base_url);
 
-		$cond =" ";
-		$cond1 =" ";
-
-		if(isset($_GET['from']) && isset($_GET['to']))
-		{
-			$from = $_GET['from'];
-			$to = $_GET['to'];
-			$cond = "WHERE `date`>='$from' and `date` <='$to' ";
-			$cond1 = "and `date`>='$from' and `date` <='$to' ";
-		}
-		
-				/*
+		/*
 		elseif(isset($_GET['from']))
 		{
 			$from = $_GET['from'];
@@ -93,9 +82,7 @@ class UploadsController extends AppController
 			$cond = "WHERE `date` <='$to' ";
 			$cond1 = " and `date` <='$to' ";
 		}
-
-		 if(isset($_GET['addedBy']) && $_GET['addedBy']!="" && !(isset($_GET['from'])) && !(isset($_GET['to'])))
-		
+		if(isset($_GET['addedBy']) && $_GET['addedBy']!="" && !(isset($_GET['from'])) && !(isset($_GET['to'])))
 		if(isset($_GET['addedBy']) && $_GET['addedBy']!="")
 		{
 			$this->loadModel('Member');
@@ -110,28 +97,49 @@ class UploadsController extends AppController
 			$cond1.= " and addedBy = '$addedBy'";
 		}
 		else
-		
 		*/
 		
+		
+		$cond =" ";
+		$cond1 =" ";
+
+		if(isset($_GET['from']) && isset($_GET['to']))
+		{
+			$from = $_GET['from']; 
+			$to = $_GET['to'];
+			$cond = "WHERE `date`>='$from' and `date` <='$to' ";
+			$cond1 = "and `date`>='$from' and `date` <='$to' ";
+		}
 		
 		if(isset($_GET['addedBy']) && $_GET['addedBy']!="")
 		{
 			$addedBy = $_GET['addedBy'];
-			$cond.= " and addedBy= '$addedBy'";
-			$cond1.= " and addedBy = '$addedBy'";
 			
-			            if($_POST['addedBy']!=0){
-            $q = $this->Member->find('first',array('conditions'=>array('id'=>$_POST['addedBy'])));
-            $this->set('by',$q['Member']['full_name']);
+			if(isset($_GET['from']) && isset($_GET['to']))
+			{
+				$cond.= " and addedBy= '$addedBy'";
+			}
+			else
+			{
+				$cond.= " where addedBy= '$addedBy'";
+			}
+			
+			$cond1.= " AND addedBy = '$addedBy'";
+
+			if($_POST['addedBy']!=0)
+			{
+				$q = $this->Member->find('first',array('conditions'=>array('id'=>$_POST['addedBy'])));
+				$this->set('by',$q['Member']['full_name']);
             }
             else
 			{
-            $this->set('by','Admin');
+				$this->set('by','Admin');
 			}
 		}
 
 		//echo "SELECT COUNT( * ) as cnt , `document_type` , DATE( `date` ) DateOnly FROM `documents` $cond GROUP BY `document_type` , DateOnly";
 		//die();
+		
 		if($all = $this->Document->query("SELECT COUNT( * ) as cnt , `document_type` , DATE( `date` ) DateOnly FROM `documents` $cond GROUP BY `document_type` , DateOnly"))
 		$this->set('all', $all);
 
@@ -143,6 +151,7 @@ class UploadsController extends AppController
 		
 		if($evidence = $this->Document->query("SELECT COUNT( * ) as cnt , `evidence_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `evidence_type`<> ' ' $cond1 GROUP BY `evidence_type` , DateOnly"))
 		$this->set('evidence', $evidence);
+		
 		/*
 		$template = $this->Document->query("SELECT COUNT( * ) as cnt , `template_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `template_type`<> ' ' $cond1 GROUP BY `template_type` , DateOnly");
 		$this->set('template', $template);
@@ -203,7 +212,7 @@ class UploadsController extends AppController
             $this->set('to', $_POST['to']);
         }
         elseif(isset($_POST['from'])&& $_POST['from']!="")
-        {    
+        {
             $from = $_POST['from'];
             $all = $this->Document->query("SELECT COUNT(*) as cnt, document_type FROM documents WHERE `date`>='$from' $cond1  GROUP BY document_type");
             $this->set('from',$_POST['from']);
@@ -691,14 +700,14 @@ class UploadsController extends AppController
                         if($_POST['document_type']== 'evidence')
                             $message="Job: ".$job_title."<br/>
                             Document: ".$arr['title']."<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
-                            Upload Date: ".date('Y-m-d')."<br/> Please <a href='".$base_url."uploads/view_detail/".$eid."'>Click Here</a> to Login<br><br>- The Veritas Team";
+                            Upload Date: ".date('Y-m-d')."<br/> Please <a href='".$base_url."?upload=".$eid."'>Click Here</a> to Login<br><br>- The Veritas Team";
                         else
                             $message="
                             Job: ".$job_title."<br/>
                             Document: ".$arr['title']."<br/>
                             Who Uploaded: ".$this->Session->read('username')."<br/>
                             Upload Date: ".date('Y-m-d')."
-                            <br/> Please <a href='".$base_url."uploads/view_detail/".$eid."'>Click Here</a> to Login<br><br>- The Veritas Team";
+                            <br/> Please <a href='".$base_url."?upload=".$eid."'>Click Here</a> to Login<br><br>- The Veritas Team";
                         if($to){
                         $checks = $this->Member->find('first',array('conditions'=>array('email'=>$to)));
                         $check=0;
@@ -713,10 +722,9 @@ class UploadsController extends AppController
                         $emails->to($to);
                         $emails->send($message);}
                         }
-                    }    
+                    }
                 }
-                
-            
+
             $arr['date'] = date('Y-m-d H:i:s');
             $arr['job_id'] = $_POST['job'];
             $arr['addedBy'] = $id;
