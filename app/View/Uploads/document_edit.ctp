@@ -550,7 +550,17 @@ $(function(){
     });
     $('.activity_time').live('click',function(){
         $(this).timepicker();
-    })
+    });
+    if($('.reporttype').val()=='7')
+       {
+            $('#loss_prevention').show();
+            $('.date_time').hide();
+       }     
+       else
+       {
+            $('#loss_prevention').hide();
+            $('.date_time').show();
+       }
     $('.reporttype').change(function(){
        var inc_type = $(this).val(); 
        if(inc_type=='7')
