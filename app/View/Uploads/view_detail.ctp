@@ -168,8 +168,12 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         <td><b>Uploaded On</b></td>
         <td><?php echo $doc['Document']['date']?></td>
     </tr>
+    
 </table>
 </div>
+<?php if(isset($activity) && $activity[0]['Activity']['report_type']=='7'){?>
+    <div><a href="javascript:void(0);" onclick="window.print();" class="btn btn-primary">Print Report</a></div>
+    <?php }?>
 <div class="image">
 <ul class="gallery clearfix">
     <?php

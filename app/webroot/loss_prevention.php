@@ -9,13 +9,13 @@ $(function(){
    <?php if($this->params['action']=='view_detail')
    {?>
    
-   $('input').attr('readonly','readonly');
-   $('textarea').attr('readonly','readonly');
-   $('input:radio').attr('disabled','disabled');
+   $('.loss_p input').attr('readonly','readonly');
+   $('.loss_p textarea').attr('readonly','readonly');
+   $('.loss_p input:radio').attr('disabled','disabled');
    <?php } ?> 
 });
 </script>
-<div>
+<div class="loss_p" >
 <?php //var_dump($item[0]['ItemInfo']);?>
 <h2>Loss Prevention Incident Report</h2>
 
@@ -30,9 +30,9 @@ $(function(){
         <input name="store[name]" type="text" value="<?php if(isset($store)) echo $store['StoreInfo']['name'];?>"  class="double" style="width: 300px!important;" /></td></tr>
     <tr><td>ADDRESS<br />
         <input type="text" name="store[address]" value="<?php if(isset($store)) echo $store['StoreInfo']['address'];?>" /></td>
-        <td colspan="2">CITY AND STATE<br />
+        <td colspan="2">CITY AND PROVINCE<br />
         <input class="double" type="text" value="<?php if(isset($store)) echo $store['StoreInfo']['state'];?>" name="store[state]" style="width: 300px!important;" /></td>
-        <td>ZIP<br />
+        <td>PC<br />
         <input type="text" name="store[zip]" value="<?php if(isset($store)) echo $store['StoreInfo']['zip'];?>" /></td>
         <td>PHONE<br /><input type="text" name="store[phone]" value="<?php if(isset($store)) echo $store['StoreInfo']['phone'];?>" /></td>
         <td>EXTENSION<br /><input type="text" name="store[ext]" value="<?php if(isset($store)) echo $store['StoreInfo']['ext'];?>" /></td></tr>
@@ -51,9 +51,9 @@ $(function(){
         <input type="text" value="<?php if(isset($subject)) echo $subject['SubjectInfo']['h_phone'];?>" name="subject[h_phone]" /></td></tr>
     <tr><td colspan="4">ADDRESS<br />
         <input type="text" name="subject[address]" value="<?php if(isset($subject)) echo $subject['SubjectInfo']['address'];?>" style="width: 335px!important;" /></td>
-        <td colspan="2">CITY AND STATE<br />
+        <td colspan="2">CITY AND PROVINCE<br />
         <input class="double" type="text" value="<?php if(isset($subject)) echo $subject['SubjectInfo']['state'];?>" name="subject[state]" style="width: 200px!important;" /></td>
-        <td colspan="2">ZIP/P.O BOX<br />
+        <td colspan="2">PC/P.O BOX<br />
         <input type="text" value="<?php if(isset($subject)) echo $subject['SubjectInfo']['zip'];?>" name="subject[zip]" style="width: 200px;" /></td>
         <td>GENDER<br /><input type="radio" name="subject[gender]" value="male" <?php if(isset($subject) && $subject['SubjectInfo']['gender']=='male') echo "checked='checked'";?> style="margin: 0 5px;" />Male 
         <input type="radio" name="subject[gender]" value="female" <?php if(isset($subject) && $subject['SubjectInfo']['gender']=='female') echo "checked='checked'";?> style="margin: 0 5px;" />Female</td></tr>

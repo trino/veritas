@@ -125,7 +125,7 @@ $or = '&order=';
        ?>
             
        <tr>
-            <td><?php  if($d['Document']['document_type']=='evidence')echo $d['Document']['evidence_type'];elseif($d['Document']['document_type']=='report'){$act = $activity->find('first',array('conditions'=>array('document_id'=>$d['Document']['id'])));if($act){if($act['Activity']['report_type']==1)echo " Activity Log";if($act['Activity']['report_type']==2)echo " Mobile Inspection";if($act['Activity']['report_type']==3)echo " Mobile Security";if($act['Activity']['report_type']==4)echo " Security Occurence";if($act['Activity']['report_type']==5)echo " Incident Report";if($act['Activity']['report_type']==6)echo " Sign Off";}}else echo $d['Document']['document_type']; ?></td>
+            <td><?php  if($d['Document']['document_type']=='evidence')echo $d['Document']['evidence_type'];elseif($d['Document']['document_type']=='report'){$act = $activity->find('first',array('conditions'=>array('document_id'=>$d['Document']['id'])));if($act){ if($act['Activity']['report_type']==1)echo " Activity Log";if($act['Activity']['report_type']==2)echo " Mobile Inspection";if($act['Activity']['report_type']==3)echo " Mobile Security";if($act['Activity']['report_type']==4)echo " Security Occurence";if($act['Activity']['report_type']==5)echo " Incident Report";if($act['Activity']['report_type']==6)echo " Sign Off";if($act['Activity']['report_type']==7)echo " Loss Prevention";}}else echo $d['Document']['document_type']; ?></td>
             <!--<td><?php echo $d['Document']['location']; ?></td>-->
             <td><?php if($d['Document']['document_type']!='client_feedback' || $this->Session->read('admin'))echo $d['Document']['description']; ?></td>
             <!--<td><?php echo $d['Document']['title'];?></td>-->

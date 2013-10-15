@@ -205,6 +205,8 @@ foreach($rep as $v)
         $incident_report = $v['0']['cnt'];
      elseif($v['activities']['report_type']=='6')
         $Sheets = $v['0']['cnt'];
+     elseif($v['activities']['report_type']=='7')
+        $Loss_p = $v['0']['cnt'];
          
 }
 unset($v);
@@ -277,6 +279,7 @@ unset($v);
 <tr><td style="padding-left:30px;">Mobile Security</td><td><?php echo $Security;?> uploads</td></tr>
 <tr><td style="padding-left:30px;">Security Occurrence</td><td><?php echo $Occurance;?> uploads</td></tr>
 <tr><td style="padding-left:30px;">Sign-off Sheets</td><td><?php echo $Sheets;?> uploads</td></tr>
+<tr><td style="padding-left:30px;">Loss Prevention</td><td><?php echo $Loss_p;?> uploads</td></tr>
 
 <tr><td style="padding-left:30px;"><b>Incident Report</b></td><td><b><?php echo $incident_report;?> uploads</b></td></tr>
 <tr style="padding:20px;margin:30px;">

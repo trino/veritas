@@ -353,7 +353,8 @@ function remove_youtube()
 <tr style="display: none;" id="loss_prevention">
 <td colspan="3"> <?php include('loss_prevention.php');?></td>
 </tr>
-<thead>
+
+<thead class="date_time">
 <th width="220px">Date</th>
 <th width="220px">Time</th>
 <th width="350px">Description &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
@@ -366,7 +367,7 @@ foreach($activity as $act)
     $t = explode(":",$act['Activity']['time']);
     $time = $t[0].":".$t[1];
     ?>
-<tr>
+<tr class="date_time">
 <td width="220px"><input type="text" value="<?php echo $act['Activity']['date'];?>" name="activity_date[]" class="activity_date required" /></td>
 <td width="220px"><input type="text" value="<?php echo $time;?>" name="activity_time[]" class="activity_time required" /></td>
 <td width="350px"><textarea name="activity_desc[]" class="activity_desc"><?php echo $act['Activity']['desc'];?></textarea>  <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>
@@ -375,17 +376,17 @@ foreach($activity as $act)
 else{
 ?>
 
-<tr>
+<tr class="date_time">
 <td width="220px"><input type="text" value="" name="activity_date[]" class="activity_date required" /></td>
 <td width="220px"><input type="text" value="" name="activity_time[]" class="activity_time required" /></td>
 
 <td width="350px"><textarea name="activity_desc[]" class="required activity_desc"></textarea></td>
 </tr>
 <?php }?>
-<tr><td colspan="3" style="padding: 0;"><table class="activity_more" style="">
+<tr class="date_time"><td colspan="3" style="padding: 0;"><table class="activity_more" style="">
 </table>
 </td></tr>
-<tr class="add_more" style="display: none;"><td><a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></td></tr>
+<tr class="add_more date_time" style="display: none;"><td><a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></td></tr>
 </table>
 
 </td></tr>
@@ -474,12 +475,7 @@ $(function(){
         $('.incident_more').hide();
         }
         
-    if($('.reporttype').val()=='7')
     
-        $('#loss_prevention').show();
-    
-    else
-        $('#loss_prevention').hide();
         
      $('.reporttype').change(function(){
         if($(this).val()=='5')
@@ -493,10 +489,15 @@ $(function(){
             $('.incident_more').hide();
         }
         if($(this).val()=='7')
+        {
             $('#loss_prevention').show();
+            $('.date_time').hide();
+        }
         else
+        {
             $('#loss_prevention').hide();
-            
+            $('.date_time').show();
+        }    
     });
     
     $('.draft').click(function(){
@@ -553,9 +554,15 @@ $(function(){
     $('.reporttype').change(function(){
        var inc_type = $(this).val(); 
        if(inc_type=='7')
+       {
             $('#loss_prevention').show();
+            $('.date_time').hide();
+       }     
        else
+       {
             $('#loss_prevention').hide();
+            $('.date_time').show();
+       }
     });
     $('.incident_date').datepicker({dateFormat: 'yy-mm-dd',maxDate: new Date} );
     $('#document_type').change(function()

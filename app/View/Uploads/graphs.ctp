@@ -601,6 +601,7 @@ var Security = [];
 var Occurance = [];
 var incident_report = [];
 var Sheets = [];
+var Loss_p = [];
 
 <?php 
             $vals = "";
@@ -611,6 +612,7 @@ var Sheets = [];
              $count4 = 0;
              $count5 = 0;
              $count6 = 0;
+             $count7 = 0;
 			foreach($report as $ke=>$data)
 			{
 			     
@@ -659,6 +661,13 @@ var Sheets = [];
                     Sheets.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
+                elseif($data['activities']['report_type'] == '7')
+                {    
+                    $count7 +=$data['0']['cnt'];
+                ?>
+                    Loss_p.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
+				<?php
+                }
                 ?>
 			<?php	
 				if((count($report)-1)!= $ke)
@@ -696,6 +705,12 @@ var Sheets = [];
 		{
 			data: Sheets,
 			label: 'Sign-off Sheets',
+			points: { show: true }, 
+			lines: { lineWidth: 2, fill: false } 	
+		},
+        {
+			data: Loss_p,
+			label: 'Loss Prevention',
 			points: { show: true }, 
 			lines: { lineWidth: 2, fill: false } 	
 		},
