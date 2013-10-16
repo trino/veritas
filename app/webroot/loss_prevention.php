@@ -23,7 +23,7 @@ $(function(){
     <tr><th colspan="6"><strong>STORE INFORMATION</strong></th></tr>
     <tr><td>INCIDENT TITLE<br />
         <input type="text" name="store[incident_title]" value="<?php if(isset($store)) echo $store['StoreInfo']['incident_title'];?>" /></td>
-        <td>DATE<br /><input type="text" name="store[date]" value="<?php if(isset($store)) echo $store['StoreInfo']['date'];?>" /></td>
+        <td>DATE<br /><input class="required" type="text" name="store[date]" value="<?php if(isset($store)) echo $store['StoreInfo']['date'];?>" /></td>
         <td>DAY<br /><input type="text" name="store[day]" value="<?php if(isset($store)) echo $store['StoreInfo']['day'];?>" /></td>
         <td>TIME<br /><input type="text" name="store[time]" value="<?php if(isset($store)) echo $store['StoreInfo']['time'];?>" /></td>
         <td colspan="2">STORE NAME AND LOCATION<br />

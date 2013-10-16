@@ -172,7 +172,7 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
 </table>
 </div>
 <?php if(isset($activity) && $activity[0]['Activity']['report_type']=='7'){?>
-    <div><a href="javascript:void(0);" onclick="window.print();" class="btn btn-primary">Print Report</a></div>
+    <div style="margin-bottom: 15px;"><a href="javascript:void(0);" onclick="window.print();" class="btn btn-primary">Print Report</a></div>
     <?php }?>
 <div class="image">
 <ul class="gallery clearfix">

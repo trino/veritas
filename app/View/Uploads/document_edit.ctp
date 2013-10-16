@@ -386,7 +386,7 @@ else{
 <tr class="date_time"><td colspan="3" style="padding: 0;"><table class="activity_more" style="">
 </table>
 </td></tr>
-<tr class="add_more date_time" style="display: none;"><td><a href="javascript:void(0);" id="activity_more" class="btn btn-primary">+Add More</a></td></tr>
+<tr class="add_more date_time" style="display: none;"><td><a href="javascript:void(0);" id="activity_more" class="btn btn-primary date_time">+Add More</a></td></tr>
 </table>
 
 </td></tr>
