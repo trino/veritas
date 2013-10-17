@@ -54,7 +54,7 @@ class UploadsController extends AppController
 		//die('here');
 		if($_SERVER['SERVER_NAME']=='localhost')
 		{
-		$base_url = "http://localhost/veritas/";
+		  $base_url = "http://localhost/veritas/";
 		}
 		else{
 		$base_url =	 str_replace('//','___',$_SERVER['SERVER_NAME']);
@@ -114,7 +114,8 @@ class UploadsController extends AppController
 		if(isset($_GET['addedBy']) && $_GET['addedBy']!="")
 		{
 			$addedBy = $_GET['addedBy'];
-			
+			$q = $this->Member->find('first',array('conditions'=>array('id'=>$_GET['addedBy'])));
+				$this->set('addedBy',$q['Member']['full_name']);
 			if(isset($_GET['from']) && isset($_GET['to']))
 			{
 				$cond.= " and addedBy= '$addedBy'";
@@ -126,7 +127,7 @@ class UploadsController extends AppController
 			
 			$cond1.= " AND addedBy = '$addedBy'";
 
-			if($_POST['addedBy']!=0)
+			if(isset($_POST['addedBy']) && $_POST['addedBy']!=0)
 			{
 				$q = $this->Member->find('first',array('conditions'=>array('id'=>$_POST['addedBy'])));
 				$this->set('by',$q['Member']['full_name']);
@@ -143,10 +144,10 @@ class UploadsController extends AppController
 		if($all = $this->Document->query("SELECT COUNT( * ) as cnt , `document_type` , DATE( `date` ) DateOnly FROM `documents` $cond GROUP BY `document_type` , DateOnly"))
 		$this->set('all', $all);
 
-		if($report = $this->Activity->query("SELECT COUNT( * ) as cnt , `report_type` , DATE( `date` ) DateOnly  FROM `activities` $cond GROUP BY `report_type` , DateOnly"))
+		if($report = $this->Activity->query("SELECT COUNT( * ) as cnt , `report_type` , DATE( `uploaded_on` ) DateOnly  FROM `activities` $cond GROUP BY `report_type` , DateOnly"))
 		$this->set('report', $report);
 
-		if($incident = $this->Activity->query("SELECT COUNT( * ) as cnt , `incident_type` , DATE( `date` ) DateOnly FROM `activities` WHERE `incident_type` <> ' ' $cond1 GROUP BY `incident_type` , DateOnly ORDER BY DateOnly"))
+		if($incident = $this->Activity->query("SELECT COUNT( * ) as cnt , `incident_type` , DATE( `uploaded_on` ) DateOnly FROM `activities` WHERE `incident_type` <> ' ' $cond1 GROUP BY `incident_type` , DateOnly ORDER BY DateOnly"))
 		$this->set('incident', $incident);
 		
 		if($evidence = $this->Document->query("SELECT COUNT( * ) as cnt , `evidence_type` , DATE( `date` ) DateOnly FROM `documents` WHERE `evidence_type`<> ' ' $cond1 GROUP BY `evidence_type` , DateOnly"))
@@ -193,8 +194,8 @@ class UploadsController extends AppController
         {
             $this->loadModel('Member');
             if($_POST['addedBy']!=0){
-            $q = $this->Member->find('first',array('conditions'=>array('id'=>$_POST['addedBy'])));
-            $this->set('by',$q['Member']['full_name']);
+                $q = $this->Member->find('first',array('conditions'=>array('id'=>$_POST['addedBy'])));
+                $this->set('by',$q['Member']['full_name']);
             }
             else
             $this->set('by','Admin');
@@ -491,7 +492,6 @@ class UploadsController extends AppController
             //$arr['location'] = $_POST['location'];
             $arr['title'] = ucfirst($_POST['document_type']);
             $arr['description'] = $_POST['description'];
-            $arr['document_type'] = $_POST['document_type'];
             $arr['draft'] = $_POST['draft'];
             
             //var_dump($_POST);
@@ -530,6 +530,7 @@ class UploadsController extends AppController
                 $activity['document_id'] = $eid;
                 $activity['report_type'] = $_POST['report_type'];
                 $activity['addedBy'] = $id;
+                $activity['uploaded_on'] = date('Y-m-d');
                 if(isset($activity['report_type']))
                     $activity['incident_type'] = $_POST['incident_type'];
                     
@@ -1096,6 +1097,7 @@ class UploadsController extends AppController
             {
                 $activity['document_id'] = $id;
                 $activity['report_type'] = $_POST['report_type'];
+                $activity['uploaded_on'] = date('Y-m-d');
                 if(isset($activity['report_type']))
                     $activity['incident_type'] = $_POST['incident_type'];
                     

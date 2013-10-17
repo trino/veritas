@@ -27,6 +27,7 @@ Document Analytics
 </ul>
 
 <?php
+    
     $qry ="";
     if(isset($from) && isset($to))
         $qry = "?from=$from&to=$to";
@@ -40,7 +41,12 @@ Document Analytics
     elseif(isset($addedBy) && $qry=="")
         $qry.= "?addedBy=$addedBy";
         
-    
+    if(isset($_POST['addedBy']) && $_POST['addedBy']!="")
+    {
+        $cond = " and addedBy = $_POST[addedBy]";
+    }
+    else
+        $cond = "";
 ?>
 
 
@@ -106,13 +112,14 @@ Document Analytics
     $Miscellaneous = 0;
     
     if(isset($from)&& isset($to))
-       $evi = $doc->query("SELECT COUNT(*) as cnt, evidence_type FROM documents WHERE `date`>='$from' and `date`<='$to' and evidence_type <>' ' GROUP BY evidence_type");   
+       $evi = $doc->query("SELECT COUNT(*) as cnt, evidence_type FROM documents WHERE `date`>='$from' and `date`<='$to' ".$cond." and evidence_type <>' ' GROUP BY evidence_type");   
     elseif(isset($from))
-        $evi = $doc->query("SELECT COUNT(*) as cnt, evidence_type FROM documents WHERE `date`>='$from' and evidence_type <>' ' GROUP BY evidence_type");
+        $evi = $doc->query("SELECT COUNT(*) as cnt, evidence_type FROM documents WHERE `date`>='$from' ".$cond." and evidence_type <>' ' GROUP BY evidence_type");
     elseif(isset($to))
-        $evi = $doc->query("SELECT COUNT(*) as cnt, evidence_type FROM documents WHERE `date`<='$to' and evidence_type <>' ' GROUP BY evidence_type");
+        $evi = $doc->query("SELECT COUNT(*) as cnt, evidence_type FROM documents WHERE `date`<='$to' ".$cond." and evidence_type <>' ' GROUP BY evidence_type");
     else
-        $evi = $doc->query("SELECT COUNT(*) as cnt, evidence_type FROM documents WHERE evidence_type <>' ' GROUP BY evidence_type");
+        $evi = $doc->query("SELECT COUNT(*) as cnt, evidence_type FROM documents WHERE evidence_type <>' ' ".$cond." GROUP BY evidence_type");
+    
     foreach($evi as $v)
     {
          if( $v['documents']['evidence_type']=='Incident Report')
@@ -182,14 +189,15 @@ $Security = 0;
 $Occurance = 0;
 $incident_report = 0;
 $Sheets = 0;
+$Loss_p = 0;
 if(isset($from) && isset($to))
-    $rep = $report_type->query("SELECT COUNT(*) as cnt, report_type FROM activities WHERE `date` >='$from' and `date`<='$to' GROUP BY report_type");    
+    $rep = $report_type->query("SELECT COUNT(*) as cnt, report_type FROM activities WHERE `uploaded_on` >='$from' ".$cond." and `uploaded_on`<='$to' GROUP BY report_type");    
 elseif(isset($from))
-    $rep = $report_type->query("SELECT COUNT(*) as cnt, report_type FROM activities WHERE `date` >='$from' GROUP BY report_type");
+    $rep = $report_type->query("SELECT COUNT(*) as cnt, report_type FROM activities WHERE `uploaded_on` >='$from' ".$cond." GROUP BY report_type");
 elseif(isset($to))
-    $rep = $report_type->query("SELECT COUNT(*) as cnt, report_type FROM activities WHERE `date`<='$to' GROUP BY report_type");
+    $rep = $report_type->query("SELECT COUNT(*) as cnt, report_type FROM activities WHERE `uploaded_on`<='$to' ".$cond." GROUP BY report_type");
 else
-    $rep = $report_type->query("SELECT COUNT(*) as cnt, report_type FROM activities GROUP BY report_type");
+    $rep = $report_type->query("SELECT COUNT(*) as cnt, report_type FROM activities WHERE id <> '' ".$cond." GROUP BY report_type");
 
 foreach($rep as $v)
 {
@@ -228,13 +236,13 @@ $n_p_s = 0;
 $s_i_t = 0;
 
 if(isset($from)&& isset($to))
-       $inc = $report_type->query("SELECT COUNT(*) as cnt, incident_type FROM activities WHERE `date`>='$from' and `date`<='$to' and incident_type <>' ' GROUP BY incident_type");   
+       $inc = $report_type->query("SELECT COUNT(*) as cnt, incident_type FROM activities WHERE `uploaded_on`>='$from' and `uploaded_on`<='$to' ".$cond." and incident_type <>' ' GROUP BY incident_type");   
     elseif(isset($from))
-        $inc = $report_type->query("SELECT COUNT(*) as cnt, incident_type FROM activities WHERE `date`>='$from' and incident_type <>' ' GROUP BY incident_type");
+        $inc = $report_type->query("SELECT COUNT(*) as cnt, incident_type FROM activities WHERE `uploaded_on`>='$from' and incident_type <>' ' ".$cond." GROUP BY incident_type");
     elseif(isset($to))
-        $inc = $report_type->query("SELECT COUNT(*) as cnt, incident_type FROM activities WHERE `date`<='$to' and incident_type <>' ' GROUP BY incident_type");
+        $inc = $report_type->query("SELECT COUNT(*) as cnt, incident_type FROM activities WHERE `uploaded_on`<='$to' and incident_type <>' ' ".$cond." GROUP BY incident_type");
     else
-        $inc = $report_type->query("SELECT COUNT(*) as cnt, incident_type FROM activities WHERE incident_type <>' ' GROUP BY incident_type");
+        $inc = $report_type->query("SELECT COUNT(*) as cnt, incident_type FROM activities WHERE incident_type <>' ' ".$cond." GROUP BY incident_type");
 //$inc = $report_type->query("SELECT COUNT(*) as cnt, incident_type FROM activities WHERE incident_type <> ' ' GROUP BY incident_type");
 foreach($inc as $v)
 {
@@ -309,13 +317,13 @@ $Operational = 0;
 $Site_maps = 0;
 $Forms = 0;
  if(isset($from)&& isset($to))
-       $ste = $doc->query("SELECT COUNT(*) as cnt, site_type FROM documents WHERE `date`>='$from' and `date`<='$to' and site_type <>' ' GROUP BY site_type");   
+       $ste = $doc->query("SELECT COUNT(*) as cnt, site_type FROM documents WHERE `date`>='$from' and `date`<='$to' ".$cond." and site_type <>' ' GROUP BY site_type");   
     elseif(isset($from))
-        $ste = $doc->query("SELECT COUNT(*) as cnt, site_type FROM documents WHERE `date`>='$from' and site_type <>' ' GROUP BY site_type");
+        $ste = $doc->query("SELECT COUNT(*) as cnt, site_type FROM documents WHERE `date`>='$from' and site_type <>' ' ".$cond." GROUP BY site_type");
     elseif(isset($to))
-        $ste = $doc->query("SELECT COUNT(*) as cnt, site_type FROM documents WHERE `date`<='$to' and site_type <>' ' GROUP BY site_type");
+        $ste = $doc->query("SELECT COUNT(*) as cnt, site_type FROM documents WHERE `date`<='$to' and site_type <>' ' ".$cond." GROUP BY site_type");
     else
-        $ste = $doc->query("SELECT COUNT(*) as cnt, site_type FROM documents WHERE site_type <>' ' GROUP BY site_type");
+        $ste = $doc->query("SELECT COUNT(*) as cnt, site_type FROM documents WHERE site_type <>' ' ".$cond." GROUP BY site_type");
 //$ste = $doc->query("SELECT COUNT(*) as cnt, site_type FROM documents WHERE site_type <>' ' GROUP BY site_type");
     foreach($ste as $v)
     {
@@ -346,13 +354,13 @@ $Forms = 0;
 <?php
 $health =0;
  if(isset($from)&& isset($to))
-       $tra = $doc->query("SELECT COUNT(*) as cnt, training_type FROM documents WHERE `date`>='$from' and `date`<='$to' and training_type <>' ' GROUP BY training_type");   
+       $tra = $doc->query("SELECT COUNT(*) as cnt, training_type FROM documents WHERE `date`>='$from' and `date`<='$to' ".$cond." and training_type <>' ' GROUP BY training_type");   
     elseif(isset($from))
-        $tra = $doc->query("SELECT COUNT(*) as cnt, training_type FROM documents WHERE `date`>='$from' and training_type <>' ' GROUP BY training_type");
+        $tra = $doc->query("SELECT COUNT(*) as cnt, training_type FROM documents WHERE `date`>='$from' and training_type <>' ' ".$cond." GROUP BY training_type");
     elseif(isset($to))
-        $tra = $doc->query("SELECT COUNT(*) as cnt, training_type FROM documents WHERE `date`<='$to' and training_type <>' ' GROUP BY training_type");
+        $tra = $doc->query("SELECT COUNT(*) as cnt, training_type FROM documents WHERE `date`<='$to' and training_type <>' ' ".$cond." GROUP BY training_type");
     else
-        $tra = $doc->query("SELECT COUNT(*) as cnt, training_type FROM documents WHERE training_type <>' ' GROUP BY training_type");
+        $tra = $doc->query("SELECT COUNT(*) as cnt, training_type FROM documents WHERE training_type <>' ' ".$cond." GROUP BY training_type");
 //$tra = $doc->query("SELECT COUNT(*) as cnt, training_type FROM documents WHERE training_type <>' ' GROUP BY training_type");
     foreach($tra as $v)
     {
@@ -376,13 +384,13 @@ $j_d = 0;
 $d_f_p = 0;
 $Schedules = 0;
 if(isset($from)&& isset($to))
-       $emp = $doc->query("SELECT COUNT(*) as cnt, employee_type FROM documents WHERE `date`>='$from' and `date`<='$to' and employee_type <>' ' GROUP BY employee_type");   
+       $emp = $doc->query("SELECT COUNT(*) as cnt, employee_type FROM documents WHERE `date`>='$from' and `date`<='$to' ".$cond." and employee_type <>' ' GROUP BY employee_type");   
     elseif(isset($from))
-        $emp = $doc->query("SELECT COUNT(*) as cnt, employee_type FROM documents WHERE `date`>='$from' and employee_type <>' ' GROUP BY employee_type");
+        $emp = $doc->query("SELECT COUNT(*) as cnt, employee_type FROM documents WHERE `date`>='$from' and employee_type <>' ' ".$cond." GROUP BY employee_type");
     elseif(isset($to))
-        $emp = $doc->query("SELECT COUNT(*) as cnt, employee_type FROM documents WHERE `date`<='$to' and employee_type <>' ' GROUP BY employee_type");
+        $emp = $doc->query("SELECT COUNT(*) as cnt, employee_type FROM documents WHERE `date`<='$to' and employee_type <>' ' ".$cond." GROUP BY employee_type");
     else
-        $emp = $doc->query("SELECT COUNT(*) as cnt, employee_type FROM documents WHERE employee_type <>' ' GROUP BY employee_type");
+        $emp = $doc->query("SELECT COUNT(*) as cnt, employee_type FROM documents WHERE employee_type <>' ' ".$cond." GROUP BY employee_type");
 //$emp = $doc->query("SELECT COUNT(*) as cnt, employee_type FROM documents WHERE employee_type <>' ' GROUP BY employee_type");
     foreach($emp as $v)
     {
@@ -425,13 +433,13 @@ $fe = 0;
 $non = 0;
 $sc = 0;
 if(isset($from)&& isset($to))
-       $clientfeedback = $doc->query("SELECT COUNT(*) as cnt, client_feedback FROM documents WHERE `date`>='$from' and `date`<='$to' and client_feedback <>' ' GROUP BY client_feedback");   
+       $clientfeedback = $doc->query("SELECT COUNT(*) as cnt, client_feedback FROM documents WHERE `date`>='$from' and `date`<='$to' ".$cond." and client_feedback <>' ' GROUP BY client_feedback");   
     elseif(isset($from))
-        $clientfeedback = $doc->query("SELECT COUNT(*) as cnt, client_feedback FROM documents WHERE `date`>='$from' and client_feedback <>' ' GROUP BY client_feedback");
+        $clientfeedback = $doc->query("SELECT COUNT(*) as cnt, client_feedback FROM documents WHERE `date`>='$from' and client_feedback <>' ' ".$cond." GROUP BY client_feedback");
     elseif(isset($to))
-        $clientfeedback = $doc->query("SELECT COUNT(*) as cnt, client_feedback FROM documents WHERE `date`<='$to' and client_feedback <>' ' GROUP BY client_feedback");
+        $clientfeedback = $doc->query("SELECT COUNT(*) as cnt, client_feedback FROM documents WHERE `date`<='$to' and client_feedback <>' ' ".$cond." GROUP BY client_feedback");
     else
-        $clientfeedback = $doc->query("SELECT COUNT(*) as cnt, client_feedback FROM documents WHERE client_feedback <>' ' GROUP BY client_feedback");
+        $clientfeedback = $doc->query("SELECT COUNT(*) as cnt, client_feedback FROM documents WHERE client_feedback <>' ' ".$cond." GROUP BY client_feedback");
 
     foreach($clientfeedback as $v)
     {

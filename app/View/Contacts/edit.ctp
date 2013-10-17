@@ -46,6 +46,9 @@
         <option value="Aliant" <?php if($k['Key_contact']['cellular_provider']=='Aliant')echo "selected='selected'";?>>Aliant</option>
         <option value="SaskTel" <?php if($k['Key_contact']['cellular_provider']=='SaskTel')echo "selected='selected'";?>>SaskTel</option>
         <option value="Virgin Mobile" <?php if($k['Key_contact']['cellular_provider']=='Virgin Mobile')echo "selected='selected'";?>>Virgin Mobile</option>
+        <option value="Verizon" <?php if($k['Key_contact']['cellular_provider']=='Verizon')echo "selected='selected'";?>>Verizon</option>
+        
+        Verizon
     </select>
     </td>
     <td><b>Phone Number</b><br/><input type="text" name="key_number" class="number" value="<?php echo $k['Key_contact']['phone'];?>" style="width: 100px;" /></td>

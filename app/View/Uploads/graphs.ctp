@@ -61,7 +61,7 @@ if(isset($_REQUEST['to']) && $_REQUEST['to'])
 echo " <strong>to</strong> ".$_REQUEST['to']."<br/>";
 if(isset($by))
 {
-echo "Only show documents uploaded by: <strong>".ucfirst($by) ."</strong>";
+echo "Only show documents uploaded by: <strong>".ucfirst($addedBy) ."</strong>";
 }
 else
 {
