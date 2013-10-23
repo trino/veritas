@@ -725,7 +725,8 @@ class UploadsController extends AppController
                         }
                     }
                 }
-
+            
+            $arr['document_type'] = $_POST['document_type'];
             $arr['date'] = date('Y-m-d H:i:s');
             $arr['job_id'] = $_POST['job'];
             $arr['addedBy'] = $id;
@@ -742,7 +743,7 @@ class UploadsController extends AppController
             
             $doc = $_POST['document'];
             
-            $ext_doc = array('doc','docx','txt','pdf','xls','xlsx','ppt','pptx','cmd');
+            $ext_doc = array('doc','docx','txt','pdf','xls','xlsx','ppt','pptx','cmd','csv');
             $ext_img = array('jpg','png','gif','jpeg','bmp');
             $ext_video = array('mp4');
             
@@ -1249,7 +1250,7 @@ class UploadsController extends AppController
             }
             $doc = $_POST['document'];
             
-            $ext_doc = array('doc','docx','txt','pdf','xls','xlsx','ppt','pptx','cmd');
+            $ext_doc = array('doc','docx','txt','pdf','xls','xlsx','ppt','pptx','cmd','csv');
             $ext_img = array('jpg','png','gif','jpeg','bmp');
             $ext_video = array('mp4');
             
@@ -1300,8 +1301,10 @@ class UploadsController extends AppController
                 $rand = preg_replace($pattern, '', (string) $rand);
                 $ext_arr = explode('.',$_FILES['document_'.$i]['name']);
                 $extn = end($ext_arr);
-                $img = $rand.'.'.end($ext_arr);
+                
                 $lower_ext = strtolower($extn);
+                $img = $rand.'.'.$lower_ext;
+                //die($img);
                 $destination = $path.$img;
                 //$destination = $path.$_FILES['document_'.$i]['name'];
                 move_uploaded_file($source,$destination);
