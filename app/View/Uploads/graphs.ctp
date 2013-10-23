@@ -62,7 +62,7 @@ echo " <strong>to</strong> ".$_REQUEST['to']."<br/>";
 if(isset($by))
 {
 echo "Only show documents uploaded by <strong> ";
-if(isset($addedBy)&& $addedBy!=0) echo ucfirst($addedBy);
+if(isset($addedBy)) echo ucfirst($addedBy);
 else echo "Admin";
 echo " </strong>";
 }

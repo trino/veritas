@@ -113,7 +113,7 @@ class ContactsController extends AppController
                 $this->Key_contact->create();
                 if($key['title']!='Title')
                 $this->Key_contact->save($key);
-                echo $k = $this->Key_contact->id;
+                $k = $this->Key_contact->id;
                 //die();
                 if($job_id!="" && $job_id!='0')
                 {
@@ -211,14 +211,17 @@ class ContactsController extends AppController
               $key['cellular_provider'] = $key_cellular;
               //$key['job_id'] = $job_id;
               $this->Key_contact->id = $id;
-              foreach($key as $k=>$v)
-              {
-                $this->Key_contact->saveField($k,$v);
-              }
+              // foreach($key as $k=>$v)
+              // {
+                // $this->Key_contact->saveField($k,$v);
+              // }
+			  
+			              			                $this->Key_contact->save($key);
+
              $this->Session->setFlash('Edit Successful.');
              $this->redirect('index'); 
                 
-            
+
             
         }
         

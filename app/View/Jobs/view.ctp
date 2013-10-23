@@ -271,7 +271,7 @@
     </tr>
      <tr>
         <td><b>Description</b></td>
-        <td><?php echo $job['Job']['description']; ?></td>
+        <td><?php echo stripslashes($job['Job']['description']); ?></td>
     </tr>
     <tr>
         <td><b>Image</b></td>
