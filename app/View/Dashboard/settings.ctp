@@ -99,7 +99,7 @@ $(function(){
         <?php 
             if(!$this->Session->read('avatar'))
             { ?>
-                <tr><td><b>Address</b></td><td><input type="text" name="address" value="<?php echo $user['Member']['address']; ?>" class="required" <?php if($this->Session->read('user')) echo "readonly='readonly'" ;?> /></td></tr>
+                <tr><td><b>Address</b></td><td><input type="text" name="address" value="<?php echo $user['Member']['address']; ?>" class="" <?php if($this->Session->read('user')) echo "readonly='readonly'" ;?> /></td></tr>
                <tr><td><b>Phone </b></td><td><input type="text" name="phone" value="<?php echo $user['Member']['phone']; ?>" class="required" <?php if($this->Session->read('user')) echo "readonly='readonly'" ;?> /></td></tr>
         <?php if($user['Member']['canEdit']=='1')
         {?>
