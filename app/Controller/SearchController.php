@@ -188,7 +188,7 @@ class SearchController extends AppController
                 
                 }
             
-//>>>>>>> 1e5f2a4bb330172a2af5dbf3e160edeec1515ade
+
             }
             else{
                 //echo 2;die();
