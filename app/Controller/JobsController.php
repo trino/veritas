@@ -681,7 +681,7 @@ class JobsController extends AppController
                 //echo "<br/>";
             } 
             //die();
-            $this->Projectboard->id = $pro['Projectboard']['id'];die();
+            $this->Projectboard->id = $pro['Projectboard']['id'];
             $this->Projectboard->save($arr);
             $this->Session->setFlash('Successfully Saved');
             $this->redirect('index');
