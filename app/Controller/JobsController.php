@@ -675,8 +675,6 @@ class JobsController extends AppController
         {
             foreach($_POST as $k=>$v)
             {
-                //echo $k;
-                //echo "<br/>";
                 $arr[$k] = $v;
                 //echo "<br/>";
             } 
