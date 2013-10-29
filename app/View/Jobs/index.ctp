@@ -159,8 +159,13 @@ foreach($job as $j)
                     array('class'=>'btn btn-danger'),"Are you sure deleting this job?"
 				)." ";
 		}
+        if($this->Session->read('avatar'))
+        {
        ?>
        <a href="<?php echo $base_url;?>jobs/projectboard/<?php echo $j['Job']['id'];?>" class="btn btn-success">Project Board</a>
+       <?php
+       }
+       ?>
     </td>
         </tr>
     
