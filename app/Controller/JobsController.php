@@ -671,6 +671,8 @@ class JobsController extends AppController
         $job = $this->Job->find('first',array('conditions'=>array('id'=>$id)));
         $this->set('job',$job);
         $this->set('model',$model);
+        $pro = $this->Projectboard->find('first',array('conditions'=>array('job_id'=>$id)));
+            
         if(isset($_POST['job_id']))
         {
             foreach($_POST as $k=>$v)
@@ -679,7 +681,7 @@ class JobsController extends AppController
                 //echo "<br/>";
             } 
             //die();
-            $this->Projectboard->id = $id;
+            $this->Projectboard->id = $pro['Projectboard']['id'];die();
             $this->Projectboard->save($arr);
             $this->Session->setFlash('Successfully Saved');
             $this->redirect('index');

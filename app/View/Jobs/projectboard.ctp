@@ -25,9 +25,7 @@ $(function(){
     <td style="width: 30%;"><strong>Client Name</strong><br /><input type="text" name="client_name" value="<?php echo $job['Job']['title'];?>" readonly="readonly" /></td>
     <td style="width: 30%;"><strong>Job Number</strong><br /><input type="text" name="job_number" value="<?php echo $model['Projectboard']['job_number'];?>" /></td>
 </tr>
-<tr>
-    <td colspan="3"><strong>Notes</strong> &nbsp; <textarea name="notes" style="width: 500px; height:100px"><?php echo $model['Projectboard']['notes'];?></textarea></td>    
-</tr>
+
 <tr>
     <td><strong>Job Status</strong><br /><select name="job_status"><option value="On Project Board" <?php if($model['Projectboard']['job_status'] == 'On Project Board'){?>selected="selected"<?php }?>>On Project Board</option><option value="Operation Prep" <?php if($model['Projectboard']['job_status'] == 'Operation Prep'){?>selected="selected"<?php }?>>Operation Prep</option><option value="Deployed" <?php if($model['Projectboard']['Deployed'] == 'Deployed'){?>selected="selected"<?php }?>>Deployed</option><option value="Active" <?php if($model['Projectboard']['job_status'] == 'Active'){?>selected="selected"<?php }?>>Active</option><option value="Complete" <?php if($model['Projectboard']['job_status'] == 'Complete'){?>selected="selected"<?php }?>>Complete</option></select></td>
     <td><strong>City</strong><br /><input type="text" class="city" name="city" value="<?php echo $model['Projectboard']['city'];?>"/></td>
@@ -43,7 +41,9 @@ $(function(){
     <td><strong>New Expiration date</strong><br /><input type="text" class="expire" name="new_expiration_date" value="<?php echo $model['Projectboard']['new_expiration_date'];?>"/></td>
     <td></td>
 </tr>
-
+<tr>
+    <td colspan="3"><strong>Notes</strong> &nbsp; <textarea name="notes" style="width: 500px; height:100px"><?php echo $model['Projectboard']['notes'];?></textarea></td>    
+</tr>
 </table>
 
 <h3>Personal Section</h3>
