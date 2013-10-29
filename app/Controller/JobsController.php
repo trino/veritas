@@ -154,7 +154,11 @@ class JobsController extends AppController
             
             $this->Job->create();
             $this->Job->save($arr);
-            
+            $project['job_id'] = $this->Job->id;
+            $project['client_name'] = $_POST['title'];
+            $this->loadModel('Projectboard');
+            $this->Projectboard->create();
+            $this->Projectboard->save($project);
             $key['job_id'] = $this->Job->id;
             if(isset($_POST['member']))
             {
@@ -324,6 +328,13 @@ class JobsController extends AppController
             $this->Job->saveField('date_start',$_POST['start_date']);
             $this->Job->saveField('date_end',$_POST['end_date']); 
             
+            
+            $project['job_id'] = $id;
+            $project['client_name'] = $_POST['title'];
+            $this->loadModel('Projectboard');
+            $pro = $this->Projectboard->find('first',array('conditions'=>array('job_id'=>$id)));
+            $this->Projectboard->id = $pro['Projectboard']['id'];
+            $this->Projectboard->save($project);
             //Key Contacts
             $this->Job_contact->deleteAll(array('job_id'=>$id));
             $key['job_id'] = $id;
@@ -402,8 +413,12 @@ class JobsController extends AppController
     {
         if(!$this->Session->read('avatar'))
         $this->redirect('/admin');
-        
         $this->Job->delete($id);
+        
+        $this->loadModel('Projectboard');
+        $pro = $this->Projectboard->find('first',array('conditions'=>array('job_id'=>$id)));
+        $this->Projectboard->delete($pro['Projectboard']['id']);
+        
         $this->loadModel('Jobmember');
         $this->loadModel('Document');
         $docs = $this->Document->findAllByJobId($id);
@@ -656,6 +671,35 @@ class JobsController extends AppController
         $job = $this->Job->find('first',array('conditions'=>array('id'=>$id)));
         $this->set('job',$job);
         $this->set('model',$model);
+        if(isset($_POST['job_id']))
+        {
+            foreach($_POST as $k=>$v)
+            {
+                //echo $k;
+                //echo "<br/>";
+                $arr[$k] = $v;
+                //echo "<br/>";
+            } 
+            //die();
+            $this->Projectboard->id = $id;
+            $this->Projectboard->save($arr);
+            $this->Session->setFlash('Successfully Saved');
+            $this->redirect('index');
+        }
+        
+    }
+    public function fillboard()
+    
+    {
+        $this->loadModel('Projectboard');
+        $q = $this->Job->find('all');
+        foreach($q as $j){
+        $this->Projectboard->create();
+        $arr['job_id'] = $j['Job']['id'];
+        $arr['client_name'] = $j['Job']['title'];
+        $this->Projectboard->save($arr);
+        }
+        die('here');
         
     }
     
