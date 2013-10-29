@@ -31,7 +31,7 @@
     <td><b>Title</b><br/><input type="text" name="key_title" class="" value="<?php echo $k['Key_contact']['title'];?>" style="width: 100px;" /></td>
     <td><b>Cell Number</b><br/><input type="text" name="key_cell" class="number" value="<?php echo $k['Key_contact']['cell'];?>" style="width: 100px;" /></td>
     <td><b>Cellular Carrier</b><br />
-    <select name="key_cellular" class="required">
+    <select name="key_cellular" class="">
         <option value="">Others</option>
         <option value="Rogers" <?php if($k['Key_contact']['cellular_provider']=='Rogers')echo "selected='selected'";?>>Rogers</option>
         <option value="AT&T" <?php if($k['Key_contact']['cellular_provider']=='AT&T')echo "selected='selected'";?>>AT&T</option>
@@ -52,7 +52,7 @@
     </select>
     </td>
     <td><b>Phone Number</b><br/><input type="text" name="key_number" class="number" value="<?php echo $k['Key_contact']['phone'];?>" style="width: 100px;" /></td>
-    <td><b>Email</b><br/><input type="text" name="key_email" class="email required" value="<?php echo $k['Key_contact']['email'];?>" style="width: 100px;" /></td>
+    <td><b>Email</b><br/><input type="text" name="key_email" class="email" value="<?php echo $k['Key_contact']['email'];?>" style="width: 100px;" /></td>
     <td><b>Company</b><br/><input type="text" name="key_company" class="" value="<?php echo $k['Key_contact']['company'];?>" style="width: 100px;" /> </td></tr>
     
     
