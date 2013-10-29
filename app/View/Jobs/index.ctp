@@ -53,7 +53,7 @@ if($job){
                 <th colspan="2">Company</th>
                 <?php if($this->Session->read('avatar')) { ?><th>Assigned to</th><?php }?>
                 <th>Job id</th>
-                <th style="width:350px;">Options</th>
+                <th style="width:420px;">Options</th>
             </tr>
     <?php        
 foreach($job as $j)
@@ -160,6 +160,7 @@ foreach($job as $j)
 				)." ";
 		}
        ?>
+       <a href="<?php echo $base_url;?>jobs/projectboard/<?php echo $j['Job']['id'];?>" class="btn btn-success">Project Board</a>
     </td>
         </tr>
     
