@@ -54,9 +54,23 @@ class ContactsController extends AppController
                 $jid = '('.$jid.')';
             else
                 $jid = '('.'99999999999'.')';
+            $this->loadModel('Job_contact');
+            $jc = $this->Job_contact->find('all',array('conditions'=>array('job_id IN'.$jid)));
+            $idd = '';
+            foreach($jc as $jjc)
+            {
+                if($idd=='')
+                $idd = $jjc['Job_contact']['key_id'];
+                else
+                $idd = $idd.','.$jjc['Job_contact']['key_id'];
+            } 
+            if($idd)
+            $idd = '('.$idd.')';
+            else
+            $idd = '('.'99999999999'.')';
             
                 //echo 2;die();
-            $this->paginate = array('conditions'=>array('job_id IN'.$jid),'order'=>array('job_id'),'limit'=>10);
+            $this->paginate = array('conditions'=>array('id IN'.$idd),'limit'=>10);
             
             $docs = $this->paginate('Key_contact');
             //$docs = $this->Document->find('all',array('conditions'=>array('addedBy'=>$this->Session->read('id'),'title LIKE'=>'%'.$search.'%'))); 
@@ -391,6 +405,22 @@ class ContactsController extends AppController
         else
         return '';
         
+    }
+    public function getJobByKid($id)
+    {
+        $this->loadModel('Job_contact');
+        $q = $this->Job_contact->find('first',array('conditions'=>array('key_id'=>$id)));
+        if($q['Job_contact']['job_id'] == 0)
+        return 'empty';
+        else
+        {
+            $this->loadModel('Job');
+            $q1 = $this->Job->findById($q['Job_contact']['job_id']);
+            if($q1)
+            return $q1['Job']['title'];
+            else
+            return 'empty';
+        }
     }
     
 }
