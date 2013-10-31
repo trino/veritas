@@ -27,7 +27,15 @@ $(function(){
 </tr>
 
 <tr>
-    <td><strong>Job Status</strong><br /><select name="job_status"><option value="On Project Board" <?php if($model['Projectboard']['job_status'] == 'On Project Board'){?>selected="selected"<?php }?>>On Project Board</option><option value="Operation Prep" <?php if($model['Projectboard']['job_status'] == 'Operation Prep'){?>selected="selected"<?php }?>>Operation Prep</option><option value="Deployed" <?php if($model['Projectboard']['Deployed'] == 'Deployed'){?>selected="selected"<?php }?>>Deployed</option><option value="Active" <?php if($model['Projectboard']['job_status'] == 'Active'){?>selected="selected"<?php }?>>Active</option><option value="Complete" <?php if($model['Projectboard']['job_status'] == 'Complete'){?>selected="selected"<?php }?>>Complete</option></select></td>
+    <td><strong>Job Status</strong><br /><select name="job_status">
+	<option value="On Project Board" <?php if($model['Projectboard']['job_status'] == 'On Project Board'){?>selected="selected"<?php }?>>On Project Board</option>
+	<option value="Operation Prep" <?php if($model['Projectboard']['job_status'] == 'Operation Prep'){?>selected="selected"<?php }?>>Operation Prep</option>
+	<option value="Deployed" <?php if($model['Projectboard']['Deployed'] == 'Deployed'){?>selected="selected"<?php }?>>Deployed</option>
+	<option value="Active" <?php if($model['Projectboard']['job_status'] == 'Active'){?>selected="selected"<?php }?>>Active</option>
+	<option value="Complete" <?php if($model['Projectboard']['job_status'] == 'Complete'){?>selected="selected"<?php }?>>Complete</option>
+	<option value="Contract Ratification" <?php if($model['Projectboard']['job_status'] == 'Contract Ratification'){?>selected="selected"<?php }?>>Contract Ratification</option>
+	</select></td>
+	
     <td><strong>City</strong><br /><input type="text" class="city" name="city" value="<?php echo $model['Projectboard']['city'];?>"/></td>
     <td><strong>State</strong><br /><input type="text" class="state" name="state" value="<?php echo $model['Projectboard']['state'];?>" onchange="getloc()"/></td>
 </tr>
@@ -46,55 +54,75 @@ $(function(){
 </tr>
 </table>
 
-<h3>Personal Section</h3>
+<h3>Personnel Section</h3>
 <table class="table table-bordered">
 <tr>
-    <td style="width: 30%;"><strong>Security Projected</strong><br /><input type="text" name="security_projected" value="<?php echo $model['Projectboard']['security_projected'];?>"/></td>
-    <td style="width: 30%;"><strong>Security Deployed</strong><br /><input type="text" name="security_deployed" value="<?php echo $model['Projectboard']['security_deployed'];?>"/></td>
-    <td style="width: 30%;"><strong>Logistics Projected</strong><br /><input type="text" name="logistics_projected" value="<?php echo $model['Projectboard']['logistics_projected'];?>"/></td>
-</tr>
-<tr>    
-    <td style="width: 30%;"><strong>Logistics Deployed</strong><br /><input type="text" name="logistics_deployed" value="<?php echo $model['Projectboard']['logistics_deployed'];?>"/></td>
-    <td style="width: 30%;"><strong>Replacement Workers Projected</strong><br /><input type="text" name="replacement_workers_projected" value="<?php echo $model['Projectboard']['replacement_workers_projected'];?>" /></td>
-    <td style="width: 30%;"><strong>Replacement Workers Deployed</strong><br /><input type="text" name="replacement_workers_deployed" value="<?php echo $model['Projectboard']['replacement_workers_deployed'];?>" /></td>
+    <td style=""><strong>Security Projected</strong><br /><input type="text" name="security_projected" value="<?php echo $model['Projectboard']['security_projected'];?>"/></td>
+    <td style=""><strong>Security Deployed</strong><br /><input type="text" name="security_deployed" value="<?php echo $model['Projectboard']['security_deployed'];?>"/></td>
+	
+	</tr>
+<tr>   
+    <td style=""><strong>Logistics Projected</strong><br /><input type="text" name="logistics_projected" value="<?php echo $model['Projectboard']['logistics_projected'];?>"/></td>
+ 
+    <td style=""><strong>Logistics Deployed</strong><br /><input type="text" name="logistics_deployed" value="<?php echo $model['Projectboard']['logistics_deployed'];?>"/></td>
+	
+	</tr>
+<tr>   
+    <td style=""><strong>Replacement Workers Projected</strong><br /><input type="text" name="replacement_workers_projected" value="<?php echo $model['Projectboard']['replacement_workers_projected'];?>" /></td>
+    <td style=""><strong>Replacement Workers Deployed</strong><br /><input type="text" name="replacement_workers_deployed" value="<?php echo $model['Projectboard']['replacement_workers_deployed'];?>" /></td>
 </tr>
 </table>
 
 <h3>Equipment Section</h3>
 <table class="table table-bordered">
 <tr>
-    <td style="width: 30%;"><strong>Dry Trailer Projected</strong><br /><input type="text" name="dry_trailer_projected"  value="<?php echo $model['Projectboard']['dry_trailer_projected'];?>" /></td>
-    <td style="width: 30%;"><strong>Dry Trailer Deployed</strong><br /><input type="text" name="dry_trailer_deployed"  value="<?php echo $model['Projectboard']['dry_trailer_deployed'];?>" /></td>
-    <td style="width: 30%;"><strong>Box Truck Projected</strong><br /><input type="text" name="box_truck_projected" value="<?php echo $model['Projectboard']['box_truck_projected'];?>" /></td>
-</tr>
-<tr>    
-    <td style="width: 30%;"><strong>Box Truck Deployed</strong><br /><input type="text" name="box_truck_deployed" value="<?php echo $model['Projectboard']['box_truck_deployed'];?>" /></td>
-    <td style="width: 30%;"><strong>Box Reefer Projected</strong><br /><input type="text" name="box_reefer_projected" value="<?php echo $model['Projectboard']['box_reefer_projected'];?>" /></td>
-    <td style="width: 30%;"><strong>Box Reefer Deployed</strong><br /><input type="text" name="box_reefer_deployed" value="<?php echo $model['Projectboard']['box_reefer_deployed'];?>" /></td>
-</tr>
-<tr>
-    <td style="width: 30%;"><strong>Kitchen Trailer Projected</strong><br /><input type="text" name="kitchen_trailer_projected" value="<?php echo $model['Projectboard']['kitchen_trailer_projected'];?>" /></td>
-    <td style="width: 30%;"><strong>Kitchen Trailer Deployed</strong><br /><input type="text" name="kitchen_trailer_deployed" value="<?php echo $model['Projectboard']['kitchen_trailer_deployed'];?>" /></td>
-    <td style="width: 30%;"><strong>Refrigerated Trailer Projected</strong><br /><input type="text" name="refrigerated_trailer_projected" value="<?php echo $model['Projectboard']['refrigerated_trailer_projected'];?>" /></td>
-</tr>
-<tr>
-    <td style="width: 30%;"><strong>Refrigerated Trailer Deployed</strong><br /><input type="text" name="refrigerated_trailer_deployed" value="<?php echo $model['Projectboard']['refrigerated_trailer_deployed'];?>" /></td>
-    <td style="width: 30%;"><strong>Laundry Trailer Projected</strong><br /><input type="text" name="laundry_trailer_projected"  value="<?php echo $model['Projectboard']['laundry_trailer_projected'];?>"/></td>
-    <td style="width: 30%;"><strong>Laundry Trailer Deployed</strong><br /><input type="text" name="laundry_trailer_deployed"  value="<?php echo $model['Projectboard']['laundry_trailer_deployed'];?>"/></td>
+    <td style=""><strong>Dry Trailer Projected</strong><br /><input type="text" name="dry_trailer_projected"  value="<?php echo $model['Projectboard']['dry_trailer_projected'];?>" /></td>
+    <td style=""><strong>Dry Trailer Deployed</strong><br /><input type="text" name="dry_trailer_deployed"  value="<?php echo $model['Projectboard']['dry_trailer_deployed'];?>" /></td>
 </tr>
 <tr>  
-    <td style="width: 30%;"><strong>Shower Trailer Projected</strong><br /><input type="text" name="shower_trailer_projected"  value="<?php echo $model['Projectboard']['shower_trailer_projected'];?>" /></td>
-    <td style="width: 30%;"><strong>Shower Trailer Deployed</strong><br /><input type="text" name="shower_trailer_deployed"  value="<?php echo $model['Projectboard']['shower_trailer_deployed'];?>"/></td>
-    <td style="width: 30%;"><strong>Housing Trailer Projected</strong><br /><input type="text" name="housing_trailer_projected"  value="<?php echo $model['Projectboard']['shower_trailer_projected'];?>"/></td>
-</tr>
-<tr>    
-    <td style="width: 30%;"><strong>Housing Trailer Deployed</strong><br /><input type="text" name="housing_trailer_deployed"  value="<?php echo $model['Projectboard']['shower_trailer_deployed'];?>"/></td>
-    <td style="width: 30%;"><strong>Dining Trailer Projected</strong><br /><input type="text" name="dining_trailer_projected"  value="<?php echo $model['Projectboard']['dining_trailer_projected'];?>"/></td>
-    <td style="width: 30%;"><strong>Dining Trailer Deployed</strong><br /><input type="text" name="dining_trailer_deployed"  value="<?php echo $model['Projectboard']['dining_trailer_deployed'];?>"/></td>
+
+    <td style=""><strong>Box Truck Projected</strong><br /><input type="text" name="box_truck_projected" value="<?php echo $model['Projectboard']['box_truck_projected'];?>" /></td>
+  
+    <td style=""><strong>Box Truck Deployed</strong><br /><input type="text" name="box_truck_deployed" value="<?php echo $model['Projectboard']['box_truck_deployed'];?>" /></td>
+	
+	</tr>
+<tr>
+    <td style=""><strong>Box Reefer Projected</strong><br /><input type="text" name="box_reefer_projected" value="<?php echo $model['Projectboard']['box_reefer_projected'];?>" /></td>
+    <td style=""><strong>Box Reefer Deployed</strong><br /><input type="text" name="box_reefer_deployed" value="<?php echo $model['Projectboard']['box_reefer_deployed'];?>" /></td>
 </tr>
 <tr>
-    <td style="width: 30%;"><strong>Deployment Start Date</strong><br /><input type="text" class="expire" name="deployment_start_date"  value="<?php echo $model['Projectboard']['deployment_start_date'];?>"/></td>
-    <td style="width: 30%;"><strong>Tombstone/Man Hours</strong><br /><input type="text" name="tombstone_man_hours"  value="<?php echo $model['Projectboard']['tombstone_man_hours'];?>"/></td>
+    <td style=""><strong>Kitchen Trailer Projected</strong><br /><input type="text" name="kitchen_trailer_projected" value="<?php echo $model['Projectboard']['kitchen_trailer_projected'];?>" /></td>
+    <td style=""><strong>Kitchen Trailer Deployed</strong><br /><input type="text" name="kitchen_trailer_deployed" value="<?php echo $model['Projectboard']['kitchen_trailer_deployed'];?>" /></td>
+	
+	</tr>
+<tr>
+    <td style=""><strong>Refrigerated Trailer Projected</strong><br /><input type="text" name="refrigerated_trailer_projected" value="<?php echo $model['Projectboard']['refrigerated_trailer_projected'];?>" /></td>
+
+    <td style=""><strong>Refrigerated Trailer Deployed</strong><br /><input type="text" name="refrigerated_trailer_deployed" value="<?php echo $model['Projectboard']['refrigerated_trailer_deployed'];?>" /></td>
+	
+	</tr>
+<tr>
+    <td style=""><strong>Laundry Trailer Projected</strong><br /><input type="text" name="laundry_trailer_projected"  value="<?php echo $model['Projectboard']['laundry_trailer_projected'];?>"/></td>
+    <td style=""><strong>Laundry Trailer Deployed</strong><br /><input type="text" name="laundry_trailer_deployed"  value="<?php echo $model['Projectboard']['laundry_trailer_deployed'];?>"/></td>
+</tr>
+<tr>
+    <td style=""><strong>Shower Trailer Projected</strong><br /><input type="text" name="shower_trailer_projected"  value="<?php echo $model['Projectboard']['shower_trailer_projected'];?>" /></td>
+    <td style=""><strong>Shower Trailer Deployed</strong><br /><input type="text" name="shower_trailer_deployed"  value="<?php echo $model['Projectboard']['shower_trailer_deployed'];?>"/></td>
+	
+	</tr>
+<tr>
+    <td style=""><strong>Housing Trailer Projected</strong><br /><input type="text" name="housing_trailer_projected"  value="<?php echo $model['Projectboard']['shower_trailer_projected'];?>"/></td>
+
+    <td style=""><strong>Housing Trailer Deployed</strong><br /><input type="text" name="housing_trailer_deployed"  value="<?php echo $model['Projectboard']['shower_trailer_deployed'];?>"/></td>
+	
+	</tr>
+<tr>
+    <td style=""><strong>Dining Trailer Projected</strong><br /><input type="text" name="dining_trailer_projected"  value="<?php echo $model['Projectboard']['dining_trailer_projected'];?>"/></td>
+    <td style=""><strong>Dining Trailer Deployed</strong><br /><input type="text" name="dining_trailer_deployed"  value="<?php echo $model['Projectboard']['dining_trailer_deployed'];?>"/></td>
+</tr>
+<tr>
+    <td style=""><strong>Deployment Start Date</strong><br /><input type="text" class="expire" name="deployment_start_date"  value="<?php echo $model['Projectboard']['deployment_start_date'];?>"/></td>
+    <td style=""><strong>Tombstone/Man Hours</strong><br /><input type="text" name="tombstone_man_hours"  value="<?php echo $model['Projectboard']['tombstone_man_hours'];?>"/></td>
     <td></td>
 </tr>
 <tr>
