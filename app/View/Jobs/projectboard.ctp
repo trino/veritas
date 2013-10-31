@@ -13,7 +13,7 @@ function getloc()
         });
 }
 $(function(){
-    $( ".expire" ).datepicker({dateFormat: "yy-mm-dd"});
+    $( ".expire" ).datepicker({dateFormat: "m-d-yy"});
     $('.expire').each(function(){
        if($(this).val()=='0000-00-00')
        {
