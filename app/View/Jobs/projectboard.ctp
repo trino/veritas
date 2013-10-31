@@ -14,6 +14,12 @@ function getloc()
 }
 $(function(){
     $( ".expire" ).datepicker({dateFormat: "yy-mm-dd"});
+    $('.expire').each(function(){
+       if($(this).val()=='0000-00-00')
+       {
+            $(this).val('');
+       } 
+    });
     });
 </script>
 <h3 class="page-title">Project Board</h3>
