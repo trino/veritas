@@ -1,15 +1,16 @@
 <?php include_once('inc.php');?>
 
-<h3 class="page-title">
-	Contacts
-</h3>
-<ul class="breadcrumb">
+
+<ul class="breadcrumb" style="margin-top: 100px;">
 	<li>
 		<i class="icon-home"></i>
 		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
 		<a href="<?=$base_url;?>contacts">Contacts</a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
+<h3 class="page-title">
+	Contacts
+</h3>
 <?php
 if($this->Session->read('avatar'))
 {
@@ -50,6 +51,7 @@ if($docs)
         $date = 'asc'; 
         */  
     ?>
+    
 <div id="">
 
     <table class="table table-bordered">
@@ -63,7 +65,7 @@ if($docs)
             <?php if(!$this->Session->read('admin'))
             {
                 ?>
-                <th>Job</th>
+                <th>Assigned to Job(s)</th>
                 <?php    
             }
             ?>
@@ -178,7 +180,48 @@ if($docs)
        </tr> 
        <?php }?>
  </table>
-
+<?php
+if(isset($employee) && $employee)
+{
+    ?>
+    <h3 class="page-title">
+	Employee
+</h3>
+    <table class="table table-bordered">
+        <tr>
+            <th>Title</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Assigned to Job(s)</th>
+        </tr>
+    <?php
+    $cc=0;
+     foreach($employee as $k=>$d)
+    {
+        $cc++;
+    
+?>
+<tr>
+            <td><?php echo $d['Member']['title']; ?></td>
+            <td><?php echo $d['Member']['full_name']; ?></td>
+            <td><?php echo $d['Member']['email']; ?></td>
+            <td><?php echo $d['Member']['phone'];?></td>
+            <?php if(!$this->Session->read('admin'))
+            {
+                ?>
+                <td><?php echo $this->requestAction($base_url.'contacts/getJobByMember/'.$d['Member']['id']);;?></td>
+                
+                <?php    
+            }
+            ?>
+            
+       </tr> 
+       <?php }?>
+ </table>
+    <?php
+}
+?>
 </div>
 <div class="pagination2">
 <ul>

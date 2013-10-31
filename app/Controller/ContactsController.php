@@ -45,6 +45,57 @@ class ContactsController extends AppController
         else
         {
             $this->loadModel('Jobmember');
+            
+            
+            
+            /* to list employee Starts*/
+            
+            $emp = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
+            $job = $emp['Jobmember']['job_id'];
+            if($job)
+            {
+            $job_arr = explode(',',$job);            
+                if(count($job_arr)==1)
+                {
+                    $j_employee = $this->Jobmember->find('all',array('conditions'=>array('(job_id LIKE "'.$job_arr[0].'" OR job_id LIKE "'.$job_arr[0].',%" OR job_id LIKE "%,'.$job_id.',%" OR job_id LIKE "%,'.$job_id.'")')));
+                }
+                else
+                {
+                    for($i=0;$i<count($job_arr);$i++)
+                    {
+                        if($i==0)
+                        $cond = '(job_id LIKE "'.$job_arr[0].'" OR job_id LIKE "'.$job_arr[0].',%" OR job_id LIKE "%,'.$job_arr[0].',%" OR job_id LIKE "%,'.$job_arr[0].'"';
+                        else
+                        $cond = $cond.' OR job_id LIKE "'.$job_arr[$i].'" OR job_id LIKE "'.$job_arr[$i].',%" OR job_id LIKE "%,'.$job_arr[$i].',%" OR job_id LIKE "%,'.$job_arr[$i].'"';    
+                        
+                    }
+                    $cond = $cond.')';
+                    $j_employee = $this->Jobmember->find('all',array('conditions'=>array($cond)));
+                }
+                $mid = '';
+                if($j_employee)
+                foreach($j_employee as $je)
+                {
+                    if($mid == '')
+                    $mid = $je['Jobmember']['member_id'];
+                    else
+                    $mid = $mid.','.$je['Jobmember']['member_id'];
+                }
+                if($mid)
+                $mid = '('.$mid.')';
+                else
+                $mid = '(99999999999999)';
+                $final_emp = $this->Member->find('all',array('conditions'=>array('id IN '.$mid)));
+                $this->set('employee',$final_emp);
+            }
+            else
+            $this->set('employee',null);
+            
+                            
+            /* to list employee Ends*/
+            
+            
+            
             $job_ids = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
             if($job_ids)
                 $jid =$job_ids['Jobmember']['job_id'];
@@ -75,6 +126,7 @@ class ContactsController extends AppController
             $docs = $this->paginate('Key_contact');
             //$docs = $this->Document->find('all',array('conditions'=>array('addedBy'=>$this->Session->read('id'),'title LIKE'=>'%'.$search.'%'))); 
         }
+        
         $this->set('member',$this->Member);
         $this->set('jo_bs',$this->Job);
         $this->set('docs',$docs);
@@ -421,6 +473,30 @@ class ContactsController extends AppController
             else
             return 'empty';
         }
+    }
+    public function getJobByMember($id)
+    {
+        $this->loadModel('Jobmember');
+        $q = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$id)));
+        $j = $q['Jobmember']['job_id'];
+            if($j)
+            {
+                $job_arr = explode(',',$j);
+                $jo = '';
+                foreach($job_arr as $job)
+                {
+                    $this->loadModel('Job');
+                    $q1 = $this->Job->findById($job);
+                    if($jo == '')
+                    $jo = ucfirst($q1['Job']['title']);
+                    else
+                    $jo = $jo.', '.ucfirst($q1['Job']['title']);
+                }
+                return $jo;
+            } 
+            else
+            return 'empty';
+        
     }
     
 }
