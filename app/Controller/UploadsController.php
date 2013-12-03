@@ -238,11 +238,18 @@ class UploadsController extends AppController
         
         
     }
-    function go()
+    function go($id='')
     {
+        if($id)
+        {
+            $job_id = $id;
+            $this->redirect('/uploads/upload/'.$job_id);
+        }{
+        
         if($this->Session->read('admin'))
         {
             $this->redirect('/jobs');
+            
         }
         else
         {
@@ -266,6 +273,7 @@ class UploadsController extends AppController
                 else
                 $this->redirect('/jobs');
                 
+        }
         }
     }
     function loadall()

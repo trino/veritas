@@ -655,9 +655,17 @@ url: '<?php echo $base_url;?>admin/logout'
 							</div>
 						</a>
 					</div>		
-<?php if($this->Session->read('admin') || $upload){?>
+<?php if($this->Session->read('admin') || $upload){
+    $para = $this->request->params;
+    if($para['controller']=='jobs' && $para['action']=='view')
+    {
+        $id = $para['pass'][0];
+    }
+    else
+    $id = '';
+    ?>
                     <div class="v1ButtonBarB">
-						<a href="<?php echo $base_url;?>uploads/go" class="fullLink">
+						<a href="<?php echo $base_url;?>uploads/go/<?php echo $id;?>" class="fullLink">
 							<div  class="glassButton">
 							<div  class="full8ButtonB">
 
