@@ -264,7 +264,7 @@ class UploadsController extends AppController
                         $job_id=$job_ids;
                     }
                     else
-                    $job_id = 'all';
+                        $job_id = 'all';
                 }
                 if($job_id and $job_id!='all')
                 {
@@ -685,8 +685,11 @@ class UploadsController extends AppController
                         $base_url = str_replace(' ','/',$base_url);
                         $base_url = str_replace('___','//',$base_url);
                         $base_url = $base_url.'/';
+                        
                     }
-                
+                    
+                if(str_replace('http://','',$base_url) == $base_url)
+                        $base_url = 'http://'.$base_url;
                 
                 foreach($mails as $m)
                 {

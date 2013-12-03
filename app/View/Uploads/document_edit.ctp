@@ -282,6 +282,7 @@ function remove_youtube()
     <option value="" >Choose evidence type</option>
     <option value="Incident Report" <?php if(isset($doc['Document']['evidence_type']) && $doc['Document']['evidence_type']=='Incident Report') echo "selected='selected'" ; ?>>Incident Report</option>
     <option value="Line Crossing Sheet" <?php if (isset($doc['Document']['evidence_type']) && $doc['Document']['evidence_type']=='Line Crossing Sheet')echo "selected='selected'" ; ?>>Line Crossing Sheet</option>
+    <option value="Auther" <?php if (isset($doc['Document']['evidence_type']) && $doc['Document']['evidence_type']=='Auther') echo "selected='selected'" ; ?>>Auther</option>
     <option value="Shift Summary" <?php if (isset($doc['Document']['evidence_type']) && $doc['Document']['evidence_type']=='Shift Summary') echo "selected='selected'" ; ?>>Shift Summary</option>
     <option value="Incident Video" <?php if (isset($doc['Document']['evidence_type']) && $doc['Document']['evidence_type']=='Incident Video')echo "selected='selected'" ; ?>>Incident Video</option>
     <option value="Executive Summary" <?php if (isset($doc['Document']['evidence_type']) && $doc['Document']['evidence_type']=='Executive Summary')echo "selected='selected'" ; ?>>Executive Summary</option>
