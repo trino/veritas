@@ -509,6 +509,7 @@ class UploadsController extends AppController
                 $arr['incident_date'] = $_POST['incident_date'];
                 //$arr['desc'] = $_POST['desc'];
                 $arr['evidence_type'] = $_POST['evidence_type'];
+                $arr['evidence_author'] = $_POST['evidence_author'];
             
                 
                 
@@ -711,7 +712,9 @@ class UploadsController extends AppController
                         $job_title = '';
                         if($_POST['document_type']== 'evidence')
                             $message="Job: ".$job_title."<br/>
-                            Document: ".$arr['title']."<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
+                            Document: ".$arr['title']."<br/>
+                            Author: ".$_POST['evidence_author']."<br/>
+                            Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
                             Upload Date: ".date('Y-m-d')."<br/> Please <a href='".$base_url."?upload=".$eid."'>Click Here</a> to Login<br><br>- The Veritas Team";
                         else
                             $message="
@@ -988,6 +991,7 @@ class UploadsController extends AppController
             
                 //$arr['desc'] = $_POST['desc'];
                 $arr['evidence_type'] = $_POST['evidence_type'];
+                $arr['evidence_author'] = $_POST['evidence_author'];
                 $subname = '_'.$_POST['evidence_type'];
               
             }
@@ -1070,7 +1074,9 @@ class UploadsController extends AppController
                         if($_POST['document_type']== 'evidence')
                             $message="
 							Job: ".$job_title."<br/>
-                            Document: ".$arr['title']."<br/>Evidence Type: ".$_POST['evidence_type']."<br/>Description: ".$_POST['description']."<br/>Incident Date:".$_POST['incident_date']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
+                            Document: ".$arr['title']."<br/>
+                            Author: ".$_POST['evidence_author']."<br/>
+                            Evidence Type: ".$_POST['evidence_type']."<br/>Description: ".$_POST['description']."<br/>Incident Date:".$_POST['incident_date']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
                             Upload Date: ".date('Y-m-d')."<br/><a href='".$base_url."?upload=".$id."'>Click Here</a> to login and view the document.";
                         else
                             $message="

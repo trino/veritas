@@ -282,7 +282,6 @@ function remove_youtube()
     <option value="" >Choose evidence type</option>
     <option value="Incident Report" <?php if(isset($doc['Document']['evidence_type']) && $doc['Document']['evidence_type']=='Incident Report') echo "selected='selected'" ; ?>>Incident Report</option>
     <option value="Line Crossing Sheet" <?php if (isset($doc['Document']['evidence_type']) && $doc['Document']['evidence_type']=='Line Crossing Sheet')echo "selected='selected'" ; ?>>Line Crossing Sheet</option>
-    <option value="Auther" <?php if (isset($doc['Document']['evidence_type']) && $doc['Document']['evidence_type']=='Auther') echo "selected='selected'" ; ?>>Auther</option>
     <option value="Shift Summary" <?php if (isset($doc['Document']['evidence_type']) && $doc['Document']['evidence_type']=='Shift Summary') echo "selected='selected'" ; ?>>Shift Summary</option>
     <option value="Incident Video" <?php if (isset($doc['Document']['evidence_type']) && $doc['Document']['evidence_type']=='Incident Video')echo "selected='selected'" ; ?>>Incident Video</option>
     <option value="Executive Summary" <?php if (isset($doc['Document']['evidence_type']) && $doc['Document']['evidence_type']=='Executive Summary')echo "selected='selected'" ; ?>>Executive Summary</option>
@@ -294,7 +293,7 @@ function remove_youtube()
 </tr>
 <tr><td><strong>Date of Incident</strong></td>
 <td><input type="text"  class="incident_date required" name="incident_date" value="<?php if(isset($doc['Document']['incident_date'])) echo $doc['Document']['incident_date'];?>" /></td></tr>
-
+<tr><td><strong>Author</strong></td><td><input type="text" class="required" name="evidence_author" value="<?php if(isset($doc['Document']['evidence_author'])) echo $doc['Document']['evidence_author'];?>"/></td></tr>
 </table>
 </td></tr>
 <tr class="extra_memo" style="display: none;">

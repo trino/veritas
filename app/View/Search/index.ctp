@@ -69,7 +69,7 @@ if($docs)
 if((isset($canView) && !isset($noView)) || $this->Session->read('admin'))
 {
 $uri = $_SERVER['REQUEST_URI'];    
-$uri = str_replace(array('/veritas/','veritas/','?order=document_type','&order=document_type','?order=description','&order=description','?order=title','&order=title','?order=addedBy','&order=addedBy','?order=incident_date','&order=incident_date','?order=`date`','&order=`date`','?order=%60date%60','&order=%60date%60','&ty=ASC','&ty=DESC'),array('','','','','','','','','','','',''),$uri);
+$uri = str_replace(array('/veritas/','veritas/','?order=document_type','&order=document_type','?order=description','&order=description','?order=title','&order=title','?order=addedBy','&order=addedBy','?order=incident_date','&order=incident_date','&order=evidence_author','?order=evidence_author','?order=`date`','&order=`date`','?order=%60date%60','&order=%60date%60','&ty=ASC','&ty=DESC'),array('','','','','','','','','','','','','',''),$uri);
 if(str_replace('search=','',$uri) == $uri)
 {
     $or = '?order=';
@@ -83,6 +83,7 @@ $or = '&order=';
         <tr>
             
             <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'document_type&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='document_type') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Document Type</a><?php //echo $this->Paginator->sort('document_type','Document Type');?></th>
+            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'evidence_author&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='evidence_author') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Author</a><?php //echo $this->Paginator->sort('document_type','Document Type');?></th>
             <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'description&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='description') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Description</a><?php //echo $this->Paginator->sort('description','Description');?></th> 
             <!--<th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'title&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='title') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Title</a><?php //echo $this->Paginator->sort('title','Title');?></th>-->           
             <th width="10%"><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'addedBy&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='addedBy') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Uploaded By</a><?php //echo $this->Paginator->sort('addedBy','Uploaded By');?></th>
@@ -106,7 +107,7 @@ $or = '&order=';
             $arr[]=$docs[$k]['Document']['job_id'];   
         ?>
         
-        <tr style="background: grey;color:#FFF;"><td colspan="7"><?php if($d['Document']['job_id']=='-1'){ ?><strong>Deleted Job</strong><?php }else{?><strong>Job :</strong><strong><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Document']['job_id'])));if($get2)echo $get2['Job']['title']; ?></strong><?php }?></tr>
+        <tr style="background: grey;color:#FFF;"><td colspan="8"><?php if($d['Document']['job_id']=='-1'){ ?><strong>Deleted Job</strong><?php }else{?><strong>Job :</strong><strong><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Document']['job_id'])));if($get2)echo $get2['Job']['title']; ?></strong><?php }?></tr>
         
         <?php
         }
@@ -116,7 +117,7 @@ $or = '&order=';
             {
                 $arr[]=$docs[$k]['Document']['job_id'];
                 ?>
-                <tr style="background: grey;color:#FFF;"><td colspan="7"><?php if($d['Document']['job_id']=='-1'){ ?><strong>Deleted Job</strong><?php }else{?><strong>Job :</strong><strong><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Document']['job_id'])));if($get2)echo $get2['Job']['title']; ?></strong><?php }?></tr>
+                <tr style="background: grey;color:#FFF;"><td colspan="8"><?php if($d['Document']['job_id']=='-1'){ ?><strong>Deleted Job</strong><?php }else{?><strong>Job :</strong><strong><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Document']['job_id'])));if($get2)echo $get2['Job']['title']; ?></strong><?php }?></tr>
                 <?php
             }
         }
@@ -126,6 +127,7 @@ $or = '&order=';
             
        <tr>
             <td><?php  if($d['Document']['document_type']=='evidence')echo "Evidence(".$d['Document']['evidence_type'].')';elseif($d['Document']['document_type']=='report'){$act = $activity->find('first',array('conditions'=>array('document_id'=>$d['Document']['id'])));if($act){ echo "Report(";if($act['Activity']['report_type']==1)echo "Activity Log";if($act['Activity']['report_type']==2)echo "Mobile Inspection";if($act['Activity']['report_type']==3)echo "Mobile Security";if($act['Activity']['report_type']==4)echo "Security Occurence";if($act['Activity']['report_type']==5)echo "Incident Report";if($act['Activity']['report_type']==6)echo "Sign Off";if($act['Activity']['report_type']==7)echo "Loss Prevention";echo ")";}}else echo $d['Document']['document_type']; ?></td>
+            <td><?php echo $d['Document']['evidence_author'];?></td>
             <!--<td><?php echo $d['Document']['location']; ?></td>-->
             <td><?php if($d['Document']['document_type']!='client_feedback' || $this->Session->read('admin'))echo $d['Document']['description']; ?></td>
             <!--<td><?php echo $d['Document']['title'];?></td>-->
