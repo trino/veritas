@@ -167,7 +167,8 @@
 		</a>								
 		<div class="dusk2"></div>						
 	</div>
-    <?php }?><?php if($admin_doc['AdminDoc']['kpiaudits']=='1' &&((isset($canview['Canview']['KPIAudits']) && $canview['Canview']['KPIAudits']=='1')|| $this->Session->read('admin'))){?>
+    <?php }?>
+    <?php if($admin_doc['AdminDoc']['kpiaudits']=='1' &&((isset($canview['Canview']['KPIAudits']) && $canview['Canview']['KPIAudits']=='1')|| $this->Session->read('admin'))){?>
     <div class="dashboard-stat red">								
 		<div class="whiteCorner"></div>								
 		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
@@ -186,6 +187,45 @@
 		<div class="dusk2"></div>						
 	</div>
     <?php }?>
+    <?php if($admin_doc['AdminDoc']['afimac_intel']=='1' &&((isset($canview['Canview']['afimac_intel']) && $canview['Canview']['afimac_intel']=='1')|| $this->Session->read('admin'))){?>
+    <div class="dashboard-stat red">								
+		<div class="whiteCorner"></div>								
+		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
+        <a href="<?=$base_url;?>search/special/afimac_intel/<?php echo $jobb_id;?>" class="overallLink more">		
+			<div class="visual">										
+				<i class="icon-file"></i>									
+			</div>									
+			<div class="details">										
+				<div class="number"><?php echo $afimac_intel;?></div>										
+				<div class="desc">AFIMAC Intel</div>									
+			</div>									
+			<div class="more2">									
+				View All <?php echo $afimac_intel;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+			</div>														
+		</a>								
+		<div class="dusk2"></div>						
+	</div>
+    <?php }?>
+<?php if($admin_doc['AdminDoc']['news_media']=='1' &&((isset($canview['Canview']['news_media']) && $canview['Canview']['news_media']=='1')|| $this->Session->read('admin'))){?>
+    <div class="dashboard-stat blue">								
+		<div class="whiteCorner"></div>								
+		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
+        <a href="<?=$base_url;?>search/special/News_media/<?php echo $jobb_id;?>" class="overallLink more">		
+			<div class="visual">										
+				<i class="icon-file"></i>									
+			</div>									
+			<div class="details">										
+				<div class="number"><?php echo $news_media;?></div>										
+				<div class="desc">News/Media</div>									
+			</div>									
+			<div class="more2">									
+				View All <?php echo $news_media;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+			</div>														
+		</a>								
+		<div class="dusk2"></div>						
+	</div>
+    <?php }?>
+
     
 	
 <?php } ?>

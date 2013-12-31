@@ -6,10 +6,7 @@ hr{border-top:#313A43 1px solid;}
 .lists div div div{padding: 3px 0;}
 .title{color:#BBB;padding:10px 0;}
 .left{float:left;}
-
-
 </style>
-
 <div style="width: 1030px;font-weight:bold;margin-top:10px;margin-bottom:5px;font-size: 14px;"><div class="left" style="width:120px;">Job</div><div class="left" style="width:120px;margin-left:5px;">Title</div><div class="left" style="width:120px;margin-left:5px;">Type</div><div class="left" style="width:480px;margin-left:5px;">File</div><div class="left" style="width:100px;margin-left:5px;">Choose</div><div class="clearfix"></div></div>
 <?php
 //if(isset($name) && $name !="")
@@ -35,6 +32,7 @@ if($this->Session->read('admin'))
                 }
                 else
                 $q3 = $doc->find('all',array('conditions'=>array('job_id'=>$q2['Job']['id'],'draft'=>0,'title LIKE "%'.$name.'%"')));
+                
                 if($q3)
                 {
                     //$tests = 0;
@@ -71,7 +69,7 @@ if($this->Session->read('admin'))
                                 {
                                     ?>
                                     <div class="left" style="width:480px;margin-left:5px;">
-                                    <?php echo $dcs['Doc']['doc'];?>
+                                    <?php echo "&nbsp;".$dcs['Doc']['doc'];?>
                                     </div>
                                     <div class="left" style="width:100px;margin-left:5px;"><input type="checkbox" class="doc" value="<?php echo $dcs['Doc']['doc'];?>" /></div>
                                     <div style="clear:both;"></div>
@@ -99,7 +97,7 @@ if($this->Session->read('admin'))
                                 {
                                     ?>
                                     <div class="left" style="width:480px;margin-left:5px;">
-                                    <?php echo $dcs['Image']['image'];?>
+                                    <?php echo "&nbsp;".$dcs['Image']['image'];?>
                                     </div>
                                     <div class="left" style="width:100px;margin-left:5px;"><input type="checkbox" class="doc" value="<?php echo $dcs['Image']['image'];?>" /></div>
                                     <div style="clear:both;"></div>
@@ -125,7 +123,7 @@ if($this->Session->read('admin'))
                                 {
                                     ?>
                                     <div class="left" style="width:480px;margin-left:5px;">
-                                    <?php echo $dcs['Video']['video'];?></div>
+                                    <?php echo "&nbsp;".$dcs['Video']['video'];?></div>
                                     <div class="left" style="width:100px;margin-left:5px;"><input type="checkbox" class="doc" value="<?php echo $dcs['Video']['video'];?>" /></div>
                                     
                                     <?php
@@ -140,10 +138,11 @@ if($this->Session->read('admin'))
                                 <div class="left" style="width:120px;margin-left:5px;"><?php echo $do['Document']['title'];?></div>
                                 
                                 <div class="left" style="width:120px;margin-left:5px;">&nbsp;</div>
-                                <div class="left" style="width:480px;margin-left:5px;"><?php echo $do['Document']['title'];?> <?php echo $do['Document']['date'];?></div>
+                                <div class="left" style="width:480px;margin-left:5px;"><?php echo "&nbsp;".$do['Document']['title'];?> <?php echo $do['Document']['date'];?></div>
                                     <div class="left" style="width:100px;margin-left:5px;"><input type="checkbox" class="doc" value="<?php echo $do['Document']['id'];?>" /></div>
                                     <?php
                             }
+                            
                             
                             
                             ?>
@@ -151,7 +150,70 @@ if($this->Session->read('admin'))
                         
                         <?php
                     }
-                }}
+                }
+                else
+                if($q2['Job']['is_special']==1)
+                {
+                        if(!$name)
+                        {
+                            $q3 = $spe->find('all');
+                        }
+                        else
+                        $q3 = $spe->find('all',array('conditions'=>array('document_type LIKE "%'.$name.'%"')));
+                        
+                        if($q3)
+                        {
+                            //$tests = 0;
+                            foreach($q3 as $do)
+                            {
+                                /*$tests++;
+                                if($tests==1)
+                                {
+                                    ?>
+                                    <h3 style="font-size: 15px;"><?php echo stripslashes($q2['Job']['title']);?></h3>
+                                    <?php
+                                }*/
+                                ?>
+                                
+                                    
+                                    
+                                    <div class="myclass" style="width: 1030px;font-size:13px;">
+                                    <div class="left" style="width:120px;"><?php echo stripslashes($q2['Job']['title']);?></div> 
+                                    
+                                        
+                                        <div class="left" style="width:120px;margin-left:5px;">
+                                        
+                                        <?php echo $do['SpecJob']['document_type'];?>
+                                        </div>
+                                        <?php
+                                        //ifelse
+                                        //ifelse
+                                        //ifelse
+                                        //ifelse
+                                        //ifelse
+                                        //ifelse
+                                        ?>
+                                        <div class="left" style="width:120px;margin-left:5px;">Documents</div>
+                                        
+                                    
+                                        
+                                            <div class="left" style="width:480px;margin-left:5px;">
+                                            <?php echo "&nbsp;".$do['SpecJob']['doc'];?>
+                                            </div>
+                                            <div class="left" style="width:100px;margin-left:5px;"><input type="checkbox" class="doc" value="<?php echo $do['SpecJob']['doc'];?>" /></div>
+                                            <div style="clear:both;"></div>
+                                            
+                                           
+                                        
+                                       
+                                    </div>
+                                
+                                <?php
+                            }
+                        }
+                }
+                
+                }
                 ?>
                 
                 <?php
@@ -183,10 +245,13 @@ else
                         continue;
                     }
                 $q2 = $job->find('first',array('conditions'=>array('id'=>trim($j))));
+                               
+                
                 ?>
                 <!--<h3 style="font-size: 15px;"><?php echo stripslashes($q2['Job']['title']);?></h3>-->
                 
                 <?php
+                
                 if($jid && !$name)
                 {
                     $q3 = $doc->find('all',array('conditions'=>array('job_id'=>$q2['Job']['id'],'draft'=>0)));
@@ -300,6 +365,8 @@ else
                         <?php
                     }}
                 }
+                
+                
                 ?>
                 
                 <?php

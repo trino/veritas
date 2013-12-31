@@ -551,6 +551,7 @@ class JobsController extends AppController
         $this->loadModel('Canupload');
         $this->loadModel('Canview');
         $this->loadModel('AdminDoc');
+        $this->loadModel('SpecJob');
         $this->set('admin_doc',$this->AdminDoc->findById('1'));
       if($this->Session->read('avatar') || $this->Session->read('user'))
         {
@@ -584,7 +585,8 @@ class JobsController extends AppController
             $this->set('training',$this->Document->find('count',array('conditions'=>array('document_type'=>'training','job_id'=>$id))));
             $this->set('employee',$this->Document->find('count',array('conditions'=>array('document_type'=>'employee','job_id'=>$id))));
             $this->set('KPIAudits',$this->Document->find('count',array('conditions'=>array('document_type'=>'KPIAudits','job_id'=>$id))));
-            
+            $this->set('afimac_intel',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'AFIMAC Intel','job_id'=>$id))));            
+            $this->set('news_media',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'News/Media','job_id'=>$id))));
         }
         else
         {
@@ -596,6 +598,8 @@ class JobsController extends AppController
             $this->set('training',$this->Document->find('count',array('conditions'=>array('document_type'=>'training','job_id'=>$id))));
             $this->set('employee',$this->Document->find('count',array('conditions'=>array('document_type'=>'employee','job_id'=>$id))));
             $this->set('KPIAudits',$this->Document->find('count',array('conditions'=>array('document_type'=>'KPIAudits','job_id'=>$id))));
+            $this->set('afimac_intel',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'AFIMAC Intel','job_id'=>$id))));            
+            $this->set('news_media',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'News/Media','job_id'=>$id))));
             
         }
         

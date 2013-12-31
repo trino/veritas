@@ -254,7 +254,8 @@ class MembersController extends AppController
                 $canview['training'] = (isset($_POST['canView_training'])&& $_POST['canView_training']!= '0')? '1' : '0'  ;
                 $canview['employee'] = (isset($_POST['canView_employee'])&& $_POST['canView_employee']!= '0')? '1' : '0'  ;
                 $canview['KPIAudits'] = (isset($_POST['canView_KPIAudits'])&& $_POST['canView_KPIAudits']!= '0')? '1' : '0'  ;
-                
+                $canview['afimac_intel'] = (isset($_POST['canView_afimac_intel'])&& $_POST['canView_afimac_intel']!= '0')? '1' : '0'  ;
+                $canview['news_media'] = (isset($_POST['canView_news_media'])&& $_POST['canView_news_media']!= '0')? '1' : '0'  ;
                 $this->Canview->create();
                 $this->Canview->save($canview);
             }
@@ -270,7 +271,8 @@ class MembersController extends AppController
                 $canview['training'] =  '0'  ;
                 $canview['employee'] =  '0'  ;
                 $canview['KPIAudits'] =  '0'  ;
-                
+                $canview['afimac_intel'] = '0';
+                $canview['news_media'] = '0';
                 $this->Canview->create();
                 $this->Canview->save($canview);
                 
@@ -288,7 +290,8 @@ class MembersController extends AppController
                 $canupdate['training'] = (isset($_POST['canUpload_training'])&& $_POST['canUpload_training']!= '0')? '1' : '0'  ;
                 $canupdate['employee'] = (isset($_POST['canUpload_employee'])&& $_POST['canUpload_employee']!= '0')? '1' : '0'  ;
                 $canupdate['KPIAudits'] = (isset($_POST['canUpload_KPIAudits'])&& $_POST['canUpload_KPIAudits']!= '0')? '1' : '0'  ;
-                
+                $canupdate['afimac_intel'] = (isset($_POST['canUpload_afimac_intel'])&& $_POST['canUpload_afimac_intel']!= '0')? '1' : '0'  ;
+                $canupdate['news_media'] = (isset($_POST['canUpload_news_media'])&& $_POST['canUpload_news_media']!= '0')? '1' : '0'  ;
                 $canupdate['client_feedback'] = (isset($_POST['canUpload_client_memo1']))? '1' : '0'  ;
                 
                 $this->Canupload->create();
@@ -307,7 +310,8 @@ class MembersController extends AppController
                 $canupdate['training'] = '0'  ;
                 $canupdate['employee'] =  '0'  ;
                 $canupdate['KPIAudits'] =  '0'  ;
-                
+                $canupdate['afimac_intel'] =  '0'  ;
+                $canupdate['news_media'] =  '0'  ;
                 $canupdate['client_feedback'] = '0' ;
                 $this->Canupload->create();
                 $this->Canupload->save($canupdate);
@@ -327,6 +331,8 @@ class MembersController extends AppController
                     $emailupload['training'] = (isset($_POST['Email_training'])&& $_POST['Email_training']!= '0')? '1' : '0'  ;
                     $emailupload['employee'] = (isset($_POST['Email_employee'])&& $_POST['Email_employee']!= '0')? '1' : '0'  ;
                     $emailupload['KPIAudits'] = (isset($_POST['Email_KPIAudits'])&& $_POST['Email_KPIAudits']!= '0')? '1' : '0'  ;
+                    $emailupload['afimac_intel'] = (isset($_POST['Email_afimac_intel'])&& $_POST['Email_afimac_intel']!= '0')? '1' : '0'  ;
+                    $emailupload['news_media'] = (isset($_POST['Email_news_media'])&& $_POST['Email_news_media']!= '0')? '1' : '0'  ;
                 
                     $emailupload['client_feedback'] = (isset($_POST['Email_client_memo1']))? '1' : '0'  ;
                     
@@ -347,6 +353,8 @@ class MembersController extends AppController
                     $emailupload['employee'] =  '0' ;
                     $emailupload['KPIAudits'] =  '0' ;
                     $emailupload['client_feedback'] = '0' ;
+                    $emailupload['afimac_intel'] = '0' ;
+                    $emailupload['news_media'] = '0' ;
                     $this->Emailupload->create();
                     $this->Emailupload->save($emailupload);
                 }
@@ -425,6 +433,13 @@ class MembersController extends AppController
         if($qjm)
         {
             $jobs = $qjm['Jobmember']['job_id'];
+            if(str_replace(',','',$jobs) == $jobs)
+            {
+                $che = $this->Job->findById($jobs);
+                if($che && $che['Job']['is_special'] == 1)
+                $this->set('sid',$jobs);
+                $this->set('stit',$che['Job']['title']);                
+            }
             $arr_j = explode(',',$jobs);
             $this->set('jm',$arr_j);
             $this->set('jmid',$qjm['Jobmember']['id']);
@@ -592,6 +607,8 @@ class MembersController extends AppController
                 $canview['training'] = (isset($_POST['canView_training'])&& $_POST['canView_training'])? '1' : '0'  ;
                 $canview['employee'] = (isset($_POST['canView_employee'])&& $_POST['canView_employee'])? '1' : '0'  ;
                 $canview['KPIAudits'] = (isset($_POST['canView_KPIAudits'])&& $_POST['canUpload_contracts'])? '1' : '0'  ;
+                $canview['afimac_intel'] = (isset($_POST['canView_afimac_intel'])&& $_POST['canUpload_afimac_intel'])? '1' : '0'  ;
+                $canview['news_media'] = (isset($_POST['canView_news_media'])&& $_POST['canUpload_news_media'])? '1' : '0'  ;
                 $this->Canview->create();
                 $this->Canview->save($canview);
             }
@@ -608,7 +625,8 @@ class MembersController extends AppController
                 $canview['training'] = '0'  ;
                 $canview['employee'] = '0'  ;
                 $canview['KPIAudits'] = '0'  ;
-                
+                $canview['afimac_intel'] = '0'  ;
+                $canview['news_media'] = '0'  ;
                 $this->Canview->create();
                 $this->Canview->save($canview);
             }
@@ -624,8 +642,10 @@ class MembersController extends AppController
                 $canupdate['siteOrder'] = (isset($_POST['canUpload_siteOrder'])&& $_POST['canUpload_siteOrder'])? '1' : '0'  ;
                 $canupdate['training'] = (isset($_POST['canUpload_training'])&& $_POST['canUpload_training'])? '1' : '0'  ;
                 $canupdate['employee'] = (isset($_POST['canUpload_employee'])&& $_POST['canUpload_employee'])? '1' : '0'  ;
-                $canupdate['KPIAudits'] = (isset($_POST['canUpload_KPIAudits'])&& $_POST['Email_contracts'])? '1' : '0'  ;
+                $canupdate['KPIAudits'] = (isset($_POST['canUpload_KPIAudits'])&& $_POST['canUpload_contracts'])? '1' : '0'  ;
                 $canupdate['client_feedback'] = (isset($_POST['canUpload_client_memo1']))? '1' : '0'  ;
+                $canupdate['afimac_intel'] = (isset($_POST['canUpload_afimac_intel'])&& $_POST['canUpload_afimac_intel'])? '1' : '0'  ;
+                $canupdate['news_media'] = (isset($_POST['canUpload_news_media'])&& $_POST['canUpload_news_media'])? '1' : '0'  ;
                 $this->Canupload->create();
                 $this->Canupload->save($canupdate);
                 //die();
@@ -643,6 +663,8 @@ class MembersController extends AppController
                 $canupdate['training'] =  '0'  ;
                 $canupdate['employee'] =  '0'  ;
                 $canupdate['KPIAudits'] = '0'  ;
+                $canupdate['afimac_intel'] = '0'  ;
+                $canupdate['news_media'] = '0'  ;
                 $canupdate['client_feedback'] = '0'  ;
             }
     
@@ -659,6 +681,8 @@ class MembersController extends AppController
                 $emailupload['training'] = (isset($_POST['Email_training'])&& $_POST['Email_training'])? '1' : '0'  ;
                 $emailupload['employee'] = (isset($_POST['Email_employee'])&& $_POST['Email_employee'])? '1' : '0'  ;
                 $emailupload['KPIAudits'] = (isset($_POST['Email_KPIAudits'])&& $_POST['Email_KPIAudits'])? '1' : '0'  ;
+                $emailupload['afimac_intel'] = (isset($_POST['Email_afimac_intel'])&& $_POST['Email_afimac_intel'])? '1' : '0'  ;
+                $emailupload['news_media'] = (isset($_POST['Email_news_media'])&& $_POST['Email_news_media'])? '1' : '0'  ;
                 $emailupload['client_feedback'] = (isset($_POST['Email_client_memo1']))? '1' : '0'  ;
                 
                 $this->Emailupload->create();
@@ -677,6 +701,8 @@ class MembersController extends AppController
                 $emailupload['training'] = '0'  ;
                 $emailupload['employee'] = '0'  ;
                 $emailupload['KPIAudits'] = '0'  ;
+                $emailupload['afimac_intel'] = '0'  ;
+                $emailupload['news_media'] = '0'  ;
                 
                 $emailupload['client_feedback'] = '0' ;
                 $this->Emailupload->create();

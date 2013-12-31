@@ -68,9 +68,13 @@ $(function(){
 <tr><td><b>Password</b></td><td><input type="password" name="password" value="<?php echo $m['Member']['password'];?>" class="required" /></td></tr>
 <tr><td><b>Can View Files</b></td><td><input type="checkbox" name="canView" id="canView" <?php if($m['Member']['canView']==1){?>checked="checked"<?php }?> /></td></tr>
 <tr class="canviewfiles" style="display: none;">
+<tr>
+<?php
+if(!isset($sid)){
+?>
 <td colspan="2">
 <table width="50%">
-<tr>
+
 <td><?php if($admin_doc['AdminDoc']['contracts']=='0'){?><input type="hidden" name="canView_contracts" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span><input type="checkbox" name="canView_contracts" <?php if(isset($v['Canview']['contracts']) && $v['Canview']['contracts']==1){?>checked="checked"<?php }?> /><?php }?>
 
@@ -95,13 +99,39 @@ $(function(){
 <?php if($admin_doc['AdminDoc']['kpiaudits']=='0' ){?><input type="hidden" name="canView_KPIAudits" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="canView_KPIAudits" <?php if(isset($v['Canview']['KPIAudits']) && $v['Canview']['KPIAudits']==1){?>checked="checked"<?php }?> /><?php }?>
 </td>
+
 </tr>
 </table>
 </td>
+<?php }
+else
+{
+    ?>
+    <td colspan="2" class="">
+<table width="50%">
+    <tr>
+        <td>
+        <?php if($admin_doc['AdminDoc']['afimac_intel']=='0'){?><input type="hidden" name="canView_afimac_intel" value="0"/><?php }else{?>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AFIMAC Intel </span><input type="checkbox" name="canView_afimac_intel" <?php if(isset($v['Canview']['afimac_intel']) && $v['Canview']['afimac_intel']==1){?>checked="checked"<?php }?> /><?php }?>
+        
+        <?php if($admin_doc['AdminDoc']['news_media']=='0'){?><input type="hidden" name="canView_news_media" value="0"/><?php }else{?>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;News/Media </span><input type="checkbox" name="canView_news_media" <?php if(isset($v['Canview']['news_media']) && $v['Canview']['news_media']==1){?>checked="checked"<?php }?>  /><?php }?>
+        </td>
+    </tr>
+</table>
+</td>
+    <?php
+}
+?>
 </tr>
 
 <tr><td><b>Can Upload Files</b></td><td><input type="checkbox" name="canUpdate" id="canUpdate" <?php if($m['Member']['canUpdate']==1){?>checked="checked"<?php }?> /></td></tr>
 <tr class="canuploadfiles" style="display:none;">
+<?php
+if(!isset($sid))
+{
+    ?>
+    
 <td colspan="2">
 <table width="50%">
 <tr>
@@ -136,6 +166,27 @@ $(function(){
 </tr>
 </table>
 </td>
+<?php
+}
+else
+{
+    ?>
+    <td colspan="2" class="">
+<table width="50%">
+    <tr>
+        <td>
+        <?php if($admin_doc['AdminDoc']['afimac_intel']=='0'){?><input type="hidden" name="canUpload_afimac_intel" value="0"/><?php }else{?>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AFIMAC Intel </span><input type="checkbox" name="canUpload_afimac_intel" <?php if(isset($u['Canupload']['afimac_intel']) && $u['Canupload']['afimac_intel']==1){?>checked="checked"<?php }?>  /><?php }?>
+        
+        <?php if($admin_doc['AdminDoc']['news_media']=='0'){?><input type="hidden" name="canUpload_news_media" value="0"/><?php }else{?>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;News/Media </span><input type="checkbox" name="canUpload_news_media" <?php if(isset($u['Canupload']['news_media']) && $u['Canupload']['news_media']==1){?>checked="checked"<?php }?>  /><?php }?>
+        </td>
+    </tr>
+</table>
+</td>
+    <?php
+}
+?>
 </tr>
 
 <tr><td><b>Can Send Message</b></td><td><input type="checkbox" name="canEmail" <?php if($m['Member']['canEmail']==1){?>checked="checked"<?php }?> /></td></tr>
@@ -146,6 +197,10 @@ $(function(){
 <tr><td><b>Receive email when someone sends me message</b>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input class="receive" type="checkbox" name="receive1" <?php if($m['Member']['receive1']==1){?>checked="checked"<?php }?> /></td></tr>
 <tr><td><b>Receive email when document is uploaded</b>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input class="receive" type="checkbox" id="receive2" name="receive2" <?php if($m['Member']['receive2']==1){?>checked="checked"<?php }?> /></td></tr>
 <tr class="upload_more" style="display: none;" >
+<?php
+if(!isset($sid))
+{
+    ?>
 <td colspan="2" >
 <table width="50%">
 <tr>
@@ -178,10 +233,33 @@ $(function(){
 </td>
 </tr>
 </table>
-</td></tr>
+</td>
+
+    <?php
+}
+else
+{
+    ?>
+    <td colspan="2" class="">
+<table width="50%">
+    <tr>
+        <td>
+        <?php if($admin_doc['AdminDoc']['afimac_intel']=='0'){?><input type="hidden" name="Email_afimac_intel" value="0"/><?php }else{?>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AFIMAC Intel </span><input type="checkbox" name="Email_afimac_intel" <?php if(isset($e['Emailupload']['afimac_intel']) && $e['Emailupload']['afimac_intel']==1){?>checked="checked"<?php }?>  /><?php }?>
+        
+        <?php if($admin_doc['AdminDoc']['news_media']=='0'){?><input type="hidden" name="Email_news_media" value="0"/><?php }else{?>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;News/Media </span><input type="checkbox" name="Email_news_media" <?php if(isset($e['Emailupload']['news_media']) && $e['Emailupload']['news_media']==1){?>checked="checked"<?php }?>  /><?php }?>
+        </td>
+    </tr>
+</table>
+</td>
+    <?php
+}
+?>
+</tr>
 <?php
 $q = $job->find('all',array('order'=>'title')); 
-if($q){
+if($q || isset($sid)){
      
 ?>
 <input type="hidden" name="jmid" value="<?php echo $jmid; ?>" />
@@ -190,7 +268,16 @@ if($q){
         <table>
             <tr><td><strong>Assign Jobs to user</strong></td></tr>
             <?php
-            $i=0; 
+            $i=0;
+            if(isset($sid))
+            {
+               ?>
+               <td style="width: 15%;"><?php echo $stit?> 
+               <input name="job[]" style="margin: 0;" type="checkbox"  checked="checked" value="<?php echo $sid;?>" />
+               </td>
+               <?php 
+            }
+            else 
             foreach($q as $j){
                 $i++;
                 if($i%6==1)

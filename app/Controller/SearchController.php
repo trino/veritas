@@ -13,7 +13,6 @@ class SearchController extends AppController
         $this->set('do',$this->Doc);
         $this->set('im',$this->Image);
         $this->set('v',$this->Video);
-        //die('here');
         $this->loadModel('Document');
         $this->loadModel('Member');
         $this->loadModel('Job');
@@ -224,6 +223,49 @@ class SearchController extends AppController
         $this->set('docs',$docs);
         $this->set('activity',$this->Activity);
         
+    }
+    
+    function delete($id)
+    {
+        $this->loadModel('SpecJob');
+        if($_SERVER['SERVER_NAME']=='localhost')
+                {
+                    $path = $_SERVER['DOCUMENT_ROOT'].'/veritas/app/webroot/img/documents/';
+                }
+                else
+                    $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/documents/';
+        $doc = $this->SpecJob->findById($id);
+        if($doc['SpecJob']['doc']!= "")
+            unlink($path.$doc['SpecJob']['doc']);     
+        $this->SpecJob->delete($id);
+        $this->Session->setFlash('Document Succesfully Deleted.');
+        $this->redirect('/dashboard');
+        
+        
+    }
+    function special($type = '',$job_id=0)
+    {
+        if($type == 'afimac_intel')
+            $type1 = 'AFIMAC Intel';
+        if($type == 'news_media')
+            $type1 = 'News/Media';
+            
+        $this->loadModel('SpecJob');
+        if(isset($_GET['from'])&& isset($_GET['to']))
+        {
+            $from = $_GET['from'];
+            $to = $_GET['to'];
+            $this->paginate= array('conditions'=>array('document_type'=>$type1,'dop >='=>$from,'dop <='=>$to));
+        }
+        else
+        {
+            $this->paginate= array('conditions'=>array('document_type'=>$type1));
+        }$doc = $this->paginate('SpecJob');
+        $this->set('doc',$doc);
+        $this->set('type',$type);
+        
+            
+            
     }
     
 }

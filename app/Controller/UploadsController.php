@@ -294,7 +294,7 @@ class UploadsController extends AppController
     }
     function searchlist($id=0)
     {
-        $this->set('jid',$id);
+        
         $name = $_POST['name'];
         $this->layout = "modal_layout1";
         $job = $this->Job;
@@ -303,7 +303,8 @@ class UploadsController extends AppController
         $docs = $this->Doc;
         $imgs = $this->Image;
         $vdos = $this->Video;
-        $this->set('name',$name);
+        $this->loadModel('SpecJob');
+        $this->set('spe',$this->SpecJob);
         $this->set('job',$job);
         $this->set('doc',$doc);
         $this->set('jm',$jm);
@@ -311,6 +312,29 @@ class UploadsController extends AppController
         $this->set('imgs',$imgs);
         $this->set('vdos',$vdos);
         $this->set('canV',$this->Canview);
+        $this->set('name',$name);
+        $this->loadModel('Jobmember');
+        if(!$this->Session->read('admin')){
+        $q = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
+        $job = $q['Jobmember']['job_id'];
+        if(str_replace(',','',$job) == $job)
+        {
+            $j = $this->Job->findById($job);
+            if($j['Job']['is_special'] == 1)
+            {
+                $this->set('jname',$j['Job']['title']);
+                $this->set('sid',$job);
+                $this->set('jid',$job);
+                $this->render('listspecial');
+                die();
+            }
+        }
+        }
+        
+        $this->set('jid',$id);
+        
+        
+        
         
     }
     function index()
@@ -930,6 +954,107 @@ class UploadsController extends AppController
 
     }
     
+    function special_doc($eid='')
+    {
+       $this->loadModel('SpecJob');
+       if($eid != "")
+       {
+            $doc = $this->SpecJob->find('first',array('conditions'=>array('id'=>$eid)));
+            $this ->set('doc',$doc);
+            $this->set('eid',$eid);
+       }
+       if(isset($_POST['submit']))
+       {
+            $uri = $_SERVER['REQUEST_URI'];
+            $uri = str_replace('/',' ',$uri);
+            $uri = str_replace(' ','/',trim($uri));
+            if($uri!='uploads'){
+            $arr_uri = explode('/',$uri);
+            $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/documents/';
+            }
+            else
+            $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/documents/';
+            
+             if($_SERVER['SERVER_NAME']=='localhost')
+            {
+                $path = $_SERVER['DOCUMENT_ROOT'].'/veritas/app/webroot/img/documents/';
+            }
+            else
+                $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/documents/';
+            if(!$this->Session->read('admin'))   
+                $id=$this->Session->read('id');
+            else
+                $id=0;
+                
+            $arr['dop'] = $_POST['incident_date'];
+            $arr['author'] =  $_POST['author'];
+            $arr['job_id'] = $_POST['job_id'];
+            $arr['on_date'] =  date('Y-m-d H:i:s');
+            $arr['addedBy'] = $id;
+            //$arr['title'] = ucfirst(str_replace("_"," ",$_POST['document_type']));
+            $arr['desc'] = $_POST['description'];
+            $arr['document_type'] = $_POST['document_type'];
+                        
+            $ext_doc = array('doc','docx','txt','pdf','xls','xlsx','ppt','pptx','cmd','csv');
+            $ext_img = array('jpg','png','gif','jpeg','bmp');
+            $ext_video = array('mp4');
+            if($_FILES['document']['tmp_name']!="")
+            {
+                $source=$_FILES['document']['tmp_name'];
+                $rand = rand('10000','99999')."_".date('Y-m-d_H-i-s');
+                $whiteSpace = '';
+                $pattern = '/[^a-zA-Z0-9-_'  . $whiteSpace . ']/u';
+                $rand = preg_replace($pattern, '', (string) $rand);
+                $ext_arr = explode('.',$_FILES['document']['name']);
+                $extn = end($ext_arr);
+                
+                $lower_ext = strtolower($extn);
+                if(in_array($lower_ext,$ext_doc)|| in_array($lower_ext,$ext_img)|| in_array($lower_ext,$ext_video))
+                {    
+                    $img = $rand.'.'.$lower_ext;
+                    $destination = $path.$img;
+                    move_uploaded_file($source,$destination);
+                    $arr['doc'] = $img;
+                }
+            }
+            if($eid!="")
+            {
+                $this->SpecJob->id =$eid;
+                foreach($arr as $key=>$val)
+                {
+                    $this->SpecJob->saveField($key,$val);
+                }
+            }
+            else
+            {
+                $this->SpecJob->create();
+                $this->SpecJob->save($arr);
+            }
+            $log['date'] =  date('Y-m-d H:i:s');
+            $log['time'] =  date('H:i:s');
+            if($this->Session->read('admin'))
+            {
+                $log['fullname'] = 'ADMIN('.$this->Session->read('avatar').')';
+                $log['username'] = $this->Session->read('email');
+                $log['member_id'] = 0;
+            }
+            else
+            {
+                
+                $log['fullname'] = $this->Session->read('user');
+                $log['username'] = $this->Session->read('email');
+                $log['member_id'] = $this->Session->read('id');   
+            }
+            $log['event'] = "Upload ".$_POST['document_type'];
+            $log['document_id'] = $id;
+            $log['event_type'] = "Upload Document";
+            $this->Event_log->create();
+            $this->Event_log->save($log);
+            $this->Session->setFlash('Data Saved Successfully.');
+            $this->redirect('/dashboard');
+                 
+        }
+    }
     function upload($ids,$typee='')
     {
         $jj = $this->Job->find('first',array('conditions'=>array('id'=>$ids)));
@@ -937,6 +1062,15 @@ class UploadsController extends AppController
             $job_title = $jj['Job']['title'];
         else
             $job_title = '';
+          //var_dump($jj);  
+        if($jj['Job']['is_special']=='1')
+        {
+            $this->set('job_id',$ids);
+            $this->render('special_doc');
+            
+        }
+        else
+        {   
         if($typee!='email')                 
             $this->set('typee',$typee);
         $subname = '';
@@ -1480,6 +1614,7 @@ class UploadsController extends AppController
         $this->set('job_name',$name);
         $this->render('document_edit');
     }
+    }
     
     public function view($id)
     {
@@ -1588,102 +1723,111 @@ class UploadsController extends AppController
         
     }
     
-    function view_detail($id)
+    function view_detail($id,$spec='')
     {
         //die('here');
         $this->loadModel('Activity');
         $this->loadModel('Clientmemo');
-        
-        if($this->Session->read('user') || $this->Session->read('avatar'))
+        $this->loadModel('SpecJob');
+        if($spec =='special')
         {
-           if($this->Session->read('view')!='1')
-           {
-                $this->redirect('/jobs');
-           } 
-        }  
+            $this->set('doc',$this->SpecJob->findById($id));
+            $this->set('job',$this->Job);
+            $this->render('view_special');
+        }
         else
         {
-            $this->redirect('/jobs');
-        }
-        
-        if($this->Document->find('first',array('conditions'=>array('id'=>$id))))
-        {
-            
-            $doc = $this->Document->find('first',array('conditions'=>array('id'=>$id)));
-            $job_id = $doc['Document']['job_id'];
-            if($doc['Document']['document_type']== 'report')
+            if($this->Session->read('user') || $this->Session->read('avatar'))
             {
-                $eid = $id;
-                $act = $this->Activity->find('all',array('conditions'=>array('document_id'=>$id)));
-                $this->set('activity', $act);
-                $this->loadModel('StoreInfo');
-                if($act[0]['Activity']['report_type'] == '7')
-                {
-                    $this->set('store',$this->StoreInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
-                    $this->loadModel('SubjectInfo');
-                        $this->set('subject',$this->SubjectInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
-                     
-                    $this->loadModel('SpecialistInfo');
-                        $this->set('special',$this->SpecialistInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
-                    $this->loadModel('ProductDInfo');
-                        $this->set('product',$this->ProductDInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
-                    $this->loadModel('PoliceInfo');
-                        $this->set('police',$this->PoliceInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
-                    $this->loadModel('JuvenileInfo');
-                        $this->set('juv',$this->JuvenileInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
-                    $this->loadModel('NoticeInfo');
-                        $this->set('notice',$this->NoticeInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
-                    $this->loadModel('AdditionalInfo');
-                        $this->set('add',$this->AdditionalInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
-                    $this->loadModel('ItemInfo');
-                        $this->set('item',$this->ItemInfo->find('all', array('conditions'=>array('doc_id'=>$eid))));
-                }
+               if($this->Session->read('view')!='1')
+               {
+                    $this->redirect('/jobs');
+               } 
+            }  
+            else
+            {
+                $this->redirect('/jobs');
             }
-            elseif($doc['Document']['document_type'] == 'client_feedback')
-                $this->set('memo',$this->Clientmemo->findByDocumentId($id));
             
-            $log['date'] = date('Y-m-d H:i:s');
-            $log['time'] = date('H:i:s');
-            if($this->Session->read('admin'))
+            if($this->Document->find('first',array('conditions'=>array('id'=>$id))))
             {
-                $log['fullname'] = 'ADMIN('.$this->Session->read('avatar').')';
-                $log['username'] = $this->Session->read('email');
-                $log['member_id'] = 0;
+                
+                $doc = $this->Document->find('first',array('conditions'=>array('id'=>$id)));
+                $job_id = $doc['Document']['job_id'];
+                if($doc['Document']['document_type']== 'report')
+                {
+                    $eid = $id;
+                    $act = $this->Activity->find('all',array('conditions'=>array('document_id'=>$id)));
+                    $this->set('activity', $act);
+                    $this->loadModel('StoreInfo');
+                    if($act[0]['Activity']['report_type'] == '7')
+                    {
+                        $this->set('store',$this->StoreInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+                        $this->loadModel('SubjectInfo');
+                            $this->set('subject',$this->SubjectInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+                         
+                        $this->loadModel('SpecialistInfo');
+                            $this->set('special',$this->SpecialistInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+                        $this->loadModel('ProductDInfo');
+                            $this->set('product',$this->ProductDInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+                        $this->loadModel('PoliceInfo');
+                            $this->set('police',$this->PoliceInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+                        $this->loadModel('JuvenileInfo');
+                            $this->set('juv',$this->JuvenileInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+                        $this->loadModel('NoticeInfo');
+                            $this->set('notice',$this->NoticeInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+                        $this->loadModel('AdditionalInfo');
+                            $this->set('add',$this->AdditionalInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+                        $this->loadModel('ItemInfo');
+                            $this->set('item',$this->ItemInfo->find('all', array('conditions'=>array('doc_id'=>$eid))));
+                    }
+                }
+                elseif($doc['Document']['document_type'] == 'client_feedback')
+                    $this->set('memo',$this->Clientmemo->findByDocumentId($id));
+                
+                $log['date'] = date('Y-m-d H:i:s');
+                $log['time'] = date('H:i:s');
+                if($this->Session->read('admin'))
+                {
+                    $log['fullname'] = 'ADMIN('.$this->Session->read('avatar').')';
+                    $log['username'] = $this->Session->read('email');
+                    $log['member_id'] = 0;
+                }
+                else
+                {
+                    $ids = $this->Session->read('id');
+                    $ch = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$ids,'OR'=>array(array('job_id'=>$job_id),array('job_id LIKE'=>$job_id.',%'),array('job_id LIKE'=>'%,'.$job_id.',%'),array('job_id LIKE'=>'%,'.$job_id)))));
+                    if(!$ch)
+                    {
+                        $this->redirect('go');
+                    }
+                    $log['fullname'] = $this->Session->read('user');
+                    $log['username'] = $this->Session->read('email');
+                    $log['member_id'] = $this->Session->read('id');   
+                }
+                
+                $log['document_id'] = $id;
+                $log['event_type'] = "Document Viewed";
+                $log['event'] = "Viewed ".ucwords($doc['Document']['document_type']);
+                $this->Event_log->create();
+                $this->Event_log->save($log);
+              
+                
+                
+                
+                $this->set('doc', $doc);
+                $this->set('do',$this->Doc->find('all',array('conditions'=>array('document_id'=>$id))));
+                $this->set('image',$this->Image->find('all',array('conditions'=>array('document_id'=>$id))));
+                $this->set('vid',$this->Video->find('all',array('conditions'=>array('document_id'=>$id))));
+                $this->set('you',$this->Youtube->find('all',array('conditions'=>array('document_id'=>$id))));
+                $this->set('job',$this->Job);
+                $this->set('member',$this->Member);
             }
             else
             {
-                $ids = $this->Session->read('id');
-                $ch = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$ids,'OR'=>array(array('job_id'=>$job_id),array('job_id LIKE'=>$job_id.',%'),array('job_id LIKE'=>'%,'.$job_id.',%'),array('job_id LIKE'=>'%,'.$job_id)))));
-                if(!$ch)
-                {
-                    $this->redirect('go');
-                }
-                $log['fullname'] = $this->Session->read('user');
-                $log['username'] = $this->Session->read('email');
-                $log['member_id'] = $this->Session->read('id');   
+                $this->Session->setFlash('Sorry! This Document is Already Deleted.');
+                $this->redirect('/dashboard');
             }
-            
-            $log['document_id'] = $id;
-            $log['event_type'] = "Document Viewed";
-            $log['event'] = "Viewed ".ucwords($doc['Document']['document_type']);
-            $this->Event_log->create();
-            $this->Event_log->save($log);
-          
-            
-            
-            
-            $this->set('doc', $doc);
-            $this->set('do',$this->Doc->find('all',array('conditions'=>array('document_id'=>$id))));
-            $this->set('image',$this->Image->find('all',array('conditions'=>array('document_id'=>$id))));
-            $this->set('vid',$this->Video->find('all',array('conditions'=>array('document_id'=>$id))));
-            $this->set('you',$this->Youtube->find('all',array('conditions'=>array('document_id'=>$id))));
-            $this->set('job',$this->Job);
-            $this->set('member',$this->Member);
-        }
-        else
-        {
-            $this->Session->setFlash('Sorry! This Document is Already Deleted.');
-            $this->redirect('/dashboard');
         }
     }
     

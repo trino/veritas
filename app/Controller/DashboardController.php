@@ -96,6 +96,7 @@ class DashboardController extends AppController
         $this->loadModel('Canview');
         $this->loadModel('Canupload');
         $this->loadModel('AdminDoc');
+        $this->loadModel('SpecJob');
         $this->set('admin_doc',$this->AdminDoc->findById('1'));
         //$this->set('ad',$this->User->find('first'));
         if($this->Session->read('avatar'))
@@ -108,6 +109,9 @@ class DashboardController extends AppController
             $this->set('training',$this->Document->find('count',array('conditions'=>array('document_type'=>'training'))));
             $this->set('employee',$this->Document->find('count',array('conditions'=>array('document_type'=>'employee'))));
             $this->set('KPIAudits',$this->Document->find('count',array('conditions'=>array('document_type'=>'KPIAudits'))));
+            $this->set('afimac_intel',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'AFIMAC Intel'))));            
+            $this->set('news_media',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'News/Media'))));
+        
             $this->paginate = array('limit'=>10,'order'=>'date desc ,time desc');
              //$this->set('activity',$this->paginate('Document'));
              $this->set('added',$this->Member->find('all'));
@@ -160,6 +164,9 @@ class DashboardController extends AppController
                         $this->set('training',$this->Document->find('count',array('conditions'=>array('document_type'=>'training','job_id in ('.$d.')'))));
                         $this->set('employee',$this->Document->find('count',array('conditions'=>array('document_type'=>'employee','job_id in ('.$d.')'))));
                         $this->set('KPIAudits',$this->Document->find('count',array('conditions'=>array('document_type'=>'KPIAudits','job_id in ('.$d.')'))));
+                        $this->set('afimac_intel',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'AFIMAC Intel','job_id in ('.$d.')'))));            
+                        $this->set('news_media',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'News/Media','job_id in ('.$d.')'))));
+        
                     }
                     else
                     {
@@ -170,7 +177,9 @@ class DashboardController extends AppController
                         $this->set('SiteOrder','0'); 
                         $this->set('training','0'); 
                         $this->set('employee','0'); 
-                        $this->set('KPIAudits','0'); 
+                        $this->set('KPIAudits','0');
+                        $this->set('afimac_intel','0');
+                        $this->set('news_media','0');
                          
                     }//$this->set('training_manuals',$this->Document->find('count',array('conditions'=>array('document_type'=>'training_manuals','job_id in ('.$d.')'))));
                 }

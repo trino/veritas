@@ -119,13 +119,85 @@
 <tr><td><b>Phone</b></td><td><input type="text" name="phone" /></td></tr>
 <tr><td><b>Password</b></td><td><input type="password" class="required" name="password" id="password" /></td></tr>
 <tr><td><b>Repeat Password</b></td><td><input type="password" class="required" name="c_password" /></td></tr>
+<?php
+$q = $job->find('all',array('conditions'=>array('is_special'=>0),'order'=>'title')); 
+$q2 = $job->find('first',array('conditions'=>array('is_special'=>1),'order'=>'title'));
+if($q || $q2){
+?>
+<tr>
+    <td colspan="2">
+        <table class="jobb">
+            <tr><td><strong>Assign Jobs to user</strong></td></tr>
+            
+            <?php
+            if($q2)
+            {
+                ?>
+                <tr><td><?php echo $q2['Job']['title']?> <input class="special" name="job[]" style="margin: 0;" type="checkbox" value="<?php echo $q2['Job']['id'];?>" </td></tr>
+                <tr><td><strong>OR</strong></td></tr>
+                <?php
+            }
+            $i=0; 
+            if($q)
+            foreach($q as $j){
+                $i++;
+                if($i%6==1)
+                {
+                    ?>
+                    <tr>
+                    <?php
+                }
+               ?>
+               <td style="width: 15%;"><?php echo $j['Job']['title']?> <input name="job[]" style="margin: 0;" type="checkbox" value="<?php echo $j['Job']['id'];?>" /></td>
+               <?php
+               if($i%6==0)
+               {
+                ?>
+                </tr>
+                <?php
+               } 
+            }
+            if($i%6!=0){
+            $i=$i%6;
+            for($j=$i;$j<6;$j++)
+            {
+                ?>
+                <td style="width: 15%;">&nbsp; &nbsp;</td>
+                <?php
+            }
+            ?>
+            </tr>
+            <?php
+            }            
+            ?>
+        </table>
+    </td>
+</tr>
+<?php    
+}
+?>
 <tr><td><b>Can View Files</b></td><td><input type="checkbox" name="canView" id="canView"  /></td></tr>
-<tr class="canviewfiles" style="display: none;">
-<td colspan="2">
+<tr class="canviewfiles yesspecial" style="display: none;">
+<td colspan="2" class="">
+<table width="50%">
+    <tr>
+        <td>
+        <?php if($admin_doc['AdminDoc']['afimac_intel']=='0'){?><input type="hidden" name="canView_afimac_intel" value="0"/><?php }else{?>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AFIMAC Intel </span><input type="checkbox" name="canView_afimac_intel" class="vie"  /><?php }?>
+        
+        <?php if($admin_doc['AdminDoc']['news_media']=='0'){?><input type="hidden" name="canView_news_media" value="0"/><?php }else{?>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;News/Media </span><input type="checkbox" name="canView_news_media" class="vie"  /><?php }?>
+        </td>
+    </tr>
+</table>
+</td>
+</tr>
+<tr class="canviewfiles nospecial" style="display: none;">
+<td colspan="2" class="">
 <table width="50%">
 <tr>
 <td>
-<?php if($admin_doc['AdminDoc']['contracts']=='0'){?><input type="hidden" name="canView_contracts" value="0"/><?php }else{?>
+<?php if($admin_doc['AdminDoc']['afimac_intel']=='0'){?><input type="hidden" name="canView_contracts" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span><input type="checkbox" name="canView_contracts" class="vie"  /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['evidence']=='0'){?><input type="hidden" name="canView_evidence" value="0"/><?php }else{?>
@@ -156,7 +228,22 @@
 </tr>
 
 <tr><td><b>Can Upload Files</b></td><td><input type="checkbox" name="canUpdate" id="canUpdate"  /></td></tr>
-<tr class="canuploadfiles" style="display:none;">
+<tr class="canuploadfiles yesspecial2" style="display: none;">
+<td colspan="2" class="">
+<table width="50%">
+    <tr>
+        <td>
+        <?php if($admin_doc['AdminDoc']['afimac_intel']=='0'){?><input type="hidden" name="canUpload_afimac_intel" value="0"/><?php }else{?>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AFIMAC Intel </span><input type="checkbox" name="canUpload_afimac_intel" class="vie"  /><?php }?>
+        
+        <?php if($admin_doc['AdminDoc']['news_media']=='0'){?><input type="hidden" name="canUpload_news_media" value="0"/><?php }else{?>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;News/Media </span><input type="checkbox" name="canUpload_news_media" class="vie"  /><?php }?>
+        </td>
+    </tr>
+</table>
+</td>
+</tr>
+<tr class="canuploadfiles nospecial2" style="display:none;">
 <td colspan="2">
 <table width="50%">
 <tr>
@@ -200,7 +287,22 @@
 <table width="100%">-->
 <tr><td><b>Receive email when someone sends me message</b>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input class="receive" type="checkbox" name="receive1" /></td></tr>
 <tr><td><b>Receive email when document is uploaded</b>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input class="receive" type="checkbox" name="receive2" id="receive2" /></td></tr>
-<tr class="upload_more" style="display: none;" >
+<tr class="upload_more yesspecial3" style="display: none;">
+<td colspan="2" class="">
+<table width="50%">
+    <tr>
+        <td>
+        <?php if($admin_doc['AdminDoc']['afimac_intel']=='0'){?><input type="hidden" name="Email_afimac_intel" value="0"/><?php }else{?>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AFIMAC Intel </span><input type="checkbox" name="Email_afimac_intel" class="rec_email"  /><?php }?>
+        
+        <?php if($admin_doc['AdminDoc']['news_media']=='0'){?><input type="hidden" name="Email_news_media" value="0"/><?php }else{?>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;News/Media </span><input type="checkbox" name="Email_news_media" class="rec_email"  /><?php }?>
+        </td>
+    </tr>
+</table>
+</td>
+</tr>
+<tr class="upload_more nospecial3" style="display: none;" >
 <td colspan="2" >
 <table width="50%">
 <tr>
@@ -234,53 +336,7 @@
 </tr>
 </table>
 </td></tr>
-<?php
-$q = $job->find('all',array('order'=>'title')); 
-if($q){
-?>
-<tr>
-    <td colspan="2">
-        <table>
-            <tr><td><strong>Assign Jobs to user</strong></td></tr>
-            <?php
-            $i=0; 
-            foreach($q as $j){
-                $i++;
-                if($i%6==1)
-                {
-                    ?>
-                    <tr>
-                    <?php
-                }
-               ?>
-               <td style="width: 15%;"><?php echo $j['Job']['title']?> <input name="job[]" style="margin: 0;" type="checkbox" value="<?php echo $j['Job']['id'];?>" /></td>
-               <?php
-               if($i%6==0)
-               {
-                ?>
-                </tr>
-                <?php
-               } 
-            }
-            if($i%6!=0){
-            $i=$i%6;
-            for($j=$i;$j<6;$j++)
-            {
-                ?>
-                <td style="width: 15%;">&nbsp; &nbsp;</td>
-                <?php
-            }
-            ?>
-            </tr>
-            <?php
-            }            
-            ?>
-        </table>
-    </td>
-</tr>
-<?php    
-}
-?>
+
 
 <!--</table>
 </td></tr>-->
@@ -314,10 +370,28 @@ $(function(){
     $('#canUpdate').click(function(){
         if($('#canUpdate').is(':checked')){
             $('.canuploadfiles').show();
-            $('.upl').each(function(){
-               if(!($(this).is(':checked')))
-               $(this).click() ;
+            if($('.special').is(':checked')){
+            $('.yesspecial2').show();
+            $('.yesspecial2 input[type="checkbox"]').each(function(){
+                $(this).attr('checked','checked');
             });
+            $('.nospecial2').hide();
+            $('.nospecial2 input[type="checkbox"]').each(function(){
+                $(this).removeAttr('checked');
+            });
+            }
+            else
+            {
+            $('.yesspecial2').hide();
+            $('.yesspecial2 input[type="checkbox"]').each(function(){
+                $(this).removeAttr('checked');
+            });
+            $('.nospecial2').show();
+            $('.nospecial2 input[type="checkbox"]').each(function(){
+                $(this).attr('checked','checked');
+            });
+            }
+            
             }
         else
         {
@@ -332,6 +406,28 @@ $(function(){
     $('#canView').click(function(){
         if($('#canView').is(':checked')){
             $('.canviewfiles').show();
+            if($('.special').is(':checked')){
+            $('.yesspecial').show();
+            $('.yesspecial input[type="checkbox"]').each(function(){
+                $(this).attr('checked','checked');
+            });
+            $('.nospecial').hide();
+            $('.nospecial input[type="checkbox"]').each(function(){
+                $(this).removeAttr('checked');
+            });
+            }
+            else
+            {
+            $('.yesspecial').hide();
+            $('.yesspecial input[type="checkbox"]').each(function(){
+                $(this).removeAttr('checked');
+            });
+            $('.nospecial').show();
+            $('.nospecial input[type="checkbox"]').each(function(){
+                $(this).attr('checked','checked');
+            });
+            }
+            
             $('.vie').each(function(){
                if(!($(this).is(':checked')))
                $(this).click() ;
@@ -351,7 +447,28 @@ $(function(){
     $('#receive2').click(function(){
         if($('#receive2').is(':checked')){
             $('.upload_more').show();
-			            $('.rec_email').each(function(){
+            if($('.special').is(':checked')){
+            $('.yesspecial3').show();
+            $('.yesspecial3 input[type="checkbox"]').each(function(){
+                $(this).attr('checked','checked');
+            });
+            $('.nospecial3').hide();
+            $('.nospecial3 input[type="checkbox"]').each(function(){
+                $(this).removeAttr('checked');
+            });
+            }
+            else
+            {
+            $('.yesspecial3').hide();
+            $('.yesspecial3 input[type="checkbox"]').each(function(){
+                $(this).removeAttr('checked');
+            });
+            $('.nospecial3').show();
+            $('.nospecial3 input[type="checkbox"]').each(function(){
+                $(this).attr('checked','checked');
+            });
+            }
+			   $('.rec_email').each(function(){
                if(!($(this).is(':checked')))
                $(this).click() ;
             });
@@ -381,7 +498,155 @@ $(function(){
     
     }); 
     */            
-       
+    $('.jobb input[type="checkbox"]').click(function(){
+                
+       if($(this).attr('class') == 'special' && $(this).is(':checked'))
+       {
+        $('.jobb input[type="checkbox"]').each(function(){
+            if($(this).attr('class') != 'special')
+            {
+                $(this).removeAttr('checked');
+            }
+        }); 
+           
+       }
+       else
+       if($(this).attr('class')!='special' && $('.special').is(':checked'))
+       {
+         $('.special').removeAttr('checked');
+         
+       }
+       if($(this).attr('class') == 'special')
+        {
+            if($(this).is(':checked'))
+            {
+                if($('#receive2').is(':checked'))
+                {
+                    $('.yesspecial3').show();
+                    $('.yesspecial3 input[type="checkbox"]').each(function(){
+                $(this).attr('checked','checked');
+            });
+                    $('.nospecial3').hide();
+                    $('.nospecial3 input[type="checkbox"]').each(function(){
+                $(this).removeAttr('checked');
+            });
+                }
+                
+                if($('#canView').is(':checked'))
+                {
+                    $('.yesspecial').show();
+                    $('.yesspecial input[type="checkbox"]').each(function(){
+                $(this).attr('checked','checked');
+            });
+                    $('.nospecial').hide();
+                    $('.nospecial input[type="checkbox"]').each(function(){
+                $(this).removeAttr('checked');
+            });
+                }
+                
+                
+                
+                
+                if($('#canUpdate').is(':checked'))
+                {
+                    $('.yesspecial2').show();
+                    $('.yesspecial2 input[type="checkbox"]').each(function(){
+                $(this).attr('checked','checked');
+            });
+                    $('.nospecial2').hide();
+                    $('.nospecial2 input[type="checkbox"]').each(function(){
+                $(this).removeAttr('checked');
+            });
+                }
+                
+            }
+            else
+            {
+                if($('#receive2').is(':checked'))
+                {
+                    $('.yesspecial3').hide();
+                    $('.yesspecial3 input[type="checkbox"]').each(function(){
+                $(this).removeAttr('checked');
+            });
+                    $('.nospecial3').show();
+                    $('.nospecial3 input[type="checkbox"]').each(function(){
+                $(this).attr('checked','checked');
+            });
+                }
+                
+                
+                if($('#canView').is(':checked'))
+                {
+                    $('.yesspecial').hide();
+                    $('.yesspecial input[type="checkbox"]').each(function(){
+                $(this).removeAttr('checked');
+            });
+                    $('.nospecial').show();
+                    $('.nospecial input[type="checkbox"]').each(function(){
+                $(this).attr('checked','checked');
+            });
+                }
+                
+                
+                
+                if($('#canUpdate').is(':checked'))
+                {
+                    $('.yesspecial2').hide();
+                    $('.yesspecial2 input[type="checkbox"]').each(function(){
+                $(this).removeAttr('checked');
+            });
+                    $('.nospecial2').show();
+                    $('.nospecial2 input[type="checkbox"]').each(function(){
+                $(this).attr('checked','checked');
+            });
+                }
+            }
+            
+        }
+        else
+        {
+           if($('#receive2').is(':checked'))
+                {
+                    $('.yesspecial3').hide();
+                    $('.yesspecial3 input[type="checkbox"]').each(function(){
+                $(this).removeAttr('checked');
+            });
+                    $('.nospecial3').show();
+                    $('.nospecial3 input[type="checkbox"]').each(function(){
+                $(this).attr('checked','checked');
+            });
+                }
+                
+                
+                if($('#canView').is(':checked'))
+                {
+                    $('.yesspecial').hide();
+                    $('.yesspecial input[type="checkbox"]').each(function(){
+                $(this).removeAttr('checked');
+            });
+                    $('.nospecial').show();
+                    $('.nospecial input[type="checkbox"]').each(function(){
+                $(this).attr('checked','checked');
+            });
+                }
+                
+                
+                
+                if($('#canUpdate').is(':checked'))
+                {
+                    $('.yesspecial2').hide();
+                    $('.yesspecial2 input[type="checkbox"]').each(function(){
+                $(this).removeAttr('checked');
+            });
+                    $('.nospecial2').show();
+                    $('.nospecial2 input[type="checkbox"]').each(function(){
+                $(this).attr('checked','checked');
+            });
+                }
+                
+        }
+        
+    });   
   
         
         
