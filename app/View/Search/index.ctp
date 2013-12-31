@@ -68,6 +68,8 @@ if($docs)
 <?php
 if((isset($canView) && !isset($noView)) || $this->Session->read('admin'))
 {
+if(!isset($sid)){    
+    
 $uri = $_SERVER['REQUEST_URI'];    
 $uri = str_replace(array('/veritas/','veritas/','?order=document_type','&order=document_type','?order=description','&order=description','?order=title','&order=title','?order=addedBy','&order=addedBy','?order=incident_date','&order=incident_date','&order=evidence_author','?order=evidence_author','?order=`date`','&order=`date`','?order=%60date%60','&order=%60date%60','&ty=ASC','&ty=DESC'),array('','','','','','','','','','','','','',''),$uri);
 if(str_replace('search=','',$uri) == $uri)
@@ -194,6 +196,106 @@ $or = '&order=';
 </ul>
 </div>
 <?php
+}
+
+
+
+
+
+else
+{
+        
+    
+$uri = $_SERVER['REQUEST_URI'];    
+$uri = str_replace(array('/veritas/','veritas/','?order=document_type','&order=author','?order=dop','&order=`desc`','&order=%60desc%60','?order=doc','&ty=ASC','&ty=DESC'),array('','','','','','','','','',''),$uri);
+if(str_replace('search=','',$uri) == $uri)
+{
+    $or = '?order=';
+}
+else
+$or = '&order=';
+?>    
+<div id="table">
+
+    <table>
+        <tr>
+            
+            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'document_type&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='document_type') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Document Type</a><?php //echo $this->Paginator->sort('document_type','Document Type');?></th>
+            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'author&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='author') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Author</a><?php //echo $this->Paginator->sort('document_type','Document Type');?></th>
+            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'`desc`&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='`desc`') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Description</a><?php //echo $this->Paginator->sort('description','Description');?></th> 
+             <th>Added By</th>          
+            <th width="10%"><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'dop&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='dop') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Date</a><?php //echo $this->Paginator->sort('addedBy','Uploaded By');?></th>
+            
+            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'doc&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='doc') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">File</a><?php //echo $this->Paginator->sort('date','Uploaded On');?><!--</a>--></th>
+            
+            
+            <th>Option</th>
+        </tr>
+    <?php
+    
+    $m=0;
+    foreach($docs as $k=>$d)
+    {
+        
+        $m++;
+        
+        if($m==1)
+        {
+               
+        ?>
+        
+        <tr style="background: grey;color:#FFF;"><td colspan="8"><strong>Job :</strong><strong><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$sid)));if($get2)echo $get2['Job']['title']; ?></strong></tr>
+        
+        <?php
+        }
+        
+     
+       
+       ?>
+            
+       <tr>
+            <td><?php echo $d['SpecJob']['document_type'];?></td>
+            <td><?php echo $d['SpecJob']['author'];?></td>
+            
+            <td><?php echo $d['SpecJob']['desc']; ?></td>
+            
+            <td><?php if($d['SpecJob']['addedBy'] != 0){$q = $member->find('first',array('conditions'=>array('id'=>$d['SpecJob']['addedBy'])));if($q){if($this->Session->read('admin'))echo "<a href='".$base_url."members/view/".$q['Member']['id']."'>".$q['Member']['full_name']."</a>";else echo $q['Member']['full_name'];}}else echo "Admin";?></td>
+            
+            
+            <td><?php if($d['SpecJob']['dop']!='0000-00-00')echo $d['SpecJob']['dop'];?></td>
+            <td><?php echo $d['SpecJob']['doc'];?></td>
+            
+            <td>
+            <?php echo $this->Html->link('View','/uploads/view_detail/'.$d['SpecJob']['id'].'/special', array('class'=>'btn btn-primary'));  ?>
+            
+            <?php if($this->Session->read('admin') || $this->Session->read('id')== $d['SpecJob']['addedBy'] )
+            { 
+                   //if(($this->Session->read('admin') && $d['Document']['document_type']!='client_feedback')|| $this->Session->read('user')) {
+                   if($this->Session->read('admin')) {
+                     echo $this->Html->link('Edit','/uploads/special_doc/'.$d['SpecJob']['id'],array('class'=>'btn btn-info'));                 
+                    echo " " . $this->Html->link('Delete','/search/delete/'.$d['SpecJob']['id'],array('class'=>'btn btn-danger'),"Confirm Delete Document?");
+					}
+                    
+                    
+            } ?>    
+            </td>
+       </tr> 
+    <?php }
+    
+?>
+ </table>
+
+</div>
+
+<div class="pagination2">
+<ul>
+<?php echo $this->Paginator->prev('«', array('tag' => 'li')); ?>
+<?php echo str_replace(" | ","",$this->Paginator->numbers(array('tag' => 'li'))); ?>
+<?php echo $this->Paginator->next('»', array('tag' => 'li')); ?>
+</ul>
+</div>
+<?php
+}
 }
 else
 {

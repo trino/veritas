@@ -6,6 +6,9 @@ class SearchController extends AppController
     
     public function index($type = '',$job_id=0)
     {
+        if(!$this->Session->read('admin'))
+        $sess_id = $this->Session->read('id');
+        
         $this->set('type',$type);
         $this->loadModel('Doc');
         $this->loadModel('Image');
@@ -16,6 +19,24 @@ class SearchController extends AppController
         $this->loadModel('Document');
         $this->loadModel('Member');
         $this->loadModel('Job');
+        $this->loadModel('Jobmember');
+        
+        $this->loadModel('SpecJob');
+        
+        $sess = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$sess_id)));
+        if($sess)
+        {
+            $jjj = $sess['Jobmember']['job_id'];
+            if(str_replace(',','',$jjj)==$jjj)
+            {
+                $finds = $this->Job->findById($jjj);
+                if($finds && $finds['Job']['is_special'] == 1)
+                {
+                    $special = 1;
+                } 
+            }
+        }
+        
         if($job_id)
         {
             $j = $this->Job->find('first',array('conditions'=>array('id'=>$job_id)));
@@ -51,12 +72,15 @@ class SearchController extends AppController
             else
                 $to = '';  
             
+            
             if(isset($_GET['order']))
             {
                 $order = 'job_id,'.$_GET['order']." ".$_GET['ty'];
             }
             else
                 $order = 'job_id,document_type,`date` DESC';
+            
+                
               
         if($this->Session->read('avatar'))
         {
@@ -100,6 +124,7 @@ class SearchController extends AppController
         }
         else
         {
+         
             $this->loadModel('Canview');
             $qs = $this->Canview->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
             $che = $this->Member->find('first',array('conditions',array('id'=>$this->Session->read('id'))));
@@ -140,6 +165,14 @@ class SearchController extends AppController
             {
                 $arrs[] = array('document_type'=>'KPIAudits');
             }
+            if($qs['Canview']['afimac_intel'])
+            {
+                $arrs[] = array('document_type'=>'afimac_intel');
+            }
+            if($qs['Canview']['news_media'])
+            {
+                $arrs[] = array('document_type'=>'news_media');
+            }
             if(count($arrs)<1)
             $this->set('noView',1);
             //$arrs[] = array('document_type <>'=>'client_feedback');
@@ -168,11 +201,22 @@ class SearchController extends AppController
                 $jid = '('.$jid.')';
             else
                 $jid = '('.'99999999999'.')';
+                if($job_ids['Jobmember']['job_id'] && str_replace(',','',$job_ids['Jobmember']['job_id'] == $job_ids['Jobmember']['job_id']))
+                {
+                    $scheck = $this->Job->findById($job_ids['Jobmember']['job_id']);
+                    if($scheck['Job']['is_special'] == 1)
+                    {
+                        $sid = $this->Job->findById($job_ids['Jobmember']['job_id']);
+                        $this->set('sid',$sid['Job']['id']);
+                    } 
+                }
+                
+                if(!isset($sid) && $type != 'afimac_intel' && $type != 'news_media'){
             if($search!=''){            
             if(!$to && !$from){
                 if($type)
                     {
-                     
+                        
                     }
                     
                 $this->paginate = array('conditions'=>array('OR'=>$arrs,'AND'=>array('document_type <>'=>'client_feedback','OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%'))),'job_id IN'.$jid),'order'=>$order,'limit'=>10);
@@ -206,6 +250,102 @@ class SearchController extends AppController
                 }
             }
             $docs = $this->paginate('Document');
+
+            }
+            else
+            {
+                
+                
+                
+                    if(isset($_GET['order']))
+                    {
+                        $order = $_GET['order']." ".$_GET['ty'];
+                    }
+                    else
+                        $order = 'document_type,dop DESC';
+                    
+                
+                
+                
+                
+                
+                //die('here'.$type);
+                if($search!=''){            
+            if(!$to && !$from){
+                if($type)
+                    {
+                        if($type == 'afimac_intel')
+                        $type = 'AFIMAC Intel';
+                        else
+                        if($type == 'news_media')
+                        $type = 'News/Media';
+                        
+                        $this->paginate = array('conditions'=>array('OR'=>array(array('document_type'=>'%'.$type.'%'),array('`desc` LIKE'=>'%'.$search.'%'))),'order'=>$order,'limit'=>10);
+                    }
+                    else
+                    
+                $this->paginate = array('conditions'=>array('OR'=>array(array('document_type LIKE'=>'%'.$search.'%'),array('`desc` LIKE'=>'%'.$search.'%'))),'order'=>$order,'limit'=>10);
+                
+                }
+            else{
+            if($to && $from){
+                
+                if($to!=$from){
+                $this->paginate = array('conditions'=>array('AND'=>array('OR'=>array(array('document_type LIKE'=>'%'.$search.'%'),array('`desc` LIKE'=>'%'.$search.'%')),'DATE(`dop`) >='=>$from, 'DATE(`dop`) <='=>$to)),'order'=>$order,'limit'=>10);
+                }
+                //$this->paginate = array('conditions'=>array('OR'=>$arrs,'AND'=>array('document_type <>'=>'client_feedback','OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'DATE(`date`) >='=>$from, 'DATE(`date`) <='=>$to,'job_id IN'.$jid)),'order'=>$order,'limit'=>10);
+                else
+                //$this->paginate = array('conditions'=>array('OR'=>$arrs,'AND'=>array('document_type <>'=>'client_feedback','OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'DATE(`date`)'=>$from,'job_id IN'.$jid)),'order'=>$order,'limit'=>10);
+                $this->paginate = array('conditions'=>array('AND'=>array('OR'=>array(array('document_type LIKE'=>'%'.$search.'%'),array('`desc` LIKE'=>'%'.$search.'%')),'DATE(`dop`)'=>$from)),'order'=>$order,'limit'=>10);
+                }
+                }
+            
+
+            }
+            else{
+                //echo 2;die();
+                if($type == 'afimac_intel')
+                        $type = 'AFIMAC Intel';
+                        else
+                        if($type == 'news_media')
+                        $type = 'News/Media';
+                if(!$to && !$from){
+                    if($type)
+                    {
+                        $this->paginate = array('conditions'=>array('document_type'=>$type),'order'=>$order,'limit'=>10);    
+                    }
+                    else
+                $this->paginate = array('order'=>$order,'limit'=>10);
+                }
+                else
+                {
+                    if($to==$from)
+                    {
+                        if($type)
+                        {
+                            $this->paginate = array('conditions'=>array('document_type'=>$type,'DATE(`dop`) LIKE "'.$from.'%"'),'order'=>$order,'limit'=>10);
+                            
+                        }
+                        else                        
+                        $this->paginate = array('conditions'=>array('DATE(`dop`) LIKE "'.$from.'%"'),'order'=>$order,'limit'=>10);
+                    }
+                    else
+                    if($type)
+                    {
+                       $this->paginate = array('conditions'=>array('document_type'=>$type,'DATE(`dop`) >='=>$from,'DATE(`dop`) <='=>$to),'order'=>$order,'limit'=>10); 
+                    }else
+                        $this->paginate = array('conditions'=>array('DATE(`dop`) >='=>$from,'DATE(`dop`) <='=>$to),'order'=>$order,'limit'=>10);
+                }
+            }
+            $docs = $this->paginate('SpecJob');
+                
+                
+                
+                
+                
+                
+                
+            }
             //$docs = $this->Document->find('all',array('conditions'=>array('addedBy'=>$this->Session->read('id'),'title LIKE'=>'%'.$search.'%'))); 
         }
         if(!$this->Session->read('admin'))
