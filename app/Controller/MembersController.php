@@ -436,9 +436,9 @@ class MembersController extends AppController
             if(str_replace(',','',$jobs) == $jobs)
             {
                 $che = $this->Job->findById($jobs);
-                if($che && $che['Job']['is_special'] == 1)
+                if($che && $che['Job']['is_special'] == 1){
                 $this->set('sid',$jobs);
-                $this->set('stit',$che['Job']['title']);                
+                $this->set('stit',$che['Job']['title']);     }           
             }
             $arr_j = explode(',',$jobs);
             $this->set('jm',$arr_j);

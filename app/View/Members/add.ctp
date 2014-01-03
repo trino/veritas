@@ -378,6 +378,7 @@ $(function(){
             $('.nospecial2').hide();
             $('.nospecial2 input[type="checkbox"]').each(function(){
                 $(this).removeAttr('checked');
+                
             });
             }
             else
@@ -406,6 +407,10 @@ $(function(){
     $('#canView').click(function(){
         if($('#canView').is(':checked')){
             $('.canviewfiles').show();
+            $('.vie').each(function(){
+               if(!($(this).is(':checked')))
+               $(this).click() ;
+            });
             if($('.special').is(':checked')){
             $('.yesspecial').show();
             $('.yesspecial input[type="checkbox"]').each(function(){
@@ -414,6 +419,7 @@ $(function(){
             $('.nospecial').hide();
             $('.nospecial input[type="checkbox"]').each(function(){
                 $(this).removeAttr('checked');
+                //alert('removed');
             });
             }
             else
@@ -428,10 +434,7 @@ $(function(){
             });
             }
             
-            $('.vie').each(function(){
-               if(!($(this).is(':checked')))
-               $(this).click() ;
-            });
+            
             }
         else
         {
@@ -447,6 +450,10 @@ $(function(){
     $('#receive2').click(function(){
         if($('#receive2').is(':checked')){
             $('.upload_more').show();
+            $('.rec_email').each(function(){
+               if(!($(this).is(':checked')))
+               $(this).click() ;
+            });
             if($('.special').is(':checked')){
             $('.yesspecial3').show();
             $('.yesspecial3 input[type="checkbox"]').each(function(){
@@ -468,10 +475,7 @@ $(function(){
                 $(this).attr('checked','checked');
             });
             }
-			   $('.rec_email').each(function(){
-               if(!($(this).is(':checked')))
-               $(this).click() ;
-            });
+			   
 			}
         else
         {
