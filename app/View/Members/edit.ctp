@@ -258,7 +258,7 @@ else
 ?>
 </tr>
 <?php
-$q = $job->find('all',array('order'=>'title')); 
+$q = $job->find('all',array('conditions'=>array('is_special'=>0),'order'=>'title')); 
 if($q || isset($sid)){
      
 ?>

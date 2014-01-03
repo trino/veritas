@@ -1729,6 +1729,8 @@ class UploadsController extends AppController
         $this->loadModel('Activity');
         $this->loadModel('Clientmemo');
         $this->loadModel('SpecJob');
+        $this->set('job',$this->Job);
+                $this->set('member',$this->Member);
         if($spec =='special')
         {
             $this->set('doc',$this->SpecJob->findById($id));
@@ -1820,8 +1822,7 @@ class UploadsController extends AppController
                 $this->set('image',$this->Image->find('all',array('conditions'=>array('document_id'=>$id))));
                 $this->set('vid',$this->Video->find('all',array('conditions'=>array('document_id'=>$id))));
                 $this->set('you',$this->Youtube->find('all',array('conditions'=>array('document_id'=>$id))));
-                $this->set('job',$this->Job);
-                $this->set('member',$this->Member);
+                
             }
             else
             {
