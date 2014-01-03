@@ -1,7 +1,7 @@
 <?php include_once('inc.php');?>
 <script>
 $(function(){
-   $('#add_form').validate(); 
+   $('#add_form').validate();
    
 });
  function check_name()
