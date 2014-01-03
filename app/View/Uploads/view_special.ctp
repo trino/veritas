@@ -40,7 +40,10 @@
 
 <div id="table">
 <?php 
-
+if($doc['SpecJob']['document_type']=='AFIMAC Intel')
+    $ty = "afimac_intel";
+elseif($doc['SpecJob']['document_type']=='News/Media')
+    $ty = "news_media";
 if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Member']['Canview'][$ty]=='1')){?>
 <table class="table">
     
