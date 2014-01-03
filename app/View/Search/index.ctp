@@ -39,8 +39,6 @@ $(function(){
 		<a href="<?=$base_url;?>search?search=">Documents Search</a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
-
-
 <form action="<?php echo $base_url;?>search" method="get" id="datefilter">
     <input type="text" value="" name="from" placeholder="Start Date" style="width: 100px; margin-top:10px;" class="datepicker required" />
     <input type="text" value="" name="to" placeholder="End Date" style="width: 100px; margin-top: 10px;" class="datepicker required" />
