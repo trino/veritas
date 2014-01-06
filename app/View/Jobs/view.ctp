@@ -194,7 +194,13 @@
     <div class="dashboard-stat red">								
 		<div class="whiteCorner"></div>								
 		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
-        <a href="<?=$base_url;?>search/index/afimac_intel" class="overallLink more">		
+        <?php if(!$this->Session->read('admin')){?><a href="<?=$base_url;?>search/index/afimac_intel" class="overallLink more"><?php }
+        else
+        {
+          ?>
+          <a href="<?=$base_url;?>search/special/afimac_intel" class="overallLink more">
+          <?php  
+        }?>		
 			<div class="visual">										
 				<i class="icon-file"></i>									
 			</div>									
@@ -213,7 +219,13 @@
     <div class="dashboard-stat blue">								
 		<div class="whiteCorner"></div>								
 		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
-        <a href="<?=$base_url;?>search/index/news_media" class="overallLink more">		
+        <?php if(!$this->Session->read('admin')){?><a href="<?=$base_url;?>search/index/news_media" class="overallLink more"><?php }
+        else
+        {
+            ?>
+            <a href="<?=$base_url;?>search/special/news_media" class="overallLink more">
+            <?php
+        }?>		
 			<div class="visual">										
 				<i class="icon-file"></i>									
 			</div>									
