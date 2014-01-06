@@ -194,7 +194,7 @@
     <div class="dashboard-stat red">								
 		<div class="whiteCorner"></div>								
 		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
-        <a href="<?=$base_url;?>search/special/afimac_intel/<?php echo $jobb_id;?>" class="overallLink more">		
+        <a href="<?=$base_url;?>search/index/afimac_intel" class="overallLink more">		
 			<div class="visual">										
 				<i class="icon-file"></i>									
 			</div>									
@@ -213,7 +213,7 @@
     <div class="dashboard-stat blue">								
 		<div class="whiteCorner"></div>								
 		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
-        <a href="<?=$base_url;?>search/special/news_media/<?php echo $jobb_id;?>" class="overallLink more">		
+        <a href="<?=$base_url;?>search/index/news_media" class="overallLink more">		
 			<div class="visual">										
 				<i class="icon-file"></i>									
 			</div>									
@@ -247,6 +247,11 @@
         <td style="width:140px;"><b>Job Title</b></td>
         <td><?php echo stripslashes($job['Job']['title']); ?></td>
     </tr>
+    <?php
+    if($job['Job']['is_special']!=1 && !$this->Session->read('admin'))
+    {
+        ?>
+        
     <tr>
         <td><b>Assigned To</b></td>
         <td> <?php
@@ -312,6 +317,9 @@
             }
                ?></td>
     </tr>
+    <?php
+    }
+    ?>
      <tr>
         <td><b>Description</b></td>
         <td><?php echo stripslashes($job['Job']['description']); ?></td>

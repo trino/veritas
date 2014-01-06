@@ -606,11 +606,12 @@ class MembersController extends AppController
                 $canview['siteOrder'] = (isset($_POST['canView_siteOrder'])&& $_POST['canView_siteOrder'])? '1' : '0'  ;
                 $canview['training'] = (isset($_POST['canView_training'])&& $_POST['canView_training'])? '1' : '0'  ;
                 $canview['employee'] = (isset($_POST['canView_employee'])&& $_POST['canView_employee'])? '1' : '0'  ;
-                $canview['KPIAudits'] = (isset($_POST['canView_KPIAudits'])&& $_POST['canUpload_contracts'])? '1' : '0'  ;
-                $canview['afimac_intel'] = (isset($_POST['canView_afimac_intel'])&& $_POST['canUpload_afimac_intel'])? '1' : '0'  ;
-                $canview['news_media'] = (isset($_POST['canView_news_media'])&& $_POST['canUpload_news_media'])? '1' : '0'  ;
+                $canview['KPIAudits'] = (isset($_POST['canView_KPIAudits'])&& $_POST['canView_KPIAudits'])? '1' : '0'  ;
+                echo $canview['afimac_intel'] = (isset($_POST['canView_afimac_intel'])&& $_POST['canView_afimac_intel'])? '1' : '0'  ;
+                echo $canview['news_media'] = (isset($_POST['canView_news_media'])&& $_POST['canView_news_media'])? '1' : '0'  ;
                 $this->Canview->create();
                 $this->Canview->save($canview);
+                //die('here');
             }
             else
             {
@@ -642,7 +643,7 @@ class MembersController extends AppController
                 $canupdate['siteOrder'] = (isset($_POST['canUpload_siteOrder'])&& $_POST['canUpload_siteOrder'])? '1' : '0'  ;
                 $canupdate['training'] = (isset($_POST['canUpload_training'])&& $_POST['canUpload_training'])? '1' : '0'  ;
                 $canupdate['employee'] = (isset($_POST['canUpload_employee'])&& $_POST['canUpload_employee'])? '1' : '0'  ;
-                $canupdate['KPIAudits'] = (isset($_POST['canUpload_KPIAudits'])&& $_POST['canUpload_contracts'])? '1' : '0'  ;
+                $canupdate['KPIAudits'] = (isset($_POST['canUpload_KPIAudits'])&& $_POST['canUpload_KPIAudits'])? '1' : '0'  ;
                 $canupdate['client_feedback'] = (isset($_POST['canUpload_client_memo1']))? '1' : '0'  ;
                 $canupdate['afimac_intel'] = (isset($_POST['canUpload_afimac_intel'])&& $_POST['canUpload_afimac_intel'])? '1' : '0'  ;
                 $canupdate['news_media'] = (isset($_POST['canUpload_news_media'])&& $_POST['canUpload_news_media'])? '1' : '0'  ;
