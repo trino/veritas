@@ -68,7 +68,6 @@ $(function(){
 <tr><td><b>Password</b></td><td><input type="password" name="password" value="<?php echo $m['Member']['password'];?>" class="required" /></td></tr>
 <tr><td><b>Can View Files</b></td><td><input type="checkbox" name="canView" id="canView" <?php if($m['Member']['canView']==1){?>checked="checked"<?php }?> /></td></tr>
 <tr class="canviewfiles" style="display: none;">
-<tr>
 <?php
 if(!isset($sid)){
 ?>

@@ -28,7 +28,8 @@ $(function(){
     {
         if(isset($jobname))
         echo $jobname.'/';
-        echo ucfirst($type);
+        $type = ucfirst(str_replace(array('_','intel','News media'),array(' ','Intel','News/Media'),$type));
+        echo str_replace('News media','News/Media',$type);
     }
     ?>
 </h3>
