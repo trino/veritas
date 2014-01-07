@@ -23,7 +23,10 @@
   </script>
 <h3 class="page-title">
 <?php if($j = $job->findById($doc['SpecJob']['job_id'])) echo stripslashes($j['Job']['title']) ; ?> / 
-	Documents: Special
+	Documents: <?php 
+        $type = ucfirst(str_replace(array('_','intel','News media'),array(' ','Intel','News/Media'),$doc['SpecJob']['document_type']));
+        echo str_replace('News media','News/Media',$type);
+        ?>
 </h3>
 
 <ul class="breadcrumb">

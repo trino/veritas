@@ -1062,6 +1062,15 @@ class UploadsController extends AppController
             $job_title = $jj['Job']['title'];
         else
             $job_title = '';
+            $this->loadModel('Canupload');
+            $this->loadModel('AdminDoc');
+        $this->set('admin_doc',$this->AdminDoc->find('first'));
+        if($this->Session->read('user'))
+        { 
+            $id = $this->Session->read('id');
+           if($canupdate = $this->Canupload->find('first', array('conditions'=>array('member_id'=>$id))))
+                    $this->set('canupdate',$canupdate);  
+        }
           //var_dump($jj);  
         if($jj['Job']['is_special']=='1')
         {
@@ -1074,11 +1083,10 @@ class UploadsController extends AppController
         if($typee!='email')                 
             $this->set('typee',$typee);
         $subname = '';
-        $this->loadModel('Canupload');
+        
         $this->loadModel('Activity');
         $this->loadModel('Emailupload');
-        $this->loadModel('AdminDoc');
-        $this->set('admin_doc',$this->AdminDoc->find('first'));
+        
         if($this->Session->read('user'))
         {
            if($this->Session->read('upload')!='1')
@@ -1086,12 +1094,7 @@ class UploadsController extends AppController
             $this->redirect('/jobs');
            } 
         }
-        if($this->Session->read('user'))
-        { 
-            $id = $this->Session->read('id');
-           if($canupdate = $this->Canupload->find('first', array('conditions'=>array('member_id'=>$id))))
-                    $this->set('canupdate',$canupdate);  
-        }
+        
         if(isset($_POST['document_type']))
         {
                 $uri = $_SERVER['REQUEST_URI'];

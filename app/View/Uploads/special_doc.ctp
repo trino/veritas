@@ -23,8 +23,12 @@ else
     <div class="right">
     <select name="document_type" class="required" id="document_type">
         <option value="">Select Type</option>
+        <?php if($admin_doc['AdminDoc']['afimac_intel']=='1' && ((isset($canupdate['Canupload']['afimac_intel'])&& $canupdate['Canupload']['afimac_intel']=='1') || $this->Session->read('admin'))){?>
         <option value="AFIMAC Intel" <?php if(isset($doc['SpecJob']['document_type'])&& $doc['SpecJob']['document_type']  == 'AFIMAC Intel'){ echo "selected='selected'";} ?>>AFIMAC Intel</option>
+        <?php }?>
+        <?php if($admin_doc['AdminDoc']['news_media']=='1' && ((isset($canupdate['Canupload']['news_media'])&& $canupdate['Canupload']['news_media']=='1') || $this->Session->read('admin'))){?>
         <option value="News/Media" <?php if(isset($doc['SpecJob']['document_type'])&& $doc['SpecJob']['document_type']  == 'News/Media'){ echo "selected='selected'";} ?>>News/Media</option>
+        <?php }?>
     </select>
     </div>
 </td>
