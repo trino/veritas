@@ -58,7 +58,7 @@ $(function(){
 <tr>
     <td><strong>Active Start Date</strong><br /><input type="text" class="expire" name="active_start_date" value="<?php echo $model['Projectboard']['active_start_date'];?>" /></td>
     <td><strong>Completion Date</strong><br /><input type="text" class="expire" name="completion_date" value="<?php echo $model['Projectboard']['completion_date'];?>"/></td>
-    <td><strong>New Expiration date</strong><br /><input type="text" class="expire" name="new_expiration_date" value="<?php echo $model['Projectboard']['new_expiration_date'];?>"/></td>
+    <td><strong>New Expiration Date</strong><br /><input type="text" class="expire" name="new_expiration_date" value="<?php echo $model['Projectboard']['new_expiration_date'];?>"/></td>
     <td></td>
 </tr>
 <tr>
@@ -133,12 +133,12 @@ $(function(){
     <td style=""><strong>Dining Trailer Deployed</strong><br /><input type="text" name="dining_trailer_deployed"  value="<?php echo $model['Projectboard']['dining_trailer_deployed'];?>"/></td>
 </tr>
 <tr>
-    <td style=""><strong>Coach Bus Trailer Projected</strong><br /><input type="text" name="coach_trailer_projected"  value="<?php echo $model['Projectboard']['coach_trailer_projected'];?>"/></td>
-    <td style=""><strong>Coach Bus Trailer Deployed</strong><br /><input type="text" name="coach_trailer_deployed"  value="<?php echo $model['Projectboard']['coach_trailer_deployed'];?>"/></td>
+    <td style=""><strong>Coach Busses Trailer Projected</strong><br /><input type="text" name="coach_trailer_projected"  value="<?php echo $model['Projectboard']['coach_trailer_projected'];?>"/></td>
+    <td style=""><strong>Coach Busses Trailer Deployed</strong><br /><input type="text" name="coach_trailer_deployed"  value="<?php echo $model['Projectboard']['coach_trailer_deployed'];?>"/></td>
 </tr>
 <tr>
-    <td style=""><strong>School Bus Trailer Projected</strong><br /><input type="text" name="school_trailer_projected"  value="<?php echo $model['Projectboard']['school_trailer_projected'];?>"/></td>
-    <td style=""><strong>School Bus Trailer Deployed</strong><br /><input type="text" name="school_trailer_deployed"  value="<?php echo $model['Projectboard']['school_trailer_deployed'];?>"/></td>
+    <td style=""><strong>School Busses Trailer Projected</strong><br /><input type="text" name="school_trailer_projected"  value="<?php echo $model['Projectboard']['school_trailer_projected'];?>"/></td>
+    <td style=""><strong>School Busses Trailer Deployed</strong><br /><input type="text" name="school_trailer_deployed"  value="<?php echo $model['Projectboard']['school_trailer_deployed'];?>"/></td>
 </tr>
 <tr>
     <td style=""><strong>15 Passenger Van Trailer Projected</strong><br /><input type="text" name="15pess_trailer_projected"  value="<?php echo $model['Projectboard']['15pess_trailer_projected'];?>"/></td>

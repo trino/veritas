@@ -98,9 +98,16 @@ class AdminController extends AppController {
                     if(str_replace(',','',$job_ids)==$job_ids)
                     {
                         $job_id=$job_ids;
+                        $this->loadModel('Job');
+                        $jj = $this->Job->findById($job_ids);
+                        if($jj['Job']['is_special']==1)
+                        {
+                            $this->Session->write('special',1);
+                        }
                     }
                     else
                     $job_id = 'all';
+                    
                 }
                 if($qu['Member']['canView']=="1" && $qu['Member']['canUpdate']=="0")
                     $this->Session->write(array('see'=>'1'));

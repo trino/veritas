@@ -378,7 +378,19 @@ url: '<?php echo $base_url;?>admin/logout'
                 <?php if($this->Session->read('admin'))  echo $this->Html->link('<i class="icon-briefcase"></i>'.'Analytics','/uploads/stats',array('escape'=>false));?>
 
 				<?php //echo $this->Html->link('Document','/uploads'); ?>
-			</div><!-- menu -->
+			</div>
+            <?php
+            if($this->Session->read('special'))
+            {
+                ?>
+                <div style="text-align: center;margin-top:40px;">
+                <img src="<?php echo $base_url;?>img/brazil.png" />
+                </div>
+                <?php
+            }
+            ?>
+            
+            <!-- menu -->
 
 		<?php } ?>
 		
