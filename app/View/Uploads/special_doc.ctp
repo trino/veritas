@@ -132,14 +132,17 @@ file: "<?=$video_file?>"
 <?php }?>
 </td>
 </tr>
+
 <?php }?>
-</table>
-<br />
+<tr>
+<td colspan="2">
 <input type="hidden" value="<?php if(isset($job_id))echo  $job_id; else if(isset($doc['SpecJob']['job_id']))echo $doc['SpecJob']['job_id'];?>" name="job_id" />
 
-<div class="submit"><input type="submit" class="btn btn-primary sbtbtn" style="float: left;" value="Submit Document" name="submit"/> </div>
+<div class="submit"><input type="submit" class="btn btn-primary sbtbtn" style="float: left;" value="Submit Document" name="submit"/><div class="clear"></div></div>
 
-
+</td>
+</tr>
+</table>
 
 </form>
 
@@ -149,6 +152,10 @@ file: "<?=$video_file?>"
 $(function(){
     $('#my_form').validate();
     $('.incident_date').datepicker({dateFormat: 'yy-mm-dd',maxDate: new Date} );
+    if($('#document_type').val()=='News/Media')
+    {
+        $('.news_more').show();
+    }
     $('#document_type').change(function(){
         $id = $(this).val();
         if($id == 'AFIMAC Intel')

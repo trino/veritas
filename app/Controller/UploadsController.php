@@ -956,6 +956,16 @@ class UploadsController extends AppController
     
     function special_doc($eid='')
     {
+        $this->loadModel('Canupdload');
+        if($this->Session->read('user'))
+        { 
+            $id = $this->Session->read('id');
+           if($canupdate = $this->Canupload->find('first', array('conditions'=>array('member_id'=>$id))))
+                    $this->set('canupdate',$canupdate);
+              
+        }
+        $this->loadModel('AdminDoc');
+        $this->set('admin_doc',$this->AdminDoc->find('first'));
        $this->loadModel('SpecJob');
        if($eid != "")
        {

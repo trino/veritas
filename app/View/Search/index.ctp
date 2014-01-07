@@ -274,6 +274,9 @@ $or = '&order=';
                      echo $this->Html->link('Edit','/uploads/special_doc/'.$d['SpecJob']['id'],array('class'=>'btn btn-info'));                 
                     echo " " . $this->Html->link('Delete','/search/delete/'.$d['SpecJob']['id'],array('class'=>'btn btn-danger'),"Confirm Delete Document?");
 					}
+                    else
+                    if($this->Session->read('id')== $d['SpecJob']['addedBy'])
+                    echo $this->Html->link('Edit','/uploads/special_doc/'.$d['SpecJob']['id'],array('class'=>'btn btn-info'));
                     
                     
             } ?>    
