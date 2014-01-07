@@ -375,6 +375,7 @@ You have <input readonly="readonly" type="text" name="countdown" id="countssss" 
 <tr><td><b>Youtube Link</b></td><td><div class="right"><input type="text" name="youtube_1" />  &nbsp; <a href="javascript:void(0);" onclick="add_youtube()" class="btn btn-primary">Add</a><span id="remove_youtube" style="display: none;"> &nbsp; <a href="javascript:void(0);" onclick="remove_youtube();" class="btn btn-danger">Remove</a></span></div><div id="you"></div></td></tr>
 -->
 </table>
+<br />
 </div>
 
 <input type="hidden" name="document" id="document" value="1" />

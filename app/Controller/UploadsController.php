@@ -991,6 +991,7 @@ class UploadsController extends AppController
             $arr['job_id'] = $_POST['job_id'];
             $arr['on_date'] =  date('Y-m-d H:i:s');
             $arr['addedBy'] = $id;
+            $arr['link'] = $_POST['link'];
             //$arr['title'] = ucfirst(str_replace("_"," ",$_POST['document_type']));
             $arr['desc'] = $_POST['description'];
             $arr['document_type'] = $_POST['document_type'];

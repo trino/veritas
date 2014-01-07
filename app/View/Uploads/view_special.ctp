@@ -58,7 +58,12 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         <td><b>Date of Publishment</b></td>
         <td><?php echo $doc['SpecJob']['dop']; ?></td>
     </tr>
-     
+    <?php if($doc['SpecJob']['link']){?>
+    <tr >
+        <td><b>Link</b></td>
+        <td><?php echo $doc['SpecJob']['link']; ?></td>
+    </tr>
+    <?php }?> 
     <tr>
         <td><b>Description</b></td>
         <td><?php echo $doc['SpecJob']['desc']; ?></td>

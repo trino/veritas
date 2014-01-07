@@ -35,6 +35,10 @@ else
 </tr>
 <tr><td><strong>Date of Posting</strong></td>
 <td><input type="text"  class="incident_date required" name="incident_date" value="<?php if(isset($doc['SpecJob']['dop'])) echo $doc['SpecJob']['dop'];?>" /></td></tr>
+<tr class="news_more" style="display: none;">
+<td><strong>Link</strong></td>
+<td><input type="text"  class="required" name="link" value="<?php if(isset($doc['SpecJob']['link'])) echo $doc['SpecJob']['link'];?>" /></td></tr>
+
 <tr><td id="auth"><strong>Author</strong></td><td><input type="text" class="required" name="author" value="<?php if(isset($doc['SpecJob']['author'])) echo $doc['SpecJob']['author'];?>"/></td></tr>
 <tr><td class="main_desc"><strong>Description</strong></td>
 <td><textarea name="description"  class="text_area_long" cols="10" rows="5" id="repl" onKeyDown="limitText(this.form.description,this.form.countdown,70);"
@@ -130,8 +134,9 @@ file: "<?=$video_file?>"
 </tr>
 <?php }?>
 </table>
-
+<br />
 <input type="hidden" value="<?php if(isset($job_id))echo  $job_id; else if(isset($doc['SpecJob']['job_id']))echo $doc['SpecJob']['job_id'];?>" name="job_id" />
+
 <div class="submit"><input type="submit" class="btn btn-primary sbtbtn" style="float: left;" value="Submit Document" name="submit"/> </div>
 
 
@@ -147,10 +152,15 @@ $(function(){
     $('#document_type').change(function(){
         $id = $(this).val();
         if($id == 'AFIMAC Intel')
+        {
             $('#auth').html('<strong>Author</strong>');
+            $('.news_more').hide();
+        }
         else
-            $('#auth').html('<strong>Source</strong>');        
-    
+        {
+            $('#auth').html('<strong>Source</strong>'); 
+            $('.news_more').show();       
+        }
         
     });
     
