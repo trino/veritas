@@ -562,7 +562,7 @@ url: '<?php echo $base_url;?>admin/logout'
 									
 										<table cellspacing="0" cellpadding="0" border="0" width="100%"><tr><td style="padding:0px; padding-bottom:4px;">
 											<div id="name" style="height: 20px; background: none repeat scroll 0% 0% white; border: 1px solid rgb(204, 204, 204); padding: 1px 4px 2px; color: rgb(170, 170, 170); width:100%; float: left; font-family: 'Oxygen', sans-serif;">Recipients</div>
-										</td><td style="width:30px;padding:0px; text-align:right;">
+										</td><td style="width:30px;padding-top:4px; text-align:right;">
 											<a id="contacts_modal" class="email btn btn-info" style="padding:0px;color:#FFF; width:100%; float:right; margin:0px; margin-top:-5px; margin-right:-9px; height:23px;" onclick="show_email();" href="javascript:void(0);">&nbsp;+&nbsp;</a>
 										</td></tr></table>
 										
