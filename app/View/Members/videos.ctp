@@ -17,6 +17,7 @@ return $hash;
 <div id="home">
 <h2><?="Welcome to your AFIMAC Training Resources!";?></h2>
 <p><?php echo "The following are your complimentary AFIMAC Training Reasources."."<br />";
+date_default_timezone_set('America/Toronto');
 
 $token = generate_hash('_IMaC_TRAiNiNG_', date('Y-m-d:H')) .'_79';
 
