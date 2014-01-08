@@ -15,7 +15,7 @@ function getloc()
 $(function(){
     $( ".expire" ).datepicker({dateFormat: "m-d-yy"});
     $('.expire').each(function(){
-       if($(this).val()=='0000-00-00')
+       if($(this).val()=='1-1-1980')
        {
             $(this).val('');
        } 

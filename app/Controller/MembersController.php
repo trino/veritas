@@ -831,6 +831,11 @@ class MembersController extends AppController
     {
         $this->set('profile',$this->Member->find('first',array('conditions'=>array('id'=>$id))));
     }
+	
+	public function videos()
+    {
+    }
+	
      public function check_email2($em = '',$id=0)
     {
         $this->loadModel('Member');
