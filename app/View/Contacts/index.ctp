@@ -181,7 +181,7 @@ if($docs)
        <?php }?>
  </table>
 <?php
-if(isset($employee) && $employee)
+if(isset($employee) && $employee && !$this->Session->read('special'))
 {
     ?>
     <h3 class="page-title">

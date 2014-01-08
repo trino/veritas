@@ -33,21 +33,22 @@ $(function(){
 <tr><td><b>Image</b></td><td><input type="file" name="image" class="" /> <?php echo $this->Html->image("uploads/".$j['Job']['image']); ?></td></tr>
 <tr><td><b>Start Date</b></td><td><input type="text" class="" name="start_date" id="start_date" value="<?php echo $j['Job']['date_start']; ?>" /></td></tr>
 <tr><td><b>End Date</b></td><td><input type="text" class="" name="end_date" id="end_date" value="<?php echo $j['Job']['date_end']; ?>" /></td></tr>
-<tr><td>Add Members:</td><td>
+<tr><td><strong>Add Members:</strong></td><td>
 <?php if($member){?>
 <table>
     <?php 
     $mc = 0;
     foreach($member as $me){
         $mc++; 
-        if($mc%4==0){  ?>
-        </tr>
-        <?php }
+        
         if($mc%4 == 1){?>
         <tr>
         <?php }?>
-            <td><input type="checkbox" name="member[]" <?php if(in_array($me['Member']['id'],$mem_arr)){?>checked="checked"<?php }?> value="<?php echo $me['Member']['id'];?>" style="margin: 0;" /> <?php echo $me['Member']['fname'].' '.$me['Member']['lname'].'</td>';
+            <td><input class="unch" type="checkbox" name="member[]" <?php if(in_array($me['Member']['id'],$mem_arr)){?>checked="checked"<?php }?> value="<?php echo $me['Member']['id'];?>" style="margin: 0;" /> <?php echo $me['Member']['fname'].' '.$me['Member']['lname'].'</td>';
             }
+            if($mc%4==0){  ?>
+        </tr>
+        <?php }
             if($mc%4==1)
             {
                 echo "<td></td><td></td><td></td></tr>";
@@ -108,6 +109,20 @@ if($c%5==0)
 </form>
 <script>
 $(function(){
+    $('.unch').change(function(){
+       if($(this).is(':checked'))
+       {
+        //do nothing
+       } 
+       else
+       {
+        var mem = $(this).val();
+        var job = '<?php echo $jobid?>';
+        $.ajax({
+           url:'<?php echo $base_url;?>jobs/removefromjob/'+mem+'/'+job
+        });
+       }
+    });
     var add =   '<table width="100%"><tr><td>Contact Type</td><td colspan="3"><select name="type[]" class="required">'+
                 '<option value="0">Key Contacts</option><option value="1">Staff Contacts</option>'+
                 '<option value="2">Third Part Contacts</option></select></td></tr>'+

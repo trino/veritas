@@ -63,6 +63,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <script type="text/javascript">jwplayer.key="N+fGwqE9+uBPKzrjO6qyGHWiJJRmw0UtbEU0iA==";</script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
 	<link rel="shortcut icon" href="/img/favicon.ico" />
+    <style>
+    .clear{clear:both;}
+    </style>
 <!--script type="text/javascript">
 window.onbeforeunload = function(e) {
 $.ajax({
@@ -356,7 +359,7 @@ url: '<?php echo $base_url;?>admin/logout'
 			
 			
 			<div class="poweredBy" style="background:transparent;" >
-				<table cellspacing="0" cellpadding="0" border="0" width="100%" height="100%"><tr><td valign="middle"><img src="<?php echo $base_url;?>img/<?php if( $this->Session->read('logo')=="afimaclogo.png"){
+				<table cellspacing="0" cellpadding="0" border="0" width="100%" height="100%"><tr><td valign="middle" style="padding-top: 25px;"><img src="<?php echo $base_url;?>img/<?php if( $this->Session->read('logo')=="afimaclogo.png"){
 				echo "afimaclogo2.png";
 				}else				{
 				echo "asap.png";
@@ -561,8 +564,8 @@ url: '<?php echo $base_url;?>admin/logout'
 									<div class="recipientsLine" >
 									
 										<table cellspacing="0" cellpadding="0" border="0" width="100%"><tr><td style="padding:0px; padding-bottom:4px;">
-											<div id="name" style="height: 20px; background: none repeat scroll 0% 0% white; border: 1px solid rgb(204, 204, 204); padding: 1px 4px 2px; color: rgb(170, 170, 170); width:100%; float: left; font-family: 'Oxygen', sans-serif;">Recipients</div>
-										</td><td style="width:30px;padding-top:4px; text-align:right;">
+											<div id="name" style="height: 20px; background: none repeat scroll 0% 0% white; border: 1px solid rgb(204, 204, 204); padding: 1px 4px 2px; color: rgb(170, 170, 170); width:101%; float: left; font-family: 'Oxygen', sans-serif;">Recipients</div>
+										</td><td style="width:30px;padding-top:5px; text-align:right;">
 											<a id="contacts_modal" class="email btn btn-info" style="padding:0px;color:#FFF; width:100%; float:right; margin:0px; margin-top:-5px; margin-right:-9px; height:23px;" onclick="show_email();" href="javascript:void(0);">&nbsp;+&nbsp;</a>
 										</td></tr></table>
 										
@@ -605,21 +608,27 @@ url: '<?php echo $base_url;?>admin/logout'
 									<div class="clear"></div>
 									
 								</div>
+                                <div style="clear: both;"></div>
 							</td><td width="50%">
 								<div class="left msg">
-									<textarea placeholder="Instant Message - Type message here" name="message" class="required message" style="height:55%; width:100%;"></textarea>
+									<textarea placeholder="Instant Message - Type message here" name="message" class="required message" style="height:44%; width:100%;margin-bottom:10px"></textarea>
+                                    <input style="float:right;" type="submit" name="submit" value="Send" class="buttonV" id="send_email" />
+    								<a href="javascript:void(0);" class="buttonV attachment" style="float:right;margin-right:8px;"><i class="icon-book"></i> Attach Documents</a>					
+                                    <div style="clear: both;"></div>
 								</div>
+                                <div style="clear: both;"></div>
 							</td></tr></table>
 							
                             <div style="clear:both;"></div>
 							
-                            <div style="margin-top:-25px;padding-top:0px;">
+                            <!--<div style="margin-top:-25px;padding-top:0px;">
 								<input style="float:right;" type="submit" name="submit" value="Send" class="buttonV" id="send_email" />
-								<a href="javascript:void(0);" class="buttonV attachment" style="float:right;margin-right:8px;"><i class="icon-book"></i> Attach Documents</a>						
-                            </div>
+								<a href="javascript:void(0);" class="buttonV attachment" style="float:right;margin-right:8px;"><i class="icon-book"></i> Attach Documents</a>					
+                                <div style="clear: both;"></div>	
+                            </div>-->
 							
 						</form>
-                        <div style="padding-top:10px;">
+                        <div style="">
 							<b id="att" style="display: none;">Attachments :</b>
 							<span class="attachments"></span>
 						</div>

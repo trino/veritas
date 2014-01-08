@@ -227,6 +227,7 @@ class JobsController extends AppController
     }
      public function edit($id)
      {
+        $this->set('jobid',$id);
         $this->loadModel('Member');
         $this->set('member',$this->Member->find('all'));
         $jid = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$id.',%'),array('job_id LIKE'=>'%,'.$id.',%'),array('job_id LIKE'=>'%,'.$id)))));
@@ -344,6 +345,7 @@ class JobsController extends AppController
                 $this->loadModel('Jobmember');
                 foreach($_POST['member'] as $mem)
                 {
+                    
                     $check = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$mem)));
                     if($check)
                     {
@@ -705,6 +707,16 @@ class JobsController extends AppController
         }
         die('here');
         
+    }
+    public function removefromjob($mem,$job)
+    {
+        $this->loadModel('Jobmember');
+        $q = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$mem)));
+        $this->Jobmember->id = $q['Jobmember']['id'];
+        $job_ids = $q['Jobmember']['job_id'];
+        $job_ids = str_replace(array($job.',',','.$job.',',','.$job),array('',',',''),$job_ids);
+        $this->Jobmember->saveField('job_id',$job_ids);
+        die();
     }
     
 }
