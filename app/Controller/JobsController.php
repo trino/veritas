@@ -229,20 +229,23 @@ class JobsController extends AppController
      {
         $test = $this->Job->findById($id);
         $test2 = $this->Job->find('first',array('conditions'=>array('is_special'=>1)));
-        if($test['Job']['is_special'] == 1)
+        
+        if($test['Job']['is_special'] == 1){
         $spe = 1;
+        $this->set('spe',1);
+        }
         if($test2)
-        $spe2 = $test2['Job']['id'];
+        {
+            $spe2 = $test2['Job']['id'];
+        }
         $this->set('jobid',$id);
         $this->loadModel('Member');
-        if(!isset($spe)){
-        if(!$test2)    
+        
+        if(!$test2)
         $this->set('member',$this->Member->find('all'));
         else
         $this->set('member',$this->Member->find('all',array('conditions'=>array('id NOT IN (SELECT member_id FROM jobmembers WHERE job_id = \''.$spe2.'\')'))));
-        }
-        else
-        $this->set('member',$this->Member->find('all',array('conditions'=>array('id IN (SELECT member_id FROM jobmembers WHERE job_id = \''.$spe.'\' OR job_id = \'\')'))));
+        
         
         $jid = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id'=>$id),array('job_id LIKE'=>$id.',%'),array('job_id LIKE'=>'%,'.$id.',%'),array('job_id LIKE'=>'%,'.$id)))));
         $mem_arr = array();
@@ -734,26 +737,6 @@ class JobsController extends AppController
         $this->Jobmember->saveField('job_id',$job_ids);
         die();
     }
-    public function clean()
-    {
-        $this->loadModel('Job');
-        $q = $this->Job->find('first',array('conditions'=>array('is_special'=>1)));
-        echo $sid = $q['Job']['id'];
-        $this->loadModel('Jobmember');
-        unset($q);
-        $q = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id'=>$sid),array('job_id LIKE'=>$sid.',%'),array('job_id LIKE'=>'%,'.$sid.',%'),array('job_id LIKE'=>'%,'.$sid)))));
-        foreach($q as $jm)
-        {
-            
-            $this->Jobmember->id = $jm['Jobmember']['id'];
-            $jids = $jm['Jobmember']['job_id'];
-            $jids = str_replace(array($sid.',',','.$sid.',',','.$sid,$sid),array('',',','',''),$jids);
-            if(str_replace(',','',$jids) == $jids && $jids == $sid)
-            $jids = '';
-            echo $jids;
-            $this->Jobmember->saveField('job_id',$jids);
-        }
-        die();
-    }
+    
     
 }

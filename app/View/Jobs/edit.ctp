@@ -34,9 +34,10 @@ $(function(){
 <tr><td><b>Start Date</b></td><td><input type="text" class="" name="start_date" id="start_date" value="<?php echo $j['Job']['date_start']; ?>" /></td></tr>
 <tr><td><b>End Date</b></td><td><input type="text" class="" name="end_date" id="end_date" value="<?php echo $j['Job']['date_end']; ?>" /></td></tr>
 <tr><td><strong>Add Members:</strong></td><td>
-<?php if($member){?>
+<?php if($member ){?>
 <table>
-    <?php 
+    <?php
+    if(!isset($spe)){ 
     $mc = 0;
     foreach($member as $me){
         $mc++; 
@@ -61,7 +62,12 @@ $(function(){
             {
                 echo "<td></td></tr>";
             }
-            }else{"<b>No Members added</b>";}?>
+            }
+            else
+            if(isset($spe)){
+                echo "This feature is not available for special jobs.";
+            }
+            }else{echo "<b>No Members added</b>";}?>
 </table>
 </td></tr>
 </table>
