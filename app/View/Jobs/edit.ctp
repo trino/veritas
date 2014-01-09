@@ -37,7 +37,7 @@ $(function(){
 <?php if($member ){?>
 <table>
     <?php
-    if(!isset($spe)){ 
+    
     $mc = 0;
     foreach($member as $me){
         $mc++; 
@@ -62,11 +62,7 @@ $(function(){
             {
                 echo "<td></td></tr>";
             }
-            }
-            else
-            if(isset($spe)){
-                echo "This feature is not available for special jobs.";
-            }
+            
             }else{echo "<b>No Members added</b>";}?>
 </table>
 </td></tr>

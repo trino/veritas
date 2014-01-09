@@ -241,10 +241,18 @@ class JobsController extends AppController
         $this->set('jobid',$id);
         $this->loadModel('Member');
         
-        if(!$test2)
+        if(!$test2){
+        if(!isset($spe))    
         $this->set('member',$this->Member->find('all'));
         else
+        $this->set('member',$this->Member->find('all',array('conditions'=>array('id IN (SELECT member_id FROM jobmembers WHERE job_id = \'\')'))));
+        }
+        else{
+        if(isset($spe))    
+        $this->set('member',$this->Member->find('all',array('conditions'=>array('id IN (SELECT member_id FROM jobmembers WHERE job_id = \''.$spe2.'\' OR job_id = \'\')'))));
+        else
         $this->set('member',$this->Member->find('all',array('conditions'=>array('id NOT IN (SELECT member_id FROM jobmembers WHERE job_id = \''.$spe2.'\')'))));
+        }
         
         
         $jid = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id'=>$id),array('job_id LIKE'=>$id.',%'),array('job_id LIKE'=>'%,'.$id.',%'),array('job_id LIKE'=>'%,'.$id)))));
