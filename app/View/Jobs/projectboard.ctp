@@ -62,6 +62,9 @@ $(function(){
     
 </tr>
 <tr>
+    <td colspan="3"><strong>Project Board Year</strong><br /><input name="poy" type="text" value="<?php if($model['Projectboard']['poy'])echo $model['Projectboard']['poy'];?>"/></td>    
+</tr>
+<tr>
     <td colspan="3"><strong>Notes</strong> &nbsp; <textarea name="notes" style="width: 500px; height:100px"><?php echo $model['Projectboard']['notes'];?></textarea></td>    
 </tr>
 </table>

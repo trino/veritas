@@ -66,8 +66,13 @@ class JobsController extends AppController
     
     public function add()
     {
+        $test2 = $this->Job->find('first',array('conditions'=>array('is_special'=>1)));
+        if($test2)
+        {
+            $spe2 = $test2['Job']['id'];
+        }
         $this->loadModel('Member');
-        $this->set('member',$this->Member->find('all'));
+        $this->set('member',$this->Member->find('all',array('conditions'=>array('id NOT IN (SELECT member_id FROM jobmembers WHERE job_id = \''.$spe2.'\')'))));
         if(!$this->Session->read('avatar'))
             $this->redirect('/admin');
             

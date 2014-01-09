@@ -27,20 +27,22 @@ $(function(){
 <tr><td><b>Image</b></td><td><input type="file" name="image" class="" /></td></tr>
 <tr><td><b>Start Date</b></td><td><input type="text" name="start_date" id="start_date" class="" /></td></tr>
 <tr><td><b>End Date</b></td><td><input type="text" name="end_date" id="end_date" class="" /></td></tr>
-<tr><td>Add Members:</td><td>
+<tr><td><strong>Add Members:</strong></td><td>
 <?php if($member){?>
 <table>
     <?php 
     $mc = 0;
     foreach($member as $me){
         $mc++; 
-        if($mc%4==0){  ?>
-        </tr>
-        <?php }
+        
         if($mc%4 == 1){?>
         <tr>
-        <?php }?>
+        <?php }
+        ?>
             <td><input type="checkbox" name="member[]" value="<?php echo $me['Member']['id'];?>" style="margin: 0;" /> <?php echo $me['Member']['fname'].' '.$me['Member']['lname'].'</td>';
+            if($mc%4==0){  ?>
+        </tr>
+        <?php }
             }
             if($mc%4==1)
             {
