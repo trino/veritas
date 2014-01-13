@@ -27,6 +27,19 @@ $(function(){
 <tr><td><b>Image</b></td><td><input type="file" name="image" class="" /></td></tr>
 <tr><td><b>Start Date</b></td><td><input type="text" name="start_date" id="start_date" class="" /></td></tr>
 <tr><td><b>End Date</b></td><td><input type="text" name="end_date" id="end_date" class="" /></td></tr>
+<tr><td><b>Job Status</b></td>
+    <td>
+    <table>
+      <tr>
+        <td><input type="radio" name="status" value="0" checked="checked" /> Active - Recruitment Only</td>
+        <td><input type="radio" name="status" value="1"  /> Proposal Submitted  </td>
+        <td><input type="radio" name="status" value="2"  /> Signed Contract  </td>
+        <td><input type="radio" name="status" value="3"  /> Proposal Settled</td>
+      </tr>    
+        <tr><td><input type="radio" name="status" value="4" /> Lost to Competitor</td></tr>  
+        </table>
+        </td>
+</tr>
 <tr><td><strong>Add Members:</strong></td><td>
 <?php if($member){?>
 <table>

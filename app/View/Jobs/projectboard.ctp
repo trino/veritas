@@ -58,7 +58,7 @@ $(function(){
 <tr>
     <td><strong>Proposal Date</strong><br /><input type="text" class="expire" name="proposal_date" value="<?php echo $model['Projectboard']['proposal_date'];?>"/></td>
     <td><strong>Contract Date</strong><br /><input type="text" class="expire" name="contract_date" value="<?php echo $model['Projectboard']['contract_date'];?>"/></td>
-    <td><strong>Competition Date</strong><br /><input type="text" class="expire" name="competition_date" value="<?php echo $model['Projectboard']['competition_date'];?>"/></td>
+    <td><strong>Settled Date</strong><br /><input type="text" class="expire" name="competition_date" value="<?php echo $model['Projectboard']['competition_date'];?>"/></td>
 </tr>
 <tr>
     <td><strong>Active Start Date</strong><br /><input type="text" class="expire" name="active_start_date" value="<?php echo $model['Projectboard']['active_start_date'];?>" /></td>
