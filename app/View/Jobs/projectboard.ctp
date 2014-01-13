@@ -17,7 +17,12 @@ $(function(){
     $('.expire').each(function(){
        if($(this).val()=='1-1-1980')
        {
-            $(this).val('');
+            $(this).val('1-1-1980');
+       }
+       else
+       if($(this).val()=='')
+       {
+            $(this).val('1-1-1980');
        } 
     });
     });
