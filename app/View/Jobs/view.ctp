@@ -421,8 +421,8 @@ if($this->Session->read('admin'))
                 <tr style="border-bottom: 1px solid grey;">
                 <td><?php echo $ks['Key_contact']['name'];?></td>
                 <td><?php echo $ks['Key_contact']['title'];?></td>
-                <td><?php echo $ks['Key_contact']['cell'];?></td>
-                <td><?php echo $ks['Key_contact']['phone'];?></td>
+                <td><?php echo phone_number($ks['Key_contact']['cell']);?></td>
+                <td><?php echo phone_number($ks['Key_contact']['phone']);?></td>
                 <td><?php echo $ks['Key_contact']['email'];?></td>
                 <td><?php echo $ks['Key_contact']['company'];?></td>
                 </tr>

@@ -1,4 +1,6 @@
-<?php include_once('inc.php');?>
+<?php 
+include_once('inc.php');
+?>
 
 
 <ul class="breadcrumb" style="margin-top: 100px;">
@@ -136,8 +138,8 @@ if($docs)
             <td><?php echo $d['Key_contact']['name']; ?></td>
             <td><?php echo $d['Key_contact']['email']; ?></td>
             <td><?php echo $type[$d['Key_contact']['type']];?></td>
-            <td><?php echo $d['Key_contact']['cell']; ?></td>
-            <td><?php echo $d['Key_contact']['phone'];?></td>
+            <td><?php echo phone_number($d['Key_contact']['cell']); ?></td>
+            <td><?php echo phone_number($d['Key_contact']['phone']);?></td>
             <?php if(!$this->Session->read('admin'))
             {
                 ?>
@@ -206,7 +208,7 @@ if(isset($employee) && $employee && !$this->Session->read('special'))
             <td><?php echo $d['Member']['title']; ?></td>
             <td><?php echo $d['Member']['full_name']; ?></td>
             <td><?php echo $d['Member']['email']; ?></td>
-            <td><?php echo $d['Member']['phone'];?></td>
+            <td><?php echo phone_number($d['Member']['phone']);?></td>
             <?php if(!$this->Session->read('admin'))
             {
                 ?>
