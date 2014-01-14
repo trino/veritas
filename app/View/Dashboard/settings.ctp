@@ -175,7 +175,7 @@ $(function(){
         } 
         ?>
         <tr><td><strong>Country</strong></td>
-            <td><input type="radio" name="country" value="canada" style="margin: 0;" <?php if($user['User']['country']=='canada'){?>checked="checked"<?php }?> /> Canada &nbsp; &nbsp; <input type="radio" name="country" value="us" style="margin: 0;" <?php if($user['User']['country']=='us'){?>checked="checked"<?php }?>  /> U.S </td></tr>
+            <td><input type="radio" name="country" value="canada" style="margin: 0;" <?php if($user['User']['country']=='canada'){?>checked="checked"<?php }?> /> Canada &nbsp; &nbsp; <input type="radio" name="country" value="us" style="margin: 0;" <?php if($user['User']['country']=='us'){?>checked="checked"<?php }?>  /> US </td></tr>
         <tr><td><input style="margin:8px;" type="submit" name="submit" value="Save Changes" class="btn btn-primary" onclick="if($('#old_password').val() != '' && $('#passw').val() == ''){$('#passw').addClass('error');return false;}else return true;" /></td></tr>
     </table>
     </form>
