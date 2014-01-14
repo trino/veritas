@@ -8,7 +8,7 @@ function phone_number($num="")
         {
             $number = $number.$num[$i];
             if($i==2)
-            $number = $number.")";
+            $number = $number.") ";
             if($i==5)
             $number = $number.'-';
         }

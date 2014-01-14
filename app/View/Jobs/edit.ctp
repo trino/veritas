@@ -33,19 +33,6 @@ $(function(){
 <tr><td><b>Image</b></td><td><input type="file" name="image" class="" /> <?php echo $this->Html->image("uploads/".$j['Job']['image']); ?></td></tr>
 <tr><td><b>Start Date</b></td><td><input type="text" class="" name="start_date" id="start_date" value="<?php echo $j['Job']['date_start']; ?>" /></td></tr>
 <tr><td><b>End Date</b></td><td><input type="text" class="" name="end_date" id="end_date" value="<?php echo $j['Job']['date_end']; ?>" /></td></tr>
-<tr><td><b>Job Status</b></td>
-    <td>
-      <table>
-      <tr>
-        <td><input type="radio" name="status" value="0" <?php if($j['Job']['status']=='0') echo "checked='checked'";?> /> Active - Recruitment Only</td>
-        <td><input type="radio" name="status" value="1" <?php if($j['Job']['status']=='1') echo "checked='checked'";?> /> Proposal Submitted  </td>
-        <td><input type="radio" name="status" value="2" <?php if($j['Job']['status']=='2') echo "checked='checked'";?> /> Signed Contract  </td>
-        <td><input type="radio" name="status" value="3" <?php if($j['Job']['status']=='3') echo "checked='checked'";?> /> Proposal Settled</td>
-      </tr>    
-        <tr><td><input type="radio" name="status" value="4" <?php if($j['Job']['status']=='4') echo "checked='checked'";?>/> Lost to Competitor</td></tr>  
-        </table>
-    </td>
-</tr>
 <tr><td><strong>Add Members:</strong></td><td>
 <?php if($member ){?>
 <table>

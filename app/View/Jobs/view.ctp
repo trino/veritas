@@ -349,10 +349,7 @@
         <td><?php echo $job['Job']['date_end']; ?></td>
     </tr>
     <?php $arr = array('Active-Recuirement Only',' Proposal Submitted','Signed Contract','Proposal Settled','Lost to Competitor'); ?>
-    <tr>
-        <td><strong>Job Status</strong></td>
-        <td><?php echo $arr[$job['Job']['status']];?></td>
-    </tr>
+    
 	<tr>
 	<td colspan="2">
 	

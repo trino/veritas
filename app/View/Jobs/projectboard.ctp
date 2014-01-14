@@ -41,10 +41,15 @@ $(function(){
     <td><strong>Job Status</strong><br /><select name="job_status">
 	<option value="On Project Board" <?php if($model['Projectboard']['job_status'] == 'On Project Board'){?>selected="selected"<?php }?>>On Project Board</option>
 	<option value="Operation Prep" <?php if($model['Projectboard']['job_status'] == 'Operation Prep'){?>selected="selected"<?php }?>>Operation Prep</option>
-	<option value="Deployed" <?php if($model['Projectboard']['Deployed'] == 'Deployed'){?>selected="selected"<?php }?>>Deployed</option>
+	<option value="Deployed" <?php if($model['Projectboard']['job_status'] == 'Deployed'){?>selected="selected"<?php }?>>Deployed</option>
 	<option value="Active" <?php if($model['Projectboard']['job_status'] == 'Active'){?>selected="selected"<?php }?>>Active</option>
 	<option value="Complete" <?php if($model['Projectboard']['job_status'] == 'Complete'){?>selected="selected"<?php }?>>Complete</option>
-	<option value="Contract Ratification" <?php if($model['Projectboard']['job_status'] == 'Contract Ratification'){?>selected="selected"<?php }?>>Contract Ratification</option>
+    <option value="Contract Ratification" <?php if($model['Projectboard']['job_status'] == 'Contract Ratification'){?>selected="selected"<?php }?>>Contract Ratification</option>
+	<option value="Active - Recruitment Only" <?php if($model['Projectboard']['job_status'] == 'Active - Recruitment Only'){?>selected="selected"<?php }?>>Active - Recruitment Only</option>
+    <option value="Proposal Submitted" <?php if($model['Projectboard']['job_status'] == 'Proposal Submitted'){?>selected="selected"<?php }?>>Proposal Submitted</option>
+    <option value="Signed Contract" <?php if($model['Projectboard']['job_status'] == 'Signed Contract'){?>selected="selected"<?php }?>>Signed Contract</option>
+    <option value="Proposal Settled" <?php if($model['Projectboard']['job_status'] == 'Proposal Settled'){?>selected="selected"<?php }?>>Proposal Settled</option>
+    <option value="Lost to Competitor" <?php if($model['Projectboard']['job_status'] == 'Lost to Competitor'){?>selected="selected"<?php }?>>Lost to Competitor</option>
 	</select></td>
 	
     <td><strong>City</strong><br /><input type="text" class="city" name="city" value="<?php echo $model['Projectboard']['city'];?>"/></td>
