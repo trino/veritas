@@ -21,7 +21,7 @@
 <tr><td><b>Title</b></td><td> <?php echo $profile['Member']['title'];?></td></tr>
 <tr><td><b>Address</b></td><td> <?php echo $profile['Member']['address'];?></td></tr>
 <tr><td><b>Email</b></td><td> <?php echo $profile['Member']['email'];?></td></tr>
-<tr><td><b>Phone</b></td><td> <?php echo $profile['Member']['phone'];?></td></tr>
+<tr><td><b>Phone</b></td><td> <?php echo phone_number($profile['Member']['phone']);?></td></tr>
 </table>
 <div class="permissions">
 <hr />
