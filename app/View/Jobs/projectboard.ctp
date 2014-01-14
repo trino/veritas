@@ -13,7 +13,13 @@ function getloc()
         });
 }
 $(function(){
-    $( ".expire" ).datepicker({dateFormat: "m-d-yy"});
+    var country = '<?php echo $user['User']['country'];?>';
+    if(country == 'canada')
+        var formatz = "d-m-yy";
+    else if(country = 'us')
+        var formatz = "m-d-yy";
+    
+    $( ".expire" ).datepicker({dateFormat: formatz});
     $('.expire').each(function(){
        if($(this).val()=='1-1-1980')
        {

@@ -395,10 +395,11 @@ class DashboardController extends AppController
                 $logo['asap'] = 0;
                 $this->Session->write('logo','afimaclogo.png');
             }
-            else{
-            $logo['asap'] = 1;
-            $logo['afimac'] = 0;
-            $this->Session->write('logo','asap.gif');
+            else
+            {
+                $logo['asap'] = 1;
+                $logo['afimac'] = 0;
+                $this->Session->write('logo','asap.gif');
             }
             $this->loadModel('Logo');
             $this->Logo->id = 1;
@@ -517,6 +518,7 @@ class DashboardController extends AppController
                 if($_POST['password'] != '')
                 $this->User->saveField('password',md5($_POST['password']));
                 $this->User->saveField('picture',$img);
+                $this->User->saveField('country',$_POST['country']);
               }
               else
               {
