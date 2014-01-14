@@ -705,6 +705,10 @@ class JobsController extends AppController
     public function projectboard($id)
     {
         $this->loadModel('Projectboard');
+        $this->loadModel('User');
+        $this->set('user',$this->User->find('first'));
+        
+        
         $model = $this->Projectboard->find('first',array('conditions'=>array('job_id'=>$id)));
         $job = $this->Job->find('first',array('conditions'=>array('id'=>$id)));
         $this->set('job',$job);
