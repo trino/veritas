@@ -975,6 +975,10 @@ class UploadsController extends AppController
        }
        if(isset($_POST['submit']))
        {
+            $this->loadModel('Emailupload');
+            $this->loadModel('Job');
+            $this->loadModel('Member');
+            $this->loadModel('User');
             $uri = $_SERVER['REQUEST_URI'];
             $uri = str_replace('/',' ',$uri);
             $uri = str_replace(' ','/',trim($uri));
@@ -1040,6 +1044,7 @@ class UploadsController extends AppController
             {
                 $this->SpecJob->create();
                 $this->SpecJob->save($arr);
+                $eid = $this->SpecJob->id;
             }
             $log['date'] =  date('Y-m-d H:i:s');
             $log['time'] =  date('H:i:s');
@@ -1059,6 +1064,114 @@ class UploadsController extends AppController
             $log['event'] = "Upload ".$_POST['document_type'];
             $log['document_id'] = $id;
             $log['event_type'] = "Upload Document";
+            
+            
+            
+            
+            
+            
+            
+            /* for eamil */
+            
+            $jobbid = $this->Job->find('first',array('conditions'=>array('is_special'=>1)));
+            if($jobbid){
+            $mails = $this->Jobmember->find('all',array('conditions'=>array('job_id'=>$jobbid['Job']['id'])));
+                //var_dump($mails);
+                
+                $aE = $this->User->find('first');
+                 $adminEmail = $aE['User']['email'];
+                if($_SERVER['SERVER_NAME']=='localhost')
+                    $base_url = "http://localhost/veritas/";
+                else{
+                        $base_url =	 str_replace('//','___',$_SERVER['SERVER_NAME']);
+                        $base_url =  str_replace('/',' ',$_SERVER['SERVER_NAME']);
+                        $base_url = trim($base_url);
+                        $base_url = str_replace(' ','/',$base_url);
+                        $base_url = str_replace('___','//',$base_url);
+                        $base_url = $base_url.'/';
+                        
+                    }
+                    if(str_replace('http://','',$base_url)==$base_url)
+                    $base_url = 'http://'.$base_url;
+                
+                
+                
+                
+            //Email Ends// 
+            $arr['date'] = date('Y-m-d H:i:s');
+            $arr['job_id'] = $jobbid['Job']['id'];
+            $arr['addedBy'] = $id;
+            $addedBy = $id;
+            $job_title = $jobbid['Job']['title'];
+			
+		//	debug($arr);exit;
+            //$this->Document->create();
+            //$this->Document->save($arr);
+            //$id=$this->Document->id;
+            //var_dump($mails);die();
+            //var_dump($mails);die();
+            
+            foreach($mails as $m)
+                {
+                    
+                    $mem_id = $m['Jobmember']['member_id'];
+                    if($emailupload = $this->Emailupload->findByMemberId($mem_id))
+                    if($_POST['document_type'] == 'AFIMAC Intel')
+                    $doct = 'afimac_intel';
+                    else
+                    $doct = 'news_media';
+                    if($emailupload['Emailupload'][$doct] == 1 )
+                    if($t = $this->Member->find('first',array('conditions'=>array('id'=>$mem_id))))
+                    {
+                        //die('here1');
+                        $to = $t['Member']['email'];
+                        $emails = new CakeEmail();
+                        $emails->from(array('noreply@veritas.com'=>'Veritas'));
+                        
+                        $emails->subject("A new document has been uploaded!");
+                        $emails->emailFormat('html');
+                        
+                            $message="
+							Job: ".$job_title."<br/>
+                            Document: ".$arr['document_type']."<br/>
+                            Author: ".$arr['author']."<br/>
+                            Upload Date: ".date('Y-m-d')."<br/><a href='".$base_url."?upload_s=".$eid."'>Click Here</a> to login and view the document.";
+                        
+                            
+                        if($to)
+                        {
+                            $checks = $this->Member->find('first',array('conditions'=>array('email'=>$to)));
+                            $check=0;
+                        if($checks)
+                        {
+                            if($checks['Member']['receive1']==1 || $checks['Member']['receive2']==1)
+                                $check=1;
+                            else
+                                $check=0;
+                        }    
+                        if($check==1)
+                        {
+                            //die($to);
+                            $emails->to($to);
+                            if($to != $this->Session->read('email'))
+                            $emails->send($message);
+                            $emails->reset();
+                        }
+                        
+                        }
+                    }    
+                }
+                //die('here');
+            }
+            
+            /* for eamial */
+            
+            
+            
+            
+            
+            
+            
             $this->Event_log->create();
             $this->Event_log->save($log);
             $this->Session->setFlash('Data Saved Successfully.');

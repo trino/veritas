@@ -24,6 +24,9 @@ class HomeController extends AppController {
         if(isset($_GET['upload']))
         $this->redirect('/dashboard/?upload='.$_GET['upload']);
         else
+        if(isset($_GET['upload_s']))
+        $this->redirect('/dashboard/?upload_s='.$_GET['upload_s']);
+        else
         $this->redirect('/dashboard');
         }
         

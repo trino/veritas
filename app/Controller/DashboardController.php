@@ -83,6 +83,9 @@ class DashboardController extends AppController
             $this->redirect('/mail/read/'.$_GET['mail']);
        if(isset($_GET['upload']))
             $this->redirect('/uploads/view_detail/'.$_GET['upload']);
+            if(isset($_GET['upload_s'])){
+            $this->redirect('/uploads/view_detail/'.$_GET['upload_s'].'/special');
+            }
         if($this->Session->read('job_id'))
         {
             $this->redirect('/jobs/view/'.$this->Session->read('job_id'));

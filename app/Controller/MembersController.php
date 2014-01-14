@@ -673,7 +673,7 @@ class MembersController extends AppController
             {
                 
                 $this->Emailupload->deleteAll(array('member_id'=>$id));
-                $emailupload['member_id'] = $id;
+                echo $emailupload['member_id'] = $id;
                 $emailupload['contract'] = (isset($_POST['Email_contracts'])&& $_POST['Email_contracts'])? '1' : '0'  ;
                 $emailupload['evidence'] = (isset($_POST['Email_evidence'])&& $_POST['Email_evidence'])? '1' : '0'  ;
                 $emailupload['template'] = (isset($_POST['Email_templates'])&& $_POST['Email_templates'])? '1' : '0'  ;
