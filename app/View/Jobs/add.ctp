@@ -89,6 +89,7 @@ if($c%5==0)
 </table>
 </td></tr>
 </table>
+<input type="hidden" name="status" value="0" class="" />
 
 <div class="add_more"></div>
 
