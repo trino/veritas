@@ -607,8 +607,8 @@ class MembersController extends AppController
                 $canview['training'] = (isset($_POST['canView_training'])&& $_POST['canView_training'])? '1' : '0'  ;
                 $canview['employee'] = (isset($_POST['canView_employee'])&& $_POST['canView_employee'])? '1' : '0'  ;
                 $canview['KPIAudits'] = (isset($_POST['canView_KPIAudits'])&& $_POST['canView_KPIAudits'])? '1' : '0'  ;
-                echo $canview['afimac_intel'] = (isset($_POST['canView_afimac_intel'])&& $_POST['canView_afimac_intel'])? '1' : '0'  ;
-                echo $canview['news_media'] = (isset($_POST['canView_news_media'])&& $_POST['canView_news_media'])? '1' : '0'  ;
+                $canview['afimac_intel'] = (isset($_POST['canView_afimac_intel'])&& $_POST['canView_afimac_intel'])? '1' : '0'  ;
+                $canview['news_media'] = (isset($_POST['canView_news_media'])&& $_POST['canView_news_media'])? '1' : '0'  ;
                 $this->Canview->create();
                 $this->Canview->save($canview);
                 //die('here');
@@ -673,7 +673,7 @@ class MembersController extends AppController
             {
                 
                 $this->Emailupload->deleteAll(array('member_id'=>$id));
-                echo $emailupload['member_id'] = $id;
+                $emailupload['member_id'] = $id;
                 $emailupload['contract'] = (isset($_POST['Email_contracts'])&& $_POST['Email_contracts'])? '1' : '0'  ;
                 $emailupload['evidence'] = (isset($_POST['Email_evidence'])&& $_POST['Email_evidence'])? '1' : '0'  ;
                 $emailupload['template'] = (isset($_POST['Email_templates'])&& $_POST['Email_templates'])? '1' : '0'  ;
