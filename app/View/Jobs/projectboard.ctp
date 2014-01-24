@@ -29,7 +29,13 @@ $(function(){
        if($(this).val()=='')
        {
             $(this).val('01-01-1980');
-       } 
+       }
+        else
+       if($(this).val()=='0000-00-00')
+       {
+            $(this).val('01-01-1980');
+       }
+       
     });
     });
 </script>
