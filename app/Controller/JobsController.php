@@ -721,7 +721,7 @@ class JobsController extends AppController
             {
                 if(str_replace('_date','',$k)!= $k){
                     $arrs = explode('-',$v);
-                    $arr[$k] = $arrs[2].'-'.$arrs[0].'-'.$arrs[1];
+                    $arr[$k] = $arrs[0].'-'.$arrs[1].'-'.$arrs[2];
                     //$arr[$k] = date('Y-m-d',strtotime($v));
                     }
                 else

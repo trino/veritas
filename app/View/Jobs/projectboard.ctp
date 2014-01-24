@@ -13,11 +13,11 @@ function getloc()
         });
 }
 $(function(){
-    var country = '<?php echo $user['User']['country'];?>';
-    if(country == 'canada')
-        var formatz = "mm-dd-yy";
-    else if(country = 'us')
-        var formatz = "mm-dd-yy";
+    // var country = '<?php echo $user['User']['country'];?>';
+    // if(country == 'canada')
+        // var formatz = "mm-dd-yy";
+    // else if(country = 'us')
+        var formatz = "yy-mm-dd";
     
     $( ".expire" ).datepicker({dateFormat: formatz});
     $('.expire').each(function(){
@@ -28,12 +28,12 @@ $(function(){
        else
        if($(this).val()=='')
        {
-            $(this).val('01-01-1980');
+            $(this).val('1980-01-01');
        }
         else
        if($(this).val()=='0000-00-00')
        {
-            $(this).val('01-01-1980');
+            $(this).val('1980-01-01');
        }
        
     });
@@ -41,7 +41,7 @@ $(function(){
 </script>
 <?php function changedate($d)
         {
-            return date('m-d-Y',strtotime($d));
+            return $d;
         }
 ?>
 <h3 class="page-title">Project Board</h3>
