@@ -15,24 +15,29 @@ function getloc()
 $(function(){
     var country = '<?php echo $user['User']['country'];?>';
     if(country == 'canada')
-        var formatz = "d-m-yy";
+        var formatz = "mm-dd-yy";
     else if(country = 'us')
-        var formatz = "m-d-yy";
+        var formatz = "mm-dd-yy";
     
     $( ".expire" ).datepicker({dateFormat: formatz});
     $('.expire').each(function(){
-       if($(this).val()=='1-1-1980')
+       if($(this).val()=='01-01-1980')
        {
-            $(this).val('1-1-1980');
+            $(this).val('01-01-1980');
        }
        else
        if($(this).val()=='')
        {
-            $(this).val('1-1-1980');
+            $(this).val('01-01-1980');
        } 
     });
     });
 </script>
+<?php function changedate($d)
+        {
+            return date('m-d-Y',strtotime($d));
+        }
+?>
 <h3 class="page-title">Project Board</h3>
 <form method="post" action="">
 <input type="hidden" name="job_id" value="<?php echo $job['Job']['id'];?>" />
@@ -64,17 +69,17 @@ $(function(){
 <tr>
     <td><strong>Latitude</strong><br /><input type="text" class="lat" name="latitude" value="<?php echo $model['Projectboard']['latitude'];?>"/></td>
     <td><strong>Longitude</strong><br /><input type="text" class="long" name="longitude" value="<?php echo $model['Projectboard']['longitude'];?>"/></td>
-    <td><strong>Expiration Date</strong><br /><input type="text" class="expire" name="expiration_date" value="<?php echo $model['Projectboard']['expiration_date'];?>"/></td>
+    <td><strong>Expiration Date</strong><br /><input type="text" class="expire" name="expiration_date" value="<?php echo changedate($model['Projectboard']['expiration_date']);?>"/></td>
 </tr>
 <tr>
-    <td><strong>Proposal Date</strong><br /><input type="text" class="expire" name="proposal_date" value="<?php echo $model['Projectboard']['proposal_date'];?>"/></td>
-    <td><strong>Contract Date</strong><br /><input type="text" class="expire" name="contract_date" value="<?php echo $model['Projectboard']['contract_date'];?>"/></td>
-    <td><strong>Settled Date</strong><br /><input type="text" class="expire" name="competition_date" value="<?php echo $model['Projectboard']['competition_date'];?>"/></td>
+    <td><strong>Proposal Date</strong><br /><input type="text" class="expire" name="proposal_date" value="<?php echo changedate($model['Projectboard']['proposal_date']);?>"/></td>
+    <td><strong>Contract Date</strong><br /><input type="text" class="expire" name="contract_date" value="<?php echo changedate($model['Projectboard']['contract_date']);?>"/></td>
+    <td><strong>Settled Date</strong><br /><input type="text" class="expire" name="competition_date" value="<?php echo changedate($model['Projectboard']['competition_date']);?>"/></td>
 </tr>
 <tr>
-    <td><strong>Active Start Date</strong><br /><input type="text" class="expire" name="active_start_date" value="<?php echo $model['Projectboard']['active_start_date'];?>" /></td>
-    <td><strong>Completion Date</strong><br /><input type="text" class="expire" name="completion_date" value="<?php echo $model['Projectboard']['completion_date'];?>"/></td>
-    <td><strong>New Expiration Date</strong><br /><input type="text" class="expire" name="new_expiration_date" value="<?php echo $model['Projectboard']['new_expiration_date'];?>"/></td>
+    <td><strong>Active Start Date</strong><br /><input type="text" class="expire" name="active_start_date" value="<?php echo changedate($model['Projectboard']['active_start_date']);?>" /></td>
+    <td><strong>Completion Date</strong><br /><input type="text" class="expire" name="completion_date" value="<?php echo changedate($model['Projectboard']['completion_date']);?>"/></td>
+    <td><strong>New Expiration Date</strong><br /><input type="text" class="expire" name="new_expiration_date" value="<?php echo changedate($model['Projectboard']['new_expiration_date']);?>"/></td>
     
 </tr>
 <tr>
@@ -192,7 +197,7 @@ $(function(){
     <td style=""><strong>Cots Deployed</strong><br /><input type="text" name="cots_trailer_deployed"  value="<?php echo $model['Projectboard']['cots_trailer_deployed'];?>"/></td>
 </tr>
 <tr>
-    <td style=""><strong>Deployment Start Date</strong><br /><input type="text" class="expire" name="deployment_start_date"  value="<?php echo $model['Projectboard']['deployment_start_date'];?>"/></td>
+    <td style=""><strong>Deployment Start Date</strong><br /><input type="text" class="expire" name="deployment_start_date"  value="<?php echo changedate($model['Projectboard']['deployment_start_date']);?>"/></td>
     <td style=""><strong>Tombstone/Man Hours</strong><br /><input type="text" name="tombstone_man_hours"  value="<?php echo $model['Projectboard']['tombstone_man_hours'];?>"/></td>
     
 </tr>

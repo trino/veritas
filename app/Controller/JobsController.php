@@ -719,8 +719,11 @@ class JobsController extends AppController
         {
             foreach($_POST as $k=>$v)
             {
-                $arr[$k] = $v;
-                //echo "<br/>";
+                if(str_replace('_date','',$k)!= $k)
+                    $arr[$k] = date('Y-m-d',strtotime($v));
+                else
+                    $arr[$k] = $v;
+                
             } 
             //die();
             $this->Projectboard->id = $pro['Projectboard']['id'];
