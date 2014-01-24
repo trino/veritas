@@ -308,7 +308,7 @@ function remove_youtube()
     <option value="1" <?php if($typee){?>selected="selected"<?php }?>>Activity Log</option>
     <option value="2">Mobile Inspection</option>
     <option value="3">Mobile Security</option>
-    <option value="4">Security Occurance</option>
+    <option value="4">Security Occurrence</option>
     <option value="5" >Incident Report</option>
     <option value="6" >Sign-off Sheets</option>
 </select>

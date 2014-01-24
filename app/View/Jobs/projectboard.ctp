@@ -180,7 +180,7 @@ $(function(){
     <td style=""><strong>Transport Truck Deployed</strong><br /><input type="text" name="transport_trailer_deployed"  value="<?php echo $model['Projectboard']['transport_trailer_deployed'];?>"/></td>
 </tr>
 <tr>
-    <td style=""><strong>Reffer Projected</strong><br /><input type="text" name="reffer_trailer_projected"  value="<?php echo $model['Projectboard']['reffer_trailer_projected'];?>"/></td>
+    <td style=""><strong>Reefer Projected</strong><br /><input type="text" name="reffer_trailer_projected"  value="<?php echo $model['Projectboard']['reffer_trailer_projected'];?>"/></td>
     <td style=""><strong>Reffer Deployed</strong><br /><input type="text" name="reffer_trailer_deployed"  value="<?php echo $model['Projectboard']['reffer_trailer_deployed'];?>"/></td>
 </tr>
 <tr>
