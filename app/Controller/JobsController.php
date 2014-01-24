@@ -719,13 +719,19 @@ class JobsController extends AppController
         {
             foreach($_POST as $k=>$v)
             {
-                if(str_replace('_date','',$k)!= $k)
-                    $arr[$k] = date('Y-m-d',strtotime($v));
+                if(str_replace('_date','',$k)!= $k){
+                    $arrs = explode('-',$v);
+                    $arr[$k] = $arrs[2].'-'.$arrs[0].'-'.$arrs[1];
+                    //$arr[$k] = date('Y-m-d',strtotime($v));
+                    }
                 else
                     $arr[$k] = $v;
                 
-            } 
+            }
             //die();
+            
+            //die();
+            
             $this->Projectboard->id = $pro['Projectboard']['id'];
             $this->Projectboard->save($arr);
             $this->Session->setFlash('Successfully Saved');
