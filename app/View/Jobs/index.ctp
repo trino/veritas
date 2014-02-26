@@ -50,9 +50,9 @@ if($job){
     ?>
     <table>    
 	        <tr>
-                <th colspan="2">Company</th>
+                <th colspan="2"><?php echo $this->Paginator->sort('title','Company');?></th>
                 <?php if($this->Session->read('avatar')) { ?><th>Assigned to</th><?php }?>
-                <th>Job id</th>
+                <th><?php echo $this->Paginator->sort('id','Job Id');?></th>
                 <th style="width:420px;">Options</th>
             </tr>
     <?php        

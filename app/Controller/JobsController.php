@@ -227,7 +227,7 @@ class JobsController extends AppController
             }
                         
             $this->Session->setFlash('Data Saved Successfully.');
-            $this->redirect('index');
+            $this->redirect('projectboard/'.$id);
             
         }
     }
@@ -437,7 +437,7 @@ class JobsController extends AppController
             
              
             $this->Session->setFlash('Data Saved Successfully.');
-            $this->redirect('index'); 
+            $this->redirect('projectboard/'.$id); 
         }
         $this->set('j',$this->Job->find('first',array('conditions'=>array('id'=>$id))));
         $this->set('keys', $this->Key_contact->find('all', array('conditions'=>array('job_id'=>$id))));

@@ -829,7 +829,12 @@ class MembersController extends AppController
     }
     public function view($id)
     {
+        $this->loadModel('EventLog');
         $this->set('profile',$this->Member->find('first',array('conditions'=>array('id'=>$id))));
+        
+        $this->paginate = array('conditions'=>array('member_id'=>$id,'event_type <>'=> 'User Login'),'limit'=>10);
+        $user_stat = $this->paginate('EventLog');
+        $this->set('user_stat',$user_stat);
     }
 	
 	public function videos()
