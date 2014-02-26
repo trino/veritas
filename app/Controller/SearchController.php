@@ -6,10 +6,17 @@ class SearchController extends AppController
     
     public function index($type = '',$job_id=0)
     {
+        $this->loadModel('Member');
         if(!$this->Session->read('admin')){
         $sess_id = $this->Session->read('id');
         }
-        
+        else
+        {
+            $u = $this->Member->find('all',array('conditions'=>array('id NOT IN(SELECT member_id from jobmembers WHERE job_id IN(SELECT id FROM jobs WHERE is_special = 1))')));
+            $this->set('u',$u);
+            //var_dump($u);die();
+        }
+        //var_dump($u);die();
         $this->set('type',$type);
         $this->loadModel('Doc');
         $this->loadModel('Image');
@@ -23,8 +30,9 @@ class SearchController extends AppController
         $this->loadModel('Jobmember');
         
         $this->loadModel('SpecJob');
-        
+        if(isset($sess_id))
         $sess = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$sess_id)));
+        if(isset($sess))
         if($sess)
         {
             $jjj = $sess['Jobmember']['job_id'];
@@ -122,8 +130,15 @@ class SearchController extends AppController
             }
             }
             else{                        
-            $this->paginate = array('order'=>$order,'limit'=>10);
+            if(isset($_GET['member'])){    
+            $this->paginate = array('conditions'=>array('addedBy'=>$_GET['member']),'order'=>$order,'limit'=>10);
+            $this->set('count',$this->Document->find('count',array('conditions'=>array('addedBy'=>$_GET['member']))));
+            }
+            else
+            {
+                $this->paginate = array('order'=>$order,'limit'=>10);
             $this->set('count',$this->Document->find('count'));
+            }
             }
             }
             else

@@ -47,7 +47,30 @@ $(function(){
     <input type="hidden" value="<?php if(isset($_GET['search']))echo $_GET['search'];?>" name="search" /> 
     <input type="submit" value="Go" class="btn btn-primary" />
 </form>
-
+<?php
+if($this->Session->read('admin'))
+{
+    if($u){
+        ?>
+        <select onchange="if($(this).val()!=''){window.location='http://localhost/veritas/search?search=&member='+$(this).val();}">
+        <option value="">Uploaded By</option>
+        <option value="0">Admin</option>
+        <?php
+        foreach($u as $us)
+        {
+            
+        
+  ?>
+  <option value="<?php echo $us['Member']['id']?>" <?php if(isset($_GET['member']) && $_GET['member']==$us['Member']['id']){?>selected="selected"<?php }?>><?php echo $us['Member']['full_name']?></option>
+  
+  <?php 
+  }
+  ?>
+  </select>
+  <?php 
+  }
+}
+?>
 
 
 <?php
@@ -74,6 +97,11 @@ if(!isset($sid)){
     
 $uri = $_SERVER['REQUEST_URI'];    
 $uri = str_replace(array('/veritas/','veritas/','?order=document_type','&order=document_type','?order=job_title','&order=job_title','?order=description','&order=description','?order=title','&order=title','?order=addedBy','&order=addedBy','?order=incident_date','&order=incident_date','&order=evidence_author','?order=evidence_author','?order=`date`','&order=`date`','?order=%60date%60','&order=%60date%60','&ty=ASC','&ty=DESC'),array('','','','','','','','','','','','','','','',''),$uri);
+if(isset($_GET['member']))
+{
+    $me = $_GET['member'];
+    $uri = str_replace('&member='.$me,'',$uri);
+}
 if(str_replace('search=','',$uri) == $uri)
 {
     $or = '?order=';
@@ -96,7 +124,7 @@ $or = '&order=';
             <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'`date`&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='`date`') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Uploaded On</a><?php //echo $this->Paginator->sort('date','Uploaded On');?><!--</a>--></th>
             <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'incident_date&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='incident_date') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Incident Date</a><?php //echo $this->Paginator->sort('date','Uploaded On');?><!--</a>--></th>
             <th>File</th>
-            <th>Option</th>
+            <th style="width: 185px;">Option</th>
         </tr>
     <?php
     
@@ -212,6 +240,11 @@ else
     
 $uri = $_SERVER['REQUEST_URI'];    
 $uri = str_replace(array('/veritas/','veritas/','?order=document_type','?order=job_title','&order=job_title','&order=author','?order=dop','&order=`desc`','&order=%60desc%60','?order=doc','&ty=ASC','&ty=DESC'),array('','','','','','','','','','','',''),$uri);
+if(isset($_GET['member']))
+{
+    $me = $_GET['member'];
+    $uri = str_replace('&member='.$me,'',$uri);
+}
 if(str_replace('search=','',$uri) == $uri)
 {
     $or = '?order=';
