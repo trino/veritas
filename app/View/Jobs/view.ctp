@@ -359,6 +359,7 @@ if($this->Session->read('upload')=='1' || $this->Session->read('admin'))
 if($this->Session->read('admin'))
 {
     echo $this->Html->link('Edit','/jobs/edit/'.$job['Job']['id'],array('class'=>'btn btn-info'))."  ";
+    echo $this->Html->link('Project Board','/jobs/projectboard/'.$job['Job']['id'],array('class'=>'btn btn-success'))."  ";
     echo $this->Html->link('Delete','/jobs/delete/'.$job['Job']['id'],array('class'=>'btn btn-danger'), "Confrim Delete Job?");
 }
 ?>

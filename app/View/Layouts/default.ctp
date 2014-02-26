@@ -42,10 +42,14 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 		//echo $this->Html->css('cake.generic');
         echo $this->Html->css('bootstrap.min');
+        echo $this->Html->css('accodian');        
         //echo $this->Html->css('video-js');
         echo $this->Html->css('style');
         echo $this->Html->css('jquery.timepicker');
         echo $this->Html->script('jquery');
+        echo $this->Html->script('jquery.dcjqaccordian');
+        echo $this->Html->script('cookie');
+        echo $this->Html->script('hoverintent');        
         //echo $this->Html->script('video');
         echo $this->Html->script('ajaxupload.3.6');
         echo $this->Html->script('jquery.validate');
@@ -365,23 +369,45 @@ url: '<?php echo $base_url;?>admin/logout'
 				echo "asap.png";
 				} ?>" /></td></tr></table>
 			</div>
-			
 			<div class="menu">
+			<ul id="acc" >
 				<?php if($this->Session->read('avatar')){?>
-					<?php  echo $this->Html->link('<i class="icon-user"></i>'.'User Manager','/members',array('escape' => false,)); ?>
-					<?php  //echo $this->Html->link('<i class="icon-user"></i>'.'Company Manager','/comp',array('escape' => false,)); ?>
+					<li><?php  echo $this->Html->link('<i class="icon-user"></i>'.'User Manager','/members',array('escape' => false,)); ?>
+                        <ul>
+                        <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Add User','/members/add',array('escape'=>false));?></li>
+                        </ul>
+                    </li>
+					
+                    <?php  //echo $this->Html->link('<i class="icon-user"></i>'.'Company Manager','/comp',array('escape' => false,)); ?>
 					<?php // echo $this->Html->link('<i class="icon-list"></i>'.'Pages','/dashboard/home',array('escape' => false,)); ?>
 				<?php } ?>
 	   			
-				<?php  echo $this->Html->link('<i class="icon-globe"></i>'.'Job Manager','/jobs',array('escape' => false,)); ?>
-				<?php  echo $this->Html->link('<i class="icon-envelope-alt"></i>'.'Instant Message <span class="notific"></span>','/mail',array('escape' => false,)); ?>
-
+				<li><?php  echo $this->Html->link('<i class="icon-globe"></i>'.'Job Manager','/jobs',array('escape' => false,)); ?>
+                    <ul>
+                        <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Add Job','/jobs/add',array('escape'=>false));?></li>
+                        <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Assign Job to User','/jobs/listing',array('escape'=>false));?></li>
+                    </ul>
+                </li>
+				<li><?php  echo $this->Html->link('<i class="icon-envelope-alt"></i>'.'Instant Message <span class="notific"></span>','/mail',array('escape' => false,)); ?></li>
+                <li><?php echo $this->Html->link('<i class="icon-copy"></i>Documents','/search', array('escape'=>false));?></li>
 				<?php if($this->Session->read('user') && $usr['Member']['canUpdate']==1 && $usr['Member']['Canupload']['report']=='1')  echo $this->Html->link('<i class="icon-time"></i>'.'Saved Drafts','/uploads/draft',array('escape'=>false));?>
-                <?php echo $this->Html->link('<i class="icon-star"></i>'.'Contacts','/contacts',array('escape'=>false));?>
-                <?php if($this->Session->read('admin'))  echo $this->Html->link('<i class="icon-briefcase"></i>'.'Analytics','/uploads/stats',array('escape'=>false));?>
-
+                <li><?php echo $this->Html->link('<i class="icon-star"></i>'.'Contacts','/contacts',array('escape'=>false));?>
+                    <ul>
+                        <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Add Contact','/contacts/add',array('escape'=>false));?></li>
+                        <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Upload contact','/contacts/upload',array('escape'=>false));?></li>
+                    </ul>
+                </li>
+                <?php if($this->Session->read('admin')){?>
+                  <li>  <?php echo $this->Html->link('<i class="icon-briefcase"></i>'.'Analytics','/uploads/stats',array('escape'=>false));?>
+                  <ul>
+                    <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Graphical Report','/uploads/graphs', array('escape'=>false));?></li>
+                    <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Regular Report','/uploads/stats', array('escape'=>false));?></li>
+                  </ul>
+                  </li>
+                <?php }?>
 				<?php //echo $this->Html->link('Document','/uploads'); ?>
-			</div>
+			</ul>
+            </div>
             <?php
             if($this->Session->read('special'))
             {
@@ -402,6 +428,14 @@ url: '<?php echo $base_url;?>admin/logout'
     <script>
     $(function(){
        $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'}); 
+       $('#acc').dcAccordion({
+            eventType: 'hover',
+            autoClose: true,
+            saveState: true,
+            disableLink: false,
+            showCount: false,
+            speed: 'fast'
+            });
     });
     </script>
 
