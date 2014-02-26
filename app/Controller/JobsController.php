@@ -765,6 +765,42 @@ class JobsController extends AppController
         $this->Jobmember->saveField('job_id',$job_ids);
         die();
     }
+    public function addtodoc()
+    {
+        $this->loadModel('Document');
+        $this->loadModel('Job');
+        $this->loadModel('SpecJob');
+        $q = $this->Document->find('all');
+        $q3 = $this->Job->find('first',array('conditions'=>array('is_special'=>1)));
+        foreach($q as $a)
+        {
+            $id = $a['Document']['id'];
+            $jid = $a['Document']['job_id'];
+            if($jid){
+            $q2 = $this->Job->findById($jid);
+            $jtit = $q2['Job']['title'];
+            $this->Document->id = $id;
+            $this->Document->saveField('job_title',$jtit);
+            }
+        }
+        if($q3)
+        {
+            $spetit = $q3['Job']['title'];
+            $query = $this->SpecJob->find('all');
+            if($query)
+            {
+                foreach($query as $qu)
+                {
+                    $sid = $qu['SpecJob']['id'];
+                    $this->SpecJob->id = $sid;
+                    $this->SpecJob->saveField('job_title',$spetit);
+                }
+                
+            } 
+        }
+        
+        die('here');
+    }
     
     
 }
