@@ -36,5 +36,41 @@ $arr = array('no','yes');
 <tr><td><strong>Can Send Message</strong></td><td><?php echo $arr[$profile['Member']['canEmail']];?></td></tr>
 </table>
 </div>
+<?php if($this->Session->read('admin')){
+    if(count($user_stat)>0)
+    {
+    ?>
+<div class="user_stats">
+<hr />
+<h3 style="padding-left: 10px;font-size: 17px; margin-bottom:10px;">User Statistics</h3>
+<table class="table" >
+<thead><th>Event Type</th><th>Event</th><th>Uploaded By</th><th>Uploaded On</th></thead>
+<?php foreach($user_stat as $u){
+    ?>
+    <tr>
+        <td><?php echo $u['EventLog']['event_type'];?></td>
+        <td><?php echo $this->Html->link($u['EventLog']['event'],"/uploads/view_detail/".$u['EventLog']['document_id'],'target=_blank');?></td>
+        <td><?php echo $u['EventLog']['fullname'];?></td>
+        <td><?php echo $u['EventLog']['date']." ".$u['EventLog']['time'];?></td>
+    </tr>
+<?php } ?>
+</table>
 
+</div>
+<div class="clear"></div>
+<div class="pagination2">
+<ul>
+<?php echo $this->Paginator->prev('«', array('tag' => 'li')); ?>
+<?php echo str_replace(" | ","",$this->Paginator->numbers(array('tag' => 'li'))); ?>
+<?php echo $this->Paginator->next('»', array('tag' => 'li')); ?>
+</ul>
+</div>
+<?php }
+else
+{
+    echo "<h3 style='padding-left: 10px;font-size: 17px; margin-bottom:10px;'>No Document Statistics Yet!</h3>";
+}
+}
+
+ ?>
 </div>
