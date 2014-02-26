@@ -33,6 +33,7 @@ $(function(){
     }
     ?>
 </h3>
+<h3 class="" style="font-size: 19px;" ><em><strong><?php echo $count;?></strong> Results found</em></h3>
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
@@ -46,6 +47,8 @@ $(function(){
     <input type="hidden" value="<?php if(isset($_GET['search']))echo $_GET['search'];?>" name="search" /> 
     <input type="submit" value="Go" class="btn btn-primary" />
 </form>
+
+
 
 <?php
 if(isset($noView))
@@ -70,7 +73,7 @@ if((isset($canView) && !isset($noView)) || $this->Session->read('admin'))
 if(!isset($sid)){    
     
 $uri = $_SERVER['REQUEST_URI'];    
-$uri = str_replace(array('/veritas/','veritas/','?order=document_type','&order=document_type','?order=description','&order=description','?order=title','&order=title','?order=addedBy','&order=addedBy','?order=incident_date','&order=incident_date','&order=evidence_author','?order=evidence_author','?order=`date`','&order=`date`','?order=%60date%60','&order=%60date%60','&ty=ASC','&ty=DESC'),array('','','','','','','','','','','','','',''),$uri);
+$uri = str_replace(array('/veritas/','veritas/','?order=document_type','&order=document_type','?order=job_title','&order=job_title','?order=description','&order=description','?order=title','&order=title','?order=addedBy','&order=addedBy','?order=incident_date','&order=incident_date','&order=evidence_author','?order=evidence_author','?order=`date`','&order=`date`','?order=%60date%60','&order=%60date%60','&ty=ASC','&ty=DESC'),array('','','','','','','','','','','','','','','',''),$uri);
 if(str_replace('search=','',$uri) == $uri)
 {
     $or = '?order=';
@@ -84,6 +87,7 @@ $or = '&order=';
         <tr>
             
             <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'document_type&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='document_type') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Document Type</a><?php //echo $this->Paginator->sort('document_type','Document Type');?></th>
+            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'job_title&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='job_title') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Job</a><?php //echo $this->Paginator->sort('job_title','Document Type');?></th>
             <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'evidence_author&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='evidence_author') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Author</a><?php //echo $this->Paginator->sort('document_type','Document Type');?></th>
             <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'description&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='description') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Description</a><?php //echo $this->Paginator->sort('description','Description');?></th> 
             <!--<th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'title&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='title') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Title</a><?php //echo $this->Paginator->sort('title','Title');?></th>-->           
@@ -103,7 +107,7 @@ $or = '&order=';
         continue ;
         $m++;
         
-        if($m==1)
+        /*if($m==1)
         {
             $arr[]=$docs[$k]['Document']['job_id'];   
         ?>
@@ -121,13 +125,14 @@ $or = '&order=';
                 <tr style="background: grey;color:#FFF;"><td colspan="8"><?php if($d['Document']['job_id']=='-1'){ ?><strong>Deleted Job</strong><?php }else{?><strong>Job :</strong><strong><?php $get2 = $jo_bs->find('first',array('conditions'=>array('id'=>$d['Document']['job_id'])));if($get2)echo $get2['Job']['title']; ?></strong><?php }?></tr>
                 <?php
             }
-        }
+        }*/
      
        
        ?>
             
        <tr>
             <td><?php  if($d['Document']['document_type']=='evidence')echo "Evidence (".$d['Document']['evidence_type'].')';elseif($d['Document']['document_type']=='report'){$act = $activity->find('first',array('conditions'=>array('document_id'=>$d['Document']['id'])));if($act){ echo "Report (";if($act['Activity']['report_type']==1)echo "Activity Log";if($act['Activity']['report_type']==2)echo "Mobile Inspection";if($act['Activity']['report_type']==3)echo "Mobile Security";if($act['Activity']['report_type']==4)echo "Security Occurence";if($act['Activity']['report_type']==5)echo "Incident Report";if($act['Activity']['report_type']==6)echo "Sign Off";if($act['Activity']['report_type']==7)echo "Loss Prevention";echo ")";}}else echo $d['Document']['document_type']; ?></td>
+            <td><?php echo $d['Document']['job_title'];?></td>
             <td><?php echo $d['Document']['evidence_author'];?></td>
             <!--<td><?php echo $d['Document']['location']; ?></td>-->
             <td><?php if($d['Document']['document_type']!='client_feedback' || $this->Session->read('admin'))echo $d['Document']['description']; ?></td>
@@ -206,7 +211,7 @@ else
         
     
 $uri = $_SERVER['REQUEST_URI'];    
-$uri = str_replace(array('/veritas/','veritas/','?order=document_type','&order=author','?order=dop','&order=`desc`','&order=%60desc%60','?order=doc','&ty=ASC','&ty=DESC'),array('','','','','','','','','',''),$uri);
+$uri = str_replace(array('/veritas/','veritas/','?order=document_type','?order=job_title','&order=job_title','&order=author','?order=dop','&order=`desc`','&order=%60desc%60','?order=doc','&ty=ASC','&ty=DESC'),array('','','','','','','','','','','',''),$uri);
 if(str_replace('search=','',$uri) == $uri)
 {
     $or = '?order=';
@@ -220,6 +225,7 @@ $or = '&order=';
         <tr>
             
             <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'document_type&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='document_type') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Document Type</a><?php //echo $this->Paginator->sort('document_type','Document Type');?></th>
+            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'job_title&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='job_title') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Job</a><?php //echo $this->Paginator->sort('document_type','Document Type');?></th>
             <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'author&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='author') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Author</a><?php //echo $this->Paginator->sort('document_type','Document Type');?></th>
             <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'`desc`&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='`desc`') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Description</a><?php //echo $this->Paginator->sort('description','Description');?></th> 
              <th>Added By</th>          
@@ -238,7 +244,7 @@ $or = '&order=';
         
         $m++;
         
-        if($m==1)
+        /*if($m==1)
         {
                
         ?>
@@ -247,13 +253,14 @@ $or = '&order=';
         
         <?php
         }
-        
+        */
      
        
        ?>
             
        <tr>
             <td><?php echo $d['SpecJob']['document_type'];?></td>
+            <td><?php echo $d['SpecJob']['job_title'];?></td>
             <td><?php echo $d['SpecJob']['author'];?></td>
             
             <td><?php echo $d['SpecJob']['desc']; ?></td>
