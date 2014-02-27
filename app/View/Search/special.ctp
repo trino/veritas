@@ -42,7 +42,7 @@ $(function(){
 </ul>
 
 
-<form action="<?php echo $base_url;?>search/special/<?php echo $type;?>" method="get" id="datefilter">
+<form action="<?php echo $base_url;?>search/special/<?php echo $type;?>" method="get" id="datefilter" style="float: left;margin-right:10px;">
     <input type="text" value="" name="from" placeholder="Start Date" style="width: 100px; margin-top:10px;" class="datepicker required" />
     <input type="text" value="" name="to" placeholder="End Date" style="width: 100px; margin-top: 10px;" class="datepicker required" />
     <input type="hidden" value="<?php if(isset($_GET['search']))echo $_GET['search'];?>" name="search" /> 
@@ -51,6 +51,9 @@ $(function(){
 <?php
 if($this->Session->read('admin'))
 {
+    ?>
+    <div style="float: left;margin-top:11px;">
+    <?php
     if($u){
         ?>
         <select onchange="if($(this).val()!=''){window.location='<?php echo $base_url;?>search/special/<?php echo $t;?>/?member='+$(this).val();}">
@@ -87,6 +90,7 @@ if($this->Session->read('admin'))
   <?php
 }
 ?>
+</div>
 <?php
 if(count($doc)>0)
 {?>
