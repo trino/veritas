@@ -49,6 +49,45 @@ $(function(){
     <input type="submit" value="Go" class="btn btn-primary" />
 </form>
 <?php
+if($this->Session->read('admin'))
+{
+    if($u){
+        ?>
+        <select onchange="if($(this).val()!=''){window.location='<?php echo $base_url;?>search/special/<?php echo $t;?>/?member='+$(this).val();}">
+        <option value="">Uploaded By</option>
+        <option value="0">Admin</option>
+        <?php
+        foreach($u as $us)
+        {
+            
+        
+  ?>
+  <option value="<?php echo $us['Member']['id']?>" <?php if(isset($_GET['member']) && $_GET['member']==$us['Member']['id']){?>selected="selected"<?php }?>><?php echo $us['Member']['full_name']?></option>
+  
+  <?php 
+  }
+  ?>
+  </select>
+  <?php 
+  }
+  ?>
+  <select onchange="if($(this).val()!='afimac_intel' && $(this).val()!='news_media'){window.location='<?php echo $base_url;?>search/index/'+$(this).val();}else{window.location='<?php echo $base_url;?>search/special/'+$(this).val();}">
+    <option value="">Document type</option>
+    <option value="contract">Contract</option>
+    <option value="evidence">Evidence</option>
+    <option value="template">Template</option>
+    <option value="report">Report</option>
+    <option value="siteOrder">Site Order</option>
+    <option value="training">Training</option>
+    <option value="employee">Employee</option>
+    <option value="KPIAudits">KPI Audits</option>
+    <option value="afimac_intel">AFIMAC Intel</option>
+    <option value="news_media">News/Media</option>
+  </select>
+  <?php
+}
+?>
+<?php
 if(count($doc)>0)
 {?>
 <div id="table">

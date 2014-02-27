@@ -97,6 +97,7 @@ class SearchController extends AppController
         if($this->Session->read('avatar'))
         {
             
+            $this->set('alljob',$this->Job->find('all',array('conditions'=>array('is_special'=>0))));
             if($search != ''){
             if(!$from && !$to){
             $this->paginate = array('conditions'=>array('OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%'))),'order'=>$order,'limit'=>10);
@@ -136,8 +137,15 @@ class SearchController extends AppController
             }
             else
             {
+                if(!isset($_GET['job'])){
                 $this->paginate = array('order'=>$order,'limit'=>10);
             $this->set('count',$this->Document->find('count'));
+            }
+            else
+            {
+                $this->paginate = array('conditions'=>array('job_id'=>$_GET['job']),'order'=>$order,'limit'=>10);
+            $this->set('count',$this->Document->find('count',array('conditions'=>array('job_id'=>$_GET['job']))));
+            }
             }
             }
             }
@@ -446,11 +454,14 @@ class SearchController extends AppController
     }
     function special($type = '',$job_id=0)
     {
+        $t = $type;
         if($type == 'afimac_intel')
             $type1 = 'AFIMAC Intel';
         if($type == 'news_media')
             $type1 = 'News/Media';
-            
+        $this->loadModel('Member');    
+        $u = $this->Member->find('all',array('conditions'=>array('id IN(SELECT member_id from jobmembers WHERE job_id IN(SELECT id FROM jobs WHERE is_special = 1))')));
+        $this->set('u',$u);    
         $this->loadModel('SpecJob');
         if(isset($_GET['from'])&& isset($_GET['to']))
         {
@@ -460,11 +471,14 @@ class SearchController extends AppController
         }
         else
         {
+            if(!isset($_GET['member']))
             $this->paginate= array('conditions'=>array('document_type'=>$type1));
+            else
+            $this->paginate= array('conditions'=>array('document_type'=>$type1,'addedBy'=>$_GET['member']));
         }$doc = $this->paginate('SpecJob');
         $this->set('doc',$doc);
         $this->set('type',$type);
-        
+        $this->set('t',$t);
             
             
     }

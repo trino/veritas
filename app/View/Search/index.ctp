@@ -52,7 +52,7 @@ if($this->Session->read('admin'))
 {
     if($u){
         ?>
-        <select onchange="if($(this).val()!=''){window.location='http://localhost/veritas/search?search=&member='+$(this).val();}">
+        <select onchange="if($(this).val()!=''){window.location='<?php echo $base_url;?>search?search=&member='+$(this).val();}">
         <option value="">Uploaded By</option>
         <option value="0">Admin</option>
         <?php
@@ -68,6 +68,38 @@ if($this->Session->read('admin'))
   ?>
   </select>
   <?php 
+  }
+  ?>
+  <select onchange="if($(this).val()!='afimac_intel' && $(this).val()!='news_media'){window.location='<?php echo $base_url;?>search/index/'+$(this).val();}else{window.location='<?php echo $base_url;?>search/special/'+$(this).val();}">
+    <option value="">Document type</option>
+    <option value="contract">Contract</option>
+    <option value="evidence">Evidence</option>
+    <option value="template">Template</option>
+    <option value="report">Report</option>
+    <option value="siteOrder">Site Order</option>
+    <option value="training">Training</option>
+    <option value="employee">Employee</option>
+    <option value="KPIAudits">KPI Audits</option>
+    <option value="afimac_intel">AFIMAC Intel</option>
+    <option value="news_media">News/Media</option>
+  </select>
+  
+  <?php
+  if($alljob)
+  {
+    ?>
+    <select onchange="if($(this).val()!=''){window.location='<?php echo $base_url;?>search/?search=&job='+$(this).val();}">
+    <option value="">Jobs</option>
+        <?php
+        foreach($alljob as $aj)
+        {
+            ?>
+            <option value="<?php echo $aj['Job']['id'];?>"><?php echo $aj['Job']['title'];?></option>
+            <?php
+        }
+        ?>
+    </select>
+    <?php
   }
 }
 ?>
@@ -101,6 +133,11 @@ if(isset($_GET['member']))
 {
     $me = $_GET['member'];
     $uri = str_replace('&member='.$me,'',$uri);
+}
+if(isset($_GET['job']))
+{
+    $me = $_GET['job'];
+    $uri = str_replace('&job='.$me,'',$uri);
 }
 if(str_replace('search=','',$uri) == $uri)
 {
@@ -244,6 +281,11 @@ if(isset($_GET['member']))
 {
     $me = $_GET['member'];
     $uri = str_replace('&member='.$me,'',$uri);
+}
+if(isset($_GET['job']))
+{
+    $me = $_GET['job'];
+    $uri = str_replace('&job='.$me,'',$uri);
 }
 if(str_replace('search=','',$uri) == $uri)
 {

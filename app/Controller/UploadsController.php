@@ -1003,6 +1003,9 @@ class UploadsController extends AppController
             $arr['dop'] = $_POST['incident_date'];
             $arr['author'] =  $_POST['author'];
             $arr['job_id'] = $_POST['job_id'];
+            $this->loadModel('Job');
+            $jobf = $this->Job->findById($_POST['job_id']);
+            $arr['job_title'] = $jobf['Job']['title'];
             $arr['on_date'] =  date('Y-m-d H:i:s');
             $arr['addedBy'] = $id;
             $arr['link'] = $_POST['link'];
@@ -1308,6 +1311,9 @@ class UploadsController extends AppController
             //Email Ends// 
             $arr['date'] = date('Y-m-d H:i:s');
             $arr['job_id'] = $_POST['job'];
+            $this->loadModel('Job');
+            $jobf = $this->Job->findById($_POST['job']);
+            $arr['job_title'] = $jobf['Job']['title'];
             $arr['addedBy'] = $id;
             $addedBy = $id;
 			
@@ -2001,5 +2007,30 @@ class UploadsController extends AppController
   public function loss_prevention()
   {
     
+  }
+  public function checkAdminPerm($type)
+  {
+    if($this->Session->read('admin'))
+    {
+        $this->loadModel('AdminDoc');
+        $q = $this->AdminDoc->find('first');
+        if($q['AdminDoc'][$type]==1)
+        return true;
+        else
+        return false;
+    }
+    else
+    {
+        $this->loadModel('Canview');
+        $q = $this->Canview->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
+        if($type == 'kpiaudits')
+        $type = 'KPIAudits';
+        if($type == 'site_orders')
+        $type = 'siteOrder';
+        if($q['Canview'][$type] == 1)
+        return true;
+        else
+        return false;
+    }
   }
 }

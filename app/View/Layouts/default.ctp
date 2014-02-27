@@ -389,7 +389,73 @@ url: '<?php echo $base_url;?>admin/logout'
                     </ul>
                 </li>
 				<li><?php  echo $this->Html->link('<i class="icon-envelope-alt"></i>'.'Instant Message <span class="notific"></span>','/mail',array('escape' => false,)); ?></li>
-                <li><?php echo $this->Html->link('<i class="icon-copy"></i>Documents','/search', array('escape'=>false));?></li>
+                <li><?php echo $this->Html->link('<i class="icon-copy"></i>Documents','/search', array('escape'=>false));?>
+                    <ul>
+                        <?php
+                        if($this->Session->read('admin') || $this->Session->read('view'))
+                        {
+                            ?>
+                            
+                            <?php
+                            if($this->requestAction($base_url.'uploads/checkAdminPerm/contracts')){
+                            ?><li><a href="<?php echo $base_url;?>search/index/contract"><i class="icon-arrow-right"></i>Contract</a></li>
+                            <?php
+                            }?>
+                            <?php
+                            if($this->requestAction($base_url.'uploads/checkAdminPerm/evidence')){
+                            ?>
+                            <li><a href="<?php echo $base_url;?>search/index/evidence"><i class="icon-arrow-right"></i>Evidence</a></li>
+                            <?php 
+                            }?>
+                            <?php
+                            if($this->requestAction($base_url.'uploads/checkAdminPerm/templates')){
+                            ?>
+                            <li><a href="<?php echo $base_url;?>search/index/template"><i class="icon-arrow-right"></i>Template</a></li>
+                            <?php }?>
+                            <?php
+                            if($this->requestAction($base_url.'uploads/checkAdminPerm/report')){
+                            ?>
+                            <li><a href="<?php echo $base_url;?>search/index/report"><i class="icon-arrow-right"></i>Report</a></li>
+                            <?php 
+                            }?>
+                            <?php
+                            if($this->requestAction($base_url.'uploads/checkAdminPerm/site_orders')){
+                            ?>
+                            <li><a href="<?php echo $base_url;?>search/index/site_orders"><i class="icon-arrow-right"></i>Site Order</a></li>
+                            <?php }?>
+                            <?php
+                            if($this->requestAction($base_url.'uploads/checkAdminPerm/training')){
+                            ?>
+                            <li><a href="<?php echo $base_url;?>search/index/training"><i class="icon-arrow-right"></i>Training</a></li>
+                            <?php }?>
+                            <?php
+                            if($this->requestAction($base_url.'uploads/checkAdminPerm/employee')){
+                            ?>
+                            <li><a href="<?php echo $base_url;?>search/index/employee"><i class="icon-arrow-right"></i>Employee</a></li>
+                            <?php }?>
+                            <?php
+                            if($this->requestAction($base_url.'uploads/checkAdminPerm/kpiaudits')){
+                            ?>
+                            <li><a href="<?php echo $base_url;?>search/index/KPIAudits"><i class="icon-arrow-right"></i>KPI Audits</a></li>
+                            <?php }?>
+                            
+                            <?php
+                            if($this->requestAction($base_url.'uploads/checkAdminPerm/afimac_intel')){
+                            ?>
+                            <li><a href="<?php echo $base_url;?>search/special/afimac_intel"><i class="icon-arrow-right"></i>AFIMAC Intel</a></li>
+                            <?php }?>
+                            <?php
+                            if($this->requestAction($base_url.'uploads/checkAdminPerm/news_media')){
+                            ?>
+                            <li><a href="<?php echo $base_url;?>search/special/news_media"><i class="icon-arrow-right"></i>News/Media</a></li>
+                            <?php
+                            }
+                        }
+                        ?>
+                        
+                    </ul>
+                </li>
+                
 				<?php if($this->Session->read('user') && $usr['Member']['canUpdate']==1 && $usr['Member']['Canupload']['report']=='1')  echo $this->Html->link('<i class="icon-time"></i>'.'Saved Drafts','/uploads/draft',array('escape'=>false));?>
                 <li><?php echo $this->Html->link('<i class="icon-star"></i>'.'Contacts','/contacts',array('escape'=>false));?>
                     <ul>
