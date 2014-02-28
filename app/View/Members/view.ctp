@@ -68,7 +68,7 @@ $arr = array('no','yes');
 <?php }
 else
 {
-    echo "<h3 style='padding-left: 10px;font-size: 17px; margin-bottom:10px;'>No Document Statistics Yet!</h3>";
+    echo "<h3 style='padding-left: 10px;font-size: 17px; margin-bottom:10px;'>No User Statistic! </h3>";
 }
 }
 

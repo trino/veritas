@@ -134,16 +134,17 @@ foreach($job as $j)
         <td>
     
         <?php echo $this->Html->link('View','/jobs/view/'.$j['Job']['id'],array('class'=>'btn btn-primary')); ?>
-           <?php 
-            if($this->Session->read('upload')=='1' || $this->Session->read('admin'))
+           <?php
+           echo  $this->Session->read('upload');
+            if($this->Session->read('upload') == '1' || $this->Session->read('admin'))
             {
             if(!isset($_GET['activity_log'])&&!isset($_GET['client_feedback']))    
-            echo $this->Html->link('Quick Upload','/uploads/upload/'.$j['Job']['id'],array('class'=>'btn btn-primary'))." ";
+                echo $this->Html->link('Quick Upload','/uploads/upload/'.$j['Job']['id'],array('class'=>'btn btn-primary'))." ";
             else
             if(isset($_GET['client_feedback']))
-            echo $this->Html->link('Quick Upload','/uploads/upload/'.$j['Job']['id'].'/client_feedback',array('class'=>'btn btn-primary'))." ";
+                echo $this->Html->link('Quick Upload','/uploads/upload/'.$j['Job']['id'].'/client_feedback',array('class'=>'btn btn-primary'))." ";
             else
-             echo $this->Html->link('Quick Upload','/uploads/upload/'.$j['Job']['id'].'/activity_log',array('class'=>'btn btn-primary'))." ";
+                echo $this->Html->link('Quick Upload','/uploads/upload/'.$j['Job']['id'].'/activity_log',array('class'=>'btn btn-primary'))." ";
             }
         	
     if($this->Session->read('avatar'))

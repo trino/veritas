@@ -394,8 +394,19 @@ url: '<?php echo $base_url;?>admin/logout'
                         <?php
                         if($this->Session->read('admin') || $this->Session->read('view'))
                         {
+                           
                             ?>
-                            
+                           <?php if($this->Session->read('admin') || $upload){
+                                    $para = $this->request->params;
+                                    if($para['controller']=='jobs' && $para['action']=='view')
+                                    {
+                                        $id = $para['pass'][0];
+                                    }
+                                    else
+                                    $id = '';
+                                    ?>
+                                    <li><a href="<?php echo $base_url."/uploads/go/".$id;?>">Upload</a></li> 
+                           <?php } ?>
                             <?php
                             if($this->requestAction($base_url.'uploads/checkAdminPerm/contracts')){
                             ?><li><a href="<?php echo $base_url;?>search/index/contract"><i class="icon-arrow-right"></i>Contract</a></li>
