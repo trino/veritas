@@ -84,13 +84,11 @@ class SearchController extends AppController
             
             if(isset($_GET['order']))
             {
-                if($_GET['order']!='job_title')
-                $order = 'job_id,'.$_GET['order']." ".$_GET['ty'];
-                else
+                
                 $order = $_GET['order']." ".$_GET['ty'];
             }
             else
-                $order = 'job_id,document_type,`date` DESC';
+                $order = 'document_type,`date` DESC';
             
                 
               

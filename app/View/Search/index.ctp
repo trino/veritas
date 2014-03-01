@@ -41,6 +41,7 @@ $(function(){
 		<a href="<?=$base_url;?>search?search=">Documents Search</a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
+<div><strong>Filter By</strong></div>
 <form action="<?php echo $base_url;?>search" method="get" id="datefilter" style="float: left;margin-right:10px;">
     <input type="text" value="" name="from" placeholder="Start Date" style="width: 100px; margin-top:10px;" class="datepicker required" />
     <input type="text" value="" name="to" placeholder="End Date" style="width: 100px; margin-top: 10px;" class="datepicker required" />
@@ -92,7 +93,7 @@ if($this->Session->read('admin'))
   {
     ?>
     <select onchange="if($(this).val()!=''){window.location='<?php echo $base_url;?>search/?search=&job='+$(this).val();}">
-    <option value="">Jobs</option>
+    <option value="">Job</option>
         <?php
         foreach($alljob as $aj)
         {
@@ -104,9 +105,12 @@ if($this->Session->read('admin'))
     </select>
     <?php
   }
+  ?>
+  </div>
+  <?php
 }
 ?>
-</div>
+
 <div class="clear"></div>
 
 <?php
