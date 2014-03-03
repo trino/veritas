@@ -37,6 +37,30 @@ $arr = array('no','yes');
 </table>
 </div>
 <?php if($this->Session->read('admin')){
+  ?>  
+    <div class="user_stats">
+<hr />
+<h3 style="padding-left: 10px;font-size: 17px; margin-bottom:10px;">User Statistics</h3>
+<?php
+  echo "<strong>$doc_count Documents Uploaded.</strong><hr/>";
+  
+  echo "<strong>Assigned To Jobs</strong>";
+    $jo =  explode(",",$assigned['Jobmember']['job_id']);
+    ?>
+    <table class="table">
+    <?php
+    foreach($jo as $j)
+    {
+        $title =  $Job->findById($j);
+    ?>
+    
+    <tr><td><?php echo $title['Job']['title'];?></td></tr>
+    <?php
+    }
+    ?>
+    </table>
+    <?php
+    /* User logs
     if(count($user_stat)>0)
     {
     ?>
@@ -70,6 +94,8 @@ else
 {
     echo "<h3 style='padding-left: 10px;font-size: 17px; margin-bottom:10px;'>No User Statistic! </h3>";
 }
+*/
+
 }
 
  ?>

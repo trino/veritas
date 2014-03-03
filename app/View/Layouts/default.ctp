@@ -372,8 +372,9 @@ url: '<?php echo $base_url;?>admin/logout'
 			<div class="menu">
 			<ul id="acc" >
 				<?php if($this->Session->read('avatar')){?>
-					<li><?php  echo $this->Html->link('<i class="icon-user"></i>'.'User Manager','/members',array('escape' => false,)); ?>
+					<li> <a href="#"><i class="icon-user"></i>User Member</a>
                         <ul>
+                        <li><?php  echo $this->Html->link('<i class="icon-user"></i>'.'List User','/members',array('escape' => false,)); ?></li>
                         <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Add User','/members/add',array('escape'=>false));?></li>
                         </ul>
                     </li>
@@ -382,15 +383,17 @@ url: '<?php echo $base_url;?>admin/logout'
 					<?php // echo $this->Html->link('<i class="icon-list"></i>'.'Pages','/dashboard/home',array('escape' => false,)); ?>
 				<?php } ?>
 	   			
-				<li><?php  echo $this->Html->link('<i class="icon-globe"></i>'.'Job Manager','/jobs',array('escape' => false,)); ?>
+				<li><a href="#"><i class="icon-globe"></i>Job Manager</a>
                     <ul>
+                        <li><?php  echo $this->Html->link('<i class="icon-globe"></i>'.'List Jobs','/jobs',array('escape' => false,)); ?></li>
                         <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Add Job','/jobs/add',array('escape'=>false));?></li>
                         <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Assign Job to User','/jobs/listing',array('escape'=>false));?></li>
                     </ul>
                 </li>
 				<li><?php  echo $this->Html->link('<i class="icon-envelope-alt"></i>'.'Instant Message <span class="notific"></span>','/mail',array('escape' => false,)); ?></li>
-                <li><?php echo $this->Html->link('<i class="icon-copy"></i>Documents','/search', array('escape'=>false));?>
+                <li><a href="#"><i class="icon-copy"></i>Documents</a>
                     <ul>
+                        <li><?php echo $this->Html->link('<i class="icon-copy"></i>Search','/search', array('escape'=>false));?></li>
                         <?php
                         if($this->Session->read('admin') || $this->Session->read('view'))
                         {
@@ -405,7 +408,7 @@ url: '<?php echo $base_url;?>admin/logout'
                                     else
                                     $id = '';
                                     ?>
-                                    <li><a href="<?php echo $base_url."/uploads/go/".$id;?>">Upload</a></li> 
+                                    <li><a href="<?php echo $base_url."/uploads/go/".$id;?>"><i class="icon-share"></i>Upload</a></li> 
                            <?php } ?>
                             <?php
                             if($this->requestAction($base_url.'uploads/checkAdminPerm/contracts')){
@@ -468,14 +471,15 @@ url: '<?php echo $base_url;?>admin/logout'
                 </li>
                 
 				<?php if($this->Session->read('user') && $usr['Member']['canUpdate']==1 && $usr['Member']['Canupload']['report']=='1')  echo $this->Html->link('<i class="icon-time"></i>'.'Saved Drafts','/uploads/draft',array('escape'=>false));?>
-                <li><?php echo $this->Html->link('<i class="icon-star"></i>'.'Contacts','/contacts',array('escape'=>false));?>
+                <li><a href="#"><i class="icon-star"></i>Contacts</a>
                     <ul>
+                        <li><?php echo $this->Html->link('<i class="icon-star"></i>'.'List Contacts','/contacts',array('escape'=>false));?></li>
                         <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Add Contact','/contacts/add',array('escape'=>false));?></li>
                         <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Upload contact','/contacts/upload',array('escape'=>false));?></li>
                     </ul>
                 </li>
                 <?php if($this->Session->read('admin')){?>
-                  <li>  <?php echo $this->Html->link('<i class="icon-briefcase"></i>'.'Analytics','/uploads/stats',array('escape'=>false));?>
+                  <li>  <?php echo $this->Html->link('<i class="icon-briefcase"></i>'.'Analytics','#',array('escape'=>false));?>
                   <ul>
                     <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Graphical Report','/uploads/graphs', array('escape'=>false));?></li>
                     <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Regular Report','/uploads/stats', array('escape'=>false));?></li>
@@ -506,7 +510,7 @@ url: '<?php echo $base_url;?>admin/logout'
     $(function(){
        $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'}); 
        $('#acc').dcAccordion({
-            eventType: 'hover',
+            eventType: 'click',
             autoClose: true,
             saveState: true,
             disableLink: false,

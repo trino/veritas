@@ -827,11 +827,16 @@ class MembersController extends AppController
         }
         die();
     }
+    
     public function view($id)
     {
         $this->loadModel('EventLog');
+        $this->loadModel('Jobmember');
+        $this->loadModel('Job');
         $this->set('profile',$this->Member->find('first',array('conditions'=>array('id'=>$id))));
-        
+        $this->set('doc_count',$this->EventLog->find('count',array('conditions'=>array('member_id'=>$id,'event_type'=>'Upload Document'))));
+        $this->set('assigned',$this->Jobmember->findByMemberId($id));
+        $this->set('Job', $this->Job);
         $this->paginate = array('conditions'=>array('member_id'=>$id,'event_type <>'=> 'User Login'),'limit'=>10);
         $user_stat = $this->paginate('EventLog');
         $this->set('user_stat',$user_stat);
