@@ -73,7 +73,7 @@ $arr = array('no','yes');
     ?>
     <tr>
         <td><?php echo $u['EventLog']['event_type'];?></td>
-        <td><?php echo $this->Html->link($u['EventLog']['event'],"/uploads/view_detail/".$u['EventLog']['document_id'],'target=_blank');?></td>
+        <td><a href="<?php echo $base_url."/uploads/view_detail/".$u['EventLog']['document_id'];?>" target="_blank"><?php echo $u['EventLog']['event'];?></a></td>
         <td><?php echo $u['EventLog']['fullname'];?></td>
         <td><?php echo $u['EventLog']['date']." ".$u['EventLog']['time'];?></td>
     </tr>
