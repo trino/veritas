@@ -36,9 +36,6 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<title>
 		Veritas | Intelligence on Demand
 	</title>
-    <style>
-        #acc ul{margin:0!important;padding-left:10px;}
-    </style>
     
 	<?php
 		echo $this->Html->meta('icon');
@@ -373,12 +370,11 @@ url: '<?php echo $base_url;?>admin/logout'
 				} ?>" /></td></tr></table>
 			</div>
 			<div class="menu">
-			<ul id="acc" style="margin: 0;" >
+			<ul id="acc" >
 				<?php if($this->Session->read('avatar')){?>
-					<li> <a href="#"><i class="icon-user"></i>User Member</a>
+					<li> <?php  echo $this->Html->link('<i class="icon-user"></i>'.'List User','/members',array('escape' => false,)); ?>
                         <ul>
-                        <li><?php  echo $this->Html->link('<i class="icon-user"></i>'.'List User','/members',array('escape' => false,)); ?></li>
-                        <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Add User','/members/add',array('escape'=>false));?></li>
+                           <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Add User','/members/add',array('escape'=>false));?></li>
                         </ul>
                     </li>
 					
@@ -386,17 +382,17 @@ url: '<?php echo $base_url;?>admin/logout'
 					<?php // echo $this->Html->link('<i class="icon-list"></i>'.'Pages','/dashboard/home',array('escape' => false,)); ?>
 				<?php } ?>
 	   			
-				<li><a href="#"><i class="icon-globe"></i>Job Manager</a>
+				<li><?php  echo $this->Html->link('<i class="icon-globe"></i>'.'List Jobs','/jobs',array('escape' => false,)); ?>
                     <ul>
-                        <li><?php  echo $this->Html->link('<i class="icon-globe"></i>'.'List Jobs','/jobs',array('escape' => false,)); ?></li>
+                        
                         <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Add Job','/jobs/add',array('escape'=>false));?></li>
                         <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Assign Job to User','/jobs/listing',array('escape'=>false));?></li>
                     </ul>
                 </li>
 				<li><?php  echo $this->Html->link('<i class="icon-envelope-alt"></i>'.'Instant Message <span class="notific"></span>','/mail',array('escape' => false,)); ?></li>
-                <li><a href="#"><i class="icon-copy"></i>Documents</a>
+                <li><?php echo $this->Html->link('<i class="icon-copy"></i>Documents','/search', array('escape'=>false));?>
                     <ul>
-                        <li><?php echo $this->Html->link('<i class="icon-copy"></i>Search','/search', array('escape'=>false));?></li>
+                        
                         <?php
                         if($this->Session->read('admin') || $this->Session->read('view'))
                         {
@@ -474,9 +470,9 @@ url: '<?php echo $base_url;?>admin/logout'
                 </li>
                 
 				<?php if($this->Session->read('user') && $usr['Member']['canUpdate']==1 && $usr['Member']['Canupload']['report']=='1')  echo $this->Html->link('<i class="icon-time"></i>'.'Saved Drafts','/uploads/draft',array('escape'=>false));?>
-                <li><a href="#"><i class="icon-star"></i>Contacts</a>
+                <li><?php echo $this->Html->link('<i class="icon-star"></i>'.'List Contacts','/contacts',array('escape'=>false));?>
                     <ul>
-                        <li><?php echo $this->Html->link('<i class="icon-star"></i>'.'List Contacts','/contacts',array('escape'=>false));?></li>
+                        
                         <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Add Contact','/contacts/add',array('escape'=>false));?></li>
                         <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Upload contact','/contacts/upload',array('escape'=>false));?></li>
                     </ul>
@@ -682,9 +678,9 @@ url: '<?php echo $base_url;?>admin/logout'
 									<div class="recipientsLine" >
 									
 										<table cellspacing="0" cellpadding="0" border="0" width="100%"><tr><td style="padding:0px; padding-bottom:4px;">
-											<div id="name" style="height: 20px; background: none repeat scroll 0% 0% white; border: 1px solid rgb(204, 204, 204); padding: 1px 4px 2px; color: rgb(170, 170, 170); width:103%; float: left; font-family: 'Oxygen', sans-serif;">Recipients</div>
+											<div id="name" style="height: 20px; background: none repeat scroll 0% 0% white; border: 1px solid rgb(204, 204, 204); padding: 1px 4px 2px; color: rgb(170, 170, 170); width:101%; float: left; font-family: 'Oxygen', sans-serif;">Recipients</div>
 										</td><td style="width:30px;padding-top:5px; text-align:right;">
-											<a id="contacts_modal" class="email btn btn-info" style="padding:0px;color:#FFF; width:100%; float:right; margin:0px; margin-top:-5px; margin-right:-18px; height:23px;" onclick="show_email();" href="javascript:void(0);">&nbsp;+&nbsp;</a>
+											<a id="contacts_modal" class="email btn btn-info" style="padding:0px;color:#FFF; width:100%; float:right; margin:0px; margin-top:-5px; margin-right:-9px; height:23px;" onclick="show_email();" href="javascript:void(0);">&nbsp;+&nbsp;</a>
 										</td></tr></table>
 										
 										<!--									<input type="text" name="name" id="name" placeholder="Recipients (Separate with comma)" class="required" />--> 
@@ -727,9 +723,9 @@ url: '<?php echo $base_url;?>admin/logout'
 									
 								</div>
                                 <div style="clear: both;"></div>
-							</td><td width="50%" style="padding-right: 0;">
+							</td><td width="50%">
 								<div class="left msg">
-									<textarea placeholder="Instant Message - Type message here" name="message" class="required message" style="height:44%; width:98%;margin-bottom:10px"></textarea>
+									<textarea placeholder="Instant Message - Type message here" name="message" class="required message" style="height:44%; width:100%;margin-bottom:10px"></textarea>
                                     <input style="float:right;" type="submit" name="submit" value="Send" class="buttonV" id="send_email" />
     								<a href="javascript:void(0);" class="buttonV attachment" style="float:right;margin-right:8px;"><i class="icon-book"></i> Attach Documents</a>					
                                     <div style="clear: both;"></div>
