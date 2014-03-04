@@ -389,7 +389,12 @@ url: '<?php echo $base_url;?>admin/logout'
                         <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Assign Job to User','/jobs/listing',array('escape'=>false));?></li>
                     </ul>
                 </li>
-				<li><?php  echo $this->Html->link('<i class="icon-envelope-alt"></i>'.'Instant Message <span class="notific"></span>','/mail',array('escape' => false,)); ?></li>
+				<li><?php  echo $this->Html->link('<i class="icon-envelope-alt"></i>'.'Instant Message <span class="notific"></span>','/mail',array('escape' => false,)); ?>
+                <ul>
+                    <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>'.'Inbox','/mail',array('escape'=>false));?></li>
+                    <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>'.'Sent Mail','/mail/sent_mail',array('escape'=>false));?></li>
+                </ul>
+                </li>
                 <li><?php echo $this->Html->link('<i class="icon-copy"></i>Documents','/search', array('escape'=>false));?>
                     <ul>
                         
