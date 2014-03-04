@@ -135,7 +135,7 @@ foreach($job as $j)
     
         <?php echo $this->Html->link('View','/jobs/view/'.$j['Job']['id'],array('class'=>'btn btn-primary')); ?>
            <?php
-           //echo  $this->Session->read('upload');
+           echo  $this->Session->read('upload');
             if($this->Session->read('upload') == '1' || $this->Session->read('admin'))
             {
             if(!isset($_GET['activity_log'])&&!isset($_GET['client_feedback']))    
