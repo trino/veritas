@@ -370,7 +370,7 @@ url: '<?php echo $base_url;?>admin/logout'
 				} ?>" /></td></tr></table>
 			</div>
 			<div class="menu">
-			<ul id="acc" >
+			<ul id="acc" style="margin: 0;" >
 				<?php if($this->Session->read('avatar')){?>
 					<li> <?php  echo $this->Html->link('<i class="icon-user"></i>'.'List User','/members',array('escape' => false,)); ?>
                         <ul>
@@ -683,9 +683,9 @@ url: '<?php echo $base_url;?>admin/logout'
 									<div class="recipientsLine" >
 									
 										<table cellspacing="0" cellpadding="0" border="0" width="100%"><tr><td style="padding:0px; padding-bottom:4px;">
-											<div id="name" style="height: 20px; background: none repeat scroll 0% 0% white; border: 1px solid rgb(204, 204, 204); padding: 1px 4px 2px; color: rgb(170, 170, 170); width:101%; float: left; font-family: 'Oxygen', sans-serif;">Recipients</div>
+											<div id="name" style="height: 20px; background: none repeat scroll 0% 0% white; border: 1px solid rgb(204, 204, 204); padding: 1px 4px 2px; color: rgb(170, 170, 170); width:103%; float: left; font-family: 'Oxygen', sans-serif;">Recipients</div>
 										</td><td style="width:30px;padding-top:5px; text-align:right;">
-											<a id="contacts_modal" class="email btn btn-info" style="padding:0px;color:#FFF; width:100%; float:right; margin:0px; margin-top:-5px; margin-right:-9px; height:23px;" onclick="show_email();" href="javascript:void(0);">&nbsp;+&nbsp;</a>
+											<a id="contacts_modal" class="email btn btn-info" style="padding:0px;color:#FFF; width:100%; float:right; margin:0px; margin-top:-5px; margin-right:-18px; height:23px;" onclick="show_email();" href="javascript:void(0);">&nbsp;+&nbsp;</a>
 										</td></tr></table>
 										
 										<!--									<input type="text" name="name" id="name" placeholder="Recipients (Separate with comma)" class="required" />--> 
@@ -728,9 +728,9 @@ url: '<?php echo $base_url;?>admin/logout'
 									
 								</div>
                                 <div style="clear: both;"></div>
-							</td><td width="50%">
+							</td><td width="50%" style="padding-right: 0;">
 								<div class="left msg">
-									<textarea placeholder="Instant Message - Type message here" name="message" class="required message" style="height:44%; width:100%;margin-bottom:10px"></textarea>
+									<textarea placeholder="Instant Message - Type message here" name="message" class="required message" style="height:44%; width:98%;margin-bottom:10px"></textarea>
                                     <input style="float:right;" type="submit" name="submit" value="Send" class="buttonV" id="send_email" />
     								<a href="javascript:void(0);" class="buttonV attachment" style="float:right;margin-right:8px;"><i class="icon-book"></i> Attach Documents</a>					
                                     <div style="clear: both;"></div>
