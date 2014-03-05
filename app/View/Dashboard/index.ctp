@@ -2,8 +2,8 @@
 ?>
 <script>
 $(function(){
-    $('.dcjq-parent-li').each(function(){
-        $(this+ " ul").hide();
+    $('.moreul').each(function(){
+        $(this).hide();
     });
     
 });
