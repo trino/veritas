@@ -182,8 +182,13 @@ function remove_youtube()
     <?php if((isset($canupdate['Canupload']['client_feedback'])&& $canupdate['Canupload']['client_feedback']=='1') ){?>
     <option value="client_feedback" <?php if($typee=='client_feedback'){?>selected="selected"<?php }?>>Client Feedback</option>
     <?php }?>
+    <?php if($admin_doc['AdminDoc']['personal_inspection']=='1' && ((isset($canupdate['Canupload']['personal_inspection'])&& $canupdate['Canupload']['personal_inspection']=='1') || $this->Session->read('admin'))){?>
+    <option value="personal_inspection">Personal Inspection</option>
+    <?php }?>
+    
     <!--<option value="training_manuals">Training Manuals</option>-->
 </select>
+
 </div></td>
 </tr>
 <tr class="site_more" style="display: none;">

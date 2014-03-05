@@ -455,6 +455,11 @@ class UploadsController extends AppController
     
     function document_edit($eid)
     {
+        $this->loadModel('Personal_inspection');
+        if($eid)
+        {
+            $this->set('perso',$this->Personal_inspection->find('first',array('document_id'=>$eid)));
+        }
         $this->loadModel('Canupload');
         $this->loadModel('Activity');
         $this->loadModel('Emailupload');
@@ -523,6 +528,7 @@ class UploadsController extends AppController
             unset($arr);
             //$arr['location'] = $_POST['location'];
             $arr['title'] = ucfirst($_POST['document_type']);
+            if($_POST['document_type']!='personal_inspection')
             $arr['description'] = $_POST['description'];
             $arr['draft'] = $_POST['draft'];
             
@@ -694,6 +700,24 @@ class UploadsController extends AppController
                 $this->Clientmemo->save($client);
                 
                 
+                
+            }
+            elseif($_POST['document_type']== 'personal_inspection')
+            {
+                $this->Personal_inspection->deleteAll(array('document_id'=>$eid));
+             
+                $per['document_id'] = $eid;
+                foreach($_POST as $key=>$post)
+                {
+                    $in = array('document_type','emp_name1','site','jobs_title','date_submit','date_verify','evaluation','manager_name','emp_name2','overall_rating','uniform','uniform2','grooming','proper_equipment','piercing','positioning');
+                    if(in_array($key,$in))
+                    {
+                        $per[$key] = $post;
+                    }
+                }
+                $this->loadModel('Personal_inspection');
+                $this->Personal_inspection->create();
+                $this->Personal_inspection->save($per);            
                 
             }
             $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$_POST['job'].',%'), array('job_id'=>$_POST['job']),array('job_id LIKE'=>'%,'.$_POST['job'].',%'),array('job_id LIKE'=>'%,'.$_POST['job'])))));
@@ -1184,6 +1208,7 @@ class UploadsController extends AppController
     }
     function upload($ids,$typee='')
     {
+        
         $jj = $this->Job->find('first',array('conditions'=>array('id'=>$ids)));
         if($jj)
             $job_title = $jj['Job']['title'];
@@ -1246,7 +1271,10 @@ class UploadsController extends AppController
                 $id=0;
             $arr['location'] = $_POST['location'];
             $arr['title'] = ucfirst(str_replace("_"," ",$_POST['document_type']));
+            $doc_typ = $_POST['document_type'];
+            if($doc_typ!='personal_inspection'){
             $arr['description'] = $_POST['description'];
+            }
             $arr['document_type'] = $_POST['document_type'];
             
             if($_POST['document_type']== 'evidence')
@@ -1321,6 +1349,22 @@ class UploadsController extends AppController
             $this->Document->create();
             $this->Document->save($arr);
             $id=$this->Document->id;
+            
+            if($_POST['document_type'] == 'personal_inspection')
+            {
+                $per['document_id'] = $id;
+                foreach($_POST as $key=>$post)
+                {
+                    $in = array('document_type','emp_name1','site','jobs_title','date_submit','date_verify','evaluation','manager_name','emp_name2','overall_rating','uniform','uniform2','grooming','proper_equipment','piercing','positioning');
+                    if(in_array($key,$in))
+                    {
+                        $per[$key] = $post;
+                    }
+                }
+                $this->loadModel('Personal_inspection');
+                $this->Personal_inspection->create();
+                $this->Personal_inspection->save($per);
+            }
             //var_dump($mails);die();
             //var_dump($mails);die();
             foreach($mails as $m)
@@ -1859,6 +1903,11 @@ class UploadsController extends AppController
     function view_detail($id,$spec='')
     {
         //die('here');
+        $this->loadModel('Personal_inspection');
+        if($id)
+        {
+            $this->set('perso',$this->Personal_inspection->find('first',array('document_id'=>$id)));
+        }
         $this->loadModel('Activity');
         $this->loadModel('Clientmemo');
         $this->loadModel('SpecJob');

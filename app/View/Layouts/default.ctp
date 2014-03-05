@@ -439,7 +439,7 @@ url: '<?php echo $base_url;?>admin/logout'
                             <?php
                             if($this->requestAction($base_url.'uploads/checkAdminPerm/site_orders')){
                             ?>
-                            <li><a href="<?php echo $base_url;?>search/index/site_orders"><i class="icon-arrow-right"></i>Site Order</a></li>
+                            <li><a href="<?php echo $base_url;?>search/index/siteOrder"><i class="icon-arrow-right"></i>Site Order</a></li>
                             <?php }?>
                             <?php
                             if($this->requestAction($base_url.'uploads/checkAdminPerm/training')){
@@ -467,7 +467,14 @@ url: '<?php echo $base_url;?>admin/logout'
                             ?>
                             <li><a href="<?php echo $base_url;?>search/special/news_media"><i class="icon-arrow-right"></i>News/Media</a></li>
                             <?php
-                            }
+                            }?>
+                            <?php
+                            if($this->requestAction($base_url.'uploads/checkAdminPerm/personal_inspection')){
+                            ?>
+                            <li><a href="<?php echo $base_url;?>search/index/personal_inspection"><i class="icon-arrow-right"></i>Personal Inspection</a></li>
+                            <?php
+                            }?>
+                            <?php
                         }
                         ?>
                         
