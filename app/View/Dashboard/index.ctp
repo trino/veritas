@@ -1,6 +1,13 @@
 <?php include_once('inc.php');
 ?>
-
+<script>
+$(function(){
+    $('.dcjq-parent-li').each(function(){
+        $(this+ " ul").hide();
+    });
+    
+});
+</script>
 
 
 <h3 class="page-title">
