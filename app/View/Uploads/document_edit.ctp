@@ -188,10 +188,16 @@ function remove_youtube()
     <?php if((isset($canupdate['Canupload']['client_feedback'])&& $canupdate['Canupload']['client_feedback']=='1') ){?>
     <option value="client_feedback" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='client_feedback') echo "selected='selected'"?>>Client Feedback</option>
     <?php }?>
+    <?php if($admin_doc['AdminDoc']['personal_inspection']=='1' && ((isset($canupdate['Canupload']['personal_inspection'])&& $canupdate['Canupload']['personal_inspection']=='1') || $this->Session->read('admin'))){?>
+    <option value="personal_inspection" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='personal_inspection') echo "selected='selected'"?>>Personal Inspection</option>
+    <?php }?>
     <!--<option value="training_manuals">Training Manuals</option>-->
 </select>
 </div></td>
 </tr>
+<?php
+include('personal_inspection.php'); 
+?>
 <tr class="site_more" style="display: none;">
 <td colspan="2">
 <table>
@@ -390,7 +396,7 @@ else{
 </table>
 
 </td></tr>
-<tr><td class="main_desc"><strong>Description</strong></td>
+<tr class="description_tr"><td class="main_desc"><strong>Description</strong></td>
 <td><textarea name="description"  class="text_area_long" cols="10" rows="5" id="repl" onKeyDown="limitText(this.form.description,this.form.countdown,70);"
 onKeyUp="limitText(this.form.description,this.form.countdown,70);"><?php if(isset($doc['Document']['description'])) echo $doc['Document']['description'];?></textarea>
 <br />
@@ -399,7 +405,7 @@ You have <input readonly type="text" name="countdown" id="countssss" style="back
 </td></tr>
 <!--<tr><td><b>Description</b></td><td><div class="right"><textarea cols="35" name="description" class="required"></textarea></div></td></tr>-->
 
-<tr><td><b>Images/Videos/Docs</b></td><td><div class="right">
+<tr class="image_tr"><td><b>Images/Videos/Docs</b></td><td><div class="right">
 <input type="file" name="document_1" />
 <!--<a href="javascript:void(0)" onclick="add_document()" class="btn btn-primary">Add</a>--></div><div id="doc"></div>
 <?php 
@@ -551,6 +557,9 @@ $(function(){
     $('.activity_time').live('click',function(){
         $(this).timepicker();
     });
+    
+        $('.date_verify').datepicker({dateFormat: 'yy-mm-dd'});
+    
     if($('.reporttype').val()=='7')
        {
             $('#loss_prevention').show();
@@ -591,7 +600,17 @@ $(function(){
             }
         else
             $('.site_more').hide();
-        
+        if(doctype == 'personal_inspection'){
+            $('.personal_more').show();
+            $('.description_tr').hide();
+            $('.image_tr').hide();
+            //$('.draftspan').hide();
+            }
+        else{
+            $('.personal_more').hide();
+            $('.description_tr').show();
+            $('.image_tr').show();
+            }
         if(doctype == 'employee'){
             $('.employee_more').show();
             //$('.draftspan').hide();
@@ -648,6 +667,17 @@ $(function(){
     
     if($('#document_type').val() == 'evidence')
          $('.extra_evidence').show();
+    if($('#document_type').val() == 'personal_inspection'){
+            $('.personal_more').show();
+            $('.description_tr').hide();
+            $('.image_tr').hide();
+            //$('.draftspan').hide();
+            }
+        else{
+            $('.personal_more').hide();
+            $('.description_tr').show();
+            $('.image_tr').show();
+            }     
     if($('#document_type').val() == 'siteOrder')
          $('.site_more').show();
     if($('#document_type').val() == 'training')
@@ -673,6 +703,24 @@ $(function(){
         $(this).click();
         $(this).blur();
         });
+        var checked = 0.0;
+        var radcount = 0;
+        $('.radios input').click(function(){
+            alert($(this).val());
+       $('.radios input:checked').each(function(){
+            radcount++;
+          checked = checked + parseFloat($(this).val());
+          if(radcount==6)
+          {
+            alert(checked);
+            var avg = (checked/30.0)*5;
+            $('.overall').text(avg+'/5');
+            $('.overallr').val(avg+'/5');
+            checked = 0.0;
+            radcount = 0;
+          }
+       }); });
+        
        
 });
 function limitText(limitField, limitCount, limitNum)

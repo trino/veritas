@@ -1,68 +1,17 @@
-<?php
-/**
- *
- * PHP 5
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.View.Layouts
- * @since         CakePHP(tm) v 0.10.0.1076
- * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
- */
-include('inc.php');
-$mems = $this->requestAction($base_url.'/dashboard/get_email_list');
-$ad = $this->requestAction($base_url.'/dashboard/get_user');
-$jobs = $this->requestAction($base_url.'/dashboard/get_jobs');
-$job2 = $this->requestAction($base_url.'/dashboard/get_job2');
-$upload = $this->requestAction($base_url.'/dashboard/upload');
-$usr = $this->requestAction($base_url."/dashboard/getall");
-//var_dump($usr);
-//echo  $base_url;
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
 
-	<?php echo $this->Html->charset(); ?>
-	<title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	<title>
 		Veritas | Intelligence on Demand
 	</title>
+    <style>
+        #acc ul{margin:0!important;padding-left:10px;}
+    </style>
     
-	<?php
-		echo $this->Html->meta('icon');
-
-		//echo $this->Html->css('cake.generic');
-        echo $this->Html->css('bootstrap.min');
-        echo $this->Html->css('accodian');        
-        //echo $this->Html->css('video-js');
-        echo $this->Html->css('style');
-        echo $this->Html->css('jquery.timepicker');
-        echo $this->Html->script('jquery');
-        echo $this->Html->script('jquery.dcjqaccordian');
-        echo $this->Html->script('cookie');
-        echo $this->Html->script('hoverintent');        
-        //echo $this->Html->script('video');
-        echo $this->Html->script('ajaxupload.3.6');
-        echo $this->Html->script('jquery.validate');
-        echo $this->Html->script('jquery.timepicker');
-
-
-		echo $this->fetch('meta');
-		echo $this->fetch('css');
-		echo $this->fetch('script');
-	?>
-    <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300' rel='stylesheet' type='text/css'>
+	<link href="/veritas/favicon.ico" type="image/x-icon" rel="icon" /><link href="/veritas/favicon.ico" type="image/x-icon" rel="shortcut icon" /><link rel="stylesheet" type="text/css" href="/veritas/css/bootstrap.min.css" /><link rel="stylesheet" type="text/css" href="/veritas/css/accodian.css" /><link rel="stylesheet" type="text/css" href="/veritas/css/style.css" /><link rel="stylesheet" type="text/css" href="/veritas/css/jquery.timepicker.css" /><script type="text/javascript" src="/veritas/js/jquery.js"></script><script type="text/javascript" src="/veritas/js/jquery.dcjqaccordian.js"></script><script type="text/javascript" src="/veritas/js/cookie.js"></script><script type="text/javascript" src="/veritas/js/hoverintent.js"></script><script type="text/javascript" src="/veritas/js/ajaxupload.3.6.js"></script><script type="text/javascript" src="/veritas/js/jquery.validate.js"></script><script type="text/javascript" src="/veritas/js/jquery.timepicker.js"></script>    <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300' rel='stylesheet' type='text/css'>
     
-    <script src="<?php echo $base_url;?>jwplayer/jwplayer.js"></script>
+    <script src="http://localhost/veritas/jwplayer/jwplayer.js"></script>
     <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
     <script type="text/javascript">jwplayer.key="N+fGwqE9+uBPKzrjO6qyGHWiJJRmw0UtbEU0iA==";</script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
@@ -73,7 +22,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <!--script type="text/javascript">
 window.onbeforeunload = function(e) {
 $.ajax({
-url: '<?php echo $base_url;?>admin/logout'
+url: 'http://localhost/veritas/admin/logout'
 });
 
 };
@@ -88,7 +37,7 @@ url: '<?php echo $base_url;?>admin/logout'
             var id = $(this).val();
             var txt = $('.search').val();
             $.ajax({
-                url: "<?php echo $base_url;?>uploads/searchlist/"+id,
+                url: "http://localhost/veritas/uploads/searchlist/"+id,
            type: "post",
            data: "name="+txt,
            success:function(msg)
@@ -103,9 +52,9 @@ url: '<?php echo $base_url;?>admin/logout'
     });
         $('.loads').live('click',function(){
         var name = $('.search').val();
-        var urls = '<?php echo $base_url;?>uploads/searchlist';
+        var urls = 'http://localhost/veritas/uploads/searchlist';
         if($('#filter').val()!='')
-         urls = '<?php echo $base_url;?>uploads/searchlist/'+$('#filter').val();
+         urls = 'http://localhost/veritas/uploads/searchlist/'+$('#filter').val();
         $('.loads').text('Loading..');
         $.ajax({
             
@@ -129,7 +78,7 @@ url: '<?php echo $base_url;?>admin/logout'
         $('.loads').text('Loading..');
         $.ajax({
             
-           url: "<?php echo $base_url;?>members/searchlist/"+id,
+           url: "http://localhost/veritas/members/searchlist/"+id,
            type: "post",
            data: "name="+name,
            success:function(msg)
@@ -147,9 +96,9 @@ url: '<?php echo $base_url;?>admin/logout'
         var name = $('.search2').val();
         
         $('.loads').text('Loading..');
-        var urls = '<?php echo $base_url;?>members/searchlist';
+        var urls = 'http://localhost/veritas/members/searchlist';
         if($('#filter2').val()!='')
-         urls = '<?php echo $base_url;?>members/searchlist/'+$('#filter2').val();
+         urls = 'http://localhost/veritas/members/searchlist/'+$('#filter2').val();
         $.ajax({
             
            url: urls,
@@ -262,7 +211,7 @@ url: '<?php echo $base_url;?>admin/logout'
            
         });
         $('#contacts_modal').live('click',function(){
-         $('.dialog-modals').load('<?php echo $base_url.'members/loadall';?>');
+         $('.dialog-modals').load('http://localhost/veritas/members/loadall');
                $('.dialog-modals').dialog({
                     
                     width: 800,
@@ -271,7 +220,7 @@ url: '<?php echo $base_url;?>admin/logout'
                });
                });
                $('#name').live('click',function(){
-         $('.dialog-modals').load('<?php echo $base_url.'members/loadall';?>');
+         $('.dialog-modals').load('http://localhost/veritas/members/loadall');
                $('.dialog-modals').dialog({
                     
                     width: 800,
@@ -280,7 +229,7 @@ url: '<?php echo $base_url;?>admin/logout'
                });
                });               
                $('.attachment').click(function(){
-         $('.dialog-modals').load('<?php echo $base_url.'uploads/loadall';?>');
+         $('.dialog-modals').load('http://localhost/veritas/uploads/loadall');
                $('.dialog-modals').dialog({
                     
                     width: 1030,
@@ -305,12 +254,12 @@ url: '<?php echo $base_url;?>admin/logout'
         });
         $.ajax({
             
-            url: '<?php echo $base_url;?>admin/email_status',
+            url: 'http://localhost/veritas/admin/email_status',
 
           
             success:function(response)
             {
-                var a='<a href="<?php echo $base_url;?>/mail">You Have received '+response+' email(s)</a>'
+                var a='<a href="http://localhost/veritas//mail">You Have received '+response+' email(s)</a>'
                 if(response>0){
                 $('.notific').html('&nbsp;'+response+'&nbsp;');
                 $('.notific').css('background-color','#F03D25');
@@ -330,11 +279,11 @@ url: '<?php echo $base_url;?>admin/logout'
         $.ajax({
             
 
-            url: '<?php echo $base_url;?>admin/email_status',
+            url: 'http://localhost/veritas/admin/email_status',
 
             success:function(response)
             {
-                var a='<a href="<?php echo $base_url;?>mail">You Have received '+response+' email(s)</a>'
+                var a='<a href="http://localhost/veritas/mail">You Have received '+response+' email(s)</a>'
                 if(response>0)
                 $('.notific').html('&nbsp;'+response+'&nbsp;');
                 else
@@ -349,176 +298,66 @@ url: '<?php echo $base_url;?>admin/logout'
     
 </head>
 <body>
-
-
-
 <div id="fullContainer">
 <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
 	<tr><td style="width:230px; padding:0px; vertical-align:top;" valign="top">
 	<div id="leftColumn">
 
-		<?php if($this->Session->read('avatar') || $this->Session->read('user')){ ?>
-
-			<div class="logo"><a href="<?php if(!$this->Session->read('job_id')){echo $base_url;?>dashboard<?php }else echo $base_url.'jobs/view/'.$this->Session->read('job_id');?>"><?php echo $this->Html->image('/img/logoVeritas01.png');?></a></div>
+		
+			<div class="logo"><a href="http://localhost/veritas/dashboard"><img src="/veritas/img/logoVeritas01.png" alt="" /></a></div>
 			
 			
 			<div class="poweredBy" style="background:transparent;" >
-				<table cellspacing="0" cellpadding="0" border="0" width="100%" height="100%"><tr><td valign="middle" style="padding-top: 25px;"><img src="<?php echo $base_url;?>img/<?php if( $this->Session->read('logo')=="afimaclogo.png"){
-				echo "afimaclogo2.png";
-				}else				{
-				echo "asap.png";
-				} ?>" /></td></tr></table>
+				<table cellspacing="0" cellpadding="0" border="0" width="100%" height="100%"><tr><td valign="middle" style="padding-top: 25px;"><img src="http://localhost/veritas/img/asap.png" /></td></tr></table>
 			</div>
 			<div class="menu">
 			<ul id="acc" style="margin: 0;" >
-				<?php if($this->Session->read('avatar')){?>
-					<li> <?php  echo $this->Html->link('<i class="icon-user"></i>'.'List User','/members',array('escape' => false,)); ?>
+									<li> <a href="#"><i class="icon-user"></i>User Member</a>
                         <ul>
-                           <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Add User','/members/add',array('escape'=>false));?></li>
+                        <li><a href="/veritas/members"><i class="icon-user"></i>List User</a></li>
+                        <li><a href="/veritas/members/add"><i class="icon-arrow-right"></i>Add User</a></li>
                         </ul>
                     </li>
 					
-                    <?php  //echo $this->Html->link('<i class="icon-user"></i>'.'Company Manager','/comp',array('escape' => false,)); ?>
-					<?php // echo $this->Html->link('<i class="icon-list"></i>'.'Pages','/dashboard/home',array('escape' => false,)); ?>
-				<?php } ?>
-	   			
-				<li><?php  echo $this->Html->link('<i class="icon-globe"></i>'.'List Jobs','/jobs',array('escape' => false,)); ?>
-                    <?php if($this->Session->read('admin')){?>               
+                    										   			
+				<li><a href="#"><i class="icon-globe"></i>Job Manager</a>
                     <ul>
-                        
-                        <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Add Job','/jobs/add',array('escape'=>false));?></li>
-                        <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Assign Job to User','/jobs/listing',array('escape'=>false));?></li>
+                        <li><a href="/veritas/jobs"><i class="icon-globe"></i>List Jobs</a></li>
+                        <li><a href="/veritas/jobs/add"><i class="icon-arrow-right"></i>Add Job</a></li>
+                        <li><a href="/veritas/jobs/listing"><i class="icon-arrow-right"></i>Assign Job to User</a></li>
                     </ul>
-                    <?php }?>
                 </li>
-				<li><?php  echo $this->Html->link('<i class="icon-envelope-alt"></i>'.'Instant Message <span class="notific"></span>','/mail',array('escape' => false,)); ?>
-                <ul>
-                    <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>'.'Inbox','/mail',array('escape'=>false));?></li>
-                    <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>'.'Sent Mail','/mail/sent_mail',array('escape'=>false));?></li>
-                </ul>
-                </li>
-                <li><?php echo $this->Html->link('<i class="icon-copy"></i>Documents','/search', array('escape'=>false));?>
+				<li><a href="/veritas/mail"><i class="icon-envelope-alt"></i>Instant Message <span class="notific"></span></a></li>
+                <li><a href="#"><i class="icon-copy"></i>Documents</a>
                     <ul>
-                        
-                        <?php
-                        if($this->Session->read('admin') || $this->Session->read('view'))
-                        {
-                           
-                            ?>
-                           <?php if($this->Session->read('admin') || $upload){
-                                    $para = $this->request->params;
-                                    if($para['controller']=='jobs' && $para['action']=='view')
-                                    {
-                                        $id = $para['pass'][0];
-                                    }
-                                    else
-                                    $id = '';
-                                    ?>
-                                    <li><a href="<?php echo $base_url."/uploads/go/".$id;?>"><i class="icon-share"></i>Upload</a></li> 
-                           <?php } ?>
-                            <?php
-                            if($this->requestAction($base_url.'uploads/checkAdminPerm/contracts')){
-                            ?><li><a href="<?php echo $base_url;?>search/index/contract"><i class="icon-arrow-right"></i>Contract</a></li>
-                            <?php
-                            }?>
-                            <?php
-                            if($this->requestAction($base_url.'uploads/checkAdminPerm/evidence')){
-                            ?>
-                            <li><a href="<?php echo $base_url;?>search/index/evidence"><i class="icon-arrow-right"></i>Evidence</a></li>
-                            <?php 
-                            }?>
-                            <?php
-                            if($this->requestAction($base_url.'uploads/checkAdminPerm/templates')){
-                            ?>
-                            <li><a href="<?php echo $base_url;?>search/index/template"><i class="icon-arrow-right"></i>Template</a></li>
-                            <?php }?>
-                            <?php
-                            if($this->requestAction($base_url.'uploads/checkAdminPerm/report')){
-                            ?>
-                            <li><a href="<?php echo $base_url;?>search/index/report"><i class="icon-arrow-right"></i>Report</a></li>
-                            <?php 
-                            }?>
-                            <?php
-                            if($this->requestAction($base_url.'uploads/checkAdminPerm/site_orders')){
-                            ?>
-                            <li><a href="<?php echo $base_url;?>search/index/siteOrder"><i class="icon-arrow-right"></i>Site Order</a></li>
-                            <?php }?>
-                            <?php
-                            if($this->requestAction($base_url.'uploads/checkAdminPerm/training')){
-                            ?>
-                            <li><a href="<?php echo $base_url;?>search/index/training"><i class="icon-arrow-right"></i>Training</a></li>
-                            <?php }?>
-                            <?php
-                            if($this->requestAction($base_url.'uploads/checkAdminPerm/employee')){
-                            ?>
-                            <li><a href="<?php echo $base_url;?>search/index/employee"><i class="icon-arrow-right"></i>Employee</a></li>
-                            <?php }?>
-                            <?php
-                            if($this->requestAction($base_url.'uploads/checkAdminPerm/kpiaudits')){
-                            ?>
-                            <li><a href="<?php echo $base_url;?>search/index/KPIAudits"><i class="icon-arrow-right"></i>KPI Audits</a></li>
-                            <?php }?>
-                            
-                            <?php
-                            if($this->requestAction($base_url.'uploads/checkAdminPerm/afimac_intel')){
-                            ?>
-                            <li><a href="<?php echo $base_url;?>search/special/afimac_intel"><i class="icon-arrow-right"></i>AFIMAC Intel</a></li>
-                            <?php }?>
-                            <?php
-                            if($this->requestAction($base_url.'uploads/checkAdminPerm/news_media')){
-                            ?>
-                            <li><a href="<?php echo $base_url;?>search/special/news_media"><i class="icon-arrow-right"></i>News/Media</a></li>
-                            <?php
-                            }?>
-                            <?php
-                            if($this->requestAction($base_url.'uploads/checkAdminPerm/personal_inspection')){
-                            ?>
-                            <li><a href="<?php echo $base_url;?>search/index/personal_inspection"><i class="icon-arrow-right"></i>Personal Inspection</a></li>
-                            <?php
-                            }?>
-                            <?php
-                        }
-                        ?>
-                        
+                        <li><a href="/veritas/search"><i class="icon-copy"></i>Search</a></li>
+                                                                                       <li><a href="http://localhost/veritas//uploads/go/"><i class="icon-share"></i>Upload</a></li> 
+                                                                                                                                                                       <li><a href="http://localhost/veritas/search/index/report"><i class="icon-arrow-right"></i>Report</a></li>
+                                                                                    <li><a href="http://localhost/veritas/search/index/site_orders"><i class="icon-arrow-right"></i>Site Order</a></li>
+                                                                                    <li><a href="http://localhost/veritas/search/index/training"><i class="icon-arrow-right"></i>Training</a></li>
+                                                                                                                
+                                                                                
                     </ul>
                 </li>
                 
-				<?php if($this->Session->read('user') && $usr['Member']['canUpdate']==1 && $usr['Member']['Canupload']['report']=='1')  echo $this->Html->link('<i class="icon-time"></i>'.'Saved Drafts','/uploads/draft',array('escape'=>false));?>
-                <li><?php echo $this->Html->link('<i class="icon-star"></i>'.'List Contacts','/contacts',array('escape'=>false));?>
-                    <?php if($this->Session->read('admin')){?>   
+				                <li><a href="#"><i class="icon-star"></i>Contacts</a>
                     <ul>
-                        
-                        <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Add Contact','/contacts/add',array('escape'=>false));?></li>
-                        <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Upload contact','/contacts/upload',array('escape'=>false));?></li>
+                        <li><a href="/veritas/contacts"><i class="icon-star"></i>List Contacts</a></li>
+                        <li><a href="/veritas/contacts/add"><i class="icon-arrow-right"></i>Add Contact</a></li>
+                        <li><a href="/veritas/contacts/upload"><i class="icon-arrow-right"></i>Upload contact</a></li>
                     </ul>
-                    <?php }?>
                 </li>
-                <?php if($this->Session->read('admin')){?>
-                  <li>  <?php echo $this->Html->link('<i class="icon-briefcase"></i>'.'Analytics','#',array('escape'=>false));?>
-                  <ul>
-                    <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Graphical Report','/uploads/graphs', array('escape'=>false));?></li>
-                    <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Regular Report','/uploads/stats', array('escape'=>false));?></li>
+                                  <li>  <a href="#"><i class="icon-briefcase"></i>Analytics</a>                  <ul>
+                    <li><a href="/veritas/uploads/graphs"><i class="icon-arrow-right"></i>Graphical Report</a></li>
+                    <li><a href="/veritas/uploads/stats"><i class="icon-arrow-right"></i>Regular Report</a></li>
                   </ul>
                   </li>
-                <?php }?>
-				<?php //echo $this->Html->link('Document','/uploads'); ?>
-			</ul>
+                							</ul>
             </div>
-            <?php
-            if($this->Session->read('special'))
-            {
-                ?>
-                <div style="text-align: center;margin-top:40px;">
-                <img src="<?php echo $base_url;?>img/brazil.png" />
-                </div>
-                <?php
-            }
-            ?>
-            
+                        
             <!-- menu -->
 
-		<?php } ?>
-		
+				
 		
 	</div><!-- leftColumn -->
     <script>
@@ -539,9 +378,8 @@ url: '<?php echo $base_url;?>admin/logout'
 	
 	<div id="rightColumn">
 		<div id="rightHeader">
-			<?php if($this->Session->read('id')){?>
-				<div class="headSearch">
-				<form action="<?php echo $base_url;?>search" method="get" id="searchDocuments" style="float: left;">
+							<div class="headSearch">
+				<form action="http://localhost/veritas/search" method="get" id="searchDocuments" style="float: left;">
 					<div class="searchInput">
 					<input type="text" name="search" style="margin-top: 10px;" placeholder="Document Search" />
                     <!--<input type="hidden" name="date" value="asc" /> -->
@@ -551,68 +389,40 @@ url: '<?php echo $base_url;?>admin/logout'
 					</div>
 				</form>
                 <div style="float: right;padding:10px 0 0 10px;">
-                <select onchange="if($(this).val()){window.location = '<?php echo $base_url?>jobs/view/'+$(this).val();}">
+                <select onchange="if($(this).val()){window.location = 'http://localhost/veritas/jobs/view/'+$(this).val();}">
                 <option>Go To Job</option>
-                <?php
-                if($jobs)
-                {
-                    foreach($jobs as $jo)
-                    {
-                        ?>
-                        <option value="<?php echo $jo['Job']['id'];?>"><?php echo $jo['Job']['title'];?></option>
-                        <?php
-                    }
-                } 
-                ?>
-                
+                                        <option value="18">123</option>
+                                                <option value="19">123</option>
+                                                <option value="21">333</option>
+                                                <option value="22">4444</option>
+                                                <option value="9">test job new</option>
+                                                <option value="20">tt</option>
+                                        
                 </select>
                 </div>
                 <div class="clearfix"></div>
 				</div><!-- headSearch -->
-			<?php }?>
+						
 			
-			
-			<?php if($this->Session->read('avatar')){?>
-				<!--h1>Welcome <?php echo $this->Session->read('avatar');?></h1-->
+							<!--h1>Welcome admin</h1-->
 				<div class="userControlPanel">
 					<div class="avatar">
-					<?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => '', 'class'=>'image'))?>
-					</div>
+					<img src="/veritas/img/uploads/male.png" alt="" class="image" />					</div>
 					
 					<div class="links">
-					<?php  echo $this->Html->link('<i class="icon-user"></i> '.' '.$this->Session->read('avatar'),'/dashboard/settings',array('escape' => false,)); ?><br/>
-				<?php  echo $this->Html->link('<i class="icon-off"></i>'.' Logout','/admin/logout',array('escape' => false,)); ?><br/>
+					<a href="/veritas/dashboard/settings"><i class="icon-user"></i>  admin</a><br/>
+				<a href="/veritas/admin/logout"><i class="icon-off"></i> Logout</a><br/>
 				
-				<?php  echo $this->Html->link('<i class="icon-warning-sign"></i> '.'User Support','/dashboard/contactus',array('escape' => false,)); ?>
-
+				<a href="/veritas/dashboard/contactus"><i class="icon-warning-sign"></i> User Support</a>
 					</div>
 					
 					<!--div class="companyLogo">
-					<?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => '', 'class'=>'image'))?>
-					</div-->
+					<img src="/veritas/img/uploads/male.png" alt="" class="image" />					</div-->
 				</div>
-			<?php }?>
+						
 			
 			
-			
-			<?php if($this->Session->read('user')) {?>
-				<div class="userControlPanel">
-					<!--div class="" style="">Welcome <?php echo $this->Session->read('user');?></div-->
-					<div class="avatar">
-					<?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => ''))?>
-					</div>
-					<div class="links">
-					<?php  echo $this->Html->link('<i class="icon-user"></i>'.' '.$this->Session->read('user'),'/dashboard/settings',array('escape' => false,)); ?><br/>
-									<?php  echo $this->Html->link('<i class="icon-off"></i>'.' Logout','/admin/logout',array('escape' => false,)); ?><br/>
-
-					<?php  echo $this->Html->link('<i class="icon-warning-sign"></i> '.'User Support','/dashboard/contactus',array('escape' => false,)); ?>
-					</div>
-					<!--div class="companyLogo">
-					<?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => '', 'class'=>'image'))?>
-					</div-->
-				</div>
-			<?php } ?>
-			
+						
 			<div id="email_reponse"></div>
 		</div><!-- rightHeader -->
 
@@ -620,11 +430,7 @@ url: '<?php echo $base_url;?>admin/logout'
 	
 		
 		<div id="rightContent">
-        <?php
-        if($this->Session->read('canEmail') || $this->Session->read('admin'))
-        {
-            ?>
-            
+                    
 				<div class="emailTab">
 					
 					<script type="text/javascript">
@@ -687,7 +493,7 @@ url: '<?php echo $base_url;?>admin/logout'
 
 					</script>
 					<div class="message-form" >
-						<form id="Form" action="<?php echo $base_url.'mail/send?return='.urlencode($_SERVER['REQUEST_URI']);?>" method="post" class="messageform">
+						<form id="Form" action="http://localhost/veritas/mail/send?return=%2Fveritas%2Fjobs%2Fedit%2F9" method="post" class="messageform">
 							
 							<table cellspacing="0" cellpadding="0" border="0" width="100%"><tr><td width="50%">
 								<div class="left inputs">
@@ -708,25 +514,16 @@ url: '<?php echo $base_url;?>admin/logout'
 									
 									
 									<!--<div id="email" style="display: none;">
-										<?php foreach($mems as $m) {
-										   if(!$this->Session->read('admin'))
-										   {
-											if($m['Member']['id'] == $this->Session->read('id'))
-											{
-												continue;
-											}
-										   }
-										   ?> 
+										 
 										
-										<a class="buttonV" href="javascript:void(0)" onclick="list_email(this.id)" id="<?php echo $m['Member']['full_name']."_".$m['Member']['id']."_".$m['Member']['email'];?>"><?php echo $m['Member']['full_name']; ?></a>
-										<?php } ?>
-										<?php 
-											if(!$this->Session->read('avatar'))
-											{?>
-												<a class="buttonV" href="javascript:void(0)" onclick="list_email(this.id)" id="<?php echo $ad['User']['name_avatar']."_0_".$ad['User']['email']; ?>"><?php echo $ad['User']['name_avatar']; ?></a>
-											<?php }
-										?>
-									</div>-->
+										<a class="buttonV" href="javascript:void(0)" onclick="list_email(this.id)" id="van_16_dvt1985@hotmail.com">van</a>
+										 
+										
+										<a class="buttonV" href="javascript:void(0)" onclick="list_email(this.id)" id="jack_17_admin@trinoweb.com">jack</a>
+										 
+										
+										<a class="buttonV" href="javascript:void(0)" onclick="list_email(this.id)" id="j_18_j@j.com">j</a>
+																													</div>-->
 								
 									<!-- <div><div class="left"><input type="text" name="attachments" placeholder="Attachments" id="attachment" readonly="" style="background: #e5f5f5;" /></div><a class="left" href="javascript:void(0)" id="attach">Attach</a><div class="clear"></div></div>-->
 
@@ -766,17 +563,14 @@ url: '<?php echo $base_url;?>admin/logout'
 
 					<div class="clearfix" ></div>
 				</div><!-- emailTab -->
-				<?php
-        }
-        ?>
-				
+								
 				
 				
 				
 				<div class="buttonBarContainer">
 				<div class="buttonBar">
 					<div class="v1ButtonBarB">
-						<a href="<?=$base_url;?>dashboard" class="fullLink">
+						<a href="http://localhost/veritas/dashboard" class="fullLink">
 							<div  class="glassButton">
 							<div  class="full8ButtonB">
 								<div class="icon">
@@ -791,7 +585,7 @@ url: '<?php echo $base_url;?>admin/logout'
 						</a>
 					</div>
 					<div class="v1ButtonBarB">
-						<a href="<?php echo $base_url;?>search?search=" class="fullLink">
+						<a href="http://localhost/veritas/search?search=" class="fullLink">
 							<div  class="glassButton">
 							<div  class="full8ButtonB">
 
@@ -806,17 +600,8 @@ url: '<?php echo $base_url;?>admin/logout'
 							</div>
 						</a>
 					</div>		
-<?php if($this->Session->read('admin') || $upload){
-    $para = $this->request->params;
-    if($para['controller']=='jobs' && $para['action']=='view')
-    {
-        $id = $para['pass'][0];
-    }
-    else
-    $id = '';
-    ?>
                     <div class="v1ButtonBarB">
-						<a href="<?php echo $base_url;?>uploads/go/<?php echo $id;?>" class="fullLink">
+						<a href="http://localhost/veritas/uploads/go/" class="fullLink">
 							<div  class="glassButton">
 							<div  class="full8ButtonB">
 
@@ -831,9 +616,9 @@ url: '<?php echo $base_url;?>admin/logout'
 							</div>
 						</a>
 					</div>	
-<?php }?>					
+					
 			<!--			<div class="v1ButtonBarB">
-						<a href="<?php echo $base_url;?>keycontacts" class="fullLink">
+						<a href="http://localhost/veritas/keycontacts" class="fullLink">
 							<div  class="glassButton">
 							<div  class="full8ButtonB">
 
@@ -896,33 +681,8 @@ url: '<?php echo $base_url;?>admin/logout'
 							</div>
 						</a>
 					</div>			-->
-                    <?php if($this->Session->read('admin') || ($usr['Member']['canUpdate']==1 && $usr['Member']['Canupload']['client_feedback']=='1' && $upload)){ 
-                        
-                        
-                                    if($this->Session->read('admin'))
-                                    {
-                                        $ur2 = $base_url.'feedback';
-                                    }
-                                    else
-                                    {
-                                        if($job2)
-                                        {
-                                            if(str_replace(',','',$job2)!=$job2)
-                                            {
-                                                $ur2 = $base_url.'jobs?client_feedback=1';    
-                                            }
-                                            else
-                                            $ur2 = $ur2 = $base_url.'uploads/upload/'.$job2.'/client_feedback';
-                                            
-                                        } 
-                                        else
-                                        $ur2 = $base_url.'jobs?client_feedback=1';
-                                    }
-                                    
-                        
-                        ?>
-					<div class="v1ButtonBarB">
-                        <a href="<?php echo $ur2;?>" class="fullLink">
+                    					<div class="v1ButtonBarB">
+                        <a href="http://localhost/veritas/feedback" class="fullLink">
 							<div  class="glassButton">
 							<div  class="full8ButtonB">
 
@@ -937,36 +697,13 @@ url: '<?php echo $base_url;?>admin/logout'
 							</div>
 						</a>
 					</div>
-                    <?php }?>
-					
+                    					
 			
 
 					
 					
 									<div class="v1ButtonBarB">
-                                    <?php
-                                    if($this->Session->read('admin'))
-                                    {
-                                        $ur = $base_url.'jobs';
-                                    }
-                                    else
-                                    {
-                                        if($job2)
-                                        {
-                                            if(str_replace(',','',$job2)!=$job2)
-                                            {
-                                                $ur = $base_url.'jobs?activity_log=1';    
-                                            }
-                                            else
-                                                $ur = $ur = $base_url.'uploads/upload/'.$job2.'/activity_log';
-                                            
-                                        } 
-                                        else
-                                        $ur = $base_url.'jobs?activity_log=1';
-                                    }
-                                    ?>
-                    <?php if($this->Session->read('admin')||($usr['Member']['canUpdate']==1 && $usr['Member']['Canupload']['report']=='1' && $upload)){?>
-						<a href="<?php echo $ur?>" class="fullLink">
+                                                        						<a href="http://localhost/veritas/jobs" class="fullLink">
 							<div  class="glassButton">
 							<div  class="full8ButtonB">
 
@@ -979,8 +716,7 @@ url: '<?php echo $base_url;?>admin/logout'
 								<div class="dusk"></div> 
 							</div>
 							</div>
-						</a><?php }?>
-					</div>		
+						</a>					</div>		
 					
 					
 				</div>
@@ -1006,23 +742,138 @@ url: '<?php echo $base_url;?>admin/logout'
 				
 				
 				
-				<?php echo $this->Session->flash(); ?>
-
+				
 				
 				<div class="mainContent">
-				<?php echo $this->fetch('content'); ?>
-				</div>
+				
+
+<h3 class="page-title">
+	Edit test job new</h3>
+<ul class="breadcrumb">
+	<li>
+		<i class="icon-home"></i>
+		<a href="http://localhost/veritas/dashboard">Home</a> <span class="icon-angle-right"></span>
+		<a href="http://localhost/veritas/jobs">Job Manager</a> <span class="icon-angle-right"></span>
+		<a href="http://localhost/veritas/jobs/edit/9">Edit test job new</a> <!--span class="icon-angle-right"></span-->
+	</li>
+</ul>
+
+
+
+<script>
+$(function(){
+    $( "#start_date" ).datepicker({dateFormat: "yy-mm-dd"});
+    $( "#end_date" ).datepicker({dateFormat: "yy-mm-dd"});
+    $('#my_form').validate();
+    });
+</script>
+<form action="" method="post" id="my_form" enctype="multipart/form-data">
+<div id="table">
+<h2>Job Description</h2>
+<table>
+<tr><td style="width:140px;"><b>Job Title</b></td><td><input type="text" class="required" name="title" value="test job new" /></td></tr>
+<tr><td><b>Job Description</b></td><td><textarea name="description" class="required" >asd</textarea></td></tr>
+ 
+<input type="hidden" name="img" value="afimaclogo.png" />
+<tr><td><b>Image</b></td><td><input type="file" name="image" class="" /> <img src="/veritas/img/uploads/afimaclogo.png" alt="" /></td></tr>
+<tr><td><b>Start Date</b></td><td><input type="text" class="" name="start_date" id="start_date" value="2014-01-03" /></td></tr>
+<tr><td><b>End Date</b></td><td><input type="text" class="" name="end_date" id="end_date" value="2014-01-24" /></td></tr>
+<tr><td><strong>Add Members:</strong></td><td>
+<b>No Members added</b></table>
+</td></tr>
+</table>
+
+<table>
+<tr><td colspan="2"><strong>Add Contacts</strong></td></tr>
+<tr><td colspan="2">
+<table>
+     <tr>   
+    
+    <td>  <input type="checkbox" name="key_contact[]" value="94"  />  Van Trinh</td>
+
+    <td>  <input type="checkbox" name="key_contact[]" value="95"  />  Joe Smith</td>
+
+    <td>  <input type="checkbox" name="key_contact[]" value="96"  />  Joe Smith</td>
+
+    <td>  <input type="checkbox" name="key_contact[]" value="98"  />  Van Trinh</td>
+
+    <td>  <input type="checkbox" name="key_contact[]" value="99"  />  Van Trinh</td>
+</tr>
+    <td>  <input type="checkbox" name="key_contact[]" value="100"  />  Test User</td>
+
+    <td>  <input type="checkbox" name="key_contact[]" value="101"  />  ddd</td>
+    <td>  <input type="checkbox" name="key_contact[]" value="96"  />  Joe Smith</td>
+
+    <td>  <input type="checkbox" name="key_contact[]" value="98"  />  Van Trinh</td>
+
+    <td>  <input type="checkbox" name="key_contact[]" value="99"  />  Van Trinh</td>
+</tr>
+</table>
+</td></tr>
+</table>
+<div class="add_more"></div>
+<a href="javascript:void(0)" id="add_key" class="btn btn-primary"> +Add Quick Keycontacts </a> <br /><br />
+<div class="submit"><input type="submit" class="btn btn-primary" value="Save Changes" name="submit"/></div>
+</div>
+
+
+
+
+
+
+</form>
+<script>
+$(function(){
+    $('.unch').change(function(){
+       if($(this).is(':checked'))
+       {
+        //do nothing
+       } 
+       else
+       {
+        var mem = $(this).val();
+        var job = '9';
+        $.ajax({
+           url:'http://localhost/veritas/jobs/removefromjob/'+mem+'/'+job
+        });
+       }
+    });
+    var add =   '<table width="100%"><tr><td>Contact Type</td><td colspan="3"><select name="type[]" class="required">'+
+                '<option value="0">Key Contacts</option><option value="1">Staff Contacts</option>'+
+                '<option value="2">Third Part Contacts</option></select></td></tr>'+
+                '<tr><td><b>Name</b><br/> <input type="text" name="key_name[]" class="" style="width: 100px;" /></td>'+
+                '<td><b>Title</b><br/> <input type="text" name="key_title[]" class="" style="width: 100px;" /></td>'+
+                '<td><b>Cell Number</b><br/> <input type="text" name="key_cell[]" class="" style="width: 100px;" /></td>'+
+                '<td><b>Cellular Carrier</b><br />'+
+                '<select name="key_cellular[]" class="required">'+
+                '    <option value="Rogers">Rogers</option>'+
+                '    <option value="Bell">Bell</option>'+
+                '    <option value="Fido">Fido</option>'+
+                '    <option value="Telus Mobility">Telus Mobility</option>'+
+                '    <option value="Koodo Mobile">Koodo Mobile</option>'+
+                '    <option value="Wind Mobile">Wind Mobile</option>'+
+                '    <option value="Lynx Mobility">Lynx Mobility</option>'+
+                '    <option value="MTS Mobility">MTS Mobility</option>'+
+                '    <option value="PC Telecom">PC Telecom</option>'+
+                '    <option value="Aliant">Aliant</option>'+
+                '    <option value="SaskTel">SaskTel</option>'+
+                '    <option value="Virgin Mobile">Virgin Mobile</option>'+
+                '</select>'+
+                '</td>'+
+                '<td><b>Phone Number</b><br/> <input type="text" name="key_number[]" class="" style="width: 100px;" /></td>'+
+                '<td><b>Email</b><br/> <input type="text" name="key_email[]" class="email" style="width: 100px;" /></td>'+
+                '<td><b>Company</b><br/> <input type="text" name="key_company[]" class="" style="width: 100px;" /> </td><td><input type="button" onclick="$(this).parent().parent().parent().parent().remove();" class="btn btn-danger" style="margin-top:20px;" value="Remove"/></td></tr>'+
+                '</table>';
+   $('#add_key').click(function(){
+        $('.add_more').append(add);
+   }); 
+});
+</script>				</div>
 
 		</div><!-- rightColumn -->
 
 		<div id="rightFooter">
-			<?php /* echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false)
-				); */
-			?>
-		</div>
+					</div>
 		
 	</div><!-- rightContent -->
 	</td></tr></table>
@@ -1031,6 +882,5 @@ url: '<?php echo $base_url;?>admin/logout'
 </div><!-- fullContainer -->
 <div class="dialog-modals"></div>
 
-	<?php echo "<div style='padding-left:400px;'>".$this->element('sql_dump')."</div>"; ?>
-</body>
+	<div style='padding-left:400px;'></div></body>
 </html>

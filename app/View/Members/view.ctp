@@ -40,14 +40,14 @@ $arr = array('no','yes');
   ?>  
     <div class="user_stats">
 <hr />
-<h3 style="padding-left: 10px;font-size: 17px; margin-bottom:10px;">User Statistics</h3>
+<h3 style="padding-left:10px;font-size: 17px; margin-bottom:10px;">User Statistics</h3>
 <?php
-  echo "<strong>$doc_count Documents Uploaded.</strong><hr/>";
+  echo "<div style='padding-left:10px;'><strong>$doc_count Documents Uploaded.</strong><hr/>";
   
-  echo "<strong>Assigned To Jobs</strong>";
+  echo "<strong>Assigned To Jobs</strong></div>";
     $jo =  explode(",",$assigned['Jobmember']['job_id']);
     ?>
-    <table class="table">
+    <table class="table" style="padding-left: 10px;">
     <?php
     foreach($jo as $j)
     {

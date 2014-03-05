@@ -228,6 +228,25 @@ $(function(){
 		<div class="dusk2"></div>						
 	</div>
     <?php }?>
+    <?php if($admin_doc['AdminDoc']['personal_inspection']=='1' &&((isset($canview['Canview']['personal_inspection']) && $canview['Canview']['personal_inspection']=='1')|| $this->Session->read('admin'))){?>
+    <div class="dashboard-stat yellow">								
+		<div class="whiteCorner"></div>								
+		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
+        <a href="<?=$base_url;?>search/index/personal_inspection" class="overallLink more">		
+			<div class="visual">										
+				<i class="icon-file"></i>									
+			</div>									
+			<div class="details">										
+				<div class="number"><?php echo $personal_inspection;?></div>										
+				<div class="desc">Personal Inspection</div>									
+			</div>									
+			<div class="more2">									
+				View All <?php echo $personal_inspection;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+			</div>														
+		</a>								
+		<div class="dusk2"></div>						
+	</div>
+    <?php }?>
 <?php } ?>
 </div><!-- Documents Dashboard -->
 

@@ -182,6 +182,10 @@ class SearchController extends AppController
             {
                 $arrs[] = array('document_type'=>'evidence');
             }
+            if($qs['Canview']['personal_inspection'])
+            {
+                $arrs[] = array('document_type'=>'personal_inspection');
+            }
             if($qs['Canview']['client_feedback'])
             {
                 $arrs[] = array('document_type'=>'client_feedback');

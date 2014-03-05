@@ -23,7 +23,7 @@
   </script>
 <h3 class="page-title">
 <?php if($j = $job->findById($doc['Document']['job_id'])) echo stripslashes($j['Job']['title']) ; ?> / 
-	Documents: <?php echo $doc['Document']['title']; ?>
+	Documents: <?php echo str_replace('_',' ',$doc['Document']['title']); ?>
 </h3>
 
 <ul class="breadcrumb">
@@ -81,11 +81,13 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
     </tr>        
             
     <?php } ?>
-   
+   <?php
+   if($doc['Document']['document_type']!='personal_inspection'){?>
     <tr>
         <td><b>Description</b></td>
         <td><?php echo $doc['Document']['description']; ?></td>
     </tr>
+    <?php }?>
     <tr>
         <td><b>Job Title</b></td>
         <td><?php if($j = $job->findById($doc['Document']['job_id'])) echo stripslashes($j['Job']['title']) ; ?></td>
@@ -168,6 +170,12 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         <td><b>Uploaded On</b></td>
         <td><?php echo $doc['Document']['date']?></td>
     </tr>
+    <?php
+    if($doc['Document']['document_type']=='personal_inspection')
+    {
+        include('personal_view.php');
+    }
+    ?>
     
 </table>
 </div>
