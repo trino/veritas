@@ -383,11 +383,13 @@ url: '<?php echo $base_url;?>admin/logout'
 				<?php } ?>
 	   			
 				<li><?php  echo $this->Html->link('<i class="icon-globe"></i>'.'List Jobs','/jobs',array('escape' => false,)); ?>
+                    <?php if($this->Session->read('admin')){?>               
                     <ul>
                         
                         <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Add Job','/jobs/add',array('escape'=>false));?></li>
                         <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Assign Job to User','/jobs/listing',array('escape'=>false));?></li>
                     </ul>
+                    <?php }?>
                 </li>
 				<li><?php  echo $this->Html->link('<i class="icon-envelope-alt"></i>'.'Instant Message <span class="notific"></span>','/mail',array('escape' => false,)); ?>
                 <ul>
@@ -483,11 +485,13 @@ url: '<?php echo $base_url;?>admin/logout'
                 
 				<?php if($this->Session->read('user') && $usr['Member']['canUpdate']==1 && $usr['Member']['Canupload']['report']=='1')  echo $this->Html->link('<i class="icon-time"></i>'.'Saved Drafts','/uploads/draft',array('escape'=>false));?>
                 <li><?php echo $this->Html->link('<i class="icon-star"></i>'.'List Contacts','/contacts',array('escape'=>false));?>
+                    <?php if($this->Session->read('admin')){?>   
                     <ul>
                         
                         <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Add Contact','/contacts/add',array('escape'=>false));?></li>
                         <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Upload contact','/contacts/upload',array('escape'=>false));?></li>
                     </ul>
+                    <?php }?>
                 </li>
                 <?php if($this->Session->read('admin')){?>
                   <li>  <?php echo $this->Html->link('<i class="icon-briefcase"></i>'.'Analytics','#',array('escape'=>false));?>
