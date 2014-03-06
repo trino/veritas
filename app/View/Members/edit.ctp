@@ -164,6 +164,9 @@ if(!isset($sid))
 
 
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Client Feedback </span><input type="checkbox" name="canUpload_client_memo1" <?php if(isset($u['Canupload']['client_feedback']) && $u['Canupload']['client_feedback']==1){?>checked="checked"<?php }?> />
+
+<?php if($admin_doc['AdminDoc']['personal_inspection']=='0' ){?><input type="hidden" name="canUpload_personal_inspection" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Personal Inspection </span><input type="checkbox" name="canUpload_personal_inspection" <?php if(isset($u['Canupload']['personal_inspection']) && $u['Canupload']['personal_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
 </td>
 </tr>
 </table>
