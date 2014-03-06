@@ -373,7 +373,7 @@ url: '<?php echo $base_url;?>admin/logout'
 			<ul id="acc" style="margin: 0;" >
 				<?php if($this->Session->read('avatar')){?>
 					<li> <?php  echo $this->Html->link('<i class="icon-user"></i>'.'List User','/members',array('escape' => false,)); ?>
-                        <ul>
+                        <ul class="moreul">
                            <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Add User','/members/add',array('escape'=>false));?></li>
                         </ul>
                     </li>
@@ -384,7 +384,7 @@ url: '<?php echo $base_url;?>admin/logout'
 	   			
 				<li><?php  echo $this->Html->link('<i class="icon-globe"></i>'.'List Jobs','/jobs',array('escape' => false,)); ?>
                     <?php if($this->Session->read('admin')){?>               
-                    <ul>
+                    <ul class="moreul">
                         
                         <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Add Job','/jobs/add',array('escape'=>false));?></li>
                         <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Assign Job to User','/jobs/listing',array('escape'=>false));?></li>
@@ -392,13 +392,13 @@ url: '<?php echo $base_url;?>admin/logout'
                     <?php }?>
                 </li>
 				<li><?php  echo $this->Html->link('<i class="icon-envelope-alt"></i>'.'Instant Message <span class="notific"></span>','/mail',array('escape' => false,)); ?>
-                <ul>
+                <ul class="moreul">
                     <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>'.'Inbox','/mail',array('escape'=>false));?></li>
                     <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>'.'Sent Mail','/mail/sent_mail',array('escape'=>false));?></li>
                 </ul>
                 </li>
                 <li><?php echo $this->Html->link('<i class="icon-copy"></i>Documents','/search', array('escape'=>false));?>
-                    <ul>
+                    <ul class="moreul">
                         
                         <?php
                         if($this->Session->read('admin') || $this->Session->read('view'))
@@ -486,7 +486,7 @@ url: '<?php echo $base_url;?>admin/logout'
 				<?php if($this->Session->read('user') && $usr['Member']['canUpdate']==1 && $usr['Member']['Canupload']['report']=='1')  echo $this->Html->link('<i class="icon-time"></i>'.'Saved Drafts','/uploads/draft',array('escape'=>false));?>
                 <li><?php echo $this->Html->link('<i class="icon-star"></i>'.'List Contacts','/contacts',array('escape'=>false));?>
                     <?php if($this->Session->read('admin')){?>   
-                    <ul>
+                    <ul class="moreul">
                         
                         <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Add Contact','/contacts/add',array('escape'=>false));?></li>
                         <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Upload contact','/contacts/upload',array('escape'=>false));?></li>
@@ -495,7 +495,7 @@ url: '<?php echo $base_url;?>admin/logout'
                 </li>
                 <?php if($this->Session->read('admin')){?>
                   <li>  <?php echo $this->Html->link('<i class="icon-briefcase"></i>'.'Analytics','#',array('escape'=>false));?>
-                  <ul>
+                  <ul class="moreul">
                     <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Graphical Report','/uploads/graphs', array('escape'=>false));?></li>
                     <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Regular Report','/uploads/stats', array('escape'=>false));?></li>
                   </ul>

@@ -1,6 +1,13 @@
 <?php include_once('inc.php');
 ?>
-
+<script>
+$(function(){
+    $('.moreul').each(function(){
+        $(this).hide();
+    });
+    
+});
+</script>
 
 
 <h3 class="page-title">
