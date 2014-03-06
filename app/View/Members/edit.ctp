@@ -97,6 +97,9 @@ if(!isset($sid)){
 
 <?php if($admin_doc['AdminDoc']['kpiaudits']=='0' ){?><input type="hidden" name="canView_KPIAudits" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="canView_KPIAudits" <?php if(isset($v['Canview']['KPIAudits']) && $v['Canview']['KPIAudits']==1){?>checked="checked"<?php }?> /><?php }?>
+
+<?php if($admin_doc['AdminDoc']['personal_inspection']=='0' ){?><input type="hidden" name="canView_personal_inspection" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Personal Inspection </span><input type="checkbox" name="canView_personal_inspection" <?php if(isset($v['Canview']['personal_inspection']) && $v['Canview']['personal_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
 </td>
 
 </tr>

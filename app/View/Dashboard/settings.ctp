@@ -133,6 +133,9 @@ $(function(){
         
         <?php if($admin_doc['AdminDoc']['kpiaudits']=='0' ){?><input type="hidden" name="Email_KPIAudits" value="0"/><?php }else{?>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="Email_KPIAudits" <?php if(isset($e['Emailupload']['KPIAudits']) && $e['Emailupload']['KPIAudits']==1){?>checked="checked"<?php }?> /><?php }?>
+        
+        <!--<?php if($admin_doc['AdminDoc']['personal_inspection']=='0' ){?><input type="hidden" name="Email_KPIAudits" value="0"/><?php }else{?>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Personal Inspection </span><input type="checkbox" name="Email_personal_inspection" <?php if(isset($e['Emailupload']['personal_inspection']) && $e['Emailupload']['personal_inspection']==1){?>checked="checked"<?php }?> /><?php }?>-->
 
         <!--
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span><input type="checkbox" name="Email_contracts" <?php if(isset($e['Emailupload']['contract']) && $e['Emailupload']['contract']==1){?>checked="checked"<?php }?>/>
@@ -163,6 +166,7 @@ $(function(){
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Training </span><input type="checkbox" name="show[training]" value="1" <?php if(isset($admin_doc['AdminDoc']['training']) && $admin_doc['AdminDoc']['training']=='1' ) echo "checked='checked'";?>/>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Employee </span><input type="checkbox" name="show[employee]" value="1" <?php if(isset($admin_doc['AdminDoc']['employee']) && $admin_doc['AdminDoc']['employee']=='1' ) echo "checked='checked'";?>/>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="show[kpiaudits]" value="1" <?php if(isset($admin_doc['AdminDoc']['kpiaudits']) && $admin_doc['AdminDoc']['kpiaudits']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Personal Inspection </span><input type="checkbox" name="show[personal_inspection]" value="1" <?php if(isset($admin_doc['AdminDoc']['personal_inspection']) && $admin_doc['AdminDoc']['personal_inspection']=='1' ) echo "checked='checked'";?>/>
 </td></tr>
         <tr>
         <?php

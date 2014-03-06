@@ -706,14 +706,15 @@ $(function(){
         var checked = 0.0;
         var radcount = 0;
         $('.radios input').click(function(){
-            alert($(this).val());
+            //alert($(this).val());
        $('.radios input:checked').each(function(){
             radcount++;
           checked = checked + parseFloat($(this).val());
           if(radcount==6)
           {
-            alert(checked);
+            //alert(checked);
             var avg = (checked/30.0)*5;
+            avg = avg.toFixed(2); 
             $('.overall').text(avg+'/5');
             $('.overallr').val(avg+'/5');
             checked = 0.0;
