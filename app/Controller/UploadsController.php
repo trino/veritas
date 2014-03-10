@@ -461,10 +461,12 @@ class UploadsController extends AppController
         if($eid)
         {
             $this->set('perso',$this->Personal_inspection->find('first',array('document_id'=>$eid)));
-            $mem = $this->MobileInspection->findByDocumentId($eid);
-            $mem_action = $this->MobileAction->find('all',array('conditions'=>array('mobileins_id'=>$mem['MobileInspection']['id'])));
-            $this->set('mem_action',$mem_action);
-            $this->set('mobins',$mem);
+            if($mem = $this->MobileInspection->findByDocumentId($eid))
+            {
+                $mem_action = $this->MobileAction->find('all',array('conditions'=>array('mobileins_id'=>$mem['MobileInspection']['id'])));
+                $this->set('mem_action',$mem_action);
+                $this->set('mobins',$mem);
+            }
         }
         $this->loadModel('Canupload');
         $this->loadModel('Activity');
@@ -1958,9 +1960,15 @@ class UploadsController extends AppController
     {
         //die('here');
         $this->loadModel('Personal_inspection');
+        $this->loadModel('MobileInspection');
+        $this->loadModel('MobileAction');
         if($id)
         {
             $this->set('perso',$this->Personal_inspection->find('first',array('document_id'=>$id)));
+            $mem = $this->MobileInspection->findByDocumentId($id);
+            $mem_action = $this->MobileAction->find('all',array('conditions'=>array('mobileins_id'=>$mem['MobileInspection']['id'])));
+            $this->set('mem_action',$mem_action);
+            $this->set('mobins',$mem);
         }
         $this->loadModel('Activity');
         $this->loadModel('Clientmemo');

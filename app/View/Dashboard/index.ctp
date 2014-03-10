@@ -257,7 +257,7 @@ $(function(){
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $mobile_inspection;?></div>										
-				<div class="desc">Personal Inspection</div>									
+				<div class="desc">Mobile Inspection</div>									
 			</div>									
 			<div class="more2">									
 				View All <?php echo $mobile_inspection;?> Documents <i class="icon-arrow-right m-icon-white"></i>									

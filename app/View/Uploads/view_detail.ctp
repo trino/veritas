@@ -176,6 +176,12 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         include('personal_view.php');
     }
     ?>
+    <?php
+    if($doc['Document']['document_type']=='mobile_inspection')
+    {
+        include('mobile_inspection.php');
+    }
+    ?>
     
 </table>
 </div>

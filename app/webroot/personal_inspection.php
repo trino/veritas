@@ -176,19 +176,19 @@
                     $mn = $perso['Personal_inspection']['manager_name'];
                 }
                 else
-                $mn = '';
+                    $mn = '';
                 if(isset($perso) && $perso['Personal_inspection']['date_verify'])
                 {
                     $df = $perso['Personal_inspection']['date_verify'];
                 }
                 else
-                $df = '';
+                    $df = '';
                 if(isset($perso) && $perso['Personal_inspection']['emp_name2'])
                 {
                     $en2 = $perso['Personal_inspection']['emp_name2'];
                 }
                 else
-                $en2 = '';
+                    $en2 = '';
                 ?>
                 <td>Supervisor/Manager Name : </td><td><input type="text" name="manager_name" value="<?php echo $mn; ?>" class="required" /></td>
                 <td>Date : </td><td><input type="text" name="date_verify" value="<?php echo $df;?>" class="date_verify required" /></td>

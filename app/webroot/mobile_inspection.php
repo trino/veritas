@@ -1,3 +1,4 @@
+
 <tr class="mobileins_more" style="display: none;">
     <td colspan="2">
         <table class="table">
@@ -7,26 +8,26 @@
             </tr>
             <tr>
                 <td>No : </td><td><input type="text" name="mobile_ins[no]" class="required" value="<?php if(isset($mobins) && $mobins['MobileInspection']['no']){echo $mobins['MobileInspection']['no'];}?>" /></td>
-                <td>Date : </td><td><input type="text" name="mobile_ins[date]" class="required" value="<?php if(isset($mobins) && $mobins['MobileInspection']['date']){echo $mobins['MobileInspection']['date'];}?>" /></td>
+                <td>Date : </td><td><input type="text" name="mobile_ins[date]" class="date_verify required" value="<?php if(isset($mobins) && $mobins['MobileInspection']['date']){echo $mobins['MobileInspection']['date'];}?>" /></td>
             </tr>
         </table>
          <br />
         <table class="table-bordered">
         <tr>
         <td>Client:</td>
-        <td><input type="text" name="mobile_ins['client']" value="<?php if(isset($mobins) && $mobins['MobileInspection']['client']) echo $mobins['MobileInspection']['client'];?>"/></td>
+        <td><input type="text" name="mobile_ins['client']" class="required" value="<?php if(isset($mobins) && $mobins['MobileInspection']['client']) echo $mobins['MobileInspection']['client'];?>"/></td>
         <td rowspan="4">Type Of Mobile Service<br />
-            <input type="radio" name="mobile_ins[mobile_service]" value="scheduled" <?php if(isset($mobins) && $mobins['MobileInspection']['mobile_service']=='scheduled')echo "checked='checked'";?> />Scheduled<br />
-            <input type="radio" name="mobile_ins[mobile_service]" value="alarm" <?php if(isset($mobins) && $mobins['MobileInspection']['mobile_service']=='alarm')echo "checked='checked'";?> />Alarm Response<br />
-            <input type="radio" name="mobile_ins[mobile_service]" value="hour" <?php if(isset($mobins) && $mobins['MobileInspection']['mobile_service']=='hour')echo "checked='checked'";?> />After Hours Request<br />
-            <input type="radio" name="mobile_ins[mobile_service]" value="other" <?php if(isset($mobins) && $mobins['MobileInspection']['mobile_service']=='other')echo "checked='checked'";?> />Other<br />
+            <input type="radio" name="mobile_ins[mobile_service]" class="required" value="scheduled" <?php if(isset($mobins) && $mobins['MobileInspection']['mobile_service']=='scheduled')echo "checked='checked'";?> />Scheduled<br />
+            <input type="radio" name="mobile_ins[mobile_service]" class="required" value="alarm" <?php if(isset($mobins) && $mobins['MobileInspection']['mobile_service']=='alarm')echo "checked='checked'";?> />Alarm Response<br />
+            <input type="radio" name="mobile_ins[mobile_service]" class="required" value="hour" <?php if(isset($mobins) && $mobins['MobileInspection']['mobile_service']=='hour')echo "checked='checked'";?> />After Hours Request<br />
+            <input type="radio" name="mobile_ins[mobile_service]" class="required" value="other" <?php if(isset($mobins) && $mobins['MobileInspection']['mobile_service']=='other')echo "checked='checked'";?> />Other<br />
         </td>
         <td>Time Arrived</td>
         <td>Time Departed</td>
         </tr>
         <tr>
         <td rowspan="3">Address:</td>
-        <td rowspan="3"><textarea name="mobile_ins[address]" rows="5"><?php if(isset($mobins)) echo $mobins['MobileInspection']['address'];?></textarea></td>
+        <td rowspan="3"><textarea name="mobile_ins[address]" rows="5" class="required"><?php if(isset($mobins)) echo $mobins['MobileInspection']['address'];?></textarea></td>
         <td><input type="text" name="mobile_ins[time_arrived1]" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_arrived1']){echo $mobins['MobileInspection']['time_arrived1'];}?>" /></td>
         <td><input type="text" name="mobile_ins[time_departed1]" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_departed1']){echo $mobins['MobileInspection']['time_departed1'];}?>" /></td>
         </tr>
@@ -34,11 +35,11 @@
         <td><input type="text" name="mobile_ins[time_departed2]" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_departed2']){echo $mobins['MobileInspection']['time_departed2'];}?>" /></td></tr>
         <tr><td><input type="text" name="mobile_ins[time_arrived3]" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_arrived3']){echo $mobins['MobileInspection']['time_arrived3'];}?>"/></td>
         <td><input type="text" name="mobile_ins[time_departed3]" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_departed3']){echo $mobins['MobileInspection']['time_departed3'];}?>"/></td></tr>
-        <tr><td>P.O. No.: <input type="text" name="mobile_ins[pono]" value="<?php if(isset($mobins) && $mobins['MobileInspection']['pono']){echo $mobins['MobileInspection']['pono'];}?>" /></td>
-        <td>Transit/Location No. <input type="text" name="mobile_ins[transitno]" value="<?php if(isset($mobins) && $mobins['MobileInspection']['transitno']){echo $mobins['MobileInspection']['transitno'];}?>" /></td>
-        <td>File Key No. <input type="text" name="mobile_ins[filekeyno]" value="<?php if(isset($mobins) && $mobins['MobileInspection']['filekeyno']){echo $mobins['MobileInspection']['filekeyno'];}?>" /></td>
-        <td><input type="text" name="mobile_ins[time_arrived4]" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['date']){echo $mobins['MobileInspection']['time_arrived4'];}?>"/></td>
-        <td><input type="text" name="mobile_ins[time_departed4]" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_departed4']){echo $mobins['MobileInspection']['time_departed4'];}?>"/></td><td></td></tr>
+        <tr><td>P.O. No.: <input type="text" name="mobile_ins[pono]" class="required" value="<?php if(isset($mobins) && $mobins['MobileInspection']['pono']){echo $mobins['MobileInspection']['pono'];}?>" /></td>
+        <td>Transit/Location No. <input type="text" name="mobile_ins[transitno]" class="required" value="<?php if(isset($mobins) && $mobins['MobileInspection']['transitno']){echo $mobins['MobileInspection']['transitno'];}?>" /></td>
+        <td>File Key No. <input type="text" name="mobile_ins[filekeyno]" class="required" value="<?php if(isset($mobins) && $mobins['MobileInspection']['filekeyno']){echo $mobins['MobileInspection']['filekeyno'];}?>" /></td>
+        <td><input type="text" name="mobile_ins[time_arrived4]" class="required" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['date']){echo $mobins['MobileInspection']['time_arrived4'];}?>"/></td>
+        <td><input type="text" name="mobile_ins[time_departed4]" class="required" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_departed4']){echo $mobins['MobileInspection']['time_departed4'];}?>"/></td><td></td></tr>
         </table>
         <br />
         <br />
@@ -49,11 +50,12 @@
             <input type="hidden" name="mobile_id" value="<?php echo $mobins['MobileInspection']['id'];?>"/>
         <?php
             foreach($mem_action as $action)
-            {?>
+            {
+        ?>
                 
                 <tr><td><input type="text" name="mobtime[]" value="<?php echo $action['MobileAction']['time'];?>"/></td>
                 <td><input type="text" name="mobdetail[]" value="<?php echo $action['MobileAction']['detail'];?>"/></td>
-                <td><a href='javascript:void(0)' onclick='$(this).closest("tr").remove();' class='btn btn-danger'>Delete</a></td></tr>
+                <td><a href='javascript:void(0)' onclick='$(this).closest("tr").remove();' id="delete" class='btn btn-danger'>Delete</a></td></tr>
                 
         <?php
             }
@@ -70,6 +72,11 @@ $(function(){
     $('#addmore').click(function(){
        $("<tr><td><input type='text' name='mobtime[]' /></td><td><input type='text' name='mobdetail[]' /></td><td><a href='javascript:void(0)' onclick='$(this).closest(\"tr\").remove();' class='btn btn-danger'>Delete</a></td></tr>").insertAfter($('.mobtime')); 
     });
-    
+   <?php if($this->params['action'] == 'view_detail' ){ ?> 
+    $('.mobileins_more').show();
+    $('.mobileins_more input').attr('disabled','disabled');
+    $('.mobileins_more textarea').attr('disabled','disabled');
+    $('.mobtime , #delete').hide();
+   <?php } ?> 
 });
 </script>
