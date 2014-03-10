@@ -115,6 +115,7 @@ class DashboardController extends AppController
             $this->set('afimac_intel',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'AFIMAC Intel'))));            
             $this->set('news_media',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'News/Media'))));
             $this->set('personal_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'personal_inspection'))));
+            $this->set('mobile_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_inspection'))));
         
             $this->paginate = array('limit'=>10,'order'=>'date desc ,time desc');
              //$this->set('activity',$this->paginate('Document'));

@@ -191,12 +191,16 @@ function remove_youtube()
     <?php if($admin_doc['AdminDoc']['personal_inspection']=='1' && ((isset($canupdate['Canupload']['personal_inspection'])&& $canupdate['Canupload']['personal_inspection']=='1') || $this->Session->read('admin'))){?>
     <option value="personal_inspection" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='personal_inspection') echo "selected='selected'"?>>Personal Inspection</option>
     <?php }?>
+    <?php if($admin_doc['AdminDoc']['mobile_inspection']=='1' && ((isset($canupdate['Canupload']['mobile_inspection'])&& $canupdate['Canupload']['mobile_inspection']=='1') || $this->Session->read('admin'))){?>
+    <option value="mobile_inspection" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='mobile_inspection') echo "selected='selected'"?>>Mobile Inspection</option>
+    <?php }?>
     <!--<option value="training_manuals">Training Manuals</option>-->
 </select>
 </div></td>
 </tr>
 <?php
-include('personal_inspection.php'); 
+include('personal_inspection.php');
+include('mobile_inspection.php'); 
 ?>
 <tr class="site_more" style="display: none;">
 <td colspan="2">
@@ -449,7 +453,7 @@ $job_id = 0;
 //echo $job_id;
 ?>
 
-<div class="submit"><input type="submit" class="btn btn-primary sbtbtn" style="float: left;" value="Submit Document" name="submit"/> <?php if($doc['Document']['job_id']==999 || $job_id == 999){?><a href="javascript:void(0)" class="btn btn-primary sbtbtn uploademail" style="float: left;margin-left:15px;display:none;">Submit Document And Email</a> <?php }else{?><span class="uploademail" style="display: none;"></span><?php }if(!$this->Session->read('admin')){?> <span style="display: none;float:left;" class="draftspan"><a href="javascript:void(0)" style="margin-left: 15px;" class="draft btn btn-primary">Save as Draft</a></span><?php }?></div>
+<div class="submit"><input type="submit" class="btn btn-primary sbtbtn" style="float: left;" value="Submit Document" name="submit"/> <?php if(isset($doc) && $doc['Document']['job_id']==999 || $job_id == 999){?><a href="javascript:void(0)" class="btn btn-primary sbtbtn uploademail" style="float: left;margin-left:15px;display:none;">Submit Document And Email</a> <?php }else{?><span class="uploademail" style="display: none;"></span><?php }if(!$this->Session->read('admin')){?> <span style="display: none;float:left;" class="draftspan"><a href="javascript:void(0)" style="margin-left: 15px;" class="draft btn btn-primary">Save as Draft</a></span><?php }?></div>
 
 
 
@@ -600,6 +604,7 @@ $(function(){
             }
         else
             $('.site_more').hide();
+            
         if(doctype == 'personal_inspection'){
             $('.personal_more').show();
             $('.description_tr').hide();
@@ -611,6 +616,21 @@ $(function(){
             $('.description_tr').show();
             $('.image_tr').show();
             }
+            
+        if(doctype == 'mobile_inspection')
+        {
+            $('.mobileins_more').show();
+            $('.description_tr').hide();
+            $('.image_tr').hide();
+            
+            }
+        else{
+            $('.mobileins_more').hide();
+            $('.description_tr').show();
+            $('.image_tr').show();
+            }
+        
+        
         if(doctype == 'employee'){
             $('.employee_more').show();
             //$('.draftspan').hide();
@@ -667,6 +687,7 @@ $(function(){
     
     if($('#document_type').val() == 'evidence')
          $('.extra_evidence').show();
+    
     if($('#document_type').val() == 'personal_inspection'){
             $('.personal_more').show();
             $('.description_tr').hide();
@@ -675,6 +696,17 @@ $(function(){
             }
         else{
             $('.personal_more').hide();
+            $('.description_tr').show();
+            $('.image_tr').show();
+            }
+    if($('#document_type').val() == 'mobile_inspection'){
+        $('.mobileins_more').show();
+        $('.description_tr').hide();
+            $('.image_tr').hide();
+            //$('.draftspan').hide();
+            }
+        else{
+            $('.mobileins_more').hide();
             $('.description_tr').show();
             $('.image_tr').show();
             }     

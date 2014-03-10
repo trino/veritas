@@ -477,6 +477,12 @@ url: '<?php echo $base_url;?>admin/logout'
                             <?php
                             }?>
                             <?php
+                            if($this->requestAction($base_url.'uploads/checkAdminPerm/mobile_inspection')){
+                            ?>
+                            <li><a href="<?php echo $base_url;?>search/index/mobile_inspection"><i class="icon-arrow-right"></i>Mobile Inspection</a></li>
+                            <?php
+                            }?>
+                            <?php
                         }
                         ?>
                         

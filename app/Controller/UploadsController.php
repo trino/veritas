@@ -456,9 +456,15 @@ class UploadsController extends AppController
     function document_edit($eid)
     {
         $this->loadModel('Personal_inspection');
+        $this->loadModel('MobileInspection');
+        $this->loadModel('MobileAction');
         if($eid)
         {
             $this->set('perso',$this->Personal_inspection->find('first',array('document_id'=>$eid)));
+            $mem = $this->MobileInspection->findByDocumentId($eid);
+            $mem_action = $this->MobileAction->find('all',array('conditions'=>array('mobileins_id'=>$mem['MobileInspection']['id'])));
+            $this->set('mem_action',$mem_action);
+            $this->set('mobins',$mem);
         }
         $this->loadModel('Canupload');
         $this->loadModel('Activity');
@@ -532,8 +538,7 @@ class UploadsController extends AppController
             $arr['description'] = $_POST['description'];
             $arr['draft'] = $_POST['draft'];
             
-            //var_dump($_POST);
-            //die();
+          
             if($_POST['document_type']== 'evidence')
             {
                 $arr['incident_date'] = $_POST['incident_date'];
@@ -719,6 +724,29 @@ class UploadsController extends AppController
                 $this->Personal_inspection->create();
                 $this->Personal_inspection->save($per);            
                 
+            }
+            elseif($_POST['document_type'] == 'mobile_inspection')
+            {
+                $mid = $_POST['mobile_id'];
+                $this->MobileInspection->id = $mid;
+                foreach($_POST['mobile_ins'] as $k=>$v)
+                {
+                    $this->MobileInspection->saveField($k,$v);
+                }
+                
+                
+                $this->MobileAction->deleteAll(array('mobileins_id'=>$mid));
+                $action['mobileins_id'] = $mid;
+                foreach($_POST['mobtime'] as $key =>$time)
+                {
+                    if($time!="")
+                    {
+                        $action['time'] = $time;
+                        $action['detail'] = $_POST['mobdetail'][$key];
+                        $this->MobileAction->create();
+                        $this->MobileAction->save($action);
+                    }
+                }    
             }
             $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$_POST['job'].',%'), array('job_id'=>$_POST['job']),array('job_id LIKE'=>'%,'.$_POST['job'].',%'),array('job_id LIKE'=>'%,'.$_POST['job'])))));
                 //var_dump($mails);
@@ -1364,6 +1392,32 @@ class UploadsController extends AppController
                 $this->loadModel('Personal_inspection');
                 $this->Personal_inspection->create();
                 $this->Personal_inspection->save($per);
+            }
+            if($_POST['document_type'] == 'mobile_inspection')
+            {
+                $mob['document_id'] = $id;
+                //var_dump($_POST['mobile_ins']);die();
+                foreach($_POST['mobile_ins'] as $k=>$v)
+                {
+                    $mob[$k] = $v;
+                }
+                $this->loadModel('MobileInspection');
+                $this->MobileInspection->create();
+                $this->MobileInspection->save($mob);
+                $action['mobileins_id'] = $this->MobileInspection->id;
+                $this->loadModel('MobileAction');
+                foreach($_POST['mobtime'] as $key =>$time)
+                {
+                    if($time!="")
+                    {
+                        $action['time'] = $time;
+                        $action['detail'] = $_POST['mobdetail'][$key];
+                        $this->MobileAction->create();
+                        $this->MobileAction->save($action);
+                    }
+                }
+                
+                
             }
             //var_dump($mails);die();
             //var_dump($mails);die();
