@@ -39,7 +39,7 @@
         <td>Transit/Location No. <input type="text" name="mobile_ins[transitno]" class="required" value="<?php if(isset($mobins) && $mobins['MobileInspection']['transitno']){echo $mobins['MobileInspection']['transitno'];}?>" /></td>
         <td>File Key No. <input type="text" name="mobile_ins[filekeyno]" class="required" value="<?php if(isset($mobins) && $mobins['MobileInspection']['filekeyno']){echo $mobins['MobileInspection']['filekeyno'];}?>" /></td>
         <td><input type="text" name="mobile_ins[time_arrived4]" class="required" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['date']){echo $mobins['MobileInspection']['time_arrived4'];}?>"/></td>
-        <td><input type="text" name="mobile_ins[time_departed4]" class="required" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_departed4']){echo $mobins['MobileInspection']['time_departed4'];}?>"/></td><td></td></tr>
+        <td><input type="text" name="mobile_ins[time_departed4]" class="required" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_departed4']){echo $mobins['MobileInspection']['time_departed4'];}?>"/></td></tr>
         </table>
         <br />
         <br />

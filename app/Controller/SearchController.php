@@ -8,7 +8,7 @@ class SearchController extends AppController
     {
         $this->loadModel('Member');
         if(!$this->Session->read('admin')){
-        $sess_id = $this->Session->read('id');
+            $sess_id = $this->Session->read('id');
         }
         else
         {
@@ -31,7 +31,7 @@ class SearchController extends AppController
         
         $this->loadModel('SpecJob');
         if(isset($sess_id))
-        $sess = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$sess_id)));
+            $sess = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$sess_id)));
         if(isset($sess))
         if($sess)
         {
@@ -68,19 +68,19 @@ class SearchController extends AppController
             $search = '';    
                  
         if(isset($_GET['from']))
-            {
-                $from = $_GET['from'];
-            }    
-            else
+        {
+            $from = $_GET['from'];
+        }    
+        else
             $from = '';
             
         if(isset($_GET['to']))
-            {
-                $to = $_GET['to'];
-            }    
-            else
-                $to = '';  
-            
+        {
+            $to = $_GET['to'];
+        }    
+        else
+            $to = '';  
+        
             
             if(isset($_GET['order']))
             {
@@ -170,7 +170,9 @@ class SearchController extends AppController
             $qs = $this->Canview->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
             $che = $this->Member->find('first',array('conditions',array('id'=>$this->Session->read('id'))));
             $arrs = array();
-            if($qs['Canview']['contracts'] || $type == 'contracts' || $type=='contract')
+            if($type =="")
+            {
+            if($qs['Canview']['contracts'] || $type == 'contracts' || $type == 'contract')
             {
                 $arrs[] = array('document_type'=>'contract');
             }
@@ -218,7 +220,63 @@ class SearchController extends AppController
             {
                 $arrs2[] = array('document_type'=>'News/Media');
             }
-            if(count($arrs)<1 && count($arrs2)<1)
+            }
+            else
+            {
+                if($type == 'contracts' || $type == 'contract')
+            {
+                $arrs = array('document_type'=>'contract');
+            }
+            if($type == 'report')
+            {
+                $arrs = array('document_type'=>'report');
+            }
+            if($type == 'evidence')
+            {
+                $arrs = array('document_type'=>'evidence');
+            }
+            if($type == 'personal_inspection')
+            {
+                $arrs = array('document_type'=>'personal_inspection');
+            }
+            if($type == 'client_feedback')
+            {
+                $arrs = array('document_type'=>'client_feedback');
+            }
+            if( $type == 'templates' || $type=='template')
+            {
+                $arrs = array('document_type'=>'template');
+            }
+            if($type == 'siteOrder')
+            {
+                $arrs = array('document_type'=>'siteOrder');
+            }
+            if($type == 'training')
+            {
+                $arrs = array('document_type'=>'training');
+            }
+            if($type == 'employee')
+            {
+                $arrs = array('document_type'=>'employee');
+            }
+            if($type == 'KPIAudits')
+            {
+                $arrs = array('document_type'=>'KPIAudits');
+            }
+            if($type == 'AFIMAC Intel')
+            {
+                $arrs2 = array('document_type'=>'AFIMAC Intel');
+            }
+            if($type == 'News/Media')
+            {
+                $arrs2 = array('document_type'=>'News/Media');
+            }
+            if($type == 'mobile_inspection')
+            {
+                $arrs = array('document_type'=>'mobile_inspection');
+            }
+            }
+            if(count($arrs)< 1 && count($arrs2)< 1)
             $this->set('noView',1);
             //$arrs[] = array('document_type <>'=>'client_feedback');
             
@@ -272,12 +330,12 @@ class SearchController extends AppController
             else
             if($to && $from){
                 if($to!=$from){
-                $this->paginate = array('conditions'=>array('OR'=>$arrs,'AND'=>array('document_type <>'=>'client_feedback','OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'DATE(`date`) >='=>$from, 'DATE(`date`) <='=>$to,'job_id IN'.$jid)),'order'=>$order,'limit'=>10);
-                $this->set('count',$this->Document->find('count',array('conditions'=>array('OR'=>$arrs,'AND'=>array('document_type <>'=>'client_feedback','OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'DATE(`date`) >='=>$from, 'DATE(`date`) <='=>$to,'job_id IN'.$jid)))));
+                    $this->paginate = array('conditions'=>array('OR'=>$arrs,'AND'=>array('document_type <>'=>'client_feedback','OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'DATE(`date`) >='=>$from, 'DATE(`date`) <='=>$to,'job_id IN'.$jid)),'order'=>$order,'limit'=>10);
+                    $this->set('count',$this->Document->find('count',array('conditions'=>array('OR'=>$arrs,'AND'=>array('document_type <>'=>'client_feedback','OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'DATE(`date`) >='=>$from, 'DATE(`date`) <='=>$to,'job_id IN'.$jid)))));
                 }
                 else{
-                $this->paginate = array('conditions'=>array('OR'=>$arrs,'AND'=>array('document_type <>'=>'client_feedback','OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'DATE(`date`)'=>$from,'job_id IN'.$jid)),'order'=>$order,'limit'=>10);
-                $this->set('count',$this->Document->find('count',array('conditions'=>array('OR'=>$arrs,'AND'=>array('document_type <>'=>'client_feedback','OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'DATE(`date`)'=>$from,'job_id IN'.$jid)))));
+                    $this->paginate = array('conditions'=>array('OR'=>$arrs,'AND'=>array('document_type <>'=>'client_feedback','OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'DATE(`date`)'=>$from,'job_id IN'.$jid)),'order'=>$order,'limit'=>10);
+                    $this->set('count',$this->Document->find('count',array('conditions'=>array('OR'=>$arrs,'AND'=>array('document_type <>'=>'client_feedback','OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'DATE(`date`)'=>$from,'job_id IN'.$jid)))));
                 }
                 
                 }
@@ -287,9 +345,16 @@ class SearchController extends AppController
             else{
                 //echo 2;die();
                 if(!$to && !$from){
-                    
-                $this->paginate = array('conditions'=>array('OR'=>$arrs,'AND'=>array('document_type <>'=>'client_feedback','job_id IN'.$jid)),'order'=>$order,'limit'=>10);
-                $this->set('count',$this->Document->find('count',array('conditions'=>array('OR'=>$arrs,'AND'=>array('document_type <>'=>'client_feedback','job_id IN'.$jid)))));
+                if($job_id == 0 )
+                {
+                    $this->paginate = array('conditions'=>array('OR'=>$arrs,'AND'=>array('document_type <>'=>'client_feedback','job_id IN'.$jid)),'order'=>$order,'limit'=>10);
+                    $this->set('count',$this->Document->find('count',array('conditions'=>array('OR'=>$arrs,'AND'=>array('document_type <>'=>'client_feedback','job_id IN'.$jid)))));
+                }
+                else
+                {
+                    $this->paginate = array('conditions'=>array('OR'=>$arrs,'AND'=>array('document_type <>'=>'client_feedback','job_id'=>$job_id)),'order'=>$order,'limit'=>10);
+                    $this->set('count',$this->Document->find('count',array('conditions'=>array('OR'=>$arrs,'AND'=>array('document_type <>'=>'client_feedback','job_id'=>$job_id )))));
+                }
                 }
                 else
                 {
@@ -326,7 +391,8 @@ class SearchController extends AppController
                 
                 
                 //die('here'.$type);
-                if($search!=''){            
+                if($search!='')
+                {            
             if(!$to && !$from){
                 if($type)
                     {
