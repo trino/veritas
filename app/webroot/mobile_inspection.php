@@ -45,7 +45,7 @@
         </table>
         <br />
         <br />
-        <table class="table table-bordered ">
+        <table class="table table-bordered addmoretab">
         <thead ><th width="10%">Time</th><th>Action Taken/Details Of Inspection</th></thead>
         <?php if(isset($mem_action)){
             ?>
@@ -64,7 +64,7 @@
             
         }?>
         <tr class="mobtime" ><td><input type="text" class="time" name="mobtime[]" />
-        </td><td><textarea name="mobdetail[]"></textarea></td><td><input type="button" class="btn btn-primary" id="addmore" value="+Add More"/></td></tr >
+        </td><td><textarea name="mobdetail[]" style="width:500px;height:150px"></textarea></td><td><input type="button" class="btn btn-primary" id="addmore" value="+Add More"/></td></tr >
         
         </table>
         <table>
@@ -79,7 +79,7 @@
 <script>
 $(function(){
     $('#addmore').click(function(){
-       $("<tr><td><input type='text' class='time' name='mobtime[]' /></td><td><textarea name='mobdetail[]'></textarea></td><td><a href='javascript:void(0)' onclick='$(this).closest(\"tr\").remove();' class='btn btn-danger'>Delete</a></td></tr>").insertAfter($('.mobtime')); 
+       $('.addmoretab').append("<tr><td><input type='text' class='time' name='mobtime[]' /></td><td><textarea name='mobdetail[]' style='width:500px;height:150px'></textarea></td><td><a href='javascript:void(0)' onclick='$(this).closest(\"tr\").remove();' class='btn btn-danger'>Delete</a></td></tr>"); 
     });
    <?php if($this->params['action'] == 'view_detail' ){ ?> 
     $('.mobileins_more').show();

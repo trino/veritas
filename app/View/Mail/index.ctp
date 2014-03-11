@@ -11,9 +11,9 @@
 	</li>
 </ul>
 
-<?php echo $this->Html->link('Inbox','/mail', array('class'=>'btn btn-primary reg-company')); ?> 
-<?php echo $this->Html->link('Sent Mail','/mail/sent_mail', array('class'=>'btn btn-primary reg-company')); ?>
-<br/><br/>
+<?php //echo $this->Html->link('Inbox','/mail', array('class'=>'btn btn-primary reg-company')); ?> 
+<?php //echo $this->Html->link('Sent Mail','/mail/sent_mail', array('class'=>'btn btn-primary reg-company')); ?>
+
 
 <div id="table">
 

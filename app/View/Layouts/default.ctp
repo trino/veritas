@@ -500,7 +500,7 @@ url: '<?php echo $base_url;?>admin/logout'
                     <?php }?>
                 </li>
                 <?php if($this->Session->read('admin')){?>
-                  <li>  <?php echo $this->Html->link('<i class="icon-briefcase"></i>'.'Analytics','#',array('escape'=>false));?>
+                  <li>  <?php echo $this->Html->link('<i class="icon-briefcase"></i>'.'Analytics','/uploads/stats',array('escape'=>false));?>
                   <ul class="moreul">
                     <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Graphical Report','/uploads/graphs', array('escape'=>false));?></li>
                     <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Regular Report','/uploads/stats', array('escape'=>false));?></li>

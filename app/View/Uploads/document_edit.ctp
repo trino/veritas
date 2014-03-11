@@ -8,7 +8,8 @@ else
 
 
 <h3 class="page-title">
-	<?php echo ($this->request->parms['action']=='document_edit')? "Edit  Document":"Upload Document For ".stripslashes($job_n);?>
+
+	<?php echo ($this->request->params['action']=='document_edit')? "Document Edit For ".stripslashes($job_n):"Upload Document For ".stripslashes($job_n);?>
 </h3>
 <ul class="breadcrumb">
 	<li>

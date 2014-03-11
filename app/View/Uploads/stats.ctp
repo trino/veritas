@@ -142,9 +142,9 @@ Document Analytics
     }
     unset($v);
 ?>
-<a href="graphs<?php echo $qry;?>" class="btn btn-primary">Graphical Report</a> <a href="javascript:void(0);" onclick="window.print();" class="btn btn-primary">Print Report</a>
+<!--<a href="graphs<?php echo $qry;?>" class="btn btn-primary">Graphical Report</a> <a href="javascript:void(0);" onclick="window.print();" class="btn btn-primary">Print Report</a>
 <br>
-<br>
+<br>-->
 
 
 <table class="table" id="toprint">
