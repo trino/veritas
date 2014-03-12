@@ -168,6 +168,7 @@ $(function(){
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="show[kpiaudits]" value="1" <?php if(isset($admin_doc['AdminDoc']['kpiaudits']) && $admin_doc['AdminDoc']['kpiaudits']=='1' ) echo "checked='checked'";?>/>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Personal Inspection </span><input type="checkbox" name="show[personal_inspection]" value="1" <?php if(isset($admin_doc['AdminDoc']['personal_inspection']) && $admin_doc['AdminDoc']['personal_inspection']=='1' ) echo "checked='checked'";?>/>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Inspection </span><input type="checkbox" name="show[mobile_inspection]" value="1" <?php if(isset($admin_doc['AdminDoc']['mobile_inspection']) && $admin_doc['AdminDoc']['mobile_inspection']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Log </span><input type="checkbox" name="show[mobile_log]" value="1" <?php if(isset($admin_doc['AdminDoc']['mobile_log']) && $admin_doc['AdminDoc']['mobile_log']=='1' ) echo "checked='checked'";?>/>
 </td></tr>
         <tr>
         <?php

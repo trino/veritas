@@ -194,13 +194,17 @@ function remove_youtube()
     <?php if($admin_doc['AdminDoc']['mobile_inspection']=='1' && ((isset($canupdate['Canupload']['mobile_inspection'])&& $canupdate['Canupload']['mobile_inspection']=='1') || $this->Session->read('admin'))){?>
     <option value="mobile_inspection" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='mobile_inspection') echo "selected='selected'"?>>Mobile Inspection</option>
     <?php }?>
+    <?php if($admin_doc['AdminDoc']['mobile_log']=='1' && ((isset($canupdate['Canupload']['mobile_log'])&& $canupdate['Canupload']['mobile_log']=='1') || $this->Session->read('admin'))){?>
+    <option value="mobile_log" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='mobile_log') echo "selected='selected'"?>>Mobile Log</option>
+    <?php }?>
     <!--<option value="training_manuals">Training Manuals</option>-->
 </select>
 </div></td>
 </tr>
 <?php
 include('personal_inspection.php');
-include('mobile_inspection.php'); 
+include('mobile_inspection.php');
+include('mobile_log.php'); 
 ?>
 <tr class="site_more" style="display: none;">
 <td colspan="2">
@@ -623,12 +627,27 @@ $(function(){
             $('.description_tr').hide();
             $('.image_tr').hide();
             
-            }
-        else{
+        }
+        else
+        {
             $('.mobileins_more').hide();
             $('.description_tr').show();
             $('.image_tr').show();
-            }
+        }
+        
+        if(doctype == 'mobile_log')
+        {
+            $('.mobilelog_more').show();
+            $('.description_tr').hide();
+            $('.image_tr').hide();
+            
+        }
+        else
+        {
+            $('.mobilelog_more').hide();
+            $('.description_tr').show();
+            $('.image_tr').show();
+        }
         
         
         if(doctype == 'employee'){
@@ -709,7 +728,18 @@ $(function(){
             $('.mobileins_more').hide();
             $('.description_tr').show();
             $('.image_tr').show();
-            }     
+            }
+    if($('#document_type').val() == 'mobile_log'){
+        $('.mobilelog_more').show();
+        $('.description_tr').hide();
+            $('.image_tr').hide();
+            //$('.draftspan').hide();
+            }
+        else{
+            $('.mobilelog_more').hide();
+            $('.description_tr').show();
+            $('.image_tr').show();
+            }      
     if($('#document_type').val() == 'siteOrder')
          $('.site_more').show();
     if($('#document_type').val() == 'training')
