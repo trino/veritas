@@ -996,11 +996,14 @@ class UploadsController extends AppController
         {
             $this->set('ac', $this->Activity->find('first',array('conditions'=>array('document_id'=>$eid))));
             $this->set('activity', $this->Activity->find('all',array('conditions'=>array('document_id'=>$eid))));
+            
         }
         elseif($doc['Document']['document_type'] == 'client_feedback')
         {
             $this->set('memo',$this->Clientmemo->findByDocumentId($eid));
         }
+        $jjj = $this->Job->findById($doc['Document']['job_id']);
+        $this->set('job_name',$jjj['Job']['title']);
         $this->set('doc', $doc);
         
         

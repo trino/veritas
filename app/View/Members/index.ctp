@@ -15,14 +15,13 @@
 </ul>
 
 
-<?php echo $this->Html->link(
+<?php /*echo $this->Html->link(
 					'Add User',
 					'/members/add',
 					array('class'=>'btn btn-primary reg-company')
-				);
+				);*/
 			?>
-<br/>
-<br/>
+
 <div id="table">
 
 

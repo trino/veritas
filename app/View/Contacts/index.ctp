@@ -16,7 +16,7 @@ include_once('inc.php');
 <?php
 if($this->Session->read('avatar'))
 {
- echo $this->Html->link(
+ /*echo $this->Html->link(
 					'Add Contact',
 					'/contacts/add',
                     array('class'=>'btn btn-primary reg-company')
@@ -25,7 +25,7 @@ if($this->Session->read('avatar'))
 					'Upload Contact',
 					'/contacts/upload',
                     array('class'=>'btn btn-primary reg-company')
-				) . "<br><br>";
+				) . "<br><br>";*/
 			?>
             <?php
             $jobs = $jbs->find('all'); 

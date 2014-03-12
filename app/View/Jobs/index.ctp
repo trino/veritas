@@ -14,7 +14,7 @@
 <?php
 if($this->Session->read('avatar'))
 {
- echo $this->Html->link(
+ /*echo $this->Html->link(
 					'Add Job',
 					'/jobs/add',
                     array('class'=>'btn btn-primary reg-company')
@@ -24,7 +24,7 @@ if($this->Session->read('avatar'))
     echo $this->Html->link('Assign Job to User','listing',array('class'=>'btn btn-primary reg-company')); 
    // echo $this->Html->link('Pending Jobs','/jobs/pending',array('class'=>'btn btn-primary reg-company'));
    
-   	echo "<br/><br/>";
+   	echo "<br/><br/>";*/
    }
    
 

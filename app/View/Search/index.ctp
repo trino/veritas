@@ -84,8 +84,13 @@ if($this->Session->read('admin'))
     <option value="training">Training</option>
     <option value="employee">Employee</option>
     <option value="KPIAudits">KPI Audits</option>
+    <option value="personal_inspection">Personal Inspection</option>
+    <option value="mobile_inspection">Mobile Inspection</option>
     <option value="afimac_intel">AFIMAC Intel</option>
+    
     <option value="news_media">News/Media</option>
+    
+    
   </select>
   
   <?php
