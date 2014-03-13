@@ -100,6 +100,13 @@ if(!isset($sid)){
 
 <?php if($admin_doc['AdminDoc']['personal_inspection']=='0' ){?><input type="hidden" name="canView_personal_inspection" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Personal Inspection </span><input type="checkbox" name="canView_personal_inspection" <?php if(isset($v['Canview']['personal_inspection']) && $v['Canview']['personal_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
+
+<?php if($admin_doc['AdminDoc']['mobile_inspection']=='0' ){?><input type="hidden" name="canView_mobile_inspection" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Inspection </span><input type="checkbox" name="canView_mobile_inspection" <?php if(isset($v['Canview']['mobile_inspection']) && $v['Canview']['mobile_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
+
+<?php if($admin_doc['AdminDoc']['mobile_log']=='0' ){?><input type="hidden" name="canView_mobile_log" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Log </span><input type="checkbox" name="canView_mobile_log" <?php if(isset($v['Canview']['mobile_log']) && $v['Canview']['mobile_log']==1){?>checked="checked"<?php }?> /><?php }?>
+
 </td>
 
 </tr>
@@ -167,6 +174,13 @@ if(!isset($sid))
 
 <?php if($admin_doc['AdminDoc']['personal_inspection']=='0' ){?><input type="hidden" name="canUpload_personal_inspection" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Personal Inspection </span><input type="checkbox" name="canUpload_personal_inspection" <?php if(isset($u['Canupload']['personal_inspection']) && $u['Canupload']['personal_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
+
+<?php if($admin_doc['AdminDoc']['mobile_inspection']=='0' ){?><input type="hidden" name="canUpload_mobile_inspection" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Inspection </span><input type="checkbox" name="canUpload_mobile_inspection" <?php if(isset($u['Canupload']['mobile_inspection']) && $u['Canupload']['mobile_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
+
+<?php if($admin_doc['AdminDoc']['mobile_log']=='0' ){?><input type="hidden" name="canUpload_mobile_log" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Log </span><input type="checkbox" name="canUpload_mobile_log" <?php if(isset($u['Canupload']['mobile_log']) && $u['Canupload']['mobile_log']==1){?>checked="checked"<?php }?> /><?php }?>
+
 </td>
 </tr>
 </table>

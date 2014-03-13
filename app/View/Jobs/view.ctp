@@ -278,7 +278,26 @@
 		</a>								
 		<div class="dusk2"></div>						
 	</div>
-    <?php }?>   
+    <?php }?>  
+    <?php if($admin_doc['AdminDoc']['mobile_log']=='1' &&((isset($canview['Canview']['mobile_log']) && $canview['Canview']['mobile_log']=='1')|| $this->Session->read('admin'))){?>
+    <div class="dashboard-stat blue">								
+		<div class="whiteCorner"></div>								
+		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
+        <a href="<?=$base_url;?>search/index/mobile_log/<?php echo $jobb_id;?>" class="overallLink more">		
+			<div class="visual">										
+				<i class="icon-file"></i>									
+			</div>									
+			<div class="details">										
+				<div class="number"><?php echo $mobile_log;?></div>										
+				<div class="desc">Mobile Log</div>									
+			</div>									
+			<div class="more2">									
+				View All <?php echo $mobile_log;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+			</div>														
+		</a>								
+		<div class="dusk2"></div>						
+	</div>
+    <?php }?>    
 	
 <?php } ?>
 

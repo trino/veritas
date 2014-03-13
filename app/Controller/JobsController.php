@@ -620,7 +620,8 @@ class JobsController extends AppController
             $this->set('employee',$this->Document->find('count',array('conditions'=>array('document_type'=>'employee','job_id'=>$id))));
             $this->set('KPIAudits',$this->Document->find('count',array('conditions'=>array('document_type'=>'KPIAudits','job_id'=>$id))));
             $this->set('personal_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'personal_inspection','job_id'=>$id))));
-            $this->set('mobile_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_inspection'))));
+            $this->set('mobile_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_inspection','job_id'=>$id))));
+            $this->set('mobile_log',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_log','job_id'=>$id))));
             $this->set('afimac_intel',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'AFIMAC Intel','job_id'=>$id))));            
             $this->set('news_media',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'News/Media','job_id'=>$id))));
         }
@@ -637,7 +638,8 @@ class JobsController extends AppController
             $this->set('afimac_intel',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'AFIMAC Intel','job_id'=>$id))));            
             $this->set('news_media',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'News/Media','job_id'=>$id))));
             $this->set('personal_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'personal_inspection','job_id'=>$id))));
-            $this->set('mobile_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_inspection'))));
+            $this->set('mobile_log',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_log', 'job_id'=>$id))));
+            $this->set('mobile_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_inspection','job_id'=>$id))));
             
         }
         

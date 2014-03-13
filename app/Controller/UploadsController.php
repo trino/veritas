@@ -458,6 +458,9 @@ class UploadsController extends AppController
         $this->loadModel('Personal_inspection');
         $this->loadModel('MobileInspection');
         $this->loadModel('MobileAction');
+        $this->loadModel('MobileLog');
+        $this->loadModel('MobileNote');
+        $this->loadModel('MobileSite');
         if($eid)
         {
             $this->set('perso',$this->Personal_inspection->find('first',array('document_id'=>$eid)));
@@ -466,6 +469,17 @@ class UploadsController extends AppController
                 $mem_action = $this->MobileAction->find('all',array('conditions'=>array('mobileins_id'=>$mem['MobileInspection']['id'])));
                 $this->set('mem_action',$mem_action);
                 $this->set('mobins',$mem);
+            }
+            if($n = $this->MobileLog->findByDocumentId($eid))
+            {
+                //var_dump($n);
+                $mem_note = $this->MobileNote->find('all',array('conditions'=>array('mobileins_id'=>$n['MobileLog']['id'])));
+                $this->set('mem_note',$mem_note);
+                
+                if($mem_site = $this->MobileSite->find('all',array('conditions'=>array('mobilelog_id'=>$n['MobileLog']['id']))))
+                    $this->set('mem_site',$mem_site);
+                
+                $this->set('moblog',$n); 
             }
         }
         $this->loadModel('Canupload');
@@ -749,6 +763,48 @@ class UploadsController extends AppController
                         $this->MobileAction->save($action);
                     }
                 }    
+            }
+            elseif($_POST['document_type'] == 'mobile_log')
+            {
+                $lid = $_POST['log_id'];
+                $this->loadModel('MobileLog');
+                $this->MobileLog->id = $lid;
+                //var_dump($_POST['mobile_ins']);die();
+                foreach($_POST['log'] as $k=>$v)
+                {
+                    $this->MobileLog->saveField($k,$v);
+                }
+                $this->loadModel('MobileNote');
+                $this->MobileNote->deleteAll(array('mobileins_id'=>$lid));
+                $action['mobileins_id'] = $lid;
+                
+                foreach($_POST['mobtime'] as $key =>$time)
+                {
+                    if($time!="")
+                    {
+                        $action['time'] = $time;
+                        $action['detail'] = $_POST['mobdetail'][$key];
+                        $this->MobileNote->create();
+                        $this->MobileNote->save($action);
+                    }
+                }
+                $this->loadModel('MobileSite');
+                $this->MobileSite->deleteAll(array('mobilelog_id'=>$lid));
+                $site['mobilelog_id'] = $lid;
+                foreach($_POST['arrival'] as $k=>$s)
+                {
+                    if($s!= "")
+                    {
+                        $site['arrival'] = $s;
+                        $site['depart'] = $_POST['depart'][$k];
+                        $site['siteaddress'] = $_POST['siteaddress'][$k];
+                        $site['guardonsite'] = $_POST['guardonsite'][$k];
+                        $this->MobileSite->create();
+                        $this->MobileSite->save($site);
+                    }
+                }
+                
+                
             }
             $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$_POST['job'].',%'), array('job_id'=>$_POST['job']),array('job_id LIKE'=>'%,'.$_POST['job'].',%'),array('job_id LIKE'=>'%,'.$_POST['job'])))));
                 //var_dump($mails);
@@ -1424,8 +1480,47 @@ class UploadsController extends AppController
                 
                 
             }
-            //var_dump($mails);die();
-            //var_dump($mails);die();
+            if($_POST['document_type'] == 'mobile_log')
+            {
+                $mob['document_id'] = $id;
+                //var_dump($_POST['mobile_ins']);die();
+                foreach($_POST['log'] as $k=>$v)
+                {
+                    $mob[$k] = $v;
+                }
+                $this->loadModel('MobileLog');
+                $this->MobileLog->create();
+                $this->MobileLog->save($mob);
+                $action['mobileins_id'] = $this->MobileLog->id;
+                $site['mobilelog_id'] = $this->MobileLog->id;
+                $this->loadModel('MobileNote');
+                foreach($_POST['mobtime'] as $key =>$time)
+                {
+                    if($time!="")
+                    {
+                        $action['time'] = $time;
+                        $action['detail'] = $_POST['mobdetail'][$key];
+                        $this->MobileNote->create();
+                        $this->MobileNote->save($action);
+                    }
+                }
+                $this->loadModel('MobileSite');
+                foreach($_POST['arrival'] as $k=>$s)
+                {
+                    if($s!= "")
+                    {
+                        $site['arrival'] = $s;
+                        $site['depart'] = $_POST['depart'][$k];
+                        $site['siteaddress'] = $_POST['siteaddress'][$k];
+                        $site['guardonsite'] = $_POST['guardonsite'][$k];
+                        $this->MobileSite->create();
+                        $this->MobileSite->save($site);
+                    }
+                }
+                
+                
+            }
+            
             foreach($mails as $m)
                 {
                     
@@ -1965,13 +2060,29 @@ class UploadsController extends AppController
         $this->loadModel('Personal_inspection');
         $this->loadModel('MobileInspection');
         $this->loadModel('MobileAction');
+        $this->loadModel('MobileLog');
+        $this->loadModel('MobileNote');
+        $this->loadModel('MobileSite');
         if($id)
         {
             $this->set('perso',$this->Personal_inspection->find('first',array('document_id'=>$id)));
-            $mem = $this->MobileInspection->findByDocumentId($id);
-            $mem_action = $this->MobileAction->find('all',array('conditions'=>array('mobileins_id'=>$mem['MobileInspection']['id'])));
-            $this->set('mem_action',$mem_action);
-            $this->set('mobins',$mem);
+            if($mem = $this->MobileInspection->findByDocumentId($id))
+            {
+                $mem_action = $this->MobileAction->find('all',array('conditions'=>array('mobileins_id'=>$mem['MobileInspection']['id'])));
+                $this->set('mem_action',$mem_action);
+                $this->set('mobins',$mem);
+            }
+            if($n = $this->MobileLog->findByDocumentId($id))
+            {
+                //var_dump($n);
+                $mem_note = $this->MobileNote->find('all',array('conditions'=>array('mobileins_id'=>$n['MobileLog']['id'])));
+                $this->set('mem_note',$mem_note);
+                
+                if($mem_site = $this->MobileSite->find('all',array('conditions'=>array('mobilelog_id'=>$n['MobileLog']['id']))))
+                    $this->set('mem_site',$mem_site);
+                
+                $this->set('moblog',$n); 
+            }
         }
         $this->loadModel('Activity');
         $this->loadModel('Clientmemo');

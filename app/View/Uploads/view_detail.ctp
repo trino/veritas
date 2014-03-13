@@ -182,6 +182,12 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         include('mobile_inspection.php');
     }
     ?>
+    <?php
+    if($doc['Document']['document_type']=='mobile_log')
+    {
+        include('mobile_log.php');
+    }
+    ?>
     
 </table>
 </div>
