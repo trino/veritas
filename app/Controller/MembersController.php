@@ -256,6 +256,11 @@ class MembersController extends AppController
                 $canview['KPIAudits'] = (isset($_POST['canView_KPIAudits'])&& $_POST['canView_KPIAudits']!= '0')? '1' : '0'  ;
                 $canview['afimac_intel'] = (isset($_POST['canView_afimac_intel'])&& $_POST['canView_afimac_intel']!= '0')? '1' : '0'  ;
                 $canview['news_media'] = (isset($_POST['canView_news_media'])&& $_POST['canView_news_media']!= '0')? '1' : '0'  ;
+                $canview['mobile_log'] =  (isset($_POST['canView_mobile_log'])&& $_POST['canView_mobile_log'])? '1' : '0'  ;
+                $canview['personal_inspection'] = (isset($_POST['canView_personal_inspection'])&& $_POST['canView_personal_inspection'])? '1' : '0'  ;
+                $canview['mobile_inspection'] = (isset($_POST['canView_mobile_inspection'])&& $_POST['canView_mobile_inspection'])? '1' : '0'  ;
+                $canview['inventory'] = (isset($_POST['canView_inventory'])&& $_POST['canView_inventory'])? '1' : '0'  ;
+                
                 $this->Canview->create();
                 $this->Canview->save($canview);
             }
@@ -293,6 +298,10 @@ class MembersController extends AppController
                 $canupdate['afimac_intel'] = (isset($_POST['canUpload_afimac_intel'])&& $_POST['canUpload_afimac_intel']!= '0')? '1' : '0'  ;
                 $canupdate['news_media'] = (isset($_POST['canUpload_news_media'])&& $_POST['canUpload_news_media']!= '0')? '1' : '0'  ;
                 $canupdate['client_feedback'] = (isset($_POST['canUpload_client_memo1']))? '1' : '0'  ;
+                $canupdate['personal_inspection'] = (isset($_POST['canUpload_personal_inspection'])&& $_POST['canUpload_personal_inspection'])? '1' : '0'  ;
+                $canupdate['mobile_inspection'] = (isset($_POST['canUpload_mobile_inspection'])&& $_POST['canUpload_mobile_inspection'])? '1' : '0'  ;
+                $canupdate['mobile_log'] = (isset($_POST['canUpload_mobile_log'])&& $_POST['canUpload_mobile_log'])? '1' : '0'  ;
+                $canupdate['inventory'] = (isset($_POST['canUpload_inventory'])&& $_POST['canUpload_inventory'])? '1' : '0'  ;
                 
                 $this->Canupload->create();
                 $this->Canupload->save($canupdate);  
@@ -612,6 +621,7 @@ class MembersController extends AppController
                 $canview['mobile_log'] =  (isset($_POST['canView_mobile_log'])&& $_POST['canView_mobile_log'])? '1' : '0'  ;
                 $canview['personal_inspection'] = (isset($_POST['canView_personal_inspection'])&& $_POST['canView_personal_inspection'])? '1' : '0'  ;
                 $canview['mobile_inspection'] = (isset($_POST['canView_mobile_inspection'])&& $_POST['canView_mobile_inspection'])? '1' : '0'  ;
+                $canview['inventory'] = (isset($_POST['canView_inventory'])&& $_POST['canView_inventory'])? '1' : '0'  ;
                 $this->Canview->create();
                 $this->Canview->save($canview);
                 //die('here');
@@ -634,6 +644,7 @@ class MembersController extends AppController
                 $canview['personal_inspection'] = '0'  ;
                 $canview['mobile_inspection'] = '0'  ;
                 $canview['mobile_log'] = '0'  ;
+                $canview['inventory'] = '0'  ;
                 $this->Canview->create();
                 $this->Canview->save($canview);
             }
@@ -656,6 +667,7 @@ class MembersController extends AppController
                 $canupdate['personal_inspection'] = (isset($_POST['canUpload_personal_inspection'])&& $_POST['canUpload_personal_inspection'])? '1' : '0'  ;
                 $canupdate['mobile_inspection'] = (isset($_POST['canUpload_mobile_inspection'])&& $_POST['canUpload_mobile_inspection'])? '1' : '0'  ;
                 $canupdate['mobile_log'] = (isset($_POST['canUpload_mobile_log'])&& $_POST['canUpload_mobile_log'])? '1' : '0'  ;
+                $canupdate['inventory'] = (isset($_POST['canUpload_inventory'])&& $_POST['canUpload_inventory'])? '1' : '0'  ;
                 $this->Canupload->create();
                 $this->Canupload->save($canupdate);
                 //die();
@@ -679,6 +691,7 @@ class MembersController extends AppController
                 $canupdate['personal_inspection'] = '0'  ;
                 $canupdate['mobile_inspection'] = '0'  ;
                 $canupdate['mobile_log'] = '0'  ;
+                $canupdate['inventory'] = '0'  ;
             }
     
             if(isset($_POST['receive2']))

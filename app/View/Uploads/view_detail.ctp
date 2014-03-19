@@ -15,12 +15,7 @@
 }
 </style>
 
-<script>
-    $(function(){
-       
-        
-    });
-  </script>
+
 <h3 class="page-title">
 <?php if($j = $job->findById($doc['Document']['job_id'])) echo stripslashes($j['Job']['title']) ; ?> / 
 	Documents: <?php echo str_replace('_',' ',$doc['Document']['title']); ?>
@@ -186,6 +181,12 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
     if($doc['Document']['document_type']=='mobile_log')
     {
         include('mobile_log.php');
+    }
+    ?>
+    <?php
+    if($doc['Document']['document_type']=='mobile_vehicle_trunk_inventory')
+    {
+        include('inventory.php');
     }
     ?>
     

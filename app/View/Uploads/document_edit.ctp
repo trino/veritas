@@ -198,6 +198,10 @@ function remove_youtube()
     <?php if($admin_doc['AdminDoc']['mobile_log']=='1' && ((isset($canupdate['Canupload']['mobile_log'])&& $canupdate['Canupload']['mobile_log']=='1') || $this->Session->read('admin'))){?>
     <option value="mobile_log" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='mobile_log') echo "selected='selected'"?>>Mobile Log</option>
     <?php }?>
+    <?php if($admin_doc['AdminDoc']['inventory']=='1' && ((isset($canupdate['Canupload']['inventory'])&& $canupdate['Canupload']['inventory']=='1') || $this->Session->read('admin'))){?>
+    <option value="mobile_vehicle_trunk_inventory" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='mobile_vehicle_trunk_inventory') echo "selected='selected'"?>>Mobile Vehicle Trunk Inventory</option>
+    <?php }?>
+    
     <!--<option value="training_manuals">Training Manuals</option>-->
 </select>
 </div></td>
@@ -205,7 +209,8 @@ function remove_youtube()
 <?php
 include('personal_inspection.php');
 include('mobile_inspection.php');
-include('mobile_log.php'); 
+include('mobile_log.php');
+include('inventory.php'); 
 ?>
 <tr class="site_more" style="display: none;">
 <td colspan="2">
@@ -622,6 +627,18 @@ $(function(){
             $('.image_tr').show();
             }
             
+        if(doctype == 'mobile_vehicle_trunk_inventory'){
+            $('.inventory1_more').show();
+            $('.description_tr').hide();
+            $('.image_tr').hide();
+            //$('.draftspan').hide();
+            }
+        else{
+            $('.inventory1_more').hide();
+            $('.description_tr').show();
+            $('.image_tr').show();
+            }
+            
         if(doctype == 'mobile_inspection')
         {
             $('.mobileins_more').show();
@@ -730,7 +747,8 @@ $(function(){
             $('.description_tr').show();
             $('.image_tr').show();
             }
-    if($('#document_type').val() == 'mobile_log'){
+    if($('#document_type').val() == 'mobile_log')
+    {
         $('.mobilelog_more').show();
         $('.description_tr').hide();
             $('.image_tr').hide();
@@ -740,7 +758,18 @@ $(function(){
             $('.mobilelog_more').hide();
             $('.description_tr').show();
             $('.image_tr').show();
-            }      
+            }
+    if($('#document_type').val() == 'mobile_vehicle_trunk_inventory'){
+        $('.inventory1_more').show();
+        $('.description_tr').hide();
+        $('.image_tr').hide();
+            //$('.draftspan').hide();
+    }
+    else{
+            $('.inventory1_more').hide();
+            $('.description_tr').show();
+            $('.image_tr').show();
+    }         
     if($('#document_type').val() == 'siteOrder')
          $('.site_more').show();
     if($('#document_type').val() == 'training')
