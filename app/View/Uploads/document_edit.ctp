@@ -201,7 +201,9 @@ function remove_youtube()
     <?php if($admin_doc['AdminDoc']['inventory']=='1' && ((isset($canupdate['Canupload']['inventory'])&& $canupdate['Canupload']['inventory']=='1') || $this->Session->read('admin'))){?>
     <option value="mobile_vehicle_trunk_inventory" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='mobile_vehicle_trunk_inventory') echo "selected='selected'"?>>Mobile Vehicle Trunk Inventory</option>
     <?php }?>
-    
+    <?php if($admin_doc['AdminDoc']['vehicle_inspection']=='1' && ((isset($canupdate['Canupload']['vehicle_inspection'])&& $canupdate['Canupload']['vehicle_inspection']=='1') || $this->Session->read('admin'))){?>
+    <option value="vehicle_inspection" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='vehicle_inspection') echo "selected='selected'"?>>Vehicle Inspection</option>
+    <?php }?>
     <!--<option value="training_manuals">Training Manuals</option>-->
 </select>
 </div></td>
@@ -210,7 +212,8 @@ function remove_youtube()
 include('personal_inspection.php');
 include('mobile_inspection.php');
 include('mobile_log.php');
-include('inventory.php'); 
+include('inventory.php');
+include('vehicle_inspection.php');  
 ?>
 <tr class="site_more" style="display: none;">
 <td colspan="2">
@@ -308,6 +311,7 @@ include('inventory.php');
     <option value="Average Picket Count" <?php if (isset($doc['Document']['evidence_type']) && $doc['Document']['evidence_type']=='Average Picket Count') echo "selected='selected'" ; ?>>Average Picket Count</option>
     <option value="Victim Statement" <?php if (isset($doc['Document']['evidence_type']) && $doc['Document']['evidence_type']=='Victim Statement')echo "selected='selected'"; ?>>Victim Statement</option>
     <option value="Miscellaneous" <?php if (isset($doc['Document']['evidence_type']) && $doc['Document']['evidence_type']=='Miscellaneous')echo "selected='selected'" ; ?>>Miscellaneous</option>
+        
 </select>
 </td>
 </tr>
@@ -626,7 +630,17 @@ $(function(){
             $('.description_tr').show();
             $('.image_tr').show();
             }
-            
+        if(doctype == 'vehicle_inspection'){
+            $('.vehicle_inspection').show();
+            $('.description_tr').hide();
+            $('.image_tr').hide();
+            //$('.draftspan').hide();
+            }
+        else{
+            $('.vehicle_inspection').hide();
+            $('.description_tr').show();
+            $('.image_tr').show();
+            }    
         if(doctype == 'mobile_vehicle_trunk_inventory'){
             $('.inventory1_more').show();
             $('.description_tr').hide();
