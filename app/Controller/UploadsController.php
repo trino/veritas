@@ -461,6 +461,7 @@ class UploadsController extends AppController
         $this->loadModel('MobileLog');
         $this->loadModel('MobileNote');
         $this->loadModel('MobileSite');
+        $this->loadModel('MobileTrunk');
         if($eid)
         {
             $this->set('perso',$this->Personal_inspection->find('first',array('document_id'=>$eid)));
@@ -480,6 +481,10 @@ class UploadsController extends AppController
                     $this->set('mem_site',$mem_site);
                 
                 $this->set('moblog',$n); 
+            }
+            if($in = $this->MobileTrunk->findByDocumentId($eid))
+            {
+                $this->set('inv', $in);
             }
         }
         $this->loadModel('Canupload');
@@ -763,6 +768,15 @@ class UploadsController extends AppController
                         $this->MobileAction->save($action);
                     }
                 }    
+            }
+            elseif($_POST['document_type'] == 'mobile_vehicle_trunk_inventory')
+            {
+              $iid = $_POST['inv_id'];
+              $this->MobileTrunk->id = $iid;
+              foreach($_POST['inventory'] as $k=>$v)
+              {
+                $this->MobileTrunk->saveField($k, $v);
+              }  
             }
             elseif($_POST['document_type'] == 'mobile_log')
             {
@@ -1454,6 +1468,20 @@ class UploadsController extends AppController
                 $this->Personal_inspection->create();
                 $this->Personal_inspection->save($per);
             }
+            if($_POST['document_type'] == 'mobile_vehicle_trunk_inventory')
+            {
+                $inventory['document_id'] = $id;
+                
+                foreach($_POST['inventory'] as $k=>$v)
+                {
+                    $inventory[$k] = $v;
+                }
+                //var_dump($inventory);
+                
+                $this->loadModel('MobileTrunk');
+                $this->MobileTrunk->create();
+                $this->MobileTrunk->save($inventory);
+            }
             if($_POST['document_type'] == 'mobile_inspection')
             {
                 $mob['document_id'] = $id;
@@ -2063,6 +2091,7 @@ class UploadsController extends AppController
         $this->loadModel('MobileLog');
         $this->loadModel('MobileNote');
         $this->loadModel('MobileSite');
+        $this->loadModel('MobileTrunk');
         if($id)
         {
             $this->set('perso',$this->Personal_inspection->find('first',array('document_id'=>$id)));
@@ -2083,6 +2112,10 @@ class UploadsController extends AppController
                 
                 $this->set('moblog',$n); 
             }
+            if($in = $this->MobileTrunk->findByDocumentId($id))
+            {
+                $this->set('inv', $in);
+            }            
         }
         $this->loadModel('Activity');
         $this->loadModel('Clientmemo');

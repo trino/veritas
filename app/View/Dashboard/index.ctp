@@ -285,6 +285,25 @@ $(function(){
 		<div class="dusk2"></div>						
 	</div>
     <?php }?>
+    <?php if($admin_doc['AdminDoc']['inventory']=='1' &&((isset($canview['Canview']['inventory']) && $canview['Canview']['inventory']=='1')|| $this->Session->read('admin'))){?>
+    <div class="dashboard-stat red">								
+		<div class="whiteCorner"></div>								
+		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
+        <a href="<?=$base_url;?>search/index/mobile_vehicle_trunk_inventory" class="overallLink more">		
+			<div class="visual">										
+				<i class="icon-file"></i>									
+			</div>									
+			<div class="details">										
+				<div class="number"><?php echo $inventory;?></div>										
+				<div class="desc">Mobile Vehicle<br /> Trunk Inventory</div>									
+			</div>									
+			<div class="more2">									
+				View All <?php echo $inventory;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+			</div>														
+		</a>								
+		<div class="dusk2"></div>						
+	</div>
+    <?php }?>
 <?php } ?>
 </div><!-- Documents Dashboard -->
 
