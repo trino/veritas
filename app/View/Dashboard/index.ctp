@@ -295,7 +295,7 @@ $(function(){
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $inventory;?></div>										
-				<div class="desc">Mobile Vehicle Trunk Inventory</div>									
+				<div class="desc">Mobile Vehicle<br /> Trunk Inventory</div>									
 			</div>									
 			<div class="more2">									
 				View All <?php echo $inventory;?> Documents <i class="icon-arrow-right m-icon-white"></i>									

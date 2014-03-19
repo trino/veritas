@@ -598,45 +598,53 @@ $(function(){
        }
     });
     $('.incident_date').datepicker({dateFormat: 'yy-mm-dd',maxDate: new Date} );
+    
     $('#document_type').change(function()
     {
         var doctype = $(this).val();
         
         
-        if(doctype == 'evidence'){
+        if(doctype == 'evidence')
+        {
             $('.extra_evidence').show();
-            $('.draftspan').hide();}
+            $('.draftspan').hide();
+        }
         else
             $('.extra_evidence').hide();
-        if(doctype == 'siteOrder'){
+            
+        if(doctype == 'siteOrder')
+        {
             $('.site_more').show();
-            //$('.draftspan').hide();
-            }
+            
+        }
         else
             $('.site_more').hide();
             
-        if(doctype == 'personal_inspection'){
+        if(doctype == 'personal_inspection')
+        {
             $('.personal_more').show();
             $('.description_tr').hide();
             $('.image_tr').hide();
-            //$('.draftspan').hide();
-            }
-        else{
+            
+        }
+        else
+        {
             $('.personal_more').hide();
             $('.description_tr').show();
             $('.image_tr').show();
-            }
+        }
             
-        if(doctype == 'mobile_vehicle_trunk_inventory'){
+        if(doctype == 'mobile_vehicle_trunk_inventory')
+        {
             $('.inventory1_more').show();
             $('.description_tr').hide();
             $('.image_tr').hide();
-            //$('.draftspan').hide();
-            }
-        else{
+            
+        }
+        else
+        {
             $('.inventory1_more').hide();
-            $('.description_tr').show();
-            $('.image_tr').show();
+            
             }
             
         if(doctype == 'mobile_inspection')
@@ -649,8 +657,7 @@ $(function(){
         else
         {
             $('.mobileins_more').hide();
-            $('.description_tr').show();
-            $('.image_tr').show();
+            
         }
         
         if(doctype == 'mobile_log')
@@ -663,8 +670,7 @@ $(function(){
         else
         {
             $('.mobilelog_more').hide();
-            $('.description_tr').show();
-            $('.image_tr').show();
+            
         }
         
         
@@ -753,19 +759,22 @@ $(function(){
         $('.description_tr').hide();
             $('.image_tr').hide();
             //$('.draftspan').hide();
-            }
-        else{
+    }
+    else
+    {
             $('.mobilelog_more').hide();
             $('.description_tr').show();
             $('.image_tr').show();
-            }
-    if($('#document_type').val() == 'mobile_vehicle_trunk_inventory'){
+    }
+    if($('#document_type').val() == 'mobile_vehicle_trunk_inventory')
+    {
         $('.inventory1_more').show();
         $('.description_tr').hide();
         $('.image_tr').hide();
-            //$('.draftspan').hide();
+         
     }
-    else{
+    else
+    {
             $('.inventory1_more').hide();
             $('.description_tr').show();
             $('.image_tr').show();
