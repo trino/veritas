@@ -5,7 +5,7 @@ else
     $job_n ="";
     //var_dump($subject);
 ?>
-
+<script src="<?php echo $base_url;?>js/highlight.js"></script>
 
 <h3 class="page-title">
 
@@ -19,14 +19,23 @@ else
 	</li>
 </ul>
 
-
+<style>
+.checkboxes input{margin-top:0!important;}
+</style>
 <script type="text/javascript">
 $(function(){
+    $('.map').maphilight({
+            fillColor: '008800'
+        });
+        
+        
+        
    $('#document').val('1');
    $('#image').val('1');
    $('#video').val('1'); 
    $('#my_form').validate();
 });
+
 function add_document()
 {
     var doc=$('#document').val();
@@ -149,6 +158,7 @@ function remove_youtube()
     }
 }
 </script>
+<script src="<?php echo $base_url;?>js/highscript.js"></script>
 <?php //var_dump( $this->request->params['action']);?>
 
 <form id="my_form" action="" method="post" enctype="multipart/form-data">
@@ -602,33 +612,41 @@ $(function(){
        }
     });
     $('.incident_date').datepicker({dateFormat: 'yy-mm-dd',maxDate: new Date} );
+    
     $('#document_type').change(function()
     {
         var doctype = $(this).val();
         
         
-        if(doctype == 'evidence'){
+        if(doctype == 'evidence')
+        {
             $('.extra_evidence').show();
-            $('.draftspan').hide();}
+            $('.draftspan').hide();
+        }
         else
             $('.extra_evidence').hide();
-        if(doctype == 'siteOrder'){
+            
+        if(doctype == 'siteOrder')
+        {
             $('.site_more').show();
-            //$('.draftspan').hide();
-            }
+            
+        }
         else
             $('.site_more').hide();
             
-        if(doctype == 'personal_inspection'){
+        if(doctype == 'personal_inspection')
+        {
             $('.personal_more').show();
             $('.description_tr').hide();
             $('.image_tr').hide();
-            //$('.draftspan').hide();
-            }
-        else{
+            
+        }
+        else
+        {
             $('.personal_more').hide();
             $('.description_tr').show();
             $('.image_tr').show();
+
             }
         if(doctype == 'vehicle_inspection'){
             $('.vehicle_inspection').show();
@@ -638,19 +656,22 @@ $(function(){
             }
         else{
             $('.vehicle_inspection').hide();
-            $('.description_tr').show();
-            $('.image_tr').show();
+            
             }    
-        if(doctype == 'mobile_vehicle_trunk_inventory'){
+        
+            
+        if(doctype == 'mobile_vehicle_trunk_inventory')
+        {
+
             $('.inventory1_more').show();
             $('.description_tr').hide();
             $('.image_tr').hide();
-            //$('.draftspan').hide();
-            }
-        else{
+            
+        }
+        else
+        {
             $('.inventory1_more').hide();
-            $('.description_tr').show();
-            $('.image_tr').show();
+            
             }
             
         if(doctype == 'mobile_inspection')
@@ -663,8 +684,7 @@ $(function(){
         else
         {
             $('.mobileins_more').hide();
-            $('.description_tr').show();
-            $('.image_tr').show();
+            
         }
         
         if(doctype == 'mobile_log')
@@ -677,8 +697,7 @@ $(function(){
         else
         {
             $('.mobilelog_more').hide();
-            $('.description_tr').show();
-            $('.image_tr').show();
+            
         }
         
         
@@ -767,19 +786,22 @@ $(function(){
         $('.description_tr').hide();
             $('.image_tr').hide();
             //$('.draftspan').hide();
-            }
-        else{
+    }
+    else
+    {
             $('.mobilelog_more').hide();
             $('.description_tr').show();
             $('.image_tr').show();
-            }
-    if($('#document_type').val() == 'mobile_vehicle_trunk_inventory'){
+    }
+    if($('#document_type').val() == 'mobile_vehicle_trunk_inventory')
+    {
         $('.inventory1_more').show();
         $('.description_tr').hide();
         $('.image_tr').hide();
-            //$('.draftspan').hide();
+         
     }
-    else{
+    else
+    {
             $('.inventory1_more').hide();
             $('.description_tr').show();
             $('.image_tr').show();
