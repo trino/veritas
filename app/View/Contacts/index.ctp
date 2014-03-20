@@ -64,13 +64,7 @@ if($docs)
             <th><?php echo $this->Paginator->sort('type','Contact type');?></th>
             <th>Cell Number</th>
             <th>Phone</th>
-            <?php if(!$this->Session->read('admin'))
-            {
-                ?>
-                <th>Assigned to Job(s)</th>
-                <?php    
-            }
-            ?>
+
             <?php
             if($this->Session->read('avatar'))
             {
@@ -140,14 +134,7 @@ if($docs)
             <td><?php echo $type[$d['Key_contact']['type']];?></td>
             <td><?php echo phone_number($d['Key_contact']['cell']); ?></td>
             <td><?php echo phone_number($d['Key_contact']['phone']);?></td>
-            <?php if(!$this->Session->read('admin'))
-            {
-                ?>
-                <td><?php echo $this->requestAction($base_url.'contacts/getJobByKid/'.$d['Key_contact']['id']);;?></td>
-                
-                <?php    
-            }
-            ?>
+
             <?php
             if($this->Session->read('avatar'))
             {
@@ -195,7 +182,7 @@ if(isset($employee) && $employee && !$this->Session->read('special'))
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
-            <th>Assigned to Job(s)</th>
+            <!--th>Assigned to Job(s)</th-->
         </tr>
     <?php
     $cc=0;
@@ -209,14 +196,7 @@ if(isset($employee) && $employee && !$this->Session->read('special'))
             <td><?php echo $d['Member']['full_name']; ?></td>
             <td><?php echo $d['Member']['email']; ?></td>
             <td><?php echo phone_number($d['Member']['phone']);?></td>
-            <?php if(!$this->Session->read('admin'))
-            {
-                ?>
-                <td><?php echo $this->requestAction($base_url.'contacts/getJobByMember/'.$d['Member']['id']);;?></td>
-                
-                <?php    
-            }
-            ?>
+
             
        </tr> 
        <?php }?>
