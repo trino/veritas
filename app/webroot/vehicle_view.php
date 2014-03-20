@@ -55,7 +55,7 @@ $n = '';
 $or = '';    
 }
 ?>
-<tr class="vehicle_inspection" style="display: none;">
+<tr class="vehicle_inspection">
     <td colspan="2" style="padding: 0;">
         <table class="table">
             <tr>
@@ -64,70 +64,32 @@ $or = '';
                 </td>
             </tr>
             <tr>
-                <td>Date</td><td><input type="text" name="vehicle_date" class="date_verify" value="<?php echo $date;?>" /></td>
+                <td>Date</td><td><?php echo $date;?>"</td>
                 <td>Shift Times</td>
                 <td>
-                    <select name="hour_from" style="width: 90px;">
-                        <option value="">Hour</option>
+                    
                         <?php
-                        for($i=0;$i<=23;$i++)
-                        {
-                            if($i<10)
-                            $i="0".$i;
-                            ?>
-                            <option value="<?php echo $i;?>" <?php if($hf and $hf==$i)echo "selected='selected'";?>><?php echo $i;?></option>
-                            <?php
-                        }
+                        echo $hf.':';
                         ?>
-                    </select>&nbsp;
-                    <select name="min_from" style="width: 90px;">
-                        <option value="">Minute</option>
+                    
                         <?php
-                        for($i=1;$i<=60;$i++)
-                        {
-                            if($i<10)
-                            $i="0".$i;
-                            ?>
-                            <option value="<?php echo $i;?>" <?php if($mf and $mf==$i)echo "selected='selected'";?>><?php echo $i;?></option>
-                            <?php
-                        }
+                        echo $mf;
                         ?>
-                    </select>&nbsp; - &nbsp;
-                    <select name="hour_to" style="width: 90px;">
-                        <option value="">Hour</option>
+                    &nbsp; - &nbsp;
+                   
                         <?php
-                        for($i=0;$i<=23;$i++)
-                        {
-                            if($i<10)
-                            $i="0".$i;
-                            ?>
-                            <option value="<?php echo $i;?>" <?php if($ht and $ht==$i)echo "selected='selected'";?>><?php echo $i;?></option>
-                            <?php
-                        }
+                        echo $ht.':'.$mt;
                         ?>
-                    </select>&nbsp;
-                    <select name="min_to" style="width: 90px;">
-                        <option value="">Minute</option>
-                        <?php
-                        for($i=1;$i<=60;$i++)
-                        {
-                            if($i<10)
-                            $i="0".$i;
-                            ?>
-                            <option value="<?php echo $i;?>" <?php if($mt and $mt==$i)echo "selected='selected'";?>><?php echo $i;?></option>
-                            <?php
-                        }
-                        ?>
-                    </select>
+                    
                 </td>
             </tr>
             <tr>
-                <td>Guard Name</td><td><input type="text" name="guard" value="<?php echo $gn;?>" /></td>
-                <td>Vehicle Unit Number</td><td><input type="text" name="vehicle_unit_number" value="<?php echo $vun;?>" /></td>
+                <td>Guard Name</td><td><?php echo $gn;?></td>
+                <td>Vehicle Unit Number</td><td><?php echo $vun;?></td>
             </tr>
             <tr>
-                <td>License Plate Number</td><td><input type="text" name="plate" value="<?php echo $p;?>" /></td>
-                <td colspan="2">Start KMs <input type="text" name="start_km" style="width:100px;" value="<?php echo $sk;?>" />&nbsp;&nbsp;&nbsp;Finish KMs<input type="text" name="finish_km" style="width:100px;" value="<?php echo $fk;?>" /></td>
+                <td>License Plate Number</td><td><?php echo $p;?></td>
+                <td colspan="2">Start KMs <?php echo $sk;?> &nbsp;&nbsp;&nbsp;Finish KMs<?php echo $fk;?></td>
             </tr>
             
         </table>
@@ -136,19 +98,19 @@ $or = '';
                 <td colspan="4" style="background: #000;color:#FFF"><strong>EQUIPMENT CHECK LIST</strong></td>
             </tr>
             <tr>
-                <td><input type="checkbox" name="light" value="1" <?php if($l==1){?>checked="checked"<?php }?> /> Light</td>
-                <td><input type="checkbox" name="horn" value="1" <?php if($h==1){?>checked="checked"<?php }?> /> Horn</td>
-                <td><input type="checkbox" name="rotating_light" value="1" <?php if($rl==1){?>checked="checked"<?php }?> /> Amber Rotating Light</td>
-                <td><input type="checkbox" name="spot_light" value="1" <?php if($sl==1){?>checked="checked"<?php }?> /> Spot Light</td>
+                <td><?php if($l==1){?>&#10004;<?php }?> Light</td>
+                <td><?php if($h==1){?>&#10004;<?php }?> Horn</td>
+                <td><?php if($rl==1){?>&#10004;<?php }?> Amber Rotating Light</td>
+                <td><?php if($sl==1){?>&#10004;<?php }?> Spot Light</td>
             </tr>
             <tr>
-                <td><input type="checkbox" name="safety" value="1" <?php if($s==1){?>checked="checked"<?php }?> /> Safety Kit</td>
-                <td><input type="checkbox" name="file_box" value="1" <?php if($fb==1){?>checked="checked"<?php }?> /> File Box/Reports</td>
-                <td><input type="checkbox" name="lock_box" value="1" <?php if($lb==1){?>checked="checked"<?php }?> /> Lock Box</td>
-                <td><input type="checkbox" name="first_aid" value="1" <?php if($fa==1){?>checked="checked"<?php }?> /> First Aid Kit</td>
+                <td><?php if($sk==1){?>&#10004;<?php }?> Safety Kit</td>
+                <td><?php if($fb==1){?>&#10004;<?php }?> File Box/Reports</td>
+                <td><?php if($lb==1){?>&#10004;<?php }?> Lock Box</td>
+                <td><?php if($fa==1){?>&#10004;<?php }?>First Aid Kit</td>
             </tr>
             <tr>
-                <td colspan="4"><input type="checkbox" name="ownership" value="1" <?php if($o==1){?>checked="checked"<?php }?> /> Ownership & Insurance</td>
+                <td colspan="4"><?php if($o==1){?>&#10004;<?php }?> Ownership & Insurance</td>
                 
             </tr>
         </table>
@@ -225,7 +187,7 @@ $or = '';
                     
                     </div>
                     <div style="float: left;margin-left:20px;margin-top:30px">
-                        <textarea name="note" placeholder="Note" style="width:400px;height:157px;"><?php echo $n;?></textarea>
+                        <strong>Note: </strong><?php echo $n;?>
                     </div>
                     <div class="clear"></div>
                 </td>
@@ -233,7 +195,7 @@ $or = '';
             </tr>
 
             <tr>
-                <td colspan="2">Operation Review : <input type="text" name="operation_review" value="<?php echo $or;?>" /></td>                
+                <td colspan="2">Operation Review : <?php echo $or;?></td>                
             </tr>
         </table>        
     </td>

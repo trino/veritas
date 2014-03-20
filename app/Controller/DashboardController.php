@@ -100,6 +100,7 @@ class DashboardController extends AppController
         $this->loadModel('Canupload');
         $this->loadModel('AdminDoc');
         $this->loadModel('SpecJob');
+        $this->loadModel('Vehicle_inspection');
         $this->set('admin_doc',$this->AdminDoc->findById('1'));
         //$this->set('ad',$this->User->find('first'));
         if($this->Session->read('avatar'))
@@ -118,6 +119,7 @@ class DashboardController extends AppController
             $this->set('mobile_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_inspection'))));
             $this->set('mobile_log',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_log'))));        
             $this->set('inventory', $this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_vehicle_trunk_inventory'))));
+            $this->set('vehicle_inspection', $this->Document->find('count',array('conditions'=>array('document_type'=>'vehicle_inspection'))));
             $this->paginate = array('limit'=>10,'order'=>'date desc ,time desc');
              //$this->set('activity',$this->paginate('Document'));
              $this->set('added',$this->Member->find('all'));

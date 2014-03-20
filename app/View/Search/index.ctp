@@ -87,6 +87,7 @@ if($this->Session->read('admin'))
     <option value="personal_inspection">Personal Inspection</option>
     <option value="mobile_inspection">Mobile Inspection</option>
     <option value="afimac_intel">AFIMAC Intel</option>
+    <option value="vehicle_inspection">Vehicle Inspection</option>
     
     <option value="news_media">News/Media</option>
     

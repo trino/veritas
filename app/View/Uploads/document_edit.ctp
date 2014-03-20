@@ -485,6 +485,49 @@ $job_id = 0;
 </form>
 <script>
 $(function(){
+    <?php
+    if(isset($vehicle))
+    {
+        ?>
+        var front = '<?php echo $vehicle['Vehicle_inspection']['front'];?>';
+        var back = '<?php echo $vehicle['Vehicle_inspection']['back'];?>';
+        var side = '<?php echo $vehicle['Vehicle_inspection']['side'];?>';
+        
+        var arr_f = front.split('_');
+        
+        var arr_b = back.split('_');
+        var arr_s = side.split('_');
+        $('.front').val('');
+        $('.back').val('');
+        $('.side').val('');
+        if(arr_f.length >0)
+        {
+            $('.f area').each(function(){
+                var co = $(this).attr('coords');
+                if(jQuery.inArray( co, arr_f )>=0)
+                $(this).click() ;               
+            });
+        }
+        if(arr_b.length >0)
+        {
+            $('.b area').each(function(){
+                var co = $(this).attr('coords');
+                if(jQuery.inArray( co, arr_b )>=0)
+                $(this).click() ;               
+            });
+        }
+        if(arr_s.length >0)
+        {
+            $('.s area').each(function(){
+                var co = $(this).attr('coords');
+                
+                if(jQuery.inArray( co, arr_s )>=0)
+                $(this).click() ;               
+            });
+        }
+        <?php
+    }
+    ?>
       $('.uploademail').click(function(){
         <?php if($this->request->params['action']=='document_edit'){?>
          $('.dialog-modals').load('<?php echo $base_url.'uploads/email/'.$doc['Document']['job_id'];?>');
@@ -766,6 +809,19 @@ $(function(){
             }
         else{
             $('.personal_more').hide();
+            $('.description_tr').show();
+            $('.image_tr').show();
+            }
+            
+            if($('#document_type').val() == 'vehicle_inspection'){
+                
+            $('.vehicle_inspection').show();
+            $('.description_tr').hide();
+            $('.image_tr').hide();
+            //$('.draftspan').hide();
+            }
+        else{
+            $('.vehicle_inspection').hide();
             $('.description_tr').show();
             $('.image_tr').show();
             }

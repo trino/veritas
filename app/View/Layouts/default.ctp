@@ -483,6 +483,12 @@ url: '<?php echo $base_url;?>admin/logout'
                             <?php
                             }?>
                             <?php
+                            if($this->requestAction($base_url.'uploads/checkAdminPerm/vehicle_inspection')){
+                            ?>
+                            <li><a href="<?php echo $base_url;?>search/index/vehicle_inspection"><i class="icon-arrow-right"></i>Vehicle Inspection</a></li>
+                            <?php
+                            }?>
+                            <?php
                         }
                         ?>
                         

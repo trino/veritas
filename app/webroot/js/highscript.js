@@ -55,7 +55,7 @@ $(function(){
              else
              i3 = co;
              }
-             $('.side').val(i1);
+             $('.side').val(i3);
              
            } 
         });

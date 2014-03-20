@@ -1,4 +1,6 @@
 <?php include_once('inc.php');?>
+<script src="<?php echo $base_url;?>js/highlight.js"></script>
+<script src="<?php echo $base_url;?>js/highscript.js"></script>
 <style>
 @media print {
   body * {
@@ -77,7 +79,7 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
             
     <?php } ?>
    <?php
-   if($doc['Document']['document_type']!='personal_inspection'){?>
+   if($doc['Document']['document_type']!='personal_inspection' && $doc['Document']['document_type']!='vehicle_inspection'){?>
     <tr>
         <td><b>Description</b></td>
         <td><?php echo $doc['Document']['description']; ?></td>
@@ -169,6 +171,12 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
     if($doc['Document']['document_type']=='personal_inspection')
     {
         include('personal_view.php');
+    }
+    ?>
+    <?php
+    if($doc['Document']['document_type']=='vehicle_inspection')
+    {
+        include('vehicle_view.php');
     }
     ?>
     <?php
@@ -316,6 +324,52 @@ if($type == 'Report')
 ?>
 <script type="text/javascript" charset="utf-8">
 			$(document).ready(function(){
+			 $('.map').maphilight({
+            fillColor: '008800'
+        });
+        <?php
+    if(isset($vehicle))
+    {
+        ?>
+        var front = '<?php echo $vehicle['Vehicle_inspection']['front'];?>';
+        var back = '<?php echo $vehicle['Vehicle_inspection']['back'];?>';
+        var side = '<?php echo $vehicle['Vehicle_inspection']['side'];?>';
+        
+        var arr_f = front.split('_');
+        
+        var arr_b = back.split('_');
+        var arr_s = side.split('_');
+        $('.front').val('');
+        $('.back').val('');
+        $('.side').val('');
+        if(arr_f.length >0)
+        {
+            $('.f area').each(function(){
+                var co = $(this).attr('coords');
+                if(jQuery.inArray( co, arr_f )>=0)
+                $(this).click() ;               
+            });
+        }
+        if(arr_b.length >0)
+        {
+            $('.b area').each(function(){
+                var co = $(this).attr('coords');
+                if(jQuery.inArray( co, arr_b )>=0)
+                $(this).click() ;               
+            });
+        }
+        if(arr_s.length >0)
+        {
+            $('.s area').each(function(){
+                var co = $(this).attr('coords');
+                
+                if(jQuery.inArray( co, arr_s )>=0)
+                $(this).click() ;               
+            });
+        }
+        <?php
+    }
+    ?>
 			$(".gallery:first a[rel^='prettyPhoto']").prettyPhoto({animation_speed:'normal',theme:'light_square',slideshow:3000, autoplay_slideshow: false});
                 });
    

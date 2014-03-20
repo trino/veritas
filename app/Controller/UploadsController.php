@@ -462,9 +462,11 @@ class UploadsController extends AppController
         $this->loadModel('MobileNote');
         $this->loadModel('MobileSite');
         $this->loadModel('MobileTrunk');
+        $this->loadModel('Vehicle_inspection');
         if($eid)
         {
             $this->set('perso',$this->Personal_inspection->find('first',array('document_id'=>$eid)));
+            $this->set('vehicle',$this->Vehicle_inspection->find('first',array('document_id'=>$eid)));
             if($mem = $this->MobileInspection->findByDocumentId($eid))
             {
                 $mem_action = $this->MobileAction->find('all',array('conditions'=>array('mobileins_id'=>$mem['MobileInspection']['id'])));
@@ -745,6 +747,23 @@ class UploadsController extends AppController
                 $this->Personal_inspection->create();
                 $this->Personal_inspection->save($per);            
                 
+            }
+            elseif($_POST['document_type'] == 'vehicle_inspection')
+            {
+                $this->Vehicle_inspection->deleteAll(array('document_id'=>$eid));
+                $veh['document_id'] = $eid;
+                foreach($_POST as $key=>$post)
+                {
+                    $in2 = array('vehicle_date','hour_from','min_from','hour_to','min_to','guard','vehicle_unit_number','plate','start_km','finish_km','light','horn','rotating_light','spot_light','safety','file_box','lock_box','first_aid','ownership','front','back','side','note','operation_review');
+                    if(in_array($key,$in2))
+                    {
+                        $veh[$key] = $post;
+                    }
+                }
+                //var_dump($veh);die();
+                $this->loadModel('Vehicle_inspection');
+                $this->Vehicle_inspection->create();
+                $this->Vehicle_inspection->save($veh);
             }
             elseif($_POST['document_type'] == 'mobile_inspection')
             {
@@ -1468,6 +1487,22 @@ class UploadsController extends AppController
                 $this->Personal_inspection->create();
                 $this->Personal_inspection->save($per);
             }
+            if($_POST['document_type'] == 'vehicle_inspection')
+            {
+                $veh['document_id'] = $id;
+                foreach($_POST as $key=>$post)
+                {
+                    $in2 = array('vehicle_date','hour_from','min_from','hour_to','min_to','guard','vehicle_unit_number','plate','start_km','finish_km','light','horn','rotating_light','spot_light','safety','file_box','lock_box','first_aid','ownership','front','back','side','note','operation_review');
+                    if(in_array($key,$in2))
+                    {
+                        $veh[$key] = $post;
+                    }
+                }
+                //var_dump($veh);die();
+                $this->loadModel('Vehicle_inspection');
+                $this->Vehicle_inspection->create();
+                $this->Vehicle_inspection->save($veh);
+            }
             if($_POST['document_type'] == 'mobile_vehicle_trunk_inventory')
             {
                 $inventory['document_id'] = $id;
@@ -2092,9 +2127,11 @@ class UploadsController extends AppController
         $this->loadModel('MobileNote');
         $this->loadModel('MobileSite');
         $this->loadModel('MobileTrunk');
+        $this->loadModel('Vehicle_inspection');
         if($id)
         {
             $this->set('perso',$this->Personal_inspection->find('first',array('document_id'=>$id)));
+            $this->set('vehicle',$this->Vehicle_inspection->find('first',array('document_id'=>$id)));
             if($mem = $this->MobileInspection->findByDocumentId($id))
             {
                 $mem_action = $this->MobileAction->find('all',array('conditions'=>array('mobileins_id'=>$mem['MobileInspection']['id'])));
