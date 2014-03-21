@@ -465,8 +465,8 @@ class UploadsController extends AppController
         $this->loadModel('Vehicle_inspection');
         if($eid)
         {
-            $this->set('perso',$this->Personal_inspection->find('first',array('document_id'=>$eid)));
-            $this->set('vehicle',$this->Vehicle_inspection->find('first',array('document_id'=>$eid)));
+            $this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$eid))));
+            $this->set('vehicle',$this->Vehicle_inspection->find('first',array('conditions'=>array('document_id'=>$eid))));
             if($mem = $this->MobileInspection->findByDocumentId($eid))
             {
                 $mem_action = $this->MobileAction->find('all',array('conditions'=>array('mobileins_id'=>$mem['MobileInspection']['id'])));

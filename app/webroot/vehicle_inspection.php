@@ -1,5 +1,5 @@
 <?php
-if(isset($vehicle)){
+if(isset($vehicle) && $vehicle){
 $veh = $vehicle['Vehicle_inspection'];
 $date = $veh['vehicle_date'];
 $hf = $veh['hour_from'];
