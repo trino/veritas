@@ -465,8 +465,8 @@ class UploadsController extends AppController
         $this->loadModel('Vehicle_inspection');
         if($eid)
         {
-            $this->set('perso',$this->Personal_inspection->find('first',array('document_id'=>$eid)));
-            $this->set('vehicle',$this->Vehicle_inspection->find('first',array('document_id'=>$eid)));
+            $this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$eid))));
+            $this->set('vehicle',$this->Vehicle_inspection->find('first',array('conditions'=>array('document_id'=>$eid))));
             if($mem = $this->MobileInspection->findByDocumentId($eid))
             {
                 $mem_action = $this->MobileAction->find('all',array('conditions'=>array('mobileins_id'=>$mem['MobileInspection']['id'])));
@@ -737,7 +737,7 @@ class UploadsController extends AppController
                 $per['document_id'] = $eid;
                 foreach($_POST as $key=>$post)
                 {
-                    $in = array('document_type','emp_name1','site','jobs_title','date_submit','date_verify','evaluation','manager_name','emp_name2','overall_rating','uniform','uniform2','grooming','proper_equipment','piercing','positioning');
+                    $in = array('document_type','emp_name1','site','jobs_title','date_submit','date_verify','date_verify2','evaluation','manager_name','emp_name2','overall_rating','uniform','uniform2','grooming','proper_equipment','piercing','positioning');
                     if(in_array($key,$in))
                     {
                         $per[$key] = $post;
@@ -752,6 +752,16 @@ class UploadsController extends AppController
             {
                 $this->Vehicle_inspection->deleteAll(array('document_id'=>$eid));
                 $veh['document_id'] = $eid;
+                $veh['document_id'] = $id;
+                $too = $_POST['to'];
+                $att_to = explode($too,':');
+                $per['hour_to'] = $att_to[0];
+                $per['min_to'] = $att_to[1];
+                
+                $from = $_POST['from'];
+                $att_fo = explode($from,':');
+                $per['hour_from'] = $att_fo[0];
+                $per['min_from'] = $att_fo[1];
                 foreach($_POST as $key=>$post)
                 {
                     $in2 = array('vehicle_date','hour_from','min_from','hour_to','min_to','guard','vehicle_unit_number','plate','start_km','finish_km','light','horn','rotating_light','spot_light','safety','file_box','lock_box','first_aid','ownership','front','back','side','note','operation_review');
@@ -769,8 +779,10 @@ class UploadsController extends AppController
             {
                 $mid = $_POST['mobile_id'];
                 $this->MobileInspection->id = $mid;
+                //var_dump($_POST['mobile_ins']); die();
                 foreach($_POST['mobile_ins'] as $k=>$v)
                 {
+                    
                     $this->MobileInspection->saveField($k,$v);
                 }
                 
@@ -1475,9 +1487,10 @@ class UploadsController extends AppController
             if($_POST['document_type'] == 'personal_inspection')
             {
                 $per['document_id'] = $id;
+                
                 foreach($_POST as $key=>$post)
                 {
-                    $in = array('document_type','emp_name1','site','jobs_title','date_submit','date_verify','evaluation','manager_name','emp_name2','overall_rating','uniform','uniform2','grooming','proper_equipment','piercing','positioning');
+                    $in = array('document_type','emp_name1','site','jobs_title','date_submit','date_verify','date_verify2','evaluation','manager_name','emp_name2','overall_rating','uniform','uniform2','grooming','proper_equipment','piercing','positioning');
                     if(in_array($key,$in))
                     {
                         $per[$key] = $post;
@@ -1490,6 +1503,15 @@ class UploadsController extends AppController
             if($_POST['document_type'] == 'vehicle_inspection')
             {
                 $veh['document_id'] = $id;
+                $too = $_POST['to'];
+                $att_to = explode($too,':');
+                $per['hour_to'] = $att_to[0];
+                $per['min_to'] = $att_to[1];
+                
+                $from = $_POST['from'];
+                $att_fo = explode($from,':');
+                $per['hour_from'] = $att_fo[0];
+                $per['min_from'] = $att_fo[1];
                 foreach($_POST as $key=>$post)
                 {
                     $in2 = array('vehicle_date','hour_from','min_from','hour_to','min_to','guard','vehicle_unit_number','plate','start_km','finish_km','light','horn','rotating_light','spot_light','safety','file_box','lock_box','first_aid','ownership','front','back','side','note','operation_review');

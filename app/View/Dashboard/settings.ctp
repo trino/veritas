@@ -170,6 +170,7 @@ $(function(){
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Inspection </span><input type="checkbox" name="show[mobile_inspection]" value="1" <?php if(isset($admin_doc['AdminDoc']['mobile_inspection']) && $admin_doc['AdminDoc']['mobile_inspection']=='1' ) echo "checked='checked'";?>/>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Log </span><input type="checkbox" name="show[mobile_log]" value="1" <?php if(isset($admin_doc['AdminDoc']['mobile_log']) && $admin_doc['AdminDoc']['mobile_log']=='1' ) echo "checked='checked'";?>/>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Vehicle Trunk Inventory </span><input type="checkbox" name="show[inventory]" value="1" <?php if(isset($admin_doc['AdminDoc']['inventory']) && $admin_doc['AdminDoc']['inventory']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vehicle Inspection </span><input type="checkbox" name="show[vehicle_inspection]" value="1" <?php if(isset($admin_doc['AdminDoc']['vehicle_inspection']) && $admin_doc['AdminDoc']['vehicle_inspection']=='1' ) echo "checked='checked'";?>/>
 </td></tr>
         <tr>
         <?php

@@ -171,7 +171,7 @@ function remove_youtube()
 <tr><td><b>Document Type</b></td>
 <td><div class="right">
 <select name="document_type" class="required" id="document_type">
-    <option value="">Choose documnet type</option>
+    <option value="">Choose document type</option>
     <?php if($admin_doc['AdminDoc']['contracts']=='1' && ((isset($canupdate['Canupload']['contracts'])&& $canupdate['Canupload']['contracts']=='1') || $this->Session->read('admin'))){?>
     <option value="contract" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='contract') echo "selected='selected'"?>>Contracts</option>
     <?php } ?>
@@ -486,7 +486,7 @@ $job_id = 0;
 <script>
 $(function(){
     <?php
-    if(isset($vehicle))
+    if(isset($vehicle) && $vehicle)
     {
         ?>
         var front = '<?php echo $vehicle['Vehicle_inspection']['front'];?>';
@@ -822,8 +822,7 @@ $(function(){
             }
         else{
             $('.vehicle_inspection').hide();
-            $('.description_tr').show();
-            $('.image_tr').show();
+           
             }
     if($('#document_type').val() == 'mobile_inspection'){
         $('.mobileins_more').show();
@@ -833,8 +832,7 @@ $(function(){
             }
         else{
             $('.mobileins_more').hide();
-            $('.description_tr').show();
-            $('.image_tr').show();
+            
             }
     if($('#document_type').val() == 'mobile_log')
     {
@@ -846,8 +844,7 @@ $(function(){
     else
     {
             $('.mobilelog_more').hide();
-            $('.description_tr').show();
-            $('.image_tr').show();
+            
     }
     if($('#document_type').val() == 'mobile_vehicle_trunk_inventory')
     {
@@ -859,8 +856,7 @@ $(function(){
     else
     {
             $('.inventory1_more').hide();
-            $('.description_tr').show();
-            $('.image_tr').show();
+            
     }         
     if($('#document_type').val() == 'siteOrder')
          $('.site_more').show();
