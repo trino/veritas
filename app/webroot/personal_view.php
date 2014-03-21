@@ -179,6 +179,12 @@
                 }
                 else
                 $df = '';
+                if(isset($perso) && $perso['Personal_inspection']['date_verify2'])
+                {
+                    $df2 = $perso['Personal_inspection']['date_verify2'];
+                }
+                else
+                    $df2 = '';  
                 if(isset($perso) && $perso['Personal_inspection']['emp_name2'])
                 {
                     $en2 = $perso['Personal_inspection']['emp_name2'];
@@ -192,7 +198,7 @@
             <tr>
                 
                 <td>Employee Name : </td><td><?php echo $en2;?></td>
-                <td></td>
+                <td>Date : </td><td><?php echo $df2;?></td>
             </tr>
             </tr>
         </table>

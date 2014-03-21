@@ -78,7 +78,7 @@ $or = '';
                 }
                 ?>
                     <input type="text" name="from" class="time" value="<?php $val1;?>" placeholder="Date From" /> &nbsp; - 
-                    <input type="text" name="to" class="time" value="<?php $val2;?>" placeholder="Date To" />
+                     &nbsp; <input type="text" name="to" class="time" value="<?php $val2;?>" placeholder="Date To" />
                 </td>
             </tr>
             <tr>
