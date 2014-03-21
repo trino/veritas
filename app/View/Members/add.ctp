@@ -197,7 +197,7 @@ if($q || $q2){
 <table width="50%">
 <tr>
 <td>
-<?php if($admin_doc['AdminDoc']['afimac_intel']=='0'){?><input type="hidden" name="canView_contracts" value="0"/><?php }else{?>
+<?php if($admin_doc['AdminDoc']['contracts']=='0'){?><input type="hidden" name="canView_contracts" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span><input type="checkbox" name="canView_contracts" class="vie"  /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['evidence']=='0'){?><input type="hidden" name="canView_evidence" value="0"/><?php }else{?>
@@ -232,6 +232,9 @@ if($q || $q2){
 
 <?php if($admin_doc['AdminDoc']['inventory']=='0' ){?><input type="hidden" name="canView_inventory" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Vehicle Truck Inventory </span><input type="checkbox" name="canView_inventory" <?php if(isset($u['Canupload']['inventory']) && $u['Canupload']['inventory']==1){?>checked="checked"<?php }?> /><?php }?>
+
+<?php if($admin_doc['AdminDoc']['vehicle_inspection']=='0' ){?><input type="hidden" name="canView_vehicle_inspection" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Vehicle Inspection </span><input type="checkbox" name="canView_vehicle_inspection" <?php if(isset($u['Canupload']['vehicle_inspection']) && $u['Canupload']['vehicle_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
 
 </td>
 </tr>
