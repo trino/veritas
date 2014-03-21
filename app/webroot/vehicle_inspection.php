@@ -77,8 +77,8 @@ $or = '';
                     $val2 = trim($ht).':'.trim($mt);
                 }
                 ?>
-                    <input type="text" name="from" class="time" value="<?php $val1;?>" placeholder="Date From" /> &nbsp; - 
-                     &nbsp; <input type="text" name="to" class="time" value="<?php $val2;?>" placeholder="Date To" />
+                    <input type="text" name="from" class="time" value="<?php echo $val1;?>" placeholder="Date From" /> &nbsp; - 
+                     &nbsp; <input type="text" name="to" class="time" value="<?php echo $val2;?>" placeholder="Date To" />
                 </td>
             </tr>
             <tr>

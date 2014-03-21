@@ -1,5 +1,5 @@
 <?php
-if(isset($vehicle)){
+if(isset($vehicle) && $vehicle){
 $veh = $vehicle['Vehicle_inspection'];
 $date = $veh['vehicle_date'];
 $hf = $veh['hour_from'];
@@ -69,11 +69,7 @@ $or = '';
                 <td>
                     
                         <?php
-                        echo $hf.':';
-                        ?>
-                    
-                        <?php
-                        echo $mf;
+                        echo $hf.':'.$mf;
                         ?>
                     &nbsp; - &nbsp;
                    
