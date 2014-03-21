@@ -10,7 +10,7 @@
                 <td width="10%">Mobile Guard</td><td><input type="text" name="inventory[guard]" value="<?php if(isset($inv) && $inv['MobileTrunk']['guard']){echo $inv['MobileTrunk']['guard'];}?>" class="required" /></td>
             </tr>
             <tr>
-                <td width="10%">Date</td><td><input type="text" name="inventory[date]" class="required date_verify" value="<?php if(isset($inv) && $inv['MobileTrunk']['date']){echo $inv['MobileTrunk']['date'];}?>" /></td>
+                <td width="10%">Date</td><td><input type="text" name="inventory[date]" class="date_verify" value="<?php if(isset($inv) && $inv['MobileTrunk']['date']){echo $inv['MobileTrunk']['date'];}?>" /></td>
             </tr>
         </table>
         <?php if(isset($inv))

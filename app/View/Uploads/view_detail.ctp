@@ -41,6 +41,8 @@ if($doc['Document']['document_type']=='contract')
     $ty = "contracts";
 elseif($doc['Document']['document_type']=='template')
     $ty = "templates";
+elseif($doc['Document']['document_type'] == 'mobile_vehicle_trunk_inventory')
+    $ty = "inventory";
 /*elseif($doc['Document']['document_type'] == 'client_feedback')
     $ty = "";*/
 else    
