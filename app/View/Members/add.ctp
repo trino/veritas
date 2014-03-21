@@ -301,6 +301,9 @@ if($q || $q2){
 <?php if($admin_doc['AdminDoc']['inventory']=='0' ){?><input type="hidden" name="canUpload_inventory" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Vehicle Trunk Inventory </span><input type="checkbox" name="canUpload_inventory" <?php if(isset($u['Canupload']['inventory']) && $u['Canupload']['inventory']==1){?>checked="checked"<?php }?> /><?php }?>
 
+<?php if($admin_doc['AdminDoc']['vehicle_inspection']=='0' ){?><input type="hidden" name="canUpload_vehicle_inspection" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vehicle Inspection </span><input type="checkbox" name="canUpload_vehicle_inspection" <?php if(isset($u['Canupload']['canUpload_vehicle_inspection']) && $u['Canupload']['canUpload_vehicle_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
+
 </td>
 </tr>
 </table>
