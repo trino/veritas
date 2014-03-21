@@ -64,7 +64,7 @@ $or = '';
                 </td>
             </tr>
             <tr>
-                <td>Date</td><td><?php echo $date;?>"</td>
+                <td>Date</td><td><?php echo $date;?></td>
                 <td>Shift Times</td>
                 <td>
                     
