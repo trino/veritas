@@ -202,7 +202,7 @@ class SearchController extends AppController
             }
             if($qs['Canview']['inventory'])
             {
-                $arrs[] = array('document_type'=>'inventory');
+                $arrs[] = array('document_type'=>'mobile_vehicle_trunk_inventory');
             }
             if($qs['Canview']['client_feedback'])
             {
