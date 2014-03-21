@@ -5,8 +5,7 @@ class ContactsController extends AppController
     var $components = array('Email');
     public function index($jid=-1,$type=-1)
     {
-        //die($jid);
-        //die('here');
+        
         $this->set('select',$jid);
         $this->set('type',$type);
         $this->loadModel('Key_contact');
@@ -275,14 +274,9 @@ class ContactsController extends AppController
               $key['name'] = $key_name;
               $key['type'] = $key_type;
               $key['cellular_provider'] = $key_cellular;
-              //$key['job_id'] = $job_id;
+              
               $this->Key_contact->id = $id;
-              // foreach($key as $k=>$v)
-              // {
-                // $this->Key_contact->saveField($k,$v);
-              // }
-			  
-			              			                $this->Key_contact->save($key);
+              $this->Key_contact->save($key);
 
              $this->Session->setFlash('Edit Successful.');
              $this->redirect('index'); 

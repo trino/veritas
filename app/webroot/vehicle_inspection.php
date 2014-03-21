@@ -64,8 +64,8 @@ $or = '';
                 </td>
             </tr>
             <tr>
-                <td>Date</td><td><input type="text" name="vehicle_date" class="date_verify" value="<?php echo $date;?>" /></td>
-                <td>Shift Times</td>
+                <td style="width: 95px;">Date</td><td><input type="text" name="vehicle_date" class="date_verify" value="<?php echo $date;?>" /></td>
+                <td style="width: 95px;">Shift Times</td>
                 <td>
                 <?php
                 if($hf || $mf)
@@ -87,7 +87,7 @@ $or = '';
             </tr>
             <tr>
                 <td>License Plate Number</td><td><input type="text" name="plate" value="<?php echo $p;?>" /></td>
-                <td colspan="2">Start KMs <input type="text" name="start_km" style="width:100px;" value="<?php echo $sk;?>" />&nbsp;&nbsp;&nbsp;Finish KMs<input type="text" name="finish_km" style="width:100px;" value="<?php echo $fk;?>" /></td>
+                <td>Start KMs</td><td><input type="text" name="start_km" style="width:100px;" value="<?php echo $sk;?>" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Finish KMs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="finish_km" style="width:100px;" value="<?php echo $fk;?>" /></td>
             </tr>
             
         </table>

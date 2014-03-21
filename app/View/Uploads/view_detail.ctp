@@ -182,13 +182,13 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
     <?php
     if($doc['Document']['document_type']=='mobile_inspection')
     {
-        include('mobile_inspection.php');
+        include('mobile_view.php');
     }
     ?>
     <?php
     if($doc['Document']['document_type']=='mobile_log')
     {
-        include('mobile_log.php');
+        include('log_view.php');
     }
     ?>
     <?php
@@ -314,7 +314,7 @@ You may also download the video and play it on your local device.
 if($type == 'Report')
 {
     */?>
-    <!--<input type="button" onclick="window.print();" value="Print" class="btn btn-primary" />-->
+    <input type="button" onclick="window.print();" value="Print" class="btn btn-primary" />
     <?php
 //}
 ?>
@@ -328,7 +328,7 @@ if($type == 'Report')
             fillColor: '008800'
         });
         <?php
-    if(isset($vehicle))
+    if(isset($vehicle) && $vehicle)
     {
         ?>
         var front = '<?php echo $vehicle['Vehicle_inspection']['front'];?>';

@@ -57,15 +57,15 @@ $or = '';
 ?>
 <tr class="vehicle_inspection">
     <td colspan="2" style="padding: 0;">
-        <table class="table">
+        <table class="table" style="font-size: 13px;">
             <tr>
                 <td colspan="4">    
                     <strong>Vehicle Inspection Sheet</strong>
                 </td>
             </tr>
             <tr>
-                <td>Date</td><td><?php echo $date;?></td>
-                <td>Shift Times</td>
+                <td style="width: 95px;">Date</td><td><?php echo $date;?></td>
+                <td style="width: 95px;">Shift Times</td>
                 <td>
                     
                         <?php
@@ -89,7 +89,7 @@ $or = '';
             </tr>
             <tr>
                 <td>License Plate Number</td><td><?php echo $p;?></td>
-                <td colspan="2">Start KMs <?php echo $sk;?> &nbsp;&nbsp;&nbsp;Finish KMs <?php echo $fk;?></td>
+                <td>Start KMs</td><td><?php echo $sk;?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Finish KMs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $fk;?></td>
             </tr>
             
         </table>
