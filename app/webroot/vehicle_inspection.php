@@ -72,10 +72,14 @@ $or = '';
                 {
                     $val1 = trim($hf).':'.trim($mf);
                 }
+                else
+                $val1 = '';
                 if($ht || $mt)
                 {
                     $val2 = trim($ht).':'.trim($mt);
                 }
+                else
+                $val2 = '';
                 ?>
                     <input type="text" name="from" class="time" value="<?php echo $val1;?>" placeholder="Date From" /> &nbsp; - 
                      &nbsp; <input type="text" name="to" class="time" value="<?php echo $val2;?>" placeholder="Date To" />

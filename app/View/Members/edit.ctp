@@ -190,7 +190,7 @@ if(!isset($sid))
 <?php if($admin_doc['AdminDoc']['inventory']=='0' ){?><input type="hidden" name="canUpload_inventory" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Vehicle Trunk Inventory </span><input type="checkbox" name="canUpload_inventory" <?php if(isset($u['Canupload']['inventory']) && $u['Canupload']['inventory']==1){?>checked="checked"<?php }?> /><?php }?>
 
-<?php if($admin_doc['AdminDoc']['vechicle_inspection']=='0' ){?><input type="hidden" name="canUpload_vechicle_inspection" value="0"/><?php }else{?>
+<?php if($admin_doc['AdminDoc']['vehicle_inspection']=='0' ){?><input type="hidden" name="canUpload_vechicle_inspection" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vechicle Inspection </span><input type="checkbox" name="canUpload_vechicle_inspection" <?php if(isset($u['Canupload']['vechicle_inspection']) && $u['Canupload']['vechicle_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
 </td>
 </tr>

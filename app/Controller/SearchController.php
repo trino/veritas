@@ -188,6 +188,22 @@ class SearchController extends AppController
             {
                 $arrs[] = array('document_type'=>'personal_inspection');
             }
+            if($qs['Canview']['mobile_inspection'])
+            {
+                $arrs[] = array('document_type'=>'mobile_inspection');
+            }
+            if($qs['Canview']['vehicle_inspection'])
+            {
+                $arrs[] = array('document_type'=>'vehicle_inspection');
+            }
+            if($qs['Canview']['mobile_log'])
+            {
+                $arrs[] = array('document_type'=>'mobile_log');
+            }
+            if($qs['Canview']['inventory'])
+            {
+                $arrs[] = array('document_type'=>'inventory');
+            }
             if($qs['Canview']['client_feedback'])
             {
                 $arrs[] = array('document_type'=>'client_feedback');
@@ -274,6 +290,18 @@ class SearchController extends AppController
             if($type == 'mobile_inspection')
             {
                 $arrs = array('document_type'=>'mobile_inspection');
+            }
+            if($type == 'mobile_log')
+            {
+                $arrs = array('document_type'=>'vehicle_log');
+            }
+            if($type == 'vehicle_inspection')
+            {
+                $arrs = array('document_type'=>'vehicle_inspection');
+            }
+            if($type == 'mobile_vehicle_trunk_inventory')
+            {
+                $arrs = array('document_type'=>'mobile_vehicle_trunk_inventory');
             }
             }
             if(count($arrs)< 1 && count($arrs2)< 1)
