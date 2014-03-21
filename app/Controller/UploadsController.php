@@ -752,16 +752,16 @@ class UploadsController extends AppController
             {
                 $this->Vehicle_inspection->deleteAll(array('document_id'=>$eid));
                 $veh['document_id'] = $eid;
-                $veh['document_id'] = $id;
+                //$veh['document_id'] = $id;
                 $too = $_POST['to'];
-                $att_to = explode($too,':');
-                $per['hour_to'] = $att_to[0];
-                $per['min_to'] = $att_to[1];
+                $att_to = explode(':',$too);
+                $veh['hour_to'] = $att_to[0];
+                $veh['min_to'] = $att_to[1];
                 
                 $from = $_POST['from'];
-                $att_fo = explode($from,':');
-                $per['hour_from'] = $att_fo[0];
-                $per['min_from'] = $att_fo[1];
+                $att_fo = explode(':',$from);
+                $veh['hour_from'] = $att_fo[0];
+                $veh['min_from'] = $att_fo[1];
                 foreach($_POST as $key=>$post)
                 {
                     $in2 = array('vehicle_date','hour_from','min_from','hour_to','min_to','guard','vehicle_unit_number','plate','start_km','finish_km','light','horn','rotating_light','spot_light','safety','file_box','lock_box','first_aid','ownership','front','back','side','note','operation_review');
@@ -1504,14 +1504,15 @@ class UploadsController extends AppController
             {
                 $veh['document_id'] = $id;
                 $too = $_POST['to'];
-                $att_to = explode($too,':');
-                $per['hour_to'] = $att_to[0];
-                $per['min_to'] = $att_to[1];
+                $att_to = explode(':',$too);
+                
+                $veh['hour_to'] = $att_to[0];
+                $veh['min_to'] = $att_to[1];
                 
                 $from = $_POST['from'];
-                $att_fo = explode($from,':');
-                $per['hour_from'] = $att_fo[0];
-                $per['min_from'] = $att_fo[1];
+                $att_fo = explode(':',$from);
+                $veh['hour_from'] = $att_fo[0];
+                $veh['min_from'] = $att_fo[1];
                 foreach($_POST as $key=>$post)
                 {
                     $in2 = array('vehicle_date','hour_from','min_from','hour_to','min_to','guard','vehicle_unit_number','plate','start_km','finish_km','light','horn','rotating_light','spot_light','safety','file_box','lock_box','first_aid','ownership','front','back','side','note','operation_review');
@@ -2152,8 +2153,8 @@ class UploadsController extends AppController
         $this->loadModel('Vehicle_inspection');
         if($id)
         {
-            $this->set('perso',$this->Personal_inspection->find('first',array('document_id'=>$id)));
-            $this->set('vehicle',$this->Vehicle_inspection->find('first',array('document_id'=>$id)));
+            $this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$id))));
+            $this->set('vehicle',$this->Vehicle_inspection->find('first',array('conditions'=>array('document_id'=>$id))));
             if($mem = $this->MobileInspection->findByDocumentId($id))
             {
                 $mem_action = $this->MobileAction->find('all',array('conditions'=>array('mobileins_id'=>$mem['MobileInspection']['id'])));
