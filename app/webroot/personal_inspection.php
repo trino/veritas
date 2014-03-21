@@ -5,11 +5,11 @@
                 <td colspan="4"><strong>Employee Information</strong></td>
             </tr>
             <tr>
-                <td>Name : </td><td><input type="text" name="emp_name1" class="required" value="<?php if(isset($perso) && $perso['Personal_inspection']['emp_name1']){echo $perso['Personal_inspection']['emp_name1'];}?>" /></td>
-                <td>Site : </td><td><input type="text" name="site" class="required" value="<?php if(isset($perso) && $perso['Personal_inspection']['site']){echo $perso['Personal_inspection']['site'];}?>" /></td>
+                <td>Name : </td><td><input type="text" name="emp_name1" class="" value="<?php if(isset($perso) && $perso['Personal_inspection']['emp_name1']){echo $perso['Personal_inspection']['emp_name1'];}?>" /></td>
+                <td>Site : </td><td><input type="text" name="site" class="" value="<?php if(isset($perso) && $perso['Personal_inspection']['site']){echo $perso['Personal_inspection']['site'];}?>" /></td>
             </tr>
             <tr>
-                <td>Job Title : </td><td><select name="jobs_title" class="required">
+                <td>Job Title : </td><td><select name="jobs_title" class="">
                  <?php if(isset($perso) && $perso['Personal_inspection']['jobs_title']){$opt = $perso['Personal_inspection']['jobs_title'];}else $opt="";?>
                 <option value="">Choose Job</option>
                 <option value="insurance" <?php if($opt == 'insurance'){?>selected="selected"<?php }?> >Insurance</option>
@@ -163,7 +163,7 @@
                 }
                 else
                 $eval = '';?>
-                <textarea name="evaluation" class="required"><?php echo $eval;?></textarea></td>
+                <textarea name="evaluation" class=""><?php echo $eval;?></textarea></td>
             </tr>
             <tr>
                 <td colspan="4"><strong>Verification of review</strong></td>
@@ -183,6 +183,12 @@
                 }
                 else
                     $df = '';
+                if(isset($perso) && $perso['Personal_inspection']['date_verify2'])
+                {
+                    $df2 = $perso['Personal_inspection']['date_verify2'];
+                }
+                else
+                    $df2 = '';    
                 if(isset($perso) && $perso['Personal_inspection']['emp_name2'])
                 {
                     $en2 = $perso['Personal_inspection']['emp_name2'];
@@ -190,13 +196,13 @@
                 else
                     $en2 = '';
                 ?>
-                <td>Supervisor/Manager Name : </td><td><input type="text" name="manager_name" value="<?php echo $mn; ?>" class="required" /></td>
-                <td>Date : </td><td><input type="text" name="date_verify" value="<?php echo $df;?>" class="date_verify required" /></td>
+                <td>Supervisor/Manager Name : </td><td><input type="text" name="manager_name" value="<?php echo $mn; ?>" class="" /></td>
+                <td>Date : </td><td><input type="text" name="date_verify" value="<?php echo $df;?>" class="date_verify" /></td>
             </tr>
             <tr>
                 
-                <td>Employee Name : </td><td><input type="text" name="emp_name2" value="<?php echo $en2;?>" class="required" /></td>
-                <td></td>
+                <td>Employee Name : </td><td><input type="text" name="emp_name2" value="<?php echo $en2;?>" class="" /></td>
+                <td>Date : </td><td><input type="text" name="date_verify2" value="<?php echo $df2;?>" class="date_verify" /></td>
             </tr>
             </tr>
         </table>
