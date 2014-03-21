@@ -1,13 +1,11 @@
 <tr class="mobilelog_more" style="display: none;">
     <td colspan="2">
-        <table class="table">
+        <table class="table mobilelog_table">
+            
             <tr>
-                <td colspan="4"><strong>Mobile Log</strong></td>
-            </tr>
-            <tr>
-                <td width="20%">Mobile Guard:</td><td><input type="text"  name="log[guard]" class="required" value="<?php if(isset($moblog) && $moblog['MobileLog']['guard']){echo $moblog['MobileLog']['guard'];}?>" /> </td>
-                <td width="15%">Shift:</td><td><input type="text" class="time required" name="log[shift_from]" value="<?php if(isset($moblog) && $moblog['MobileLog']['shift_from']){echo $moblog['MobileLog']['shift_from'];}?>" placeholder="From" style="width: 150px;"  />
-                    <input type="text" class="time required" name="log[shift_to]" value="<?php if(isset($moblog) && $moblog['MobileLog']['shift_to']){echo $moblog['MobileLog']['shift_to'];}?>" placeholder="To" style="width: 150px;" />
+                <td width="20%">Mobile Guard:</td><td><input type="text"  name="log[guard]" class="" value="<?php if(isset($moblog) && $moblog['MobileLog']['guard']){echo $moblog['MobileLog']['guard'];}?>" /> </td>
+                <td width="15%">Shift:</td><td><input type="text" class="time " name="log[shift_from]" value="<?php if(isset($moblog) && $moblog['MobileLog']['shift_from']){echo $moblog['MobileLog']['shift_from'];}?>" placeholder="From" style="width: 150px;"  />
+                    <input type="text" class="time " name="log[shift_to]" value="<?php if(isset($moblog) && $moblog['MobileLog']['shift_to']){echo $moblog['MobileLog']['shift_to'];}?>" placeholder="To" style="width: 150px;" />
                 </td>
                 
             </tr>
@@ -16,8 +14,8 @@
             <input type="hidden" name="log_id" value="<?php echo $moblog['MobileLog']['id'];?>"/>
             <?php } ?>
             <tr>
-                <td>Start Date</td><td><input type="text" name="log[start_date]" value="<?php if(isset($moblog) && $moblog['MobileLog']['start_date']){echo $moblog['MobileLog']['start_date'];}?>" class="date_verify required" /></td>
-                <td>End Date</td><td><input type="text" name="log[end_date]" value="<?php if(isset($moblog) && $moblog['MobileLog']['end_date']){echo $moblog['MobileLog']['end_date'];}?>" class="date_verify required" /></td>
+                <td>Start Date</td><td><input type="text" name="log[start_date]" value="<?php if(isset($moblog) && $moblog['MobileLog']['start_date']){echo $moblog['MobileLog']['start_date'];}?>" class="date_verify " /></td>
+                <td>End Date</td><td><input type="text" name="log[end_date]" value="<?php if(isset($moblog) && $moblog['MobileLog']['end_date']){echo $moblog['MobileLog']['end_date'];}?>" class="date_verify " /></td>
             </tr>
             <tr>
                 <td rowspan="8"></td>
@@ -53,9 +51,9 @@
             </tr>
             
         </table>
-        <table class="table addmoretab1">
+        <table class="table addmoretab1 mobilelog_table">
             <tr><td colspan="5"><strong>Mobile / Site Check In</strong></td></tr>
-            <tr><td>Arriaval</td><td>Depart</td><td>Site Adddress</td><td>Guard Onsite</td><td></td></tr>
+            <tr><td>Arrival</td><td>Depart</td><td>Site Adddress</td><td>Guard Onsite</td><td></td></tr>
             <?php if(isset($mem_site)){
             
             foreach($mem_site as $action)
@@ -81,13 +79,18 @@
             </tr>
         </table>
         
-        <table class="table">
-        <tr><td >Please Remember To Get Receipt For Gas At Petro Canada &nbsp;&nbsp;<input type="text" name="log[receipt]" value="<?php if(isset($moblog) && $moblog['MobileLog']['receipt']){echo $moblog['MobileLog']['receipt'];}?>"/></td></tr>
-        <tr><td>Points &nbsp;&nbsp;<input type="text" name="log[points]" value="<?php if(isset($moblog) && $moblog['MobileLog']['points']){echo $moblog['MobileLog']['points'];}?>" />&nbsp;/&nbsp; <input type="text" name="log[ltr]" value="<?php if(isset($moblog) && $moblog['MobileLog']['ltr']){echo $moblog['MobileLog']['ltr'];}?>" />&nbsp;&nbsp;Total LT&nbsp;/ Total $&nbsp;<input type="text" name="log[total]" value="<?php if(isset($moblog) && $moblog['MobileLog']['total']){echo $moblog['MobileLog']['total'];}?>" /></td>
+        <table class="table mobilelog_table">
+        <tr><td class="wdth" width="35%">Please Remember To Get Receipt For Gas At Petro Canada: </td><td ><input type="text" name="log[receipt]" value="<?php if(isset($moblog) && $moblog['MobileLog']['receipt']){echo $moblog['MobileLog']['receipt'];}?>"/></td></tr>
+        </table>
+        <table class="mobilelog_table">
+        <tr><td width="2%">Points </td><td width="10%"><input type="text" name="log[points]" value="<?php if(isset($moblog) && $moblog['MobileLog']['points']){echo $moblog['MobileLog']['points'];}?>" /></td>
+        <td width="1%">/</td><td width="10%"> <input type="text" name="log[ltr]" value="<?php if(isset($moblog) && $moblog['MobileLog']['ltr']){echo $moblog['MobileLog']['ltr'];}?>" /></td>
+        <td width="7%">Total LT&nbsp;/ Total $</td>
+        <td width="10%"><input type="text" name="log[total]" value="<?php if(isset($moblog) && $moblog['MobileLog']['total']){echo $moblog['MobileLog']['total'];}?>" /></td>
         </tr>
         </table>
         
-        <table class="table table-bordered addmoretab2">
+        <table class="table table-bordered addmoretab2 mobilelog_table">
         <thead ><th width="10%">Time</th><th>Special Notes (Guard Request etc.)</th></thead>
         <?php if(isset($mem_note)){
          
@@ -107,23 +110,47 @@
         </td><td><textarea name="mobdetail[]" style="width:500px;height:150px"></textarea></td>
         <td><input type="button" class="btn btn-primary" id="addmore1" value="+Add More"/></td></tr >
         
+        
+        </table>
+        <table class="mobilelog_table">
+        <tr><td>Sign</td><td><input name="log[sign]" value="<?php if(isset($moblog) && $moblog['MobileLog']['sign']){echo $moblog['MobileLog']['sign'];}?>" /></td><td></td></tr>
         </table>    
     </td>
 </tr>
+
 <script>
 $(function(){
     
     $('.time').timepicker(); 
     $('#addcheck').click(function(){
        $('.addmoretab1').append('<tr><td><input type="text" class="time" name="arrival[]" /></td><td><input type="text" class="time" name="depart[]" /></td><td><input type="text" name="siteaddress[]" /></td><td><input type="text" name="guardonsite[]" /></td><td><a href="javascript:void(0)" onclick="$(this).closest(\'tr\').remove();" class="btn btn-danger">Delete</a></td></tr>'); 
+         $('.time').timepicker();
     });
     $('#addmore1').click(function(){
        $('.addmoretab2').append("<tr><td><input type='text' class='time' name='mobtime[]' /></td><td><textarea name='mobdetail[]' style='width:500px;height:150px'></textarea></td><td><a href='javascript:void(0)' onclick='$(this).closest(\"tr\").remove();' class='btn btn-danger'>Delete</a></td></tr>"); 
+         $('.time').timepicker();
     });
+    
      <?php if($this->params['action'] == 'view_detail' ){ ?> 
     $('.mobilelog_more').show();
-    $('.mobilelog_more input').attr('disabled','disabled');
-    $('.mobilelog_more textarea').attr('disabled','disabled');
+    
+    $('.mobilelog_table td').each(function(){
+        
+        if($(this).find('input').length >0 || $(this).find('textarea').length>0){
+            var vaz = $(this).find('input').val();
+            if($(this).find('textarea').length>0){
+                var tex = $(this).find('textarea').val();
+                $(this).html(tex);
+            }
+            
+            
+            $(this).html(vaz);
+        }
+        
+        
+    });
+    //$('.mobilelog_more input').attr('disabled','disabled');
+    //$('.mobilelog_more textarea').attr('disabled','disabled');
     $('.mobtime , .delete').hide();
    <?php } ?> 
 });

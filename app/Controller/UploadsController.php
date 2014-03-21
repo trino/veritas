@@ -769,8 +769,10 @@ class UploadsController extends AppController
             {
                 $mid = $_POST['mobile_id'];
                 $this->MobileInspection->id = $mid;
+                //var_dump($_POST['mobile_ins']); die();
                 foreach($_POST['mobile_ins'] as $k=>$v)
                 {
+                    
                     $this->MobileInspection->saveField($k,$v);
                 }
                 

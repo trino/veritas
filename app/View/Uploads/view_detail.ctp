@@ -314,7 +314,7 @@ You may also download the video and play it on your local device.
 if($type == 'Report')
 {
     */?>
-    <!--<input type="button" onclick="window.print();" value="Print" class="btn btn-primary" />-->
+    <input type="button" onclick="window.print();" value="Print" class="btn btn-primary" />
     <?php
 //}
 ?>
@@ -328,7 +328,7 @@ if($type == 'Report')
             fillColor: '008800'
         });
         <?php
-    if(isset($vehicle))
+    if(isset($vehicle) && $vehicle)
     {
         ?>
         var front = '<?php echo $vehicle['Vehicle_inspection']['front'];?>';
