@@ -1,12 +1,12 @@
 <tr class="personal_more" style="display: none;">
-    <td colspan="2">
+    <td colspan="2" style="padding: 0;">
         <table>
             <tr>
                 <td colspan="4"><strong>Employee Information</strong></td>
             </tr>
             <tr>
-                <td>Name : </td><td><input type="text" name="emp_name1" class="" value="<?php if(isset($perso) && $perso['Personal_inspection']['emp_name1']){echo $perso['Personal_inspection']['emp_name1'];}?>" /></td>
-                <td>Site : </td><td><input type="text" name="site" class="" value="<?php if(isset($perso) && $perso['Personal_inspection']['site']){echo $perso['Personal_inspection']['site'];}?>" /></td>
+                <td style="width: 95px;">Name : </td><td><input type="text" name="emp_name1" class="" value="<?php if(isset($perso) && $perso['Personal_inspection']['emp_name1']){echo $perso['Personal_inspection']['emp_name1'];}?>" /></td>
+                <td style="width: 95px;">Site : </td><td><input type="text" name="site" class="" value="<?php if(isset($perso) && $perso['Personal_inspection']['site']){echo $perso['Personal_inspection']['site'];}?>" /></td>
             </tr>
             <tr>
                 <td>Job Title : </td><td><select name="jobs_title" class="">
@@ -19,7 +19,7 @@
                 </select></td>
                 <td>Date : </td><td><input type="text" name="date_submit" value="<?php if(isset($perso) && $perso['Personal_inspection']['date_submit']){echo $perso['Personal_inspection']['date_submit'];}else{echo date('Y-m-d H:i:s');}?>" readonly="readonly" /></td>
             </tr>
-            <tbody  class="radios">
+            <tbody  class="radios" style="border-top:1px solid #e5e5e5">
             <tr>
                 <td colspan="2"><strong>Ratings</strong></td>
                 <td colspan="2">

@@ -1,10 +1,10 @@
 <tr class="mobilelog_more" style="display: none;">
-    <td colspan="2">
+    <td colspan="2" style="padding: 0;">
         <table class="table mobilelog_table">
             
             <tr>
-                <td width="20%">Mobile Guard:</td><td><input type="text"  name="log[guard]" class="" value="<?php if(isset($moblog) && $moblog['MobileLog']['guard']){echo $moblog['MobileLog']['guard'];}?>" /> </td>
-                <td width="15%">Shift:</td><td><input type="text" class="time " name="log[shift_from]" value="<?php if(isset($moblog) && $moblog['MobileLog']['shift_from']){echo $moblog['MobileLog']['shift_from'];}?>" placeholder="From" style="width: 150px;"  />
+                <td style="width:100px!important;">Mobile Guard:</td><td><input type="text"  name="log[guard]" class="" value="<?php if(isset($moblog) && $moblog['MobileLog']['guard']){echo $moblog['MobileLog']['guard'];}?>" /> </td>
+                <td style="width:100px!important;">Shift:</td><td><input type="text" class="time " name="log[shift_from]" value="<?php if(isset($moblog) && $moblog['MobileLog']['shift_from']){echo $moblog['MobileLog']['shift_from'];}?>" placeholder="From" style="width: 150px;"  />
                     <input type="text" class="time " name="log[shift_to]" value="<?php if(isset($moblog) && $moblog['MobileLog']['shift_to']){echo $moblog['MobileLog']['shift_to'];}?>" placeholder="To" style="width: 150px;" />
                 </td>
                 
@@ -18,37 +18,48 @@
                 <td>End Date</td><td><input type="text" name="log[end_date]" value="<?php if(isset($moblog) && $moblog['MobileLog']['end_date']){echo $moblog['MobileLog']['end_date'];}?>" class="date_verify " /></td>
             </tr>
             <tr>
-                <td rowspan="8"></td>
-                <td colspan="2">Toyota Patrol (2330 - 0430) </td>
-                <td rowspan="8"></td>
+                <td colspan="4">
+                
+                <div style="width: 360px;margin:10px auto;">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td colspan="2">
+                                <center><strong>Toyota Patrol (2330 - 0430)</strong></center>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="time" name="log[tyotafrom1]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotafrom1']){echo $moblog['MobileLog']['tyotafrom1'];}?>" style="width: 150px;" /></td>
+                            <td><input type="text" class="time" name="log[tyotato1]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotato1']){echo $moblog['MobileLog']['tyotato1'];}?>" style="width: 150px;" /></td>
+                        </tr>
+                         <tr>
+                            <td><input type="text" class="time" name="log[tyotafrom2]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotafrom2']){echo $moblog['MobileLog']['tyotafrom2'];}?>" style="width: 150px;" /></td>
+                            <td><input type="text" class="time" name="log[tyotato2]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotato2']){echo $moblog['MobileLog']['tyotato2'];}?>" style="width: 150px;" /></td>
+                        </tr>
+                         <tr>
+                            <td><input type="text" class="time" name="log[tyotafrom3]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotafrom3']){echo $moblog['MobileLog']['tyotafrom3'];}?>" style="width: 150px;" /></td>
+                            <td><input type="text" class="time" name="log[tyotato3]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotato3']){echo $moblog['MobileLog']['tyotato3'];}?>" style="width: 150px;" /></td>
+                        </tr>
+                         <tr>
+                            <td><input type="text" class="time" name="log[tyotafrom4]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotafrom4']){echo $moblog['MobileLog']['tyotafrom4'];}?>" style="width: 150px;" /></td>
+                            <td><input type="text" class="time" name="log[tyotato4]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotato4']){echo $moblog['MobileLog']['tyotato4'];}?>" style="width: 150px;" /></td>
+                        </tr>
+                         <tr>
+                            <td colspan="2"><center><strong>Toyota/ 105 Nashdene (2330 - 0430)</strong></center></td>
+                        </tr>
+                         <tr>
+                            <td><input type="text" class="time" name="log[tyotafrom5]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotafrom5']){echo $moblog['MobileLog']['tyotafrom5'];}?>" style="width: 150px;" /></td>
+                            <td><input type="text" class="time" name="log[tyotato5]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotato5']){echo $moblog['MobileLog']['tyotato5'];}?>" style="width: 150px;" /></td>
+                        </tr>
+                         <tr>
+                            <td><input type="text" class="time" name="log[tyotafrom6]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotafrom6']){echo $moblog['MobileLog']['tyotafrom6'];}?>" style="width: 150px;" /></td>
+                            <td><input type="text" class="time" name="log[tyotato6]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotato6']){echo $moblog['MobileLog']['tyotato6'];}?>" style="width: 150px;" /></td>
+                        </tr>
+                    </table>
+                </div>
+                </td>
+                
             </tr>
-            <tr>
-                <td><input type="text" class="time" name="log[tyotafrom1]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotafrom1']){echo $moblog['MobileLog']['tyotafrom1'];}?>" style="width: 150px;" /></td>
-                <td><input type="text" class="time" name="log[tyotato1]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotato1']){echo $moblog['MobileLog']['tyotato1'];}?>" style="width: 150px;" /></td>
-            </tr>
-             <tr>
-                <td><input type="text" class="time" name="log[tyotafrom2]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotafrom2']){echo $moblog['MobileLog']['tyotafrom2'];}?>" style="width: 150px;" /></td>
-                <td><input type="text" class="time" name="log[tyotato2]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotato2']){echo $moblog['MobileLog']['tyotato2'];}?>" style="width: 150px;" /></td>
-            </tr>
-             <tr>
-                <td><input type="text" class="time" name="log[tyotafrom3]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotafrom3']){echo $moblog['MobileLog']['tyotafrom3'];}?>" style="width: 150px;" /></td>
-                <td><input type="text" class="time" name="log[tyotato3]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotato3']){echo $moblog['MobileLog']['tyotato3'];}?>" style="width: 150px;" /></td>
-            </tr>
-             <tr>
-                <td><input type="text" class="time" name="log[tyotafrom4]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotafrom4']){echo $moblog['MobileLog']['tyotafrom4'];}?>" style="width: 150px;" /></td>
-                <td><input type="text" class="time" name="log[tyotato4]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotato4']){echo $moblog['MobileLog']['tyotato4'];}?>" style="width: 150px;" /></td>
-            </tr>
-             <tr>
-                <td colspan="2">Toyota/ 105 Nashdene (2330 - 0430)</td>
-            </tr>
-             <tr>
-                <td><input type="text" class="time" name="log[tyotafrom5]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotafrom5']){echo $moblog['MobileLog']['tyotafrom5'];}?>" style="width: 150px;" /></td>
-                <td><input type="text" class="time" name="log[tyotato5]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotato5']){echo $moblog['MobileLog']['tyotato5'];}?>" style="width: 150px;" /></td>
-            </tr>
-             <tr>
-                <td><input type="text" class="time" name="log[tyotafrom6]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotafrom6']){echo $moblog['MobileLog']['tyotafrom6'];}?>" style="width: 150px;" /></td>
-                <td><input type="text" class="time" name="log[tyotato6]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotato6']){echo $moblog['MobileLog']['tyotato6'];}?>" style="width: 150px;" /></td>
-            </tr>
+            
             
         </table>
         <table class="table addmoretab1 mobilelog_table">
@@ -91,7 +102,7 @@
         </table>
         
         <table class="table table-bordered addmoretab2 mobilelog_table">
-        <thead ><th width="10%">Time</th><th>Special Notes (Guard Request etc.)</th></thead>
+        <thead ><th width="10%">Time</th><th colspan="2">Special Notes (Guard Request etc.)</th></thead>
         <?php if(isset($mem_note)){
          
             foreach($mem_note as $action)
@@ -113,7 +124,7 @@
         
         </table>
         <table class="mobilelog_table">
-        <tr><td>Sign</td><td><input name="log[sign]" value="<?php if(isset($moblog) && $moblog['MobileLog']['sign']){echo $moblog['MobileLog']['sign'];}?>" /></td><td></td></tr>
+        <tr><td>Sign</td><td><input type="text" name="log[sign]" value="<?php if(isset($moblog) && $moblog['MobileLog']['sign']){echo $moblog['MobileLog']['sign'];}?>" /></td><td></td></tr>
         </table>    
     </td>
 </tr>
