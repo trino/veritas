@@ -622,6 +622,7 @@ class MembersController extends AppController
                 $canview['personal_inspection'] = (isset($_POST['canView_personal_inspection'])&& $_POST['canView_personal_inspection'])? '1' : '0'  ;
                 $canview['mobile_inspection'] = (isset($_POST['canView_mobile_inspection'])&& $_POST['canView_mobile_inspection'])? '1' : '0'  ;
                 $canview['inventory'] = (isset($_POST['canView_inventory'])&& $_POST['canView_inventory'])? '1' : '0'  ;
+                $canview['vehicle_inspection'] = (isset($_POST['canView_vehicle_inspection'])&& $_POST['canView_vehicle_inspection'])? '1' : '0'  ;
                 $this->Canview->create();
                 $this->Canview->save($canview);
                 //die('here');
@@ -668,6 +669,7 @@ class MembersController extends AppController
                 $canupdate['mobile_inspection'] = (isset($_POST['canUpload_mobile_inspection'])&& $_POST['canUpload_mobile_inspection'])? '1' : '0'  ;
                 $canupdate['mobile_log'] = (isset($_POST['canUpload_mobile_log'])&& $_POST['canUpload_mobile_log'])? '1' : '0'  ;
                 $canupdate['inventory'] = (isset($_POST['canUpload_inventory'])&& $_POST['canUpload_inventory'])? '1' : '0'  ;
+                $canupdate['vehicle_inspection'] = (isset($_POST['canUpload_vehicle_inspection'])&& $_POST['canUpload_vehicle_inspection'])? '1' : '0'  ;
                 $this->Canupload->create();
                 $this->Canupload->save($canupdate);
                 //die();
