@@ -6,7 +6,7 @@
             </tr>
             <tr>
                 <td>Name : </td><td><?php echo $perso['Personal_inspection']['emp_name1'];?></td>
-                <td>Site : </td><td><?php echo $perso['Personal_inspection']['site'];?>"</td>
+                <td>Site : </td><td><?php echo $perso['Personal_inspection']['site'];?></td>
             </tr>
             <tr>
                 <td>Job Title : </td><td>

@@ -171,7 +171,7 @@ function remove_youtube()
 <tr><td><b>Document Type</b></td>
 <td><div class="right">
 <select name="document_type" class="required" id="document_type">
-    <option value="">Choose documnet type</option>
+    <option value="">Choose document type</option>
     <?php if($admin_doc['AdminDoc']['contracts']=='1' && ((isset($canupdate['Canupload']['contracts'])&& $canupdate['Canupload']['contracts']=='1') || $this->Session->read('admin'))){?>
     <option value="contract" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='contract') echo "selected='selected'"?>>Contracts</option>
     <?php } ?>
