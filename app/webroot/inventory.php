@@ -7,10 +7,10 @@
         <table class="table inventry_table">
             
             <tr>
-                <td>Mobile Guard</td><td><input type="text" name="inventory[guard]" value="<?php if(isset($inv) && $inv['MobileTrunk']['guard']){echo $inv['MobileTrunk']['guard'];}?>" class="required" /></td>
+                <td width="10%">Mobile Guard</td><td><input type="text" name="inventory[guard]" value="<?php if(isset($inv) && $inv['MobileTrunk']['guard']){echo $inv['MobileTrunk']['guard'];}?>" class="required" /></td>
             </tr>
             <tr>
-                <td>Date</td><td><input type="text" name="inventory[date]" class="required date_verify" value="<?php if(isset($inv) && $inv['MobileTrunk']['date']){echo $inv['MobileTrunk']['date'];}?>" /></td>
+                <td width="10%">Date</td><td><input type="text" name="inventory[date]" class="required date_verify" value="<?php if(isset($inv) && $inv['MobileTrunk']['date']){echo $inv['MobileTrunk']['date'];}?>" /></td>
             </tr>
         </table>
         <?php if(isset($inv))
@@ -19,8 +19,8 @@
        <?php  } ?>
         <table class="table table-bordered inventry_table">
             <tr>
-                <td><strong>Shirts - Grey</strong></td><td>Inventory</td><td>Start Time</td><td>End Time</td>
-                <td><strong>Shirts - Red</strong></td><td>Inventory</td><td>Start Time</td><td>End Time</td>
+                <td width="12.5%"><strong>Shirts - Grey</strong></td><td width="12.5%">Inventory</td><td width="12.5%">Start Time</td><td width="12.5%">End Time</td>
+                <td width="12.5%"><strong>Shirts - Red</strong></td><td width="12.5%">Inventory</td><td width="12.5%">Start Time</td><td width="12.5%">End Time</td>
             </tr>
             <tr>
                 <td>S</td><td><input type="text" value="<?php if(isset($inv) && $inv['MobileTrunk']['inv1']){echo $inv['MobileTrunk']['inv1'];}?>" name="inventory[inv1]" /></td>
@@ -166,7 +166,7 @@
             </tr>
             
             <tr>
-                <td><strong>Inventory Given Out</strong></td><td></td><td></td><td></td><td></td><td rowspan="10">Notes</td><td rowspan="10" colspan="2"><textarea rows="20"  name="inventory[notes]"><?php if(isset($inv) && $inv['MobileTrunk']['notes']){echo $inv['MobileTrunk']['notes'];}?></textarea></td>
+                <td><strong>Inventory Given Out</strong></td><td></td><td></td><td></td><td></td><td rowspan="10" colspan="3"><strong>Notes:</strong><br /><textarea rows="20"  name="inventory[notes]"><?php if(isset($inv) && $inv['MobileTrunk']['notes']){echo $inv['MobileTrunk']['notes'];}?></textarea></td>
             </tr>
             <tr>
                 <td>Guard Name</td><td>Type Of Guard</td><td>Inventory Item</td><td>Size</td><td>Quantity</td>
@@ -232,7 +232,7 @@ $(function(){
             var vaz = $(this).find('input').val();
             if($(this).find('textarea').length>0){
                 var tex = $(this).find('textarea').val();
-                $(this).html(tex);
+                $(this).html("<strong>Notes:</strong><br/>"+tex);
             }
             
             
