@@ -1609,13 +1609,13 @@ class UploadsController extends AppController
             
             foreach($mails as $m)
                 {
-                    
-                    $mem_id = $m['Jobmember']['member_id'];
+                    //var_dump($mails);die();
+                    $mem_id = $m['Jobmember']['member_id']; 
                     if($emailupload = $this->Emailupload->findByMemberId($mem_id))
                     if($emailupload['Emailupload'][$_POST['document_type']] == 1 )
                     if($t = $this->Member->find('first',array('conditions'=>array('id'=>$mem_id))))
                     {
-                        
+                        //var_dump($t);die();
                         $to = $t['Member']['email'];
                         $emails = new CakeEmail();
                         $emails->from(array('noreply@veritas.com'=>'Veritas'));
