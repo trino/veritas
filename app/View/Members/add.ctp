@@ -362,6 +362,22 @@ if($q || $q2){
 <?php if($admin_doc['AdminDoc']['kpiaudits']=='0'){?><input type="hidden" name="Email_KPIAudits" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="Email_KPIAudits"  class="rec_email" /><?php }?>
 
+
+<?php if($admin_doc['AdminDoc']['personal_inspection']=='0'){?><input type="hidden" name="Email_personal_inspection" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Personal Inspection </span><input type="checkbox" name="Email_personal_inspection"  class="rec_email" /><?php }?>
+
+<?php if($admin_doc['AdminDoc']['mobile_inspection']=='0'){?><input type="hidden" name="Email_mobile_inspection" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Inspection </span><input type="checkbox" name="Email_mobile_inspection"  class="rec_email" /><?php }?>
+
+<?php if($admin_doc['AdminDoc']['mobile_log']=='0'){?><input type="hidden" name="Email_mobile_log" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Log </span><input type="checkbox" name="Email_mobile_log"  class="rec_email" /><?php }?>
+
+<?php if($admin_doc['AdminDoc']['inventory']=='0'){?><input type="hidden" name="Email_mobile_vehicle_trunk_inventory" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mobile Vehicle Trunk Inventory  </span><input type="checkbox" name="Email_mobile_vehicle_trunk_inventory"  class="rec_email" /><?php }?>
+
+<?php if($admin_doc['AdminDoc']['vehicle_inspection']=='0'){?><input type="hidden" name="Email_vehicle_inspection" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vehicle Inspection </span><input type="checkbox" name="Email_vehicle_inspection"  class="rec_email" /><?php }?>
+
 <!--<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Feedback </span><input type="checkbox" name="Email_client_memo1"  />-->
 </td>
 </tr>

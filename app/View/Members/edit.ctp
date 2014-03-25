@@ -259,6 +259,21 @@ if(!isset($sid))
 <?php if($admin_doc['AdminDoc']['kpiaudits']=='0' ){?><input type="hidden" name="Email_KPIAudits" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="Email_KPIAudits" <?php if(isset($e['Emailupload']['KPIAudits']) && $e['Emailupload']['KPIAudits']==1){?>checked="checked"<?php }?> /><?php }?>
 
+<?php if($admin_doc['AdminDoc']['personal_inspection']=='0'){?><input type="hidden" name="Email_personal_inspection" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Personal Inspection </span><input type="checkbox" name="Email_personal_inspection" <?php if(isset($e['Emailupload']['personal_inspection']) && $e['Emailupload']['personal_inspection']==1){?>checked="checked"<?php }?>  class="rec_email" /><?php }?>
+
+<?php if($admin_doc['AdminDoc']['mobile_inspection']=='0'){?><input type="hidden" name="Email_mobile_inspection" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Inspection </span><input type="checkbox" name="Email_mobile_inspection" <?php if(isset($e['Emailupload']['mobile_inspection']) && $e['Emailupload']['mobile_inspection']==1){?>checked="checked"<?php }?> class="rec_email" /><?php }?>
+
+<?php if($admin_doc['AdminDoc']['mobile_log']=='0'){?><input type="hidden" name="Email_mobile_log" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Log </span><input type="checkbox" name="Email_mobile_log" <?php if(isset($e['Emailupload']['mobile_log']) && $e['Emailupload']['mobile_log']==1){?>checked="checked"<?php }?>  class="rec_email" /><?php }?>
+
+<?php if($admin_doc['AdminDoc']['inventory']=='0'){?><input type="hidden" name="Email_mobile_vehicle_trunk_inventory" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mobile Vehicle Trunk Inventory  </span><input type="checkbox" name="Email_mobile_vehicle_trunk_inventory" <?php if(isset($e['Emailupload']['mobile_vehicle_trunk_inventory']) && $e['Emailupload']['mobile_vehicle_trunk_inventory']==1){?>checked="checked"<?php }?>  class="rec_email" /><?php }?>
+
+<?php if($admin_doc['AdminDoc']['vehicle_inspection']=='0'){?><input type="hidden" name="Email_vehicle_inspection" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vehicle Inspection </span><input type="checkbox" name="Email_vehicle_inspection" <?php if(isset($e['Emailupload']['vehicle_inspection']) && $e['Emailupload']['vehicle_inspection']==1){?>checked="checked"<?php }?>  class="rec_email" /><?php }?>
+
 <!--<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Feedback </span><input type="checkbox" name="Email_clint_memo1" <?php if(isset($e['Emailupload']['client_feedback']) && $e['Emailupload']['client_feedback']==1){?>checked="checked"<?php }?> />-->
 </td>
 </tr>
