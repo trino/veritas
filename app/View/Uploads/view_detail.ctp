@@ -53,8 +53,8 @@ else
     ?>
     <img src="<?php echo $base_url?>img/uploads/asap.gif" />
     <br />
-    <strong>&nbsp;ADDRESS : </strong>
-8160 Parkhill Drive, Milton, Ontario, Canada, L9T 5V7 T: 1.877.923.2727, F: 905.875.1997, info@asapsecured.com<br /><br />
+    <strong>&nbsp;</strong>
+    8160 Parkhill Drive, Milton, Ontario, Canada, L9T 5V7 T: 1.877.923.2727, F: 905.875.1997, info@asapsecured.com<br /><br />
     <?php
 }
 ?>

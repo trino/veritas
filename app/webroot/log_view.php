@@ -3,8 +3,8 @@
         <table class="table mobilelog_table" style="border-left: none!important;border-right: none!important;">
             
             <tr>
-                <td style="width:100px!important;">Mobile Guard:</td><td><?php if(isset($moblog) && $moblog['MobileLog']['guard']){echo $moblog['MobileLog']['guard'];}?> </td>
-                <td style="width:100px!important;">Shift:</td><td><?php if(isset($moblog) && $moblog['MobileLog']['shift_from']){echo $moblog['MobileLog']['shift_from'];}?> - <?php if(isset($moblog) && $moblog['MobileLog']['shift_to']){echo $moblog['MobileLog']['shift_to'];}?></td>
+                <td style="width:100px!important;"><strong>Mobile Guard:</strong></td><td><?php if(isset($moblog) && $moblog['MobileLog']['guard']){echo $moblog['MobileLog']['guard'];}?> </td>
+                <td style="width:100px!important;"><strong>Shift:</strong></td><td><?php if(isset($moblog) && $moblog['MobileLog']['shift_from']){echo $moblog['MobileLog']['shift_from'];}?> - <?php if(isset($moblog) && $moblog['MobileLog']['shift_to']){echo $moblog['MobileLog']['shift_to'];}?></td>
                 
             </tr>
             <?php if(isset($moblog))
@@ -12,8 +12,8 @@
             <input type="hidden" name="log_id" value="<?php echo $moblog['MobileLog']['id'];?>"/>
             <?php } ?>
             <tr>
-                <td>Start Date</td><td><?php if(isset($moblog) && $moblog['MobileLog']['start_date']){echo $moblog['MobileLog']['start_date'];}?></td>
-                <td>End Date</td><td><?php if(isset($moblog) && $moblog['MobileLog']['end_date']){echo $moblog['MobileLog']['end_date'];}?></td>
+                <td><strong>Start Date</strong></td><td><?php if(isset($moblog) && $moblog['MobileLog']['start_date']){echo $moblog['MobileLog']['start_date'];}?></td>
+                <td><strong>End Date</strong></td><td><?php if(isset($moblog) && $moblog['MobileLog']['end_date']){echo $moblog['MobileLog']['end_date'];}?></td>
             </tr>
             <tr>
                 <td colspan="4">
@@ -62,7 +62,7 @@
         </table>
         <table class="table addmoretab1 mobilelog_table" style="border-left: none!important;border-right: none!important;">
             <tr><td colspan="5"><strong>Mobile / Site Check In</strong></td></tr>
-            <tr><td>Arrival</td><td>Depart</td><td>Site Adddress</td><td>Guard Onsite</td></tr>
+            <tr><td><strong>Arrival</strong></td><td><strong>Depart</strong></td><td><strong>Site Adddress</strong></td><td><strong>Guard Onsite</strong></td></tr>
             <?php if(isset($mem_site)){
             
             foreach($mem_site as $action)
@@ -83,15 +83,15 @@
         </table>
         
         <table class="table mobilelog_table" style="border-left: none!important;border-right: none!important;">
-        <tr><td class="wdth" width="35%">Please Remember To Get Receipt For Gas At Petro Canada: </td><td ><?php if(isset($moblog) && $moblog['MobileLog']['receipt']){echo $moblog['MobileLog']['receipt'];}?></td></tr>
+        <tr><td class="wdth" width="35%"><strong>Please Remember To Get Receipt For Gas At Petro Canada:</strong></td><td ><?php if(isset($moblog) && $moblog['MobileLog']['receipt']){echo $moblog['MobileLog']['receipt'];}?></td></tr>
         </table>
         <table class="mobilelog_table">
-        <tr><td colspan="6">Points &nbsp; <?php if(isset($moblog) && $moblog['MobileLog']['points']){echo $moblog['MobileLog']['points'];}?>&nbsp;/&nbsp;<?php if(isset($moblog) && $moblog['MobileLog']['ltr']){echo $moblog['MobileLog']['ltr'];}?>&nbsp; Total LT&nbsp;/ Total $&nbsp;<?php if(isset($moblog) && $moblog['MobileLog']['total']){echo $moblog['MobileLog']['total'];}?></td>
+        <tr><td colspan="6"><strong>Points</strong> &nbsp; <?php if(isset($moblog) && $moblog['MobileLog']['points']){echo $moblog['MobileLog']['points'];}?>&nbsp;<strong>/</strong>&nbsp;<?php if(isset($moblog) && $moblog['MobileLog']['ltr']){echo $moblog['MobileLog']['ltr'];}?>&nbsp; <strong>Total LT</strong>&nbsp;<strong>/ Total $<strong></strong>&nbsp;<?php if(isset($moblog) && $moblog['MobileLog']['total']){echo $moblog['MobileLog']['total'];}?></td>
         </tr>
         </table>
         
         <table class="table table-bordered addmoretab2 mobilelog_table" style="margin-bottom: 0;border-left: none!important;border-right: none!important;">
-        <thead ><th width="10%">Time</th><th>Special Notes (Guard Request etc.)</th></thead>
+        <thead ><th width="10%"><strong>Time</strong></th><th><strong>Special Notes (Guard Request etc.)</strong></th></thead>
         <?php if(isset($mem_note)){
          
             foreach($mem_note as $action)
@@ -111,7 +111,7 @@
         
         </table>
         <table class="mobilelog_table" style="border-left: none!important;border-right: none!important;">
-        <tr><td>Sign</td><td><?php if(isset($moblog) && $moblog['MobileLog']['sign']){echo $moblog['MobileLog']['sign'];}?></td></tr>
+        <tr><td><strong>Sign</strong></td><td><?php if(isset($moblog) && $moblog['MobileLog']['sign']){echo $moblog['MobileLog']['sign'];}?></td></tr>
         </table>    
     </td>
 </tr>
