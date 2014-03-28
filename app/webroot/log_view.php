@@ -111,7 +111,7 @@
         
         </table>
         <table class="mobilelog_table" style="border-left: none!important;border-right: none!important;">
-        <tr><td><strong>Sign</strong></td><td><?php if(isset($moblog) && $moblog['MobileLog']['sign']){echo $moblog['MobileLog']['sign'];}?></td></tr>
+        <tr><td colspan="2"><strong>Sign</strong> : <?php if(isset($moblog) && $moblog['MobileLog']['sign']){echo $moblog['MobileLog']['sign'];}?></td></tr>
         </table>    
     </td>
 </tr>
