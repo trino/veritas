@@ -14,32 +14,51 @@
         <tr>
         <td>Client:</td>
         <td><input type="text" name="mobile_ins[client]" class="" value="<?php if(isset($mobins) && $mobins['MobileInspection']['client']) echo $mobins['MobileInspection']['client'];?>"/></td>
-        <td style="border-left: 1px solid #e5e5e5;"><strong>Type Of Mobile Service</strong>
+        <td style="border-left: 1px solid #CCC;border-bottom: 1px solid #CCC;"><strong>Type Of Mobile Service</strong>
             
         </td>
-        <td><div style="width: 150px;float:left;margin-right: 26px;"><strong>Time Arrived</strong></div><div style="width: 150px;float:left;"><strong>Time Departed</strong></div><div class="clear"></div></td>
+        <td style="padding: 0!important;"><div style="width: 150px;float:left;padding-right: 26px;padding:8px;border-left: 1px solid #CCC;border-bottom: 1px solid #CCC;line-height:29px;"><strong>Time Arrived</strong></div><div style="width: 150px;float:left;border-left: 1px solid #CCC;padding:8px;border-bottom: 1px solid #CCC;line-height:29px;"><strong>Time Departed</strong></div><div class="clear"></div></td>
         </tr>
         <tr>
         <td>Address:</td>
         <td><textarea name="mobile_ins[address]" rows="5" class=""><?php if(isset($mobins)) echo $mobins['MobileInspection']['address'];?></textarea></td>
-        <td style="border-top: 1px solid #f5f5f5;border-left: 1px solid #e5e5e5;">
+        <td style="border-left: 1px solid #ccc;">
             <input type="radio" name="mobile_ins[mobile_service]" class="" value="scheduled" <?php if(isset($mobins) && $mobins['MobileInspection']['mobile_service']=='scheduled')echo "checked='checked'";?> /> Scheduled<br /><br />
             <input type="radio" name="mobile_ins[mobile_service]" class="" value="alarm" <?php if(isset($mobins) && $mobins['MobileInspection']['mobile_service']=='alarm')echo "checked='checked'";?> /> Alarm Response<br /><br />
             <input type="radio" name="mobile_ins[mobile_service]" class="" value="hour" <?php if(isset($mobins) && $mobins['MobileInspection']['mobile_service']=='hour')echo "checked='checked'";?> /> After Hours Request<br /><br />
             <input type="radio" name="mobile_ins[mobile_service]" class="" value="other" <?php if(isset($mobins) && $mobins['MobileInspection']['mobile_service']=='other')echo "checked='checked'";?> /> Other<br /><br />
         </td>
-        <td class="times" style="border-top: 1px solid #f5f5f5;">
-        <input type="text" class="time" style="width: 150px;" name="mobile_ins[time_arrived1]" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_arrived1']){echo $mobins['MobileInspection']['time_arrived1'];}?>" />
-        <input type="text" class="time" style="width: 150px;" name="mobile_ins[time_departed1]" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_departed1']){echo $mobins['MobileInspection']['time_departed1'];}?>" />
+        <td class="times" style="border-top: 1px solid #f5f5f5;padding:0;">
+        
+        
+        <div style="width: 150px;float:left;padding-right: 26px;padding:8px;border-left: 1px solid #CCC;line-height:29px;">
+        <input type="text" class="time" style="width: 135px;" name="mobile_ins[time_arrived1]" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_arrived1']){echo $mobins['MobileInspection']['time_arrived1'];}?>" />
         <br /><br />
-        <input type="text" class="time" style="width: 150px;" name="mobile_ins[time_arrived2]" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_arrived2']){echo $mobins['MobileInspection']['time_arrived2'];}?>" />
-        <input type="text" class="time" style="width: 150px;" name="mobile_ins[time_departed2]" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_departed2']){echo $mobins['MobileInspection']['time_departed2'];}?>" />
+        <input type="text" class="time" style="width: 135px;" name="mobile_ins[time_arrived2]" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_arrived2']){echo $mobins['MobileInspection']['time_arrived2'];}?>" />
         <br /><br />
-        <input type="text" class="time" style="width: 150px;" name="mobile_ins[time_arrived3]" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_arrived3']){echo $mobins['MobileInspection']['time_arrived3'];}?>"/>
-        <input type="text" class="time" style="width: 150px;" name="mobile_ins[time_departed3]" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_departed3']){echo $mobins['MobileInspection']['time_departed3'];}?>"/>
+        <input type="text" class="time" style="width: 135px;" name="mobile_ins[time_arrived3]" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_arrived3']){echo $mobins['MobileInspection']['time_arrived3'];}?>"/>
         <br /><br />
-        <input type="text" class="time" style="width: 150px;" name="mobile_ins[time_arrived4]"  placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['date']){echo $mobins['MobileInspection']['time_arrived4'];}?>"/>
-        <input type="text" class="time" style="width: 150px;" name="mobile_ins[time_departed4]"  placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_departed4']){echo $mobins['MobileInspection']['time_departed4'];}?>"/>
+        <input type="text" class="time" style="width: 135px;" name="mobile_ins[time_arrived4]"  placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['date']){echo $mobins['MobileInspection']['time_arrived4'];}?>"/>
+        </div>
+        <div style="width: 150px;float:left;border-left: 1px solid #CCC;padding:8px;line-height:29px;">
+        <input type="text" class="time" style="width: 135px;" name="mobile_ins[time_departed1]" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_departed1']){echo $mobins['MobileInspection']['time_departed1'];}?>" />
+        <br /><br />
+        <input type="text" class="time" style="width: 135px;" name="mobile_ins[time_departed2]" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_departed2']){echo $mobins['MobileInspection']['time_departed2'];}?>" />
+        <br /><br />
+        <input type="text" class="time" style="width: 135px;" name="mobile_ins[time_departed3]" placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_departed3']){echo $mobins['MobileInspection']['time_departed3'];}?>"/>
+        <br /><br />
+        <input type="text" class="time" style="width: 135px;" name="mobile_ins[time_departed4]"  placeholder="HH:MM" value="<?php if(isset($mobins) && $mobins['MobileInspection']['time_departed4']){echo $mobins['MobileInspection']['time_departed4'];}?>"/>
+        </div>
+        <div class="clear"></div>
+        
+        
+        
+        
+        
+        
+       
+        
+        
         </td>
         </tr>
         <tr><td colspan="4">
