@@ -200,7 +200,7 @@
                 <td><input type="text" name="inventory[inv_qty4]" value="<?php if(isset($inv) && $inv['MobileTrunk']['inv_qty4']){echo $inv['MobileTrunk']['inv_qty4'];}?>"/></td>
             </tr>
             <tr>
-                <td>Items Requested </td><td></td><td></td><td></td><td></td>
+                <td><strong>Items Requested</strong> </td><td></td><td></td><td></td><td></td>
             </tr>
             <tr>
                 <td>Guard Name</td><td>Type Of Guard</td><td>Inventory Item</td><td>Size</td><td>Quantity</td>
