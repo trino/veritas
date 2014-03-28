@@ -24,7 +24,7 @@
                     <table class="table table-bordered" style="border-left: none!important;border-right: 1px solid #e5e5e5!important;">
                         <tr>
                             <td colspan="2">
-                                <center><strong>Toyota Patrol (2330 - 0430)</strong></center>
+                                <center><strong> ASAP Patrol (2200 - 0900)</strong></center>
                             </td>
                         </tr>
                         <tr>
@@ -44,7 +44,8 @@
                             <td><input type="text" class="time" name="log[tyotato4]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotato4']){echo $moblog['MobileLog']['tyotato4'];}?>" style="width: 150px;" /></td>
                         </tr>
                          <tr>
-                            <td colspan="2"><center><strong>Toyota/ 105 Nashdene (2330 - 0430)</strong></center></td>
+                            <td><input type="text" class="time" name="log[tyotafrom7]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotafrom7']){echo $moblog['MobileLog']['tyotafrom7'];}?>" style="width: 150px;" /></td>
+                            <td><input type="text" class="time" name="log[tyotato7]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotato7']){echo $moblog['MobileLog']['tyotato7'];}?>" style="width: 150px;" /></td>
                         </tr>
                          <tr>
                             <td><input type="text" class="time" name="log[tyotafrom5]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotafrom5']){echo $moblog['MobileLog']['tyotafrom5'];}?>" style="width: 150px;" /></td>
