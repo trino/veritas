@@ -293,7 +293,7 @@ class SearchController extends AppController
             }
             if($type == 'mobile_log')
             {
-                $arrs = array('document_type'=>'vehicle_log');
+                $arrs = array('document_type'=>'mobile_log');
             }
             if($type == 'vehicle_inspection')
             {

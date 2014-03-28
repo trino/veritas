@@ -116,6 +116,7 @@ $or = '';
             </tr>
             <tr>
                 <td>
+                    <img src="<?php echo $base_url;?>img/front.jpg" />
                     <img src="<?php echo $base_url;?>img/front.jpg" usemap="#frontmap" class="map" />
                     <map name="frontmap" class="f">
                         <area shape="rect" id="star1" coords="0,0,100,109" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
