@@ -2,18 +2,24 @@
 <script src="<?php echo $base_url;?>js/highlight.js"></script>
 <script src="<?php echo $base_url;?>js/highscript.js"></script>
 <style>
+#table{border: none!important;}
+.table{border-left:1px solid #9D9c9c!important;border-right:1px solid #9D9c9c!important;}
 @media print {
+    
   body * {
     visibility:hidden;
   }
-  #table, #table * {
+  .printlogo,#table, #table * {
     visibility:visible;
+    
   }
+  
   #table {
     position:absolute;
     left:0;
     top:0;
   }
+  
 }
 </style>
 
@@ -35,7 +41,25 @@
 <?php echo $this->Html->css('prettyPhoto'); ?>
 <?php echo $this->Html->script('jquery.prettyPhoto'); ?>
 
+
 <div id="table">
+
+<div class="printlogo">
+<?php if( $this->Session->read('logo')=="afimaclogo.png"){?>
+<img src="<?php echo $base_url?>img/printafimac.jpg" />
+<?php }
+else
+{
+    ?>
+    <img src="<?php echo $base_url?>img/uploads/asap.gif" />
+    <br />
+    <strong>&nbsp;ADDRESS : </strong>
+8160 Parkhill Drive, Milton, Ontario, Canada, L9T 5V7 T: 1.877.923.2727, F: 905.875.1997, info@asapsecured.com<br /><br />
+    <?php
+}
+?>
+</div>
+
 <?php 
 if($doc['Document']['document_type']=='contract')
     $ty = "contracts";
