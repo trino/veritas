@@ -1,4 +1,33 @@
 <?php
+
+$first_hi = 0;
+$second_hi = 0;
+$third_hi = 0;
+if($vn)
+{
+    foreach($vn as $v)
+    {
+          if($v['Vehicle_note']['image']=='first')
+          {
+             $first_hi=1;  
+             $varr['first'][$v['Vehicle_note']['coords']] = $v['Vehicle_note']['notes'];                                
+          }
+          else
+          if($v['Vehicle_note']['image']=='second')
+          {
+             $second_hi=1;
+             $varr['second'][$v['Vehicle_note']['coords']] = $v['Vehicle_note']['notes'];                               
+          }
+          else
+          if($v['Vehicle_note']['image']=='third')
+          {
+             $third_hi=1; 
+             $varr['third'][$v['Vehicle_note']['coords']] = $v['Vehicle_note']['notes'];                              
+          }
+    }
+    
+}
+
 if(isset($vehicle) && $vehicle){
 $veh = $vehicle['Vehicle_inspection'];
 $date = $veh['vehicle_date'];
@@ -116,7 +145,7 @@ $or = '';
             </tr>
             <tr>
                 <td>
-                    <img src="<?php echo $base_url;?>img/front.jpg" />
+                    
                     <img src="<?php echo $base_url;?>img/front.jpg" usemap="#frontmap" class="map" />
                     <map name="frontmap" class="f">
                         <area shape="rect" id="star1" coords="0,0,100,109" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
@@ -135,6 +164,22 @@ $or = '';
                         <area shape="rect" id="star12" coords="300,218,400,327" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
                     </map>
                     <input type="hidden" name="front" value="" class="front" value="<?php echo $f;?>" />
+                    <div class="notes">
+                    <?php
+                        if(isset($varr['first']) && $varr['first']){
+                            $i=0;
+                            echo "<br/>";
+                                        foreach($varr['first'] as $k=>$v)
+                                        {
+                                         $i++;
+                                         echo "Note ".$i.'. '.$v.'<br/>';   
+                                                                                        
+                                        } 
+                                        
+                                }
+                        
+                      ?>
+                    </div>
                 </td>
                 <td>
                     <img src="<?php echo $base_url;?>img/back.jpg" usemap="#backmap" class="map" />
@@ -156,6 +201,22 @@ $or = '';
                     </map>
                     
                     <input type="hidden" name="back" value="" class="back" value="<?php echo $b;?>" />
+                    <div class="notes">
+                    <?php
+                        if(isset($varr['second']) && $varr['second']){
+                            $i=0;
+                            echo "<br/>";
+                                        foreach($varr['second'] as $k=>$v)
+                                        {
+                                         $i++;
+                                         echo "Note ".$i.'. '.$v.'<br/>';   
+                                                                                        
+                                        } 
+                                        
+                                }
+                             
+                      ?>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -181,6 +242,22 @@ $or = '';
                     </map>
                     
                     <input type="hidden" name="side" value="" class="side" value="<?php echo $s;?>" />
+                    <div class="notes">
+                    <?php
+                        if(isset($varr['third']) && $varr['third']){
+                            $i=0;
+                            echo "<br/>";
+                                        foreach($varr['third'] as $k=>$v)
+                                        {
+                                         $i++;
+                                         echo "Note ".$i.'. '.$v.'<br/>';   
+                                                                                        
+                                        } 
+                                        
+                                }
+                             
+                      ?>
+                    </div>
                     
                     </div>
                     <div style="float: left;margin-left:20px;margin-top:30px">

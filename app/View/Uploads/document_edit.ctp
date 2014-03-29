@@ -161,7 +161,7 @@ function remove_youtube()
 <script src="<?php echo $base_url;?>js/highscript.js"></script>
 <?php //var_dump( $this->request->params['action']);?>
 
-<form id="my_form" action="" method="post" enctype="multipart/form-data">
+<form id="my_form" action="" method="post" enctype="multipart/form-data" onsubmit="return vehicle_test();">
 
 <div id="table">
 <table>

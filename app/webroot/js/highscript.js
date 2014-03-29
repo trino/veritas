@@ -13,6 +13,19 @@ $(function(){
              i1 = i1.replace(co+'_','');
              i1 = i1.replace('_'+co,'');
              i1 = i1.replace(co,'');
+             co2 = co.replace(',','_');
+             co2 = co2.replace(',','_');
+             co2 = co2.replace(',','_');
+             co2 = co2.replace(',','_');
+             
+             $('.firsthidden input').each(function(){
+                if($(this).attr('class')==co2)
+                {
+                  
+                  $('.'+co2).remove();  
+                }
+             });
+             
              }
              else
              {
@@ -20,8 +33,19 @@ $(function(){
              i1 = i1+'_'+co;
              else
              i1 = co;
+              co2 = co.replace(',','_');
+             co2 = co2.replace(',','_');
+             co2 = co2.replace(',','_');
+             co2 = co2.replace(',','_');
+             $('.firsthidden').append('<input type="text" name="desc1[]" style="width:90%;margin:5px 0;" class="'+co2+'" placeholder="Note" />');
              }
              $('.front').val(i1);
+             if(i1)
+             {
+                $('.firsthidden').show();
+             }
+             else
+             $('.firsthidden').hide();
              
            }
            else
@@ -31,14 +55,37 @@ $(function(){
              i2 = i2.replace(co+'_','');
              i2 = i2.replace('_'+co,'');
              i2 = i2.replace(co,'');
+             co2 = co.replace(',','_');
+             co2 = co2.replace(',','_');
+             co2 = co2.replace(',','_');
+             co2 = co2.replace(',','_');
+             
+             $('.secondhidden input').each(function(){
+                if($(this).attr('class')==co2)
+                {
+                  
+                  $('.'+co2).remove();  
+                }
+             });
              }
              else{
              if(i2!='')   
              i2 = i2+'_'+co;
              else
              i2 = co;
+             co2 = co.replace(',','_');
+             co2 = co2.replace(',','_');
+             co2 = co2.replace(',','_');
+             co2 = co2.replace(',','_');
+             $('.secondhidden').append('<input type="text" name="desc2[]" style="width:90%;margin:5px 0;" class="'+co2+'" placeholder="Note" />');
              }
              $('.back').val(i2);
+             if(i2)
+             {
+                $('.secondhidden').show();
+             }
+             else
+             $('.secondhidden').hide();
              
            }
            else
@@ -48,14 +95,37 @@ $(function(){
              i3 = i3.replace(co+'_','');
              i3 = i3.replace('_'+co,'');
              i3 = i3.replace(co,'');
+             co2 = co.replace(',','_');
+             co2 = co2.replace(',','_');
+             co2 = co2.replace(',','_');
+             co2 = co2.replace(',','_');
+             
+             $('.thirdhidden input').each(function(){
+                if($(this).attr('class')==co2)
+                {
+                  
+                  $('.'+co2).remove();  
+                }
+             });
              }
              else{
              if(i3!='')   
              i3 = i3+'_'+co;
              else
              i3 = co;
+             co2 = co.replace(',','_');
+             co2 = co2.replace(',','_');
+             co2 = co2.replace(',','_');
+             co2 = co2.replace(',','_');
+             $('.thirdhidden').append('<input type="text" name="desc3[]" style="width:90%;margin:5px 0;" class="'+co2+'" placeholder="Note" />');
              }
              $('.side').val(i3);
+             if(i3)
+             {
+                $('.thirdhidden').show();
+             }
+             else
+             $('.thirdhidden').hide();
              
            } 
         });
@@ -278,3 +348,32 @@ $(function(){
             $('#star44').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
         });
+        function vehicle_test()
+        {
+            if($('#document_type').val()=='vehicle_inspection')
+            {
+                $('.sbtbtn').val('Please Wait..');
+                $('.sbtbtn').attr('disabled','disabled');
+                $('.firsthidden input').each(function(){
+                   var coor = $(this).attr('class');
+                   var coor = coor.replace(' valid','');
+                   var val =  $(this).val();
+                   $(this).val(val+'__'+coor);
+                });
+                $('.thirdhidden input').each(function(){
+                   var coor = $(this).attr('class');
+                   var coor = coor.replace(' valid','');
+                   var val =  $(this).val();
+                   $(this).val(val+'__'+coor);
+                });
+                $('.secondhidden input').each(function(){
+                   var coor = $(this).attr('class');
+                   var coor = coor.replace(' valid','');
+                   var val =  $(this).val();
+                   $(this).val(val+'__'+coor);
+                });
+                return true;
+            }
+            else
+            return true;
+        }

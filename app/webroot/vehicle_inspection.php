@@ -1,4 +1,34 @@
 <?php
+$first_hi = 0;
+$second_hi = 0;
+$third_hi = 0;
+if($vn)
+{
+    foreach($vn as $v)
+    {
+          if($v['Vehicle_note']['image']=='first')
+          {
+             $first_hi=1;  
+             $varr['first'][$v['Vehicle_note']['coords']] = $v['Vehicle_note']['notes'];                                
+          }
+    }
+    foreach($vn as $v)
+    {
+          if($v['Vehicle_note']['image']=='second')
+          {
+             $second_hi=1;
+             $varr['second'][$v['Vehicle_note']['coords']] = $v['Vehicle_note']['notes'];                               
+          }
+    }
+    foreach($vn as $v)
+    {
+          if($v['Vehicle_note']['image']=='third')
+          {
+             $third_hi=1; 
+             $varr['third'][$v['Vehicle_note']['coords']] = $v['Vehicle_note']['notes'];                              
+          }
+    }
+}
 if(isset($vehicle) && $vehicle){
 $veh = $vehicle['Vehicle_inspection'];
 $date = $veh['vehicle_date'];
@@ -141,6 +171,9 @@ $or = '';
                         <area shape="rect" id="star12" coords="300,218,400,327" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
                     </map>
                     <input type="hidden" name="front" value="" class="front" value="<?php echo $f;?>" />
+                    <div class="firsthidden" <?php if(!$first_hi){?>style="display: none;"<?php }?>>
+                                        
+                    </div>
                 </td>
                 <td>
                     <img src="<?php echo $base_url;?>img/back.jpg" usemap="#backmap" class="map" />
@@ -162,6 +195,10 @@ $or = '';
                     </map>
                     
                     <input type="hidden" name="back" value="" class="back" value="<?php echo $b;?>" />
+                    
+                    <div class="secondhidden" <?php if(!$second_hi){?>style="display: none;"<?php }?>>
+                       
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -187,6 +224,9 @@ $or = '';
                     </map>
                     
                     <input type="hidden" name="side" value="" class="side" value="<?php echo $s;?>" />
+                    <div class="thirdhidden" <?php if(!$third_hi){?>style="display: none;"<?php }?>>
+                        
+                    </div>
                     
                     </div>
                     <div style="float: left;margin-left:20px;margin-top:30px">
@@ -205,3 +245,84 @@ $or = '';
     </td>
     
 </tr>
+<script>
+$(function(){
+    setInterval(function(){
+        <?php
+                        if($vn)
+                        {
+                            foreach($vn as $v)
+                            {
+                                if($v['Vehicle_note']['image']=='first')
+                                {
+                                    ?>
+                                    $('.firsthidden input').each(function(){
+                                        var cl = $(this).attr('class').replace(' valid');
+                                        <?php
+                                        foreach($varr['first'] as $k=>$v)
+                                        {
+                                            ?>
+                                            if(cl == '<?php echo $k;?>')
+                                            {
+                                                $('.'+cl).val('<?php echo $v?>');
+                                            }
+                                            <?php
+                                        } 
+                                        ?> 
+                                        
+                                    });
+                                    
+                                    <?php
+                                }
+                                else
+                                if($v['Vehicle_note']['image']=='second')
+                                {
+                                    ?>
+                                    $('.secondhidden input').each(function(){
+                                        var cl = $(this).attr('class').replace(' valid');
+                                        <?php
+                                        foreach($varr['second'] as $k=>$v)
+                                        {
+                                            ?>
+                                            if(cl == '<?php echo $k;?>')
+                                            {
+                                                $('.'+cl).val('<?php echo $v?>');
+                                            }
+                                            <?php
+                                        } 
+                                        ?> 
+                                        
+                                    });
+                                    
+                                    <?php
+                                }
+                                else
+                                if($v['Vehicle_note']['image']=='third')
+                                {
+                                    ?>
+                                    $('.thirdhidden input').each(function(){
+                                        var cl = $(this).attr('class').replace(' valid');
+                                        <?php
+                                        foreach($varr['third'] as $k=>$v)
+                                        {
+                                            ?>
+                                            if(cl == '<?php echo $k;?>')
+                                            {
+                                                $('.'+cl).val('<?php echo $v?>');
+                                            }
+                                            <?php
+                                        } 
+                                        ?> 
+                                        
+                                    });
+                                    
+                                    <?php
+                                }
+                            }
+                        }
+                        ?>
+        
+    },3000);
+    
+});
+</script>
