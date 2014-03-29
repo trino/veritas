@@ -22,7 +22,7 @@
                     <table class="table table-bordered" style="border-left: none!important;border-right: 1px solid #e5e5e5!important;">
                         <tr>
                             <td colspan="2">
-                                <center><strong>Toyota Patrol (2330 - 0430)</strong></center>
+                                <center><strong> ASAP Patrol (2200 - 0900)</strong></center>
                             </td>
                         </tr>
                         <tr>
@@ -42,7 +42,8 @@
                             <td><?php if(isset($moblog) && $moblog['MobileLog']['tyotato4']){echo $moblog['MobileLog']['tyotato4'];}?></td>
                         </tr>
                          <tr>
-                            <td colspan="2"><center><strong>Toyota/ 105 Nashdene (2330 - 0430)</strong></center></td>
+                            <td><?php if(isset($moblog) && $moblog['MobileLog']['tyotafrom7']){echo $moblog['MobileLog']['tyotafrom7'];}?></td>
+                            <td><?php if(isset($moblog) && $moblog['MobileLog']['tyotato7']){echo $moblog['MobileLog']['tyotato7'];}?></td>
                         </tr>
                          <tr>
                             <td><?php if(isset($moblog) && $moblog['MobileLog']['tyotafrom5']){echo $moblog['MobileLog']['tyotafrom5'];}?></td>
