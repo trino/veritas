@@ -84,11 +84,11 @@ $n = '';
 $or = '';    
 }
 ?>
-<tr class="vehicle_inspection">
-    <td colspan="2" style="padding: 0;">
-        <table class="table" style="font-size: 13px;">
+<tr class="vehicle_inspection" style="border-bottom: 1px solid #DDD;">
+    <td colspan="2" style="padding: 0;border-top:none;">
+        <table class="" style="font-size: 13px;">
             <tr>
-                <td colspan="4">    
+                <td colspan="4" style="border-top: none;">    
                     <strong>Vehicle Inspection Sheet</strong>
                 </td>
             </tr>
