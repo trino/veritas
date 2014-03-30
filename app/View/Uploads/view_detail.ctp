@@ -3,7 +3,7 @@
 <script src="<?php echo $base_url;?>js/highscript.js"></script>
 <style>
 #table{border: none!important;}
-.table{border-left:1px solid #9D9c9c!important;border-right:1px solid #9D9c9c!important;}
+.table{border-left:1px solid #ddd!important;border-right:1px solid #ddd!important;}
 @media print {
     
   body * {

@@ -1,8 +1,8 @@
-<tr class="personal_more">
+<tr class="personal_more" style="border-bottom:1px solid #ccc;">
     <td colspan="2" style="padding: 0;">
         <table>
             <tr>
-                <td colspan="4"><strong>Employee Information</strong></td>
+                <td colspan="4" style="border-top: none;"><strong>Employee Information</strong></td>
             </tr>
             <tr>
                 <td style="width: 95px;">Name : </td><td><?php echo $perso['Personal_inspection']['emp_name1'];?></td>
@@ -15,7 +15,7 @@
                 </td>
                 <td>Date : </td><td><?php echo $perso['Personal_inspection']['date_submit'];?></td>
             </tr>
-            <tbody  class="radios">
+            <tbody  class="radios" style="border-top: none;">
             <tr>
                 <td colspan="2"><strong>Ratings</strong></td>
                 <td colspan="2">
@@ -135,6 +135,7 @@
                 </td>
             </tr>
             </tbody>
+            <tbody style="border-top: none;">
             <tr>
                 <td colspan="2"><strong>Overall rating</strong></td>
                 <td colspan="2">
@@ -200,7 +201,8 @@
                 <td>Employee Name : </td><td><?php echo $en2;?></td>
                 <td>Date : </td><td><?php echo $df2;?></td>
             </tr>
-            </tr>
+            </tbody>
+            
         </table>
     
     </td>

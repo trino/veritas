@@ -1,8 +1,8 @@
-<tr class="personal_more" style="display: none;">
+<tr class="personal_more" style="display: none;border-bottom:none;">
     <td colspan="2" style="padding: 0;">
         <table>
             <tr>
-                <td colspan="4"><strong>Employee Information</strong></td>
+                <td colspan="4" style="border-top: none;"><strong>Employee Information</strong></td>
             </tr>
             <tr>
                 <td style="width: 95px;">Name : </td><td><input type="text" name="emp_name1" class="" value="<?php if(isset($perso) && $perso['Personal_inspection']['emp_name1']){echo $perso['Personal_inspection']['emp_name1'];}?>" /></td>
@@ -19,7 +19,7 @@
                 </select></td>
                 <td>Date : </td><td><input type="text" name="date_submit" value="<?php if(isset($perso) && $perso['Personal_inspection']['date_submit']){echo $perso['Personal_inspection']['date_submit'];}else{echo date('Y-m-d H:i:s');}?>" readonly="readonly" /></td>
             </tr>
-            <tbody  class="radios" style="border-top:1px solid #e5e5e5">
+            <tbody  class="radios" style="border-top: 1px solid #d5d5d5;">
             <tr>
                 <td colspan="2"><strong>Ratings</strong></td>
                 <td colspan="2">
@@ -139,6 +139,7 @@
                 </td>
             </tr>
             </tbody>
+            <tbody style="border-top: 1px solid #d5d5d5;">
             <tr>
                 <td colspan="2"><strong>Overall rating</strong></td>
                 <td colspan="2">
@@ -153,6 +154,8 @@
                 <strong class="overall"><?php echo $rate;?>/5</strong><input type="hidden" class="overallr" name="overall_rating" value="<?php echo $rate;?>/5" /></td>
                 
             </tr>
+            </tbody>
+            <tbody style="border-top: 1px solid #d5d5d5;">
             <tr>
                 <td colspan="2"><strong>Evaluation</strong><br />Additional Comments</td>
                 <td colspan="2">
@@ -199,12 +202,13 @@
                 <td>Supervisor/Manager Name : </td><td><input type="text" name="manager_name" value="<?php echo $mn; ?>" class="" /></td>
                 <td>Date : </td><td><input type="text" name="date_verify" value="<?php echo $df;?>" class="date_verify" /></td>
             </tr>
-            <tr>
+            <tr style="border-bottom: none;">
                 
                 <td>Employee Name : </td><td><input type="text" name="emp_name2" value="<?php echo $en2;?>" class="" /></td>
                 <td>Date : </td><td><input type="text" name="date_verify2" value="<?php echo $df2;?>" class="date_verify" /></td>
             </tr>
-            </tr>
+            </tbody>
+            
         </table>
     
     </td>
