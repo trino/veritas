@@ -3,8 +3,8 @@
         <table class="table mobilelog_table" style="border-left: none!important;border-right: none!important;">
             
             <tr>
-                <td style="width:100px!important;"><strong>Mobile Guard:</strong></td><td><input type="text"  name="log[guard]" class="" value="<?php if(isset($moblog) && $moblog['MobileLog']['guard']){echo $moblog['MobileLog']['guard'];}?>" /> </td>
-                <td style="width:100px!important;"><strong>Shift:</strong></td><td><input type="text" class="time " name="log[shift_from]" value="<?php if(isset($moblog) && $moblog['MobileLog']['shift_from']){echo $moblog['MobileLog']['shift_from'];}?>" placeholder="From" style="width: 150px;"  />
+                <td style="width:100px!important;border-top:none;"><strong>Mobile Guard:</strong></td><td style="border-top:none;"><input type="text"  name="log[guard]" class="" value="<?php if(isset($moblog) && $moblog['MobileLog']['guard']){echo $moblog['MobileLog']['guard'];}?>" /> </td>
+                <td style="width:100px!important;border-top:none;"><strong>Shift:</strong></td><td style="border-top:none;"><input type="text" class="time " name="log[shift_from]" value="<?php if(isset($moblog) && $moblog['MobileLog']['shift_from']){echo $moblog['MobileLog']['shift_from'];}?>" placeholder="From" style="width: 150px;"  />
                     <input type="text" class="time " name="log[shift_to]" value="<?php if(isset($moblog) && $moblog['MobileLog']['shift_to']){echo $moblog['MobileLog']['shift_to'];}?>" placeholder="To" style="width: 150px;" />
                 </td>
                 
@@ -83,11 +83,11 @@
             
         }?>
             <tr class="mobtime">
-                <td><input type="text" name="arrival[]" class="time" /></td>
-                <td><input type="text" name="depart[]" class="time" /></td>
-                <td><input type="text" name="siteaddress[]" /></td>
-                <td><input type="text" name="guardonsite[]" /></td>
-                <td><input type="button" value="+Add More" id="addcheck" class="btn btn-primary"/></td>
+                <td style="border-top:none;"><input type="text" name="arrival[]" class="time" /></td>
+                <td style="border-top:none;"><input type="text" name="depart[]" class="time" /></td>
+                <td style="border-top:none;"><input type="text" name="siteaddress[]" /></td>
+                <td style="border-top:none;"><input type="text" name="guardonsite[]" /></td>
+                <td style="border-top:none;"><input type="button" value="+Add More" id="addcheck" class="btn btn-primary"/></td>
             </tr>
         </table>
         
@@ -120,9 +120,11 @@
             }
             
         }?>
-        <tr class="mobtime" ><td><input type="text" class="time" name="mobtime[]" />
-        </td><td><textarea name="mobdetail[]" style="width:500px;height:150px"></textarea></td>
-        <td><input type="button" class="btn btn-primary" id="addmore1" value="+Add More"/></td></tr >
+        <tr class="mobtime" >
+            <td style="border-top:none;"><input type="text" class="time" name="mobtime[]" /></td>
+            <td style="border-top:none;"><textarea name="mobdetail[]" style="width:500px;height:150px"></textarea></td>
+            <td style="border-top:none;"><input type="button" class="btn btn-primary" id="addmore1" value="+Add More"/></td>
+        </tr >
         
         
         </table>

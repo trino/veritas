@@ -3,8 +3,8 @@
         <table class="table mobilelog_table" style="border-left: none!important;border-right: none!important;">
             
             <tr>
-                <td style="width:100px!important;"><strong>Mobile Guard:</strong></td><td><?php if(isset($moblog) && $moblog['MobileLog']['guard']){echo $moblog['MobileLog']['guard'];}?> </td>
-                <td style="width:100px!important;"><strong>Shift:</strong></td><td><?php if(isset($moblog) && $moblog['MobileLog']['shift_from']){echo $moblog['MobileLog']['shift_from'];}?> - <?php if(isset($moblog) && $moblog['MobileLog']['shift_to']){echo $moblog['MobileLog']['shift_to'];}?></td>
+                <td style="width:100px!important;border-top:none;"><strong>Mobile Guard:</strong></td><td style="border-top:none;"><?php if(isset($moblog) && $moblog['MobileLog']['guard']){echo $moblog['MobileLog']['guard'];}?> </td>
+                <td style="width:100px!important;border-top:none;"><strong>Shift:</strong></td><td style="border-top:none;"><?php if(isset($moblog) && $moblog['MobileLog']['shift_from']){echo $moblog['MobileLog']['shift_from'];}?> - <?php if(isset($moblog) && $moblog['MobileLog']['shift_to']){echo $moblog['MobileLog']['shift_to'];}?></td>
                 
             </tr>
             <?php if(isset($moblog))
@@ -91,7 +91,7 @@
         </tr>
         </table>
         
-        <table class="table table-bordered addmoretab2 mobilelog_table" style="margin-bottom: 0;border-left: none!important;border-right: none!important;">
+        <table class="addmoretab2 mobilelog_table" style="margin-bottom: 0;border-left: none!important;border-right: none!important;border-top:1px solid #DDD;">
         <thead ><th width="10%"><strong>Time</strong></th><th><strong>Special Notes (Guard Request etc.)</strong></th></thead>
         <?php if(isset($mem_note)){
          
@@ -112,7 +112,7 @@
         
         </table>
         <table class="mobilelog_table" style="border-left: none!important;border-right: none!important;">
-        <tr><td colspan="2"><strong>Sign</strong> : <?php if(isset($moblog) && $moblog['MobileLog']['sign']){echo $moblog['MobileLog']['sign'];}?></td></tr>
+        <tr><td colspan="2" style="border-top: none;"><strong>Sign</strong> : <?php if(isset($moblog) && $moblog['MobileLog']['sign']){echo $moblog['MobileLog']['sign'];}?></td></tr>
         </table>    
     </td>
 </tr>

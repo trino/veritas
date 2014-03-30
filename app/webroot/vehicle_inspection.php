@@ -2,7 +2,7 @@
 $first_hi = 0;
 $second_hi = 0;
 $third_hi = 0;
-if($vn)
+if(isset($vn) && $vn)
 {
     foreach($vn as $v)
     {
