@@ -3,11 +3,11 @@
 .table-bordered input{width:100px;}
 </style>
 <tr class="inventory1_more" style="display: none;">
-    <td colspan="2">
+    <td colspan="2" style="padding: 0;border-top:none;">
         <table class="table inventry_table">
             
             <tr>
-                <td width="10%">Mobile Guard</td><td><input type="text" name="inventory[guard]" value="<?php if(isset($inv) && $inv['MobileTrunk']['guard']){echo $inv['MobileTrunk']['guard'];}?>" class="required" /></td>
+                <td width="10%" style="border-top: none;">Mobile Guard</td><td style="border-top: none;"><input type="text" name="inventory[guard]" value="<?php if(isset($inv) && $inv['MobileTrunk']['guard']){echo $inv['MobileTrunk']['guard'];}?>" class="required" /></td>
             </tr>
             <tr>
                 <td width="10%">Date</td><td><input type="text" name="inventory[date]" class="date_verify" value="<?php if(isset($inv) && $inv['MobileTrunk']['date']){echo $inv['MobileTrunk']['date'];}?>" /></td>
@@ -17,10 +17,10 @@
         {?>
            <input type="hidden" name="inv_id" value="<?php echo $inv['MobileTrunk']['id'];?>"/> 
        <?php  } ?>
-        <table class="table table-bordered inventry_table">
+        <table class="table table-bordered inventry_table" style="border-radius:0;">
             <tr>
-                <td width="12.5%"><strong>Shirts - Grey</strong></td><td width="12.5%">Inventory</td><td width="12.5%">Start Time</td><td width="12.5%">End Time</td>
-                <td width="12.5%"><strong>Shirts - Red</strong></td><td width="12.5%">Inventory</td><td width="12.5%">Start Time</td><td width="12.5%">End Time</td>
+                <td><strong>Shirts - Grey</strong></td><td >Inventory</td><td >Start Time</td><td >End Time</td>
+                <td ><strong>Shirts - Red</strong></td><td >Inventory</td><td >Start Time</td><td >End Time</td>
             </tr>
             <tr>
                 <td>S</td><td><input type="text" value="2" name="inventory[inv1]" readonly="readonly" /></td>
@@ -71,8 +71,8 @@
                 <td><input type="text" class="time" value="<?php if(isset($inv) && $inv['MobileTrunk']['red2_3xl_end']){echo $inv['MobileTrunk']['red2_3xl_end'];}?>" name="inventory[red2_3xl_end]" /></td>
             </tr>
             <tr>
-                <td><strong>Accessories</strong></td><td></td><td></td><td></td>
-                <td><strong>Sweaters</strong></td><td></td><td></td><td></td>
+                <td colspan="4"><strong>Accessories</strong></td>
+                <td colspan="4"><strong>Sweaters</strong></td>
             </tr>
             <tr>
                 <td>Ties</td><td><input type="text" value="1 Bag" readonly="readonly"  name="inventory[inv13]" /></td>
@@ -118,7 +118,7 @@
                 <td>Touques</td><td><input type="text" value="3" readonly="readonly"  name="inventory[inv23]" /></td>
                 <td><input type="text" class="time" value="<?php if(isset($inv) && $inv['MobileTrunk']['touques_3_start']){echo $inv['MobileTrunk']['touques_3_start'];}?>" name="inventory[touques_3_start]" /></td>
                 <td><input type="text" value="<?php if(isset($inv) && $inv['MobileTrunk']['guard']){echo $inv['MobileTrunk']['touques_3_end'];}?>" class="time" name="inventory[touques_3_end]" /></td>
-                <td><strong>Books</strong></td><td></td><td></td><td></td><td></td>
+                <td colspan="4"><strong>Books</strong></td>
             </tr>
             <tr>
                 <td>Hard Hats</td><td><input type="text" value="3" readonly="readonly"  name="inventory[inv24]" /></td>
@@ -156,17 +156,17 @@
                 <td>Thermal Blanket</td><td><input type="text" value="1" readonly="readonly"  name="inventory[inv32]" /></td>
                 <td><input type="text" value="<?php if(isset($inv) && $inv['MobileTrunk']['thermal_1_start']){echo $inv['MobileTrunk']['thermal_1_start'];}?>" class="time" name="inventory[thermal_1_start]" /></td>
                 <td><input type="text" class="time" value="<?php if(isset($inv) && $inv['MobileTrunk']['thermal_1_end']){echo $inv['MobileTrunk']['thermal_1_end'];}?>" name="inventory[thermal_1_end]" /></td>
-                <td></td><td></td><td></td><td></td>
+                <td colspan="4" rowspan="2"></td>
             </tr>
             <tr>
                 <td>Light Sticks</td><td><input type="text" value="4" readonly="readonly"  name="inventory[inv33]" /></td>
                 <td><input type="text" value="<?php if(isset($inv) && $inv['MobileTrunk']['light_4_start']){echo $inv['MobileTrunk']['light_4_start'];}?>" class="time" name="inventory[light_4_start]" /></td>
                 <td><input type="text" value="<?php if(isset($inv) && $inv['MobileTrunk']['light_4_end']){echo $inv['MobileTrunk']['light_4_end'];}?>" class="time" name="inventory[light_4_end]" /></td>
-                <td></td><td></td><td></td><td></td>
+                
             </tr>
             
             <tr>
-                <td><strong>Inventory Given Out</strong></td><td></td><td></td><td></td><td></td><td rowspan="10" colspan="3"><strong>Notes:</strong><br /><textarea rows="20"  name="inventory[notes]"><?php if(isset($inv) && $inv['MobileTrunk']['notes']){echo $inv['MobileTrunk']['notes'];}?></textarea></td>
+                <td colspan="5"><strong>Inventory Given Out</strong></td><td rowspan="10" colspan="3"><strong>Notes:</strong><br /><textarea rows="20"  name="inventory[notes]"><?php if(isset($inv) && $inv['MobileTrunk']['notes']){echo $inv['MobileTrunk']['notes'];}?></textarea></td>
             </tr>
             <tr>
                 <td>Guard Name</td><td>Type Of Guard</td><td>Inventory Item</td><td>Size</td><td>Quantity</td>
@@ -200,7 +200,7 @@
                 <td><input type="text" name="inventory[inv_qty4]" value="<?php if(isset($inv) && $inv['MobileTrunk']['inv_qty4']){echo $inv['MobileTrunk']['inv_qty4'];}?>"/></td>
             </tr>
             <tr>
-                <td><strong>Items Requested</strong> </td><td></td><td></td><td></td><td></td>
+                <td colspan="5"><strong>Items Requested</strong> </td>
             </tr>
             <tr>
                 <td>Guard Name</td><td>Type Of Guard</td><td>Inventory Item</td><td>Size</td><td>Quantity</td>
