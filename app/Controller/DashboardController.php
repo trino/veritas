@@ -393,6 +393,7 @@ class DashboardController extends AppController
         $this->loadModel('AdminDoc');
         $this->loadModel('Logo');
         $this->set('l',$this->Logo);
+        //var_dump($this->AdminDoc->findById('1'));
         $this->set('admin_doc',$this->AdminDoc->findById('1'));
         
         if(isset($_POST['submit']))
@@ -431,6 +432,7 @@ class DashboardController extends AppController
                     $this->redirect('settings');
                 }
             }
+            if($this->Session->read('admin')){
             $this->AdminDoc->deleteAll(array('id >'=>0));
             if(isset($_POST['show']))
             {
@@ -442,6 +444,7 @@ class DashboardController extends AppController
                 $this->AdminDoc->create();
                 $this->AdminDoc->save($sh);
                 
+            }
             }
             //die();
             
@@ -558,7 +561,12 @@ class DashboardController extends AppController
                     $emailupload['training'] = (isset($_POST['Email_training']))? '1' : '0'  ;
                     $emailupload['employee'] = (isset($_POST['Email_employee']))? '1' : '0'  ;
                     $emailupload['KPIAudits'] = (isset($_POST['Email_KPIAudits']))? '1' : '0'  ;
-                
+                    $emailupload['personal_inspection'] = (isset($_POST['Email_personal_inspection'])&& $_POST['Email_personal_inspection'])? '1' : '0'  ;
+                    $emailupload['mobile_inspection'] = (isset($_POST['Email_mobile_inspection'])&& $_POST['Email_mobile_inspection'])? '1' : '0'  ;
+                    $emailupload['mobile_log'] = (isset($_POST['Email_mobile_log'])&& $_POST['Email_mobile_log'])? '1' : '0'  ;
+                    $emailupload['mobile_vehicle_trunk_inventory'] = (isset($_POST['Email_mobile_vehicle_trunk_inventory'])&& $_POST['Email_mobile_vehicle_trunk_inventory'])? '1' : '0'  ;
+                    $emailupload['vehicle_inspection'] = (isset($_POST['Email_vehicle_inspection'])&& $_POST['Email_vehicle_inspection'])? '1' : '0'  ;
+                 
                     
                     $this->Emailupload->create();
                     $this->Emailupload->save($emailupload);  

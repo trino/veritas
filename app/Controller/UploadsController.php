@@ -467,6 +467,13 @@ class UploadsController extends AppController
         {
             $this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$eid))));
             $this->set('vehicle',$this->Vehicle_inspection->find('first',array('conditions'=>array('document_id'=>$eid))));
+            $vi = $this->Vehicle_inspection->find('first',array('conditions'=>array('document_id'=>$eid)));
+            if($vi)
+            {
+                $vid = $vi['Vehicle_inspection']['id'];
+                $this->loadModel('Vehicle_note');
+                $this->set('vn',$this->Vehicle_note->find('all',array('conditions'=>array('vehicle_id'=>$vid))));
+            }
             if($mem = $this->MobileInspection->findByDocumentId($eid))
             {
                 $mem_action = $this->MobileAction->find('all',array('conditions'=>array('mobileins_id'=>$mem['MobileInspection']['id'])));
@@ -774,6 +781,53 @@ class UploadsController extends AppController
                 $this->loadModel('Vehicle_inspection');
                 $this->Vehicle_inspection->create();
                 $this->Vehicle_inspection->save($veh);
+                $vehicle_id = $this->Vehicle_inspection->id;
+                $this->loadModel('Vehicle_note');
+                $this->Vehicle_note->deleteAll(array('vehicle_id'=>$vehicle_id));
+                if($_POST['desc1'] && $_POST['document_type']=='vehicle_inspection')
+                {
+                    foreach($_POST['desc1'] as $desc1)
+                    {
+                        $notes = $desc1;
+                        $ar_no = explode('__',$notes);
+                        $arr_v['notes'] = $ar_no[0];
+                        $arr_v['coords'] = $ar_no[1];
+                        $arr_v['vehicle_id'] = $vehicle_id;
+                        $arr_v['image'] = 'first';
+                        $this->loadModel('Vehicle_note');
+                        $this->Vehicle_note->create();
+                        $this->Vehicle_note->save($arr_v);
+                        unset($ar_no);
+                        unset($arr_v);
+                    }
+                    foreach($_POST['desc2'] as $desc1)
+                    {
+                        $notes = $desc1;
+                        $ar_no = explode('__',$notes);
+                        $arr_v['notes'] = $ar_no[0];
+                        $arr_v['coords'] = $ar_no[1];
+                        $arr_v['vehicle_id'] = $vehicle_id;
+                        $arr_v['image'] = 'second';
+                        $this->loadModel('Vehicle_note');
+                        $this->Vehicle_note->create();
+                        $this->Vehicle_note->save($arr_v);
+                        unset($ar_no);
+                        unset($arr_v);
+                    }
+                    foreach($_POST['desc3'] as $desc1)
+                    {
+                        $notes = $desc1;
+                        $ar_no = explode('__',$notes);
+                        $arr_v['notes'] = $ar_no[0];
+                        $arr_v['coords'] = $ar_no[1];
+                        $arr_v['vehicle_id'] = $vehicle_id;
+                        $arr_v['image'] = 'third';
+                        $this->loadModel('Vehicle_note');
+                        $this->Vehicle_note->create();
+                        $this->Vehicle_note->save($arr_v);
+                    }
+                    
+                }
             }
             elseif($_POST['document_type'] == 'mobile_inspection')
             {
@@ -1525,6 +1579,51 @@ class UploadsController extends AppController
                 $this->loadModel('Vehicle_inspection');
                 $this->Vehicle_inspection->create();
                 $this->Vehicle_inspection->save($veh);
+                $vehicle_id = $this->Vehicle_inspection->id;
+                if($_POST['desc1'] && $_POST['document_type']=='vehicle_inspection')
+                {
+                    foreach($_POST['desc1'] as $desc1)
+                    {
+                        $notes = $desc1;
+                        $ar_no = explode('__',$notes);
+                        $arr_v['notes'] = $ar_no[0];
+                        $arr_v['coords'] = $ar_no[1];
+                        $arr_v['vehicle_id'] = $vehicle_id;
+                        $arr_v['image'] = 'first';
+                        $this->loadModel('Vehicle_note');
+                        $this->Vehicle_note->create();
+                        $this->Vehicle_note->save($arr_v);
+                        unset($ar_no);
+                        unset($arr_v);
+                    }
+                    foreach($_POST['desc2'] as $desc1)
+                    {
+                        $notes = $desc1;
+                        $ar_no = explode('__',$notes);
+                        $arr_v['notes'] = $ar_no[0];
+                        $arr_v['coords'] = $ar_no[1];
+                        $arr_v['vehicle_id'] = $vehicle_id;
+                        $arr_v['image'] = 'second';
+                        $this->loadModel('Vehicle_note');
+                        $this->Vehicle_note->create();
+                        $this->Vehicle_note->save($arr_v);
+                        unset($ar_no);
+                        unset($arr_v);
+                    }
+                    foreach($_POST['desc3'] as $desc1)
+                    {
+                        $notes = $desc1;
+                        $ar_no = explode('__',$notes);
+                        $arr_v['notes'] = $ar_no[0];
+                        $arr_v['coords'] = $ar_no[1];
+                        $arr_v['vehicle_id'] = $vehicle_id;
+                        $arr_v['image'] = 'third';
+                        $this->loadModel('Vehicle_note');
+                        $this->Vehicle_note->create();
+                        $this->Vehicle_note->save($arr_v);
+                    }
+                    
+                }
             }
             if($_POST['document_type'] == 'mobile_vehicle_trunk_inventory')
             {
@@ -2155,6 +2254,13 @@ class UploadsController extends AppController
         {
             $this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$id))));
             $this->set('vehicle',$this->Vehicle_inspection->find('first',array('conditions'=>array('document_id'=>$id))));
+            $vi = $this->Vehicle_inspection->find('first',array('conditions'=>array('document_id'=>$id)));
+            if($vi)
+            {
+                $vid = $vi['Vehicle_inspection']['id'];
+                $this->loadModel('Vehicle_note');
+                $this->set('vn',$this->Vehicle_note->find('all',array('conditions'=>array('vehicle_id'=>$vid))));
+            }
             if($mem = $this->MobileInspection->findByDocumentId($id))
             {
                 $mem_action = $this->MobileAction->find('all',array('conditions'=>array('mobileins_id'=>$mem['MobileInspection']['id'])));

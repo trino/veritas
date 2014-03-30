@@ -476,6 +476,20 @@ url: '<?php echo $base_url;?>admin/logout'
                             <li><a href="<?php echo $base_url;?>search/index/personal_inspection"><i class="icon-arrow-right"></i>Personal Inspection</a></li>
                             <?php
                             }?>
+
+                            <?php
+                            if($this->requestAction($base_url.'uploads/checkAdminPerm/mobile_log')){
+                            ?>
+                            <li><a href="<?php echo $base_url;?>search/index/mobile_log"><i class="icon-arrow-right"></i>Mobile Log</a></li>
+                            <?php
+                            }?>
+                            <?php
+                            if($this->requestAction($base_url.'uploads/checkAdminPerm/inventory')){
+                            ?>
+                            <li><a href="<?php echo $base_url;?>search/index/mobile_vehicle_trunk_inventory"><i class="icon-arrow-right"></i>Mobile Vehicle Trunk Inventory</a></li>
+                            <?php
+                            }?>
+                            
                             <?php
                             if($this->requestAction($base_url.'uploads/checkAdminPerm/mobile_inspection')){
                             ?>

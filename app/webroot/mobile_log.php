@@ -1,10 +1,10 @@
 <tr class="mobilelog_more" style="display: none;">
     <td colspan="2" style="padding: 0;">
-        <table class="table mobilelog_table">
+        <table class="table mobilelog_table" style="border-left: none!important;border-right: none!important;">
             
             <tr>
-                <td style="width:100px!important;">Mobile Guard:</td><td><input type="text"  name="log[guard]" class="" value="<?php if(isset($moblog) && $moblog['MobileLog']['guard']){echo $moblog['MobileLog']['guard'];}?>" /> </td>
-                <td style="width:100px!important;">Shift:</td><td><input type="text" class="time " name="log[shift_from]" value="<?php if(isset($moblog) && $moblog['MobileLog']['shift_from']){echo $moblog['MobileLog']['shift_from'];}?>" placeholder="From" style="width: 150px;"  />
+                <td style="width:100px!important;"><strong>Mobile Guard:</strong></td><td><input type="text"  name="log[guard]" class="" value="<?php if(isset($moblog) && $moblog['MobileLog']['guard']){echo $moblog['MobileLog']['guard'];}?>" /> </td>
+                <td style="width:100px!important;"><strong>Shift:</strong></td><td><input type="text" class="time " name="log[shift_from]" value="<?php if(isset($moblog) && $moblog['MobileLog']['shift_from']){echo $moblog['MobileLog']['shift_from'];}?>" placeholder="From" style="width: 150px;"  />
                     <input type="text" class="time " name="log[shift_to]" value="<?php if(isset($moblog) && $moblog['MobileLog']['shift_to']){echo $moblog['MobileLog']['shift_to'];}?>" placeholder="To" style="width: 150px;" />
                 </td>
                 
@@ -14,17 +14,17 @@
             <input type="hidden" name="log_id" value="<?php echo $moblog['MobileLog']['id'];?>"/>
             <?php } ?>
             <tr>
-                <td>Start Date</td><td><input type="text" name="log[start_date]" value="<?php if(isset($moblog) && $moblog['MobileLog']['start_date']){echo $moblog['MobileLog']['start_date'];}?>" class="date_verify " /></td>
-                <td>End Date</td><td><input type="text" name="log[end_date]" value="<?php if(isset($moblog) && $moblog['MobileLog']['end_date']){echo $moblog['MobileLog']['end_date'];}?>" class="date_verify " /></td>
+                <td><strong>Start Date</strong></td><td><input type="text" name="log[start_date]" value="<?php if(isset($moblog) && $moblog['MobileLog']['start_date']){echo $moblog['MobileLog']['start_date'];}?>" class="date_verify " /></td>
+                <td><strong>End Date</strong></td><td><input type="text" name="log[end_date]" value="<?php if(isset($moblog) && $moblog['MobileLog']['end_date']){echo $moblog['MobileLog']['end_date'];}?>" class="date_verify " /></td>
             </tr>
             <tr>
                 <td colspan="4">
                 
                 <div style="width: 360px;margin:10px auto;">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" style="border-left: none!important;border-right: 1px solid #e5e5e5!important;">
                         <tr>
                             <td colspan="2">
-                                <center><strong>Toyota Patrol (2330 - 0430)</strong></center>
+                                <center><strong> ASAP Patrol (2200 - 0900)</strong></center>
                             </td>
                         </tr>
                         <tr>
@@ -44,7 +44,8 @@
                             <td><input type="text" class="time" name="log[tyotato4]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotato4']){echo $moblog['MobileLog']['tyotato4'];}?>" style="width: 150px;" /></td>
                         </tr>
                          <tr>
-                            <td colspan="2"><center><strong>Toyota/ 105 Nashdene (2330 - 0430)</strong></center></td>
+                            <td><input type="text" class="time" name="log[tyotafrom7]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotafrom7']){echo $moblog['MobileLog']['tyotafrom7'];}?>" style="width: 150px;" /></td>
+                            <td><input type="text" class="time" name="log[tyotato7]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotato7']){echo $moblog['MobileLog']['tyotato7'];}?>" style="width: 150px;" /></td>
                         </tr>
                          <tr>
                             <td><input type="text" class="time" name="log[tyotafrom5]" value="<?php if(isset($moblog) && $moblog['MobileLog']['tyotafrom5']){echo $moblog['MobileLog']['tyotafrom5'];}?>" style="width: 150px;" /></td>
@@ -62,9 +63,9 @@
             
             
         </table>
-        <table class="table addmoretab1 mobilelog_table">
+        <table class="table addmoretab1 mobilelog_table" style="border-left: none!important;border-right: none!important;">
             <tr><td colspan="5"><strong>Mobile / Site Check In</strong></td></tr>
-            <tr><td>Arrival</td><td>Depart</td><td>Site Adddress</td><td>Guard Onsite</td><td></td></tr>
+            <tr><td><strong>Arrival</strong></td><td><strong>Depart</strong></td><td><strong>Site Adddress</strong></td><td><strong>Guard Onsite</strong></td><td></td></tr>
             <?php if(isset($mem_site)){
             
             foreach($mem_site as $action)
@@ -90,19 +91,21 @@
             </tr>
         </table>
         
+
         <table class="table mobilelog_table">
-        <tr><td class="wdth" width="35%">Please Remember To Get Receipt For Gas At Petro Canada: </td><td ><input type="text" name="log[receipt]" value="<?php if(isset($moblog) && $moblog['MobileLog']['receipt']){echo $moblog['MobileLog']['receipt'];}?>"/></td></tr>
+        <tr><td class="wdth" width="38%"><strong>Please Remember To Get Receipt For Gas At Petro Canada:</strong> </td><td ><input type="text" name="log[receipt]" value="<?php if(isset($moblog) && $moblog['MobileLog']['receipt']){echo $moblog['MobileLog']['receipt'];}?>"/></td></tr>
         </table>
         <table class="mobilelog_table">
-        <tr><td width="2%">Points </td><td width="10%"><input type="text" name="log[points]" value="<?php if(isset($moblog) && $moblog['MobileLog']['points']){echo $moblog['MobileLog']['points'];}?>" /></td>
-        <td width="1%">/</td><td width="10%"> <input type="text" name="log[ltr]" value="<?php if(isset($moblog) && $moblog['MobileLog']['ltr']){echo $moblog['MobileLog']['ltr'];}?>" /></td>
-        <td width="7%">Total LT&nbsp;/ Total $</td>
-        <td width="10%"><input type="text" name="log[total]" value="<?php if(isset($moblog) && $moblog['MobileLog']['total']){echo $moblog['MobileLog']['total'];}?>" /></td>
+        <tr><td width="2%"><strong>Points</strong> </td><td width="10%"><input type="text" name="log[points]" value="<?php if(isset($moblog) && $moblog['MobileLog']['points']){echo $moblog['MobileLog']['points'];}?>" /></td>
+        <td width="1%"><strong>/</strong></td><td width="10%"> <input type="text" name="log[ltr]" value="<?php if(isset($moblog) && $moblog['MobileLog']['ltr']){echo $moblog['MobileLog']['ltr'];}?>" /></td>
+        <td width="8%"><strong>Total LT&nbsp;/ Total $</strong></td>
+        <td width="9%"><input type="text" name="log[total]" value="<?php if(isset($moblog) && $moblog['MobileLog']['total']){echo $moblog['MobileLog']['total'];}?>" /></td>
         </tr>
         </table>
         
-        <table class="table table-bordered addmoretab2 mobilelog_table">
-        <thead ><th width="10%">Time</th><th colspan="2">Special Notes (Guard Request etc.)</th></thead>
+        <table class="table table-bordered addmoretab2 mobilelog_table" style="border-left: none!important;border-right: none!important;">
+        <thead ><th width="10%"><strong>Time</strong></th><th colspan="2"><strong>Special Notes (Guard Request etc.)</strong></th></thead>
+
         <?php if(isset($mem_note)){
          
             foreach($mem_note as $action)
@@ -123,8 +126,10 @@
         
         
         </table>
-        <table class="mobilelog_table">
-        <tr><td>Sign</td><td><input type="text" name="log[sign]" value="<?php if(isset($moblog) && $moblog['MobileLog']['sign']){echo $moblog['MobileLog']['sign'];}?>" /></td><td></td></tr>
+
+        <table class="mobilelog_table" style="border-left: none!important;border-right: none!important;">
+        <tr><td width="5%"><strong>Sign</strong></td><td><input type="text" name="log[sign]" value="<?php if(isset($moblog) && $moblog['MobileLog']['sign']){echo $moblog['MobileLog']['sign'];}?>" /></td><td></td></tr>
+
         </table>    
     </td>
 </tr>
