@@ -159,7 +159,7 @@ $or = '';
                                         foreach($varr['first'] as $k=>$v)
                                         {
                                          $i++;
-                                         echo "<strong>Note for ".$varr['number'][$k]['first'].'</strong><br/>'.$v.'<br/><br/>';   
+                                         echo "<strong>Note for area ".$varr['number'][$k]['first'].'</strong><br/>'.$v.'<br/><br/>';   
                                                                                         
                                         } 
                                         
@@ -179,7 +179,7 @@ $or = '';
                                         foreach($varr['second'] as $k=>$v)
                                         {
                                          $i++;
-                                         echo "<strong>Note for ".$varr['number'][$k]['second'].'</strong><br/>'.$v.'<br/><br/>'; 
+                                         echo "<strong>Note for area ".$varr['number'][$k]['second'].'</strong><br/>'.$v.'<br/><br/>'; 
                                                                                         
                                         } 
                                         
@@ -202,7 +202,7 @@ $or = '';
                                         foreach($varr['third'] as $k=>$v)
                                         {
                                          $i++;
-                                         echo "<strong>Note for ".$varr['number'][$k]['third'].'</strong><br/>'.$v.'<br/><br/>'; 
+                                         echo "<strong>Note for area ".$varr['number'][$k]['third'].'</strong><br/>'.$v.'<br/><br/>'; 
                                                                                         
                                         } 
                                         

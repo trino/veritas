@@ -18,7 +18,7 @@ $(function(){
            var i3 = $('.side').val();
            if(nu==1)
            {
-             var noten = 'Note for '+id.replace('star_','');
+             var noten = 'Note for area '+id.replace('star_','');
              if(i1.replace(co,'') != i1){
              i1 = i1.replace(co+'_','');
              i1 = i1.replace('_'+co,'');
@@ -61,7 +61,7 @@ $(function(){
            else
            if(nu==2)
            {
-             var noten = 'Note for '+id.replace('star2_','');
+             var noten = 'Note for area '+id.replace('star2_','');
              if(i2.replace(co,'') != i2){
              i2 = i2.replace(co+'_','');
              i2 = i2.replace('_'+co,'');
@@ -102,7 +102,7 @@ $(function(){
            else
            if(nu==3)
            {
-            var noten = 'Note for '+id.replace('star3_','');
+            var noten = 'Note for area '+id.replace('star3_','');
              if(i3.replace(co,'') != i3){
              i3 = i3.replace(co+'_','');
              i3 = i3.replace('_'+co,'');
@@ -380,7 +380,7 @@ $(function(){
                    var coor = coor.replace(' valid','');
                    var val =  $(this).val();
                    $(this).val(val+'__'+coor+'__'+note);
-                   alert($(this).val());
+                   //alert($(this).val());
                    //return false;
                 });
                 $('.thirdhidden input').each(function(){
