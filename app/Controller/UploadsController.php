@@ -783,7 +783,7 @@ class UploadsController extends AppController
                 $this->Vehicle_inspection->save($veh);
                 $vehicle_id = $this->Vehicle_inspection->id;
                 $this->loadModel('Vehicle_note');
-                $this->Vehicle_note->deleteAll(array('vehicle_id'=>$vehicle_id));
+                $this->Vehicle_note->deleteAll(array('vehicle_id'=>$vid));
                 if($_POST['desc1'] && $_POST['document_type']=='vehicle_inspection')
                 {
                     foreach($_POST['desc1'] as $desc1)
@@ -792,7 +792,8 @@ class UploadsController extends AppController
                         $ar_no = explode('__',$notes);
                         $arr_v['notes'] = $ar_no[0];
                         $arr_v['coords'] = $ar_no[1];
-                        $arr_v['vehicle_id'] = $vehicle_id;
+                        $arr_v['note_no'] = $ar_no[2];
+                        $arr_v['vehicle_id'] = $vehicle_id;                        
                         $arr_v['image'] = 'first';
                         $this->loadModel('Vehicle_note');
                         $this->Vehicle_note->create();
@@ -806,6 +807,7 @@ class UploadsController extends AppController
                         $ar_no = explode('__',$notes);
                         $arr_v['notes'] = $ar_no[0];
                         $arr_v['coords'] = $ar_no[1];
+                        $arr_v['note_no'] = $ar_no[2];
                         $arr_v['vehicle_id'] = $vehicle_id;
                         $arr_v['image'] = 'second';
                         $this->loadModel('Vehicle_note');
@@ -820,6 +822,7 @@ class UploadsController extends AppController
                         $ar_no = explode('__',$notes);
                         $arr_v['notes'] = $ar_no[0];
                         $arr_v['coords'] = $ar_no[1];
+                        $arr_v['note_no'] = $ar_no[2];
                         $arr_v['vehicle_id'] = $vehicle_id;
                         $arr_v['image'] = 'third';
                         $this->loadModel('Vehicle_note');
@@ -1588,6 +1591,7 @@ class UploadsController extends AppController
                         $ar_no = explode('__',$notes);
                         $arr_v['notes'] = $ar_no[0];
                         $arr_v['coords'] = $ar_no[1];
+                        $arr_v['note_no'] = $ar_no[2];
                         $arr_v['vehicle_id'] = $vehicle_id;
                         $arr_v['image'] = 'first';
                         $this->loadModel('Vehicle_note');
@@ -1602,6 +1606,7 @@ class UploadsController extends AppController
                         $ar_no = explode('__',$notes);
                         $arr_v['notes'] = $ar_no[0];
                         $arr_v['coords'] = $ar_no[1];
+                        $arr_v['note_no'] = $ar_no[2];
                         $arr_v['vehicle_id'] = $vehicle_id;
                         $arr_v['image'] = 'second';
                         $this->loadModel('Vehicle_note');
@@ -1616,6 +1621,7 @@ class UploadsController extends AppController
                         $ar_no = explode('__',$notes);
                         $arr_v['notes'] = $ar_no[0];
                         $arr_v['coords'] = $ar_no[1];
+                        $arr_v['note_no'] = $ar_no[2];
                         $arr_v['vehicle_id'] = $vehicle_id;
                         $arr_v['image'] = 'third';
                         $this->loadModel('Vehicle_note');
