@@ -929,6 +929,33 @@ class MembersController extends AppController
         }
         die();
     }
+    function make_admin($id,$flag)
+    {
+        //echo $id.'_'.$flag;die();
+        $this->loadModel('User');
+        $this->loadModel('Member');
+        $this->Member->id = $id;
+        $this->Member->saveField('is_admin',$flag);
+        if($flag == 1)
+        {
+            
+            $q = $this->Member->findById($id);
+            $arr['name_avatar'] = $q['Member']['full_name'];
+            $arr['email'] = $q['Member']['email'];
+            $arr['password'] = $q['Member']['password'];
+            $arr['picture'] = $q['Member']['image'];
+            $arr['country'] = 'canada';
+            $arr['from_member'] = $id;
+            $this->User->create();
+            $this->User->save($arr);
+            
+        }
+        else
+        {
+            $this->User->deleteAll(array('from_member'=>$id));
+        }
+        die();
+    }
     /*function encrypt()
     {
         $q = $this->Member->find('all');

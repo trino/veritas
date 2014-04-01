@@ -34,6 +34,16 @@
                 <th>Title</th>
                 <!--th>Assigned Jobs</th-->
                 <th style="width:250px;">Options</th>
+                <?php
+        if($this->Session->read('admin'))
+        {
+            ?>
+            <th>
+            Make Admin
+            </th>
+            <?php
+        }
+        ?>
             </tr>
 <?php
 if($mem){
@@ -127,6 +137,18 @@ foreach($mem as $m)
 				);
 			?>
 		</td>
+        
+        <?php
+        if($this->Session->read('admin'))
+        {
+            ?>
+            <td>
+            <input type="checkbox" class="make_admin" value="<?php echo $m['Member']['id'];?>" <?php if($m['Member']['is_admin']==1){?>checked="checked"<?php }?> />
+            </td>
+            <?php
+        }
+        ?>
+        
 	</tr>
 
 
@@ -152,3 +174,17 @@ else
     <?php
 }
 ?>
+<script>
+$(function(){
+   $('.make_admin').change(function(){
+    var mem = $(this).val();
+    var admin = 0;
+    if($(this).is(":checked")){
+         admin = 1;       
+    }
+    $.ajax({
+       url:'<?php echo $base_url?>members/make_admin/'+mem+'/'+admin 
+    });
+   }); 
+});
+</script>

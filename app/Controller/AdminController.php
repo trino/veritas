@@ -29,7 +29,7 @@ class AdminController extends AppController {
         
         $un = $_POST['un'];
         $pw = md5($_POST['pw']);
-        $q = $this->User->find('first',array('conditions'=>array('email'=>$un,'password'=>$pw)));
+        $q = $this->User->find('first',array('conditions'=>array('OR'=>array(array('email'=>$un),array('name_avatar'=>$un)),'password'=>$pw)));
         $qu = $this->Member->find('first',array('conditions'=>array('OR'=>array(array('email'=>$un),array('full_name'=>$un)),'password'=>$pw)));
         
         

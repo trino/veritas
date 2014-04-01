@@ -1892,10 +1892,11 @@ class UploadsController extends AppController
                 $client['date'] = $_POST['memo_date'];
                 $this->Clientmemo->create();
                 $this->Clientmemo->save($client);
-                $qa = $this->User->find('first');
+                $qA = $this->User->find('all');
 				//debug($qa);exit;
-                if($qa)
+                if($qA)
                 {
+                    foreach($qA as $qa){
                     $emails = new CakeEmail();
                         $emails->from(array('noreply@veritas.com'=>'Veritas'));
                         
@@ -1911,6 +1912,7 @@ class UploadsController extends AppController
                         $emails->to($qa['User']['email']);
                             $emails->send($message);
                             $emails->reset();
+                            }
                 }
                 
                 
