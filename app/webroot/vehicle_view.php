@@ -10,19 +10,22 @@ if($vn)
           if($v['Vehicle_note']['image']=='first')
           {
              $first_hi=1;  
-             $varr['first'][$v['Vehicle_note']['coords']] = $v['Vehicle_note']['notes'];                                
+             $varr['first'][$v['Vehicle_note']['coords']] = $v['Vehicle_note']['notes']; 
+             $varr['number'][$v['Vehicle_note']['coords']]['first'] = $v['Vehicle_note']['note_no'];                               
           }
           else
           if($v['Vehicle_note']['image']=='second')
           {
              $second_hi=1;
-             $varr['second'][$v['Vehicle_note']['coords']] = $v['Vehicle_note']['notes'];                               
+             $varr['second'][$v['Vehicle_note']['coords']] = $v['Vehicle_note']['notes'];  
+             $varr['number'][$v['Vehicle_note']['coords']]['second'] = $v['Vehicle_note']['note_no'];                             
           }
           else
           if($v['Vehicle_note']['image']=='third')
           {
              $third_hi=1; 
-             $varr['third'][$v['Vehicle_note']['coords']] = $v['Vehicle_note']['notes'];                              
+             $varr['third'][$v['Vehicle_note']['coords']] = $v['Vehicle_note']['notes'];   
+             $varr['number'][$v['Vehicle_note']['coords']]['third'] = $v['Vehicle_note']['note_no'];                           
           }
     }
     
@@ -146,24 +149,8 @@ $or = '';
             <tr>
                 <td>
                     
-                    <img src="<?php echo $base_url;?>img/front.jpg" usemap="#frontmap" class="map" />
-                    <map name="frontmap" class="f">
-                        <area shape="rect" id="star1" coords="0,0,100,109" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
-                        <area shape="rect" id="star2" coords="100,0,200,109" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
-                        <area shape="rect" id="star3" coords="200,0,300,109" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
-                        <area shape="rect" id="star4" coords="300,0,400,109" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
-                        
-                        <area shape="rect" id="star5" coords="0,109,100,218" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
-                        <area shape="rect" id="star6" coords="100,109,200,218" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
-                        <area shape="rect" id="star7" coords="200,109,300,218" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
-                        <area shape="rect" id="star8" coords="300,109,400,218" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
-                        
-                        <area shape="rect" id="star9" coords="0,218,100,327" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
-                        <area shape="rect" id="star10" coords="100,218,200,327" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
-                        <area shape="rect" id="star11" coords="200,218,300,327" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
-                        <area shape="rect" id="star12" coords="300,218,400,327" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
-                    </map>
-                    <input type="hidden" name="front" value="" class="front" value="<?php echo $f;?>" />
+                    <img src="<?php echo $base_url;?>img/front.jpg" />
+                    
                     <div class="notes">
                     <?php
                         if(isset($varr['first']) && $varr['first']){
@@ -172,7 +159,7 @@ $or = '';
                                         foreach($varr['first'] as $k=>$v)
                                         {
                                          $i++;
-                                         echo "Note ".$i.'. '.$v.'<br/>';   
+                                         echo "<strong>Note for area ".$varr['number'][$k]['first'].'</strong><br/>'.$v.'<br/><br/>';   
                                                                                         
                                         } 
                                         
@@ -182,25 +169,8 @@ $or = '';
                     </div>
                 </td>
                 <td>
-                    <img src="<?php echo $base_url;?>img/back.jpg" usemap="#backmap" class="map" />
-                    <map name="backmap" class="b">
-                        <area shape="rect" id="star13" coords="0,0,100,109" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
-                        <area shape="rect" id="star14" coords="100,0,200,109" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
-                        <area shape="rect" id="star15" coords="200,0,300,109" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
-                        <area shape="rect" id="star16" coords="300,0,400,109" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
-                        
-                        <area shape="rect" id="star17" coords="0,109,100,218" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
-                        <area shape="rect" id="star18" coords="100,109,200,218" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
-                        <area shape="rect" id="star19" coords="200,109,300,218" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
-                        <area shape="rect" id="star20" coords="300,109,400,218" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
-                        
-                        <area shape="rect" id="star21" coords="0,218,100,327" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
-                        <area shape="rect" id="star22" coords="100,218,200,327" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
-                        <area shape="rect" id="star23" coords="200,218,300,327" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
-                        <area shape="rect" id="star24" coords="300,218,400,327" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
-                    </map>
+                    <img src="<?php echo $base_url;?>img/back.jpg" />
                     
-                    <input type="hidden" name="back" value="" class="back" value="<?php echo $b;?>" />
                     <div class="notes">
                     <?php
                         if(isset($varr['second']) && $varr['second']){
@@ -209,7 +179,7 @@ $or = '';
                                         foreach($varr['second'] as $k=>$v)
                                         {
                                          $i++;
-                                         echo "Note ".$i.'. '.$v.'<br/>';   
+                                         echo "<strong>Note for area ".$varr['number'][$k]['second'].'</strong><br/>'.$v.'<br/><br/>'; 
                                                                                         
                                         } 
                                         
@@ -222,26 +192,8 @@ $or = '';
             <tr>
                 <td colspan="2">
                 <div style="float: left;">
-                    <img src="<?php echo $base_url?>img/side.jpg" usemap="#sidemap" class="map" />
-                    <map name="sidemap" class="s">
-                        <area shape="rect" id="star33" coords="0,0,100,115" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
-                        <area shape="rect" id="star34" coords="100,0,200,115" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
-                        <area shape="rect" id="star35" coords="200,0,300,115" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
-                        <area shape="rect" id="star36" coords="300,0,400,115" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />                        
-                        <area shape="rect" id="star37" coords="400,0,500,115" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
-                        <area shape="rect" id="star38" coords="500,0,600,115" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
-                        
-                        
-                        
-                        <area shape="rect" id="star41" coords="0,115,100,230" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
-                        <area shape="rect" id="star42" coords="100,115,200,230" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
-                        <area shape="rect" id="star43" coords="200,115,300,230" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
-                        <area shape="rect" id="star44" coords="300,115,400,230" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
-                        <area shape="rect" id="star39" coords="400,115,500,230" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
-                        <area shape="rect" id="star40" coords="500,115,600,230" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
-                    </map>
+                    <img src="<?php echo $base_url?>img/side.jpg" />
                     
-                    <input type="hidden" name="side" value="" class="side" value="<?php echo $s;?>" />
                     <div class="notes">
                     <?php
                         if(isset($varr['third']) && $varr['third']){
@@ -250,7 +202,7 @@ $or = '';
                                         foreach($varr['third'] as $k=>$v)
                                         {
                                          $i++;
-                                         echo "Note ".$i.'. '.$v.'<br/>';   
+                                         echo "<strong>Note for area ".$varr['number'][$k]['third'].'</strong><br/>'.$v.'<br/><br/>'; 
                                                                                         
                                         } 
                                         

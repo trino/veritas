@@ -2,13 +2,23 @@ $(function(){
         $('area').click(function(){
            var co = $(this).attr('coords');
            var id = $(this).attr('id');
-           id = id.replace('star','');
-           var nu = parseFloat(id);
+           //alert(id);
+           if(id.replace('star_')!=id)
+           nu=1;
+           else
+           if(id.replace('star2_')!=id)
+           nu=2;
+           else
+           if(id.replace('star3_')!=id)
+           nu=3;
+           //id = id.replace('star','');
+           //var nu = parseFloat(id);
            var i1 = $('.front').val();
            var i2 = $('.back').val();
            var i3 = $('.side').val();
-           if(nu<13)
+           if(nu==1)
            {
+             var noten = 'Note for area '+id.replace('star_','');
              if(i1.replace(co,'') != i1){
              i1 = i1.replace(co+'_','');
              i1 = i1.replace('_'+co,'');
@@ -37,7 +47,7 @@ $(function(){
              co2 = co2.replace(',','_');
              co2 = co2.replace(',','_');
              co2 = co2.replace(',','_');
-             $('.firsthidden').append('<input type="text" name="desc1[]" style="width:90%;margin:5px 0;" class="'+co2+'" placeholder="Note" />');
+             $('.firsthidden').append(noten+'<br/><input type="text" name="desc1[]" style="width:90%;margin:5px 0;" id="first'+id.replace('star_','')+'" class="'+co2+'" placeholder="Note" /><br/><br/>');
              }
              $('.front').val(i1);
              if(i1)
@@ -49,8 +59,9 @@ $(function(){
              
            }
            else
-           if(nu<25)
+           if(nu==2)
            {
+             var noten = 'Note for area '+id.replace('star2_','');
              if(i2.replace(co,'') != i2){
              i2 = i2.replace(co+'_','');
              i2 = i2.replace('_'+co,'');
@@ -77,7 +88,7 @@ $(function(){
              co2 = co2.replace(',','_');
              co2 = co2.replace(',','_');
              co2 = co2.replace(',','_');
-             $('.secondhidden').append('<input type="text" name="desc2[]" style="width:90%;margin:5px 0;" class="'+co2+'" placeholder="Note" />');
+             $('.secondhidden').append(noten+'<br/><input type="text" name="desc2[]" style="width:90%;margin:5px 0;" id="second'+id.replace('star2_','')+'" class="'+co2+'" placeholder="Note" /><br/><br/>');
              }
              $('.back').val(i2);
              if(i2)
@@ -89,8 +100,9 @@ $(function(){
              
            }
            else
-           if(nu<50)
+           if(nu==3)
            {
+            var noten = 'Note for area '+id.replace('star3_','');
              if(i3.replace(co,'') != i3){
              i3 = i3.replace(co+'_','');
              i3 = i3.replace('_'+co,'');
@@ -117,7 +129,7 @@ $(function(){
              co2 = co2.replace(',','_');
              co2 = co2.replace(',','_');
              co2 = co2.replace(',','_');
-             $('.thirdhidden').append('<input type="text" name="desc3[]" style="width:90%;margin:5px 0;" class="'+co2+'" placeholder="Note" />');
+             $('.thirdhidden').append(noten+'<br/><input type="text" name="desc3[]" style="width:90%;margin:5px 0;" id="third'+id.replace('star3_','')+'" class="'+co2+'" placeholder="Note" /><br/><br/>');
              }
              $('.side').val(i3);
              if(i3)
@@ -129,224 +141,232 @@ $(function(){
              
            } 
         });
-        $('#star1').click(function(e) {
+        $('area').click(function(e){
+            var  id = $(this).attr('id');
             e.preventDefault();
-            var data = $('#star1').mouseout().data('maphilight') || {};
+            var data = $('#'+id).mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star1').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#'+id).data('maphilight', data).trigger('alwaysOn.maphilight');
+        });/*
+        $('#star_1').click(function(e) {
+            e.preventDefault();
+            var data = $('#star_1').mouseout().data('maphilight') || {};
+            data.alwaysOn = !data.alwaysOn;
+            $('#star_1').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star2').click(function(e) {
+        $('#star_2').click(function(e) {
             e.preventDefault();
-            var data = $('#star2').mouseout().data('maphilight') || {};
+            var data = $('#star_2').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star2').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star_2').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star3').click(function(e) {
+        $('#star_3').click(function(e) {
             e.preventDefault();
-            var data = $('#star3').mouseout().data('maphilight') || {};
+            var data = $('#star_3').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star3').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star_3').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star4').click(function(e) {
+        $('#star_4').click(function(e) {
             e.preventDefault();
-            var data = $('#star4').mouseout().data('maphilight') || {};
+            var data = $('#star_4').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star4').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star_4').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star5').click(function(e) {
+        $('#star_5').click(function(e) {
             e.preventDefault();
-            var data = $('#star5').mouseout().data('maphilight') || {};
+            var data = $('#star_5').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star5').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star_5').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star6').click(function(e) {
+        $('#star_6').click(function(e) {
             e.preventDefault();
-            var data = $('#star6').mouseout().data('maphilight') || {};
+            var data = $('#star_6').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star6').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star_6').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star7').click(function(e) {
+        $('#star_7').click(function(e) {
             e.preventDefault();
-            var data = $('#star7').mouseout().data('maphilight') || {};
+            var data = $('#star_7').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star7').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star_7').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star8').click(function(e) {
+        $('#star_8').click(function(e) {
             e.preventDefault();
-            var data = $('#star8').mouseout().data('maphilight') || {};
+            var data = $('#star_8').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star8').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star_8').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star9').click(function(e) {
+        $('#star_9').click(function(e) {
             e.preventDefault();
-            var data = $('#star9').mouseout().data('maphilight') || {};
+            var data = $('#star_9').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star9').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star_9').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star10').click(function(e) {
+        $('#star_10').click(function(e) {
             e.preventDefault();
-            var data = $('#star10').mouseout().data('maphilight') || {};
+            var data = $('#star_10').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star10').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star_10').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star11').click(function(e) {
+        $('#star_11').click(function(e) {
             e.preventDefault();
-            var data = $('#star11').mouseout().data('maphilight') || {};
+            var data = $('#star_11').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star11').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star_11').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star12').click(function(e) {
+        $('#star_12').click(function(e) {
             e.preventDefault();
-            var data = $('#star12').mouseout().data('maphilight') || {};
+            var data = $('#star_12').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star12').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star_12').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star13').click(function(e) {
+        $('#star2_1').click(function(e) {
             e.preventDefault();
-            var data = $('#star13').mouseout().data('maphilight') || {};
+            var data = $('#star2_1').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star13').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star2_1').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star14').click(function(e) {
+        $('#star2_2').click(function(e) {
             e.preventDefault();
-            var data = $('#star14').mouseout().data('maphilight') || {};
+            var data = $('#star2_2').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star14').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star2_2').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star15').click(function(e) {
+        
+        $('#star2_3').click(function(e) {
             e.preventDefault();
-            var data = $('#star15').mouseout().data('maphilight') || {};
+            var data = $('#star2_3').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star15').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star2_3').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star16').click(function(e) {
+        $('#star2_4').click(function(e) {
             e.preventDefault();
-            var data = $('#star16').mouseout().data('maphilight') || {};
+            var data = $('#star2_4').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star16').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star2_4').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star17').click(function(e) {
+        $('#star2_5').click(function(e) {
             e.preventDefault();
-            var data = $('#star17').mouseout().data('maphilight') || {};
+            var data = $('#star2_5').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star17').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star2_5').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star18').click(function(e) {
+        $('#star2_6').click(function(e) {
             e.preventDefault();
-            var data = $('#star18').mouseout().data('maphilight') || {};
+            var data = $('#star2_6').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star18').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star2_6').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star19').click(function(e) {
+        $('#star2_7').click(function(e) {
             e.preventDefault();
-            var data = $('#star19').mouseout().data('maphilight') || {};
+            var data = $('#star2_7').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star19').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star2_7').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star20').click(function(e) {
+        $('#star2_8').click(function(e) {
             e.preventDefault();
-            var data = $('#star20').mouseout().data('maphilight') || {};
+            var data = $('#star2_8').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star20').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star2_8').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star21').click(function(e) {
+        $('#star2_9').click(function(e) {
             e.preventDefault();
-            var data = $('#star21').mouseout().data('maphilight') || {};
+            var data = $('#star2_9').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star21').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star2_9').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star22').click(function(e) {
+        $('#star2_10').click(function(e) {
             e.preventDefault();
-            var data = $('#star22').mouseout().data('maphilight') || {};
+            var data = $('#star2_10').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star22').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star2_10').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star23').click(function(e) {
+        $('#star2_12').click(function(e) {
             e.preventDefault();
-            var data = $('#star23').mouseout().data('maphilight') || {};
+            var data = $('#star2_12').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star23').data('maphilight', data).trigger('alwaysOn.maphilight');
-        });
-        $('#star24').click(function(e) {
-            e.preventDefault();
-            var data = $('#star24').mouseout().data('maphilight') || {};
-            data.alwaysOn = !data.alwaysOn;
-            $('#star24').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star2_12').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
         
         
-        $('#star33').click(function(e) {
+        $('#star2_11').click(function(e) {
             e.preventDefault();
-            var data = $('#star33').mouseout().data('maphilight') || {};
+            var data = $('#star2_11').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star33').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star2_11').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star34').click(function(e) {
+        $('#star3_1').click(function(e) {
             e.preventDefault();
-            var data = $('#star34').mouseout().data('maphilight') || {};
+            var data = $('#star3_1').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star34').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star3_1').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star35').click(function(e) {
+        $('#star3_2').click(function(e) {
             e.preventDefault();
-            var data = $('#star35').mouseout().data('maphilight') || {};
+            var data = $('#star3_2').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star35').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star3_2').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star36').click(function(e) {
+        $('#star3_3').click(function(e) {
             e.preventDefault();
-            var data = $('#star36').mouseout().data('maphilight') || {};
+            var data = $('#star3_3').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star36').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star3_3').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star37').click(function(e) {
+        $('#star3_4').click(function(e) {
             e.preventDefault();
-            var data = $('#star37').mouseout().data('maphilight') || {};
+            var data = $('#star3_4').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star37').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star3_4').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star38').click(function(e) {
+        $('#star3_5').click(function(e) {
             e.preventDefault();
-            var data = $('#star38').mouseout().data('maphilight') || {};
+            var data = $('#star3_5').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star38').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star3_5').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star39').click(function(e) {
+        $('#star3_6').click(function(e) {
             e.preventDefault();
-            var data = $('#star39').mouseout().data('maphilight') || {};
+            var data = $('#star3_6').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star39').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star3_6').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star40').click(function(e) {
+        $('#star3_7').click(function(e) {
             e.preventDefault();
-            var data = $('#star40').mouseout().data('maphilight') || {};
+            var data = $('#star3_7').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star40').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star3_7').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star41').click(function(e) {
+        $('#star3_8').click(function(e) {
             e.preventDefault();
-            var data = $('#star41').mouseout().data('maphilight') || {};
+            var data = $('#star3_8').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star41').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star3_8').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star42').click(function(e) {
+        $('#star3_9').click(function(e) {
             e.preventDefault();
-            var data = $('#star42').mouseout().data('maphilight') || {};
+            var data = $('#star3_9').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star42').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star3_9').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star43').click(function(e) {
+        $('#star3_10').click(function(e) {
             e.preventDefault();
-            var data = $('#star43').mouseout().data('maphilight') || {};
+            var data = $('#star3_10').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star43').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star3_10').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
-        $('#star44').click(function(e) {
+        $('#star3_11').click(function(e) {
             e.preventDefault();
-            var data = $('#star44').mouseout().data('maphilight') || {};
+            var data = $('#star3_11').mouseout().data('maphilight') || {};
             data.alwaysOn = !data.alwaysOn;
-            $('#star44').data('maphilight', data).trigger('alwaysOn.maphilight');
+            $('#star3_11').data('maphilight', data).trigger('alwaysOn.maphilight');
         });
+        $('#star3_12').click(function(e) {
+            e.preventDefault();
+            var data = $('#star3_12').mouseout().data('maphilight') || {};
+            data.alwaysOn = !data.alwaysOn;
+            $('#star3_12').data('maphilight', data).trigger('alwaysOn.maphilight');
+        });*/
         });
         function vehicle_test()
         {
@@ -355,22 +375,27 @@ $(function(){
                 $('.sbtbtn').val('Please Wait..');
                 $('.sbtbtn').attr('disabled','disabled');
                 $('.firsthidden input').each(function(){
+                   var note = $(this).attr('id').replace('first',''); 
                    var coor = $(this).attr('class');
                    var coor = coor.replace(' valid','');
                    var val =  $(this).val();
-                   $(this).val(val+'__'+coor);
+                   $(this).val(val+'__'+coor+'__'+note);
+                   //alert($(this).val());
+                   //return false;
                 });
                 $('.thirdhidden input').each(function(){
+                   var note = $(this).attr('id').replace('third',''); 
                    var coor = $(this).attr('class');
                    var coor = coor.replace(' valid','');
                    var val =  $(this).val();
-                   $(this).val(val+'__'+coor);
+                   $(this).val(val+'__'+coor+'__'+note);
                 });
                 $('.secondhidden input').each(function(){
+                   var note = $(this).attr('id').replace('second',''); 
                    var coor = $(this).attr('class');
                    var coor = coor.replace(' valid','');
                    var val =  $(this).val();
-                   $(this).val(val+'__'+coor);
+                   $(this).val(val+'__'+coor+'__'+note);
                 });
                 return true;
             }
