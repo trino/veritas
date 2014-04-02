@@ -174,8 +174,12 @@ $parents = $a['Mail']['id'];
     <textarea name="reply" style="height:100px;width:420px;" class="required"></textarea>
     <input type="hidden" name="mail_id" value="<?php echo $parents;?>" />
     <?php
-    if($this->Session->read('admin'))
+    if($this->Session->read('admin')){
+    if(!$this->Session->read('FMember'))
     $first = 0;
+    else
+    $first = $this->Session->read('FMember');
+    }
     else
     $first = $this->Session->read('id');
     $get_parent = $last->find('first',array('conditions'=>array('parent'=>$parents,'first'=>$first)));

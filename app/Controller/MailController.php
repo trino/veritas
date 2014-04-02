@@ -123,8 +123,15 @@ class MailController extends AppController
             $receiver = $_POST['recipient_email'];
             if($this->Session->read('avatar'))
             {
+                if($this->Session->read('FMember'))
+                {
+                $sender = $this->Session->read('avatar');
+                $sender_id = $this->Session->read('FMember');
+                }else
+                {
                 $sender = 'admin';
                 $sender_id = '0';
+                }
             }
             else if($this->Session->read('user'))
             {
@@ -193,6 +200,9 @@ To check your message, click <a href='".$base_url."/?mail=".$arr['parent']."'>he
         $par = $data['Mail']['id'];
         if(!$this->Session->read('admin'))
         $sent_id = $this->Session->read('id');
+        else
+        if($this->Session->read('FMember'))
+        $sent_id = $this->Session->read('FMember');
         else
         $sent_id = 0;
         //echo $par;die();
@@ -467,8 +477,15 @@ To check your message, click <a href='".$base_url.$link."'>here</a><br/><br/>
         
             if($this->Session->read('avatar'))
             {
+                if(!$this->Session->read('FMember')){
                 $sender = 'admin';
                 $sender_id = '0';
+                }
+                else
+                {
+                    $sender = $this->Session->read('name_avatar');
+                    $sender_id = $this->Session->read('FMember');
+                }
             }
             else if($this->Session->read('user'))
             {

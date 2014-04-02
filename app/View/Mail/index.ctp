@@ -34,12 +34,16 @@
         
         //echo $e['Mail']['parent'];
         
-        if($this->Session->read('admin')){if($e['Mail']['sender_id']!=0 && $e['Mail']['status']=='unread')$stcheck=true;}
+        if($this->Session->read('admin')&& !$this->Session->read('FMember')){if($e['Mail']['sender_id']!=0 && $e['Mail']['status']=='unread')$stcheck=true;}
         if($e['Mail']['parent'] == 0)
         {
         $userr = $this->Session->read('id');
-        if($this->Session->read('admin'))
+        if($this->Session->read('admin')){
+            
         $userr = 0;
+        if($this->Session->read('FMember'))
+        $userr = $this->Session->read('FMember');
+        }
         $check_child_status = $read->find('first',array('conditions'=>array('user'=>$userr,'parent'=>$e['Mail']['id'],'status'=>0)));
         }
         else
