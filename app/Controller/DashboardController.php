@@ -434,7 +434,7 @@ class DashboardController extends AppController
                 }
             }
             if($this->Session->read('admin')){
-            $this->AdminDoc->deleteAll(array('id >'=>0));
+            
             if(isset($_POST['show']))
             {
                 foreach($_POST['show'] as $k=>$v)
@@ -442,8 +442,11 @@ class DashboardController extends AppController
                     $sh['id']= '1';
                     $sh[$k]=$v;
                 }
+                if(isset($sh) && is_array($sh)){
+                $this->AdminDoc->deleteAll(array('id >'=>0));                
                 $this->AdminDoc->create();
                 $this->AdminDoc->save($sh);
+                }
                 
             }
             }
