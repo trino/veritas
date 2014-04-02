@@ -50,9 +50,11 @@ class MailController extends AppController
         //{
             $arr = array();
             if(!$this->Session->read('admin'))
-            $recc = $this->Session->read('id');
+                $recc = $this->Session->read('id');
+            elseif($this->Session->read('FMember')!="0")
+                $recc = $this->Session->read('FMember');
             else
-            $recc = 0;
+                $recc = 0;
             $test = $this->Mail->find('all',array('conditions'=>array('OR'=>array(array('recipients_id LIKE'=>$recc.',%'),array('recipients_id LIKE'=>'%,'.$recc.',%'),array('recipients_id LIKE'=>'%,'.$recc),array('recipients_id'=>$recc)),'parent <>'=>0)));
             foreach($test as $t)
             {
@@ -235,9 +237,14 @@ To check your message, click <a href='".$base_url."/?mail=".$arr['parent']."'>he
     public function sent_mail()
     {
         $this->set('mems',$this->Member);
-        if($this->Session->read('avatar'))
+        if($this->Session->read('avatar')&& $this->Session->read('FMember')=="0")
         {
             $this->paginate=array('conditions'=>array('sender_id'=>'0','delete_for IN("r","")'),'limit'=>15,'order'=>array('date'=>'desc'));
+            $this->set('email',$this->paginate('Mail'));
+        }
+        elseif($this->Session->read('FMember')!="0")
+        {
+            $this->paginate=array('conditions'=>array('sender_id'=>$this->Session->read('FMember'),'delete_for IN ("r","")'),'limit'=>15,'order'=>array('date'=>'desc'));
             $this->set('email',$this->paginate('Mail'));
         }
         else
@@ -317,8 +324,16 @@ To check your message, click <a href='".$base_url."/?mail=".$arr['parent']."'>he
             
             if($this->Session->read('avatar'))
             {
-                $sender_id = '0';
-                $sender= 'Admin';
+                $sender_id = $this->Session->read('FMember');
+                if($this->Session->read('FMember')=='0')
+                    $sender= 'Admin';
+                else
+                {
+                    $sender_id = $this->Session->read('FMember');
+                    $na= $this->Member->find('first',array('conditions'=>array('id'=>$sender_id)));
+                    $sender = "Admin (".$na['Member']['full_name'].")";
+                   
+                }
             }
             else
             {
