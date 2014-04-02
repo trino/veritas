@@ -385,6 +385,7 @@ class DashboardController extends AppController
     }            
     public function settings()
     {
+        
         //echo $this->Session->read('logo');die();
         $this->loadModel('Member');
         $this->loadModel('Mail');
@@ -446,7 +447,7 @@ class DashboardController extends AppController
                 
             }
             }
-            //die();
+           
             
             if($_FILES['image']['name']!="")
             {
@@ -523,6 +524,7 @@ class DashboardController extends AppController
            
               if($this->Session->read('avatar'))
               {
+                
                 $this->User->id=$this->Session->read('id');
                 $this->User->saveField('name_avatar',$_POST['name']);
                 $this->User->saveField('email',$_POST['email']);
@@ -530,9 +532,11 @@ class DashboardController extends AppController
                 $this->User->saveField('password',md5($_POST['password']));
                 $this->User->saveField('picture',$img);
                 $this->User->saveField('country',$_POST['country']);
+                //die('here');
               }
               else
               {
+                //die('there');
                 $this->Member->id = $this->Session->read('id');
                 $this->Member->saveField('fname',$_POST['fname']);
                 $this->Member->saveField('lname',$_POST['lname']);
@@ -624,12 +628,15 @@ class DashboardController extends AppController
         $this->loadModel('Mail');
         $this->loadModel('User');
         if(isset($_POST['pass']))
-        $pass = $_POST['pass'];
+        $pass = md5($_POST['pass']);
         else
         $pass = $p;
+        //echo $p;die();
         if($this->Session->read('avatar'))
         {
-            $val = $this->User->find('count',array('conditions'=>array('email'=>$this->Session->read('email'),'password'=>$pass)));
+            //die('here');
+            $val = $this->User->find('count',array('conditions'=>array('name_avatar'=>$this->Session->read('avatar'),'password'=>$pass)));
+            //die('here');
         }
         else
         {
