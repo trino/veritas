@@ -87,6 +87,9 @@ class MailController extends AppController
         if(!$this->Session->read('admin'))
         $user = $this->Session->read('id');
         else
+        if($this->Session->read('FMember'))
+        $user = $this->Session->read('FMember');
+        else
         $user = 0;
         $checks = $this->Mailread->find('first',array('conditions'=>array('parent'=>$id,'user'=>$user)));
         if(!$checks)
