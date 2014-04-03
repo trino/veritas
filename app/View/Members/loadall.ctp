@@ -62,7 +62,7 @@ hr{border-top:#313A43 1px solid;}
 <?php
 $ad = $this->requestAction($base_url.'/dashboard/get_user');
 
-        if(!$this->Session->read('admin'))
+        if(!$this->Session->read('admin') || $this->Session->read('FMember'))
         {
             ?>
             <div class="admin" style="display: none;">
