@@ -474,23 +474,26 @@ To check your message, click <a href='".$base_url.$link."'>here</a><br/><br/>
     {
         $this->loadModel('Lastsender');
         $check=0;
-        
+        //die('4');
             if($this->Session->read('avatar'))
             {
                 if(!$this->Session->read('FMember')){
                 $sender = 'admin';
                 $sender_id = '0';
+                //die('1');
                 }
                 else
                 {
-                    $sender = $this->Session->read('name_avatar');
+                    $sender = $this->Session->read('avatar');
                     $sender_id = $this->Session->read('FMember');
+                    //die('2');
                 }
             }
             else if($this->Session->read('user'))
             {
                 $sender = $this->Session->read('user');
                 $sender_id = $this->Session->read('id');
+                //die('3');
             }
                 $arr['sender'] = $sender;
                 $arr['subject'] = $_POST['subject'];
