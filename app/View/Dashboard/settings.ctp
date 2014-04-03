@@ -32,6 +32,13 @@
         $image = $user['Member']['image'];
         //$avatar = $user['User']['name_avatar'];
     }
+    if($this->Session->read('FMember'))
+    {
+        $d = ' disabled="disabled"';
+    }
+    else
+    $d = '';
+    
 ?>
 
 <script>
@@ -87,10 +94,10 @@ $(function(){
         }
         ?>
         
-       <tr><td style="width:140px;"><b><?php if(!$this->Session->read('admin')){?>Username<?php }else{?>Name<?php }?></b></td><td><input type="text" name="name" value="<?php echo $name ?>" class="required"<?php if($this->Session->read('user')) echo "readonly='readonly'" ;?>/></td></tr>
+       <tr><td style="width:140px;"><b><?php if(!$this->Session->read('admin') || $this->Session->read('FMember')){?>Username<?php }else{?>Name<?php }?></b></td><td><input type="text" name="name" value="<?php echo $name ?>" class="required"<?php if($this->Session->read('user') || $this->Session->read('FMember')) echo "readonly='readonly'" ;?>/></td></tr>
 
         <!--<tr><td><b>Avatar</b></td><td><input type="text" name="avatar" value="<?php echo $avatar;?>"  /><br />-->
-        <tr><td><b>Email</b></td><td><input type="text" name="email" value="<?php echo $email; ?>" id="email" class="email" <?php if($this->Session->read('user')) echo "readonly='readonly'" ;?> /><span id="email_response"></span></td></tr>
+        <tr><td><b>Email</b></td><td><input type="text" name="email" value="<?php echo $email; ?>" id="email" class="email" <?php if($this->Session->read('user') || $this->Session->read('FMember')) echo "readonly='readonly'" ;?> /><span id="email_response"></span></td></tr>
         <tr><td><b>Image</b></td><td><?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => '','style'=>'width:60px;height:60px;'))?></td></tr>
         <!--<tr><td><b>New Image</b></td><td><input type="file" name="image"  /><br />-->
         <tr><td><b>Old password</b></td><td><input type="password" name="old_password" id="old_password" class=""  /><span id="response"></span></td></tr>
@@ -173,32 +180,32 @@ $(function(){
             ?>
         </tr>
         <tr><td><strong>Show Documents:</strong></td>
-        <td> <span>Contracts </span><input type="checkbox" name="show[contracts]" value="1"  <?php if(isset($admin_doc['AdminDoc']['contracts']) && $admin_doc['AdminDoc']['contracts']=='1' ) echo "checked='checked'";?>  />
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="show[evidence]" value="1" <?php if(isset($admin_doc['AdminDoc']['evidence']) && $admin_doc['AdminDoc']['evidence']=='1' ) echo "checked='checked'";?>   />
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="show[templates]" value="1" <?php if(isset($admin_doc['AdminDoc']['templates']) && $admin_doc['AdminDoc']['templates']=='1' ) echo "checked='checked'";?>/>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report </span><input type="checkbox" name="show[report]" value="1" <?php if(isset($admin_doc['AdminDoc']['report']) && $admin_doc['AdminDoc']['report']=='1' ) echo "checked='checked'";?>/>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Site Orders </span><input type="checkbox" name="show[site_orders]" value="1" <?php if(isset($admin_doc['AdminDoc']['site_orders']) && $admin_doc['AdminDoc']['site_orders']=='1' ) echo "checked='checked'";?>/>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Training </span><input type="checkbox" name="show[training]" value="1" <?php if(isset($admin_doc['AdminDoc']['training']) && $admin_doc['AdminDoc']['training']=='1' ) echo "checked='checked'";?>/>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Employee </span><input type="checkbox" name="show[employee]" value="1" <?php if(isset($admin_doc['AdminDoc']['employee']) && $admin_doc['AdminDoc']['employee']=='1' ) echo "checked='checked'";?>/>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="show[kpiaudits]" value="1" <?php if(isset($admin_doc['AdminDoc']['kpiaudits']) && $admin_doc['AdminDoc']['kpiaudits']=='1' ) echo "checked='checked'";?>/>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Personal Inspection </span><input type="checkbox" name="show[personal_inspection]" value="1" <?php if(isset($admin_doc['AdminDoc']['personal_inspection']) && $admin_doc['AdminDoc']['personal_inspection']=='1' ) echo "checked='checked'";?>/>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Inspection </span><input type="checkbox" name="show[mobile_inspection]" value="1" <?php if(isset($admin_doc['AdminDoc']['mobile_inspection']) && $admin_doc['AdminDoc']['mobile_inspection']=='1' ) echo "checked='checked'";?>/>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Log </span><input type="checkbox" name="show[mobile_log]" value="1" <?php if(isset($admin_doc['AdminDoc']['mobile_log']) && $admin_doc['AdminDoc']['mobile_log']=='1' ) echo "checked='checked'";?>/>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Vehicle Trunk Inventory </span><input type="checkbox" name="show[inventory]" value="1" <?php if(isset($admin_doc['AdminDoc']['inventory']) && $admin_doc['AdminDoc']['inventory']=='1' ) echo "checked='checked'";?>/>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vehicle Inspection </span><input type="checkbox" name="show[vehicle_inspection]" value="1" <?php if(isset($admin_doc['AdminDoc']['vehicle_inspection']) && $admin_doc['AdminDoc']['vehicle_inspection']=='1' ) echo "checked='checked'";?>/>
+        <td> <span>Contracts </span><input <?php echo $d;?> type="checkbox" name="show[contracts]" value="1"  <?php if(isset($admin_doc['AdminDoc']['contracts']) && $admin_doc['AdminDoc']['contracts']=='1' ) echo "checked='checked'";?>  />
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input <?php echo $d;?> type="checkbox" name="show[evidence]" value="1" <?php if(isset($admin_doc['AdminDoc']['evidence']) && $admin_doc['AdminDoc']['evidence']=='1' ) echo "checked='checked'";?>   />
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input <?php echo $d;?> type="checkbox" name="show[templates]" value="1" <?php if(isset($admin_doc['AdminDoc']['templates']) && $admin_doc['AdminDoc']['templates']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report </span><input <?php echo $d;?> type="checkbox" name="show[report]" value="1" <?php if(isset($admin_doc['AdminDoc']['report']) && $admin_doc['AdminDoc']['report']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Site Orders </span><input <?php echo $d;?> type="checkbox" name="show[site_orders]" value="1" <?php if(isset($admin_doc['AdminDoc']['site_orders']) && $admin_doc['AdminDoc']['site_orders']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Training </span><input <?php echo $d;?> type="checkbox" name="show[training]" value="1" <?php if(isset($admin_doc['AdminDoc']['training']) && $admin_doc['AdminDoc']['training']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Employee </span><input <?php echo $d;?> type="checkbox" name="show[employee]" value="1" <?php if(isset($admin_doc['AdminDoc']['employee']) && $admin_doc['AdminDoc']['employee']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input <?php echo $d;?> type="checkbox" name="show[kpiaudits]" value="1" <?php if(isset($admin_doc['AdminDoc']['kpiaudits']) && $admin_doc['AdminDoc']['kpiaudits']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Personal Inspection </span><input <?php echo $d;?> type="checkbox" name="show[personal_inspection]" value="1" <?php if(isset($admin_doc['AdminDoc']['personal_inspection']) && $admin_doc['AdminDoc']['personal_inspection']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Inspection </span><input <?php echo $d;?> type="checkbox" name="show[mobile_inspection]" value="1" <?php if(isset($admin_doc['AdminDoc']['mobile_inspection']) && $admin_doc['AdminDoc']['mobile_inspection']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Log </span><input <?php echo $d;?> type="checkbox" name="show[mobile_log]" value="1" <?php if(isset($admin_doc['AdminDoc']['mobile_log']) && $admin_doc['AdminDoc']['mobile_log']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Vehicle Trunk Inventory </span><input <?php echo $d;?> type="checkbox" name="show[inventory]" value="1" <?php if(isset($admin_doc['AdminDoc']['inventory']) && $admin_doc['AdminDoc']['inventory']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vehicle Inspection </span><input <?php echo $d;?> type="checkbox" name="show[vehicle_inspection]" value="1" <?php if(isset($admin_doc['AdminDoc']['vehicle_inspection']) && $admin_doc['AdminDoc']['vehicle_inspection']=='1' ) echo "checked='checked'";?>/>
 </td></tr>
         <tr>
         <?php
         $logo = $l->find('first');
         ?>
-            <td><strong>Powered By:</strong></td><td><input type="radio" name="logo" value="afimac" style="margin: 0;" <?php if($logo['Logo']['afimac']==1){?>checked="checked"<?php }?> /> <img src="<?php echo $base_url?>img/afimaclogo.png"  /> &nbsp; &nbsp; <input type="radio" name="logo" value="asap" style="margin: 0;" <?php if($logo['Logo']['asap']==1){?>checked="checked"<?php }?>  /> <img src="<?php echo $base_url?>img/asap.gif"  /></td>
+            <td><strong>Powered By:</strong></td><td><input <?php echo $d;?> type="radio" name="logo" value="afimac" style="margin: 0;" <?php if($logo['Logo']['afimac']==1){?>checked="checked"<?php }?> /> <img src="<?php echo $base_url?>img/afimaclogo.png"  /> &nbsp; &nbsp; <input <?php echo $d;?> type="radio" name="logo" value="asap" style="margin: 0;" <?php if($logo['Logo']['asap']==1){?>checked="checked"<?php }?>  /> <img src="<?php echo $base_url?>img/asap.gif"  /></td>
         </tr>
 
             <?php
         } 
         ?>
         <tr><td><strong>Country</strong></td>
-            <td><input type="radio" name="country" value="canada" style="margin: 0;" <?php if($user['User']['country']=='canada'){?>checked="checked"<?php }?> /> Canada &nbsp; &nbsp; <input type="radio" name="country" value="us" style="margin: 0;" <?php if($user['User']['country']=='us'){?>checked="checked"<?php }?>  /> US </td></tr>
+            <td><input <?php echo $d;?> type="radio" name="country" value="canada" style="margin: 0;" <?php if($user['User']['country']=='canada'){?>checked="checked"<?php }?> /> Canada &nbsp; &nbsp; <input <?php echo $d;?> type="radio" name="country" value="us" style="margin: 0;" <?php if($user['User']['country']=='us'){?>checked="checked"<?php }?>  /> US </td></tr>
         <tr><td><input style="margin:8px;" type="submit" name="submit" value="Save Changes" class="btn btn-primary" onclick="if($('#old_password').val() != '' && $('#passw').val() == ''){$('#passw').addClass('error');return false;}else return true;" /></td></tr>
     </table>
     </form>
