@@ -531,8 +531,15 @@ class DashboardController extends AppController
                 $this->User->id=$this->Session->read('id');
                 $this->User->saveField('name_avatar',$_POST['name']);
                 $this->User->saveField('email',$_POST['email']);
-                if($_POST['password'] != '')
+                if($_POST['password'] != ''){
                 $this->User->saveField('password',md5($_POST['password']));
+                if($this->Session->read('FMember'))
+                {
+                    $fm = $this->User->findById($this->Session->read('id'));
+                    $this->Member->id = $fm['User']['from_member'];
+                    $this->Member->saveField('password',md5($_POST['password']));
+                }
+                }
                 $this->User->saveField('picture',$img);
                 $this->User->saveField('country',$_POST['country']);
                 //die('here');
@@ -668,8 +675,23 @@ class DashboardController extends AppController
         $this->loadModel('User');
         if(isset($_POST['email']))
         $em=$_POST['email'];
-        
+        if($this->Session->read('admin')){
+            
         $c=$this->User->find('count',array('conditions'=>array('email'=>$em,'id !='=>$this->Session->read('id'))));
+        
+        }
+        else        
+        $c=$this->User->find('count',array('conditions'=>array('email'=>$em)));
+        if($this->Session->read('admin')){
+        if($this->Session->read('FMember')){    
+        echo $co = $this->Member->find('count',array('conditions'=>array('email'=>$em,'id !='=>$this->Session->read('FMember'))));
+        //echo "<br/>".$this->Session->read('FMember');
+        //die();
+        }
+        else
+        $co = $this->Member->find('count',array('conditions'=>array('email'=>$em)));
+        }
+        else
         $co=$this->Member->find('count',array('conditions'=>array('email'=>$em,'id !='=>$this->Session->read('id'))));
 
         if($c>0 || $co>0)
