@@ -32,4 +32,33 @@ class ModulesController extends AppController
         
         $this->set('modules',$all);
     }
+    
+    function personal_inspection($title)
+    {
+        $this->loadModel('PersonalInspection');
+        $cond = array('emp_name1'=>$title);
+        if(isset($_GET['from']))
+        {
+            
+            array_push($cond,'DATE(`date_submit`) >= "'.$_GET['from'].'"');
+        }    
+        
+            
+        if(isset($_GET['to']))
+        {
+            array_push($cond, 'DATE(`date_submit`) <="'. $_GET['to'].'"');
+        }    
+        
+        
+
+        $this->set('count',$this->PersonalInspection->find('count',array('conditions'=>$cond)));
+        $this->paginate = array('conditions'=>$cond,'order'=>'date_submit','limit'=>10);
+        $docs = $this->paginate('PersonalInspection');
+        $this->set('docs',$docs);
+        $this->set('title',$title);
+        //var_dump($docs);
+        $this->render('search');
+        
+        
+    }
 }

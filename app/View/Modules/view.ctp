@@ -30,7 +30,7 @@ if($modules)
             $i++;
             if($i==1)
             {
-                echo "<tr><td>Personal Inspection of <strong>".$m['Personal_inspection']['emp_name1']. '</strong> ('. $count.')</td><td><a href="'.$base_url.'/search/personal_inspection/'.urlencode($m['Personal_inspection']['emp_name1']).'" class="btn btn-info">View All</a></td></tr/>';
+                echo "<tr><td>Personal Inspection of <strong>".$m['Personal_inspection']['emp_name1']. '</strong> ('. $count.')</td><td><a href="'.$base_url.'modules/personal_inspection/'.urlencode($m['Personal_inspection']['emp_name1']).'" class="btn btn-info">View All</a></td></tr/>';
             }
         }
     }
