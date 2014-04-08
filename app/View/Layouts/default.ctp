@@ -17,6 +17,8 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 include('inc.php');
+if($this->Session->read('admin'))
+    $module = $this->requestAction($base_url.'/dashboard/get_active_module');
 $mems = $this->requestAction($base_url.'/dashboard/get_email_list');
 $ad = $this->requestAction($base_url.'/dashboard/get_user');
 $jobs = $this->requestAction($base_url.'/dashboard/get_jobs');
@@ -526,6 +528,18 @@ url: '<?php echo $base_url;?>admin/logout'
                     <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>Regular Report','/uploads/stats', array('escape'=>false));?></li>
                   </ul>
                   </li>
+                  <?php
+                  if($module)
+                  {
+                    foreach($module as $mod)
+                    {
+                        ?>
+                        <li>  <?php echo $this->Html->link('<i class="icon-copy"></i>'.$mod['AdminModule']['name'],'/modules/view/'.$mod['AdminModule']['module_slug'],array('escape'=>false));?></li> 
+                        <?php
+                    }
+                  }
+                  ?>
+                  
                 <?php }?>
 				<?php //echo $this->Html->link('Document','/uploads'); ?>
 			</ul>

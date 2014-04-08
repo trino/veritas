@@ -195,6 +195,13 @@ $(function(){
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vehicle Inspection </span><input <?php echo $d;?> type="checkbox" name="show[vehicle_inspection]" value="1" <?php if(isset($admin_doc['AdminDoc']['vehicle_inspection']) && $admin_doc['AdminDoc']['vehicle_inspection']=='1' ) echo "checked='checked'";?>/>
 </td></tr>
         <tr>
+            <td>Modules:</td>
+            <td> <?php 
+            if($module){
+                $i=0;
+                foreach($module as $mod){$i++;?><span><?php if($i!=1){?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php }?><?php echo $mod['AdminModule']['name'];?> </span><input <?php echo $d?> type="checkbox" name="mod[]" value="<?php echo $mod['AdminModule']['id'];?>" <?php if($mod['AdminModule']['status']==1){?>checked="checked"<?php }?> /><?php }}?></td>
+        </tr>
+        <tr>
         <?php
         $logo = $l->find('first');
         ?>

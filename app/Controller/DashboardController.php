@@ -393,12 +393,31 @@ class DashboardController extends AppController
         $this->loadModel('Emailupload');
         $this->loadModel('AdminDoc');
         $this->loadModel('Logo');
+        $this->loadModel('AdminModule');
+        if($this->Session->read('admin'))
+        $this->set('module',$this->AdminModule->find('all'));
         $this->set('l',$this->Logo);
         //var_dump($this->AdminDoc->findById('1'));
         $this->set('admin_doc',$this->AdminDoc->findById('1'));
         
         if(isset($_POST['submit']))
         {
+            $query = $this->AdminModule->find('all'); 
+            foreach($query as $qu)
+            {
+                $this->AdminModule->id = $qu['AdminModule']['id'];
+                $this->AdminModule->saveField('status',0);
+            }
+            if(isset($_POST['mod']))
+            {
+                
+                
+                foreach($_POST['mod'] as $v)
+                {
+                 $this->AdminModule->id = $v;
+                 $this->AdminModule->saveField('status',1);   
+                }
+            }
             if($_POST['logo'] == 'afimac')
             {
                 $logo['afimac'] = 1;
@@ -787,5 +806,12 @@ class DashboardController extends AppController
         }
         else
         return false;
+    }
+    function get_active_module()
+    {
+        $this->loadModel('AdminModule');
+        $module = $this->AdminModule->find('all',array('conditions'=>array('status'=>1)));
+        return $module;
+        
     }
 }
