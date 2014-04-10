@@ -25,7 +25,7 @@ $(function(){
 	<li>
 		<i class="icon-home"></i>
 		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>modules/personal_inspection">Personal Inspection</a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>modules/view/personal_inspection">Personal Inspection</a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
 <div><strong>Filter By</strong></div>
