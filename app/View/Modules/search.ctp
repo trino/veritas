@@ -27,7 +27,7 @@ $(function(){
     
     ?>
 </h3>
-<h3 class="" style="font-size: 19px;" ><em><strong><?php echo $count;?></strong> Results found</em></h3>
+<h3 class="" style="font-size: 19px;" ><em><strong><?php echo $count;?></strong> Result<?php if($count>1)echo "s";?> found</em></h3>
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
@@ -39,7 +39,7 @@ $(function(){
 <form action="<?php echo $base_url;?>modules/personal_inspection/<?php echo $title;?>" method="get" id="datefilter" style="float: left;margin-right:10px;">
     <input type="text" value="" name="from" placeholder="Start Date" style="width: 100px; margin-top:10px;" class="datepicker required" />
     <input type="text" value="" name="to" placeholder="End Date" style="width: 100px; margin-top: 10px;" class="datepicker required" />
-    <input type="hidden" value="<?php if(isset($_GET['search']))echo $_GET['search'];?>" name="search" /> 
+     
     <input type="submit" value="Go" class="btn btn-primary" />
 </form>
 
