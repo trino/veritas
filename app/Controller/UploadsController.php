@@ -565,7 +565,7 @@ class UploadsController extends AppController
             //$arr['location'] = $_POST['location'];
             $arr['title'] = ucfirst($_POST['document_type']);
             if($_POST['document_type']!='personal_inspection')
-            $arr['description'] = $_POST['description'];
+                $arr['description'] = $_POST['description'];
             $arr['draft'] = $_POST['draft'];
             
           
@@ -834,13 +834,34 @@ class UploadsController extends AppController
             }
             elseif($_POST['document_type'] == 'mobile_inspection')
             {
-                $mid = $_POST['mobile_id'];
-                $this->MobileInspection->id = $mid;
-                //var_dump($_POST['mobile_ins']); die();
-                foreach($_POST['mobile_ins'] as $k=>$v)
+                if(isset($_POST['mobile_id']))
+                    $mid = $_POST['mobile_id'];
+                if(isset($mid) && $mid != "")
                 {
-                    
-                    $this->MobileInspection->saveField($k,$v);
+                    $this->MobileInspection->id = $mid;
+                    //var_dump($_POST['mobile_ins']); die();
+                    foreach($_POST['mobile_ins'] as $k=>$v)
+                    {
+                        
+                        $this->MobileInspection->saveField($k,$v);
+                    }
+                }
+                else
+                {
+                    $mob['document_id'] = $eid;
+                    //echo $_POST['mobile_ins']['date'];
+                    if($_POST['mobile_ins']['date']=="")
+                       $_POST['mobile_ins']['date']='0000-00-00';
+                       //die();
+                //var_dump($_POST['mobile_ins']);die();
+                    foreach($_POST['mobile_ins'] as $k=>$v)
+                    {
+                        $mob[$k] = $v;
+                    }
+                    //$this->loadModel('MobileInspection');
+                    $this->MobileInspection->create();
+                    $this->MobileInspection->save($mob);
+                    echo $mid = $this->MobileInspection->id;   
                 }
                 
                 
@@ -859,22 +880,64 @@ class UploadsController extends AppController
             }
             elseif($_POST['document_type'] == 'mobile_vehicle_trunk_inventory')
             {
-              $iid = $_POST['inv_id'];
-              $this->MobileTrunk->id = $iid;
-              foreach($_POST['inventory'] as $k=>$v)
+              if(isset($_POST['inv_id']))
+                $iid = $_POST['inv_id'];
+              
+              if(isset($iid) && $iid!="")
               {
-                $this->MobileTrunk->saveField($k, $v);
-              }  
+                  $this->MobileTrunk->id = $iid;
+                  foreach($_POST['inventory'] as $k=>$v)
+                  {
+                    $this->MobileTrunk->saveField($k, $v);
+                  }  
+              }
+              else
+              {
+                    $inventory['document_id'] = $eid;
+                
+                foreach($_POST['inventory'] as $k=>$v)
+                {
+                    $inventory[$k] = $v;
+                }
+                //var_dump($inventory);
+                
+                //$this->loadModel('MobileTrunk');
+                $this->MobileTrunk->create();
+                $this->MobileTrunk->save($inventory);
+              }
             }
             elseif($_POST['document_type'] == 'mobile_log')
             {
-                $lid = $_POST['log_id'];
                 $this->loadModel('MobileLog');
-                $this->MobileLog->id = $lid;
-                //var_dump($_POST['mobile_ins']);die();
-                foreach($_POST['log'] as $k=>$v)
+                if(isset($_POST['log_id']))
+                    $lid = $_POST['log_id'];
+                
+                if(isset($lid) && $lid !="" )
                 {
-                    $this->MobileLog->saveField($k,$v);
+                    $this->MobileLog->id = $lid;
+                    
+                    //var_dump($_POST['mobile_ins']);die();
+                    foreach($_POST['log'] as $k=>$v)
+                    {
+                        $this->MobileLog->saveField($k,$v);
+                    }
+                }
+                else
+                {
+                    $mob['document_id'] = $eid;
+                    if($_POST['log']['start_date']=="")
+                        $_POST['log']['start_date']="0000-00-00";
+                    if($_POST['log']['end_date']=="")
+                        $_POST['log']['end_date']="0000-00-00";
+                //var_dump($_POST['mobile_ins']);die();
+                    foreach($_POST['log'] as $k=>$v)
+                    {
+                        $mob[$k] = $v;
+                    }
+                    $this->MobileLog->create();
+                    $this->MobileLog->save($mob);
+                    $lid = $this->MobileLog->id;
+
                 }
                 $this->loadModel('MobileNote');
                 $this->MobileNote->deleteAll(array('mobileins_id'=>$lid));
@@ -908,7 +971,7 @@ class UploadsController extends AppController
                 
                 
             }
-            $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$_POST['job'].',%'), array('job_id'=>$_POST['job']),array('job_id LIKE'=>'%,'.$_POST['job'].',%'),array('job_id LIKE'=>'%,'.$_POST['job'])))));
+                $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$_POST['job'].',%'), array('job_id'=>$_POST['job']),array('job_id LIKE'=>'%,'.$_POST['job'].',%'),array('job_id LIKE'=>'%,'.$_POST['job'])))));
                 //var_dump($mails);
                 $aE = $this->User->find('first');
                 $adminEmail = $aE['User']['email'];
@@ -1495,7 +1558,7 @@ class UploadsController extends AppController
                 $subname = '_'.$_POST['training_type'];
 				//debug($arr);exit;
             }
-                        elseif($_POST['document_type'] == 'client_feedback')
+            elseif($_POST['document_type'] == 'client_feedback')
             {
                 $arr['client_feedback'] = $_POST['memo_type'];
                 $subname = '_'.$_POST['memo_type'];
