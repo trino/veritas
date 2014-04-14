@@ -20,7 +20,7 @@ $(function(){
     
     ?>
 </h3>
-<h3 class="" style="font-size: 19px;" ><em><strong><?php echo $count;?></strong> Result<?if($count>1)echo "s";?> found</em></h3>
+<h3 class="" style="font-size: 19px;" ><em><strong><?php echo $count;?></strong> Result<?if($count>1)echo "s";?></em></h3>
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
