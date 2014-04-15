@@ -428,8 +428,8 @@ else{
 <td><textarea name="description"  class="text_area_long" cols="10" rows="5" id="repl" onKeyDown="limitText(this.form.description,this.form.countdown,70);"
 onKeyUp="limitText(this.form.description,this.form.countdown,70);"><?php if(isset($doc['Document']['description'])) echo $doc['Document']['description'];?></textarea>
 <br />
-<font size="1" class="desc_bot">(Maximum characters: 70)<br />
-You have <input readonly type="text" name="countdown" id="countssss" style="background:none; border:0; padding:0; margin:0; text-align:center; border-radius:none; width:30px; box-shadow:none;" value="70" /> characters left.</font><br />
+<!--<font size="1" class="desc_bot">(Maximum characters: 70)<br />
+You have <input readonly type="text" name="countdown" id="countssss" style="background:none; border:0; padding:0; margin:0; text-align:center; border-radius:none; width:30px; box-shadow:none;" value="70" /> characters left.</font><br />-->
 </td></tr>
 <!--<tr><td><b>Description</b></td><td><div class="right"><textarea cols="35" name="description" class="required"></textarea></div></td></tr>-->
 
@@ -581,6 +581,7 @@ $(function(){
     
     $('.draft').click(function(){
        $('.draftval').val("1");
+       $('#table input').each(function(){$(this).removeClass('required')});
        $('.activity_desc').removeClass('required');
        $('.activity_date').removeClass('required');
        $('.activity_time').removeClass('required');
@@ -908,6 +909,7 @@ $(function(){
 });
 function limitText(limitField, limitCount, limitNum)
 {
+    /*
     if (limitField.value.length > limitNum) 
     {
         limitField.value = limitField.value.substring(0, limitNum);
@@ -915,6 +917,6 @@ function limitText(limitField, limitCount, limitNum)
      else
     {
         limitCount.value = limitNum - limitField.value.length;
-    }
+    }*/
 }
 </script>

@@ -854,6 +854,7 @@ class UploadsController extends AppController
                        $_POST['mobile_ins']['date']='0000-00-00';
                        //die();
                 //var_dump($_POST['mobile_ins']);die();
+                    $this->MobileInspection->deleteAll(array('document_id'=>$eid));
                     foreach($_POST['mobile_ins'] as $k=>$v)
                     {
                         $mob[$k] = $v;
@@ -861,7 +862,7 @@ class UploadsController extends AppController
                     //$this->loadModel('MobileInspection');
                     $this->MobileInspection->create();
                     $this->MobileInspection->save($mob);
-                    echo $mid = $this->MobileInspection->id;   
+                    $mid = $this->MobileInspection->id;   
                 }
                 
                 
@@ -894,7 +895,7 @@ class UploadsController extends AppController
               else
               {
                     $inventory['document_id'] = $eid;
-                
+                $this->MobileTrunk->deleteAll(array('document_id'=>$eid));
                 foreach($_POST['inventory'] as $k=>$v)
                 {
                     $inventory[$k] = $v;
@@ -925,10 +926,11 @@ class UploadsController extends AppController
                 else
                 {
                     $mob['document_id'] = $eid;
-                    if($_POST['log']['start_date']=="")
+                    $this->MobileLog->deleteAll(array('document_id'=>$eid));
+                    /*if($_POST['log']['start_date']=="")
                         $_POST['log']['start_date']="0000-00-00";
                     if($_POST['log']['end_date']=="")
-                        $_POST['log']['end_date']="0000-00-00";
+                        $_POST['log']['end_date']="0000-00-00";*/
                 //var_dump($_POST['mobile_ins']);die();
                     foreach($_POST['log'] as $k=>$v)
                     {
