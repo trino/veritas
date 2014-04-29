@@ -424,7 +424,7 @@ class MembersController extends AppController
                 $emails->subject("New Account Created");
                 $emails->emailFormat('html');
                 $message = "Hi there,<br/>
-                            A new account has been created for you in veritas.<br/>
+                            A new account has been created for you in Veritas.<br/>
                             Your Login Detail:<br/>
                             Username:".$_POST['email']."<br/>
                             Password:".$_POST['password']."<br/>

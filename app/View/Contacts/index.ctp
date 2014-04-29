@@ -146,7 +146,7 @@ if($docs)
             <td><a href="<?php echo $base_url.'contacts/edit/'.$d['Key_contact']['id'];?>" class="btn btn-primary">Edit</a> | <?php echo $this->Html->link(
 					'Delete',
 					'/contacts/delete/'.$d['Key_contact']['id'],
-                    array('class'=>'btn btn-danger'),"Are you sure deleting this Contact?"
+                    array('class'=>'btn btn-danger'),"Delete this Contact?"
 				)." ";?></td>
             <?php if($cc==1){?>    
             <td rowspan="<?php echo count($docs);?>">

@@ -116,7 +116,7 @@
                 $this->Email->from    = $this->Session->read('email');
                 $this->Email->to = 'info@trinoweb.com';
                 $this->Email->subject = "New Job Added";
-                $message="Hi there ! A new job has been added by".$this->Session->read('company').". Please Login to see the message";
+                $message="Hi there! A new job has been added by".$this->Session->read('company').". Please Login to see the message";
                 $this->Email->send($message);
                 $this->redirect('dashboard');
             }
