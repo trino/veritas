@@ -90,7 +90,7 @@ url: '<?php echo $base_url;?>admin/logout'
                    'type':'post',
                    'url' : 'dashboard/changelang/'+lang,
                    'success':function(){
-                            window.top.reload();
+                            location.reload();
                    } 
             
            })
