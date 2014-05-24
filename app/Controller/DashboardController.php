@@ -336,7 +336,7 @@ class DashboardController extends AppController
                 //$this->Email->subject = $_POST['subject'];
                 $message="You have received a message from ".$sender." on Veritas. Please login to see the message";
                 $emails->send($message);
-                $this->Session->setFlash('Message Send Successfully.');
+                $this->Session->setFlash('Message Sent Successfully.');
             }
             
         }

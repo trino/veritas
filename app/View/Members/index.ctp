@@ -128,7 +128,7 @@ foreach($mem as $m)
 			echo " " . $this->Html->link(
 					'Delete',
 					'/members/delete/'.$m['Member']['id'],
-					array('class'=>'btn btn-primary'),"Are you sure deleting this member?"
+					array('class'=>'btn btn-primary'),"Delete member?"
 				); 
 			echo " " . $this->Html->link(
 					'View',

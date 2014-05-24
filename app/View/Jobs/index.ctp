@@ -157,7 +157,7 @@ foreach($job as $j)
 			?> <?php echo $this->Html->link(
 					'Delete',
 					'/jobs/delete/'.$j['Job']['id'],
-                    array('class'=>'btn btn-danger'),"Are you sure deleting this job?"
+                    array('class'=>'btn btn-danger'),"Delete job?"
 				)." ";
 		}
         if($this->Session->read('avatar'))
