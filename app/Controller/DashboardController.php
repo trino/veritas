@@ -1,11 +1,12 @@
 <?php
 class DashboardController extends AppController
 {
-    var $components = array('Email');
+    var $components = array('Email','Language');
     
     public function beforeFilter()
     {
         //parent::__construct();
+        
          if($this->Session->read('avatar') || $this->Session->read('user'))
         {
             //die('here');
@@ -16,8 +17,29 @@ class DashboardController extends AppController
             $this->redirect('/admin');
         }
         
+        if(!$this->Session->read('lang'))
+        {
+            $this->Session->write('lang','eng');
+        }
+        
     }
-    
+    public function changelang($lang)
+    {
+        $this->Session->write('lang',$lang);
+        die();
+        
+    }
+    public function translate($field,$lang='fre')
+    {
+        $lang = $this->Session->read('lang');
+        $field = strtolower(str_replace(" ","_",$field));
+        $this->{'Convert'} = ClassRegistry::init('Convert');
+        
+         $st = $this->Convert->findByField($field);
+        return $st['Convert'][$lang];
+        
+        
+    }
     function upload()
     {
         
@@ -69,6 +91,7 @@ class DashboardController extends AppController
         if($this->Session->read('avatar') || $this->Session->read('user'))
         {
             //die('here');
+            
         }
         else
         {
@@ -372,7 +395,7 @@ class DashboardController extends AppController
             $base_url = 'http://'.$_SERVER['SERVER_NAME'];
             if($_SERVER['SERVER_NAME'] == 'localhost')
             $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';
-            $message="You have received an message from ".$email.". <br/>".$message;
+            $message="You have received a message from ".$email.". <br/>".$message;
             if($emails->send($message))
             {
                 $this->Session->setFlash("Message Successfully Sent.");

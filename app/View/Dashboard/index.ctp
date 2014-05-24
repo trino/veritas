@@ -17,10 +17,13 @@ $(function(){
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
-		<a href="<?=$base_url;?>">Home</a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>"><?php echo $this->requestAction('dashboard/translate/Home');?></a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
-<?php if($this->Session->read('admin')){?>
+<?php if($this->Session->read('admin')){
+    
+    //echo $this->requestAction('dashboard/translate/templates');
+    ?>
 <div class="documentsDashboard">
 
 <?php if($this->Session->read('view')=='1') { ?>
@@ -38,10 +41,10 @@ $(function(){
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $contract;?></div>										
-				<div class="desc">Contracts</div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/Contracts');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $contract;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $contract;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -59,10 +62,10 @@ $(function(){
 			</div>									
 			<div class="details">										
 				<div class="number"><?=$evidence;?></div>										
-				<div class="desc">Evidence</div>								
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/Evidence');?></div>								
 			</div>								
 			<div class="more2">				
-				View All <?=$evidence;?> Documents <i class="icon-arrow-right m-icon-white"></i>			
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?=$evidence;?> Documents <i class="icon-arrow-right m-icon-white"></i>			
 			</div>											
 		</a>			
 		<div class="dusk2"></div>					
@@ -83,11 +86,11 @@ $(function(){
 		<?=$template;?>
 		</div>
 		<div class="desc">									
-		Templates
+		<?php echo $this->requestAction('dashboard/translate/Templates');?>
 		</div>
 		</div>
 		<div class="more2">
-		View All <?=$template;?> Documents <i class="icon-arrow-right m-icon-white"></i>
+		<?php echo $this->requestAction('dashboard/translate/View All');?> <?=$template;?> Documents <i class="icon-arrow-right m-icon-white"></i>
 		</div>	
 		</a>
 		<div class="dusk2"></div>
@@ -105,10 +108,10 @@ $(function(){
 	</div>
 	<div class="details">
 	<div class="number"><?=$report;?></div>
-	<div class="desc">Report</div>
+	<div class="desc"><?php echo $this->requestAction('dashboard/translate/Report');?></div>
 	</div>
 	<div class="more2">
-	View All <?=$report;?> Documents <i class="icon-arrow-right m-icon-white"></i>
+	<?php echo $this->requestAction('dashboard/translate/View All');?> <?=$report;?> Documents <i class="icon-arrow-right m-icon-white"></i>
 	</div>	
 	</a>
 	<div class="dusk2"></div>
@@ -125,10 +128,10 @@ $(function(){
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $siteOrder;?></div>										
-				<div class="desc">Site Order</div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/Site Order');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $siteOrder;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All')?> <?php echo $siteOrder;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -144,10 +147,10 @@ $(function(){
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $training;?></div>										
-				<div class="desc">Training</div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/Training');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $training;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $training;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -163,10 +166,10 @@ $(function(){
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $employee;?></div>										
-				<div class="desc">Employee</div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/Employee');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $employee;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $employee;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -181,10 +184,10 @@ $(function(){
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $KPIAudits;?></div>										
-				<div class="desc">KPI Audits</div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/KPI Audits');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $KPIAudits;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $KPIAudits;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -200,10 +203,10 @@ $(function(){
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $afimac_intel;?></div>										
-				<div class="desc">AFIMAC Intel</div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/AFIMAC Intel');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $afimac_intel;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $afimac_intel;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -219,10 +222,10 @@ $(function(){
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $news_media;?></div>										
-				<div class="desc">News/Media</div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/News/Media');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $news_media;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $news_media;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -238,10 +241,10 @@ $(function(){
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $personal_inspection;?></div>										
-				<div class="desc">Personal Inspection</div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/Personal Inspection');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $personal_inspection;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $personal_inspection;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -257,10 +260,10 @@ $(function(){
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $mobile_inspection;?></div>										
-				<div class="desc">Mobile Inspection</div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/Mobile Inspection');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $mobile_inspection;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $mobile_inspection;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -276,10 +279,10 @@ $(function(){
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $mobile_log;?></div>										
-				<div class="desc">Mobile Log</div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/Mobile Log');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $mobile_log;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $mobile_log;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -295,10 +298,10 @@ $(function(){
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $inventory;?></div>										
-				<div class="desc">Mobile Vehicle<br /> Trunk Inventory</div>									
+				<div class="desc"> <?php echo $this->requestAction('dashboard/translate/Mobile Vehicle Trunk Inventory');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $inventory;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $inventory;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -314,10 +317,10 @@ $(function(){
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $vehicle_inspection;?></div>										
-				<div class="desc">Vehicle Inspection</div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/Vehicle Inspection');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $vehicle_inspection;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $vehicle_inspection;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -333,15 +336,15 @@ $(function(){
 {?>
 
 <div id="table">
-<h2><?php echo ($this->Session->read('admin'))? 'Dashboard' : 'Document Log';?></h2>
+<h2><?php echo ($this->Session->read('admin'))? $this->requestAction('dashboard/translate/Dashboard') : $this->requestAction('dashboard/translate/Document Log');?></h2>
 <table>
     <tr>
         <th><?php echo $this->Paginator->sort('date','Date'); ?></th>
         
-        <th>User Name</th>
-        <th>Full Name</th>
-        <th>Event Type</th>
-        <th>Event</th>
+        <th><?php echo $this->requestAction('dashboard/translate/User Name');?></th>
+        <th><?php echo $this->requestAction('dashboard/translate/Full Name');?></th>
+        <th><?php echo $this->requestAction('dashboard/translate/Event Type');?></th>
+        <th><?php echo $this->requestAction('dashboard/translate/Event');?></th>
     </tr>
 
 <?php
