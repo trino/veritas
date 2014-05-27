@@ -1,13 +1,11 @@
 <tr class="mobilelog_more" style="display: none;">
     <td colspan="2" style="padding: 0;">
         <table class="table mobilelog_table" style="border-left: none!important;border-right: none!important;">
-            
             <tr>
                 <td style="width:100px!important;border-top:none;"><strong>Mobile Guard:</strong></td><td style="border-top:none;"><input type="text"  name="log[guard]" class="" value="<?php if(isset($moblog) && $moblog['MobileLog']['guard']){echo $moblog['MobileLog']['guard'];}?>" /> </td>
                 <td style="width:100px!important;border-top:none;"><strong>Shift:</strong></td><td style="border-top:none;"><input type="text" class="time " name="log[shift_from]" value="<?php if(isset($moblog) && $moblog['MobileLog']['shift_from']){echo $moblog['MobileLog']['shift_from'];}?>" placeholder="From" style="width: 150px;"  />
                     <input type="text" class="time " name="log[shift_to]" value="<?php if(isset($moblog) && $moblog['MobileLog']['shift_to']){echo $moblog['MobileLog']['shift_to'];}?>" placeholder="To" style="width: 150px;" />
                 </td>
-                
             </tr>
             <?php if(isset($moblog))
             {?>
@@ -19,7 +17,6 @@
             </tr>
             <tr>
                 <td colspan="4">
-                
                 <div style="width: 360px;margin:10px auto;">
                     <table class="table table-bordered" style="border-left: none!important;border-right: 1px solid #e5e5e5!important;">
                         <tr>
@@ -58,30 +55,22 @@
                     </table>
                 </div>
                 </td>
-                
-            </tr>
-            
-            
-        </table>
+               </tr>
+            </table>
         <table class="table addmoretab1 mobilelog_table" style="border-left: none!important;border-right: none!important;">
             <tr><td colspan="5"><strong>Mobile / Site Check In</strong></td></tr>
             <tr><td><strong>Arrival</strong></td><td><strong>Depart</strong></td><td><strong>Site Adddress</strong></td><td><strong>Guard Onsite</strong></td><td></td></tr>
             <?php if(isset($mem_site)){
-            
             foreach($mem_site as $action)
             {
-        ?>
-                
-                <tr><td><input type="text" class="time" name="arrival[]" value="<?php echo $action['MobileSite']['arrival'];?>"/></td>
+        ?>      <tr><td><input type="text" class="time" name="arrival[]" value="<?php echo $action['MobileSite']['arrival'];?>"/></td>
                 <td><input type="text" name="depart[]" class="time" value="<?php echo $action['MobileSite']['depart'];?>"/></td>
                 <td><input type="text" name="siteaddress[]" class="time" value="<?php echo $action['MobileSite']['siteaddress'];?>"/></td>
                 <td><input type="text" name="guardonsite[]" class="time" value="<?php echo $action['MobileSite']['guardonsite'];?>"/></td>
                 <td><a href='javascript:void(0)' onclick='$(this).closest("tr").remove();' class='btn btn-danger delete'>Delete</a></td></tr>
-                
         <?php
             }
-            
-        }?>
+         }?>
             <tr class="mobtime">
                 <td style="border-top:none;"><input type="text" name="arrival[]" class="time" /></td>
                 <td style="border-top:none;"><input type="text" name="depart[]" class="time" /></td>
@@ -90,8 +79,6 @@
                 <td style="border-top:none;"><input type="button" value="+Add More" id="addcheck" class="btn btn-primary"/></td>
             </tr>
         </table>
-        
-
         <table class="table mobilelog_table">
         <tr><td class="wdth" width="38%"><strong>Please Remember To Get Receipt For Gas At Petro Canada:</strong> </td><td ><input type="text" name="log[receipt]" value="<?php if(isset($moblog) && $moblog['MobileLog']['receipt']){echo $moblog['MobileLog']['receipt'];}?>"/></td></tr>
         </table>
@@ -102,43 +89,30 @@
         <td width="9%"><input type="text" name="log[total]" value="<?php if(isset($moblog) && $moblog['MobileLog']['total']){echo $moblog['MobileLog']['total'];}?>" /></td>
         </tr>
         </table>
-        
         <table class="table table-bordered addmoretab2 mobilelog_table" style="border-left: none!important;border-right: none!important;">
         <thead ><th width="10%"><strong>Time</strong></th><th colspan="2"><strong>Special Notes (Guard Request etc.)</strong></th></thead>
-
         <?php if(isset($mem_note)){
-         
-            foreach($mem_note as $action)
-            {
-        ?>
-                
-                <tr><td><input type="text" class="time" name="mobtime[]" value="<?php echo $action['MobileNote']['time'];?>"/></td>
+         foreach($mem_note as $action)
+            {?>
+        <tr><td><input type="text" class="time" name="mobtime[]" value="<?php echo $action['MobileNote']['time'];?>"/></td>
                 <td><textarea name="mobdetail[]" ><?php echo $action['MobileNote']['detail'];?></textarea></td>
                 <td><a href='javascript:void(0)' onclick='$(this).closest("tr").remove();' class="delete btn btn-danger">Delete</a></td></tr>
-                
-        <?php
+       <?php
             }
-            
         }?>
         <tr class="mobtime" >
             <td style="border-top:none;"><input type="text" class="time" name="mobtime[]" /></td>
             <td style="border-top:none;"><textarea name="mobdetail[]" style="width:500px;height:150px"></textarea></td>
             <td style="border-top:none;"><input type="button" class="btn btn-primary" id="addmore1" value="+Add More"/></td>
         </tr >
-        
-        
         </table>
-
         <table class="mobilelog_table" style="border-left: none!important;border-right: none!important;">
         <tr><td width="5%"><strong>Sign</strong></td><td><input type="text" name="log[sign]" value="<?php if(isset($moblog) && $moblog['MobileLog']['sign']){echo $moblog['MobileLog']['sign'];}?>" /></td><td></td></tr>
-
         </table>    
     </td>
 </tr>
-
 <script>
 $(function(){
-    
     $('.time').timepicker(); 
     $('#addcheck').click(function(){
        $('.addmoretab1').append('<tr><td><input type="text" class="time" name="arrival[]" /></td><td><input type="text" class="time" name="depart[]" /></td><td><input type="text" name="siteaddress[]" /></td><td><input type="text" name="guardonsite[]" /></td><td><a href="javascript:void(0)" onclick="$(this).closest(\'tr\').remove();" class="btn btn-danger">Delete</a></td></tr>'); 
@@ -148,26 +122,18 @@ $(function(){
        $('.addmoretab2').append("<tr><td><input type='text' class='time' name='mobtime[]' /></td><td><textarea name='mobdetail[]' style='width:500px;height:150px'></textarea></td><td><a href='javascript:void(0)' onclick='$(this).closest(\"tr\").remove();' class='btn btn-danger'>Delete</a></td></tr>"); 
          $('.time').timepicker();
     });
-    
-     <?php if($this->params['action'] == 'view_detail' ){ ?> 
+    <?php if($this->params['action'] == 'view_detail' ){ ?> 
     $('.mobilelog_more').show();
-    
     $('.mobilelog_table td').each(function(){
-        
-        if($(this).find('input').length >0 || $(this).find('textarea').length>0){
+     if($(this).find('input').length >0 || $(this).find('textarea').length>0){
             var vaz = $(this).find('input').val();
             if($(this).find('textarea').length>0){
                 var tex = $(this).find('textarea').val();
                 $(this).html(tex);
             }
-            
-            
-            $(this).html(vaz);
+       $(this).html(vaz);
         }
-        
-        
     });
-    
     $('.mobtime , .delete').hide();
    <?php } ?> 
 });

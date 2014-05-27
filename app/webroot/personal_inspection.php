@@ -152,7 +152,6 @@
                 $rate = 1;
                 ?>
                 <strong class="overall"><?php echo $rate;?>/5</strong><input type="hidden" class="overallr" name="overall_rating" value="<?php echo $rate;?>/5" /></td>
-                
             </tr>
             </tbody>
             <tbody style="border-top: 1px solid #d5d5d5;">
@@ -170,7 +169,6 @@
             </tr>
             <tr>
                 <td colspan="4"><strong>Verification of review</strong></td>
-                
             </tr>
             <tr>
                  <?php
@@ -203,15 +201,10 @@
                 <td>Date : </td><td><input type="text" name="date_verify" value="<?php echo $df;?>" class="date_verify" /></td>
             </tr>
             <tr style="border-bottom: none;">
-                
                 <td>Employee Name : </td><td><input type="text" name="emp_name2" value="<?php echo $en2;?>" class="" /></td>
                 <td>Date : </td><td><input type="text" name="date_verify2" value="<?php echo $df2;?>" class="date_verify" /></td>
             </tr>
             </tbody>
-            
-        </table>
-    
+          </table>
     </td>
-    
 </tr>
-

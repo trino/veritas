@@ -126,7 +126,6 @@ $or = '';
                 <td>License Plate Number</td><td><input type="text" name="plate" value="<?php echo $p;?>" /></td>
                 <td>Start KMs</td><td><input type="text" name="start_km" style="width:100px;" value="<?php echo $sk;?>" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Finish KMs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="finish_km" style="width:100px;" value="<?php echo $fk;?>" /></td>
             </tr>
-            
         </table>
         <table class="checkboxes">
             <tr>
@@ -146,7 +145,6 @@ $or = '';
             </tr>
             <tr>
                 <td colspan="4"><input type="checkbox" name="ownership" value="1" <?php if($o==1){?>checked="checked"<?php }?> /> Ownership & Insurance</td>
-                
             </tr>
         </table>
         <table>
@@ -155,19 +153,16 @@ $or = '';
             </tr>
             <tr>
                 <td>
-                    
                     <img src="<?php echo $base_url;?>img/front.jpg" usemap="#frontmap" class="map" />
                     <map name="frontmap" class="f">
                         <area shape="rect" id="star_1" coords="0,0,100,109" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
                         <area shape="rect" id="star_2" coords="100,0,200,109" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
                         <area shape="rect" id="star_3" coords="200,0,300,109" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
                         <area shape="rect" id="star_4" coords="300,0,400,109" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
-                        
                         <area shape="rect" id="star_5" coords="0,109,100,218" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
                         <area shape="rect" id="star_6" coords="100,109,200,218" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
                         <area shape="rect" id="star_7" coords="200,109,300,218" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
                         <area shape="rect" id="star_8" coords="300,109,400,218" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
-                        
                         <area shape="rect" id="star_9" coords="0,218,100,327" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
                         <area shape="rect" id="star_10" coords="100,218,200,327" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
                         <area shape="rect" id="star_11" coords="200,218,300,327" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
@@ -175,7 +170,6 @@ $or = '';
                     </map>
                     <input type="hidden" name="front" value="" class="front" value="<?php echo $f;?>" />
                     <div class="firsthidden" <?php if(!$first_hi){?>style="display: none;"<?php }?>>
-                                        
                     </div>
                 </td>
                 <td>
@@ -185,22 +179,17 @@ $or = '';
                         <area shape="rect" id="star2_2" coords="100,0,200,109" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
                         <area shape="rect" id="star2_3" coords="200,0,300,109" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
                         <area shape="rect" id="star2_4" coords="300,0,400,109" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
-                        
                         <area shape="rect" id="star2_5" coords="0,109,100,218" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
                         <area shape="rect" id="star2_6" coords="100,109,200,218" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
                         <area shape="rect" id="star2_7" coords="200,109,300,218" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
                         <area shape="rect" id="star2_8" coords="300,109,400,218" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
-                        
                         <area shape="rect" id="star2_9" coords="0,218,100,327" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
                         <area shape="rect" id="star2_10" coords="100,218,200,327" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
                         <area shape="rect" id="star2_11" coords="200,218,300,327" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
                         <area shape="rect" id="star2_12" coords="300,218,400,327" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
                     </map>
-                    
                     <input type="hidden" name="back" value="" class="back" value="<?php echo $b;?>" />
-                    
                     <div class="secondhidden" <?php if(!$second_hi){?>style="display: none;"<?php }?>>
-                       
                     </div>
                 </td>
             </tr>
@@ -215,9 +204,6 @@ $or = '';
                         <area shape="rect" id="star3_4" coords="300,0,400,115" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />                        
                         <area shape="rect" id="star3_5" coords="400,0,500,115" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
                         <area shape="rect" id="star3_6" coords="500,0,600,115" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
-                        
-                        
-                        
                         <area shape="rect" id="star3_7" coords="0,115,100,230" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
                         <area shape="rect" id="star3_8" coords="100,115,200,230" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
                         <area shape="rect" id="star3_9" coords="200,115,300,230" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
@@ -225,12 +211,9 @@ $or = '';
                         <area shape="rect" id="star3_11" coords="400,115,500,230" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
                         <area shape="rect" id="star3_12" coords="500,115,600,230" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
                     </map>
-                    
                     <input type="hidden" name="side" value="" class="side" value="<?php echo $s;?>" />
                     <div class="thirdhidden" <?php if(!$third_hi){?>style="display: none;"<?php }?>>
-                        
                     </div>
-                    
                     </div>
                     <div style="float: left;margin-left:20px;margin-top:30px">
                         <strong>Notes for Dents and Scratches<br /></strong>
@@ -238,15 +221,12 @@ $or = '';
                     </div>
                     <div class="clear"></div>
                 </td>
-                
             </tr>
-
             <tr>
                 <td colspan="2">Operation Review : <input type="text" name="operation_review" value="<?php echo $or;?>" /></td>                
             </tr>
         </table>        
     </td>
-    
 </tr>
 <script>
 $(function(){
@@ -272,10 +252,8 @@ $(function(){
                                             <?php
                                         } 
                                         ?> 
-                                        
                                     });
-                                    
-                                    <?php
+                                   <?php
                                 }
                                 else
                                 if($v['Vehicle_note']['image']=='second')
@@ -294,9 +272,7 @@ $(function(){
                                             <?php
                                         } 
                                         ?> 
-                                        
                                     });
-                                    
                                     <?php
                                 }
                                 else
@@ -316,16 +292,12 @@ $(function(){
                                             <?php
                                         } 
                                         ?> 
-                                        
                                     });
-                                    
-                                    <?php
+                                   <?php
                                 }
                             }
                         }
-                        ?>
-        
+                        ?>    
     },3000);
-    
 });
 </script>

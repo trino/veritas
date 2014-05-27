@@ -16,9 +16,7 @@ $(function(){
 });
 </script>
 <div class="loss_p" >
-
 <h2>Loss Prevention Incident Report</h2>
-
 <table class="table table-bordered loss" style="width: 100%;">
     <tr><th colspan="6"><strong>STORE INFORMATION</strong></th></tr>
     <tr><td>INCIDENT TITLE<br />
@@ -107,8 +105,7 @@ $(function(){
         <input type="text" name="subject[other_name]" value="<?php if(isset($subject)) echo $subject['SubjectInfo']['other_name'];?>" style="width: 500px!important;" /></td>
         <td colspan="2">RELATED CASE NUMBER<br />
         <input type="text" name="subject[case_no]" value="<?php if(isset($subject)) echo $subject['SubjectInfo']['case_no'];?>" style="width: 200px!important;" /></td></tr>
-    
-</table>
+    </table>
 <table class="loss table table-bordered">
 <tr><th colspan="8">LOSS PREVENTION SPECIALIST INFORMATION</th></tr>
 <tr><td>LAST NAME<br />
@@ -152,7 +149,6 @@ $(function(){
     <td colspan="2">OTHERS INVOLVED<br />
     <input type="text" value="<?php if(isset($special)) echo $special['SpecialistInfo']['others'];?>" name="specialist[others]" /></td></tr>
 </table>
-
 <table class="table table-bordered loss3">
 <tr><th colspan="4">SUBJECT POSSESSIONS</th></tr>
 <tr><td>CASH ON SUBJECT<br />
@@ -172,7 +168,6 @@ $(function(){
     <td colspan="2">ADDITIONAL ITEMS IN POSESSIONS<br />
     <input type="text" value="<?php if(isset($subject)) echo $subject['SubjectInfo']['add_item'];?>" name="subject[add_item]" style="width: 335px!important;" /></td></tr>
 </table>
-
 <table class="table table-bordered">
 <tr><th colspan="3">PRODUCT DISPOSITION</th></tr>
 <tr><td>PHOTOGRAPHED<br />
@@ -185,7 +180,6 @@ $(function(){
     <input type="radio" name="product[retained]" value="yes" <?php if(isset($product) && $product['ProductDInfo']['retained']=='yes') echo "checked='checked'";?> style="margin: 0 5px;" /> Yes 
     <input type="radio" name="product[retained]" value="no" <?php if(isset($product) && $product['ProductDInfo']['retained']=='no') echo "checked='checked'";?> style="margin: 0 5px;" /> No</td></tr>
 </table>
-
 <table class="table table-bordered loss">
 <tr><th colspan="6">POLICE DEPARTMENT INFORMATION</th></tr>
 <tr><td>POLICE OFFICER NAME<br />
@@ -207,7 +201,6 @@ $(function(){
     <td>LEFT<br />
     <input type="text" value="<?php if(isset($police)) echo $police['PoliceInfo']['left'];?>" name="police[left]" /></td></tr>
 </table>
-
 <table class="table table-bordered loss">
 <tr><th colspan="6">JUVENILES RELEASE TO PARENT / GUARDIAN OR AUTHORIZED ADULT ONLY</th></tr>
 <tr><td>LAST NAME OF ADULT<br />
@@ -229,7 +222,6 @@ $(function(){
     <td>LEFT<br />
     <input type="text" value="<?php if(isset($juv)) echo $juv['JuvenileInfo']['left'];?>" name="juvenile[left]" /></td></tr>
 </table>
-
 <table class="table table-bordered loss">
 <tr><th>CIVIL DEMAND NOTICE</th></tr>
 <tr><td>GIVEN TO SUBJECT 
@@ -238,7 +230,6 @@ $(function(){
 <tr><td>IF NO, WHY NOT? 
     <textarea style="width: 500px;" name="notice[desc]"><?php if(isset($notice)) echo $notice['NoticeInfo']['desc'];?></textarea></td></tr>
 </table>
-
 <table class="table table-bordered loss">
     <tr><th colspan="5">ADDITIONAL INCIDENT INFORMATION</th></tr>
     <tr><td>ORC 
@@ -255,13 +246,11 @@ $(function(){
         <input type="radio" name="additional[weapon_used]" value="no" <?php if(isset($add) && $add['AdditionalInfo']['weapon_used']=='no') echo "checked='checked'";?> style="margin: 0 5px;" /> No</td>
         <td></td></tr>
 </table>
-
 <table class="table table-bordered loss">
 <tr><th colspan="8">ITEM DESCRIPTION</th></tr>
 <tr><td colspan="6" style="border-top:none;border-left:none;"></td>
     <td colspan="2" style="border-top: none;">CASE<br />
     <input type="text" name="item_case" value="<?php if(isset($item)) echo $item[0]['ItemInfo']['case'];?>" /></td></tr>
-    
 <tr><td>#</td><td>ITEM DESCRIPTION</td><td>SKU NUMBER</td><td>PRICE $</td><td>#</td><td>ITEM DESCRIPTION</td><td>SKU NUMBER</td><td>PRICE $</td></tr>
 <tr><td>1<input type="hidden" name="item[id][]" value="1" /></td>
     <td><input type="text" name="item[desc][]" value="<?php if(isset($item)) echo $item[0]['ItemInfo']['desc'];?>"  /></td>
@@ -298,11 +287,8 @@ $(function(){
     <tr><td colspan="4" style=""></td><td colspan="2" style=""></td><td>TOTAL</td>
     <td><input type="text" value="" /></td></tr>
 </table>
-
 <table class="table table-bordered">
 <tr><th>NARRATIVE</th></tr>
 <tr><td><textarea  name="additional[narrative]" style="width: 95%;height: 500px;"><?php if(isset($add)) echo $add['AdditionalInfo']['narrative'];?> </textarea></td></tr>
 </table>
-
-
 </div>

@@ -159,13 +159,9 @@ function remove_youtube()
 }
 </script>
 <script src="<?php echo $base_url;?>js/highscript.js"></script>
-
-
 <form id="my_form" action="" method="post" enctype="multipart/form-data" onsubmit="return vehicle_test();">
-
 <div id="table">
 <table>
-
 <tr style="display: none;"><td style="width:140px;"><b>Location</b></td><td><div class="right"><input type="text" name="location" class="" /></div></td></tr>
 <tr><td><b>Document Type</b></td>
 <td><div class="right">
@@ -213,7 +209,6 @@ function remove_youtube()
     <?php if($admin_doc['AdminDoc']['vehicle_inspection']=='1' && ((isset($canupdate['Canupload']['vehicle_inspection'])&& $canupdate['Canupload']['vehicle_inspection']=='1') || $this->Session->read('admin'))){?>
     <option value="vehicle_inspection" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='vehicle_inspection') echo "selected='selected'"?>>Vehicle Inspection</option>
     <?php }?>
-    
 </select>
 </div></td>
 </tr>
@@ -250,9 +245,7 @@ include('vehicle_inspection.php');
     <select name="training_type" class="required">
         <option value="">Select Training Options</option>
         <option value="Health & Safety Manuals" <?php if(isset($doc['Document']['training_type']) && $doc['Document']['training_type']=='Health & Safety Manuals') echo "selected='selected'"?>>Health & Safety Manuals</option>
-        
-        
-    </select> 
+     </select> 
 </td>
 </tr>
 </table>
@@ -269,7 +262,6 @@ include('vehicle_inspection.php');
         <option value="Job Descriptions"  <?php if(isset($doc['Document']['employee_type']) && $doc['Document']['employee_type']=='Job Descriptions') echo "selected='selected'"?>>Job Descriptions</option>
         <option value="Drug Free Policy" <?php if(isset($doc['Document']['employee_type']) && $doc['Document']['employee_type']=='Drug Free Policy') echo "selected='selected'"?>>Drug Free Policy</option>
         <option value="Schedules" <?php if(isset($doc['Document']['employee_type']) && $doc['Document']['employee_type']=='Schedules') echo "selected='selected'"?>>Schedules</option>
-        
     </select> 
 </td>
 </tr>
@@ -309,7 +301,6 @@ include('vehicle_inspection.php');
 <table>
 <tr><td><b>Evidence Type</b></td>
 <td>
-<?php //var_dump($doc['Document']); ?>
 <select name="evidence_type" class="required">
     <option value="" >Choose evidence type</option>
     <option value="Incident Report" <?php if(isset($doc['Document']['evidence_type']) && $doc['Document']['evidence_type']=='Incident Report') echo "selected='selected'" ; ?>>Incident Report</option>
@@ -320,7 +311,6 @@ include('vehicle_inspection.php');
     <option value="Average Picket Count" <?php if (isset($doc['Document']['evidence_type']) && $doc['Document']['evidence_type']=='Average Picket Count') echo "selected='selected'" ; ?>>Average Picket Count</option>
     <option value="Victim Statement" <?php if (isset($doc['Document']['evidence_type']) && $doc['Document']['evidence_type']=='Victim Statement')echo "selected='selected'"; ?>>Victim Statement</option>
     <option value="Miscellaneous" <?php if (isset($doc['Document']['evidence_type']) && $doc['Document']['evidence_type']=='Miscellaneous')echo "selected='selected'" ; ?>>Miscellaneous</option>
-        
 </select>
 </td>
 </tr>
@@ -331,12 +321,9 @@ include('vehicle_inspection.php');
 </td></tr>
 <tr class="extra_memo" style="display: none;">
 <td colspan="2">
-
 <table>
-
 <thead><th>Report Type</th>
 <th>
-<?php //var_dump($ac);?>
 <select name="report_type" class="required reporttype">
     <option value="">Select report type</option>
     <option value="1" <?php  if((isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '1')||(isset($typee) && $typee=='activity_log')) echo "selected='selected'"; ?> >Activity Log</option>
@@ -375,13 +362,11 @@ include('vehicle_inspection.php');
 <tr style="display: none;" id="loss_prevention">
 <td colspan="3"> <?php include('loss_prevention.php');?></td>
 </tr>
-
 <thead class="date_time">
 <th width="220px">Date</th>
 <th width="220px">Time</th>
 <th width="350px">Description &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
 </thead>
-
 <?php
 if(isset($activity)&&$activity) 
 foreach($activity as $act)
@@ -397,11 +382,9 @@ foreach($activity as $act)
 <?php }
 else{
 ?>
-
 <tr class="date_time">
 <td width="220px"><input type="text" value="" name="activity_date[]" class="activity_date required" /></td>
 <td width="220px"><input type="text" value="" name="activity_time[]" class="activity_time required" /></td>
-
 <td width="350px"><textarea name="activity_desc[]" class="required activity_desc"></textarea></td>
 </tr>
 <?php }?>
@@ -410,26 +393,18 @@ else{
 </td></tr>
 <tr class="add_more date_time" style="display: none;"><td><a href="javascript:void(0);" id="activity_more" class="btn btn-primary date_time">+Add More</a></td></tr>
 </table>
-
 </td></tr>
 <tr class="description_tr"><td class="main_desc"><strong>Description</strong></td>
 <td><textarea name="description"  class="text_area_long" cols="10" rows="5" id="repl" onKeyDown="limitText(this.form.description,this.form.countdown,70);"
 onKeyUp="limitText(this.form.description,this.form.countdown,70);"><?php if(isset($doc['Document']['description'])) echo $doc['Document']['description'];?></textarea>
 <br />
-
 </td></tr>
-
-
 <tr class="image_tr"><td><b>Images/Videos/Docs</b></td><td><div class="right">
 <input type="file" name="document_1" />
 </div><div id="doc"></div>
-
 </td></tr>
-
-
 </table>
 </div>
-
 <input type="hidden" name="document" id="document" value="1" />
 <input type="hidden" name="image" id="image" value="1" />
 <input type="hidden" name="video" id="video" value="1" />
@@ -439,20 +414,12 @@ onKeyUp="limitText(this.form.description,this.form.countdown,70);"><?php if(isse
 <input type="hidden" name="emailadd" value="" class="emailadd" />
 <input type="hidden" name="emailadd2" value="" class="emailadd2" />
 <input type="hidden" name="emailadd3" value="" class="emailadd3" />
-
 <?php
 if(!isset($job_id))
-$job_id = 0;
-
-?>
-
+    $job_id = 0;?>
 <div class="submit"><input type="submit" class="btn btn-primary sbtbtn" style="float: left;" value="Submit Document" name="submit"/>
 <?php if(isset($doc) && $doc['Document']['job_id']==999 || $job_id == 999){?><a href="javascript:void(0)" class="btn btn-primary sbtbtn uploademail" style="float: left;margin-left:15px;display:none;">Submit Document And Email</a> <?php }else{?><span class="uploademail" style="display: none;"></span>
 <?php }if(!$this->Session->read('admin')){?> <span style="float:left;" class="draftspan"><a href="javascript:void(0)" style="margin-left: 15px;" class="draft btn btn-primary">Save as Draft</a></span><?php }?></div>
-
-
-
-
 </form>
 <script>
 $(function(){
@@ -511,7 +478,6 @@ $(function(){
                     
                     width: 400,
                     title:'Upload and Email',
-                    
                });
                });
     if($('.reporttype').val()=='5'){
@@ -522,9 +488,6 @@ $(function(){
         $('.uploademail').hide();
         $('.incident_more').hide();
         }
-        
-    
-        
      $('.reporttype').change(function(){
         if($(this).val()=='5')
         {
@@ -547,17 +510,14 @@ $(function(){
             $('.date_time').show();
         }    
     });
-    
-    $('.draft').click(function(){
+ $('.draft').click(function(){
        $('.draftval').val("1");
        $('#table input').each(function(){$(this).removeClass('required')});
        $('.activity_desc').removeClass('required');
        $('.activity_date').removeClass('required');
        $('.activity_time').removeClass('required');
-        
        $('#repl').removeClass('required');
        $('.sbtbtn').click();
-       
     });
     //Add More acitvity---------added
     var test=1;
@@ -595,16 +555,13 @@ $(function(){
        });
        test++; 
     });
-    
     $('.activity_date').live('click',function(){
         $(this).datepicker({dateFormat: 'yy-mm-dd'});
     });
     $('.activity_time').live('click',function(){
         $(this).timepicker();
     });
-    
-        $('.date_verify').datepicker({dateFormat: 'yy-mm-dd'});
-    
+    $('.date_verify').datepicker({dateFormat: 'yy-mm-dd'});
     if($('.reporttype').val()=='7')
        {
             $('#loss_prevention').show();
@@ -633,9 +590,7 @@ $(function(){
     $('#document_type').change(function()
     {
         var doctype = $(this).val();
-        
-        
-        if(doctype == 'evidence')
+       if(doctype == 'evidence')
         {
             $('.extra_evidence').show();
             //$('.draftspan').hide();
@@ -656,77 +611,58 @@ $(function(){
             $('.personal_more').show();
             $('.description_tr').hide();
             $('.image_tr').hide();
-            
         }
         else
         {
             $('.personal_more').hide();
             $('.description_tr').show();
             $('.image_tr').show();
-
-            }
+        }
         if(doctype == 'vehicle_inspection'){
             $('.vehicle_inspection').show();
             $('.description_tr').hide();
             $('.image_tr').hide();
-            //$('.draftspan').hide();
             }
         else{
             $('.vehicle_inspection').hide();
-            
             }    
-        
-            
-        if(doctype == 'mobile_vehicle_trunk_inventory')
+       if(doctype == 'mobile_vehicle_trunk_inventory')
         {
-
             $('.inventory1_more').show();
             $('.description_tr').hide();
             $('.image_tr').hide();
-            
         }
         else
         {
             $('.inventory1_more').hide();
-            
-            }
-            
+         }
         if(doctype == 'mobile_inspection')
         {
             $('.mobileins_more').show();
             $('.description_tr').hide();
             $('.image_tr').hide();
-            
         }
         else
         {
             $('.mobileins_more').hide();
-            
         }
-        
         if(doctype == 'mobile_log')
         {
             $('.mobilelog_more').show();
             $('.description_tr').hide();
             $('.image_tr').hide();
-            
         }
         else
         {
             $('.mobilelog_more').hide();
-            
         }
-        
-        
         if(doctype == 'employee'){
             $('.employee_more').show();
-            //$('.draftspan').hide();
-            }
+           }
         else
             $('.employee_more').hide();
          if(doctype == 'training'){
             $('.training_more').show();
-            //$('.draftspan').hide();
             }
         else
             $('.training_more').hide();
@@ -738,7 +674,6 @@ $(function(){
            }
         else{
             $('.extra_memo').hide();
-            //$('.draftspan').hide();
             $('.addmore').hide();
             $('.draftval').val("0");
             $('.main_desc').html("<strong>Description</strong>");
@@ -759,9 +694,7 @@ $(function(){
             $('.text_area_long').attr('OnKeyUp',"limitText(this.form.description,this.form.countdown,70);");
             $('.desc_bot').html('(Maximum characters: 70)<br />'+
 'You have <input readonly="readonly" type="text" name="countdown" id="countssss" style="background:none; border:0; padding:0; margin:0; text-align:center; border-radius:none; width:30px; box-shadow:none;" value="70" /> characters left.</font><br />');
-        
         }
-        
         $('.extra_memo input').each(function(){
         $(this).click();
         $(this).blur();
@@ -771,66 +704,53 @@ $(function(){
         $(this).blur();
         });   
     });
-    
     if($('#document_type').val() == 'evidence')
          $('.extra_evidence').show();
-    
     if($('#document_type').val() == 'personal_inspection'){
             $('.personal_more').show();
             $('.description_tr').hide();
             $('.image_tr').hide();
-            //$('.draftspan').hide();
             }
         else{
             $('.personal_more').hide();
             $('.description_tr').show();
             $('.image_tr').show();
             }
-            
-            if($('#document_type').val() == 'vehicle_inspection'){
-                
+    if($('#document_type').val() == 'vehicle_inspection'){
             $('.vehicle_inspection').show();
             $('.description_tr').hide();
             $('.image_tr').hide();
-            //$('.draftspan').hide();
             }
         else{
             $('.vehicle_inspection').hide();
-           
-            }
+           }
     if($('#document_type').val() == 'mobile_inspection'){
         $('.mobileins_more').show();
         $('.description_tr').hide();
             $('.image_tr').hide();
-            //$('.draftspan').hide();
-            }
+           }
         else{
             $('.mobileins_more').hide();
-            
             }
     if($('#document_type').val() == 'mobile_log')
     {
         $('.mobilelog_more').show();
         $('.description_tr').hide();
             $('.image_tr').hide();
-            //$('.draftspan').hide();
     }
     else
     {
             $('.mobilelog_more').hide();
-            
     }
     if($('#document_type').val() == 'mobile_vehicle_trunk_inventory')
     {
         $('.inventory1_more').show();
         $('.description_tr').hide();
         $('.image_tr').hide();
-         
     }
     else
     {
             $('.inventory1_more').hide();
-            
     }         
     if($('#document_type').val() == 'siteOrder')
          $('.site_more').show();
@@ -847,8 +767,6 @@ $(function(){
     }
     if($('#document_type').val() == 'client_feedback')
             $('.client_more').show(); 
-            
-                 
     $('.extra_memo input').each(function(){
         $(this).click();
         $(this).blur();
@@ -860,13 +778,11 @@ $(function(){
         var checked = 0.0;
         var radcount = 0;
         $('.radios input').click(function(){
-            //alert($(this).val());
-       $('.radios input:checked').each(function(){
+        $('.radios input:checked').each(function(){
             radcount++;
           checked = checked + parseFloat($(this).val());
           if(radcount==6)
           {
-            //alert(checked);
             var avg = (checked/30.0)*5;
             avg = avg.toFixed(2); 
             $('.overall').text(avg+'/5');
@@ -875,8 +791,6 @@ $(function(){
             radcount = 0;
           }
        }); });
-        
-       
 });
 function limitText(limitField, limitCount, limitNum)
 {
