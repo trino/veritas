@@ -114,8 +114,7 @@ $(function(){
         
         
     });
-    //$('.mobileins_more input').attr('disabled','disabled');
-    //$('.mobileins_more textarea').attr('disabled','disabled');
+    
     $('.mobtime , #delete').hide();
    <?php } ?> 
    

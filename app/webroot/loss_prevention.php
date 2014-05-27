@@ -16,7 +16,7 @@ $(function(){
 });
 </script>
 <div class="loss_p" >
-<?php //var_dump($item[0]['ItemInfo']);?>
+
 <h2>Loss Prevention Incident Report</h2>
 
 <table class="table table-bordered loss" style="width: 100%;">

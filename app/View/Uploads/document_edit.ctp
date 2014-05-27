@@ -3,7 +3,7 @@ if(isset($job_name))
     $job_n=$job_name;
 else
     $job_n ="";
-    //var_dump($subject);
+    
 ?>
 <script src="<?php echo $base_url;?>js/highlight.js"></script>
 
@@ -159,7 +159,7 @@ function remove_youtube()
 }
 </script>
 <script src="<?php echo $base_url;?>js/highscript.js"></script>
-<?php //var_dump( $this->request->params['action']);?>
+
 
 <form id="my_form" action="" method="post" enctype="multipart/form-data" onsubmit="return vehicle_test();">
 
@@ -167,7 +167,6 @@ function remove_youtube()
 <table>
 
 <tr style="display: none;"><td style="width:140px;"><b>Location</b></td><td><div class="right"><input type="text" name="location" class="" /></div></td></tr>
-<!--<tr><td><b>Title</b></td><td><div class="right"><input type="text" name="title" class="required" value="<?php if(isset($doc['Document']['title'])) echo $doc['Document']['title'];?>" /></div></td></tr>-->
 <tr><td><b>Document Type</b></td>
 <td><div class="right">
 <select name="document_type" class="required" id="document_type">
@@ -214,7 +213,7 @@ function remove_youtube()
     <?php if($admin_doc['AdminDoc']['vehicle_inspection']=='1' && ((isset($canupdate['Canupload']['vehicle_inspection'])&& $canupdate['Canupload']['vehicle_inspection']=='1') || $this->Session->read('admin'))){?>
     <option value="vehicle_inspection" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='vehicle_inspection') echo "selected='selected'"?>>Vehicle Inspection</option>
     <?php }?>
-    <!--<option value="training_manuals">Training Manuals</option>-->
+    
 </select>
 </div></td>
 </tr>
@@ -332,20 +331,9 @@ include('vehicle_inspection.php');
 </td></tr>
 <tr class="extra_memo" style="display: none;">
 <td colspan="2">
-<!--<table>
-<tr><td><b>Client Memo</b></td>
-<td>
-<textarea name="client_memo" class="required">
-<?php if(isset($doc['Document']['client_feedback'])) echo $doc['Document']['client_feedback'];?>
-</textarea>
-</td>
-</tr>
 
-</table>-->
 <table>
-<!--<thead>
-<th colspan="3"><strong>Activity</strong></th></thead>
-<thead>-->
+
 <thead><th>Report Type</th>
 <th>
 <?php //var_dump($ac);?>
@@ -428,35 +416,16 @@ else{
 <td><textarea name="description"  class="text_area_long" cols="10" rows="5" id="repl" onKeyDown="limitText(this.form.description,this.form.countdown,70);"
 onKeyUp="limitText(this.form.description,this.form.countdown,70);"><?php if(isset($doc['Document']['description'])) echo $doc['Document']['description'];?></textarea>
 <br />
-<!--<font size="1" class="desc_bot">(Maximum characters: 70)<br />
-You have <input readonly type="text" name="countdown" id="countssss" style="background:none; border:0; padding:0; margin:0; text-align:center; border-radius:none; width:30px; box-shadow:none;" value="70" /> characters left.</font><br />-->
+
 </td></tr>
-<!--<tr><td><b>Description</b></td><td><div class="right"><textarea cols="35" name="description" class="required"></textarea></div></td></tr>-->
+
 
 <tr class="image_tr"><td><b>Images/Videos/Docs</b></td><td><div class="right">
 <input type="file" name="document_1" />
-<!--<a href="javascript:void(0)" onclick="add_document()" class="btn btn-primary">Add</a>--></div><div id="doc"></div>
-<?php 
-//var_dump($attach);
-/*
-if($attach)
-{
-    
-?>
-<div id='document_<?php echo $attach['id']; ?>'><div></div class='inputs'>
-<div class='left'></div>
-<div class='right'><input type='file' name='document_<?php echo $attach['id'];?>' value="<?php echo $attach['file'];?>" />
-<a href='javascript:void(0);' onclick='remove_document();' class='btn btn-danger'>Remove</a></div>
-<div class='clear'></div></div>
-<?php } */?>
+</div><div id="doc"></div>
+
 </td></tr>
-<!--
-<tr><td><b>Images</b></td><td><div class="right"><input type="file" name="image_1" /><a href="javascript:void(0);" onclick="add_image()" class="btn btn-primary">Add</a><span id="remove_img" style="display: none;"> &nbsp; <a href="javascript:void(0);" onclick="remove_image();" class="btn btn-danger">Remove</a></span></div><div id="img"></div></td></tr>
 
-<tr><td><b>Videos</b></td><td><div class="right"><input type="file" name="video_1" /><a href="javascript:void(0);" onclick="add_video()" class="btn btn-primary">Add</a><span id="remove_vid" style="display: none;"> &nbsp; <a href="javascript:void(0);" onclick="remove_video();" class="btn btn-danger">Remove</a></span></div><div id="vid"></div></td></tr>
-
-<tr><td><b>Youtube Link</b></td><td><div class="right"><input type="text" name="youtube_1" />  &nbsp; <a href="javascript:void(0);" onclick="add_youtube()" class="btn btn-primary">Add</a><span id="remove_youtube" style="display: none;"> &nbsp; <a href="javascript:void(0);" onclick="remove_youtube();" class="btn btn-danger">Remove</a></span></div><div id="you"></div></td></tr>
--->
 
 </table>
 </div>
@@ -474,7 +443,7 @@ if($attach)
 <?php
 if(!isset($job_id))
 $job_id = 0;
-//echo $job_id;
+
 ?>
 
 <div class="submit"><input type="submit" class="btn btn-primary sbtbtn" style="float: left;" value="Submit Document" name="submit"/>
@@ -597,10 +566,12 @@ $(function(){
     if(d.getMinutes()<10)
         mins = "0"+d.getMinutes();
     else
-        mins = d.getMinutes();    
+        mins = d.getMinutes();
+     <?php if(isset($doc['Document']['draft']) && $doc['Document']['draft']==0){?>    
     $('.activity_time').val(d.getHours()+':'+mins);
     var da = d.getFullYear()+'-'+Number(d.getMonth()+1)+'-'+d.getDate();
     $('.activity_date').val(da);
+    <?php }?>
     //-----------------------------------//
     var test=1;
      //Add More acitvity

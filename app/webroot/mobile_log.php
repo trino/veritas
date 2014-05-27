@@ -167,8 +167,7 @@ $(function(){
         
         
     });
-    //$('.mobilelog_more input').attr('disabled','disabled');
-    //$('.mobilelog_more textarea').attr('disabled','disabled');
+    
     $('.mobtime , .delete').hide();
    <?php } ?> 
 });
