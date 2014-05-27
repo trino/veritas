@@ -2,14 +2,14 @@
 
 
 <h3 class="page-title">
-	Job Details: <?php echo stripslashes($job['Job']['title']); ?>
+	<?php echo $this->requestAction('dashboard/translate/Job Details');?>: <?php echo stripslashes($job['Job']['title']); ?>
 </h3>
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
-		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>jobs">Job Manager</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>jobs/view/<?php echo $job['Job']['id']; ?>">Job Details: <?php echo stripslashes($job['Job']['title']); ?></a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>dashboard"><?php echo $this->requestAction('dashboard/translate/Home');?></a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>jobs"><?php echo $this->requestAction('dashboard/translate/Job Manager');?></a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>jobs/view/<?php echo $job['Job']['id']; ?>"><?php echo $this->requestAction('dashboard/translate/Job Details');?>: <?php echo stripslashes($job['Job']['title']); ?></a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
 
@@ -34,10 +34,10 @@
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $contract;?></div>										
-				<div class="desc">Contracts</div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/Contracts');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $contract;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $contract;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -55,10 +55,10 @@
 			</div>									
 			<div class="details">										
 				<div class="number"><?=$evidence;?></div>										
-				<div class="desc">Evidence</div>								
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/Evidence');?></div>								
 			</div>								
 			<div class="more2">				
-				View All <?=$evidence;?> Documents <i class="icon-arrow-right m-icon-white"></i>			
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?=$evidence;?> Documents <i class="icon-arrow-right m-icon-white"></i>			
 			</div>											
 		</a>			
 		<div class="dusk2"></div>					
@@ -79,11 +79,11 @@
 		<?=$template;?>
 		</div>
 		<div class="desc">									
-		Templates
+		<?php echo $this->requestAction('dashboard/translate/Templates');?>
 		</div>
 		</div>
 		<div class="more2">
-		View All <?=$template;?> Documents <i class="icon-arrow-right m-icon-white"></i>
+		<?php echo $this->requestAction('dashboard/translate/View All');?> <?=$template;?> Documents <i class="icon-arrow-right m-icon-white"></i>
 		</div>	
 		</a>
 		<div class="dusk2"></div>
@@ -101,10 +101,10 @@
 	</div>
 	<div class="details">
 	<div class="number"><?=$report;?></div>
-	<div class="desc">Report</div>
+	<div class="desc"><?php echo $this->requestAction('dashboard/translate/Report');?></div>
 	</div>
 	<div class="more2">
-	View All <?=$report;?> Documents <i class="icon-arrow-right m-icon-white"></i>
+	<?php echo $this->requestAction('dashboard/translate/View All');?> <?=$report;?> Documents <i class="icon-arrow-right m-icon-white"></i>
 	</div>	
 	</a>
 	<div class="dusk2"></div>
@@ -121,10 +121,10 @@
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $siteOrder;?></div>										
-				<div class="desc">Site Order</div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/Site Order');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $siteOrder;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $siteOrder;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -140,10 +140,10 @@
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $training;?></div>										
-				<div class="desc">Training</div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/Training');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $training;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $training;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -159,10 +159,10 @@
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $employee;?></div>										
-				<div class="desc">Employee</div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/Employee');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $employee;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $employee;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -178,10 +178,10 @@
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $KPIAudits;?></div>										
-				<div class="desc">KPI Audits</div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/KPI Audits');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $KPIAudits;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $KPIAudits;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -206,10 +206,10 @@
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $afimac_intel;?></div>										
-				<div class="desc">AFIMAC Intel</div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/AFIMAC Intel');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $afimac_intel;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $afimac_intel;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -234,7 +234,7 @@
 				<div class="desc">News/Media</div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $news_media;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $news_media;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -251,10 +251,10 @@
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $personal_inspection;?></div>										
-				<div class="desc">Personal Inspection</div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/Personal Inspection');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $personal_inspection;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?><?php echo $personal_inspection;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -270,10 +270,10 @@
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $mobile_inspection;?></div>										
-				<div class="desc">Mobile Inspection</div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/Mobile Inspection');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $mobile_inspection;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $mobile_inspection;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -289,10 +289,10 @@
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $mobile_log;?></div>										
-				<div class="desc">Mobile Log</div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/Mobile Log');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $mobile_log;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $mobile_log;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -308,10 +308,10 @@
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $inventory;?></div>										
-				<div class="desc">Mobile Vehicle<br /> Trunk Inventory</div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/Mobile Vehicle Trunk Inventory');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $inventory;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $inventory;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -327,10 +327,10 @@
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $vehicle_inspection;?></div>										
-				<div class="desc">Vehicle Inspection</div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/Vehicle Inspection');?></div>									
 			</div>									
 			<div class="more2">									
-				View All <?php echo $vehicle_inspection;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $vehicle_inspection;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
 			</div>														
 		</a>								
 		<div class="dusk2"></div>						
@@ -347,10 +347,10 @@
 
 
 <div id="table">
-<h2>Job Details</h2>
+<h2><?php echo $this->requestAction('dashboard/translate/Job Details');?></h2>
 <table class="">
     <tr>
-        <td style="width:140px;"><b>Job Title</b></td>
+        <td style="width:140px;"><b><?php echo $this->requestAction('dashboard/translate/Job Title');?></b></td>
         <td><?php echo stripslashes($job['Job']['title']); ?></td>
     </tr>
     <?php
@@ -359,7 +359,7 @@
         ?>
         
     <tr>
-        <td><b>Assigned To</b></td>
+        <td><b><?php echo $this->requestAction('dashboard/translate/Assigned To');?></b></td>
         <td> <?php
         if($member) {
             ?>
@@ -384,9 +384,9 @@
                                 if($me%4==1)
                                 echo "<tr>";
                                 if($this->Session->read('admin'))
-                                echo "<td style='width:20px;'><a href='".$base_url."members/view/".$m['Member']['id']."'>"." ".$m['Member']['full_name']."</a></td>";
+                                    echo "<td style='width:20px;'><a href='".$base_url."members/view/".$m['Member']['id']."'>"." ".$m['Member']['full_name']."</a></td>";
                                 else
-                                echo "<td style='width:20px;'>".$m['Member']['full_name']."</td>";
+                                    echo "<td style='width:20px;'>".$m['Member']['full_name']."</td>";
                                 $td++;
                                 if($m%4==0)
                                 echo "</tr>";
@@ -427,7 +427,7 @@
     }
     ?>
      <tr>
-        <td><b>Description</b></td>
+        <td><b><?php echo $this->requestAction('dashboard/translate/Description');?></b></td>
         <td><?php echo stripslashes($job['Job']['description']); ?></td>
     </tr>
     <tr>
@@ -435,11 +435,11 @@
         <td><?php if($job['Job']['image']=='afimaclogo.png' || $job['Job']['image']=='asap.gif')echo $this->Html->image('uploads/'.$this->Session->read('logo'),array('width'=>'100','height'=>'100'));else echo $this->Html->image('uploads/'.$job['Job']['image'],array('width'=>'','height'=>'')); ?></td>
     </tr>
     <tr>
-        <td><b>Date Start</b></td>
+        <td><b><?php echo $this->requestAction('dashboard/translate/Date Start');?></b></td>
         <td><?php echo $job['Job']['date_start'] ?></td>
     </tr>
     <tr>
-        <td><b>Date End</b></td>
+        <td><b><?php echo $this->requestAction('dashboard/translate/Date End');?></b></td>
         <td><?php echo $job['Job']['date_end']; ?></td>
     </tr>
     <?php $arr = array('Active-Recuirement Only',' Proposal Submitted','Signed Contract','Proposal Settled','Lost to Competitor'); ?>
@@ -449,12 +449,12 @@
 	
 <?php 
 if($this->Session->read('upload')=='1' || $this->Session->read('admin'))
-    echo $this->Html->link('Upload a Document','/uploads/upload/'.$job['Job']['id'],array('class'=>'btn btn-primary'))."  "; 
+    echo $this->Html->link($this->requestAction('dashboard/translate/Upload a Document'),'/uploads/upload/'.$job['Job']['id'],array('class'=>'btn btn-primary'))."  "; 
 if($this->Session->read('admin'))
 {
-    echo $this->Html->link('Edit','/jobs/edit/'.$job['Job']['id'],array('class'=>'btn btn-info'))."  ";
-    echo $this->Html->link('Project Board','/jobs/projectboard/'.$job['Job']['id'],array('class'=>'btn btn-success'))."  ";
-    echo $this->Html->link('Delete','/jobs/delete/'.$job['Job']['id'],array('class'=>'btn btn-danger'), "Confrim Delete Job?");
+    echo $this->Html->link($this->requestAction('dashboard/translate/Edit'),'/jobs/edit/'.$job['Job']['id'],array('class'=>'btn btn-info'))."  ";
+    echo $this->Html->link($this->requestAction('dashboard/translate/Project Board'),'/jobs/projectboard/'.$job['Job']['id'],array('class'=>'btn btn-success'))."  ";
+    echo $this->Html->link($this->requestAction('dashboard/translate/Delete'),'/jobs/delete/'.$job['Job']['id'],array('class'=>'btn btn-danger'), "Confrim Delete Job?");
 }
 ?>
 
@@ -490,8 +490,19 @@ if($this->Session->read('admin'))
             
         ?>
         
-        <tr style="background: grey;color:#FFF;"><td colspan="6"><?php if($k['Job_contact']['type']=='0'){ echo "<strong>Key Contacts</strong>"; }elseif($k['Job_contact']['type']=='1')echo "<strong>Staff Contacts</strong>"; else echo "<strong>Third Party Contacts</strong>"; ?></td></tr>
-        <tr style="border-bottom: 1px solid grey;" ><td><strong>Name</strong></td><td><strong>Title</strong></td><td><strong>Cell Number</strong></td><td><strong>Phone Number</strong></td><td><strong>Email</strong></td><td><strong>Company</strong></td></tr>
+        <tr style="background: grey;color:#FFF;"><td colspan="6">
+        <?php if($k['Job_contact']['type']=='0'){ 
+                    echo "<strong>".$this->requestAction('dashboard/translate/Key Contacts')."</strong>"; 
+                }elseif($k['Job_contact']['type']=='1')
+                    echo "<strong>".$this->requestAction('dashboard/translate/Staff Contacts')."</strong>"; 
+               else
+                     echo "<strong>".$this->requestAction('dashboard/translate/Third Party Contacts')."</strong>"; ?></td></tr>
+        <tr style="border-bottom: 1px solid grey;" ><td><strong><?php echo $this->requestAction('dashboard/translate/Name');?></strong></td>
+            <td><strong><?php echo $this->requestAction('dashboard/translate/Title');?></strong></td>
+            <td><strong><?php echo $this->requestAction('dashboard/translate/Cell Number');?></strong></td>
+            <td><strong><?php echo $this->requestAction('dashboard/translate/Phone Number');?></strong></td>
+            <td><strong><?php echo $this->requestAction('dashboard/translate/Email');?></strong></td>
+            <td><strong><?php echo $this->requestAction('dashboard/translate/Company');?></strong></td></tr>
         <?php 
         }
         else
@@ -503,8 +514,19 @@ if($this->Session->read('admin'))
               </table>
               
                <table width="100%" style=" border: 1px solid #9D9C9C; clear: both; margin-bottom: 15px;"> 
-              <tr style="background: grey;color:#FFF;"><td colspan="6"><?php if($k['Job_contact']['type']=='0'){ echo "<strong>Key Contacts</strong>"; }elseif($k['Job_contact']['type']=='1')echo "<strong>Staff Contacts</strong>"; else echo "<strong>Third Party Contacts</strong>"; ?></td></tr>  
-              <tr style="border-bottom: 1px solid grey;"><td><strong>Name</strong></td><td><strong>Title</strong></td><td><strong>Cell Number</strong></td><td><strong>Phone Number</strong></td><td><strong>Email</strong></td><td><strong>Company</strong></td></tr>
+              <tr style="background: grey;color:#FFF;"><td colspan="6">
+               <?php if($k['Job_contact']['type']=='0'){ 
+                    echo "<strong>".$this->requestAction('dashboard/translate/Key Contacts')."</strong>"; 
+                }elseif($k['Job_contact']['type']=='1')
+                    echo "<strong>".$this->requestAction('dashboard/translate/Staff Contacts')."</strong>"; 
+               else
+                     echo "<strong>".$this->requestAction('dashboard/translate/Third Party Contacts')."</strong>"; ?></td></tr>  
+              <tr style="border-bottom: 1px solid grey;"><td><strong><?php echo $this->requestAction('dashboard/translate/Name');?></strong></td>
+            <td><strong><?php echo $this->requestAction('dashboard/translate/Title');?></strong></td>
+            <td><strong><?php echo $this->requestAction('dashboard/translate/Cell Number');?></strong></td>
+            <td><strong><?php echo $this->requestAction('dashboard/translate/Phone Number');?></strong></td>
+            <td><strong><?php echo $this->requestAction('dashboard/translate/Email');?></strong></td>
+            <td><strong><?php echo $this->requestAction('dashboard/translate/Company');?></strong></td></tr>
          <?php       
             }
         }
@@ -526,7 +548,7 @@ if($this->Session->read('admin'))
    <?php }
    else
    {
-        echo "<tr><td colspan='2'>No Contacts Found.</td></tr>";
+        echo "<tr><td colspan='2'>".$this->requestAction('dashboard/translate/No contacts found').".</td></tr>";
     }
    ?> 
 

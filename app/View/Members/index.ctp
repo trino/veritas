@@ -4,13 +4,13 @@
 </style>
 
 <h3 class="page-title">
-	User Manager
+	<?php echo $this->requestAction('dashboard/translate/User Manager');?>
 </h3>
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
-		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>members">User Manager</a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>dashboard"><?php echo $this->requestAction('dashboard/translate/Home');?></a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>members"><?php echo $this->requestAction('dashboard/translate/User Manager');?></a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
 
@@ -27,11 +27,11 @@
 
 <table>
             <tr>
-				<th>User</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
-                <th>Title</th>
+				<th><?php echo $this->requestAction('dashboard/translate/User');?></th>
+                <th><?php echo $this->requestAction('dashboard/translate/First Name');?></th>
+                <th><?php echo $this->requestAction('dashboard/translate/Last Name');?></th>
+                <th><?php echo $this->requestAction('dashboard/translate/Username');?></th>
+                <th><?php echo $this->requestAction('dashboard/translate/Title');?></th>
                 <!--th>Assigned Jobs</th-->
                 <th style="width:250px;">Options</th>
                 <?php
@@ -39,7 +39,7 @@
         {
             ?>
             <th>
-            Make Admin
+            <?php echo $this->requestAction('dashboard/translate/Make Admin');?>
             </th>
             <?php
         }
@@ -121,17 +121,17 @@ foreach($mem as $m)
     		<!--<td class="infos"><a href="<?php echo $base_url.'members/view/'.$m['Member']['id']; ?>"><?php echo $m['Member']['title']." ".$m['Member']['full_name']; ?></a></td>-->
     		<td>
     <?php 	echo $this->Html->link(
-					'Edit',
+					$this->requestAction('dashboard/translate/Edit'),
 					'/members/edit/'.$m['Member']['id'],
 					array('class'=>'btn btn-primary')
 				);  
 			echo " " . $this->Html->link(
-					'Delete',
+					$this->requestAction('dashboard/translate/Delete'),
 					'/members/delete/'.$m['Member']['id'],
-					array('class'=>'btn btn-primary'),"Delete member?"
+					array('class'=>'btn btn-primary'),$this->requestAction('dashboard/translate/Delete Member')."?"
 				); 
 			echo " " . $this->Html->link(
-					'View',
+					$this->requestAction('dashboard/translate/View'),
 					'/members/view/'.$m['Member']['id'],
 					array('class'=>'btn btn-primary')
 				);
@@ -170,7 +170,7 @@ foreach($mem as $m)
 else
 {
     ?>
-    No Users.
+    <?php echo $this->requestAction('dashboard/translate/No')." ";?> <?php echo $this->requestAction('dashboard/translate/Users');?>.
     <?php
 }
 ?>

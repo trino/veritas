@@ -12,7 +12,7 @@ $(function(){
 
 <h3 class="page-title">
 	Veritas
-	<small>Intelligence on Demand</small>
+	<small><?php echo $this->requestAction('dashboard/translate/Intelligence on Demand');?></small>
 </h3>
 <ul class="breadcrumb">
 	<li>

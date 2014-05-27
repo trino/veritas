@@ -6,9 +6,9 @@
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
-		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>members">User Manager</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>members/add">Add User</a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>dashboard"><?php echo $this->requestAction('dashboard/translate/Home');?></a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>members"><?php echo $this->requestAction('dashboard/translate/User Manager');?></a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>members/add"><?php echo $this->requestAction('dashboard/translate/Add User');?></a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
 
@@ -108,17 +108,17 @@
 <div id="table">
 <form id="my_form"  autocomplete="off"  action="" method="post" enctype="multipart/form-data" onsubmit="return valid();">
 <table>
-<tr><td style="width:140px;"><b>First Name</b></td><td><input type="text" name="fname" id="fname" value="" class="required" /></td></tr>
-<tr><td style="width:140px;"><b>Last Name</b></td><td><input type="text" name="lname" id="lname" value="" class="required" /></td></tr>
-<tr><td style="width:140px;"><b>Username</b></td><td><input type="text" id="full_name" class="required" name="full_name" onchange="check_name()" /><span id="response1"></span></td></tr>
+<tr><td style="width:140px;"><b><?php echo $this->requestAction('dashboard/translate/First Name');?></b></td><td><input type="text" name="fname" id="fname" value="" class="required" /></td></tr>
+<tr><td style="width:140px;"><b><?php echo $this->requestAction('dashboard/translate/Last Name');?></b></td><td><input type="text" name="lname" id="lname" value="" class="required" /></td></tr>
+<tr><td style="width:140px;"><b><?php echo $this->requestAction('dashboard/translate/Username');?></b></td><td><input type="text" id="full_name" class="required" name="full_name" onchange="check_name()" /><span id="response1"></span></td></tr>
 <!--<tr><td><b>Avatar</b></td><td><input type="text" name="avatar" value="" class="required" /></td></tr>-->
-<tr><td><b>Title</b></td><td><input type="text" class="" name="title" /></td></tr>
-<tr><td><b>Address</b></td><td><input type="text" class="" name="address" /></td></tr>
-<tr><td><b>Email</b></td><td><input type="text" id="emails" class="email required" name="email" onchange="check_email()" /><span id="response"></span></td></tr>
-<tr><td><b>Image:</b></td><td><img src="<?php echo $base_url;?>img/uploads/male.png" style="width: 60px; height:60px;" /> <input type="radio" name="img_gender" value="male.png" /> &nbsp; &nbsp;<img src="<?php echo $base_url;?>img/uploads/female.png" style="width: 60px; height:60px;" /> <input type="radio" name="img_gender" value="female.png" /> &nbsp; &nbsp;<input type="file" class="" name="image" /></td></tr>
-<tr><td><b>Phone</b></td><td><input type="text" name="phone" /></td></tr>
-<tr><td><b>Password</b></td><td><input type="password" class="required" name="password" id="password" /></td></tr>
-<tr><td><b>Repeat Password</b></td><td><input type="password" class="required" name="c_password" /></td></tr>
+<tr><td><b><?php echo $this->requestAction('dashboard/translate/Title');?></b></td><td><input type="text" class="" name="title" /></td></tr>
+<tr><td><b><?php echo $this->requestAction('dashboard/translate/Address');?></b></td><td><input type="text" class="" name="address" /></td></tr>
+<tr><td><b><?php echo $this->requestAction('dashboard/translate/Email');?></b></td><td><input type="text" id="emails" class="email required" name="email" onchange="check_email()" /><span id="response"></span></td></tr>
+<tr><td><b><?php echo $this->requestAction('dashboard/translate/Image');?></b></td><td><img src="<?php echo $base_url;?>img/uploads/male.png" style="width: 60px; height:60px;" /> <input type="radio" name="img_gender" value="male.png" /> &nbsp; &nbsp;<img src="<?php echo $base_url;?>img/uploads/female.png" style="width: 60px; height:60px;" /> <input type="radio" name="img_gender" value="female.png" /> &nbsp; &nbsp;<input type="file" class="" name="image" /></td></tr>
+<tr><td><b><?php echo $this->requestAction('dashboard/translate/Phone');?></b></td><td><input type="text" name="phone" /></td></tr>
+<tr><td><b><?php echo $this->requestAction('dashboard/translate/Password');?></b></td><td><input type="password" class="required" name="password" id="password" /></td></tr>
+<tr><td><b><?php echo $this->requestAction('dashboard/translate/Repeat Password');?></b></td><td><input type="password" class="required" name="c_password" /></td></tr>
 <?php
 $q = $job->find('all',array('conditions'=>array('is_special'=>0),'order'=>'title')); 
 $q2 = $job->find('first',array('conditions'=>array('is_special'=>1),'order'=>'title'));
@@ -127,7 +127,7 @@ if($q || $q2){
 <tr>
     <td colspan="2">
         <table class="jobb">
-            <tr><td><strong>Assign Jobs to user</strong></td></tr>
+            <tr><td><strong><?php echo $this->requestAction('dashboard/translate/Assign Jobs to user');?></strong></td></tr>
             
             <?php
             if($q2)
@@ -176,7 +176,7 @@ if($q || $q2){
 <?php    
 }
 ?>
-<tr><td><b>Can View Files</b></td><td><input type="checkbox" name="canView" id="canView"  /></td></tr>
+<tr><td><b><?php echo $this->requestAction('dashboard/translate/Can View Files');?></b></td><td><input type="checkbox" name="canView" id="canView"  /></td></tr>
 <tr class="canviewfiles yesspecial" style="display: none;">
 <td colspan="2" class="">
 <table width="50%">
@@ -198,43 +198,43 @@ if($q || $q2){
 <tr>
 <td>
 <?php if($admin_doc['AdminDoc']['contracts']=='0'){?><input type="hidden" name="canView_contracts" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span><input type="checkbox" name="canView_contracts" class="vie"  /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Contracts');?> </span><input type="checkbox" name="canView_contracts" class="vie"  /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['evidence']=='0'){?><input type="hidden" name="canView_evidence" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Evidence </span><input type="checkbox" name="canView_evidence" class="vie"  /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Evidence');?> </span><input type="checkbox" name="canView_evidence" class="vie"  /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['templates']=='0'){?><input type="hidden" name="canView_templates" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Templates </span><input type="checkbox" name="canView_templates" class="vie"  /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Templates');?> </span><input type="checkbox" name="canView_templates" class="vie"  /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['report']=='0'){?><input type="hidden" name="canView_client_memo" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Report </span><input type="checkbox" name="canView_client_memo" class="vie"  /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Report');?> </span><input type="checkbox" name="canView_client_memo" class="vie"  /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['site_orders']=='0'){?><input type="hidden" name="canView_siteOrder" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Site Orders </span><input type="checkbox" name="canView_siteOrder" class="vie" /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Site Orders');?> </span><input type="checkbox" name="canView_siteOrder" class="vie" /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['training']=='0'){?><input type="hidden" name="canView_training" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Training </span><input type="checkbox" name="canView_training" class="vie"  /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Training');?> </span><input type="checkbox" name="canView_training" class="vie"  /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['employee']=='0'){?><input type="hidden" name="canView_employee" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Employee </span><input type="checkbox" name="canView_employee" class="vie"  /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Employee');?> </span><input type="checkbox" name="canView_employee" class="vie"  /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['kpiaudits']=='0'){?><input type="hidden" name="canView_KPIAudits" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="canView_KPIAudits" class="vie" /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/KPI Audits');?> </span><input type="checkbox" name="canView_KPIAudits" class="vie" /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['personal_inspection']=='0' ){?><input type="hidden" name="canView_personal_inspection" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Personal Inspection </span><input type="checkbox" name="canView_personal_inspection" <?php if(isset($v['Canview']['personal_inspection']) && $v['Canview']['personal_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Personal Inspection');?> </span><input type="checkbox" name="canView_personal_inspection" <?php if(isset($v['Canview']['personal_inspection']) && $v['Canview']['personal_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['mobile_inspection']=='0' ){?><input type="hidden" name="canView_mobile_inspection" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Inspection </span><input type="checkbox" name="canView_mobile_inspection" <?php if(isset($v['Canview']['mobile_inspection']) && $v['Canview']['mobile_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Mobile Inspection');?> </span><input type="checkbox" name="canView_mobile_inspection" <?php if(isset($v['Canview']['mobile_inspection']) && $v['Canview']['mobile_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['mobile_log']=='0' ){?><input type="hidden" name="canView_mobile_log" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Log </span><input type="checkbox" name="canView_mobile_log" <?php if(isset($v['Canview']['mobile_log']) && $v['Canview']['mobile_log']==1){?>checked="checked"<?php }?> /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Mobile Log');?> </span><input type="checkbox" name="canView_mobile_log" <?php if(isset($v['Canview']['mobile_log']) && $v['Canview']['mobile_log']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['inventory']=='0' ){?><input type="hidden" name="canView_inventory" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Vehicle Truck Inventory </span><input type="checkbox" name="canView_inventory" <?php if(isset($u['Canupload']['inventory']) && $u['Canupload']['inventory']==1){?>checked="checked"<?php }?> /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Mobile Vehicle Truck Inventory');?> </span><input type="checkbox" name="canView_inventory" <?php if(isset($u['Canupload']['inventory']) && $u['Canupload']['inventory']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['vehicle_inspection']=='0' ){?><input type="hidden" name="canView_vehicle_inspection" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Vehicle Inspection </span><input type="checkbox" name="canView_vehicle_inspection" <?php if(isset($u['Canupload']['vehicle_inspection']) && $u['Canupload']['vehicle_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <?php echo $this->requestAction('dashboard/translate/Vehicle Inspection');?> </span><input type="checkbox" name="canView_vehicle_inspection" <?php if(isset($u['Canupload']['vehicle_inspection']) && $u['Canupload']['vehicle_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
 
 </td>
 </tr>
@@ -242,7 +242,7 @@ if($q || $q2){
 </td>
 </tr>
 
-<tr><td><b>Can Upload Files</b></td><td><input type="checkbox" name="canUpdate" id="canUpdate"  /></td></tr>
+<tr><td><b><?php echo $this->requestAction('dashboard/translate/Can Upload Files');?></b></td><td><input type="checkbox" name="canUpdate" id="canUpdate"  /></td></tr>
 <tr class="canuploadfiles yesspecial2" style="display: none;">
 <td colspan="2" class="">
 <table width="50%">
@@ -264,45 +264,45 @@ if($q || $q2){
 <tr>
 <td>
 <?php if($admin_doc['AdminDoc']['contracts']=='0'){?><input type="hidden" name="canUpload_contracts" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span><input type="checkbox" name="canUpload_contracts" class="upl"/><?php } ?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Contracts');?> </span><input type="checkbox" name="canUpload_contracts" class="upl"/><?php } ?>
 
 <?php if($admin_doc['AdminDoc']['evidence']=='0'){?><input type="hidden" name="canUpload_evidence" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="canUpload_evidence" class="upl"  /><?php } ?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Evidence');?> </span><input type="checkbox" name="canUpload_evidence" class="upl"  /><?php } ?>
 
 <?php if($admin_doc['AdminDoc']['templates']=='0'){?><input type="hidden" name="canUpload_templates" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="canUpload_templates" class="upl"  /><?php } ?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Templates');?> </span><input type="checkbox" name="canUpload_templates" class="upl"  /><?php } ?>
 
 <?php if($admin_doc['AdminDoc']['report']=='0'){?><input type="hidden" name="canUpload_client_memo" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report </span><input type="checkbox" name="canUpload_client_memo" class="upl"  /><?php } ?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Report');?> </span><input type="checkbox" name="canUpload_client_memo" class="upl"  /><?php } ?>
 
 <?php if($admin_doc['AdminDoc']['site_orders']=='0'){?><input type="hidden" name="canUpload_siteOrder" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Site Orders </span><input type="checkbox" name="canUpload_siteOrder" class="upl"  /><?php } ?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Site Orders');?> </span><input type="checkbox" name="canUpload_siteOrder" class="upl"  /><?php } ?>
 
 <?php if($admin_doc['AdminDoc']['training']=='0'){?><input type="hidden" name="canUpload_training" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Training </span><input type="checkbox" name="canUpload_training" class="upl"  /><?php } ?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Training');?> </span><input type="checkbox" name="canUpload_training" class="upl"  /><?php } ?>
 
 <?php if($admin_doc['AdminDoc']['employee']=='0'){?><input type="hidden" name="canUpload_employee" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Employee </span><input type="checkbox" name="canUpload_employee" class="upl"  /><?php } ?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Employee');?> </span><input type="checkbox" name="canUpload_employee" class="upl"  /><?php } ?>
 
 <?php if($admin_doc['AdminDoc']['kpiaudits']=='0'){?><input type="hidden" name="canUpload_KPIAudits" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="canUpload_KPIAudits" class="upl" /><?php } ?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/KPI Audits');?> </span><input type="checkbox" name="canUpload_KPIAudits" class="upl" /><?php } ?>
 
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Feedback </span><input type="checkbox" name="canUpload_client_memo1" class="upl"  />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Client Feedback');?> </span><input type="checkbox" name="canUpload_client_memo1" class="upl"  />
 
 <?php if($admin_doc['AdminDoc']['personal_inspection']=='0' ){?><input type="hidden" name="canUpload_personal_inspection" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Personal Inspection </span><input type="checkbox" name="canUpload_personal_inspection" <?php if(isset($u['Canupload']['personal_inspection']) && $u['Canupload']['personal_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Personal Inspection');?> </span><input type="checkbox" name="canUpload_personal_inspection" <?php if(isset($u['Canupload']['personal_inspection']) && $u['Canupload']['personal_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['mobile_inspection']=='0' ){?><input type="hidden" name="canUpload_mobile_inspection" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Inspection </span><input type="checkbox" name="canUpload_mobile_inspection" <?php if(isset($u['Canupload']['mobile_inspection']) && $u['Canupload']['mobile_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Mobile Inspection');?> </span><input type="checkbox" name="canUpload_mobile_inspection" <?php if(isset($u['Canupload']['mobile_inspection']) && $u['Canupload']['mobile_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['mobile_log']=='0' ){?><input type="hidden" name="canUpload_mobile_log" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Log </span><input type="checkbox" name="canUpload_mobile_log" <?php if(isset($u['Canupload']['mobile_log']) && $u['Canupload']['mobile_log']==1){?>checked="checked"<?php }?> /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Mobile Log');?> </span><input type="checkbox" name="canUpload_mobile_log" <?php if(isset($u['Canupload']['mobile_log']) && $u['Canupload']['mobile_log']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['inventory']=='0' ){?><input type="hidden" name="canUpload_inventory" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Vehicle Trunk Inventory </span><input type="checkbox" name="canUpload_inventory" <?php if(isset($u['Canupload']['inventory']) && $u['Canupload']['inventory']==1){?>checked="checked"<?php }?> /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Mobile Vehicle Trunk Inventory');?> </span><input type="checkbox" name="canUpload_inventory" <?php if(isset($u['Canupload']['inventory']) && $u['Canupload']['inventory']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['vehicle_inspection']=='0' ){?><input type="hidden" name="canUpload_vehicle_inspection" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vehicle Inspection </span><input type="checkbox" name="canUpload_vehicle_inspection" <?php if(isset($u['Canupload']['canUpload_vehicle_inspection']) && $u['Canupload']['canUpload_vehicle_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Vehicle Inspection');?> </span><input type="checkbox" name="canUpload_vehicle_inspection" <?php if(isset($u['Canupload']['canUpload_vehicle_inspection']) && $u['Canupload']['canUpload_vehicle_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
 
 </td>
 </tr>
@@ -311,13 +311,13 @@ if($q || $q2){
 </tr>
 <!--<tr><td><b>Can View Files</b></td><td><input type="checkbox" name="canView" /></td></tr>
 <tr><td><b>Can Upload Files</b></td><td><input type="checkbox" name="canUpdate" /></td></tr>-->
-<tr><td><b>Can Send Message</b></td><td><input type="checkbox" name="canEmail" /></td></tr>
-<tr><td><b>Can Edit Notification</b></td><td><input type="checkbox" name="canEdit" id="canEdit" /></td></tr>
+<tr><td><b><?php echo $this->requestAction('dashboard/translate/Can Send Message');?></b></td><td><input type="checkbox" name="canEmail" /></td></tr>
+<tr><td><b><?php echo $this->requestAction('dashboard/translate/Can Edit Notification');?></b></td><td><input type="checkbox" name="canEdit" id="canEdit" /></td></tr>
 <!--<tr class="canEdit" style="display: block;">
 <td colspan="2">
 <table width="100%">-->
-<tr><td><b>Receive email when someone sends me message</b>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input class="receive" type="checkbox" name="receive1" /></td></tr>
-<tr><td><b>Receive email when document is uploaded</b>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input class="receive" type="checkbox" name="receive2" id="receive2" /></td></tr>
+<tr><td><b><?php echo $this->requestAction('dashboard/translate/Receive email when someone sends me message');?></b>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input class="receive" type="checkbox" name="receive1" /></td></tr>
+<tr><td><b><?php echo $this->requestAction('dashboard/translate/Receive email when document is uploaded');?></b>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input class="receive" type="checkbox" name="receive2" id="receive2" /></td></tr>
 <tr class="upload_more yesspecial3" style="display: none;">
 <td colspan="2" class="">
 <table width="50%">
@@ -339,44 +339,44 @@ if($q || $q2){
 <tr>
 <td>
 <?php if($admin_doc['AdminDoc']['contracts']=='0'){?><input type="hidden" name="Email_contracts" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contracts </span><input type="checkbox" name="Email_contracts" class="rec_email"/><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Contracts');?> </span><input type="checkbox" name="Email_contracts" class="rec_email"/><?php }?>
 
 <?php if($admin_doc['AdminDoc']['evidence']=='0'){?><input type="hidden" name="Email_evidence" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evidence </span><input type="checkbox" name="Email_evidence"  class="rec_email" /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Evidence');?> </span><input type="checkbox" name="Email_evidence"  class="rec_email" /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['templates']=='0'){?><input type="hidden" name="Email_templates" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates </span><input type="checkbox" name="Email_templates"  class="rec_email" /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Templates');?> </span><input type="checkbox" name="Email_templates"  class="rec_email" /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['report']=='0'){?><input type="hidden" name="Email_client_memo" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Report </span><input type="checkbox" name="Email_client_memo"  class="rec_email" /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Report');?> </span><input type="checkbox" name="Email_client_memo"  class="rec_email" /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['site_orders']=='0'){?><input type="hidden" name="Email_siteOrder" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Site Orders </span><input type="checkbox" name="Email_siteOrder"  class="rec_email" /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Site Orders');?> </span><input type="checkbox" name="Email_siteOrder"  class="rec_email" /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['training']=='0'){?><input type="hidden" name="Email_training" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Training </span><input type="checkbox" name="Email_training"  class="rec_email" /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Training');?> </span><input type="checkbox" name="Email_training"  class="rec_email" /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['employee']=='0'){?><input type="hidden" name="Email_employee" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Employee </span><input type="checkbox" name="Email_employee"  class="rec_email" /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Employee');?> </span><input type="checkbox" name="Email_employee"  class="rec_email" /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['kpiaudits']=='0'){?><input type="hidden" name="Email_KPIAudits" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPI Audits </span><input type="checkbox" name="Email_KPIAudits"  class="rec_email" /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/KPI Audits');?> </span><input type="checkbox" name="Email_KPIAudits"  class="rec_email" /><?php }?>
 
 
 <?php if($admin_doc['AdminDoc']['personal_inspection']=='0'){?><input type="hidden" name="Email_personal_inspection" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Personal Inspection </span><input type="checkbox" name="Email_personal_inspection"  class="rec_email" /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Personal Inspection');?> </span><input type="checkbox" name="Email_personal_inspection"  class="rec_email" /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['mobile_inspection']=='0'){?><input type="hidden" name="Email_mobile_inspection" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Inspection </span><input type="checkbox" name="Email_mobile_inspection"  class="rec_email" /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Mobile Inspection');?> </span><input type="checkbox" name="Email_mobile_inspection"  class="rec_email" /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['mobile_log']=='0'){?><input type="hidden" name="Email_mobile_log" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mobile Log </span><input type="checkbox" name="Email_mobile_log"  class="rec_email" /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Mobile Log');?> </span><input type="checkbox" name="Email_mobile_log"  class="rec_email" /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['inventory']=='0'){?><input type="hidden" name="Email_mobile_vehicle_trunk_inventory" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mobile Vehicle Trunk Inventory  </span><input type="checkbox" name="Email_mobile_vehicle_trunk_inventory"  class="rec_email" /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Mobile Vehicle Trunk Inventory');?>  </span><input type="checkbox" name="Email_mobile_vehicle_trunk_inventory"  class="rec_email" /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['vehicle_inspection']=='0'){?><input type="hidden" name="Email_vehicle_inspection" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vehicle Inspection </span><input type="checkbox" name="Email_vehicle_inspection"  class="rec_email" /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Vehicle Inspection');?> </span><input type="checkbox" name="Email_vehicle_inspection"  class="rec_email" /><?php }?>
 
 <!--<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Feedback </span><input type="checkbox" name="Email_client_memo1"  />-->
 </td>
@@ -389,7 +389,7 @@ if($q || $q2){
 </td></tr>-->
 <!-- <div class="checks"><div class="left">Is Supervisor</div><div class="right"><input type="checkbox" name="isSupervisor" /></div><div class="clear"></div></div>
 <div class="checks"><div class="left">Is Employee</div><div class="right"><input type="checkbox" name="isEmployee" /></div><div class="clear"></div></div> -->
-<tr><td><div class="submit"><input type="submit" class="btn btn-primary" value="Add User" name="submit"/></div></td></tr>
+<tr><td><div class="submit"><input type="submit" class="btn btn-primary" value="<?php echo $this->requestAction('dashboard/translate/Add User');?>" name="submit"/></div></td></tr>
 </table>
 </form>
 

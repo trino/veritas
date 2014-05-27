@@ -29,14 +29,17 @@ class DashboardController extends AppController
         die();
         
     }
-    public function translate($field,$lang='fre')
+    public function translate($fi,$lang='fre')
     {
         $lang = $this->Session->read('lang');
-        $field = strtolower(str_replace(" ","_",$field));
+        $field = strtolower(str_replace(" ","_",$fi));
+        
         $this->{'Convert'} = ClassRegistry::init('Convert');
         
-         $st = $this->Convert->findByField($field);
-        return $st['Convert'][$lang];
+         if($st = $this->Convert->findByField($field))
+            return $st['Convert'][$lang];
+        else
+            return $fi;
         
         
     }

@@ -1,13 +1,13 @@
 <?php include_once('inc.php');?>
 
 <h3 class="page-title">
-	Job Manager
+	<?php echo $this->requestAction('dashboard/translate/Job Manager');?>
 </h3>
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
-		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>jobs">Job Manager</a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>dashboard"><?php echo $this->requestAction('dashboard/translate/Home');?></a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>jobs"><?php echo $this->requestAction('dashboard/translate/Job Manager');?></a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
 
@@ -50,10 +50,10 @@ if($job){
     ?>
     <table>    
 	        <tr>
-                <th colspan="2"><?php echo $this->Paginator->sort('title','Company');?></th>
-                <?php if($this->Session->read('avatar')) { ?><th>Assigned to</th><?php }?>
-                <th><?php echo $this->Paginator->sort('id','Job Id');?></th>
-                <th style="width:420px;">Options</th>
+                <th colspan="2"><?php echo $this->Paginator->sort('title',$this->requestAction('dashboard/translate/Company'));?></th>
+                <?php if($this->Session->read('avatar')) { ?><th><?php echo $this->requestAction('dashboard/translate/Assigned to');?></th><?php }?>
+                <th><?php echo $this->Paginator->sort('id',$this->requestAction('dashboard/translate/Job Id'));?></th>
+                <th style="width:420px;"><?php echo $this->requestAction('dashboard/translate/Options');?></th>
             </tr>
     <?php        
 foreach($job as $j)
@@ -88,12 +88,12 @@ foreach($job as $j)
                                 if($me%4==1)
                                 echo "<tr>";
                                 if($this->Session->read('admin'))
-                                echo "<td style='width:20px;' ><a href='".$base_url."members/view/".$m['Member']['id']."'>"." ".$m['Member']['full_name']."</a></td>";
+                                    echo "<td style='width:20px;' ><a href='".$base_url."members/view/".$m['Member']['id']."'>"." ".$m['Member']['full_name']."</a></td>";
                                 else
-                                echo "<td style='width:20px;' >".$m['Member']['full_name']."</td>";
+                                    echo "<td style='width:20px;' >".$m['Member']['full_name']."</td>";
                                 $td++;
                                 if($m%4==0)
-                                echo "</tr>";
+                                    echo "</tr>";
                                 
                                 
                             }
@@ -133,37 +133,37 @@ foreach($job as $j)
 
         <td>
     
-        <?php echo $this->Html->link('View','/jobs/view/'.$j['Job']['id'],array('class'=>'btn btn-primary')); ?>
+        <?php echo $this->Html->link($this->requestAction('dashboard/translate/View'),'/jobs/view/'.$j['Job']['id'],array('class'=>'btn btn-primary')); ?>
            <?php
            //echo  $this->Session->read('upload');
             if($this->Session->read('upload') == '1' || $this->Session->read('admin'))
             {
             if(!isset($_GET['activity_log'])&&!isset($_GET['client_feedback']))    
-                echo $this->Html->link('Quick Upload','/uploads/upload/'.$j['Job']['id'],array('class'=>'btn btn-primary'))." ";
+                echo $this->Html->link($this->requestAction('dashboard/translate/Quick Upload'),'/uploads/upload/'.$j['Job']['id'],array('class'=>'btn btn-primary'))." ";
             else
             if(isset($_GET['client_feedback']))
-                echo $this->Html->link('Quick Upload','/uploads/upload/'.$j['Job']['id'].'/client_feedback',array('class'=>'btn btn-primary'))." ";
+                echo $this->Html->link($this->requestAction('dashboard/translate/Quick Upload'),'/uploads/upload/'.$j['Job']['id'].'/client_feedback',array('class'=>'btn btn-primary'))." ";
             else
-                echo $this->Html->link('Quick Upload','/uploads/upload/'.$j['Job']['id'].'/activity_log',array('class'=>'btn btn-primary'))." ";
+                echo $this->Html->link($this->requestAction('dashboard/translate/Quick Upload'),'/uploads/upload/'.$j['Job']['id'].'/activity_log',array('class'=>'btn btn-primary'))." ";
             }
         	
     if($this->Session->read('avatar'))
     {
         echo $this->Html->link(
-					'Edit',
+					$this->requestAction('dashboard/translate/Edit'),
 					'/jobs/edit/'.$j['Job']['id'],
                     array('class'=>'btn btn-primary')
 				);
 			?> <?php echo $this->Html->link(
-					'Delete',
+					$this->requestAction('dashboard/translate/Delete'),
 					'/jobs/delete/'.$j['Job']['id'],
-                    array('class'=>'btn btn-danger'),"Delete job?"
+                    array('class'=>'btn btn-danger'),$this->requestAction('dashboard/translate/Delete job')."?"
 				)." ";
 		}
         if($this->Session->read('avatar'))
         {
        ?>
-       <a href="<?php echo $base_url;?>jobs/projectboard/<?php echo $j['Job']['id'];?>" class="btn btn-success">Project Board</a>
+       <a href="<?php echo $base_url;?>jobs/projectboard/<?php echo $j['Job']['id'];?>" class="btn btn-success"><?php echo $this->requestAction('dashboard/translate/Project Board');?></a>
        <?php
        }
        ?>
