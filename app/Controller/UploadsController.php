@@ -20,6 +20,10 @@ class UploadsController extends AppController
         $this->loadModel('Canview');
         $this->loadModel('Activity');
         
+        
+        
+        
+        
         parent::__construct($request,$response);
         
     }
@@ -455,6 +459,19 @@ class UploadsController extends AppController
     
     function document_edit($eid)
     {
+        $this->loadModel('Canupload');
+        $this->loadModel('Emailupload');
+        $this->loadModel('Clientmemo');
+        $this->loadModel('AdminDoc');
+        $this->loadModel('StoreInfo');
+        $this->loadModel('SubjectInfo');
+        $this->loadModel('SpecialistInfo');
+        $this->loadModel('ProductDInfo');
+        $this->loadModel('PoliceInfo');
+        $this->loadModel('JuvenileInfo');
+        $this->loadModel('NoticeInfo');
+        $this->loadModel('AdditionalInfo');
+        $this->loadModel('ItemInfo');
         $this->loadModel('Personal_inspection');
         $this->loadModel('MobileInspection');
         $this->loadModel('MobileAction');
@@ -466,8 +483,8 @@ class UploadsController extends AppController
         if($eid)
         {
             $this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$eid))));
-            $this->set('vehicle',$this->Vehicle_inspection->find('first',array('conditions'=>array('document_id'=>$eid))));
             $vi = $this->Vehicle_inspection->find('first',array('conditions'=>array('document_id'=>$eid)));
+            $this->set('vehicle',$vi);            
             if($vi)
             {
                 $vid = $vi['Vehicle_inspection']['id'];
@@ -484,11 +501,9 @@ class UploadsController extends AppController
             {
                 //var_dump($n);
                 $mem_note = $this->MobileNote->find('all',array('conditions'=>array('mobileins_id'=>$n['MobileLog']['id'])));
-                $this->set('mem_note',$mem_note);
-                
+                $this->set('mem_note',$mem_note);                
                 if($mem_site = $this->MobileSite->find('all',array('conditions'=>array('mobilelog_id'=>$n['MobileLog']['id']))))
-                    $this->set('mem_site',$mem_site);
-                
+                    $this->set('mem_site',$mem_site);                
                 $this->set('moblog',$n); 
             }
             if($in = $this->MobileTrunk->findByDocumentId($eid))
@@ -496,30 +511,22 @@ class UploadsController extends AppController
                 $this->set('inv', $in);
             }
         }
-        $this->loadModel('Canupload');
-        $this->loadModel('Activity');
-        $this->loadModel('Emailupload');
-        $this->loadModel('Clientmemo');
-        $this->loadModel('AdminDoc');
         
-        $this->loadModel('StoreInfo');
-            $this->set('store',$this->StoreInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
-        $this->loadModel('SubjectInfo');
-            $this->set('subject',$this->SubjectInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
-         
-        $this->loadModel('SpecialistInfo');
+            $this->set('store',$this->StoreInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));        
+            $this->set('subject',$this->SubjectInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));         
+        
             $this->set('special',$this->SpecialistInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
-        $this->loadModel('ProductDInfo');
+        
             $this->set('product',$this->ProductDInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
-        $this->loadModel('PoliceInfo');
+        
             $this->set('police',$this->PoliceInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
-        $this->loadModel('JuvenileInfo');
+        
             $this->set('juv',$this->JuvenileInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
-        $this->loadModel('NoticeInfo');
+        
             $this->set('notice',$this->NoticeInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
-        $this->loadModel('AdditionalInfo');
+        
             $this->set('add',$this->AdditionalInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
-        $this->loadModel('ItemInfo');
+        
             $this->set('item',$this->ItemInfo->find('all', array('conditions'=>array('doc_id'=>$eid))));
             
         $this->set('admin_doc',$this->AdminDoc->find('first'));
@@ -539,8 +546,6 @@ class UploadsController extends AppController
         
         if(isset($_POST['document_type']))
         {
-		
-
             $uri = $_SERVER['REQUEST_URI'];
                 $uri = str_replace('/',' ',$uri);
                 $uri = str_replace(' ','/',trim($uri));
@@ -562,7 +567,6 @@ class UploadsController extends AppController
             else
                 $id=0;
             unset($arr);
-            //$arr['location'] = $_POST['location'];
             $arr['title'] = ucfirst($_POST['document_type']);
             if($_POST['document_type']!='personal_inspection')
                 $arr['description'] = $_POST['description'];
@@ -598,8 +602,6 @@ class UploadsController extends AppController
             
             elseif($_POST['document_type']=='report')
             {
-                //die('2');
-                //$arr['client_memo'] = $_POST['client_memo'];
                 $this->Activity->deleteAll(array('document_id'=>$eid));
                 $activity['document_id'] = $eid;
                 $activity['report_type'] = $_POST['report_type'];
@@ -1228,10 +1230,6 @@ class UploadsController extends AppController
         $jjj = $this->Job->findById($doc['Document']['job_id']);
         $this->set('job_name',$jjj['Job']['title']);
         $this->set('doc', $doc);
-        
-        
-        
-
     }
     
     function special_doc($eid='')

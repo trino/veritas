@@ -596,6 +596,9 @@ font-size:16px;
 #response,#response1,.response1{color:red;}
 #name{cursor: text;}
 .notop{border-top:none!important;border-left:1px solid #DDD;}
+.checkboxes input{margin-top:0!important;}
+.clear{clear:both;}
+label.error{color:red!important;}
 
 
 
