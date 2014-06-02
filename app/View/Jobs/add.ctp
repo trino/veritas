@@ -1,14 +1,14 @@
 <?php include_once('inc.php');?>
 
 <h3 class="page-title">
-	Add Job
+	<?php echo $this->requestAction('dashboard/translate/Add Job');?>
 </h3>
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
-		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>jobs">Job Manager</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>jobs/add">Add Job</a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>dashboard"><?php echo $this->requestAction('dashboard/translate/Home');?></a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>jobs"><?php echo $this->requestAction('dashboard/translate/Job Manager');?></a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>jobs/add"><?php echo $this->requestAction('dashboard/translate/Add Job');?></a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
 
@@ -22,12 +22,12 @@ $(function(){
 <div id="table">
 <form action="" method="post" id="my_form" enctype="multipart/form-data" >
 	<table>
-<tr><td style="width:140px;"><b>Job Title</b></td><td><input type="text" name="title" class="required" /></td></tr>
-<tr><td><b>Job Description</b></td><td><textarea name="description" class="required" ></textarea></td></tr>
+<tr><td style="width:140px;"><b><?php echo $this->requestAction('dashboard/translate/Job Title');?></b></td><td><input type="text" name="title" class="required" /></td></tr>
+<tr><td><b><?php echo $this->requestAction('dashboard/translate/Job Description');?></b></td><td><textarea name="description" class="required" ></textarea></td></tr>
 <tr><td><b>Image</b></td><td><input type="file" name="image" class="" /></td></tr>
-<tr><td><b>Start Date</b></td><td><input type="text" name="start_date" id="start_date" class="" /></td></tr>
-<tr><td><b>End Date</b></td><td><input type="text" name="end_date" id="end_date" class="" /></td></tr>
-<tr><td><strong>Add Members:</strong></td><td>
+<tr><td><b><?php echo $this->requestAction('dashboard/translate/Start Date');?></b></td><td><input type="text" name="start_date" id="start_date" class="" /></td></tr>
+<tr><td><b><?php echo $this->requestAction('dashboard/translate/End Date');?></b></td><td><input type="text" name="end_date" id="end_date" class="" /></td></tr>
+<tr><td><strong><?php echo $this->requestAction('dashboard/translate/Add Members');?>:</strong></td><td>
 <?php if($member){?>
 <table>
     <?php 
@@ -61,7 +61,7 @@ $(function(){
 </td></tr>
 <!--<tr><td colspan="2" class="add_more"></td></tr>
 <tr><td colspan="2"><a href="javascript:void(0);" id="add_key"><strong>+ Add Key Contact</strong></a></td></tr>-->
-<tr><td colspan="2"><strong>Add Contacts</strong></td></tr>
+<tr><td colspan="2"><strong><?php echo $this->requestAction('dashboard/translate/Add Contacts');?></strong></td></tr>
 <tr><td colspan="2">
 <table>
 <?php 
@@ -93,9 +93,9 @@ if($c%5==0)
 
 <div class="add_more"></div>
 
-<a href="javascript:void(0)" id="add_key" style="margin-left:8px;" class="btn btn-primary">+Add Quick Key Contacts </a><br /><br /> 
+<a href="javascript:void(0)" id="add_key" style="margin-left:8px;" class="btn btn-primary">+<?php echo $this->requestAction('dashboard/translate/Add Quick Key Contacts');?> </a><br /><br /> 
 
-<div class="submit"><input type="submit" id="submit" class="btn btn-primary"  style="margin-left:8px;" value="Add Job" name="submit"  />
+<div class="submit"><input type="submit" id="submit" class="btn btn-primary"  style="margin-left:8px;" value="<?php echo $this->requestAction('dashboard/translate/Add Job');?>" name="submit"  />
 
 </div>
 </div>
@@ -113,13 +113,13 @@ else
 $('.submit input').attr('disabled','disabled');
 });*/
     var cnt = 0;
-    var add =   '<table width="100%"><tr><td>Contact Type</td><td colspan="3"><select name="type[]" class="required">'+
-                '<option value="0">Key Contacts</option><option value="1">Staff Contacts</option>'+
-                '<option value="2">Third Part Contacts</option></select></td></tr>'+
-                '<tr><td><b>Name</b><br/> <input type="text" name="key_name[]" class="required" style="width: 100px;" /></td>'+
-                '<td><b>Title</b><br/> <input type="text" name="key_title[]" class="required" style="width: 100px;" /></td>'+
-                '<td><b>Cell Number</b><br/> <input type="text" name="key_cell[]" class="required" style="width: 100px;" /></td>'+
-                '<td><b>Cellular Carrier</b><br />'+
+    var add =   '<table width="100%"><tr><td><?php echo $this->requestAction('dashboard/translate/Contact Type');?></td><td colspan="3"><select name="type[]" class="required">'+
+                '<option value="0"><?php echo $this->requestAction('dashboard/translate/Key Contacts');?></option><option value="1"><?php echo $this->requestAction('dashboard/translate/Staff Contacts');?></option>'+
+                '<option value="2"><?php echo $this->requestAction('dashboard/translate/Third Part Contacts');?></option></select></td></tr>'+
+                '<tr><td><b><?php echo $this->requestAction('dashboard/translate/Name');?></b><br/> <input type="text" name="key_name[]" class="required" style="width: 100px;" /></td>'+
+                '<td><b><?php echo $this->requestAction('dashboard/translate/Title');?></b><br/> <input type="text" name="key_title[]" class="required" style="width: 100px;" /></td>'+
+                '<td><b><?php echo $this->requestAction('dashboard/translate/Cell Number');?></b><br/> <input type="text" name="key_cell[]" class="required" style="width: 100px;" /></td>'+
+                '<td><b><?php echo $this->requestAction('dashboard/translate/Cellular Carrier');?></b><br />'+
                 '<select name="key_cellular[]" class="required">'+
                 '    <option value="Rogers">Rogers</option>'+
                 '    <option value="Bell">Bell</option>'+
@@ -135,9 +135,9 @@ $('.submit input').attr('disabled','disabled');
                 '    <option value="Virgin Mobile">Virgin Mobile</option>'+
                 '</select>'+
                 '</td>'+
-                '<td><b>Phone Number</b><br/> <input type="text" name="key_number[]" class="" style="width: 100px;" /></td>'+
-                '<td><b>Email</b><br/> <input type="text" name="key_email[]" class="email" style="width: 100px;" /></td>'+
-                '<td><b>Company</b><br/> <input type="text" name="key_company[]" class="" style="width: 100px;" /> </td><td><input type="button" onclick="$(this).parent().parent().parent().parent().remove();" class="btn btn-danger" style="margin-top:20px;" value="Remove"/></td></tr>'+
+                '<td><b><?php echo $this->requestAction('dashboard/translate/Phone Number');?></b><br/> <input type="text" name="key_number[]" class="" style="width: 100px;" /></td>'+
+                '<td><b><?php echo $this->requestAction('dashboard/translate/Email');?></b><br/> <input type="text" name="key_email[]" class="email" style="width: 100px;" /></td>'+
+                '<td><b><?php echo $this->requestAction('dashboard/translate/Company');?></b><br/> <input type="text" name="key_company[]" class="" style="width: 100px;" /> </td><td><input type="button" onclick="$(this).parent().parent().parent().parent().remove();" class="btn btn-danger" style="margin-top:20px;" value="<?php echo $this->requestAction('dashboard/translate/Remove');?>"/></td></tr>'+
                 '</table>';
    $('#add_key').click(function(){
         $('.add_more').append(add);

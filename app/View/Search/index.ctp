@@ -9,18 +9,18 @@ $(function(){
     if(!$type){
     if(isset($_GET['search']) && $_GET['search'])
     {
-        echo "Result for : ".$_GET['search'];
+        echo $this->requestAction('dashboard/translate/Result for')." : ".$_GET['search'];
         if(isset($_GET['from'])&&$_GET['to'])
         {
-            echo " <span style='font-size:17px;'>(From : ".$_GET['from']." to ".$_GET['to'].")</span>";
+            echo " <span style='font-size:17px;'>(".$this->requestAction('dashboard/translate/From')." : ".$_GET['from']." ".$this->requestAction('dashboard/translate/to')." ".$_GET['to'].")</span>";
         }
     } 
     else
     {
-        echo "All Document Search";
+        echo $this->requestAction('dashboard/translate/All Document Search');
         if(isset($_GET['from'])&&$_GET['to'])
         {
-            echo " <span style='font-size:17px;'>(From : ".$_GET['from']." to ".$_GET['to'].")</span>";
+            echo " <span style='font-size:17px;'>(".$this->requestAction('dashboard/translate/From')." : ".$_GET['from']." ".$this->requestAction('dashboard/translate/to')." ".$_GET['to'].")</span>";
         }
     }
     }
@@ -29,7 +29,7 @@ $(function(){
         if(isset($jobname))
         echo $jobname.'/';
         $type = ucfirst(str_replace(array('_','intel','News media'),array(' ','Intel','News/Media'),$type));
-        echo str_replace('News media','News/Media',$type);
+        echo str_replace('News media','News/Media',$this->requestAction('dashboard/translate/'.$type));
     }
     ?>
 </h3>
@@ -37,16 +37,16 @@ $(function(){
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
-		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>search?search=">Documents Search</a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>dashboard"><?php echo $this->requestAction('dashboard/translate/Home');?></a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>search?search=">Documents <?php echo $this->requestAction('dashboard/translate/Search');?></a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
-<div><strong>Filter By</strong></div>
+<div><strong><?php echo $this->requestAction('dashboard/translate/Filter By');?></strong></div>
 <form action="<?php echo $base_url;?>search" method="get" id="datefilter" style="float: left;margin-right:10px;">
-    <input type="text" value="" name="from" placeholder="Start Date" style="width: 100px; margin-top:10px;" class="datepicker required" />
-    <input type="text" value="" name="to" placeholder="End Date" style="width: 100px; margin-top: 10px;" class="datepicker required" />
+    <input type="text" value="" name="from" placeholder="<?php echo $this->requestAction('dashboard/translate/Start Date');?>" style="width: 100px; margin-top:10px;" class="datepicker required" />
+    <input type="text" value="" name="to" placeholder="<?php echo $this->requestAction('dashboard/translate/End Date');?>" style="width: 100px; margin-top: 10px;" class="datepicker required" />
     <input type="hidden" value="<?php if(isset($_GET['search']))echo $_GET['search'];?>" name="search" /> 
-    <input type="submit" value="Go" class="btn btn-primary" />
+    <input type="submit" value="<?php echo $this->requestAction('dashboard/translate/Go');?>" class="btn btn-primary" />
 </form>
 <?php
 if($this->Session->read('admin'))
@@ -57,7 +57,7 @@ if($this->Session->read('admin'))
     if($u){
         ?>
         <select onchange="if($(this).val()!=''){window.location='<?php echo $base_url;?>search?search=&member='+$(this).val();}">
-        <option value="">Uploaded By</option>
+        <option value=""><?php echo $this->requestAction('dashboard/translate/Uploaded By');?></option>
         <option value="0">Admin</option>
         <?php
         foreach($u as $us)
@@ -75,19 +75,19 @@ if($this->Session->read('admin'))
   }
   ?>
   <select onchange="if($(this).val()!='afimac_intel' && $(this).val()!='news_media'){window.location='<?php echo $base_url;?>search/index/'+$(this).val();}else{window.location='<?php echo $base_url;?>search/special/'+$(this).val();}">
-    <option value="">Document type</option>
-    <option value="contract">Contract</option>
-    <option value="evidence">Evidence</option>
-    <option value="template">Template</option>
-    <option value="report">Report</option>
-    <option value="siteOrder">Site Order</option>
-    <option value="training">Training</option>
-    <option value="employee">Employee</option>
-    <option value="KPIAudits">KPI Audits</option>
-    <option value="personal_inspection">Personal Inspection</option>
-    <option value="mobile_inspection">Mobile Inspection</option>
-    <option value="afimac_intel">AFIMAC Intel</option>
-    <option value="vehicle_inspection">Vehicle Inspection</option>
+    <option value=""><?php echo $this->requestAction('dashboard/translate/Document type');?></option>
+    <option value="contract"><?php echo $this->requestAction('dashboard/translate/Contract');?></option>
+    <option value="evidence"><?php echo $this->requestAction('dashboard/translate/Evidence');?></option>
+    <option value="template"><?php echo $this->requestAction('dashboard/translate/Template');?></option>
+    <option value="report"><?php echo $this->requestAction('dashboard/translate/Report');?></option>
+    <option value="siteOrder"><?php echo $this->requestAction('dashboard/translate/Site Order');?></option>
+    <option value="training"><?php echo $this->requestAction('dashboard/translate/Training');?></option>
+    <option value="employee"><?php echo $this->requestAction('dashboard/translate/Employee');?></option>
+    <option value="KPIAudits"><?php echo $this->requestAction('dashboard/translate/KPI Audits');?></option>
+    <option value="personal_inspection"><?php echo $this->requestAction('dashboard/translate/Personal Inspection');?></option>
+    <option value="mobile_inspection"><?php echo $this->requestAction('dashboard/translate/Mobile Inspectio');?>n</option>
+    <option value="afimac_intel"><?php echo $this->requestAction('dashboard/translate/AFIMAC Intel');?></option>
+    <option value="vehicle_inspection"><?php echo $this->requestAction('dashboard/translate/Vehicle Inspection');?></option>
     
     <option value="news_media">News/Media</option>
     
@@ -99,7 +99,7 @@ if($this->Session->read('admin'))
   {
     ?>
     <select onchange="if($(this).val()!=''){window.location='<?php echo $base_url;?>search/?search=&job='+$(this).val();}">
-    <option value="">Job</option>
+    <option value=""><?php echo $this->requestAction('dashboard/translate/Job');?></option>
         <?php
         foreach($alljob as $aj)
         {
@@ -123,7 +123,7 @@ if($this->Session->read('admin'))
 if(isset($noView))
 {
     ?>
-    <div><strong>You do not have permission to view documents.</strong></div>
+    <div><strong><?php echo $this->requestAction('dashboard/translate/You do not have permission to view documents.');?></strong></div>
     <?php
 }
 else
@@ -165,16 +165,16 @@ $or = '&order=';
     <table>
         <tr>
             
-            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'document_type&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='document_type') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Document Type</a><?php //echo $this->Paginator->sort('document_type','Document Type');?></th>
-            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'job_title&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='job_title') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Job</a><?php //echo $this->Paginator->sort('job_title','Document Type');?></th>
+            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'document_type&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='document_type') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>"><?php echo $this->requestAction('dashboard/translate/Document Type');?></a><?php //echo $this->Paginator->sort('document_type','Document Type');?></th>
+            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'job_title&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='job_title') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>"><?php echo $this->requestAction('dashboard/translate/Job');?></a><?php //echo $this->Paginator->sort('job_title','Document Type');?></th>
             <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'evidence_author&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='evidence_author') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Author</a><?php //echo $this->Paginator->sort('document_type','Document Type');?></th>
-            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'description&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='description') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Description</a><?php //echo $this->Paginator->sort('description','Description');?></th> 
+            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'description&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='description') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>"><?php echo $this->requestAction('dashboard/translate/Description');?></a><?php //echo $this->Paginator->sort('description','Description');?></th> 
             <!--<th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'title&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='title') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Title</a><?php //echo $this->Paginator->sort('title','Title');?></th>-->           
-            <th width="10%"><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'addedBy&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='addedBy') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Uploaded By</a><?php //echo $this->Paginator->sort('addedBy','Uploaded By');?></th>
+            <th width="10%"><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'addedBy&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='addedBy') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>"><?php echo $this->requestAction('dashboard/translate/Uploaded By');?></a><?php //echo $this->Paginator->sort('addedBy','Uploaded By');?></th>
             
-            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'`date`&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='`date`') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Uploaded On</a><?php //echo $this->Paginator->sort('date','Uploaded On');?><!--</a>--></th>
-            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'incident_date&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='incident_date') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Incident Date</a><?php //echo $this->Paginator->sort('date','Uploaded On');?><!--</a>--></th>
-            <th>File</th>
+            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'`date`&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='`date`') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>"><?php echo $this->requestAction('dashboard/translate/Uploaded On');?></a><?php //echo $this->Paginator->sort('date','Uploaded On');?><!--</a>--></th>
+            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'incident_date&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='incident_date') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>"><?php echo $this->requestAction('dashboard/translate/Incident Date');?></a><?php //echo $this->Paginator->sort('date','Uploaded On');?><!--</a>--></th>
+            <th><?php echo $this->requestAction('dashboard/translate/File');?></th>
             <th style="width: 185px;">Option</th>
         </tr>
     <?php
@@ -248,18 +248,18 @@ $or = '&order=';
             ?>
             </td>
             <td>
-            <?php echo $this->Html->link('View','/uploads/view_detail/'.$d['Document']['id'], array('class'=>'btn btn-primary'));  ?>
+            <?php echo $this->Html->link($this->requestAction('dashboard/translate/View'),'/uploads/view_detail/'.$d['Document']['id'], array('class'=>'btn btn-primary'));  ?>
             
             <?php if($this->Session->read('admin') || $this->Session->read('id')== $d['Document']['addedBy'] )
             { 
                    //if(($this->Session->read('admin') && $d['Document']['document_type']!='client_feedback')|| $this->Session->read('user')) {
                    if(($this->Session->read('admin') && $d['Document']['document_type']!='client_feedback')) {
-                     echo $this->Html->link('Edit','/uploads/document_edit/'.$d['Document']['id'],array('class'=>'btn btn-info'));                 
-                    echo " " . $this->Html->link('Delete','/uploads/delete/'.$d['Document']['id'],array('class'=>'btn btn-danger'),"Confirm Delete Document?");
+                     echo $this->Html->link($this->requestAction('dashboard/translate/Edit'),'/uploads/document_edit/'.$d['Document']['id'],array('class'=>'btn btn-info'));                 
+                    echo " " . $this->Html->link($this->requestAction('dashboard/translate/Delete'),'/uploads/delete/'.$d['Document']['id'],array('class'=>'btn btn-danger'),$this->requestAction('dashboard/translate/Confirm Delete Document')."?");
 					}
                     else
                     if(!$this->Session->read('admin'))
-                     echo $this->Html->link('Edit','/uploads/document_edit/'.$d['Document']['id'],array('class'=>'btn btn-info'));
+                     echo $this->Html->link($this->requestAction('dashboard/translate/Edit'),'/uploads/document_edit/'.$d['Document']['id'],array('class'=>'btn btn-info'));
                     
             } ?>    
             </td>
@@ -313,14 +313,14 @@ $or = '&order=';
     <table>
         <tr>
             
-            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'document_type&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='document_type') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Document Type</a><?php //echo $this->Paginator->sort('document_type','Document Type');?></th>
-            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'job_title&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='job_title') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Job</a><?php //echo $this->Paginator->sort('document_type','Document Type');?></th>
-            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'author&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='author') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Author</a><?php //echo $this->Paginator->sort('document_type','Document Type');?></th>
-            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'`desc`&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='`desc`') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Description</a><?php //echo $this->Paginator->sort('description','Description');?></th> 
+            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'document_type&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='document_type') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>"><?php echo $this->requestAction('dashboard/translate/Document Type');?></a><?php //echo $this->Paginator->sort('document_type','Document Type');?></th>
+            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'job_title&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='job_title') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>"><?php echo $this->requestAction('dashboard/translate/Job');?></a><?php //echo $this->Paginator->sort('document_type','Document Type');?></th>
+            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'author&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='author') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>"><?php echo $this->requestAction('dashboard/translate/Author');?></a><?php //echo $this->Paginator->sort('document_type','Document Type');?></th>
+            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'`desc`&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='`desc`') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>"><?php echo $this->requestAction('dashboard/translate/Description');?></a><?php //echo $this->Paginator->sort('description','Description');?></th> 
              <th>Added By</th>          
             <th width="10%"><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'dop&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='dop') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">Date</a><?php //echo $this->Paginator->sort('addedBy','Uploaded By');?></th>
             
-            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'doc&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='doc') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>">File</a><?php //echo $this->Paginator->sort('date','Uploaded On');?><!--</a>--></th>
+            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'doc&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='doc') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>"><?php echo $this->requestAction('dashboard/translate/File');?></a><?php //echo $this->Paginator->sort('date','Uploaded On');?><!--</a>--></th>
             
             
             <th>Option</th>
@@ -361,18 +361,18 @@ $or = '&order=';
             <td><?php echo $d['SpecJob']['doc'];?></td>
             
             <td>
-            <?php echo $this->Html->link('View','/uploads/view_detail/'.$d['SpecJob']['id'].'/special', array('class'=>'btn btn-primary'));  ?>
+            <?php echo $this->Html->link($this->requestAction('dashboard/translate/View'),'/uploads/view_detail/'.$d['SpecJob']['id'].'/special', array('class'=>'btn btn-primary'));  ?>
             
             <?php if($this->Session->read('admin') || $this->Session->read('id')== $d['SpecJob']['addedBy'] )
             { 
                    //if(($this->Session->read('admin') && $d['Document']['document_type']!='client_feedback')|| $this->Session->read('user')) {
                    if($this->Session->read('admin')) {
-                     echo $this->Html->link('Edit','/uploads/special_doc/'.$d['SpecJob']['id'],array('class'=>'btn btn-info'));                 
-                    echo " " . $this->Html->link('Delete','/search/delete/'.$d['SpecJob']['id'],array('class'=>'btn btn-danger'),"Confirm Delete Document?");
+                     echo $this->Html->link($this->requestAction('dashboard/translate/Edit'),'/uploads/special_doc/'.$d['SpecJob']['id'],array('class'=>'btn btn-info'));                 
+                    echo " " . $this->Html->link($this->requestAction('dashboard/translate/Delete'),'/search/delete/'.$d['SpecJob']['id'],array('class'=>'btn btn-danger'),$this->requestAction('dashboard/translate/Confirm Delete Document')."?");
 					}
                     else
                     if($this->Session->read('id')== $d['SpecJob']['addedBy'])
-                    echo $this->Html->link('Edit','/uploads/special_doc/'.$d['SpecJob']['id'],array('class'=>'btn btn-info'));
+                    echo $this->Html->link($this->requestAction('dashboard/translate/Edit'),'/uploads/special_doc/'.$d['SpecJob']['id'],array('class'=>'btn btn-info'));
                     
                     
             } ?>    
@@ -398,11 +398,11 @@ $or = '&order=';
 else
 {
     ?>
-    <div><strong>You do not have permission to view documents.</strong></div>
+    <div><strong><?php echo $this->requestAction('dashboard/translate/You do not have permission to view documents.');?></strong></div>
     <?php
 }
 
 ?>
     <?php
-} else {echo"No Search Results";}
+} else {echo $this->requestAction('dashboard/translate/No Search Results');}
 ?>

@@ -1,13 +1,13 @@
 <?php include('inc.php');?>
 
 <h3 class="page-title">
-	Inbox
+	<?php echo $this->requestAction('dashboard/translate/Inbox');?>
 </h3>
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
-		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>mail">Inbox</a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>dashboard"><?php echo $this->requestAction('dashboard/translate/Home');?></a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>mail"><?php echo $this->requestAction('dashboard/translate/Inbox');?></a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
 
@@ -21,11 +21,11 @@
 <?php if($email) { ?>
 <table>
     <tr>
-        <th>From</th>
-        <th>To</th>
-        <th>Subject</th>
-        <th>Date</th>
-        <th>Options</th>
+        <th><?php echo $this->requestAction('dashboard/translate/From');?></th>
+        <th><?php echo $this->requestAction('dashboard/translate/To');?></th>
+        <th><?php echo $this->requestAction('dashboard/translate/Subject');?></th>
+        <th><?php echo $this->requestAction('dashboard/translate/Date');?></th>
+        <th><?php echo $this->requestAction('dashboard/translate/Options');?></th>
     </tr>
 
 <?php 
@@ -153,7 +153,7 @@
         <td><?php echo $this->Html->link($e['Mail']['subject']/*.(($cnt!=0)? "(".$cnt.")" : "")*/,'/mail/read/'.$e['Mail']['id'],array('style'=>'')); ?></td>
         <td><?php echo $e['Mail']['date']; ?></td>
         <td>
-		<?php echo $this->Html->link('View','/mail/read/'.$e['Mail']['id'],array('class'=>'btn btn-primary')); ?>
+		<?php echo $this->Html->link($this->requestAction('dashboard/translate/View'),'/mail/read/'.$e['Mail']['id'],array('class'=>'btn btn-primary')); ?>
 		<?php //echo $this->Html->link('Delete','/mail/delete_mail/reciever/'.$e['Mail']['id'],array('class'=>'btn btn-primary')); ?>
         </td>
     </tr>

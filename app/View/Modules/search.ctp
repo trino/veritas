@@ -31,26 +31,26 @@ $(function(){
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
-		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>modules/personal_inspection/<?php echo $title;?>">Personal Inspection</a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>dashboard"><?php echo $this->requestAction('dashboard/translate/Home');?></a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>modules/personal_inspection/<?php echo $title;?>"><?php echo $this->requestAction('dashboard/translate/Personal Inspection');?></a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
-<div><strong>Filter By</strong></div>
+<div><strong><?php echo $this->requestAction('dashboard/translate/Filter By');?></strong></div>
 <form action="<?php echo $base_url;?>modules/personal_inspection/<?php echo $title;?>" method="get" id="datefilter" style="float: left;margin-right:10px;">
-    <input type="text" value="" name="from" placeholder="Start Date" style="width: 100px; margin-top:10px;" class="datepicker required" />
-    <input type="text" value="" name="to" placeholder="End Date" style="width: 100px; margin-top: 10px;" class="datepicker required" />
+    <input type="text" value="" name="from" placeholder="<?php echo $this->requestAction('dashboard/translate/Start Date');?>" style="width: 100px; margin-top:10px;" class="datepicker required" />
+    <input type="text" value="" name="to" placeholder="<?php echo $this->requestAction('dashboard/translate/End Date');?>" style="width: 100px; margin-top: 10px;" class="datepicker required" />
      
-    <input type="submit" value="Go" class="btn btn-primary" />
+    <input type="submit" value="<?php echo $this->requestAction('dashboard/translate/Go');?>" class="btn btn-primary" />
 </form>
 
 
 <div class="clear"></div>
 <table class="table">
 <thead>
-    <th><?php echo $this->Paginator->sort('emp_name1','Name');?></th>
-    <th><?php echo $this->Paginator->sort('jobs_title','Job Title');?></th>
-    <th><?php echo $this->Paginator->sort('site','Site');?></th>
-    <th><?php echo $this->Paginator->sort('overall_rating','Overall Rating');?></th>
+    <th><?php echo $this->Paginator->sort('emp_name1',$this->requestAction('dashboard/translate/Name'));?></th>
+    <th><?php echo $this->Paginator->sort('jobs_title',$this->requestAction('dashboard/translate/Job Title'));?></th>
+    <th><?php echo $this->Paginator->sort('site',$this->requestAction('dashboard/translate/Site'));?></th>
+    <th><?php echo $this->Paginator->sort('overall_rating',$this->requestAction('dashboard/translate/Overall Rating'));?></th>
     <th><?php echo $this->Paginator->sort('date_submit','Date');?></th>
     <th>Option</th>
 </thead>
@@ -62,7 +62,7 @@ $(function(){
         <td><?php echo $d['PersonalInspection']['site'];?></td>
         <td><?php echo $d['PersonalInspection']['overall_rating'];?></td>
         <td><?php echo $d['PersonalInspection']['date_submit'];?></td>
-        <td><a href="<?php echo $base_url;?>uploads/view_detail/<?php echo $d['PersonalInspection']['document_id'];?>" class="btn btn-primary">View</a></td>
+        <td><a href="<?php echo $base_url;?>uploads/view_detail/<?php echo $d['PersonalInspection']['document_id'];?>" class="btn btn-primary"><?php echo $this->requestAction('dashboard/translate/View');?></a></td>
     </tr>
 <?php }?>
 </table>

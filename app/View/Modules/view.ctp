@@ -24,16 +24,16 @@ $(function(){
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
-		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>modules/view/personal_inspection">Personal Inspection</a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>dashboard"><?php echo $this->requestAction('dashboard/translate/Home');?></a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>modules/view/personal_inspection"><?php echo $this->requestAction('dashboard/translate/Personal Inspection');?></a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
-<div><strong>Filter By</strong></div>
+<div><strong><?php echo $this->requestAction('dashboard/translate/Filter By');?></strong></div>
 <form action="<?php echo $base_url;?>modules/view/personal_inspection" method="get" id="datefilter" style="float: left;margin-right:10px;">
-    <input type="text" value="" name="from" placeholder="Start Date" style="width: 100px; margin-top:10px;" class="datepicker required" />
-    <input type="text" value="" name="to" placeholder="End Date" style="width: 100px; margin-top: 10px;" class="datepicker required" />
+    <input type="text" value="" name="from" placeholder="<?php echo $this->requestAction('dashboard/translate/Start Date');?>" style="width: 100px; margin-top:10px;" class="datepicker required" />
+    <input type="text" value="" name="to" placeholder="<?php echo $this->requestAction('dashboard/translate/End Date');?>" style="width: 100px; margin-top: 10px;" class="datepicker required" />
      
-    <input type="submit" value="Go" class="btn btn-primary" />
+    <input type="submit" value="<?php echo $this->requestAction('dashboard/translate/Go');?>" class="btn btn-primary" />
 </form>
 
 
@@ -58,7 +58,7 @@ if(isset($modules))
             $i++;
             if($i==1)
             {
-                echo "<tr><td>Personal Inspection of <strong>".$m['Personal_inspection']['emp_name1']. '</strong> ('. $count.')</td><td><a href="'.$base_url.'modules/personal_inspection/'.urlencode($m['Personal_inspection']['emp_name1']).'" class="btn btn-info">View All</a></td></tr/>';
+                echo "<tr><td>Personal Inspection of <strong>".$m['Personal_inspection']['emp_name1']. '</strong> ('. $count.')</td><td><a href="'.$base_url.'modules/personal_inspection/'.urlencode($m['Personal_inspection']['emp_name1']).'" class="btn btn-info">'.$this->requestAction('dashboard/translate/View All').'</a></td></tr/>';
             }
         }
     }

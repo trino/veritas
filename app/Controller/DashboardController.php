@@ -29,8 +29,10 @@ class DashboardController extends AppController
         die();
         
     }
-    public function translate($fi,$lang='fre')
+    public function translate($fi)
     {
+        if(!$this->Session->read('lang'))
+            $this->Session->write('lang','eng');
         $lang = $this->Session->read('lang');
         $field = strtolower(str_replace(" ","_",$fi));
         

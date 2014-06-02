@@ -1,19 +1,19 @@
 <?php include_once('inc.php');?>
 
 <h3 class="page-title">
-	Sent Mail
+	<?php echo $this->requestAction('dashboard/translate/Sent Mail');?>
 </h3>
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
-		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>mail">Inbox</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>mail/sent_mail">Sent Mail</a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>dashboard"><?php echo $this->requestAction('dashboard/translate/Home');?></a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>mail"><?php echo $this->requestAction('dashboard/translate/Inbox');?></a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>mail/sent_mail"><?php echo $this->requestAction('dashboard/translate/Sent Mail');?></a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
 
-<?php echo $this->Html->link('Inbox','/mail', array('class'=>'btn btn-primary reg-company')); ?> 
-<?php echo $this->Html->link('Sent Mail','/mail/sent_mail', array('class'=>'btn btn-primary reg-company')); ?>
+<?php echo $this->Html->link($this->requestAction('dashboard/translate/Inbox'),'/mail', array('class'=>'btn btn-primary reg-company')); ?> 
+<?php echo $this->Html->link($this->requestAction('dashboard/translate/Sent Mail'),'/mail/sent_mail', array('class'=>'btn btn-primary reg-company')); ?>
 <br/><br/>
 
 <div id="table">
@@ -22,10 +22,10 @@
 <?php if($email) { ?>
 <table>
     <tr>
-        <th>From</th>
-        <th>To</th>
-        <th>Subject</th>
-        <th>Date</th>
+        <th><?php echo $this->requestAction('dashboard/translate/From');?></th>
+        <th><?php echo $this->requestAction('dashboard/translate/To');?></th>
+        <th><?php echo $this->requestAction('dashboard/translate/Subject');?></th>
+        <th><?php echo $this->requestAction('dashboard/translate/Date');?></th>
         <th>Options</th>
     </tr>
 
@@ -38,15 +38,15 @@
         <td><?php echo $this->Html->link($e['Mail']['subject'],'/mail/read/'.$e['Mail']['id'].'/?sent=1',array('style'=>'text-decoration: none;')); ?></td>
         <td><?php echo $e['Mail']['date']; ?></td>
         <td>
-		<?php echo $this->Html->link('View','/mail/read/'.$e['Mail']['id'].'/?sent=1', array('class'=>'btn btn-primary')); ?>
-		<?php echo $this->Html->link('Delete','/mail/delete_mail/sender/'.$e['Mail']['id'], array('class'=>'btn btn-primary')); ?></td>
+		<?php echo $this->Html->link($this->requestAction('dashboard/translate/View'),'/mail/read/'.$e['Mail']['id'].'/?sent=1', array('class'=>'btn btn-primary')); ?>
+		<?php echo $this->Html->link($this->requestAction('dashboard/translate/Delete'),'/mail/delete_mail/sender/'.$e['Mail']['id'], array('class'=>'btn btn-primary')); ?></td>
     </tr>
         
     <?php  }
 ?>
 </table>
 
-<?php } else echo "No mail Sent."?>
+<?php } else echo $this->requestAction('dashboard/translate/No mail Sent')."."; ?>
 
 </div>
 

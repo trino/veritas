@@ -55,7 +55,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
            var lang = $(this).attr('id');
            $.ajax({
                    'type':'post',
-                   'url' : 'dashboard/changelang/'+lang,
+                   'url' : '<?php echo $this->webroot;?>dashboard/changelang/'+lang,
                    'success':function(){
                             location.reload();
                    } 

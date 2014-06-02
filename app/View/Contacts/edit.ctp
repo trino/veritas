@@ -1,14 +1,14 @@
  <?php include_once('inc.php');?>
 
 <h3 class="page-title">
-	Edit Contacts
+	<?php echo $this->requestAction('dashboard/translate/Edit Contacts');?>
 </h3>
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
-		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>contacts">Contacts</a> <span class="icon-angle-right"></span>
-        <a href="<?=$base_url;?>contacts/edit/<?=$k['Key_contact']['id'];?>" >Edit Contact</a>
+		<a href="<?=$base_url;?>dashboard"><?php echo $this->requestAction('dashboard/translate/Home');?></a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>contacts"><?php echo $this->requestAction('dashboard/translate/Contacts');?></a> <span class="icon-angle-right"></span>
+        <a href="<?=$base_url;?>contacts/edit/<?=$k['Key_contact']['id'];?>" ><?php echo $this->requestAction('dashboard/translate/Edit Contact');?></a>
 	</li>
 </ul>
 
@@ -16,21 +16,21 @@
  <table width="100%">
  
     <tr>
-        <td>Contacts Type</td>
+        <td><?php echo $this->requestAction('dashboard/translate/Contacts Type');?></td>
         <td colspan="3"><select name="type" class="required">
-                <option value="">Select Contact Type</option>
-                <option value="0"<?php if($k['Key_contact']['type']=='0')echo "Selected='selected'";?>>Key Contacts</option>
-                <option value="1"<?php if($k['Key_contact']['type']=='1')echo "Selected='selected'";?>>Staff Contacts</option>
-                <option value="2"<?php if($k['Key_contact']['type']=='2')echo "Selected='selected'";?>>Third Part Contacts</option>
+                <option value=""><?php echo $this->requestAction('dashboard/translate/Select Contact Type');?></option>
+                <option value="0"<?php if($k['Key_contact']['type']=='0')echo "Selected='selected'";?>><?php echo $this->requestAction('dashboard/translate/Key Contacts');?></option>
+                <option value="1"<?php if($k['Key_contact']['type']=='1')echo "Selected='selected'";?>><?php echo $this->requestAction('dashboard/translate/Staff Contacts');?></option>
+                <option value="2"<?php if($k['Key_contact']['type']=='2')echo "Selected='selected'";?>><?php echo $this->requestAction('dashboard/translate/Third Part Contacts');?></option>
             </select>
         </td>
     </tr>
     <tr>
     
-    <td><b>Name</b><br/><input type="text" name="key_name" class="required" value="<?php echo $k['Key_contact']['name'];?>" style="width: 100px;" /></td>
-    <td><b>Title</b><br/><input type="text" name="key_title" class="" value="<?php echo $k['Key_contact']['title'];?>" style="width: 100px;" /></td>
-    <td><b>Cell Number</b><br/><input type="text" name="key_cell" class="number" value="<?php echo $k['Key_contact']['cell'];?>" style="width: 100px;" /></td>
-    <td><b>Cellular Carrier</b><br />
+    <td><b><?php echo $this->requestAction('dashboard/translate/Name');?></b><br/><input type="text" name="key_name" class="required" value="<?php echo $k['Key_contact']['name'];?>" style="width: 100px;" /></td>
+    <td><b><?php echo $this->requestAction('dashboard/translate/Title');?></b><br/><input type="text" name="key_title" class="" value="<?php echo $k['Key_contact']['title'];?>" style="width: 100px;" /></td>
+    <td><b><?php echo $this->requestAction('dashboard/translate/Cell Number');?></b><br/><input type="text" name="key_cell" class="number" value="<?php echo $k['Key_contact']['cell'];?>" style="width: 100px;" /></td>
+    <td><b><?php echo $this->requestAction('dashboard/translate/Cellular Carrier');?></b><br />
     <select name="key_cellular" class="">
         <option value="">Others</option>
         <option value="Rogers" <?php if($k['Key_contact']['cellular_provider']=='Rogers')echo "selected='selected'";?>>Rogers</option>
@@ -51,13 +51,13 @@
         Verizon
     </select>
     </td>
-    <td><b>Phone Number</b><br/><input type="text" name="key_number" class="number" value="<?php echo $k['Key_contact']['phone'];?>" style="width: 100px;" /></td>
-    <td><b>Email</b><br/><input type="text" name="key_email" class="email" value="<?php echo $k['Key_contact']['email'];?>" style="width: 100px;" /></td>
-    <td><b>Company</b><br/><input type="text" name="key_company" class="" value="<?php echo $k['Key_contact']['company'];?>" style="width: 100px;" /> </td></tr>
+    <td><b><?php echo $this->requestAction('dashboard/translate/Phone Number');?></b><br/><input type="text" name="key_number" class="number" value="<?php echo $k['Key_contact']['phone'];?>" style="width: 100px;" /></td>
+    <td><b><?php echo $this->requestAction('dashboard/translate/Email');?></b><br/><input type="text" name="key_email" class="email" value="<?php echo $k['Key_contact']['email'];?>" style="width: 100px;" /></td>
+    <td><b><?php echo $this->requestAction('dashboard/translate/Company');?></b><br/><input type="text" name="key_company" class="" value="<?php echo $k['Key_contact']['company'];?>" style="width: 100px;" /> </td></tr>
     
     
 </table>
-<input type="submit" name="submit"  class="btn btn-primary" value="Edit" style="margin-top:20px;"/>
+<input type="submit" name="submit"  class="btn btn-primary" value="<?php echo $this->requestAction('dashboard/translate/Edit');?>" style="margin-top:20px;"/>
 </form>
 <script>
 $(function(){

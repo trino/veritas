@@ -8,8 +8,8 @@
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
-		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>mail">Inbox</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>dashboard"><?php echo $this->requestAction('dashboard/translate/Home');?></a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>mail"><?php echo $this->requestAction('dashboard/translate/Inbox');?></a> <span class="icon-angle-right"></span>
 		<a href="<?=$base_url;?>mail"><?php echo $subj;?></a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
@@ -35,18 +35,18 @@ foreach($all as $a){
     
     ?>
     <table id="span<?php echo $j;?>" class="clickable tables">
-    <tr class="show"><td> <b>Sent By:</b> <?php if($a['Mail']['sender_id']=='0')echo 'Admin';else{
+    <tr class="show"><td> <b><?php echo $this->requestAction('dashboard/translate/Sent By');?>:</b> <?php if($a['Mail']['sender_id']=='0')echo 'Admin';else{
         $qs = $member->find('first',array('conditions'=>array('id'=>$a['Mail']['sender_id'])));
         if($qs)
-        echo $qs['Member']['full_name'];
+            echo $qs['Member']['full_name'];
         else
-        echo "Member Deleted";
+            echo  $this->requestAction('dashboard/translate/Member Deleted');
         
         
     }
     $recipients = $a['Mail']['recipients_id'];
         $replies = explode(',',$recipients);
-     ?> &nbsp; [<?php echo $a['Mail']['date'];?>] &nbsp; ( <strong>To</strong> : 
+     ?> &nbsp; [<?php echo $a['Mail']['date'];?>] &nbsp; ( <strong><?php echo $this->requestAction('dashboard/translate/To');?></strong> : 
     <?php 
     $repss = 0;
     foreach($replies as $reps)
@@ -56,13 +56,13 @@ foreach($all as $a){
                     echo ', ';
                     
                     if($reps==0)
-                    echo 'Admin';
+                        echo 'Admin';
                     else {
-                    $qs2 = $member->find('first',array('conditions'=>array('id'=>$reps)));
+                        $qs2 = $member->find('first',array('conditions'=>array('id'=>$reps)));
                     
                     if($qs2){
                     
-                    echo $qs2['Member']['full_name'];}} 
+                        echo $qs2['Member']['full_name'];}} 
                 }
     
      ?> )</td></tr>
@@ -71,7 +71,7 @@ foreach($all as $a){
     if($a['Mail']['attachment'])
     { 
     ?>
-    <tr><td><strong>Attachments:</strong></td></tr>
+    <tr><td><strong><?php echo $this->requestAction('dashboard/translate/Attachments');?>:</strong></td></tr>
     <?php
     $doc_arr = explode(',',$a['Mail']['attachment']);
     ?>
@@ -93,14 +93,14 @@ foreach($all as $a){
              $document_id = 0;
              unset($cc);
             if($_SERVER['SERVER_NAME']=='localhost')
-            $url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas/img/documents/'.$doc;
+                $url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas/img/documents/'.$doc;
             else
-            $url = 'http://'.$_SERVER['SERVER_NAME'].'/img/documents/'.$doc;
+                $url = 'http://'.$_SERVER['SERVER_NAME'].'/img/documents/'.$doc;
             $path = "https://docs.google.com/viewer?url=".$url;
             $path = $base_url.'uploads/view_detail/'.$document_id;
             
             ?>
-            <?php if($document_id){?><tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a target="_blank" href="<?php echo $url;?>">View/Download</a></td></tr><?php }?>
+            <?php if($document_id){?><tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a target="_blank" href="<?php echo $url;?>"><?php echo $this->requestAction('dashboard/translate/View');?><?php echo "/". $this->requestAction('dashboard/translate/Download');?></a></td></tr><?php }?>
             <?php
         }
         else
@@ -116,7 +116,7 @@ foreach($all as $a){
              $url = $base_url.'img/documents/'.$doc;
              
             ?>
-            <?php if($document_id){?><tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a target="_blank" href="<?php echo $url;?>">View/Downloads</a></td></tr><?php }?>
+            <?php if($document_id){?><tr><td><strong><?php echo $doc;?></strong>&nbsp; &nbsp; <a target="_blank" href="<?php echo $url;?>"><?php echo $this->requestAction('dashboard/translate/View');?><?php echo "/". $this->requestAction('dashboard/translate/Download');?></a></td></tr><?php }?>
            
             <?php
         }
@@ -143,7 +143,7 @@ foreach($all as $a){
             <?php if($document_id){?><tr><td><strong><?php if(!is_numeric($doc)){echo $doc;}else{
                 $get_doc = $docu->find('first',array('conditions'=>array('id'=>$document_id)));
                 echo $docname = $get_doc['Document']['title'].' '.$get_doc['Document']['date'];
-            }?></strong>&nbsp; &nbsp; <a target="_blank" href="<?php echo $url;?>">View/Download</a></td></tr><?php }?>
+            }?></strong>&nbsp; &nbsp; <a target="_blank" href="<?php echo $url;?>"><?php echo $this->requestAction('dashboard/translate/View');?><?php echo "/". $this->requestAction('dashboard/translate/Download');?></a></td></tr><?php }?>
             
             <?php
         }
@@ -176,12 +176,12 @@ $parents = $a['Mail']['id'];
     <?php
     if($this->Session->read('admin')){
     if(!$this->Session->read('FMember'))
-    $first = 0;
+        $first = 0;
     else
-    $first = $this->Session->read('FMember');
+        $first = $this->Session->read('FMember');
     }
     else
-    $first = $this->Session->read('id');
+        $first = $this->Session->read('id');
     $get_parent = $last->find('first',array('conditions'=>array('parent'=>$parents,'first'=>$first)));
     $reqs = $get_parent['Lastsender']['second'];
     if($reqs == 0)
@@ -203,10 +203,10 @@ $parents = $a['Mail']['id'];
     <input type="hidden" name="recipient_id" value="<?php echo $reqs; ?>" />
     <input type="hidden" name="recipient_email" value="<?php echo $reqs_email;?>" />
     <input type="hidden" name="subject" value="<?php echo $subj; ?>" />
-    <br /><br /><input type="submit" name="submit" value="Reply" class="btn btn-primary reg-company replybtn" />&nbsp;
+    <br /><br /><input type="submit" name="submit" value="<?php echo $this->requestAction('dashboard/translate/Reply');?>" class="btn btn-primary reg-company replybtn" />&nbsp;
     <?php if(isset($repss)&&$repss>0){?>
     
-    &nbsp; <a href="javascript:void(0)" style="height: 6px;padding-bottom: 15px;" class="replyall btn btn-primary">Reply All</a>
+    &nbsp; <a href="javascript:void(0)" style="height: 6px;padding-bottom: 15px;" class="replyall btn btn-primary"><?php echo $this->requestAction('dashboard/translate/Reply All');?></a>
     <?php }?>
 </form>
 

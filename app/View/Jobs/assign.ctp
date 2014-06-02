@@ -1,14 +1,14 @@
 <?php include_once('inc.php');?>
 
 <h3 class="page-title">
-	Assign Job to <?php echo $mem['Member']['full_name']; ?>
+	<?php echo $this->requestAction('dashboard/translate/Assign Job to');?> <?php echo $mem['Member']['full_name']; ?>
 </h3>
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
-		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>jobs">Job Manager</a> <span class="icon-angle-right"></span>
-		<a href="<?=$base_url;?>jobs/assign/<?php echo $mem['Member']['id']; ?>">Assign Job to <?php echo $mem['Member']['full_name']; ?></a> <!--span class="icon-angle-right"></span-->
+		<a href="<?=$base_url;?>dashboard"><?php echo $this->requestAction('dashboard/translate/Home');?></a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>jobs"><?php echo $this->requestAction('dashboard/translate/Job Manager');?></a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>jobs/assign/<?php echo $mem['Member']['id']; ?>"><?php echo $this->requestAction('dashboard/translate/Assign Job to');?> <?php echo $mem['Member']['full_name']; ?></a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
 
@@ -54,7 +54,7 @@ function option()
 <form action="" method="post" onsubmit="return check()">
 <div id="table">
 <table>
-<tr><th colspan="2">Jobs</th></tr>
+<tr><th colspan="2"><?php echo $this->requestAction('dashboard/translate/Jobs');?></th></tr>
 
 
 <?php 
@@ -84,7 +84,7 @@ $arrs = array();
 
 <input type="hidden" name="job" id="job" value="" />
 <input type="hidden" name="member" value="<?php echo $mem['Member']['id']; ?>" />
-<div class="submit"><input type="submit" class="btn btn-primary" value="Save Changes" name="submit"/></div>
+<div class="submit"><input type="submit" class="btn btn-primary" value="<?php echo $this->requestAction('dashboard/translate/Save Changes');?>" name="submit"/></div>
 
 </form>
 

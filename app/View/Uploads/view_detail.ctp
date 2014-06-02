@@ -32,7 +32,7 @@
 <ul class="breadcrumb">
 	<li>
 		<i class="icon-home"></i>
-		<a href="<?=$base_url;?>dashboard">Home</a> <span class="icon-angle-right"></span>
+		<a href="<?=$base_url;?>dashboard"><?php echo $this->requestAction('dashboard/translate/Home');?></a> <span class="icon-angle-right"></span>
 		<a href="<?=$base_url;?>uploads/view_detail/<?php echo $doc['Document']['id']; ?>">Documents: <?php echo $doc['Document']['title']; ?></a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
@@ -82,7 +82,7 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         <td><?php echo $doc['Document']['location']; ?></td>
     </tr> -->
     <tr>
-        <td><b>Document Type</b></td>
+        <td><b> <?php echo $this->requestAction('dashboard/translate/Document Type');?></b></td>
         <td><?php echo $type = ucwords(str_replace('_',' ',$doc['Document']['document_type'])); ?></td>
     </tr>
      <?php if($type == 'Client Feedback'){?>
@@ -91,15 +91,15 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         <td><?php echo $memo['Clientmemo']['date'];?></td>
     </tr>
     <tr>
-        <td><strong>Time</strong></td>
+        <td><strong><?php echo $this->requestAction('dashboard/translate/Time');?></strong></td>
         <td><?php echo $memo['Clientmemo']['time'];?></td>
     </tr>
     <tr>
-        <td><strong>Memo type</strong></td>
+        <td><strong><?php echo $this->requestAction('dashboard/translate/Memo type');?></strong></td>
         <td><?php echo $memo['Clientmemo']['memo_type'];?></td>
     </tr>
     <tr>
-        <td><strong>Guard Name</strong></td>
+        <td><strong><?php echo $this->requestAction('dashboard/translate/Guard Name');?></strong></td>
         <td><?php echo $memo['Clientmemo']['guard_name'];?></td>
     </tr>        
             
@@ -112,7 +112,7 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
     </tr>
     <?php }?>
     <tr>
-        <td><b>Job Title</b></td>
+        <td><b><?php echo $this->requestAction('dashboard/translate/Job Title');?></b></td>
         <td><?php if($j = $job->findById($doc['Document']['job_id'])) echo stripslashes($j['Job']['title']) ; ?></td>
     </tr>
     
@@ -128,13 +128,13 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         $r_types = array('','Activity Log','Mobile Inspection','Mobile Security','Security Occurance','Incident Reports','Sign-off Sheets','Loss Prevention');
         ?>
         <tr>
-        <td><strong>Report Type</strong></td>
+        <td><strong><?php echo $this->requestAction('dashboard/translate/Report Type');?></strong></td>
         <td><?php echo $r_types[$activity[0]['Activity']['report_type']];?></td>
         </tr>
         <?php if($activity[0]['Activity']['incident_type']!=""){
             ?>
         <tr>
-        <td><strong>Incident Report Type</strong></td>
+        <td><strong><?php echo $this->requestAction('dashboard/translate/Incident Report Type');?></strong></td>
         <td><?php echo $activity[0]['Activity']['incident_type'];?></td>
         </tr>
         <?php }?>
@@ -146,7 +146,7 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         <?php }?>
         <tr><td colspan="2">
         <table>
-        <thead><th>Date</th><th>Time</th><th>Description</th></thead>
+        <thead><th>Date</th><th><?php echo $this->requestAction('dashboard/translate/Time');?></th><th>Description</th></thead>
         <?php foreach($activity as $act)
               {?>
         <tr><td><?php echo $act['Activity']['date'];?></td><td><?php echo $act['Activity']['time'];?></td><td><?php echo $act['Activity']['desc'];?></td></tr>
@@ -157,40 +157,40 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
     <?php }
  ?>    <?php if($type == 'Evidence'){ ?>
     <tr>
-        <td><b>Evidence Type</b></td>
+        <td><b><?php echo $this->requestAction('dashboard/translate/Evidence Type');?></b></td>
         <td><?php echo $doc['Document']['evidence_type'];?></a></td>
     </tr>
     
     <tr>
-        <td><b>Incident Date</b></td>
+        <td><b><?php echo $this->requestAction('dashboard/translate/Incident Date');?></b></td>
         <td><?php echo $doc['Document']['incident_date'];?></a></td>
     </tr>    
         
     <?php } ?>
      <?php if($type == 'Training'){ ?>
     <tr>
-        <td><b>Training Type</b></td>
+        <td><b><?php echo $this->requestAction('dashboard/translate/Training Type');?> </b></td>
         <td><?php echo $doc['Document']['training_type'];?></a></td>
     </tr>
     <?php } ?>
     <?php if($type == 'SiteOrder'){ ?>
     <tr>
-        <td><b>Site Order Type</b></td>
+        <td><b><?php echo $this->requestAction('dashboard/translate/Site Order Type');?> </b></td>
         <td><?php echo $doc['Document']['site_type'];?></a></td>
     </tr>
     <?php } ?>
     <?php if($type == 'Employee'){ ?>
     <tr>
-        <td><b>Employee Option</b></td>
+        <td><b><?php echo $this->requestAction('dashboard/translate/Employee Option');?> </b></td>
         <td><?php echo $doc['Document']['employee_type'];?></a></td>
     </tr>
     <?php } ?>
     <tr>
-        <td><b>Uploaded By</b></td>
+        <td><b><?php echo $this->requestAction('dashboard/translate/Uploaded By');?></b></td>
         <td><?php if($doc['Document']['addedBy'] != 0){$q = $member->find('first',array('conditions'=>array('id'=>$doc['Document']['addedBy'])));if($q){if($this->Session->read('admin'))echo "<a href='".$base_url."members/view/".$q['Member']['id']."'>".$q['Member']['full_name']."</a>";else echo $q['Member']['full_name'];}}else echo "Admin";?></td>
     </tr>
     <tr>
-        <td><b>Uploaded On</b></td>
+        <td><b><?php echo $this->requestAction('dashboard/translate/Uploaded On');?></b></td>
         <td><?php echo $doc['Document']['date']?></td>
     </tr>
     <?php
@@ -340,7 +340,7 @@ You may also download the video and play it on your local device.
 if($type == 'Report')
 {
     */?>
-    <input type="button" onclick="window.print();" value="Print" class="btn btn-primary" />
+    <input type="button" onclick="window.print();" value="<?php echo $this->requestAction('dashboard/translate/Print');?>" class="btn btn-primary" />
     <?php
 //}
 ?>
