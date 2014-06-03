@@ -40,6 +40,16 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <script type="text/javascript">jwplayer.key="N+fGwqE9+uBPKzrjO6qyGHWiJJRmw0UtbEU0iA==";</script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
 	<link rel="shortcut icon" href="/img/favicon.ico" />
+    <?php if($this->Session->read('lang')){?>
+    <style>
+        .dashboard-stat .desc{font-size:11.3px!important;}
+        .v1ButtonBarB{width:120px!important;}
+        .v1ButtonBarB .caption{font-size:9px!important;}
+        #table .btn{margin-top:3px;}
+    </style>
+        <?php
+    }?>
+    
     <script type="text/javascript">
         $(function(){
      $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'}); 

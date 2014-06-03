@@ -600,6 +600,6 @@ font-size:16px;
 .clear{clear:both;}
 label.error{color:red!important;}
 
-.dashboard-stat .desc{height: 43px!important;width: 150px!important;}
+.dashboard-stat .desc{height: 43px;width: 150px;}
 
 
