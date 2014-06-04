@@ -93,12 +93,12 @@ $or = '';
         <table class="table">
             <tr>
                 <td colspan="4">    
-                    <strong>Vehicle Inspection Sheet</strong>
+                    <strong><?php echo $this->requestAction('dashboard/translate/Vehicle Inspection Sheet');?></strong>
                 </td>
             </tr>
             <tr>
-                <td style="width: 95px;">Date</td><td><input type="text" name="vehicle_date" class="date_verify" value="<?php echo $date;?>" /></td>
-                <td style="width: 95px;">Shift Times</td>
+                <td style="width: 95px;"><?php echo $this->requestAction('dashboard/translate/Date');?></td><td><input type="text" name="vehicle_date" class="date_verify" value="<?php echo $date;?>" /></td>
+                <td style="width: 95px;"><?php echo $this->requestAction('dashboard/translate/Shift Times');?></td>
                 <td>
                 <?php
                 if($hf || $mf)
@@ -114,42 +114,42 @@ $or = '';
                 else
                 $val2 = '';
                 ?>
-                    <input type="text" name="from" class="time" value="<?php echo $val1;?>" placeholder="Date From" /> &nbsp; - 
-                     &nbsp; <input type="text" name="to" class="time" value="<?php echo $val2;?>" placeholder="Date To" />
+                    <input type="text" name="from" class="time" value="<?php echo $val1;?>" placeholder="<?php echo $this->requestAction('dashboard/translate/Date From');?>" /> &nbsp; - 
+                     &nbsp; <input type="text" name="to" class="time" value="<?php echo $val2;?>" placeholder="<?php echo $this->requestAction('dashboard/translate/Date To');?>" />
                 </td>
             </tr>
             <tr>
-                <td>Guard Name</td><td><input type="text" name="guard" value="<?php echo $gn;?>" /></td>
-                <td>Vehicle Unit Number</td><td><input type="text" name="vehicle_unit_number" value="<?php echo $vun;?>" /></td>
+                <td><?php echo $this->requestAction('dashboard/translate/Guard Name');?></td><td><input type="text" name="guard" value="<?php echo $gn;?>" /></td>
+                <td><?php echo $this->requestAction('dashboard/translate/Vehicle Unit Number');?></td><td><input type="text" name="vehicle_unit_number" value="<?php echo $vun;?>" /></td>
             </tr>
             <tr>
-                <td>License Plate Number</td><td><input type="text" name="plate" value="<?php echo $p;?>" /></td>
-                <td>Start KMs</td><td><input type="text" name="start_km" style="width:100px;" value="<?php echo $sk;?>" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Finish KMs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="finish_km" style="width:100px;" value="<?php echo $fk;?>" /></td>
+                <td><?php echo $this->requestAction('dashboard/translate/License Plate Number');?></td><td><input type="text" name="plate" value="<?php echo $p;?>" /></td>
+                <td><?php echo $this->requestAction('dashboard/translate/Start KMs');?></td><td><input type="text" name="start_km" style="width:100px;" value="<?php echo $sk;?>" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Finish KMs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="finish_km" style="width:100px;" value="<?php echo $fk;?>" /></td>
             </tr>
         </table>
         <table class="checkboxes">
             <tr>
-                <td colspan="4" style="background: #000;color:#FFF"><strong>EQUIPMENT CHECK LIST</strong></td>
+                <td colspan="4" style="background: #000;color:#FFF"><strong><?php echo $this->requestAction('dashboard/translate/EQUIPMENT CHECK LIST');?></strong></td>
             </tr>
             <tr>
-                <td><input type="checkbox" name="light" value="1" <?php if($l==1){?>checked="checked"<?php }?> /> Light</td>
-                <td><input type="checkbox" name="horn" value="1" <?php if($h==1){?>checked="checked"<?php }?> /> Horn</td>
-                <td><input type="checkbox" name="rotating_light" value="1" <?php if($rl==1){?>checked="checked"<?php }?> /> Amber Rotating Light</td>
-                <td><input type="checkbox" name="spot_light" value="1" <?php if($sl==1){?>checked="checked"<?php }?> /> Spot Light</td>
+                <td><input type="checkbox" name="light" value="1" <?php if($l==1){?>checked="checked"<?php }?> /> <?php echo $this->requestAction('dashboard/translate/Light');?></td>
+                <td><input type="checkbox" name="horn" value="1" <?php if($h==1){?>checked="checked"<?php }?> /> <?php echo $this->requestAction('dashboard/translate/Horn');?></td>
+                <td><input type="checkbox" name="rotating_light" value="1" <?php if($rl==1){?>checked="checked"<?php }?> /> <?php echo $this->requestAction('dashboard/translate/Amber Rotating Light');?></td>
+                <td><input type="checkbox" name="spot_light" value="1" <?php if($sl==1){?>checked="checked"<?php }?> /> <?php echo $this->requestAction('dashboard/translate/Spot Light');?></td>
             </tr>
             <tr>
-                <td><input type="checkbox" name="safety" value="1" <?php if($sf==1){?>checked="checked"<?php }?> /> Safety Kit</td>
-                <td><input type="checkbox" name="file_box" value="1" <?php if($fb==1){?>checked="checked"<?php }?> /> File Box/Reports</td>
-                <td><input type="checkbox" name="lock_box" value="1" <?php if($lb==1){?>checked="checked"<?php }?> /> Lock Box</td>
-                <td><input type="checkbox" name="first_aid" value="1" <?php if($fa==1){?>checked="checked"<?php }?> /> First Aid Kit</td>
+                <td><input type="checkbox" name="safety" value="1" <?php if($sf==1){?>checked="checked"<?php }?> /> <?php echo $this->requestAction('dashboard/translate/Safety Kit');?></td>
+                <td><input type="checkbox" name="file_box" value="1" <?php if($fb==1){?>checked="checked"<?php }?> /> <?php echo $this->requestAction('dashboard/translate/File Box');?>/<?php echo $this->requestAction('dashboard/translate/Reports');?></td>
+                <td><input type="checkbox" name="lock_box" value="1" <?php if($lb==1){?>checked="checked"<?php }?> /> <?php echo $this->requestAction('dashboard/translate/Lock Box');?></td>
+                <td><input type="checkbox" name="first_aid" value="1" <?php if($fa==1){?>checked="checked"<?php }?> /> <?php echo $this->requestAction('dashboard/translate/First Aid Kit');?></td>
             </tr>
             <tr>
-                <td colspan="4"><input type="checkbox" name="ownership" value="1" <?php if($o==1){?>checked="checked"<?php }?> /> Ownership & Insurance</td>
+                <td colspan="4"><input type="checkbox" name="ownership" value="1" <?php if($o==1){?>checked="checked"<?php }?> /> <?php echo $this->requestAction('dashboard/translate/Ownership and Insurance');?></td>
             </tr>
         </table>
         <table>
             <tr>
-                <td colspan="2"><strong>Highlight area with noticeable dents or scratches</strong></td>
+                <td colspan="2"><strong><?php echo $this->requestAction('dashboard/translate/Highlight area with noticeable dents or scratches');?>Highlight area with noticeable dents or scratches</strong></td>
             </tr>
             <tr>
                 <td>
@@ -216,14 +216,14 @@ $or = '';
                     </div>
                     </div>
                     <div style="float: left;margin-left:20px;margin-top:30px">
-                        <strong>Notes for Dents and Scratches<br /></strong>
+                        <strong><?php echo $this->requestAction('dashboard/translate/Notes for Dents and Scratches');?><br /></strong>
                         <textarea name="note" placeholder="" style="width:400px;height:157px;"><?php echo $n;?></textarea>
                     </div>
                     <div class="clear"></div>
                 </td>
             </tr>
             <tr>
-                <td colspan="2">Operation Review : <input type="text" name="operation_review" value="<?php echo $or;?>" /></td>                
+                <td colspan="2"><?php echo $this->requestAction('dashboard/translate/Operation Review');?> : <input type="text" name="operation_review" value="<?php echo $or;?>" /></td>                
             </tr>
         </table>        
     </td>

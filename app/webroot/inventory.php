@@ -233,7 +233,7 @@ $(function(){
             var vaz = $(this).find('input').val();
             if($(this).find('textarea').length>0){
                 var tex = $(this).find('textarea').val();
-                $(this).html("<strong>Notes:</strong><br/>"+tex);
+                $(this).html("<strong><?php echo $this->requestAction('dashboard/translate/Notes');?>:</strong><br/>"+tex);
             }
             
             
