@@ -53,7 +53,7 @@ $(function(){
         <input class="double" type="text" value="<?php if(isset($subject['SubjectInfo'])) echo $subject['SubjectInfo']['state'];?>" name="subject[state]" style="width: 200px!important;" /></td>
         <td colspan="2">PC/P.O BOX<br />
         <input type="text" value="<?php if(isset($subject['SubjectInfo'])) echo $subject['SubjectInfo']['zip'];?>" name="subject[zip]" style="width: 200px;" /></td>
-        <td>GENDER<br /><input type="radio" name="subject[gender]" value="male" <?php if(isset($subject) && $subject['SubjectInfo']['gender']=='male') echo "checked='checked'";?> style="margin: 0 5px;" />Male 
+        <td>GENDER<br /><input type="radio" name="subject[gender]" value="male" <?php if(isset($subject['SubjectInfo']) && $subject['SubjectInfo']['gender']=='male') echo "checked='checked'";?> style="margin: 0 5px;" />Male 
         <input type="radio" name="subject[gender]" value="female" <?php if(isset($subject['SubjectInfo']) && $subject['SubjectInfo']['gender']=='female') echo "checked='checked'";?> style="margin: 0 5px;" />Female</td></tr>
     <tr><td>D.O.B<br />
         <input type="text" value="<?php if(isset($subject['SubjectInfo'])) echo $subject['SubjectInfo']['dob'];?>" name="subject[dob]" /></td>
