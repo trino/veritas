@@ -53,8 +53,10 @@ $(function(){
         <input class="double" type="text" value="<?php if(isset($subject['SubjectInfo'])) echo $subject['SubjectInfo']['state'];?>" name="subject[state]" style="width: 200px!important;" /></td>
         <td colspan="2">PC/P.O BOX<br />
         <input type="text" value="<?php if(isset($subject['SubjectInfo'])) echo $subject['SubjectInfo']['zip'];?>" name="subject[zip]" style="width: 200px;" /></td>
-        <td><?php echo $this->requestAction('dashboard/translate/GENDER');?><br /><input type="radio" name="subject[gender]" value="male" <?php if(isset($subject) && $subject['SubjectInfo']['gender']=='male') echo "checked='checked'";?> style="margin: 0 5px;" /><?php echo $this->requestAction('dashboard/translate/Male');?> 
+
+        <td><?php echo $this->requestAction('dashboard/translate/GENDER');?><br /><input type="radio" name="subject[gender]" value="male" <?php if(isset($subject['SubjectInfo']) && $subject['SubjectInfo']['gender']=='male') echo "checked='checked'";?> style="margin: 0 5px;" /><?php echo $this->requestAction('dashboard/translate/Male');?> 
         <input type="radio" name="subject[gender]" value="female" <?php if(isset($subject['SubjectInfo']) && $subject['SubjectInfo']['gender']=='female') echo "checked='checked'";?> style="margin: 0 5px;" /><?php echo $this->requestAction('dashboard/translate/Female');?></td></tr>
+
     <tr><td>D.O.B<br />
         <input type="text" value="<?php if(isset($subject['SubjectInfo'])) echo $subject['SubjectInfo']['dob'];?>" name="subject[dob]" /></td>
         <td colspan="2"><?php echo $this->requestAction('dashboard/translate/AGE');?><br />
