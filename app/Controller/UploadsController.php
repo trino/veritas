@@ -480,6 +480,7 @@ class UploadsController extends AppController
         $this->loadModel('MobileSite');
         $this->loadModel('MobileTrunk');
         $this->loadModel('Vehicle_inspection');
+        $this->loadModel('StaticSiteAudit');
         if($eid)
         {
             $this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$eid))));
@@ -528,6 +529,7 @@ class UploadsController extends AppController
             $this->set('add',$this->AdditionalInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
         
             $this->set('item',$this->ItemInfo->find('all', array('conditions'=>array('doc_id'=>$eid))));
+            $this->set('static',$this->StaticSiteAudit->find('first', array('conditions'=>array('doc_id'=>$eid))));
             
         $this->set('admin_doc',$this->AdminDoc->find('first'));
         if($this->Session->read('user'))
@@ -1838,12 +1840,28 @@ class UploadsController extends AppController
                 if(isset($activity['report_type']))
                     $activity['incident_type'] = $_POST['incident_type'];
                     
-                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention');
+                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit');
                 if($_POST['report_type'])
                     $subname = '_'.$act_type[$_POST['report_type']];
-                
+                if($_POST['report_type']=='8')
+                {
+                    $this->loadModel('StaticSiteAudit');
+                    $_POST['doc_id'] = $id;
+                    $this->StaticSiteAudit->create();
+                    $this->StaticSiteAudit->save($_POST);
+                    
+                }
+                if($_POST['report_type']=='9')
+                {
+                    $this->loadModel('InsuranceSiteAudit');
+                    
+                    $this->InsuranceSiteAudit->create();
+                    $this->StaticSiteAudit->save($_POST);
+                    
+                }
                 if($_POST['report_type']=='7')
                 {
+                    
                     $this->loadModel('StoreInfo');
                     $store['doc_id'] = $id;
                     foreach($_POST['store'] as $k=>$v)
@@ -1948,6 +1966,11 @@ class UploadsController extends AppController
                         
                     }
                      
+                }
+                if($_POST['report_type']==8 || $_POST['report_type']==9)
+                {
+                    $this->Activity->create();
+                    $this->Activity->save($activity);
                 }
                 
             }
@@ -2410,6 +2433,17 @@ class UploadsController extends AppController
                             $this->set('add',$this->AdditionalInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
                         $this->loadModel('ItemInfo');
                             $this->set('item',$this->ItemInfo->find('all', array('conditions'=>array('doc_id'=>$eid))));
+                        
+                    }
+                    if($act[0]['Activity']['report_type']=='8')
+                    {
+                        $this->loadModel('StaticSiteAudit');
+                            $this->set('static',$this->StaticSiteAudit->find('first', array('conditions'=>array('doc_id'=>$eid))));
+                    }
+                    if($act[0]['Activity']['report_type']=='9')
+                    {
+                        $this->loadModel('InsuranceSiteAudit');
+                            $this->set('static',$this->InsuranceSiteAudit->find('first', array('conditions'=>array('doc_id'=>$eid))));
                     }
                 }
                 elseif($doc['Document']['document_type'] == 'client_feedback')
@@ -2526,6 +2560,20 @@ class UploadsController extends AppController
         return true;
         else
         return false;
+    }
+  }
+  function reportType($did='',$type='')
+  {
+    $did = str_replace('id_','',$did);
+    $this->layout = 'modal_layout';
+    if($did=='')
+    $this->set('type',$type);
+    else{
+        if($type==8){
+            $this->loadModel('StaticSiteAudit');
+            $this->set('static',$this->StaticSiteAudit->find('first',array('conditions'=>array('doc_id'=>$did))));
+            $this->set('type',$type);
+        }
     }
   }
 }

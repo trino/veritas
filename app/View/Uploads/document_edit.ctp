@@ -1,4 +1,8 @@
 <?php include_once('inc.php');
+if(isset($doc['Document']['id']))
+$did = $doc['Document']['id'];
+else
+$did = '';
 if(isset($job_name))
     $job_n=$job_name;
 else
@@ -194,6 +198,7 @@ function remove_youtube()
 </select>
 </div></td>
 </tr>
+
 <?php
 include('personal_inspection.php');
 include('mobile_inspection.php');
@@ -201,6 +206,7 @@ include('mobile_log.php');
 include('inventory.php');
 include('vehicle_inspection.php');  
 ?>
+
 <tr class="site_more" style="display: none;">
 <td colspan="2">
 <table>
@@ -302,10 +308,10 @@ include('vehicle_inspection.php');
 </table>
 </td></tr>
 <tr class="extra_memo" style="display: none;">
-<td colspan="2">
+<td colspan="2" style="padding: 0;">
 <table>
 <thead><th><?php echo $this->requestAction('dashboard/translate/Report Type');?></th>
-<th>
+<th colspan="2">
 <select name="report_type" class="required reporttype">
     <option value=""><?php echo $this->requestAction('dashboard/translate/Select report type');?></option>
     <option value="1" <?php  if((isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '1')||(isset($typee) && $typee=='activity_log')) echo "selected='selected'"; ?> ><?php echo $this->requestAction('dashboard/translate/Activity Log');?></option>
@@ -315,6 +321,9 @@ include('vehicle_inspection.php');
     <option value="5" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '5') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Incident Report');?></option>
     <option value="6" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '6') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Sign-off Sheets');?></option>
     <option value="7" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '7') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Loss Prevention');?></option>
+    <option value="8" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '8') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Static Site Audit');?></option>
+    <option value="9" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '9') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Insurance Site Audit');?></option>
+    
 </select>
 </th>
 </thead>
@@ -341,6 +350,7 @@ include('vehicle_inspection.php');
 </select>
 </th>
 </thead>
+<tr class="loader"></tr>
 <tr style="display: none;" id="loss_prevention">
 <td colspan="3"> <?php include('loss_prevention.php');?></td>
 </tr>
@@ -479,13 +489,28 @@ $(function(){
         }
         else
         {
+            
+            if($(this).val()=='8')
+            {
+                $('.loader').load('<?php echo $this->webroot;?>uploads/reportType/id_<?php echo $did;?>/'+$(this).val());
+            }
+            $('.incident_more').hide();
+            
             $('.uploademail').hide();
             $('.incident_more').hide();
+            
         }
-        if($(this).val()=='7')
+        
+        if($(this).val()=='7' || $(this).val()=='8' || $(this).val()=='9')
         {
-            $('#loss_prevention').show();
             $('.date_time').hide();
+            if($(this).val()=='7')
+            $('#loss_prevention').show();    
+            else
+            {
+                $('.description_tr').hide();
+                $('.image_tr').hide();
+            }        
         }
         else
         {
@@ -542,9 +567,15 @@ $(function(){
         $(this).timepicker();
     });
     $('.date_verify').datepicker({dateFormat: 'yy-mm-dd'});
-    if($('.reporttype').val()=='7')
+    if($('.reporttype').val()=='7' || $('.reporttype').val()=='8' || $('.reporttype').val()=='9')
        {
+        if($('.reporttype').val()=='7')
             $('#loss_prevention').show();
+            else
+            {
+                $('.description_tr').hide();
+                $('.image_tr').hide();
+            }
             $('.date_time').hide();
        }     
        else
@@ -554,9 +585,15 @@ $(function(){
        }
     $('.reporttype').change(function(){
        var inc_type = $(this).val(); 
-       if(inc_type=='7')
+       if(inc_type=='7' || $('.reporttype').val()=='8' || $('.reporttype').val()=='9')
        {
+            if($('.reporttype').val()=='7')
             $('#loss_prevention').show();
+            else
+            {
+                $('.description_tr').hide();
+                $('.image_tr').hide();
+            }
             $('.date_time').hide();
        }     
        else

@@ -125,7 +125,7 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
     </tr>-->
     
     <?php if($activity){
-        $r_types = array('','Activity Log','Mobile Inspection','Mobile Security','Security Occurance','Incident Reports','Sign-off Sheets','Loss Prevention');
+        $r_types = array('','Activity Log','Mobile Inspection','Mobile Security','Security Occurance','Incident Reports','Sign-off Sheets','Loss Prevention','Static Site Audit','Insurance Site Audit');
         ?>
         <tr>
         <td><strong><?php echo $this->requestAction('dashboard/translate/Report Type');?></strong></td>
@@ -144,14 +144,35 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         <td colspan="2"> <?php include('loss_prevention.php');?></td>
         </tr>
         <?php }?>
+        
+        <?php if($activity[0]['Activity']['report_type']=='8'){?>
+        <tr id="loss_prevention">
+        <td colspan="2"> <?php include('static_site_audit_view.php');?></td>
+        </tr>
+        <?php }?>
+        
+        <?php if($activity[0]['Activity']['report_type']=='9'){?>
+        <tr id="loss_prevention">
+        <td colspan="2"> <?php include('insurance_site_audit_view.php');?></td>
+        </tr>
+        <?php }
+        if($activity[0]['Activity']['report_type']!='8' && $activity[0]['Activity']['report_type']!='9')
+        {
+            ?>
+        
         <tr><td colspan="2">
         <table>
         <thead><th>Date</th><th><?php echo $this->requestAction('dashboard/translate/Time');?></th><th>Description</th></thead>
         <?php foreach($activity as $act)
               {?>
         <tr><td><?php echo $act['Activity']['date'];?></td><td><?php echo $act['Activity']['time'];?></td><td><?php echo $act['Activity']['desc'];?></td></tr>
+        
         <?php } ?> 
         </table></td></tr>
+        
+            <?php
+        }
+        ?>
     <?php } ?> 
      
     <?php }
