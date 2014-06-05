@@ -2,32 +2,32 @@
     <td colspan="2" style="padding: 0;">
         <table>
             <tr>
-                <td colspan="4" style="border-top: none;"><strong>Employee Information</strong></td>
+                <td colspan="4" style="border-top: none;"><strong><?php echo $this->requestAction('dashboard/translate/Employee Information');?></strong></td>
             </tr>
             <tr>
-                <td style="width: 95px;">Name : </td><td><?php echo $perso['Personal_inspection']['emp_name1'];?></td>
-                <td style="width: 95px;">Site : </td><td><?php echo $perso['Personal_inspection']['site'];?></td>
+                <td style="width: 95px;"><?php echo $this->requestAction('dashboard/translate/Name');?> : </td><td><?php echo $perso['Personal_inspection']['emp_name1'];?></td>
+                <td style="width: 95px;"><?php echo $this->requestAction('dashboard/translate/Site');?> : </td><td><?php echo $perso['Personal_inspection']['site'];?></td>
             </tr>
             <tr>
-                <td>Job Title : </td><td>
+                <td><?php echo $this->requestAction('dashboard/translate/Job Title');?> : </td><td>
                  <?php if(isset($perso) && $perso['Personal_inspection']['jobs_title']){$opt = $perso['Personal_inspection']['jobs_title'];}else $opt="";?>
                  <?php echo ucfirst($opt);?> 
                 </td>
-                <td>Date : </td><td><?php echo $perso['Personal_inspection']['date_submit'];?></td>
+                <td><?php echo $this->requestAction('dashboard/translate/Date');?> : </td><td><?php echo $perso['Personal_inspection']['date_submit'];?></td>
             </tr>
             <tbody  class="radios" style="border-top: none;">
             <tr>
-                <td colspan="2"><strong>Ratings</strong></td>
+                <td colspan="2"><strong><?php echo $this->requestAction('dashboard/translate/Ratings');?></strong></td>
                 <td colspan="2">
-                    <div style="width: 15%;padding:1%;float:left;"><strong>1 = Poor</strong></div>
-                    <div style="width: 15%;padding:1%;float:left;"><strong>2 = Fair</strong></div>
-                    <div style="width: 21%;padding:1%;float:left;"><strong>3 = Satisfactory</strong></div>
-                    <div style="width: 18%;padding:1%;float:left;"><strong>4 = Good</strong></div>
-                    <div style="width: 18%;padding:1%;float:left;"><strong>5 = Excellent</strong></div>
+                    <div style="width: 15%;padding:1%;float:left;"><strong>1 = <?php echo $this->requestAction('dashboard/translate/Poor');?></strong></div>
+                    <div style="width: 15%;padding:1%;float:left;"><strong>2 = <?php echo $this->requestAction('dashboard/translate/Fair');?></strong></div>
+                    <div style="width: 21%;padding:1%;float:left;"><strong>3 = <?php echo $this->requestAction('dashboard/translate/Satisfactory');?></strong></div>
+                    <div style="width: 18%;padding:1%;float:left;"><strong>4 = <?php echo $this->requestAction('dashboard/translate/Good');?></strong></div>
+                    <div style="width: 18%;padding:1%;float:left;"><strong>5 = <?php echo $this->requestAction('dashboard/translate/Excellent');?></strong></div>
                 </td>
             </tr>
             <tr>
-                <td colspan="2">Uniform (neat, clean, pressed, shirt tucked in, etc)</td>
+                <td colspan="2"><?php echo $this->requestAction('dashboard/translate/Uniform (neat, clean, pressed, shirt tucked in, etc)');?></td>
                 <td colspan="2">
                 <?php
                 if(isset($perso) && $perso['Personal_inspection']['uniform'])
@@ -45,7 +45,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2">Uniform Complete for site (black shoes/socks, tie)</td>
+                <td colspan="2"><?php echo $this->requestAction('dashboard/translate/Uniform Complete for site (black shoes-socks, tie)');?></td>
                 <td colspan="2">
                  <?php
                 if(isset($perso) && $perso['Personal_inspection']['uniform2'])
@@ -63,7 +63,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2">Grooming (hair, clean shaven, good hygiene)</td>
+                <td colspan="2"><?php echo $this->requestAction('dashboard/translate/Grooming (hair, clean shaven, good hygiene)');?></td>
                 <td colspan="2">
                 <?php
                 if(isset($perso) && $perso['Personal_inspection']['grooming'])
@@ -81,7 +81,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2">Proper Equipment (notebook, black pen, paperwork)</td>
+                <td colspan="2"><?php echo $this->requestAction('dashboard/translate/Proper Equipment (notebook, black pen, paperwork)');?></td>
                 <td colspan="2">
                 <?php
                 if(isset($perso) && $perso['Personal_inspection']['proper_equipment'])
@@ -99,7 +99,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2">Piercing and Tattoos (nothing visible)</td>
+                <td colspan="2"><?php echo $this->requestAction('dashboard/translate/Piercing and Tattoos (nothing visible)');?></td>
                 <td colspan="2">
                 <?php
                 if(isset($perso) && $perso['Personal_inspection']['piercing'])
@@ -117,7 +117,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2">Positioning (Properly positioned for the role)</td>
+                <td colspan="2"><?php echo $this->requestAction('dashboard/translate/Positioning (Properly positioned for the role)');?></td>
                 <td colspan="2">
                 <?php
                 if(isset($perso) && $perso['Personal_inspection']['positioning'])
@@ -137,7 +137,7 @@
             </tbody>
             <tbody style="border-top: none;">
             <tr>
-                <td colspan="2"><strong>Overall rating</strong></td>
+                <td colspan="2"><strong><?php echo $this->requestAction('dashboard/translate/Overall rating');?></strong></td>
                 <td colspan="2">
                 <?php
                 if(isset($perso) && $perso['Personal_inspection']['overall_rating'])
@@ -151,7 +151,7 @@
                 
             </tr>
             <tr>
-                <td colspan="2"><strong>Evaluation</strong><br />Additional Comments</td>
+                <td colspan="2"><strong><?php echo $this->requestAction('dashboard/translate/Evaluation');?></strong><br /><?php echo $this->requestAction('dashboard/translate/Additional Comments');?></td>
                 <td colspan="2">
                 <?php
                 if(isset($perso) && $perso['Personal_inspection']['evaluation'])
@@ -163,7 +163,7 @@
                 <?php echo $eval;?></td>
             </tr>
             <tr>
-                <td colspan="4"><strong>Verification of review</strong></td>
+                <td colspan="4"><strong><?php echo $this->requestAction('dashboard/translate/Verification of review');?></strong></td>
                 
             </tr>
             <tr>
@@ -193,13 +193,13 @@
                 else
                 $en2 = '';
                 ?>
-                <td>Supervisor/Manager Name : </td><td><?php echo $mn; ?></td>
-                <td>Date : </td><td><?php echo $df;?></td>
+                <td><?php echo $this->requestAction('dashboard/translate/Supervisor');?>/<?php echo $this->requestAction('dashboard/translate/Manager Name');?> : </td><td><?php echo $mn; ?></td>
+                <td><?php echo $this->requestAction('dashboard/translate/Date');?> : </td><td><?php echo $df;?></td>
             </tr>
             <tr>
                 
-                <td>Employee Name : </td><td><?php echo $en2;?></td>
-                <td>Date : </td><td><?php echo $df2;?></td>
+                <td><?php echo $this->requestAction('dashboard/translate/Employee Name');?> : </td><td><?php echo $en2;?></td>
+                <td><?php echo $this->requestAction('dashboard/translate/Date');?> : </td><td><?php echo $df2;?></td>
             </tr>
             </tbody>
             

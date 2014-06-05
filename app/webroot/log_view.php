@@ -3,8 +3,8 @@
         <table class="table mobilelog_table" style="border-left: none!important;border-right: none!important;">
             
             <tr>
-                <td style="width:100px!important;border-top:none;"><strong>Mobile Guard:</strong></td><td style="border-top:none;"><?php if(isset($moblog) && $moblog['MobileLog']['guard']){echo $moblog['MobileLog']['guard'];}?> </td>
-                <td style="width:100px!important;border-top:none;"><strong>Shift:</strong></td><td style="border-top:none;"><?php if(isset($moblog) && $moblog['MobileLog']['shift_from']){echo $moblog['MobileLog']['shift_from'];}?> - <?php if(isset($moblog) && $moblog['MobileLog']['shift_to']){echo $moblog['MobileLog']['shift_to'];}?></td>
+                <td style="width:100px!important;border-top:none;"><strong><?php echo $this->requestAction('dashboard/translate/Mobile Guard');?>:</strong></td><td style="border-top:none;"><?php if(isset($moblog) && $moblog['MobileLog']['guard']){echo $moblog['MobileLog']['guard'];}?> </td>
+                <td style="width:100px!important;border-top:none;"><strong><?php echo $this->requestAction('dashboard/translate/Shift');?>:</strong></td><td style="border-top:none;"><?php if(isset($moblog) && $moblog['MobileLog']['shift_from']){echo $moblog['MobileLog']['shift_from'];}?> - <?php if(isset($moblog) && $moblog['MobileLog']['shift_to']){echo $moblog['MobileLog']['shift_to'];}?></td>
                 
             </tr>
             <?php if(isset($moblog))
@@ -12,8 +12,8 @@
             <input type="hidden" name="log_id" value="<?php echo $moblog['MobileLog']['id'];?>"/>
             <?php } ?>
             <tr>
-                <td><strong>Start Date</strong></td><td><?php if(isset($moblog) && $moblog['MobileLog']['start_date']){echo $moblog['MobileLog']['start_date'];}?></td>
-                <td><strong>End Date</strong></td><td><?php if(isset($moblog) && $moblog['MobileLog']['end_date']){echo $moblog['MobileLog']['end_date'];}?></td>
+                <td><strong><?php echo $this->requestAction('dashboard/translate/Start Date');?></strong></td><td><?php if(isset($moblog) && $moblog['MobileLog']['start_date']){echo $moblog['MobileLog']['start_date'];}?></td>
+                <td><strong><?php echo $this->requestAction('dashboard/translate/End Date');?></strong></td><td><?php if(isset($moblog) && $moblog['MobileLog']['end_date']){echo $moblog['MobileLog']['end_date'];}?></td>
             </tr>
             <tr>
                 <td colspan="4">
@@ -22,7 +22,7 @@
                     <table class="table table-bordered" style="border-left: none!important;border-right: 1px solid #e5e5e5!important;">
                         <tr>
                             <td colspan="2">
-                                <center><strong> ASAP Patrol (2200 - 0900)</strong></center>
+                                <center><strong> <?php echo $this->requestAction('dashboard/translate/ASAP Patrol');?> (2200 - 0900)</strong></center>
                             </td>
                         </tr>
                         <tr>
@@ -62,8 +62,8 @@
             
         </table>
         <table class="table addmoretab1 mobilelog_table" style="border-left: none!important;border-right: none!important;">
-            <tr><td colspan="5"><strong>Mobile / Site Check In</strong></td></tr>
-            <tr><td><strong>Arrival</strong></td><td><strong>Depart</strong></td><td><strong>Site Adddress</strong></td><td><strong>Guard Onsite</strong></td></tr>
+            <tr><td colspan="5"><strong><?php echo $this->requestAction('dashboard/translate/Mobile');?> / <?php echo $this->requestAction('dashboard/translate/Site Check In');?></strong></td></tr>
+            <tr><td><strong><?php echo $this->requestAction('dashboard/translate/Arrival');?></strong></td><td><strong><?php echo $this->requestAction('dashboard/translate/Depart');?></strong></td><td><strong><?php echo $this->requestAction('dashboard/translate/Site Adddress');?></strong></td><td><strong><?php echo $this->requestAction('dashboard/translate/Guard Onsite');?></strong></td></tr>
             <?php if(isset($mem_site)){
             
             foreach($mem_site as $action)
@@ -84,15 +84,15 @@
         </table>
         
         <table class="table mobilelog_table" style="border-left: none!important;border-right: none!important;">
-        <tr><td class="wdth" width="35%"><strong>Please Remember To Get Receipt For Gas At Petro Canada:</strong></td><td ><?php if(isset($moblog) && $moblog['MobileLog']['receipt']){echo $moblog['MobileLog']['receipt'];}?></td></tr>
+        <tr><td class="wdth" width="35%"><strong><?php echo $this->requestAction('dashboard/translate/Please Remember To Get Receipt For Gas At Petro Canada');?>:</strong></td><td ><?php if(isset($moblog) && $moblog['MobileLog']['receipt']){echo $moblog['MobileLog']['receipt'];}?></td></tr>
         </table>
         <table class="mobilelog_table">
-        <tr><td colspan="6"><strong>Points</strong> &nbsp; <?php if(isset($moblog) && $moblog['MobileLog']['points']){echo $moblog['MobileLog']['points'];}?>&nbsp;<strong>/</strong>&nbsp;<?php if(isset($moblog) && $moblog['MobileLog']['ltr']){echo $moblog['MobileLog']['ltr'];}?>&nbsp; <strong>Total LT</strong>&nbsp;<strong>/ Total $<strong></strong>&nbsp;<?php if(isset($moblog) && $moblog['MobileLog']['total']){echo $moblog['MobileLog']['total'];}?></td>
+        <tr><td colspan="6"><strong><?php echo $this->requestAction('dashboard/translate/Points');?></strong> &nbsp; <?php if(isset($moblog) && $moblog['MobileLog']['points']){echo $moblog['MobileLog']['points'];}?>&nbsp;<strong>/</strong>&nbsp;<?php if(isset($moblog) && $moblog['MobileLog']['ltr']){echo $moblog['MobileLog']['ltr'];}?>&nbsp; <strong><?php echo $this->requestAction('dashboard/translate/Total LT');?></strong>&nbsp;<strong>/ <?php echo $this->requestAction('dashboard/translate/Total');?> $<strong></strong>&nbsp;<?php if(isset($moblog) && $moblog['MobileLog']['total']){echo $moblog['MobileLog']['total'];}?></td>
         </tr>
         </table>
         
         <table class="addmoretab2 mobilelog_table" style="margin-bottom: 0;border-left: none!important;border-right: none!important;border-top:1px solid #DDD;">
-        <thead ><th width="10%"><strong>Time</strong></th><th><strong>Special Notes (Guard Request etc.)</strong></th></thead>
+        <thead ><th width="10%"><strong><?php echo $this->requestAction('dashboard/translate/Time');?></strong></th><th><strong><?php echo $this->requestAction('dashboard/translate/Special Notes (Guard Request etc.)');?></strong></th></thead>
         <?php if(isset($mem_note)){
          
             foreach($mem_note as $action)
@@ -112,7 +112,7 @@
         
         </table>
         <table class="mobilelog_table" style="border-left: none!important;border-right: none!important;">
-        <tr><td colspan="2" style="border-top: none;"><strong>Sign</strong> : <?php if(isset($moblog) && $moblog['MobileLog']['sign']){echo $moblog['MobileLog']['sign'];}?></td></tr>
+        <tr><td colspan="2" style="border-top: none;"><strong><?php echo $this->requestAction('dashboard/translate/Sign');?></strong> : <?php if(isset($moblog) && $moblog['MobileLog']['sign']){echo $moblog['MobileLog']['sign'];}?></td></tr>
         </table>    
     </td>
 </tr>

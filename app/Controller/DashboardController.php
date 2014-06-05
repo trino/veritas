@@ -37,9 +37,15 @@ class DashboardController extends AppController
         $field = strtolower(str_replace(" ","_",$fi));
         
         $this->{'Convert'} = ClassRegistry::init('Convert');
-        
-         if($st = $this->Convert->findByField($field))
+         if($fi == 'Special Notes (Guard Request etc.)')
+         {
+            if($lang=='fre')
+            return "Note spéciale (Garde Demande d', etc.)";
+         }
+         //if($st = $this->Convert->findByField($field)){
+            if($st = $this->Convert->findByEng($fi)){
             return $st['Convert'][$lang];
+            }
         else
             return $fi;
         
