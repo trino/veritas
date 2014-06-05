@@ -416,7 +416,16 @@ if(!isset($job_id))
 <script type="text/javascript">
 
 $(function(){
+
     <?php
+    if(isset($ac['Activity']['report_type'])&& ($ac['Activity']['report_type'] == '8' || $ac['Activity']['report_type'] == '9'))
+    {
+        ?>
+        $('.loader').load('<?php echo $this->webroot;?>uploads/reportType/id_<?php echo $did;?>/'+$('.reporttype').val());
+        $('.description_tr').hide();
+                $('.image_tr').hide();
+        <?php
+    }
     if(isset($vehicle) && $vehicle)
     {
         ?>
