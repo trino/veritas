@@ -50,7 +50,7 @@ else
         
     </tr>
     <tr>
-        <td><strong><?php echo $this->requestAction("dashboard/translate/Site")?> :</strong> <?php echo $site;?></td><td><strong><?php echo $this->requestAction("dashboard/translate/Time");?> : </strong><?php echo $time;?></td><td><strong>Guard on duty</strong></td><td><?php echo $guard_on_duty;?></td><td><strong>Final score</strong></td><td><?php echo $final_score;?>/10</td>
+        <td><strong><?php echo $this->requestAction("dashboard/translate/Site")?> :</strong> <?php echo $site;?></td><td><strong><?php echo $this->requestAction("dashboard/translate/Time");?> : </strong><?php echo $time;?></td><td><strong><?php echo $this->requestAction("dashboard/translate/Guard on duty");?></strong></td><td><?php echo $guard_on_duty;?></td><td><strong>Final score</strong></td><td><?php echo $final_score;?>/10</td>
     </tr>
     <tr>
         <td colspan="2"><strong style="display: block;float:left;width:220px;padding-right:10px;"><?php echo $this->requestAction("dashboard/translate/Guard Memo book, up to date, correct format")?></strong><span style="display:block;float:left;"><?php echo $score[1];?>/1</span><div class="clear"></div></td><td><strong>Y</strong> <?php if($score[1]>0){?>&#10004;<?php }?> &nbsp; <strong>N</strong> <?php if($score[1]<=0){?>&#10004;<?php }?></td>
