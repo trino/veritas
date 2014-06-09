@@ -311,7 +311,7 @@ if($q || isset($sid)){
 <tr>
     <td colspan="2">
         <table>
-            <tr><td><strong><?php echo $this->requestAction('dashboard/translate/Assign Jobs to user');?></strong></td></tr>
+            <tr><td colspan="2"><strong><?php echo $this->requestAction('dashboard/translate/Assign Job to user');?></strong></td></tr>
             <?php
             $i=0;
             if(isset($sid))

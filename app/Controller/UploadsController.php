@@ -481,6 +481,7 @@ class UploadsController extends AppController
         $this->loadModel('MobileTrunk');
         $this->loadModel('Vehicle_inspection');
         $this->loadModel('StaticSiteAudit');
+        $this->loadModel('InsuranceSiteAudit');
         if($eid)
         {
             $this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$eid))));
@@ -611,7 +612,24 @@ class UploadsController extends AppController
                 $activity['uploaded_on'] = date('Y-m-d');
                 if(isset($activity['report_type']))
                     $activity['incident_type'] = $_POST['incident_type'];
+                
+                if($_POST['report_type']=='8')
+                {
                     
+                    $this->StaticSiteAudit->deleteAll(array('doc_id'=>$eid));
+                    $_POST['doc_id'] = $eid;
+                    $this->StaticSiteAudit->create();
+                    $this->StaticSiteAudit->save($_POST);
+                    
+                }
+                if($_POST['report_type']=='9')
+                {
+                    $this->InsuranceSiteAudit->deleteAll(array('doc_id'=>$eid));
+                    $_POST['doc_id'] = $eid;
+                    $this->InsuranceSiteAudit->create();
+                    $this->InsuranceSiteAudit->save($_POST);
+                    
+                }    
                 if($_POST['report_type']=='7')
                 {
                     
@@ -1854,9 +1872,9 @@ class UploadsController extends AppController
                 if($_POST['report_type']=='9')
                 {
                     $this->loadModel('InsuranceSiteAudit');
-                    
+                     $_POST['doc_id'] = $id;
                     $this->InsuranceSiteAudit->create();
-                    $this->StaticSiteAudit->save($_POST);
+                    $this->InsuranceSiteAudit->save($_POST);
                     
                 }
                 if($_POST['report_type']=='7')
@@ -1953,25 +1971,29 @@ class UploadsController extends AppController
                     //var_dump($_POST['item']); die();
                     
                 }
-                foreach($_POST['activity_time'] as $k=>$v)
-                {
-                    if($v != "")
-                    {
-                        $activity['time'] = $v;
-                        $activity['addedBy'] = $addedBy;
-                        $activity['date'] = $_POST['activity_date'][$k];
-                        $activity['desc'] = $_POST['activity_desc'][$k];
-                        $this->Activity->create();
-                        $this->Activity->save($activity);
-                        
-                    }
-                     
-                }
                 if($_POST['report_type']==8 || $_POST['report_type']==9)
                 {
                     $this->Activity->create();
                     $this->Activity->save($activity);
                 }
+                else
+                {
+                    foreach($_POST['activity_time'] as $k=>$v)
+                    {
+                        if($v != "")
+                        {
+                            $activity['time'] = $v;
+                            $activity['addedBy'] = $addedBy;
+                            $activity['date'] = $_POST['activity_date'][$k];
+                            $activity['desc'] = $_POST['activity_desc'][$k];
+                            $this->Activity->create();
+                            $this->Activity->save($activity);
+                            
+                        }
+                         
+                    }
+                }
+                
                 
             }
             elseif($_POST['document_type']== 'client_feedback')
@@ -2572,6 +2594,12 @@ class UploadsController extends AppController
         if($type==8){
             $this->loadModel('StaticSiteAudit');
             $this->set('static',$this->StaticSiteAudit->find('first',array('conditions'=>array('doc_id'=>$did))));
+            $this->set('type',$type);
+        }
+        if($type=='9')
+        {
+            $this->loadModel('InsuranceSiteAudit');
+            $this->set('static',$this->InsuranceSiteAudit->find('first',array('conditions'=>array('doc_id'=>$did))));
             $this->set('type',$type);
         }
     }

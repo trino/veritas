@@ -190,6 +190,8 @@ $Occurance = 0;
 $incident_report = 0;
 $Sheets = 0;
 $Loss_p = 0;
+$Static_audit = 0;
+$Insurance_audit = 0;
 if(isset($from) && isset($to))
     $rep = $report_type->query("SELECT COUNT(*) as cnt, report_type FROM activities WHERE `uploaded_on` >='$from' ".$cond." and `uploaded_on`<='$to' GROUP BY report_type");    
 elseif(isset($from))
@@ -215,6 +217,10 @@ foreach($rep as $v)
         $Sheets = $v['0']['cnt'];
      elseif($v['activities']['report_type']=='7')
         $Loss_p = $v['0']['cnt'];
+     elseif($v['activities']['report_type']=='8')
+        $Static_audit = $v['0']['cnt'];
+     elseif($v['activities']['report_type']=='9')
+        $Insurance_audit = $v['0']['cnt'];
          
 }
 unset($v);
@@ -288,6 +294,8 @@ unset($v);
 <tr><td style="padding-left:30px;"><?php echo $this->requestAction('dashboard/translate/Security Occurrence');?></td><td><?php echo $Occurance;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></td></tr>
 <tr><td style="padding-left:30px;"><?php echo $this->requestAction('dashboard/translate/Sign-off Sheets');?></td><td><?php echo $Sheets;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></td></tr>
 <tr><td style="padding-left:30px;"><?php echo $this->requestAction('dashboard/translate/Loss Prevention');?></td><td><?php echo $Loss_p;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></td></tr>
+<tr><td style="padding-left:30px;"><?php echo $this->requestAction('dashboard/translate/Static Site Audit');?></td><td><?php echo $Static_audit;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></td></tr>
+<tr><td style="padding-left:30px;"><?php echo $this->requestAction('dashboard/translate/Insurance Site Audit');?></td><td><?php echo $Insurance_audit;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></td></tr>
 
 <tr><td style="padding-left:30px;"><b><?php echo $this->requestAction('dashboard/translate/Incident Report');?></b></td><td><b><?php echo $incident_report;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></b></td></tr>
 <tr style="padding:20px;margin:30px;">

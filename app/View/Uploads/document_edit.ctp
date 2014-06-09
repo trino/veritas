@@ -497,6 +497,8 @@ $(function(){
             {
                 $('.loader').load('<?php echo $this->webroot;?>uploads/reportType/id_<?php echo $did;?>/'+$(this).val());
             }
+            if($(this).val() == '9')
+                $('.loader').load('<?php echo $this->webroot;?>uploads/reportType/id_<?php echo $did;?>/'+$(this).val());
             $('.incident_more').hide();
             
             $('.uploademail').hide();
@@ -591,9 +593,10 @@ $(function(){
        if(inc_type=='7' || $('.reporttype').val()=='8' || $('.reporttype').val()=='9')
        {
             if($('.reporttype').val()=='7')
-            $('#loss_prevention').show();
+                $('#loss_prevention').show();
             else
             {
+                $('.loader').show();
                 $('.description_tr').hide();
                 $('.image_tr').hide();
             }
@@ -603,6 +606,7 @@ $(function(){
        {
             $('#loss_prevention').hide();
             $('.date_time').show();
+            $('.loader').hide();
        }
     });
     $('.incident_date').datepicker({dateFormat: 'yy-mm-dd',maxDate: new Date} );    

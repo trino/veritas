@@ -127,7 +127,7 @@ if($q || $q2){
 <tr>
     <td colspan="2">
         <table class="jobb">
-            <tr><td><strong><?php echo $this->requestAction('dashboard/translate/Assign Jobs to user');?></strong></td></tr>
+            <tr><td><strong><?php echo $this->requestAction('dashboard/translate/Assign Job to user');?></strong></td></tr>
             
             <?php
             if($q2)
