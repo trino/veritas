@@ -61,8 +61,8 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
             showCount: false,
             speed: 'fast'
             });
-        $('.changelang').click(function(){
-           var lang = $(this).attr('id');
+        $('.changelang').change(function(){
+           var lang = $(this).val();
            $.ajax({
                    'type':'post',
                    'url' : '<?php echo $this->webroot;?>dashboard/changelang/'+lang,
@@ -432,7 +432,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
                     <li><?php echo $this->Html->link('<i class="icon-arrow-right"></i>'.$this->requestAction('dashboard/translate/Sent Mail'),'/mail/sent_mail',array('escape'=>false));?></li>
                 </ul>
                 </li>
-                <li><?php echo $this->Html->link('<i class="icon-copy"></i>'.$this->requestAction('dashboard/translate/Documents'),'/search', array('escape'=>false));?>
+                <li><?php echo $this->Html->link('<i class="icon-copy"></i>Documents','/search', array('escape'=>false));?>
                     <ul class="moreul">                        
                         <?php
                         if($this->Session->read('admin') || $this->Session->read('view'))
@@ -610,6 +610,10 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
                 } 
                 ?>                
                 </select>
+                <select class="changelang">
+                    <option value="eng" <?php if($this->Session->read('lang')=='eng'){?>selected="selected"<?php }?>>English</option>
+                    <option value="fre" <?php if($this->Session->read('lang')=='fre'){?>selected="selected"<?php }?>>French</option>
+                </select>
                 </div>
                 <div class="clearfix"></div>
 				</div>
@@ -620,8 +624,6 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 					<?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => '', 'class'=>'image'))?>
 					</div>					
 					<div class="links">
-                    <?php  if($this->Session->read('lang')=='fre') echo $this->Html->link('<i class="icon-user"></i> '.'English ','javascript:void(0)',array('escape' => false, 'id'=>'eng','class'=>'changelang'))."</br>"; ?>
-					<?php  if($this->Session->read('lang')=='eng') echo $this->Html->link('<i class="icon-user"></i> '.'French ','javascript:void(0)',array('escape' => false,'id'=>'fre','class'=>'changelang'))."</br>"; ?>
                     <?php  echo $this->Html->link('<i class="icon-user"></i> '.' '.$this->Session->read('avatar'),'/dashboard/settings',array('escape' => false,)); ?><br/>
 				    <?php  echo $this->Html->link('<i class="icon-off"></i> '.$this->requestAction('dashboard/translate/Logout'),'/admin/logout',array('escape' => false,)); ?><br/>				
 				    <?php  echo $this->Html->link('<i class="icon-warning-sign"></i> '.$this->requestAction('dashboard/translate/User Support'),'/dashboard/contactus',array('escape' => false,)); ?>
@@ -633,9 +635,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 					<div class="avatar">
 					<?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => ''))?>
 					</div>
-					<div class="links">
-                    <?php  if($this->Session->read('lang')=='fre') echo $this->Html->link('<i class="icon-user"></i> '.'English ','javascript:void(0)',array('escape' => false, 'id'=>'eng','class'=>'changelang'))."</br>"; ?>
-					<?php  if($this->Session->read('lang')=='eng') echo $this->Html->link('<i class="icon-user"></i> '.'French ','javascript:void(0)',array('escape' => false,'id'=>'fre','class'=>'changelang'))."</br>"; ?>                    
+					<div class="links">                    
 					<?php  echo $this->Html->link('<i class="icon-user"></i>'.' '.$this->Session->read('user'),'/dashboard/settings',array('escape' => false,)); ?><br/>
 					<?php  echo $this->Html->link('<i class="icon-off"></i> '.$this->requestAction('dashboard/translate/Logout'),'/admin/logout',array('escape' => false,)); ?><br/>
 					<?php  echo $this->Html->link('<i class="icon-warning-sign"></i> '.$this->requestAction('dashboard/translate/User Support'),'/dashboard/contactus',array('escape' => false,)); ?>

@@ -210,7 +210,7 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         <td><b><?php echo $this->requestAction('dashboard/translate/Uploaded By');?></b></td>
         <td><?php if($doc['Document']['addedBy'] != 0){$q = $member->find('first',array('conditions'=>array('id'=>$doc['Document']['addedBy'])));if($q){if($this->Session->read('admin'))echo "<a href='".$base_url."members/view/".$q['Member']['id']."'>".$q['Member']['full_name']."</a>";else echo $q['Member']['full_name'];}}else echo "Admin";?></td>
     </tr>
-    <tr>
+    <tr style="border-bottom: 1px solid #DDD;">
         <td><b><?php echo $this->requestAction('dashboard/translate/Uploaded On');?></b></td>
         <td><?php echo $doc['Document']['date']?></td>
     </tr>
