@@ -562,7 +562,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
                     foreach($module as $mod)
                     {
                         ?>
-                        <li>  <?php echo $this->Html->link('<i class="icon-copy"></i>'.$mod['AdminModule']['name'].' module','/modules/view/'.$mod['AdminModule']['module_slug'],array('escape'=>false));?></li> 
+                        <li>  <?php echo $this->Html->link('<i class="icon-copy"></i>'.$mod['AdminModule']['name'].' Module','/modules/view/'.$mod['AdminModule']['module_slug'],array('escape'=>false));?></li> 
                         <?php
                     }
                   }

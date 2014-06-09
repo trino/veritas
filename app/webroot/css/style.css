@@ -21,7 +21,7 @@ body{
     width: 100%;
 }
 
-
+.changelang{width:100px;}
 /* Left column */
 .menu a{
 	display:block;
