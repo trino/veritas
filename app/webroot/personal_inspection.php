@@ -1,4 +1,4 @@
-<tr class="personal_more" style="display: none;border-bottom:none;">
+
     <td colspan="2" style="padding: 0;">
         <table>
             <tr>
@@ -207,4 +207,3 @@
             </tbody>
           </table>
     </td>
-</tr>

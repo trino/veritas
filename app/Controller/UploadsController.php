@@ -463,15 +463,7 @@ class UploadsController extends AppController
         $this->loadModel('Emailupload');
         $this->loadModel('Clientmemo');
         $this->loadModel('AdminDoc');
-        $this->loadModel('StoreInfo');
-        $this->loadModel('SubjectInfo');
-        $this->loadModel('SpecialistInfo');
-        $this->loadModel('ProductDInfo');
-        $this->loadModel('PoliceInfo');
-        $this->loadModel('JuvenileInfo');
-        $this->loadModel('NoticeInfo');
-        $this->loadModel('AdditionalInfo');
-        $this->loadModel('ItemInfo');
+        
         $this->loadModel('Personal_inspection');
         $this->loadModel('MobileInspection');
         $this->loadModel('MobileAction');
@@ -484,54 +476,15 @@ class UploadsController extends AppController
         $this->loadModel('InsuranceSiteAudit');
         if($eid)
         {
-            $this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$eid))));
-            $vi = $this->Vehicle_inspection->find('first',array('conditions'=>array('document_id'=>$eid)));
-            $this->set('vehicle',$vi);            
-            if($vi)
-            {
-                $vid = $vi['Vehicle_inspection']['id'];
-                $this->loadModel('Vehicle_note');
-                $this->set('vn',$this->Vehicle_note->find('all',array('conditions'=>array('vehicle_id'=>$vid))));
-            }
-            if($mem = $this->MobileInspection->findByDocumentId($eid))
-            {
-                $mem_action = $this->MobileAction->find('all',array('conditions'=>array('mobileins_id'=>$mem['MobileInspection']['id'])));
-                $this->set('mem_action',$mem_action);
-                $this->set('mobins',$mem);
-            }
-            if($n = $this->MobileLog->findByDocumentId($eid))
-            {
-                //var_dump($n);
-                $mem_note = $this->MobileNote->find('all',array('conditions'=>array('mobileins_id'=>$n['MobileLog']['id'])));
-                $this->set('mem_note',$mem_note);                
-                if($mem_site = $this->MobileSite->find('all',array('conditions'=>array('mobilelog_id'=>$n['MobileLog']['id']))))
-                    $this->set('mem_site',$mem_site);                
-                $this->set('moblog',$n); 
-            }
+            //$this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$eid))));
+            
+            
+            
             if($in = $this->MobileTrunk->findByDocumentId($eid))
             {
                 $this->set('inv', $in);
             }
-        }
-        
-            $this->set('store',$this->StoreInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));        
-            $this->set('subject',$this->SubjectInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));         
-        
-            $this->set('special',$this->SpecialistInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
-        
-            $this->set('product',$this->ProductDInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
-        
-            $this->set('police',$this->PoliceInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
-        
-            $this->set('juv',$this->JuvenileInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
-        
-            $this->set('notice',$this->NoticeInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
-        
-            $this->set('add',$this->AdditionalInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
-        
-            $this->set('item',$this->ItemInfo->find('all', array('conditions'=>array('doc_id'=>$eid))));
-            $this->set('static',$this->StaticSiteAudit->find('first', array('conditions'=>array('doc_id'=>$eid))));
-            
+        }            
         $this->set('admin_doc',$this->AdminDoc->find('first'));
         if($this->Session->read('user'))
         {
@@ -632,6 +585,17 @@ class UploadsController extends AppController
                 }    
                 if($_POST['report_type']=='7')
                 {
+                    /* report type 7*/
+                    $this->loadModel('StoreInfo');
+                    $this->loadModel('SubjectInfo');
+                    $this->loadModel('SpecialistInfo');
+                    $this->loadModel('ProductDInfo');
+                    $this->loadModel('PoliceInfo');
+                    $this->loadModel('JuvenileInfo');
+                    $this->loadModel('NoticeInfo');
+                    $this->loadModel('AdditionalInfo');
+                    $this->loadModel('ItemInfo');
+                    /* report type 7*/
                     
                     $this->StoreInfo->deleteAll(array('doc_id'=>$eid));
                     $store['doc_id'] = $eid;
@@ -2584,12 +2548,71 @@ class UploadsController extends AppController
         return false;
     }
   }
+  function documentType($did='',$type='')
+  {
+    $did = str_replace('id_','',$did);
+    $this->layout = 'modal_layout';
+    $this->set('type',$type);
+    if($did=='')
+    {
+        
+    }
+    else
+    {
+        if($type=='personal_inspection')
+        {
+            $this->loadModel('Personal_inspection');
+            $this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$did))));
+        }
+        if($type=='vehicle_inspection')
+        {
+            $this->loadModel('Vehicle_inspection');
+            $vi = $this->Vehicle_inspection->find('first',array('conditions'=>array('document_id'=>$did)));
+            $this->set('vehicle',$vi);            
+            if($vi)
+            {
+                $vid = $vi['Vehicle_inspection']['id'];
+                $this->loadModel('Vehicle_note');
+                $this->set('vn',$this->Vehicle_note->find('all',array('conditions'=>array('vehicle_id'=>$did))));
+            }
+        }
+        if($type=='mobile_inspection')
+        {
+            $this->loadModel('MobileInspection');
+            if($mem = $this->MobileInspection->findByDocumentId($did))
+            {
+                $this->loadModel('MobileAction');
+                $mem_action = $this->MobileAction->find('all',array('conditions'=>array('mobileins_id'=>$mem['MobileInspection']['id'])));
+                $this->set('mem_action',$mem_action);
+                $this->set('mobins',$mem);
+            }
+        }
+        if($type=='mobile_log')
+        {
+            $this->loadModel('MobileLog');
+            $this->loadModel('MobileNote');
+            $this->loadModel('MobileSite');
+             if($n = $this->MobileLog->findByDocumentId($did))
+                {
+                    //var_dump($n);
+                    $mem_note = $this->MobileNote->find('all',array('conditions'=>array('mobileins_id'=>$n['MobileLog']['id'])));
+                    $this->set('mem_note',$mem_note);                
+                    if($mem_site = $this->MobileSite->find('all',array('conditions'=>array('mobilelog_id'=>$n['MobileLog']['id']))))
+                        $this->set('mem_site',$mem_site);                
+                    $this->set('moblog',$n); 
+                }   
+        }
+    }
+  }
   function reportType($did='',$type='')
   {
     $did = str_replace('id_','',$did);
     $this->layout = 'modal_layout';
-    if($did=='')
     $this->set('type',$type);
+    if($did=='')
+    {
+        
+    }
     else{
         if($type==8){
             $this->loadModel('StaticSiteAudit');
@@ -2601,6 +2624,36 @@ class UploadsController extends AppController
             $this->loadModel('InsuranceSiteAudit');
             $this->set('static',$this->InsuranceSiteAudit->find('first',array('conditions'=>array('doc_id'=>$did))));
             $this->set('type',$type);
+        }
+        if($type='7')
+        {
+            $this->set('type',$type);
+            $eid= $did;
+            $this->loadModel('StoreInfo');
+            $this->loadModel('SubjectInfo');
+            $this->loadModel('SpecialistInfo');
+            $this->loadModel('ProductDInfo');
+            $this->loadModel('PoliceInfo');
+            $this->loadModel('JuvenileInfo');
+            $this->loadModel('NoticeInfo');
+            $this->loadModel('AdditionalInfo');
+            $this->loadModel('ItemInfo');
+            $this->set('store',$this->StoreInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));        
+            $this->set('subject',$this->SubjectInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));         
+        
+            $this->set('special',$this->SpecialistInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+        
+            $this->set('product',$this->ProductDInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+        
+            $this->set('police',$this->PoliceInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+        
+            $this->set('juv',$this->JuvenileInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+        
+            $this->set('notice',$this->NoticeInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+        
+            $this->set('add',$this->AdditionalInfo->find('first', array('conditions'=>array('doc_id'=>$eid))));
+        
+            $this->set('item',$this->ItemInfo->find('all', array('conditions'=>array('doc_id'=>$eid))));
         }
     }
   }

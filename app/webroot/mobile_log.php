@@ -1,4 +1,3 @@
-<tr class="mobilelog_more" style="display: none;">
     <td colspan="2" style="padding: 0;">
         <table class="table mobilelog_table" style="border-left: none!important;border-right: none!important;">
             <tr>
@@ -110,10 +109,10 @@
         <tr><td width="5%"><strong><?php echo $this->requestAction('dashboard/translate/Sign');?></strong></td><td><input type="text" name="log[sign]" value="<?php if(isset($moblog) && $moblog['MobileLog']['sign']){echo $moblog['MobileLog']['sign'];}?>" /></td><td></td></tr>
         </table>    
     </td>
-</tr>
 <script>
 $(function(){
     $('.time').timepicker(); 
+    $('.date_verify').datepicker({dateFormat: 'yy-mm-dd'});
     $('#addcheck').click(function(){
        $('.addmoretab1').append('<tr><td><input type="text" class="time" name="arrival[]" /></td><td><input type="text" class="time" name="depart[]" /></td><td><input type="text" name="siteaddress[]" /></td><td><input type="text" name="guardonsite[]" /></td><td><a href="javascript:void(0)" onclick="$(this).closest(\'tr\').remove();" class="btn btn-danger"><?php echo $this->requestAction('dashboard/translate/Delete');?></a></td></tr>'); 
          $('.time').timepicker();

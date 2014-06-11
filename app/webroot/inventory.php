@@ -1,9 +1,3 @@
-<style>
-
-.inventry_table input{width:100px;}
-.righton td{border-right: 1px solid #ddd;}
-</style>
-<tr class="inventory1_more" style="display: none;">
     <td colspan="2" style="padding: 0;border-top:none;">
         <table class="inventry_table" style="border-left:none!important;<?php if($this->params['action'] != 'view_detail'){?>border-bottom:1px solid #ddd;<?php }?>">
             
@@ -222,7 +216,6 @@
             </tr>
         </table>
     </td>
-</tr>
 <script>
 $(function(){
 <?php if($this->params['action'] == 'view_detail' ){ ?> 
@@ -248,3 +241,8 @@ $(function(){
    <?php } ?> 
    });
 </script>
+<style>
+
+.inventry_table input{width:100px;}
+.righton td{border-right: 1px solid #ddd;}
+</style>

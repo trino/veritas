@@ -1,7 +1,3 @@
-<style>
-.times .time{margin-right:8px;}
-</style>
-<tr class="mobileins_more" style="display: none;border-bottom:none;">
     <td colspan="2" style="padding: 0;">
         <table class="table mobileins_table">
             <tr>
@@ -76,7 +72,7 @@
         <td><strong><?php echo $this->requestAction('dashboard/translate/Vehicle No');?>:</strong><br /><input type="text" name="mobile_ins[vehicle_no]" class=""  value="<?php if(isset($mobins) && $mobins['MobileInspection']['vehicle_no']){echo $mobins['MobileInspection']['vehicle_no'];}?>" /></td></tr>
         </table>
 </td>            
-</tr>
+
 <script>
 $(function(){
     $('#addmore').click(function(){
@@ -101,3 +97,6 @@ $(function(){
 });
 </script>
 <style>input[type="radio"]{margin-top:0;}</style>
+<style>
+.times .time{margin-right:8px;}
+</style>

@@ -1,23 +1,7 @@
-<style>
-.loss input[type="text"]{width:145px!important;}
-.loss2 input[type="text"]{width:90px!important;}
-.loss3 input[type="text"]{width:235px!important;}
-.double{width:300px!important;}
-</style>
-<script>
-$(function(){
-   <?php if($this->params['action']=='view_detail')
-   {?>
-   
-   $('.loss_p input').attr('readonly','readonly');
-   $('.loss_p textarea').attr('readonly','readonly');
-   $('.loss_p input:radio').attr('disabled','disabled');
-   <?php } ?> 
-});
-</script>
-<div class="loss_p" >
-<h2><?php echo $this->requestAction('dashboard/translate/Loss Prevention Incident Report');?></h2>
+
+<td colspan="3" class="loss_p" style="padding: 0;">
 <table class="table table-bordered loss" style="width: 100%;">
+    <tr><td colspan="6"><h2><?php echo $this->requestAction('dashboard/translate/Loss Prevention Incident Report');?></h2></td></tr>
     <tr><th colspan="6"><strong><?php echo $this->requestAction('dashboard/translate/STORE INFORMATION');?></strong></th></tr>
     <tr><td><?php echo $this->requestAction('dashboard/translate/INCIDENT TITLE');?><br />
         <input type="text" name="store[incident_title]" value="<?php if(isset($store['StoreInfo'])) echo $store['StoreInfo']['incident_title'];?>" /></td>
@@ -293,4 +277,21 @@ $(function(){
 <tr><th><?php echo $this->requestAction('dashboard/translate/NARRATIVE');?></th></tr>
 <tr><td><textarea  name="additional[narrative]" style="width: 95%;height: 500px;"><?php if(isset($add['AdditionalInfo'])) echo $add['AdditionalInfo']['narrative'];?> </textarea></td></tr>
 </table>
-</div>
+</td>
+<style>
+.loss input[type="text"]{width:145px!important;}
+.loss2 input[type="text"]{width:90px!important;}
+.loss3 input[type="text"]{width:235px!important;}
+.double{width:300px!important;}
+</style>
+<script>
+$(function(){
+   <?php if($this->params['action']=='view_detail')
+   {?>
+   
+   $('.loss_p input').attr('readonly','readonly');
+   $('.loss_p textarea').attr('readonly','readonly');
+   $('.loss_p input:radio').attr('disabled','disabled');
+   <?php } ?> 
+});
+</script>

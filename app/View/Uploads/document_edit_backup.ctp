@@ -8,7 +8,7 @@ if(isset($job_name))
 else
     $job_n ="";    
 ?>
-
+<script src="<?php echo $base_url;?>js/highlight.js"></script>
 <h3 class="page-title">
 	<?php echo ($this->request->params['action']=='document_edit')?$this->requestAction('dashboard/translate/Document Edit For')." ".stripslashes($job_n):"Upload Document For ".stripslashes($job_n);?>
 </h3>
@@ -19,9 +19,12 @@ else
 		<a href="<?=$base_url;?>jobs"><?php echo($this->request->params['action']=='document_edit')? $this->requestAction('dashboard/translate/Edit'):$this->requestAction('dashboard/translate/Upload');?> Document</a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
-
+<script src="<?php echo $base_url;?>js/highscript.js"></script>
 <script>
     $(function(){
+    $('.map').maphilight({
+            fillColor: '008800'
+        });
    $('#document').val('1');
    $('#image').val('1');
    $('#video').val('1'); 
@@ -196,7 +199,14 @@ function remove_youtube()
 </div></td>
 </tr>
 
-<tr class="loader2"></tr>
+<?php
+include('personal_inspection.php');
+include('mobile_inspection.php');
+include('mobile_log.php');
+include('inventory.php');
+include('vehicle_inspection.php');  
+?>
+
 <tr class="site_more" style="display: none;">
 <td colspan="2">
 <table>
@@ -341,6 +351,9 @@ function remove_youtube()
 </th>
 </thead>
 <tr class="loader"></tr>
+<tr style="display: none;" id="loss_prevention">
+<td colspan="3"> <?php include('loss_prevention.php');?></td>
+</tr>
 <thead class="date_time">
 <th width="220px">Date</th>
 <th width="220px"><?php echo $this->requestAction('dashboard/translate/Time');?></th>
@@ -403,6 +416,52 @@ if(!isset($job_id))
 <script type="text/javascript">
 
 $(function(){
+
+    
+        <?php
+    
+    if(isset($vehicle) && $vehicle)
+    {
+        ?>
+        var front = '<?php echo $vehicle['Vehicle_inspection']['front'];?>';
+        var back = '<?php echo $vehicle['Vehicle_inspection']['back'];?>';
+        var side = '<?php echo $vehicle['Vehicle_inspection']['side'];?>';
+        
+        var arr_f = front.split('_');
+        
+        var arr_b = back.split('_');
+        var arr_s = side.split('_');
+        $('.front').val('');
+        $('.back').val('');
+        $('.side').val('');
+        if(arr_f.length >0)
+        {
+            $('.f area').each(function(){
+                var co = $(this).attr('coords');
+                if(jQuery.inArray( co, arr_f )>=0)
+                $(this).click() ;               
+            });
+        }
+        if(arr_b.length >0)
+        {
+            $('.b area').each(function(){
+                var co = $(this).attr('coords');
+                if(jQuery.inArray( co, arr_b )>=0)
+                $(this).click() ;               
+            });
+        }
+        if(arr_s.length >0)
+        {
+            $('.s area').each(function(){
+                var co = $(this).attr('coords');
+                
+                if(jQuery.inArray( co, arr_s )>=0)
+                $(this).click() ;               
+            });
+        }
+        <?php
+    }
+    ?>
       $('.uploademail').click(function(){
         <?php if($this->request->params['action']=='document_edit'){?>
          $('.dialog-modals').load('<?php echo $base_url.'uploads/email/'.$doc['Document']['job_id'];?>');
@@ -438,14 +497,8 @@ $(function(){
             {
                 $('.loader').load('<?php echo $this->webroot;?>uploads/reportType/id_<?php echo $did;?>/'+$(this).val());
             }
-            if($(this).val() == '9'){
+            if($(this).val() == '9')
                 $('.loader').load('<?php echo $this->webroot;?>uploads/reportType/id_<?php echo $did;?>/'+$(this).val());
-            }
-            if($(this).val()=='7')
-            {
-                $('.loader').load('<?php echo $this->webroot;?>uploads/reportType/id_<?php echo $did;?>/'+$(this).val());
-            }
-                
             $('.incident_more').hide();
             
             $('.uploademail').hide();
@@ -457,9 +510,7 @@ $(function(){
         {
             $('.date_time').hide();
             if($(this).val()=='7')
-            {
-                
-            }   
+            $('#loss_prevention').show();    
             else
             {
                 $('.description_tr').hide();
@@ -468,7 +519,7 @@ $(function(){
         }
         else
         {
-            
+            $('#loss_prevention').hide();
             $('.date_time').show();
         }    
     });
@@ -524,10 +575,7 @@ $(function(){
     if($('.reporttype').val()=='7' || $('.reporttype').val()=='8' || $('.reporttype').val()=='9')
        {
         if($('.reporttype').val()=='7')
-        {
-            
-        }
-            //$('#loss_prevention').show();
+            $('#loss_prevention').show();
             else
             {
                 $('.description_tr').hide();
@@ -544,17 +592,19 @@ $(function(){
        var inc_type = $(this).val(); 
        if(inc_type=='7' || $('.reporttype').val()=='8' || $('.reporttype').val()=='9')
        {
-            $('.loader').show();
-            if($('.reporttype').val()=='8' || $('.reporttype').val()=='9'){
+            if($('.reporttype').val()=='7')
+                $('#loss_prevention').show();
+            else
+            {
+                $('.loader').show();
                 $('.description_tr').hide();
                 $('.image_tr').hide();
-                }
-            
+            }
             $('.date_time').hide();
        }     
        else
        {
-            
+            $('#loss_prevention').hide();
             $('.date_time').show();
             $('.loader').hide();
        }
@@ -579,32 +629,27 @@ $(function(){
             
         if(doctype == 'personal_inspection')
         {
-            //$('.personal_more').show();
-            $('.loader2').show();
-            $('.loader2').load('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+            $('.personal_more').show();
             $('.description_tr').hide();
             $('.image_tr').hide();
         }
         else
         {
-            //            $('.personal_more').hide();
+            $('.personal_more').hide();
             $('.description_tr').show();
             $('.image_tr').show();
-            
         }
         if(doctype == 'vehicle_inspection'){
-            $('.loader2').show();
-            $('.loader2').load('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+            $('.vehicle_inspection').show();
             $('.description_tr').hide();
             $('.image_tr').hide();
             }
         else{
-            //$('.loader2').hide();
             $('.vehicle_inspection').hide();
             }    
        if(doctype == 'mobile_vehicle_trunk_inventory')
         {
-            $('.loader2').load('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+            $('.inventory1_more').show();
             $('.description_tr').hide();
             $('.image_tr').hide();
         }
@@ -614,7 +659,7 @@ $(function(){
          }
         if(doctype == 'mobile_inspection')
         {
-            $('.loader2').load('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+            $('.mobileins_more').show();
             $('.description_tr').hide();
             $('.image_tr').hide();
         }
@@ -624,7 +669,7 @@ $(function(){
         }
         if(doctype == 'mobile_log')
         {
-            $('.loader2').load('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+            $('.mobilelog_more').show();
             $('.description_tr').hide();
             $('.image_tr').hide();
         }
@@ -683,27 +728,25 @@ $(function(){
     if($('#document_type').val() == 'evidence')
          $('.extra_evidence').show();
     if($('#document_type').val() == 'personal_inspection'){
-            
-            $('.loader2').load('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+            $('.personal_more').show();
             $('.description_tr').hide();
             $('.image_tr').hide();
             }
         else{
-            //$('.loader2').hide();
+            $('.personal_more').hide();
             $('.description_tr').show();
             $('.image_tr').show();
             }
     if($('#document_type').val() == 'vehicle_inspection'){
-            $('.loader2').show();
-            $('.loader2').load('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+            $('.vehicle_inspection').show();
             $('.description_tr').hide();
             $('.image_tr').hide();
             }
         else{
-            //$('.loader2').hide();
+            $('.vehicle_inspection').hide();
            }
     if($('#document_type').val() == 'mobile_inspection'){
-        $('.loader2').load('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+        $('.mobileins_more').show();
         $('.description_tr').hide();
             $('.image_tr').hide();
            }
@@ -712,7 +755,7 @@ $(function(){
             }
     if($('#document_type').val() == 'mobile_log')
     {
-        $('.loader2').load('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+        $('.mobilelog_more').show();
         $('.description_tr').hide();
             $('.image_tr').hide();
     }
@@ -722,7 +765,7 @@ $(function(){
     }
     if($('#document_type').val() == 'mobile_vehicle_trunk_inventory')
     {
-        $('.loader2').load('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+        $('.inventory1_more').show();
         $('.description_tr').hide();
         $('.image_tr').hide();
     }
@@ -770,7 +813,7 @@ $(function(){
           }
        }); });
        <?php
-    if(isset($ac['Activity']['report_type'])&& ($ac['Activity']['report_type'] == '7' || $ac['Activity']['report_type'] == '8' || $ac['Activity']['report_type'] == '9'))
+    if(isset($ac['Activity']['report_type'])&& ($ac['Activity']['report_type'] == '8' || $ac['Activity']['report_type'] == '9'))
     {
         ?>
         $('.loader').load('<?php echo $this->webroot;?>uploads/reportType/id_<?php echo $did;?>/'+$('.reporttype').val());
@@ -791,5 +834,4 @@ function limitText(limitField, limitCount, limitNum)
         limitCount.value = limitNum - limitField.value.length;
     }*/
 }
-
 </script>

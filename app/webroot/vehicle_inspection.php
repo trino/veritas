@@ -1,3 +1,4 @@
+
 <?php
 $first_hi = 0;
 $second_hi = 0;
@@ -88,7 +89,7 @@ $n = '';
 $or = '';    
 }
 ?>
-<tr class="vehicle_inspection" style="display: none;">
+
     <td colspan="2" style="padding: 0;">
         <table class="table">
             <tr>
@@ -153,7 +154,7 @@ $or = '';
             </tr>
             <tr>
                 <td>
-                    <img src="<?php echo $base_url;?>img/front.jpg" usemap="#frontmap" class="map" />
+                    <img src="<?php echo $this->webroot;?>img/front.jpg" usemap="#frontmap" class="map" />
                     <map name="frontmap" class="f">
                         <area shape="rect" id="star_1" coords="0,0,100,109" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
                         <area shape="rect" id="star_2" coords="100,0,200,109" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}'/>
@@ -173,7 +174,7 @@ $or = '';
                     </div>
                 </td>
                 <td>
-                    <img src="<?php echo $base_url;?>img/back.jpg" usemap="#backmap" class="map" />
+                    <img src="<?php echo $this->webroot;?>img/back.jpg" usemap="#backmap" class="map" />
                     <map name="backmap" class="b">
                         <area shape="rect" id="star2_1" coords="0,0,100,109" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
                         <area shape="rect" id="star2_2" coords="100,0,200,109" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
@@ -196,7 +197,7 @@ $or = '';
             <tr>
                 <td colspan="2">
                 <div style="float: left;">
-                    <img src="<?php echo $base_url?>img/side.jpg" usemap="#sidemap" class="map" />
+                    <img src="<?php echo $this->webroot;?>img/side.jpg" usemap="#sidemap" class="map" />
                     <map name="sidemap" class="s">
                         <area shape="rect" id="star3_1" coords="0,0,100,115" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
                         <area shape="rect" id="star3_2" coords="100,0,200,115" href="javascript:void(0);" class="group" data-maphilight='{"strokeColor":"ff0000","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
@@ -227,9 +228,61 @@ $or = '';
             </tr>
         </table>        
     </td>
-</tr>
+<script src="<?php echo $this->webroot;?>js/highlight.js"></script>
+<script src="<?php echo $this->webroot;?>js/highscript.js"></script>
 <script>
 $(function(){
+    $('.map').maphilight({
+            fillColor: '008800'
+        });
+        });
+        </script>    
+<script>
+$(function(){
+    <?php
+    
+    if(isset($vehicle) && $vehicle)
+    {
+        ?>
+        var front = '<?php echo $vehicle['Vehicle_inspection']['front'];?>';
+        var back = '<?php echo $vehicle['Vehicle_inspection']['back'];?>';
+        var side = '<?php echo $vehicle['Vehicle_inspection']['side'];?>';
+        
+        var arr_f = front.split('_');
+        
+        var arr_b = back.split('_');
+        var arr_s = side.split('_');
+        $('.front').val('');
+        $('.back').val('');
+        $('.side').val('');
+        if(arr_f.length >0)
+        {
+            $('.f area').each(function(){
+                var co = $(this).attr('coords');
+                if(jQuery.inArray( co, arr_f )>=0)
+                $(this).click() ;               
+            });
+        }
+        if(arr_b.length >0)
+        {
+            $('.b area').each(function(){
+                var co = $(this).attr('coords');
+                if(jQuery.inArray( co, arr_b )>=0)
+                $(this).click() ;               
+            });
+        }
+        if(arr_s.length >0)
+        {
+            $('.s area').each(function(){
+                var co = $(this).attr('coords');
+                
+                if(jQuery.inArray( co, arr_s )>=0)
+                $(this).click() ;               
+            });
+        }
+        <?php
+    }
+    ?>
     setInterval(function(){
         <?php
                         if(isset($vn) && $vn)
