@@ -115,8 +115,8 @@ $or = '';
                 else
                 $val2 = '';
                 ?>
-                    <input type="text" name="from" class="time" value="<?php echo $val1;?>" placeholder="<?php echo $this->requestAction('dashboard/translate/Date From');?>" /> &nbsp; - 
-                     &nbsp; <input type="text" name="to" class="time" value="<?php echo $val2;?>" placeholder="<?php echo $this->requestAction('dashboard/translate/Date To');?>" />
+                    <input type="text" name="from" class="time" value="<?php echo $val1;?>" placeholder="<?php echo $this->requestAction('dashboard/translate/From');?>" /> &nbsp; - 
+                     &nbsp; <input type="text" name="to" class="time" value="<?php echo $val2;?>" placeholder="<?php echo $this->requestAction('dashboard/translate/To');?>" />
                 </td>
             </tr>
             <tr>
@@ -352,5 +352,8 @@ $(function(){
                         }
                         ?>    
     },3000);
+$('.time').timepicker();
+$('.date_verify').datepicker({dateFormat: 'yy-mm-dd'});
+
 });
 </script>

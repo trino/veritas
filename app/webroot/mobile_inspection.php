@@ -95,6 +95,9 @@ $(function(){
    <?php } ?> 
    $('.time').timepicker();
 });
+
+$('.date_verify').datepicker({dateFormat: 'yy-mm-dd'});
+
 </script>
 <style>input[type="radio"]{margin-top:0;}</style>
 <style>

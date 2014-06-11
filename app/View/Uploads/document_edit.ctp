@@ -197,6 +197,7 @@ function remove_youtube()
 </tr>
 
 <tr class="loader2"></tr>
+<tr class="loaderimg" style="display: none;"><td colspan="3"><img src="<?php echo $this->webroot;?>img/ajax-loader.gif" /></td></tr>
 <tr class="site_more" style="display: none;">
 <td colspan="2">
 <table>
@@ -566,13 +567,14 @@ $(function(){
        if(doctype == 'evidence')
         {
             $('.extra_evidence').show();
+            $(".loader2").hide();
         }
         else
             $('.extra_evidence').hide();            
         if(doctype == 'siteOrder')
         {
             $('.site_more').show();
-            
+            $(".loader2").hide();
         }
         else
             $('.site_more').hide();
@@ -581,7 +583,8 @@ $(function(){
         {
             //$('.personal_more').show();
             $('.loader2').show();
-            $('.loader2').load('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+            
+            doc_loader('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
             $('.description_tr').hide();
             $('.image_tr').hide();
         }
@@ -594,7 +597,7 @@ $(function(){
         }
         if(doctype == 'vehicle_inspection'){
             $('.loader2').show();
-            $('.loader2').load('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+            doc_loader('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
             $('.description_tr').hide();
             $('.image_tr').hide();
             }
@@ -604,7 +607,7 @@ $(function(){
             }    
        if(doctype == 'mobile_vehicle_trunk_inventory')
         {
-            $('.loader2').load('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+            doc_loader('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
             $('.description_tr').hide();
             $('.image_tr').hide();
         }
@@ -614,7 +617,7 @@ $(function(){
          }
         if(doctype == 'mobile_inspection')
         {
-            $('.loader2').load('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+            doc_loader('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
             $('.description_tr').hide();
             $('.image_tr').hide();
         }
@@ -624,7 +627,7 @@ $(function(){
         }
         if(doctype == 'mobile_log')
         {
-            $('.loader2').load('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+            doc_loader('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
             $('.description_tr').hide();
             $('.image_tr').hide();
         }
@@ -633,16 +636,27 @@ $(function(){
             $('.mobilelog_more').hide();
         }
         if(doctype == 'employee'){
+            $(".loader2").hide();
             $('.employee_more').show();
            }
         else
             $('.employee_more').hide();
          if(doctype == 'training'){
+            $(".loader2").hide();
             $('.training_more').show();
             }
         else
             $('.training_more').hide();
+        if(doctype == 'contract')
+        {
+            $(".loader2").hide();
+        }
+        if(doctype == 'KPIAudits')
+        {
+            $(".loader2").hide();
+        }
         if(doctype == 'report'){
+            $(".loader2").hide();
            $('.extra_memo').show();
            $('.add_more').show();
            $('.draftspan').show();
@@ -658,6 +672,7 @@ $(function(){
         if(doctype == 'client_feedback')
         {
             $('.client_more').show();
+            $(".loader2").hide();
             $('.text_area_long').attr('onKeyDown',"limitText(this.form.description,this.form.countdown,500);");
             $('.text_area_long').attr('OnKeyUp',"limitText(this.form.description,this.form.countdown,500);");
             $('.desc_bot').html('(Maximum characters: 500)<br />'+
@@ -680,11 +695,13 @@ $(function(){
         $(this).blur();
         });   
     });
-    if($('#document_type').val() == 'evidence')
+    if($('#document_type').val() == 'evidence'){
          $('.extra_evidence').show();
+         $(".loader2").hide();
+         }
     if($('#document_type').val() == 'personal_inspection'){
             
-            $('.loader2').load('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+            doc_loader('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
             $('.description_tr').hide();
             $('.image_tr').hide();
             }
@@ -695,7 +712,7 @@ $(function(){
             }
     if($('#document_type').val() == 'vehicle_inspection'){
             $('.loader2').show();
-            $('.loader2').load('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+            doc_loader('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
             $('.description_tr').hide();
             $('.image_tr').hide();
             }
@@ -703,7 +720,7 @@ $(function(){
             //$('.loader2').hide();
            }
     if($('#document_type').val() == 'mobile_inspection'){
-        $('.loader2').load('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+        doc_loader('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
         $('.description_tr').hide();
             $('.image_tr').hide();
            }
@@ -712,7 +729,8 @@ $(function(){
             }
     if($('#document_type').val() == 'mobile_log')
     {
-        $('.loader2').load('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+        doc_loader('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+        //$('.loader2').load('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
         $('.description_tr').hide();
             $('.image_tr').hide();
     }
@@ -722,7 +740,8 @@ $(function(){
     }
     if($('#document_type').val() == 'mobile_vehicle_trunk_inventory')
     {
-        $('.loader2').load('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+        doc_loader('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+        //$('.loader2').load();
         $('.description_tr').hide();
         $('.image_tr').hide();
     }
@@ -730,21 +749,30 @@ $(function(){
     {
             $('.inventory1_more').hide();
     }         
-    if($('#document_type').val() == 'siteOrder')
+    if($('#document_type').val() == 'siteOrder'){
          $('.site_more').show();
-    if($('#document_type').val() == 'training')
+         $(".loader2").hide();
+         }
+    if($('#document_type').val() == 'training'){
          $('.training_more').show();
-    if($('#document_type').val() == 'employee')
-         $('.employee_more').show();
+         $(".loader2").hide();
+         }
+    if($('#document_type').val() == 'employee'){
+        $(".loader2").hide();
+         $('.employee_more').show();}
+         
     if($('#document_type').val() == 'report')
     {
+        $(".loader2").hide();
         $('.draftspan').show();
         $('.add_more').show();
            $('.extra_memo').show();
            $('.main_desc').html("<strong>Additional Notes</strong>");
     }
-    if($('#document_type').val() == 'client_feedback')
+    if($('#document_type').val() == 'client_feedback'){
             $('.client_more').show(); 
+            $(".loader2").hide();
+            }
     $('.extra_memo input').each(function(){
         $(this).click();
         $(this).blur();
@@ -790,6 +818,23 @@ function limitText(limitField, limitCount, limitNum)
     {
         limitCount.value = limitNum - limitField.value.length;
     }*/
+}
+function doc_loader(urls)
+{
+    $(".loader2").hide();
+    $('.loaderimg').show();
+    
+    $.ajax({
+        url: urls,
+        success: function(res)
+        {
+            $(".loader2").show();
+            $('.loader2').html(res);
+            $('.loaderimg').hide();    
+            
+            
+        }
+    });
 }
 
 </script>

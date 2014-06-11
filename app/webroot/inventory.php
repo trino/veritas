@@ -239,6 +239,10 @@ $(function(){
     //$('.inventory1_more textarea').attr('disabled','disabled');
     
    <?php } ?> 
+
+$('.date_verify').datepicker({dateFormat: 'yy-mm-dd'});
+
+
    });
 </script>
 <style>

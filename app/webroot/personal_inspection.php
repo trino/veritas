@@ -207,3 +207,6 @@
             </tbody>
           </table>
     </td>
+    <script>
+$('.date_verify').datepicker({dateFormat: 'yy-mm-dd'});
+</script>
