@@ -30,7 +30,8 @@ class DashboardController extends AppController
         
     }
     public function translate($fi)
-    {
+    { //echo $fi;
+        $fi = trim($fi);
         if(!$this->Session->read('lang'))
             $this->Session->write('lang','eng');
         $lang = $this->Session->read('lang');

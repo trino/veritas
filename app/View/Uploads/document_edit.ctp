@@ -314,6 +314,7 @@ function remove_youtube()
     <option value="7" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '7') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Loss Prevention');?></option>
     <option value="8" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '8') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Static Site Audit');?></option>
     <option value="9" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '9') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Insurance Site Audit');?></option>
+    <option value="10" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '10') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Site Signin Signout');?></option>
     
 </select>
 </th>
@@ -435,17 +436,11 @@ $(function(){
         else
         {
             
-            if($(this).val()=='8')
+            if($(this).val()=='7' || $(this).val()=='8' || $(this).val()=='9' || $(this).val()=="10")
             {
                 $('.loader').load('<?php echo $this->webroot;?>uploads/reportType/id_<?php echo $did;?>/'+$(this).val());
             }
-            if($(this).val() == '9'){
-                $('.loader').load('<?php echo $this->webroot;?>uploads/reportType/id_<?php echo $did;?>/'+$(this).val());
-            }
-            if($(this).val()=='7')
-            {
-                $('.loader').load('<?php echo $this->webroot;?>uploads/reportType/id_<?php echo $did;?>/'+$(this).val());
-            }
+            
                 
             $('.incident_more').hide();
             
@@ -454,7 +449,7 @@ $(function(){
             
         }
         
-        if($(this).val()=='7' || $(this).val()=='8' || $(this).val()=='9')
+        if($(this).val()=='7' || $(this).val()=='8' || $(this).val()=='9' || $(this).val()== "10")
         {
             $('.date_time').hide();
             if($(this).val()=='7')
@@ -522,7 +517,7 @@ $(function(){
         $(this).timepicker();
     });
     $('.date_verify').datepicker({dateFormat: 'yy-mm-dd'});
-    if($('.reporttype').val()=='7' || $('.reporttype').val()=='8' || $('.reporttype').val()=='9')
+    if($('.reporttype').val()=='7' || $('.reporttype').val()=='8' || $('.reporttype').val()=='9' || $('.reporttype').val()=='10')
        {
         if($('.reporttype').val()=='7')
         {
@@ -543,10 +538,10 @@ $(function(){
        }
     $('.reporttype').change(function(){
        var inc_type = $(this).val(); 
-       if(inc_type=='7' || $('.reporttype').val()=='8' || $('.reporttype').val()=='9')
+       if(inc_type=='7' || $('.reporttype').val()=='8' || $('.reporttype').val()=='9'|| $('.reporttype').val()=='10')
        {
             $('.loader').show();
-            if($('.reporttype').val()=='8' || $('.reporttype').val()=='9'){
+            if($('.reporttype').val()=='8' || $('.reporttype').val()=='9'|| $('.reporttype').val()=='10'){
                 $('.description_tr').hide();
                 $('.image_tr').hide();
                 }
@@ -798,7 +793,7 @@ $(function(){
           }
        }); });
        <?php
-    if(isset($ac['Activity']['report_type'])&& ($ac['Activity']['report_type'] == '7' || $ac['Activity']['report_type'] == '8' || $ac['Activity']['report_type'] == '9'))
+    if(isset($ac['Activity']['report_type'])&& ($ac['Activity']['report_type'] == '7' || $ac['Activity']['report_type'] == '8' || $ac['Activity']['report_type'] == '9' || $ac['Activity']['report_type'] == '10'))
     {
         ?>
         $('.loader').load('<?php echo $this->webroot;?>uploads/reportType/id_<?php echo $did;?>/'+$('.reporttype').val());

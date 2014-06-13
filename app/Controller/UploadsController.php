@@ -582,6 +582,35 @@ class UploadsController extends AppController
                     $this->InsuranceSiteAudit->create();
                     $this->InsuranceSiteAudit->save($_POST);
                     
+                }
+                if($_POST['report_type']=='10')
+                {
+                    
+                    $this->loadModel('SiteSignin');
+                    $this->SiteSignin->deleteAll(array('doc_id'=>$eid));
+                    $sitesignin['doc_id'] = $eid;
+                    $sitesignin['guard_name'] = $_POST['guard_name'];
+                    $sitesignin['date'] = $_POST['date'];
+                    $sitesignin['loss_location'] = $_POST['loss_location'];
+                    //var_dump($_POST['arrival']);
+                    //die('10');
+                    foreach($_POST['arrival'] as $k=>$v)
+                    {
+                        
+                        if($v!= "")
+                        {
+                           $sitesignin['arrival'] =$v;
+                           $sitesignin['depart'] = $_POST['depart'][$k];
+                           $sitesignin['print_name'] = $_POST['name'][$k];
+                           $sitesignin['phone_no'] = $_POST['phone'][$k];
+                           $sitesignin['company'] = $_POST['company'][$k];
+                           $sitesignin['signature'] = $_POST['sign'][$k];
+                        
+                            $this->SiteSignin->create();
+                            $this->SiteSignin->save($sitesignin);
+                        }
+                    }
+                       
                 }    
                 if($_POST['report_type']=='7')
                 {
@@ -1822,7 +1851,7 @@ class UploadsController extends AppController
                 if(isset($activity['report_type']))
                     $activity['incident_type'] = $_POST['incident_type'];
                     
-                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit');
+                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit','siteSignin');
                 if($_POST['report_type'])
                     $subname = '_'.$act_type[$_POST['report_type']];
                 if($_POST['report_type']=='8')
@@ -1832,6 +1861,34 @@ class UploadsController extends AppController
                     $this->StaticSiteAudit->create();
                     $this->StaticSiteAudit->save($_POST);
                     
+                }
+                if($_POST['report_type']=='10')
+                {
+                    
+                    $this->loadModel('SiteSignin');
+                    $sitesignin['doc_id'] = $id;
+                    $sitesignin['guard_name'] = $_POST['guard_name'];
+                    $sitesignin['date'] = $_POST['date'];
+                    $sitesignin['loss_location'] = $_POST['loss_location'];
+                    //var_dump($_POST['arrival']);
+                    //die('10');
+                    foreach($_POST['arrival'] as $k=>$v)
+                    {
+                        
+                        if($v!= "")
+                        {
+                           $sitesignin['arrival'] =$v;
+                           $sitesignin['depart'] = $_POST['depart'][$k];
+                           $sitesignin['print_name'] = $_POST['name'][$k];
+                           $sitesignin['phone_no'] = $_POST['phone'][$k];
+                           $sitesignin['company'] = $_POST['company'][$k];
+                           $sitesignin['signature'] = $_POST['sign'][$k];
+                        
+                            $this->SiteSignin->create();
+                            $this->SiteSignin->save($sitesignin);
+                        }
+                    }
+                       
                 }
                 if($_POST['report_type']=='9')
                 {
@@ -1935,7 +1992,7 @@ class UploadsController extends AppController
                     //var_dump($_POST['item']); die();
                     
                 }
-                if($_POST['report_type']==8 || $_POST['report_type']==9)
+                if($_POST['report_type']==8 || $_POST['report_type']==9|| $_POST['report_type']==10)
                 {
                     $this->Activity->create();
                     $this->Activity->save($activity);
@@ -2431,6 +2488,11 @@ class UploadsController extends AppController
                         $this->loadModel('InsuranceSiteAudit');
                             $this->set('static',$this->InsuranceSiteAudit->find('first', array('conditions'=>array('doc_id'=>$eid))));
                     }
+                    if($act[0]['Activity']['report_type']=='10')
+                    {
+                        $this->loadModel('SiteSignin');
+                            $this->set('static',$this->SiteSignin->find('all', array('conditions'=>array('doc_id'=>$eid))));
+                    }
                 }
                 elseif($doc['Document']['document_type'] == 'client_feedback')
                     $this->set('memo',$this->Clientmemo->findByDocumentId($id));
@@ -2614,18 +2676,24 @@ class UploadsController extends AppController
         
     }
     else{
-        if($type==8){
+        if($type == "8"){
             $this->loadModel('StaticSiteAudit');
             $this->set('static',$this->StaticSiteAudit->find('first',array('conditions'=>array('doc_id'=>$did))));
             $this->set('type',$type);
         }
-        if($type=='9')
+        if($type == '9')
         {
             $this->loadModel('InsuranceSiteAudit');
             $this->set('static',$this->InsuranceSiteAudit->find('first',array('conditions'=>array('doc_id'=>$did))));
             $this->set('type',$type);
         }
-        if($type='7')
+        if($type == '10')
+        {
+            $this->loadModel('SiteSignin');
+            $this->set('static',$this->SiteSignin->find('all',array('conditions'=>array('doc_id'=>$did))));
+            $this->set('type',$type);
+        }
+        if($type == '7')
         {
             $this->set('type',$type);
             $eid= $did;
