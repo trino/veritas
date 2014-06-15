@@ -2525,6 +2525,11 @@ class UploadsController extends AppController
                         $this->loadModel('SiteSignin');
                             $this->set('static',$this->SiteSignin->find('all', array('conditions'=>array('doc_id'=>$eid))));
                     }
+                    if($act[0]['Activity']['report_type']=='11')
+                    {
+                        $this->loadModel('Instruction');
+                            $this->set('instructions',$this->Instruction->find('first', array('conditions'=>array('doc_id'=>$eid))));
+                    }
                 }
                 elseif($doc['Document']['document_type'] == 'client_feedback')
                     $this->set('memo',$this->Clientmemo->findByDocumentId($id));

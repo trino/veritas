@@ -126,7 +126,7 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
     
     <?php if($activity){
         //var_dump($activity);
-        $r_types = array('','Activity Log','Mobile Inspection','Mobile Security','Security Occurance','Incident Reports','Sign-off Sheets','Loss Prevention','Static Site Audit','Insurance Site Audit','Site Signin Signout');
+        $r_types = array('','Activity Log','Mobile Inspection','Mobile Security','Security Occurance','Incident Reports','Sign-off Sheets','Loss Prevention','Static Site Audit','Insurance Site Audit','Site Signin Signout','Instructions And Site Assessment');
         ?>
         <tr>
         <td><strong><?php echo $this->requestAction('dashboard/translate/Report Type');?></strong></td>
@@ -160,6 +160,11 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         <?php if($activity[0]['Activity']['report_type']=='10'){?>
         <tr id="loss_prevention">
         <td colspan="2"> <?php include('site_signin_view.php');?></td>
+        </tr>
+        <?php }
+        if($activity[0]['Activity']['report_type']=='11'){?>
+        <tr id="loss_prevention">
+        <td colspan="2"> <?php include('instruction_view.php');?></td>
         </tr>
         <?php }
         if($activity[0]['Activity']['report_type']!='8' && $activity[0]['Activity']['report_type']!='9'&& $activity[0]['Activity']['report_type']!='10')
