@@ -17,6 +17,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<title>
 		Veritas | Intelligence on Demand
 	</title>    
+    
 	<?php
 		echo $this->Html->meta('icon');
         echo $this->Html->css('bootstrap.min');

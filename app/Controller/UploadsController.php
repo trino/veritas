@@ -583,6 +583,22 @@ class UploadsController extends AppController
                     $this->InsuranceSiteAudit->save($_POST);
                     
                 }
+                if($_POST['report_type']=='11')
+                {
+                    
+                    $this->loadModel('Instruction');
+                    $ins = $this->Instruction->findByDocId($eid);
+                    if(!$this->Session->read('image_name'))
+                    $this->Session->write('image_name',$ins['Instruction']['signature']);
+                    $this->Instruction->deleteAll(array('doc_id'=>$eid));
+                    $_POST['doc_id'] = $eid;
+                    $_POST['signature'] = $this->Session->read('image_name');
+                    $this->Instruction->create();
+                    $this->Instruction->save($_POST);
+                    $this->Session->delete('image_name');
+                    
+                    
+                }
                 if($_POST['report_type']=='10')
                 {
                     
@@ -1228,6 +1244,10 @@ class UploadsController extends AppController
             $this->Session->setFlash('Data Saved Successfully.');
             $this->redirect('/dashboard');
         }
+        else
+        {
+            $this->Session->delete('image_name');
+        }
         
         $doc = $this->Document->findById($eid);
         if($doc['Document']['document_type'] == 'report')
@@ -1851,7 +1871,7 @@ class UploadsController extends AppController
                 if(isset($activity['report_type']))
                     $activity['incident_type'] = $_POST['incident_type'];
                     
-                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit','siteSignin');
+                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit','siteSignin','instruction');
                 if($_POST['report_type'])
                     $subname = '_'.$act_type[$_POST['report_type']];
                 if($_POST['report_type']=='8')
@@ -1861,6 +1881,14 @@ class UploadsController extends AppController
                     $this->StaticSiteAudit->create();
                     $this->StaticSiteAudit->save($_POST);
                     
+                }
+                if($_POST['report_type']=='11')
+                {
+                    $this->loadModel('Instruction');
+                    $this->Instruction->create();
+                    $_POST['doc_id'] = $id;
+                    $_POST['signature'] = $this->Session->read('image_name');
+                    $this->Instruction->save($_POST);
                 }
                 if($_POST['report_type']=='10')
                 {
@@ -1992,7 +2020,7 @@ class UploadsController extends AppController
                     //var_dump($_POST['item']); die();
                     
                 }
-                if($_POST['report_type']==8 || $_POST['report_type']==9|| $_POST['report_type']==10)
+                if($_POST['report_type']==8 || $_POST['report_type']==9|| $_POST['report_type']==10|| $_POST['report_type']==11)
                 {
                     $this->Activity->create();
                     $this->Activity->save($activity);
@@ -2259,6 +2287,10 @@ class UploadsController extends AppController
             $this->Event_log->create();
             $this->Event_log->save($log);
             $this->redirect('/dashboard');
+        }
+        else
+        {
+            $this->Session->delete('image_name');
         }
         $this->set('job_id',$ids);
         $j = $this->Job->findById($ids);
@@ -2693,6 +2725,13 @@ class UploadsController extends AppController
             $this->set('static',$this->SiteSignin->find('all',array('conditions'=>array('doc_id'=>$did))));
             $this->set('type',$type);
         }
+        if($type == '11')
+        {
+            
+            $this->loadModel('Instruction');
+            $this->set('instructions',$this->Instruction->find('first',array('conditions'=>array('doc_id'=>$did))));
+            $this->set('type',$type);
+        }
         if($type == '7')
         {
             $this->set('type',$type);
@@ -2724,5 +2763,10 @@ class UploadsController extends AppController
             $this->set('item',$this->ItemInfo->find('all', array('conditions'=>array('doc_id'=>$eid))));
         }
     }
+  }
+  function image_sess($image)
+  {
+    $this->Session->write('image_name',$image);
+    die();
   }
 }

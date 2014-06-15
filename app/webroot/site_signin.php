@@ -71,8 +71,11 @@ foreach($static as $k=>$v)
     <td><input type="text" name="company[]" /></td><td><input type="text" name="sign[]" /></td></tr>
 <tr><td><input type="text" name="arrival[]"/></td><td><input type="text" name="depart[]" /></td>
     <td><input type="text" name="name[]"/></td><td><input name="phone[]" type="text"/></td>
-    <td><input type="text" name="company[]" /></td><td><input type="text" name="sign[]" /><a href="javascript:void(0);"id="addm" class="btn btn-primary">+Add More</a></td></tr>
+    <td><input type="text" name="company[]" /></td><td><input type="text" name="sign[]" /></td></tr>
 <?php }?>
+</table>
+<table class="table">
+    <tr><td style="text-align: right;"><a href="javascript:void(0);"id="addm" class="btn btn-primary">+Add More</a></td></tr>
 </table>
 </td>
 <style>
