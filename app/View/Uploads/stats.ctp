@@ -192,6 +192,8 @@ $Sheets = 0;
 $Loss_p = 0;
 $Static_audit = 0;
 $Insurance_audit = 0;
+$Site_signin = 0;
+$Instructions = 0;
 if(isset($from) && isset($to))
     $rep = $report_type->query("SELECT COUNT(*) as cnt, report_type FROM activities WHERE `uploaded_on` >='$from' ".$cond." and `uploaded_on`<='$to' GROUP BY report_type");    
 elseif(isset($from))
@@ -221,6 +223,10 @@ foreach($rep as $v)
         $Static_audit = $v['0']['cnt'];
      elseif($v['activities']['report_type']=='9')
         $Insurance_audit = $v['0']['cnt'];
+      elseif($v['activities']['report_type']=='10')
+        $Site_signin = $v['0']['cnt'];
+       elseif($v['activities']['report_type']=='11')
+        $Instructions = $v['0']['cnt'];
          
 }
 unset($v);
@@ -296,7 +302,8 @@ unset($v);
 <tr><td style="padding-left:30px;"><?php echo $this->requestAction('dashboard/translate/Loss Prevention');?></td><td><?php echo $Loss_p;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></td></tr>
 <tr><td style="padding-left:30px;"><?php echo $this->requestAction('dashboard/translate/Static Site Audit');?></td><td><?php echo $Static_audit;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></td></tr>
 <tr><td style="padding-left:30px;"><?php echo $this->requestAction('dashboard/translate/Insurance Site Audit');?></td><td><?php echo $Insurance_audit;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></td></tr>
-
+<tr><td style="padding-left:30px;"><?php echo $this->requestAction('dashboard/translate/Site Signin Signout');?></td><td><?php echo $Site_signin;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></td></tr>
+<tr><td style="padding-left:30px;"><?php echo $this->requestAction('dashboard/translate/Instructions and site Assessment');?></td><td><?php echo $Instructions;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></td></tr>
 <tr><td style="padding-left:30px;"><b><?php echo $this->requestAction('dashboard/translate/Incident Report');?></b></td><td><b><?php echo $incident_report;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></b></td></tr>
 <tr style="padding:20px;margin:30px;">
 <tr><td style="padding-left:60px;"><?php echo $this->requestAction('dashboard/translate/Alarm Activation');?></td><td style=""><?php echo $a_a;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></td></tr>

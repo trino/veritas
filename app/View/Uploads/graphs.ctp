@@ -607,6 +607,8 @@ var Sheets = [];
 var Loss_p = [];
 var Static_audit = [];
 var Insurance_audit = [];
+var Site_signin = [];
+var Instructions = [];
 
 <?php 
             $vals = "";
@@ -620,6 +622,8 @@ var Insurance_audit = [];
              $count7 = 0;
              $count8 = 0;
              $count9 = 0;
+             $count10 =0;
+             $count11 =0;
 			foreach($report as $ke=>$data)
 			{
 			     
@@ -689,6 +693,20 @@ var Insurance_audit = [];
                     Insurance_audit.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
+                elseif($data['activities']['report_type'] == '10')
+                {    
+                    $count10 +=$data['0']['cnt'];
+                ?>
+                    Site_signin.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
+				<?php
+                }
+                elseif($data['activities']['report_type'] == '11')
+                {    
+                    $count11 +=$data['0']['cnt'];
+                ?>
+                    Instructions.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
+				<?php
+                }
                 ?>
 			<?php	
 				if((count($report)-1)!= $ke)
@@ -750,6 +768,18 @@ var Insurance_audit = [];
 		{
 			data: incident_report,
 			label: '<?php echo $this->requestAction('dashboard/translate/Incident Reports');?>',
+			points: { show: true }, 
+			lines: { lineWidth: 2, fill: false } 	
+		},
+		{
+			data: Site_signin,
+			label: '<?php echo $this->requestAction('dashboard/translate/Site Signin Signout');?>',
+			points: { show: true }, 
+			lines: { lineWidth: 2, fill: false } 	
+		},
+		{
+			data: Instructions,
+			label: '<?php echo $this->requestAction('dashboard/translate/Instructions and site Assessment');?>',
 			points: { show: true }, 
 			lines: { lineWidth: 2, fill: false } 	
 		}];

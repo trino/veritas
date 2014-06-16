@@ -36,21 +36,21 @@ else
 <td colspan="2" style="padding: 0;">
     <div style="padding: 5px;">
     <div style="float: left;width:400px;line-height: 27px;">
-        <strong>NOTE</strong> : A  SEPARATE  REPORT  MUST  BE  COMPLETED  FOR EACH CHANGE IN SECURITY PERSONNEL.<br/>AN  <strong>INITIAL  SITE  ASSESSMENT</strong>  MUST  CONTAIN  A  VISUAL LOG  OF  THE  FRONT,  REAR,  LEFT  AND  RIGHT  SIDES  OF PROPERTY.  FULL  DETAIL  MUST  BE  DOCUMENTED  OF  THE CURRENT STATE OF THE PROPERTY AT TIME OF ARRIVAL.
+        <strong><?php echo $this->requestAction('dashboard/translate/NOTE');?></strong> : <?php echo $this->requestAction('dashboard/translate/A  SEPARATE  REPORT  MUST  BE  COMPLETED  FOR EACH CHANGE IN SECURITY PERSONNEL');?>.<br/><?php echo $this->requestAction('dashboard/translate/AN');?>  <strong><?php echo $this->requestAction('dashboard/translate/INITIAL  SITE  ASSESSMENT');?></strong>  <?php echo $this->requestAction('dashboard/translate/MUST  CONTAIN  A  VISUAL LOG  OF  THE  FRONT,  REAR,  LEFT  AND  RIGHT  SIDES  OF PROPERTY.  FULL  DETAIL  MUST  BE  DOCUMENTED  OF  THE CURRENT STATE OF THE PROPERTY AT TIME OF ARRIVAL');?>.
     </div>
     <div style="float: right;width:435px;">
         <table>
             <tr style="border-bottom: none;">
-                <td style="border-top: none;"><strong>GUARD NAME</strong></td><td style="border-top: none;"><?php echo $guard_name;?></td>
+                <td style="border-top: none;"><strong><?php echo $this->requestAction('dashboard/translate/GUARD NAME');?></strong></td><td style="border-top: none;"><?php echo $guard_name;?></td>
             </tr>
             <tr style="border-bottom: none;">
                 <td style="border-top: none;"><strong>DATE (mm/dd/yyyy)</strong></td><td style="border-top: none;"><?php echo $date;?></td>
             </tr>
             <tr style="border-bottom: none;">
-                <td style="border-top: none;"><strong>LOSS LOCATION</strong></td><td style="border-top: none;"><?php echo $loss_location;?></td>
+                <td style="border-top: none;"><strong><?php echo $this->requestAction('dashboard/translate/LOSS LOCATION');?></strong></td><td style="border-top: none;"><?php echo $loss_location;?></td>
             </tr>
             <tr style="border-bottom: none;">
-                <td style="border-top: none;"><strong>ARRIVAL TIME</strong> (military time)</td><td style="border-top: none;"><?php echo $arrival_time;?></td>
+                <td style="border-top: none;"><strong><?php echo $this->requestAction('dashboard/translate/ARRIVAL TIME');?></strong> (<?php echo $this->requestAction('dashboard/translate/military time')?>)</td><td style="border-top: none;"><?php echo $arrival_time;?></td>
             </tr>
         </table>
     </div>
@@ -58,7 +58,7 @@ else
     </div>
     <table class="table"> 
         <tr>
-            <td><strong>INSTRUCTIONS (include details on who initiated the changes and the time of changes):</strong></td>
+            <td><strong><?php echo $this->requestAction('dashboard/translate/INSTRUCTIONS');?> (<?php echo $this->requestAction('dashboard/translate/include details on who initiated the changes and the time of changes');?>):</strong></td>
         </tr>
         
         <tr>
@@ -68,28 +68,28 @@ else
     <table>
         <tr>
             <td colspan="2">
-                <strong>SITE ASSESSMENT:</strong>
+                <strong><?php echo $this->requestAction('dashboard/translate/SITE ASSESSMENT');?>:</strong>
             </td>
             
             
         </tr>
         <tr>
-            <td style="width: 25%;"><em>SITE CONDITIONS</em></td><td style="width: 75%;"><?php echo $site_conditions;?></td>
+            <td style="width: 25%;"><em><?php echo $this->requestAction('dashboard/translate/SITE CONDITIONS');?></em></td><td style="width: 75%;"><?php echo $site_conditions;?></td>
         </tr>
         <tr>
-            <td style="width: 25%;"><em>FRONT</em></td><td style="width: 75%;"><?php echo $front;?></td>
+            <td style="width: 25%;"><em><?php echo $this->requestAction('dashboard/translate/FRONT');?></em></td><td style="width: 75%;"><?php echo $front;?></td>
         </tr>
         <tr>
-            <td style="width: 25%;"><em>BACK/REAR</em></td><td style="width: 75%;"><?php echo $back;?></td>
+            <td style="width: 25%;"><em><?php echo $this->requestAction('dashboard/translate/BACK');?>/<?php echo $this->requestAction('dashboard/translate/REAR');?></em></td><td style="width: 75%;"><?php echo $back;?></td>
         </tr>
         <tr>
-            <td style="width: 25%;"><em>LEFT SIDE</em></td><td style="width: 75%;"><?php echo $left_side;?></td>
+            <td style="width: 25%;"><em><?php echo $this->requestAction('dashboard/translate/LEFT SIDE');?></em></td><td style="width: 75%;"><?php echo $left_side;?></td>
         </tr>
         <tr>
-            <td style="width: 25%;"><em>RIGHT SIDE</em></td><td style="width: 75%;"><?php echo $right_side;?></td>
+            <td style="width: 25%;"><em><?php echo $this->requestAction('dashboard/translate/RIGHT SIDE');?></em></td><td style="width: 75%;"><?php echo $right_side;?></td>
         </tr>
         <tr>
-            <td style="width: 25%;"><em>ADDITIONAL NOTES</em></td><td style="width: 75%;"><?php echo $additional_notes;?></td>
+            <td style="width: 25%;"><em><?php echo $this->requestAction('dashboard/translate/ADDITIONAL NOTES');?></em></td><td style="width: 75%;"><?php echo $additional_notes;?></td>
         </tr>
     </table>
     

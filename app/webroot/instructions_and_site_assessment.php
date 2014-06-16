@@ -35,21 +35,21 @@ else
 <td colspan="3" style="padding: 0;">
     <div style="padding: 5px;">
     <div style="float: left;width:400px;line-height: 27px;">
-        <strong>NOTE</strong> : A  SEPARATE  REPORT  MUST  BE  COMPLETED  FOR EACH CHANGE IN SECURITY PERSONNEL.<br/>AN  <strong>INITIAL  SITE  ASSESSMENT</strong>  MUST  CONTAIN  A  VISUAL LOG  OF  THE  FRONT,  REAR,  LEFT  AND  RIGHT  SIDES  OF PROPERTY.  FULL  DETAIL  MUST  BE  DOCUMENTED  OF  THE CURRENT STATE OF THE PROPERTY AT TIME OF ARRIVAL.
+        <strong><?php echo $this->requestAction('dashboard/translate/NOTE');?></strong> : <?php echo $this->requestAction('dashboard/translate/A  SEPARATE  REPORT  MUST  BE  COMPLETED  FOR EACH CHANGE IN SECURITY PERSONNEL')?>.<br/><?php echo $this->requestAction('dashboard/translate/AN')?>  <strong><?php echo $this->requestAction('dashboard/translate/INITIAL  SITE  ASSESSMENT')?></strong>  <?php echo $this->requestAction('dashboard/translate/MUST  CONTAIN  A  VISUAL LOG  OF  THE  FRONT,  REAR,  LEFT  AND  RIGHT  SIDES  OF PROPERTY.  FULL  DETAIL  MUST  BE  DOCUMENTED  OF  THE CURRENT STATE OF THE PROPERTY AT TIME OF ARRIVAL')?>.
     </div>
     <div style="float: right;width:435px;">
         <table>
             <tr style="border-bottom: none;">
-                <td><strong>GUARD NAME</strong></td><td><input type="text" name="guard_name" value="<?php echo $guard_name;?>" /></td>
+                <td><strong><?php echo $this->requestAction('dashboard/translate/GUARD NAME')?></strong></td><td><input type="text" name="guard_name" value="<?php echo $guard_name;?>" /></td>
             </tr>
             <tr style="border-bottom: none;">
                 <td><strong>DATE (mm/dd/yyyy)</strong></td><td><input type="text" name="date" value="<?php echo $date;?>" /></td>
             </tr>
             <tr style="border-bottom: none;">
-                <td><strong>LOSS LOCATION</strong></td><td><input type="text" name="loss_location" value="<?php echo $loss_location;?>" /></td>
+                <td><strong><?php echo $this->requestAction('dashboard/translate/LOSS LOCATION')?></strong></td><td><input type="text" name="loss_location" value="<?php echo $loss_location;?>" /></td>
             </tr>
             <tr style="border-bottom: none;">
-                <td><strong>ARRIVAL TIME</strong> (military time)</td><td><input type="text" name="arrival_time" value="<?php echo $arrival_time;?>" /></td>
+                <td><strong><?php echo $this->requestAction('dashboard/translate/ARRIVAL TIME')?></strong> (<?php echo $this->requestAction('dashboard/translate/military time')?>)</td><td><input type="text" name="arrival_time" value="<?php echo $arrival_time;?>" /></td>
             </tr>
         </table>
     </div>
@@ -57,7 +57,7 @@ else
     </div>
     <table class="table"> 
         <tr>
-            <td><strong>INSTRUCTIONS (include details on who initiated the changes and the time of changes):</strong></td>
+            <td><strong>INSTRUCTIONS (<?php echo $this->requestAction('dashboard/translate/include details on who initiated the changes and the time of changes')?>):</strong></td>
         </tr>
         
         <tr>
@@ -67,28 +67,28 @@ else
     <table>
         <tr>
             <td colspan="2">
-                <strong>SITE ASSESSMENT:</strong>
+                <strong><?php echo $this->requestAction('dashboard/translate/SITE ASSESSMENT')?>:</strong>
             </td>
             
             
         </tr>
         <tr>
-            <td style="width: 25%;"><em>SITE CONDITIONS</em></td><td style="width: 75%;"><textarea name="site_conditions" style="width: calc(100% - 15px);"><?php echo $site_conditions;?></textarea></td>
+            <td style="width: 25%;"><em><?php echo $this->requestAction('dashboard/translate/SITE CONDITIONS')?></em></td><td style="width: 75%;"><textarea name="site_conditions" style="width: calc(100% - 15px);"><?php echo $site_conditions;?></textarea></td>
         </tr>
         <tr>
-            <td style="width: 25%;"><em>FRONT</em></td><td style="width: 75%;"><textarea name="front" style="width: calc(100% - 15px);"><?php echo $front;?></textarea></td>
+            <td style="width: 25%;"><em><?php echo $this->requestAction('dashboard/translate/FRONT')?></em></td><td style="width: 75%;"><textarea name="front" style="width: calc(100% - 15px);"><?php echo $front;?></textarea></td>
         </tr>
         <tr>
-            <td style="width: 25%;"><em>BACK/REAR</em></td><td style="width: 75%;"><textarea name="back" style="width: calc(100% - 15px);"><?php echo $back;?></textarea></td>
+            <td style="width: 25%;"><em><?php echo $this->requestAction('dashboard/translate/BACK')?>/<?php echo $this->requestAction('dashboard/translate/REAR')?></em></td><td style="width: 75%;"><textarea name="back" style="width: calc(100% - 15px);"><?php echo $back;?></textarea></td>
         </tr>
         <tr>
-            <td style="width: 25%;"><em>LEFT SIDE</em></td><td style="width: 75%;"><textarea name="left_side" style="width: calc(100% - 15px);"><?php echo $left_side;?></textarea></td>
+            <td style="width: 25%;"><em><?php echo $this->requestAction('dashboard/translate/LEFT SIDE')?></em></td><td style="width: 75%;"><textarea name="left_side" style="width: calc(100% - 15px);"><?php echo $left_side;?></textarea></td>
         </tr>
         <tr>
-            <td style="width: 25%;"><em>RIGHT SIDE</em></td><td style="width: 75%;"><textarea name="right_site" style="width: calc(100% - 15px);"><?php echo $right_side;?></textarea></td>
+            <td style="width: 25%;"><em><?php echo $this->requestAction('dashboard/translate/RIGHT SIDE')?></em></td><td style="width: 75%;"><textarea name="right_side" style="width: calc(100% - 15px);"><?php echo $right_side;?></textarea></td>
         </tr>
         <tr>
-            <td style="width: 25%;"><em>ADDITIONAL NOTES</em></td><td style="width: 75%;"><textarea name="additional_notes" style="width: calc(100% - 15px);"><?php echo $additional_notes;?></textarea></td>
+            <td style="width: 25%;"><em><?php echo $this->requestAction('dashboard/translate/ADDITIONAL NOTES')?></em></td><td style="width: 75%;"><textarea name="additional_notes" style="width: calc(100% - 15px);"><?php echo $additional_notes;?></textarea></td>
         </tr>
     </table>
     
@@ -107,7 +107,7 @@ else
                     ?>
                     
                     <div style="float:left;width:40%;margin-left:5%;">
-                    <b>Current Signature</b><br />
+                    <b><?php echo $this->requestAction('dashboard/translate/Current Signature')?></b><br />
                 <img src="<?php echo $this->webroot;?>canvas/<?php echo $signature;?>" />
             </div>
                     <?php
