@@ -57,7 +57,9 @@ include('../inc.php');
 			<a href="#" onclick='addImage();' style="display: none;">Add Image</a>
 			<a href="#" onclick='$("#test").data("jqScribble").clear();'>Clear</a>
 			<a href="#" onclick='$("#test").data("jqScribble").save();' style="display: none;">Save</a>
-			<a href="#" onclick='save();'>Custom Save</a>
+			<a href="#" onclick='save();'>Save Signature</a>
+            <br /><br />
+            <span style="color: red;"><strong>Note:</strong> Please Save Signature Before Submitting Form</span>
 		</div>
 		<script type="text/javascript">
 		function save()

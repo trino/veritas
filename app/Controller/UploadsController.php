@@ -2524,6 +2524,7 @@ class UploadsController extends AppController
                     {
                         $this->loadModel('SiteSignin');
                             $this->set('static',$this->SiteSignin->find('all', array('conditions'=>array('doc_id'=>$eid))));
+                            
                     }
                     if($act[0]['Activity']['report_type']=='11')
                     {

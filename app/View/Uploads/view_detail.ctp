@@ -159,7 +159,7 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         <?php }?>
         <?php if($activity[0]['Activity']['report_type']=='10'){?>
         <tr id="loss_prevention">
-        <td colspan="2"> <?php include('site_signin_view.php');?></td>
+        <td colspan="2" style="padding: 0;"> <?php include('site_signin_view.php');?></td>
         </tr>
         <?php }
         if($activity[0]['Activity']['report_type']=='11'){?>
