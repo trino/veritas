@@ -6,9 +6,9 @@
         <?php echo $this->requestAction('dashboard/translate/NOTE').":".$this->requestAction('dashboard/translate/A SEPARATE REPORT MUST BE COMPLETED FOR EACH CHANGE IN SECURITY PERSONNEL.USE ADDITIONAL PAGE IF MORE SPACE IS REQUIRED');?>.<br /><br />
         <?php echo $this->requestAction('dashboard/translate/As an authorized representative signing onto this site I take full responsibility for the mandated compliance set forth under Ontario Health and Safety Act and do not hole ASAP Secured Inc. liable for any claims due to my noncompliance')?>.
     </td>
-    <td><?php echo $this->requestAction('dashboard/translate/Guard Name')?>:<input type="text" name="guard_name" value="<?php if(isset($static)&& $static[0]['SiteSignin']!="") echo $static[0]['SiteSignin']['guard_name'];?>" /></td></tr>
-<tr><td>Date(mm/dd/yy):<input type="text" name="date" value="<?php if(isset($static)&& $static[0]['SiteSignin']!="") echo $static[0]['SiteSignin']['date'];?>" /></td></tr>
-<tr><td><?php echo $this->requestAction('dashboard/translate/Loss Location')?>:<input type="text" name="loss_location" value="<?php if(isset($static)&& $static[0]['SiteSignin']!="") echo $static[0]['SiteSignin']['loss_location'];?>" /></td></tr>
+    <td><?php echo $this->requestAction('dashboard/translate/Guard Name')?>:<input type="text" name="guard_name" value="<?php if(isset($static[0]['SiteSignin'])&& $static[0]['SiteSignin']!="") echo $static[0]['SiteSignin']['guard_name'];?>" /></td></tr>
+<tr><td>Date(mm/dd/yy):<input type="text" name="date" value="<?php if(isset($static[0]['SiteSignin'])&& $static[0]['SiteSignin']!="") echo $static[0]['SiteSignin']['date'];?>" /></td></tr>
+<tr><td><?php echo $this->requestAction('dashboard/translate/Loss Location')?>:<input type="text" name="loss_location" value="<?php if(isset($static[0]['SiteSignin'])&& $static[0]['SiteSignin']!="") echo $static[0]['SiteSignin']['loss_location'];?>" /></td></tr>
 </table>
 
 <!--<tr><td>Arrival Time(military time):</td></tr>
@@ -36,7 +36,7 @@ foreach($static as $k=>$v)
     <td><input type="text" name="name[]" value="<?php echo $static[$k]['SiteSignin']['print_name'];?>"/></td>
     <td><input type="text" name="phone[]" value="<?php echo $static[$k]['SiteSignin']['phone_no'];?>"/></td>
     <td><input type="text" name="company[]" value="<?php echo $static[$k]['SiteSignin']['company'];?>" /></td>
-    <td><input type="text" name="sign[]" value="<?php echo $static[$k]['SiteSignin']['signature'];?>"/><?php if($k+1==$count)echo "<a href='javascript:void(0);' class='btn btn-primary' id='addm'>+Add more</a>";?></td></tr>  
+    <td><input type="text" name="sign[]" value="<?php echo $static[$k]['SiteSignin']['signature'];?>"/></td></tr>  
 <?php }
 
 }else{
