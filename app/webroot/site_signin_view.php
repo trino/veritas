@@ -1,14 +1,22 @@
 
 <table>
 <tr><td style="color:red;font-size:18px;font-weight: bold;">A.S.A.P. SECURED</td>   <td style="font-size:18px;font-weight: bold;">SITE SIGN IN/OUT</td></tr>
-<tr ><td rowspan="3"  >
-        <?php echo $this->requestAction('dashboard/translate/NOTE').":".$this->requestAction('dashboard/translate/A SEPARATE REPORT MUST BE COMPLETED FOR EACH CHANGE IN SECURITY PERSONNEL.USE ADDITIONAL PAGE IF MORE SPACE IS REQUIRED');?>.<br /><br />
+<tr ><td colspan="2">
+    <div style="float: left;width:465px;line-height: 27px;">
+        <?php echo $this->requestAction('dashboard/translate/NOTE').":".$this->requestAction('dashboard/translate/A SEPARATE REPORT MUST BE COMPLETED FOR EACH CHANGE IN SECURITY PERSONNEL.USE ADDITIONAL PAGE IF MORE SPACE IS REQUIRED');?>.<br />
         <?php echo $this->requestAction('dashboard/translate/As an authorized representative signing onto this site I take full responsibility for the mandated compliance set forth under Ontario Health and Safety Act and do not hole ASAP Secured Inc. liable for any claims due to my noncompliance')?>.
-    
-    </td>
-    <td> <?php echo $this->requestAction('dashboard/translate/Guard Name');?>:<?php echo $static[0]['SiteSignin']['guard_name'];?></td></tr>
-<tr><td> Date(mm/dd/yy):<?php echo $static[0]['SiteSignin']['date'];?></td></tr>
-<tr><td> <?php echo $this->requestAction('dashboard/translate/Loss Location');?>:<?php echo $static[0]['SiteSignin']['loss_location'];?></td></tr>
+    </div>
+    <div style="float: right;width:335px;">
+    <table>
+    <tr style="border-bottom: none;">
+    <td style="border-top: none;"><?php echo $this->requestAction('dashboard/translate/Guard Name');?></td><td style="border-top: none;"><?php echo $static[0]['SiteSignin']['guard_name'];?></td></tr>
+<tr style="border-bottom: none;">
+    <td style="border-top: none;">Date(mm/dd/yy)</td><td style="border-top: none;"><?php echo $static[0]['SiteSignin']['date'];?></td></tr>
+<tr style="border-bottom: none;">
+    <td style="border-top: none;"><?php echo $this->requestAction('dashboard/translate/Loss Location');?></td><td style="border-top: none;"><?php echo $static[0]['SiteSignin']['loss_location'];?></td></tr>
+    </table>
+</div>
+<div class="clear"></div>
 </table>
 
 <!--<tr><td>Arrival Time(military time):</td></tr>

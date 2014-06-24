@@ -97,7 +97,7 @@ else
     <div style="position: relative;padding:5px;">
     <div style="width: 50%;float:left;">
         <strong>SIGNATURE:</strong><br />
-            <iframe src="<?php echo $this->webroot;?>canvas/example.php" style="width: 100%;border:1px solid #AAA;border-radius:10px;height:280px;">
+            <iframe src="<?php echo $this->webroot;?>canvas/example.php" style="width: 100%;border:1px solid #AAA;border-radius:10px;height:340px;">
                 
             </iframe>
     </div>        
