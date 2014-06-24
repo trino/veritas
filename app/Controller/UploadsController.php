@@ -599,6 +599,24 @@ class UploadsController extends AppController
                     
                     
                 }
+                if($_POST['report_type']== '12')
+                {
+                    $this->Personal_inspection->deleteAll(array('document_id'=>$eid));
+                 
+                    $per['document_id'] = $eid;
+                    foreach($_POST as $key=>$post)
+                    {
+                        $in = array('document_type','emp_name1','site','jobs_title','date_submit','date_verify','date_verify2','evaluation','manager_name','emp_name2','overall_rating','uniform','uniform2','grooming','proper_equipment','piercing','positioning');
+                        if(in_array($key,$in))
+                        {
+                            $per[$key] = $post;
+                        }
+                    }
+                    $this->loadModel('Personal_inspection');
+                    $this->Personal_inspection->create();
+                    $this->Personal_inspection->save($per);            
+                    
+                }
                 if($_POST['report_type']=='10')
                 {
                     
@@ -1637,22 +1655,7 @@ class UploadsController extends AppController
             $this->Document->save($arr);
             $id=$this->Document->id;
             
-            if($_POST['document_type'] == 'personal_inspection')
-            {
-                $per['document_id'] = $id;
-                
-                foreach($_POST as $key=>$post)
-                {
-                    $in = array('document_type','emp_name1','site','jobs_title','date_submit','date_verify','date_verify2','evaluation','manager_name','emp_name2','overall_rating','uniform','uniform2','grooming','proper_equipment','piercing','positioning');
-                    if(in_array($key,$in))
-                    {
-                        $per[$key] = $post;
-                    }
-                }
-                $this->loadModel('Personal_inspection');
-                $this->Personal_inspection->create();
-                $this->Personal_inspection->save($per);
-            }
+            
             if($_POST['document_type'] == 'vehicle_inspection')
             {
                 $veh['document_id'] = $id;
@@ -1871,7 +1874,7 @@ class UploadsController extends AppController
                 if(isset($activity['report_type']))
                     $activity['incident_type'] = $_POST['incident_type'];
                     
-                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit','siteSignin','instruction');
+                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit','siteSignin','instruction','personalInspection');
                 if($_POST['report_type'])
                     $subname = '_'.$act_type[$_POST['report_type']];
                 if($_POST['report_type']=='8')
@@ -1889,6 +1892,23 @@ class UploadsController extends AppController
                     $_POST['doc_id'] = $id;
                     $_POST['signature'] = $this->Session->read('image_name');
                     $this->Instruction->save($_POST);
+                }
+                // Personal Inspection 
+                if($_POST['report_type'] == '12')
+                {
+                    $per['document_id'] = $id;
+                    
+                    foreach($_POST as $key=>$post)
+                    {
+                        $in = array('document_type','emp_name1','site','jobs_title','date_submit','date_verify','date_verify2','evaluation','manager_name','emp_name2','overall_rating','uniform','uniform2','grooming','proper_equipment','piercing','positioning');
+                        if(in_array($key,$in))
+                        {
+                            $per[$key] = $post;
+                        }
+                    }
+                    $this->loadModel('Personal_inspection');
+                    $this->Personal_inspection->create();
+                    $this->Personal_inspection->save($per);
                 }
                 if($_POST['report_type']=='10')
                 {
@@ -2020,7 +2040,7 @@ class UploadsController extends AppController
                     //var_dump($_POST['item']); die();
                     
                 }
-                if($_POST['report_type']==8 || $_POST['report_type']==9|| $_POST['report_type']==10|| $_POST['report_type']==11)
+                if($_POST['report_type']==8 || $_POST['report_type']==9|| $_POST['report_type']==10|| $_POST['report_type']==11|| $_POST['report_type']==12)
                 {
                     $this->Activity->create();
                     $this->Activity->save($activity);
@@ -2530,6 +2550,10 @@ class UploadsController extends AppController
                         $this->loadModel('Instruction');
                             $this->set('instructions',$this->Instruction->find('first', array('conditions'=>array('doc_id'=>$eid))));
                     }
+                     if($act[0]['Activity']['report_type']=='12')
+                    {
+                        $this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$eid))));
+                    }
                 }
                 elseif($doc['Document']['document_type'] == 'client_feedback')
                     $this->set('memo',$this->Clientmemo->findByDocumentId($id));
@@ -2736,6 +2760,12 @@ class UploadsController extends AppController
             $this->loadModel('Instruction');
             $this->set('instructions',$this->Instruction->find('first',array('conditions'=>array('doc_id'=>$did))));
             $this->set('type',$type);
+        }
+        if($type == '12')
+        {
+            $this->loadModel('Personal_inspection');
+            $this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$did))));
+        
         }
         if($type == '7')
         {

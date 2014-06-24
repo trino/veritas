@@ -10,5 +10,7 @@ if($type=='7')
 if($type =='10')
     include("site_signin.php");  
 if($type =='11')
-    include("instructions_and_site_assessment.php");  
+    include("instructions_and_site_assessment.php");
+if($type =='12')
+    include("personal_inspection.php");  
 ?>

@@ -1,5 +1,5 @@
 
-    <td colspan="2" style="padding: 0;">
+    <td colspan="3" style="padding: 0;">
         <table>
             <tr>
                 <td colspan="4" style="border-top: none;"><strong><?php echo $this->requestAction('dashboard/translate/Employee Information');?></strong></td>
@@ -209,4 +209,24 @@
     </td>
     <script>
 $('.date_verify').datepicker({dateFormat: 'yy-mm-dd'});
+ $('.client_more input').each(function(){
+        $(this).click();
+        $(this).blur();
+        });
+        var checked = 0.0;
+        var radcount = 0;
+        $('.radios input').click(function(){
+        $('.radios input:checked').each(function(){
+            radcount++;
+          checked = checked + parseFloat($(this).val());
+          if(radcount==6)
+          {
+            var avg = (checked/30.0)*5;
+            avg = avg.toFixed(2); 
+            $('.overall').text(avg+'/5');
+            $('.overallr').val(avg+'/5');
+            checked = 0.0;
+            radcount = 0;
+          }
+       }); });
 </script>
