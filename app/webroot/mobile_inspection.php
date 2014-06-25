@@ -1,4 +1,4 @@
-    <td colspan="2" style="padding: 0;">
+    <td colspan="3" style="padding: 0;">
         <table class="table mobileins_table">
             <tr>
                 <td style="width: 135px!important;border-top:none">No : </td><td style="border-top:none"><input type="text" name="mobile_ins[no]" class="" value="<?php if(isset($mobins) && $mobins['MobileInspection']['no']){echo $mobins['MobileInspection']['no'];}?>" /></td>

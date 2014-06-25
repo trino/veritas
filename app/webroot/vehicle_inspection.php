@@ -90,7 +90,7 @@ $or = '';
 }
 ?>
 
-    <td colspan="2" style="padding: 0;">
+    <td colspan="3" style="padding: 0;">
         <table class="table">
             <tr>
                 <td colspan="4">    

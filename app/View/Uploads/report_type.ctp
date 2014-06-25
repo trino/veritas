@@ -12,5 +12,14 @@ if($type =='10')
 if($type =='11')
     include("instructions_and_site_assessment.php");
 if($type =='12')
-    include("personal_inspection.php");  
+    include("personal_inspection.php"); 
+if($type =='13')
+    include("mobile_inspection.php");
+if($type =='14')
+    include("mobile_log.php"); 
+if($type =='15')
+    include("inventory.php"); 
+if($type =='16')
+    include("vehicle_inspection.php"); 
+ 
 ?>

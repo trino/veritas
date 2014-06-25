@@ -1,4 +1,4 @@
-    <td colspan="2" style="padding: 0;">
+    <td colspan="3" style="padding: 0;">
         <table class="table mobilelog_table" style="border-left: none!important;border-right: none!important;">
             <tr>
                 <td style="width:100px!important;border-top:none;"><strong><?php echo $this->requestAction('dashboard/translate/Mobile Guard');?>:</strong></td><td style="border-top:none;"><input type="text"  name="log[guard]" class="" value="<?php if(isset($moblog) && $moblog['MobileLog']['guard']){echo $moblog['MobileLog']['guard'];}?>" /> </td>

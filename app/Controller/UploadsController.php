@@ -617,6 +617,53 @@ class UploadsController extends AppController
                     $this->Personal_inspection->save($per);            
                     
                 }
+                if($_POST['report_type'] == '13')
+                {
+                    if(isset($_POST['mobile_id']))
+                        $mid = $_POST['mobile_id'];
+                    if(isset($mid) && $mid != "")
+                    {
+                        $this->MobileInspection->id = $mid;
+                        //var_dump($_POST['mobile_ins']); die();
+                        foreach($_POST['mobile_ins'] as $k=>$v)
+                        {
+                            
+                            $this->MobileInspection->saveField($k,$v);
+                        }
+                    }
+                    else
+                    {
+                        $mob['document_id'] = $eid;
+                        //echo $_POST['mobile_ins']['date'];
+                        if($_POST['mobile_ins']['date']=="")
+                           $_POST['mobile_ins']['date']='0000-00-00';
+                           //die();
+                    //var_dump($_POST['mobile_ins']);die();
+                        $this->MobileInspection->deleteAll(array('document_id'=>$eid));
+                        foreach($_POST['mobile_ins'] as $k=>$v)
+                        {
+                            $mob[$k] = $v;
+                        }
+                        //$this->loadModel('MobileInspection');
+                        $this->MobileInspection->create();
+                        $this->MobileInspection->save($mob);
+                        $mid = $this->MobileInspection->id;   
+                    }
+                    
+                    
+                    $this->MobileAction->deleteAll(array('mobileins_id'=>$mid));
+                    $action['mobileins_id'] = $mid;
+                    foreach($_POST['mobtime'] as $key =>$time)
+                    {
+                        if($time!="")
+                        {
+                            $action['time'] = $time;
+                            $action['detail'] = $_POST['mobdetail'][$key];
+                            $this->MobileAction->create();
+                            $this->MobileAction->save($action);
+                        }
+                    }    
+                }
                 if($_POST['report_type']=='10')
                 {
                     
@@ -1744,32 +1791,7 @@ class UploadsController extends AppController
                 $this->MobileTrunk->create();
                 $this->MobileTrunk->save($inventory);
             }
-            if($_POST['document_type'] == 'mobile_inspection')
-            {
-                $mob['document_id'] = $id;
-                //var_dump($_POST['mobile_ins']);die();
-                foreach($_POST['mobile_ins'] as $k=>$v)
-                {
-                    $mob[$k] = $v;
-                }
-                $this->loadModel('MobileInspection');
-                $this->MobileInspection->create();
-                $this->MobileInspection->save($mob);
-                $action['mobileins_id'] = $this->MobileInspection->id;
-                $this->loadModel('MobileAction');
-                foreach($_POST['mobtime'] as $key =>$time)
-                {
-                    if($time!="")
-                    {
-                        $action['time'] = $time;
-                        $action['detail'] = $_POST['mobdetail'][$key];
-                        $this->MobileAction->create();
-                        $this->MobileAction->save($action);
-                    }
-                }
-                
-                
-            }
+            
             if($_POST['document_type'] == 'mobile_log')
             {
                 $mob['document_id'] = $id;
@@ -1805,6 +1827,32 @@ class UploadsController extends AppController
                         $site['guardonsite'] = $_POST['guardonsite'][$k];
                         $this->MobileSite->create();
                         $this->MobileSite->save($site);
+                    }
+                }
+                
+                
+            }
+            if($_POST['document_type'] == 'mobile_inspection')
+            {
+                $mob['document_id'] = $id;
+                //var_dump($_POST['mobile_ins']);die();
+                foreach($_POST['mobile_ins'] as $k=>$v)
+                {
+                    $mob[$k] = $v;
+                }
+                $this->loadModel('MobileInspection');
+                $this->MobileInspection->create();
+                $this->MobileInspection->save($mob);
+                $action['mobileins_id'] = $this->MobileInspection->id;
+                $this->loadModel('MobileAction');
+                foreach($_POST['mobtime'] as $key =>$time)
+                {
+                    if($time!="")
+                    {
+                        $action['time'] = $time;
+                        $action['detail'] = $_POST['mobdetail'][$key];
+                        $this->MobileAction->create();
+                        $this->MobileAction->save($action);
                     }
                 }
                 
@@ -1910,6 +1958,161 @@ class UploadsController extends AppController
                     $this->Personal_inspection->create();
                     $this->Personal_inspection->save($per);
                 }
+                if($_POST['report_type'] == '13')
+                {
+                    $mob['document_id'] = $id;
+                    //var_dump($_POST['mobile_ins']);die();
+                    foreach($_POST['mobile_ins'] as $k=>$v)
+                    {
+                        $mob[$k] = $v;
+                    }
+                    $this->loadModel('MobileInspection');
+                    $this->MobileInspection->create();
+                    $this->MobileInspection->save($mob);
+                    $action['mobileins_id'] = $this->MobileInspection->id;
+                    $this->loadModel('MobileAction');
+                    foreach($_POST['mobtime'] as $key =>$time)
+                    {
+                        if($time!="")
+                        {
+                            $action['time'] = $time;
+                            $action['detail'] = $_POST['mobdetail'][$key];
+                            $this->MobileAction->create();
+                            $this->MobileAction->save($action);
+                        }
+                    }
+                    
+                    
+                }
+                if($_POST['report_type'] == '16')
+                {
+                    $veh['document_id'] = $id;
+                    $too = $_POST['to'];
+                    $att_to = explode(':',$too);
+                    
+                    $veh['hour_to'] = $att_to[0];
+                    $veh['min_to'] = $att_to[1];
+                    
+                    $from = $_POST['from'];
+                    $att_fo = explode(':',$from);
+                    $veh['hour_from'] = $att_fo[0];
+                    $veh['min_from'] = $att_fo[1];
+                    foreach($_POST as $key=>$post)
+                    {
+                        $in2 = array('vehicle_date','hour_from','min_from','hour_to','min_to','guard','vehicle_unit_number','plate','start_km','finish_km','light','horn','rotating_light','spot_light','safety','file_box','lock_box','first_aid','ownership','front','back','side','note','operation_review');
+                        if(in_array($key,$in2))
+                        {
+                            $veh[$key] = $post;
+                        }
+                    }
+                    //var_dump($veh);die();
+                    $this->loadModel('Vehicle_inspection');
+                    $this->Vehicle_inspection->create();
+                    $this->Vehicle_inspection->save($veh);
+                    $vehicle_id = $this->Vehicle_inspection->id;
+                    if($_POST['desc1'] && $_POST['document_type']=='vehicle_inspection')
+                    {
+                        foreach($_POST['desc1'] as $desc1)
+                    {
+                        $notes = $desc1;
+                        $ar_no = explode('__',$notes);
+                        $arr_v['notes'] = $ar_no[0];
+                        $arr_v['coords'] = $ar_no[1];
+                        $arr_v['note_no'] = $ar_no[2];
+                        $arr_v['vehicle_id'] = $vehicle_id;
+                        $arr_v['image'] = 'first';
+                        $this->loadModel('Vehicle_note');
+                        $this->Vehicle_note->create();
+                        $this->Vehicle_note->save($arr_v);
+                        unset($ar_no);
+                        unset($arr_v);
+                    }
+                    foreach($_POST['desc2'] as $desc1)
+                    {
+                        $notes = $desc1;
+                        $ar_no = explode('__',$notes);
+                        $arr_v['notes'] = $ar_no[0];
+                        $arr_v['coords'] = $ar_no[1];
+                        $arr_v['note_no'] = $ar_no[2];
+                        $arr_v['vehicle_id'] = $vehicle_id;
+                        $arr_v['image'] = 'second';
+                        $this->loadModel('Vehicle_note');
+                        $this->Vehicle_note->create();
+                        $this->Vehicle_note->save($arr_v);
+                        unset($ar_no);
+                        unset($arr_v);
+                    }
+                    foreach($_POST['desc3'] as $desc1)
+                    {
+                        $notes = $desc1;
+                        $ar_no = explode('__',$notes);
+                        $arr_v['notes'] = $ar_no[0];
+                        $arr_v['coords'] = $ar_no[1];
+                        $arr_v['note_no'] = $ar_no[2];
+                        $arr_v['vehicle_id'] = $vehicle_id;
+                        $arr_v['image'] = 'third';
+                        $this->loadModel('Vehicle_note');
+                        $this->Vehicle_note->create();
+                        $this->Vehicle_note->save($arr_v);
+                    }
+                    
+                }
+            }
+            if($_POST['report_type'] == '15')
+            {
+                $inventory['document_id'] = $id;
+                
+                foreach($_POST['inventory'] as $k=>$v)
+                {
+                    $inventory[$k] = $v;
+                }
+                //var_dump($inventory);
+                
+                $this->loadModel('MobileTrunk');
+                $this->MobileTrunk->create();
+                $this->MobileTrunk->save($inventory);
+            }
+            
+            if($_POST['document_type'] == '14')
+            {
+                $mob['document_id'] = $id;
+                //var_dump($_POST['mobile_ins']);die();
+                foreach($_POST['log'] as $k=>$v)
+                {
+                    $mob[$k] = $v;
+                }
+                $this->loadModel('MobileLog');
+                $this->MobileLog->create();
+                $this->MobileLog->save($mob);
+                $action['mobileins_id'] = $this->MobileLog->id;
+                $site['mobilelog_id'] = $this->MobileLog->id;
+                $this->loadModel('MobileNote');
+                foreach($_POST['mobtime'] as $key =>$time)
+                {
+                    if($time!="")
+                    {
+                        $action['time'] = $time;
+                        $action['detail'] = $_POST['mobdetail'][$key];
+                        $this->MobileNote->create();
+                        $this->MobileNote->save($action);
+                    }
+                }
+                $this->loadModel('MobileSite');
+                foreach($_POST['arrival'] as $k=>$s)
+                {
+                    if($s!= "")
+                    {
+                        $site['arrival'] = $s;
+                        $site['depart'] = $_POST['depart'][$k];
+                        $site['siteaddress'] = $_POST['siteaddress'][$k];
+                        $site['guardonsite'] = $_POST['guardonsite'][$k];
+                        $this->MobileSite->create();
+                        $this->MobileSite->save($site);
+                    }
+                }
+                
+                
+            }
                 if($_POST['report_type']=='10')
                 {
                     
@@ -2040,7 +2243,7 @@ class UploadsController extends AppController
                     //var_dump($_POST['item']); die();
                     
                 }
-                if($_POST['report_type']==8 || $_POST['report_type']==9|| $_POST['report_type']==10|| $_POST['report_type']==11|| $_POST['report_type']==12)
+                if($_POST['report_type']==8 || $_POST['report_type']==9|| $_POST['report_type']==10|| $_POST['report_type']==11|| $_POST['report_type']==12|| $_POST['report_type']==13|| $_POST['report_type']==14|| $_POST['report_type']==15|| $_POST['report_type']==16)
                 {
                     $this->Activity->create();
                     $this->Activity->save($activity);
@@ -2548,13 +2751,53 @@ class UploadsController extends AppController
                     }
                     if($act[0]['Activity']['report_type']=='11')
                     {
-                        $this->loadModel('Instruction');
+                            $this->loadModel('Instruction');
                             $this->set('instructions',$this->Instruction->find('first', array('conditions'=>array('doc_id'=>$eid))));
                     }
                      if($act[0]['Activity']['report_type']=='12')
                     {
                         $this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$eid))));
                     }
+                    
+                    if($act[0]['Activity']['report_type']=='13')
+                    {
+                       if($mem = $this->MobileInspection->findByDocumentId($id))
+                        {
+                            $mem_action = $this->MobileAction->find('all',array('conditions'=>array('mobileins_id'=>$mem['MobileInspection']['id'])));
+                            $this->set('mem_action',$mem_action);
+                            $this->set('mobins',$mem);
+                        } 
+                    }
+                    if($act[0]['Activity']['report_type']=='14')
+                    {
+                         if($n = $this->MobileLog->findByDocumentId($id))
+                        {
+                            //var_dump($n);
+                            $mem_note = $this->MobileNote->find('all',array('conditions'=>array('mobileins_id'=>$n['MobileLog']['id'])));
+                            $this->set('mem_note',$mem_note);
+                            
+                            if($mem_site = $this->MobileSite->find('all',array('conditions'=>array('mobilelog_id'=>$n['MobileLog']['id']))))
+                                $this->set('mem_site',$mem_site);
+                            
+                            $this->set('moblog',$n); 
+                        }
+                    } 
+                     if($act[0]['Activity']['report_type']=='15')
+                     {
+                        if($in = $this->MobileTrunk->findByDocumentId($id))
+                        {
+                            $this->set('inv', $in);
+                        }   
+                     }
+                      if($act[0]['Activity']['report_type']=='16')
+                      {
+                        if($vi)
+                        {
+                            $vid = $vi['Vehicle_inspection']['id'];
+                            $this->loadModel('Vehicle_note');
+                            $this->set('vn',$this->Vehicle_note->find('all',array('conditions'=>array('vehicle_id'=>$vid))));
+                        }
+                      }
                 }
                 elseif($doc['Document']['document_type'] == 'client_feedback')
                     $this->set('memo',$this->Clientmemo->findByDocumentId($id));
@@ -2767,6 +3010,44 @@ class UploadsController extends AppController
             $this->loadModel('Personal_inspection');
             $this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$did))));
         
+        }
+        if($type=='13')
+        {
+            $this->loadModel('MobileInspection');
+            if($mem = $this->MobileInspection->findByDocumentId($did))
+            {
+                $this->loadModel('MobileAction');
+                $mem_action = $this->MobileAction->find('all',array('conditions'=>array('mobileins_id'=>$mem['MobileInspection']['id'])));
+                $this->set('mem_action',$mem_action);
+                $this->set('mobins',$mem);
+            }
+        }
+        if($type=='14')
+        {
+            $this->loadModel('MobileLog');
+            $this->loadModel('MobileNote');
+            $this->loadModel('MobileSite');
+             if($n = $this->MobileLog->findByDocumentId($did))
+                {
+                    //var_dump($n);
+                    $mem_note = $this->MobileNote->find('all',array('conditions'=>array('mobileins_id'=>$n['MobileLog']['id'])));
+                    $this->set('mem_note',$mem_note);                
+                    if($mem_site = $this->MobileSite->find('all',array('conditions'=>array('mobilelog_id'=>$n['MobileLog']['id']))))
+                        $this->set('mem_site',$mem_site);                
+                    $this->set('moblog',$n); 
+                }   
+        }
+        if($type=='15')
+        {
+            $this->loadModel('Vehicle_inspection');
+            $vi = $this->Vehicle_inspection->find('first',array('conditions'=>array('document_id'=>$did)));
+            $this->set('vehicle',$vi);            
+            if($vi)
+            {
+                $vid = $vi['Vehicle_inspection']['id'];
+                $this->loadModel('Vehicle_note');
+                $this->set('vn',$this->Vehicle_note->find('all',array('conditions'=>array('vehicle_id'=>$did))));
+            }
         }
         if($type == '7')
         {

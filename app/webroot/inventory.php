@@ -1,4 +1,4 @@
-    <td colspan="2" style="padding: 0;border-top:none;">
+    <td colspan="3" style="padding: 0;border-top:none;">
         <table class="inventry_table" style="border-left:none!important;<?php if($this->params['action'] != 'view_detail'){?>border-bottom:1px solid #ddd;<?php }?>">
             
             <tr>
