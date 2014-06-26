@@ -692,6 +692,179 @@ class UploadsController extends AppController
                         }
                     }
                        
+                }
+                if($_POST['report_type'] == '16')
+                {
+                    $v = $this->Vehicle_inspection->findByDocumentId($eid);
+                    $vid = $v['Vehicle_inspection']['id'];
+                    $this->Vehicle_inspection->deleteAll(array('document_id'=>$eid));
+                    $veh['document_id'] = $eid;
+                    //$veh['document_id'] = $id;
+                    $too = $_POST['to'];
+                    $att_to = explode(':',$too);
+                    $veh['hour_to'] = $att_to[0];
+                    $veh['min_to'] = $att_to[1];
+                    
+                    $from = $_POST['from'];
+                    $att_fo = explode(':',$from);
+                    $veh['hour_from'] = $att_fo[0];
+                    $veh['min_from'] = $att_fo[1];
+                    foreach($_POST as $key=>$post)
+                    {
+                        $in2 = array('vehicle_date','hour_from','min_from','hour_to','min_to','guard','vehicle_unit_number','plate','start_km','finish_km','light','horn','rotating_light','spot_light','safety','file_box','lock_box','first_aid','ownership','front','back','side','note','operation_review');
+                        if(in_array($key,$in2))
+                        {
+                            $veh[$key] = $post;
+                        }
+                    }
+                    //var_dump($veh);die();
+                    $this->loadModel('Vehicle_inspection');
+                    $this->Vehicle_inspection->create();
+                    $this->Vehicle_inspection->save($veh);
+                    $vehicle_id = $this->Vehicle_inspection->id;
+                    $this->loadModel('Vehicle_note');
+                    $this->Vehicle_note->deleteAll(array('vehicle_id'=>$vid));
+                    if($_POST['desc1'] && $_POST['report_type']=='16')
+                    {
+                        foreach($_POST['desc1'] as $desc1)
+                        {
+                            $notes = $desc1;
+                            $ar_no = explode('__',$notes);
+                            $arr_v['notes'] = $ar_no[0];
+                            $arr_v['coords'] = $ar_no[1];
+                            $arr_v['note_no'] = $ar_no[2];
+                            $arr_v['vehicle_id'] = $vehicle_id;                        
+                            $arr_v['image'] = 'first';
+                            $this->loadModel('Vehicle_note');
+                            $this->Vehicle_note->create();
+                            $this->Vehicle_note->save($arr_v);
+                            unset($ar_no);
+                            unset($arr_v);
+                        }
+                        foreach($_POST['desc2'] as $desc1)
+                        {
+                            $notes = $desc1;
+                            $ar_no = explode('__',$notes);
+                            $arr_v['notes'] = $ar_no[0];
+                            $arr_v['coords'] = $ar_no[1];
+                            $arr_v['note_no'] = $ar_no[2];
+                            $arr_v['vehicle_id'] = $vehicle_id;
+                            $arr_v['image'] = 'second';
+                            $this->loadModel('Vehicle_note');
+                            $this->Vehicle_note->create();
+                            $this->Vehicle_note->save($arr_v);
+                            unset($ar_no);
+                            unset($arr_v);
+                        }
+                        foreach($_POST['desc3'] as $desc1)
+                        {
+                            $notes = $desc1;
+                            $ar_no = explode('__',$notes);
+                            $arr_v['notes'] = $ar_no[0];
+                            $arr_v['coords'] = $ar_no[1];
+                            $arr_v['note_no'] = $ar_no[2];
+                            $arr_v['vehicle_id'] = $vehicle_id;
+                            $arr_v['image'] = 'third';
+                            $this->loadModel('Vehicle_note');
+                            $this->Vehicle_note->create();
+                            $this->Vehicle_note->save($arr_v);
+                        }
+                        
+                    }
+                }
+                if($_POST['report_type'] == '15')
+                {
+                  if(isset($_POST['inv_id']))
+                    $iid = $_POST['inv_id'];
+                  
+                  if(isset($iid) && $iid!="")
+                  {
+                      $this->MobileTrunk->id = $iid;
+                      foreach($_POST['inventory'] as $k=>$v)
+                      {
+                        $this->MobileTrunk->saveField($k, $v);
+                      }  
+                  }
+                  else
+                  {
+                        $inventory['document_id'] = $eid;
+                    $this->MobileTrunk->deleteAll(array('document_id'=>$eid));
+                    foreach($_POST['inventory'] as $k=>$v)
+                    {
+                        $inventory[$k] = $v;
+                    }
+                    //var_dump($inventory);
+                    
+                    //$this->loadModel('MobileTrunk');
+                    $this->MobileTrunk->create();
+                    $this->MobileTrunk->save($inventory);
+                  }
+                }
+                if($_POST['report_type'] == '14')
+                {
+                    $this->loadModel('MobileLog');
+                    if(isset($_POST['log_id']))
+                        $lid = $_POST['log_id'];
+                    
+                    if(isset($lid) && $lid !="" )
+                    {
+                        $this->MobileLog->id = $lid;
+                        
+                        //var_dump($_POST['mobile_ins']);die();
+                        foreach($_POST['log'] as $k=>$v)
+                        {
+                            $this->MobileLog->saveField($k,$v);
+                        }
+                    }
+                    else
+                    {
+                        $mob['document_id'] = $eid;
+                        $this->MobileLog->deleteAll(array('document_id'=>$eid));
+                        /*if($_POST['log']['start_date']=="")
+                            $_POST['log']['start_date']="0000-00-00";
+                        if($_POST['log']['end_date']=="")
+                            $_POST['log']['end_date']="0000-00-00";*/
+                    //var_dump($_POST['mobile_ins']);die();
+                        foreach($_POST['log'] as $k=>$v)
+                        {
+                            $mob[$k] = $v;
+                        }
+                        $this->MobileLog->create();
+                        $this->MobileLog->save($mob);
+                        $lid = $this->MobileLog->id;
+    
+                    }
+                    $this->loadModel('MobileNote');
+                    $this->MobileNote->deleteAll(array('mobileins_id'=>$lid));
+                    $action['mobileins_id'] = $lid;
+                    
+                    foreach($_POST['mobtime'] as $key =>$time)
+                    {
+                        if($time!="")
+                        {
+                            $action['time'] = $time;
+                            $action['detail'] = $_POST['mobdetail'][$key];
+                            $this->MobileNote->create();
+                            $this->MobileNote->save($action);
+                        }
+                    }
+                    $this->loadModel('MobileSite');
+                    $this->MobileSite->deleteAll(array('mobilelog_id'=>$lid));
+                    $site['mobilelog_id'] = $lid;
+                    foreach($_POST['arrival'] as $k=>$s)
+                    {
+                        if($s!= "")
+                        {
+                            $site['arrival'] = $s;
+                            $site['depart'] = $_POST['depart'][$k];
+                            $site['siteaddress'] = $_POST['siteaddress'][$k];
+                            $site['guardonsite'] = $_POST['guardonsite'][$k];
+                            $this->MobileSite->create();
+                            $this->MobileSite->save($site);
+                        }
+                    }
+                    
+                    
                 }    
                 if($_POST['report_type']=='7')
                 {
@@ -832,7 +1005,7 @@ class UploadsController extends AppController
                 
                 
                 
-            }
+            }/*
             elseif($_POST['document_type']== 'personal_inspection')
             {
                 $this->Personal_inspection->deleteAll(array('document_id'=>$eid));
@@ -1023,10 +1196,7 @@ class UploadsController extends AppController
                 {
                     $mob['document_id'] = $eid;
                     $this->MobileLog->deleteAll(array('document_id'=>$eid));
-                    /*if($_POST['log']['start_date']=="")
-                        $_POST['log']['start_date']="0000-00-00";
-                    if($_POST['log']['end_date']=="")
-                        $_POST['log']['end_date']="0000-00-00";*/
+                    
                 //var_dump($_POST['mobile_ins']);die();
                     foreach($_POST['log'] as $k=>$v)
                     {
@@ -1068,7 +1238,7 @@ class UploadsController extends AppController
                 }
                 
                 
-            }
+            }*/
                 $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$_POST['job'].',%'), array('job_id'=>$_POST['job']),array('job_id LIKE'=>'%,'.$_POST['job'].',%'),array('job_id LIKE'=>'%,'.$_POST['job'])))));
                 //var_dump($mails);
                 $aE = $this->User->find('first');
@@ -2010,8 +2180,9 @@ class UploadsController extends AppController
                     $this->Vehicle_inspection->create();
                     $this->Vehicle_inspection->save($veh);
                     $vehicle_id = $this->Vehicle_inspection->id;
-                    if($_POST['desc1'] && $_POST['document_type']=='vehicle_inspection')
+                    if($_POST['desc1'] && $_POST['report_type']=='16')
                     {
+                        $this->loadModel('Vehicle_note');
                         foreach($_POST['desc1'] as $desc1)
                     {
                         $notes = $desc1;
@@ -2021,7 +2192,7 @@ class UploadsController extends AppController
                         $arr_v['note_no'] = $ar_no[2];
                         $arr_v['vehicle_id'] = $vehicle_id;
                         $arr_v['image'] = 'first';
-                        $this->loadModel('Vehicle_note');
+                        
                         $this->Vehicle_note->create();
                         $this->Vehicle_note->save($arr_v);
                         unset($ar_no);
@@ -2036,12 +2207,13 @@ class UploadsController extends AppController
                         $arr_v['note_no'] = $ar_no[2];
                         $arr_v['vehicle_id'] = $vehicle_id;
                         $arr_v['image'] = 'second';
-                        $this->loadModel('Vehicle_note');
+                        
                         $this->Vehicle_note->create();
                         $this->Vehicle_note->save($arr_v);
                         unset($ar_no);
                         unset($arr_v);
                     }
+                    
                     foreach($_POST['desc3'] as $desc1)
                     {
                         $notes = $desc1;
@@ -2051,7 +2223,7 @@ class UploadsController extends AppController
                         $arr_v['note_no'] = $ar_no[2];
                         $arr_v['vehicle_id'] = $vehicle_id;
                         $arr_v['image'] = 'third';
-                        $this->loadModel('Vehicle_note');
+                        
                         $this->Vehicle_note->create();
                         $this->Vehicle_note->save($arr_v);
                     }
@@ -2073,7 +2245,7 @@ class UploadsController extends AppController
                 $this->MobileTrunk->save($inventory);
             }
             
-            if($_POST['document_type'] == '14')
+            if($_POST['report_type'] == '14')
             {
                 $mob['document_id'] = $id;
                 //var_dump($_POST['mobile_ins']);die();
@@ -3037,7 +3209,15 @@ class UploadsController extends AppController
                     $this->set('moblog',$n); 
                 }   
         }
-        if($type=='15')
+        if($type == '15')
+        {
+            $this->loadModel('MobileTrunk');
+            if($in = $this->MobileTrunk->findByDocumentId($did))
+            {
+                $this->set('inv', $in);
+            }            
+        }
+        if($type=='16')
         {
             $this->loadModel('Vehicle_inspection');
             $vi = $this->Vehicle_inspection->find('first',array('conditions'=>array('document_id'=>$did)));
