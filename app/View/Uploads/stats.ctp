@@ -194,6 +194,11 @@ $Static_audit = 0;
 $Insurance_audit = 0;
 $Site_signin = 0;
 $Instructions = 0;
+$personalInspection = 0;
+$mobileInspection = 0;
+$mobileLog = 0;
+$inventory = 0;
+$vehicleInspection = 0;
 if(isset($from) && isset($to))
     $rep = $report_type->query("SELECT COUNT(*) as cnt, report_type FROM activities WHERE `uploaded_on` >='$from' ".$cond." and `uploaded_on`<='$to' GROUP BY report_type");    
 elseif(isset($from))
@@ -227,7 +232,16 @@ foreach($rep as $v)
         $Site_signin = $v['0']['cnt'];
        elseif($v['activities']['report_type']=='11')
         $Instructions = $v['0']['cnt'];
-         
+      elseif($v['activities']['report_type']=='12')
+        $personalInspection = $v['0']['cnt'];
+      elseif($v['activities']['report_type']=='13')
+        $mobileInspection = $v['0']['cnt'];
+      elseif($v['activities']['report_type']=='14')
+        $mobileLog = $v['0']['cnt'];
+       elseif($v['activities']['report_type']=='15')
+        $inventory = $v['0']['cnt'];
+        elseif($v['activities']['report_type']=='16')
+        $vehicleInspection = $v['0']['cnt'];
 }
 unset($v);
 
@@ -304,6 +318,11 @@ unset($v);
 <tr><td style="padding-left:30px;"><?php echo $this->requestAction('dashboard/translate/Insurance Site Audit');?></td><td><?php echo $Insurance_audit;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></td></tr>
 <tr><td style="padding-left:30px;"><?php echo $this->requestAction('dashboard/translate/Site Signin Signout');?></td><td><?php echo $Site_signin;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></td></tr>
 <tr><td style="padding-left:30px;"><?php echo $this->requestAction('dashboard/translate/Instructions and site Assessment');?></td><td><?php echo $Instructions;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></td></tr>
+<tr><td style="padding-left:30px;"><?php echo $this->requestAction('dashboard/translate/Personal Inspection');?></td><td><?php echo $personalInspection;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></td></tr>
+<tr><td style="padding-left:30px;"><?php echo $this->requestAction('dashboard/translate/Mobile Inspection');?></td><td><?php echo $mobileInspection;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></td></tr>
+<tr><td style="padding-left:30px;"><?php echo $this->requestAction('dashboard/translate/Mobile Log');?></td><td><?php echo $mobileLog;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></td></tr>
+<tr><td style="padding-left:30px;"><?php echo $this->requestAction('dashboard/translate/Mobile Vehicle Trunk Inventory');?></td><td><?php echo $Instructions;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></td></tr>
+<tr><td style="padding-left:30px;"><?php echo $this->requestAction('dashboard/translate/Vehicle Inspection');?></td><td><?php echo $vehicleInspection;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></td></tr>
 <tr><td style="padding-left:30px;"><b><?php echo $this->requestAction('dashboard/translate/Incident Report');?></b></td><td><b><?php echo $incident_report;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></b></td></tr>
 <tr style="padding:20px;margin:30px;">
 <tr><td style="padding-left:60px;"><?php echo $this->requestAction('dashboard/translate/Alarm Activation');?></td><td style=""><?php echo $a_a;?> <?php echo $this->requestAction('dashboard/translate/uploads');?></td></tr>
