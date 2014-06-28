@@ -370,8 +370,10 @@ $(function(){
         });
         function vehicle_test()
         {
-            if($('#document_type').val()=='vehicle_inspection')
+            
+            if($('.reporttype').val()=='16')
             {
+                //alert('test');
                 $('.sbtbtn').val('Please Wait..');
                 $('.sbtbtn').attr('disabled','disabled');
                 $('.firsthidden input').each(function(){
