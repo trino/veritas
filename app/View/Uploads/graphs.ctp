@@ -609,6 +609,11 @@ var Static_audit = [];
 var Insurance_audit = [];
 var Site_signin = [];
 var Instructions = [];
+var personalInspection = [];
+var mobileInspection = [];
+var mobileLog = [];
+var inventory = [];
+var vehicleInspection = [];
 
 <?php 
             $vals = "";
@@ -624,6 +629,12 @@ var Instructions = [];
              $count9 = 0;
              $count10 =0;
              $count11 =0;
+             $count12 =0;
+             $count13 =0;
+             $count14 =0;
+             $count15 =0;
+             $count16 =0;
+             
 			foreach($report as $ke=>$data)
 			{
 			     
@@ -707,6 +718,41 @@ var Instructions = [];
                     Instructions.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
 				<?php
                 }
+                elseif($data['activities']['report_type'] == '12')
+                {    
+                    $count12 +=$data['0']['cnt'];
+                ?>
+                    personalInspection.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
+				<?php
+                }
+                elseif($data['activities']['report_type'] == '13')
+                {    
+                    $count13 +=$data['0']['cnt'];
+                ?>
+                    mobileInspection.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
+				<?php
+                }
+                elseif($data['activities']['report_type'] == '14')
+                {    
+                    $count14 +=$data['0']['cnt'];
+                ?>
+                    mobileLog.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
+				<?php
+                }
+                elseif($data['activities']['report_type'] == '15')
+                {    
+                    $count15 +=$data['0']['cnt'];
+                ?>
+                    inventory.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
+				<?php
+                }
+                elseif($data['activities']['report_type'] == '16')
+                {    
+                    $count16 +=$data['0']['cnt'];
+                ?>
+                    vehicleInspection.push([<?php echo strtotime($data['0']['DateOnly'])*1000; ?><?php echo ", ".$data['0']['cnt'];?>]);
+				<?php
+                }
                 ?>
 			<?php	
 				if((count($report)-1)!= $ke)
@@ -782,6 +828,36 @@ var Instructions = [];
 			label: '<?php echo $this->requestAction('dashboard/translate/Instructions and site Assessment');?>',
 			points: { show: true }, 
 			lines: { lineWidth: 2, fill: false } 	
+		},
+		{
+			data: personalInspection,
+			label: '<?php echo $this->requestAction('dashboard/translate/Personal Inspection');?>',
+			points: { show: true }, 
+			lines: { lineWidth: 2, fill: false } 	
+		},
+		{
+			data: mobileInspection,
+			label: '<?php echo $this->requestAction('dashboard/translate/Mobile Inspection');?>',
+			points: { show: true }, 
+			lines: { lineWidth: 2, fill: false } 	
+		},
+		{
+			data: mobileLog,
+			label: '<?php echo $this->requestAction('dashboard/translate/Mobile Log');?>',
+			points: { show: true }, 
+			lines: { lineWidth: 2, fill: false } 	
+		},
+		{
+			data: inventory,
+			label: '<?php echo $this->requestAction('dashboard/translate/Mobile Vehicle Trunk Inventory');?>',
+			points: { show: true }, 
+			lines: { lineWidth: 2, fill: false } 	
+		},
+		{
+			data: vehicleInspection,
+			label: '<?php echo $this->requestAction('dashboard/translate/Vehicle Inspection');?>',
+			points: { show: true }, 
+			lines: { lineWidth: 2, fill: false } 	
 		}];
  var detailOptions = {            
 		 series: {
@@ -814,7 +890,7 @@ var Instructions = [];
          legend:{        
                 noColumns: 2,
                 position: 'ne',
-                margin:[-350,0],
+                margin:[-420,0],
             }
 };
 
