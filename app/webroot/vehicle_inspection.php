@@ -34,8 +34,11 @@ if(isset($vn) && $vn)
     }
 }
 if(isset($vehicle) && $vehicle){
+
 $veh = $vehicle['Vehicle_inspection'];
+$signature = $veh['signature'];
 $date = $veh['vehicle_date'];
+
 $hf = $veh['hour_from'];
 $mf = $veh['min_from'];
 $ht = $veh['hour_to'];
@@ -62,7 +65,7 @@ $or = $veh['operation_review'];
 }
 else
 {
-
+$signature = '';
 $date = '';
 $hf = '';
 $mf = '';
@@ -148,7 +151,7 @@ $or = '';
                 <td colspan="4"><input type="checkbox" name="ownership" value="1" <?php if($o==1){?>checked="checked"<?php }?> /> <?php echo $this->requestAction('dashboard/translate/Ownership and Insurance');?></td>
             </tr>
         </table>
-        <table>
+        <table style="border-bottom: 1px solid #ddd;">
             <tr>
                 <td colspan="2"><strong><?php echo $this->requestAction('dashboard/translate/Highlight area with noticeable dents or scratches');?>Highlight area with noticeable dents or scratches</strong></td>
             </tr>
@@ -226,7 +229,32 @@ $or = '';
             <tr>
                 <td colspan="2"><?php echo $this->requestAction('dashboard/translate/Operation Review');?> : <input type="text" name="operation_review" value="<?php echo $or;?>" /></td>                
             </tr>
-        </table>        
+        </table>    
+        <div style="position: relative;padding:5px;">
+            <div style="width: 50%;float:left;">
+                <strong>SIGNATURE:</strong><br />
+                    <iframe src="<?php echo $this->webroot;?>canvas/example.php" style="width: 100%;border:1px solid #AAA;border-radius:10px;height:340px;">
+                        
+                    </iframe>
+            </div>        
+            <?php
+            
+                if($signature)
+                {
+                    ?>
+                    
+                    <div style="float:left;width:40%;margin-left:5%;">
+                    <b><?php echo $this->requestAction('dashboard/translate/Current Signature')?></b><br />
+                <img src="<?php echo $this->webroot;?>canvas/<?php echo $signature;?>" />
+            </div>
+                    <?php
+                    
+                }
+                ?>
+            
+            
+      <div class="clear"></div>      
+    </div>    
     </td>
 <script src="<?php echo $this->webroot;?>js/highlight.js"></script>
 <script src="<?php echo $this->webroot;?>js/highscript.js"></script>

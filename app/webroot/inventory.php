@@ -12,7 +12,7 @@
         {?>
            <input type="hidden" name="inv_id" value="<?php echo $inv['MobileTrunk']['id'];?>"/> 
        <?php  } ?>
-        <table class="inventry_table righton" style="border-radius:0;">
+        <table class="inventry_table righton" style="border-radius:0;border-bottom:1px solid #ddd;">
             <tr>
                 <td><strong><?php echo $this->requestAction('dashboard/translate/Shirts - Grey');?></strong></td><td ><?php echo $this->requestAction('dashboard/translate/Inventory');?></td><td ><?php echo $this->requestAction('dashboard/translate/Start Time');?></td><td ><?php echo $this->requestAction('dashboard/translate/End Time');?></td>
                 <td ><strong><?php echo $this->requestAction('dashboard/translate/Shirts - Red');?></strong></td><td ><?php echo $this->requestAction('dashboard/translate/Inventory');?></td><td ><?php echo $this->requestAction('dashboard/translate/Start Time');?></td><td style="border-right: none;"><?php echo $this->requestAction('dashboard/translate/End Time');?></td>
@@ -215,6 +215,34 @@
                 <td><input type="text" name="inventory[item_qty2]" value="<?php if(isset($inv) && $inv['MobileTrunk']['item_qty2']){echo $inv['MobileTrunk']['item_qty2'];}?>"/></td>
             </tr>
         </table>
+        <div style="position: relative;padding:5px;">
+        <?php if($this->params['action'] != 'view_detail' ){ ?> 
+            <div style="width: 50%;float:left;">
+                <strong>SIGNATURE:</strong><br />
+                    <iframe src="<?php echo $this->webroot;?>canvas/example.php" style="width: 100%;border:1px solid #AAA;border-radius:10px;height:340px;">
+                        
+                    </iframe>
+            </div>        
+        <?php }?>    
+            <?php
+            
+                if(isset($inv) && $inv['MobileTrunk']['signature'])
+                {
+                    
+                    ?>
+                    
+                    <div style="float:left;width:40%;margin-left:5%;">
+                    <b><?php echo $this->requestAction('dashboard/translate/Current Signature')?></b><br />
+                <img src="<?php echo $this->webroot;?>canvas/<?php echo $inv['MobileTrunk']['signature'];?>" />
+            </div>
+                    <?php
+                    
+                }
+                ?>
+            
+            
+      <div class="clear"></div>      
+    </div> 
     </td>
 <script>
 $(function(){

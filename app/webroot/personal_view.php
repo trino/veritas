@@ -1,6 +1,6 @@
 <tr class="personal_more" style="border-bottom:1px solid #ccc;">
     <td colspan="2" style="padding: 0;">
-        <table>
+        <table style="border-bottom: 1px solid #ddd;">
             <tr>
                 <td colspan="4" style="border-top: none;"><strong><?php echo $this->requestAction('dashboard/translate/Employee Information');?></strong></td>
             </tr>
@@ -204,7 +204,25 @@
             </tbody>
             
         </table>
-    
+        <div style="position: relative;padding:5px;">    
+            <?php
+            
+                if(isset($perso['Personal_inspection']) && $perso['Personal_inspection']['signature'])
+                {
+                    ?>
+                    
+                    <div style="float:left;width:40%;margin-left:5%;">
+                    <b><?php echo $this->requestAction('dashboard/translate/Current Signature')?></b><br />
+                <img src="<?php echo $this->webroot;?>canvas/<?php echo $perso['Personal_inspection']['signature'];?>" />
+            </div>
+                    <?php
+                    
+                }
+                ?>
+            
+            
+      <div class="clear"></div>      
+    </div>
     </td>
     
 </tr>

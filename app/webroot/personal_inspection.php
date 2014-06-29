@@ -1,6 +1,6 @@
 
     <td colspan="3" style="padding: 0;">
-        <table>
+        <table style="border-bottom: 1px sol #ddd;">
             <tr>
                 <td colspan="4" style="border-top: none;"><strong><?php echo $this->requestAction('dashboard/translate/Employee Information');?></strong></td>
             </tr>
@@ -206,6 +206,31 @@
             </tr>
             </tbody>
           </table>
+          <div style="position: relative;padding:5px;">
+            <div style="width: 50%;float:left;">
+                <strong>SIGNATURE:</strong><br />
+                    <iframe src="<?php echo $this->webroot;?>canvas/example.php" style="width: 100%;border:1px solid #AAA;border-radius:10px;height:340px;">
+                        
+                    </iframe>
+            </div>        
+            <?php
+            
+                if(isset($perso['Personal_inspection']) && $perso['Personal_inspection']['signature'])
+                {
+                    ?>
+                    
+                    <div style="float:left;width:40%;margin-left:5%;">
+                    <b><?php echo $this->requestAction('dashboard/translate/Current Signature')?></b><br />
+                <img src="<?php echo $this->webroot;?>canvas/<?php echo $perso['Personal_inspection']['signature'];?>" />
+            </div>
+                    <?php
+                    
+                }
+                ?>
+            
+            
+      <div class="clear"></div>      
+    </div>
     </td>
     <script>
 $('.date_verify').datepicker({dateFormat: 'yy-mm-dd'});

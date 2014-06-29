@@ -105,9 +105,37 @@
             <td style="border-top:none;"><input type="button" class="btn btn-primary" id="addmore1" value="+<?php echo $this->requestAction('dashboard/translate/Add More');?>"/></td>
         </tr >
         </table>
-        <table class="mobilelog_table" style="border-left: none!important;border-right: none!important;">
+        <table class="mobilelog_table" style="border-left: none!important;border-right: none!important;border-bottom:1px solid #ddd;">
         <tr><td width="5%"><strong><?php echo $this->requestAction('dashboard/translate/Sign');?></strong></td><td><input type="text" name="log[sign]" value="<?php if(isset($moblog) && $moblog['MobileLog']['sign']){echo $moblog['MobileLog']['sign'];}?>" /></td><td></td></tr>
-        </table>    
+        </table> 
+        <div style="position: relative;padding:5px;">
+        <?php if($this->params['action'] != 'view_detail' ){ ?> 
+            <div style="width: 50%;float:left;">
+                <strong>SIGNATURE:</strong><br />
+                    <iframe src="<?php echo $this->webroot;?>canvas/example.php" style="width: 100%;border:1px solid #AAA;border-radius:10px;height:340px;">
+                        
+                    </iframe>
+            </div>        
+        <?php }?>    
+            <?php
+            
+                if(isset($moblog) && $moblog['MobileLog']['signature'])
+                {
+                    
+                    ?>
+                    
+                    <div style="float:left;width:40%;margin-left:5%;">
+                    <b><?php echo $this->requestAction('dashboard/translate/Current Signature')?></b><br />
+                <img src="<?php echo $this->webroot;?>canvas/<?php echo $moblog['MobileLog']['signature'];?>" />
+            </div>
+                    <?php
+                    
+                }
+                ?>
+            
+            
+      <div class="clear"></div>      
+    </div>   
     </td>
 <script>
 $(function(){

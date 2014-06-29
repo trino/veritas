@@ -66,11 +66,38 @@
         <tr class="mobtime" ><td><input type="text" class="time" name="mobtime[]" />
         </td><td><textarea name="mobdetail[]" style="width:500px;height:150px"></textarea></td><td><input type="button" class="btn btn-primary" id="addmore" value="+<?php echo $this->requestAction('dashboard/translate/Add More');?>"/></td></tr >
         </table>
-        <table class="mobileins_table">
+        <table class="mobileins_table" style="border-bottom: 1px solid #ddd;">
         <tr><td><strong><?php echo $this->requestAction('dashboard/translate/Operative Name');?>:</strong><br /><input type="text" name="mobile_ins[operative_name]" class=""  value="<?php if(isset($mobins) && $mobins['MobileInspection']['operative_name']){echo $mobins['MobileInspection']['operative_name'];}?>" /></td>
         <td><strong><?php echo $this->requestAction('dashboard/translate/Licence No');?>:</strong><br /><input type="text" name="mobile_ins[licence_no]" class=""  value="<?php if(isset($mobins) && $mobins['MobileInspection']['licence_no']){echo $mobins['MobileInspection']['licence_no'];}?>" /></td>
         <td><strong><?php echo $this->requestAction('dashboard/translate/Vehicle No');?>:</strong><br /><input type="text" name="mobile_ins[vehicle_no]" class=""  value="<?php if(isset($mobins) && $mobins['MobileInspection']['vehicle_no']){echo $mobins['MobileInspection']['vehicle_no'];}?>" /></td></tr>
         </table>
+        
+        
+        <div style="position: relative;padding:5px;">
+            <div style="width: 50%;float:left;">
+                <strong>SIGNATURE:</strong><br />
+                    <iframe src="<?php echo $this->webroot;?>canvas/example.php" style="width: 100%;border:1px solid #AAA;border-radius:10px;height:340px;">
+                        
+                    </iframe>
+            </div>        
+            <?php
+            
+                if(isset($mobins) && $mobins['MobileInspection']['signature'])
+                {
+                    ?>
+                    
+                    <div style="float:left;width:40%;margin-left:5%;">
+                    <b><?php echo $this->requestAction('dashboard/translate/Current Signature')?></b><br />
+                <img src="<?php echo $this->webroot;?>canvas/<?php echo $mobins['MobileInspection']['signature'];?>" />
+            </div>
+                    <?php
+                    
+                }
+                ?>
+            
+            
+      <div class="clear"></div>      
+    </div>
 </td>            
 
 <script>

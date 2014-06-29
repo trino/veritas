@@ -33,6 +33,7 @@ if($vn)
 
 if(isset($vehicle) && $vehicle){
 $veh = $vehicle['Vehicle_inspection'];
+$signature = $veh['signature'];
 $date = $veh['vehicle_date'];
 $hf = $veh['hour_from'];
 $mf = $veh['min_from'];
@@ -60,7 +61,7 @@ $or = $veh['operation_review'];
 }
 else
 {
-
+$signature = '';
 $date = '';
 $hf = '';
 $mf = '';
@@ -142,7 +143,7 @@ $or = '';
                 
             </tr>
         </table>
-        <table>
+        <table style="border-bottom: 1px solid #ddd;">
             <tr>
                 <td colspan="2"><strong>Highlighted area with noticeable dents or scratches</strong></td>
             </tr>
@@ -223,7 +224,27 @@ $or = '';
             <tr>
                 <td colspan="2">Operation Review : <?php echo $or;?></td>                
             </tr>
-        </table>        
+        </table> 
+        <div style="position: relative;padding:5px;">
+                   
+            <?php
+            
+                if($signature)
+                {
+                    ?>
+                    
+                    <div style="float:left;width:40%;margin-left:5%;">
+                    <b><?php echo $this->requestAction('dashboard/translate/Current Signature')?></b><br />
+                <img src="<?php echo $this->webroot;?>canvas/<?php echo $signature;?>" />
+            </div>
+                    <?php
+                    
+                }
+                ?>
+            
+            
+      <div class="clear"></div>      
+    </div>         
     </td>
     
 </tr>

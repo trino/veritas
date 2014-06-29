@@ -81,12 +81,33 @@
         
         
         </table>
-        <table class="mobileins_table">
+        <table class="mobileins_table" style="border-bottom: 1px solid #DDD;">
         <tr><td><strong><?php echo $this->requestAction('dashboard/translate/Operative Name');?>:</strong><br /><?php if(isset($mobins) && $mobins['MobileInspection']['operative_name']){echo $mobins['MobileInspection']['operative_name'];}else{echo "-";}?></td>
         <td><strong><?php echo $this->requestAction('dashboard/translate/Licence No');?>:</strong><br /><?php if(isset($mobins) && $mobins['MobileInspection']['licence_no']){echo $mobins['MobileInspection']['licence_no'];}else{echo "-";}?></td>
         <td><strong><?php echo $this->requestAction('dashboard/translate/Vehicle No');?>:</strong><br /><?php if(isset($mobins) && $mobins['MobileInspection']['vehicle_no']){echo $mobins['MobileInspection']['vehicle_no'];}else{echo "-";}?></td></tr>
         
         </table>
+        
+        <div style="position: relative;padding:5px;">
+           
+            <?php
+            $signature = $mobins['MobileInspection']['signature'];
+                if(isset($mobins) && $signature)
+                {
+                    ?>
+                    
+                    <div style="float:left;width:40%;margin-left:5%;">
+                    <strong>SIGNATURE:</strong><br />
+                <img src="<?php echo $this->webroot;?>canvas/<?php echo $signature;?>" />
+            </div>
+                    <?php
+                    
+                }
+                ?>
+            
+            
+      <div class="clear"></div>      
+    </div>
 </td>            
 </tr>
 

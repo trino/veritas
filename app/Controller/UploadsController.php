@@ -612,6 +612,7 @@ class UploadsController extends AppController
                             $per[$key] = $post;
                         }
                     }
+                    $per['signature'] = $this->Session->read('image_name');
                     $this->loadModel('Personal_inspection');
                     $this->Personal_inspection->create();
                     $this->Personal_inspection->save($per);            
@@ -630,6 +631,8 @@ class UploadsController extends AppController
                             
                             $this->MobileInspection->saveField($k,$v);
                         }
+                        
+                        $this->MobileInspection->saveField('signature',$this->Session->read('image_name'));
                     }
                     else
                     {
@@ -717,6 +720,8 @@ class UploadsController extends AppController
                             $veh[$key] = $post;
                         }
                     }
+                    
+                    $veh['signature'] = $this->Session->read('image_name');
                     //var_dump($veh);die();
                     $this->loadModel('Vehicle_inspection');
                     $this->Vehicle_inspection->create();
@@ -783,7 +788,9 @@ class UploadsController extends AppController
                       foreach($_POST['inventory'] as $k=>$v)
                       {
                         $this->MobileTrunk->saveField($k, $v);
-                      }  
+                      }
+                      $this->MobileTrunk->saveField('signature',$this->Session->read('image_name'));
+                        
                   }
                   else
                   {
@@ -796,6 +803,7 @@ class UploadsController extends AppController
                     //var_dump($inventory);
                     
                     //$this->loadModel('MobileTrunk');
+                    $inventory['signature'] = $this->Session->read('image_name');
                     $this->MobileTrunk->create();
                     $this->MobileTrunk->save($inventory);
                   }
@@ -815,6 +823,7 @@ class UploadsController extends AppController
                         {
                             $this->MobileLog->saveField($k,$v);
                         }
+                        $this->MobileLog->saveField('signature',$this->Session->read('image_name'));
                     }
                     else
                     {
@@ -2124,6 +2133,7 @@ class UploadsController extends AppController
                             $per[$key] = $post;
                         }
                     }
+                    $per['signature'] = $this->Session->read('image_name');
                     $this->loadModel('Personal_inspection');
                     $this->Personal_inspection->create();
                     $this->Personal_inspection->save($per);
@@ -2136,6 +2146,7 @@ class UploadsController extends AppController
                     {
                         $mob[$k] = $v;
                     }
+                    $mob['signature'] = $this->Session->read('image_name');
                     $this->loadModel('MobileInspection');
                     $this->MobileInspection->create();
                     $this->MobileInspection->save($mob);
@@ -2175,6 +2186,7 @@ class UploadsController extends AppController
                             $veh[$key] = $post;
                         }
                     }
+                    $veh['signature'] = $this->Session->read('image_name');
                     //var_dump($veh);die();
                     $this->loadModel('Vehicle_inspection');
                     $this->Vehicle_inspection->create();
@@ -2238,6 +2250,7 @@ class UploadsController extends AppController
                 {
                     $inventory[$k] = $v;
                 }
+                $inventory['signature'] = $this->Session->read('image_name');
                 //var_dump($inventory);
                 
                 $this->loadModel('MobileTrunk');
@@ -2253,6 +2266,7 @@ class UploadsController extends AppController
                 {
                     $mob[$k] = $v;
                 }
+                $mob['signature'] = $this->Session->read('image_name');
                 $this->loadModel('MobileLog');
                 $this->MobileLog->create();
                 $this->MobileLog->save($mob);
