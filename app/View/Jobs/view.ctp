@@ -241,7 +241,7 @@
 	</div>
     <?php }?>
 <?php }?>
-<?php if($admin_doc['AdminDoc']['personal_inspection']=='1' &&((isset($canview['Canview']['personal_inspection']) && $canview['Canview']['personal_inspection']=='1')|| $this->Session->read('admin'))){?>
+<?php /* if($admin_doc['AdminDoc']['personal_inspection']=='1' &&((isset($canview['Canview']['personal_inspection']) && $canview['Canview']['personal_inspection']=='1')|| $this->Session->read('admin'))){?>
     <div class="dashboard-stat yellow">								
 		<div class="whiteCorner"></div>								
 		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
@@ -335,7 +335,7 @@
 		</a>								
 		<div class="dusk2"></div>						
 	</div>
-    <?php }?>     
+    <?php } */?>     
 	
 <?php } ?>
 

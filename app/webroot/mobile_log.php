@@ -105,9 +105,9 @@
             <td style="border-top:none;"><input type="button" class="btn btn-primary" id="addmore1" value="+<?php echo $this->requestAction('dashboard/translate/Add More');?>"/></td>
         </tr >
         </table>
-        <table class="mobilelog_table" style="border-left: none!important;border-right: none!important;border-bottom:1px solid #ddd;">
+        <!--<table class="mobilelog_table" style="border-left: none!important;border-right: none!important;border-bottom:1px solid #ddd;">
         <tr><td width="5%"><strong><?php echo $this->requestAction('dashboard/translate/Sign');?></strong></td><td><input type="text" name="log[sign]" value="<?php if(isset($moblog) && $moblog['MobileLog']['sign']){echo $moblog['MobileLog']['sign'];}?>" /></td><td></td></tr>
-        </table> 
+        </table>-->
         <div style="position: relative;padding:5px;">
         <?php if($this->params['action'] != 'view_detail' ){ ?> 
             <div style="width: 50%;float:left;">

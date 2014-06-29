@@ -111,9 +111,30 @@
         
         
         </table>
-        <table class="mobilelog_table" style="border-left: none!important;border-right: none!important;">
+        <!--<table class="mobilelog_table" style="border-left: none!important;border-right: none!important;">
         <tr><td colspan="2" style="border-top: none;"><strong><?php echo $this->requestAction('dashboard/translate/Sign');?></strong> : <?php if(isset($moblog) && $moblog['MobileLog']['sign']){echo $moblog['MobileLog']['sign'];}?></td></tr>
-        </table>    
+        </table>-->
+           
+        <div style="position: relative;padding:5px;">
+           
+            <?php
+            $signature = $moblog['MobileLog']['signature'];
+                if(isset($moblog) && $signature)
+                {
+                    ?>
+                    
+                    <div style="float:left;width:40%;margin-left:5%;">
+                    <strong>SIGNATURE:</strong><br />
+                <img src="<?php echo $this->webroot;?>canvas/<?php echo $signature;?>" />
+            </div>
+                    <?php
+                    
+                }
+                ?>
+            
+            
+      <div class="clear"></div>      
+    </div>    
     </td>
 </tr>
 

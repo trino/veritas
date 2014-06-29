@@ -504,6 +504,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
                             <?php
                             }?>
                             <?php
+                            /*
                             if($this->requestAction($base_url.'uploads/checkAdminPerm/personal_inspection')){
                             ?>
                             <li><a href="<?php echo $base_url;?>search/index/personal_inspection"><i class="icon-arrow-right"></i><?php echo $this->requestAction('dashboard/translate/Personal Inspection');?></a></li>
@@ -534,7 +535,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
                             ?>
                             <li><a href="<?php echo $base_url;?>search/index/vehicle_inspection"><i class="icon-arrow-right"></i><?php echo $this->requestAction('dashboard/translate/Vehicle Inspection');?></a></li>
                             <?php
-                            }?>
+                            } */?>
                             <?php
                         }
                         ?>

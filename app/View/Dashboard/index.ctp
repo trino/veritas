@@ -222,7 +222,7 @@ $(function(){
 			</div>									
 			<div class="details">										
 				<div class="number"><?php echo $news_media;?></div>										
-				<div class="desc"><?php echo $this->requestAction('dashboard/translate/News/Media');?></div>									
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/News')."/".$this->requestAction('dashboard/translate/Media');?></div>									
 			</div>									
 			<div class="more2">									
 				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $news_media;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
@@ -231,7 +231,8 @@ $(function(){
 		<div class="dusk2"></div>						
 	</div>
     <?php }?>
-    <?php if($admin_doc['AdminDoc']['personal_inspection']=='1' &&((isset($canview['Canview']['personal_inspection']) && $canview['Canview']['personal_inspection']=='1')|| $this->Session->read('admin'))){?>
+    
+    <?php /*if($admin_doc['AdminDoc']['personal_inspection']=='1' &&((isset($canview['Canview']['personal_inspection']) && $canview['Canview']['personal_inspection']=='1')|| $this->Session->read('admin'))){?>
     <div class="dashboard-stat yellow">								
 		<div class="whiteCorner"></div>								
 		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
@@ -325,7 +326,7 @@ $(function(){
 		</a>								
 		<div class="dusk2"></div>						
 	</div>
-    <?php }?>
+    <?php }*/?>
 <?php } ?>
 </div><!-- Documents Dashboard -->
 
