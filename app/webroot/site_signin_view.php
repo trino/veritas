@@ -24,7 +24,7 @@
 <tr><td>INSTRUCTIONS(include details on who initiated the changes and the time of changes):</td></tr>
 <tr><td><input /></td></tr>-->
 
-<table class="addmore_site">
+<table class="addmore_site" style="border-bottom: 1px solid #DDD;">
 <tr><td> <?php echo $this->requestAction('dashboard/translate/Arrival');?></td>
 <td> <?php echo $this->requestAction('dashboard/translate/Depart')?></td>
 <td> <?php echo $this->requestAction('dashboard/translate/Print Name')?>( <?php echo $this->requestAction('dashboard/translate/Clearly')?>)</td>
@@ -41,6 +41,26 @@ foreach($static as $k=>$v)
 
 
 </table>
+<?php
+            if(isset($static[0]['SiteSignin']) && $static[0]['SiteSignin']['sign'])
+            $signature = $static[0]['SiteSignin']['sign'];
+            else
+            $signature = '';
+                if($signature)
+                {
+                    ?>
+                    
+                    <div style="float:left;width:40%;margin-left:5%;">
+                    <b><?php echo $this->requestAction('dashboard/translate/Current Signature')?></b><br />
+                <img src="<?php echo $this->webroot;?>canvas/<?php echo $signature;?>" />
+            </div>
+                    <?php
+                    
+                }
+                ?>
+            
+            
+      <div class="clear"></div>   
 
 <style>
 .addmore_site input[type="text"]{width:145px;}
