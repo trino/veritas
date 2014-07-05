@@ -478,7 +478,12 @@ class UploadsController extends AppController
         {
             //$this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$eid))));
             
-            
+            $docz = $this->Document->findById($eid);
+            $this->loadModel('DeploymentRate');
+            if($rates = $this->DeploymentRate->findByJobId($docz['Document']['job_id']))
+            {
+                $this->set('rates',$rates);
+            }
             
             if($in = $this->MobileTrunk->findByDocumentId($eid))
             {
@@ -1740,7 +1745,11 @@ class UploadsController extends AppController
     }
     function upload($ids,$typee='')
     {
-        
+        $this->loadModel('DeploymentRate');
+        if($rates = $this->DeploymentRate->findByJobId($ids))
+        {
+            $this->set('rates',$rates);
+        }
         $jj = $this->Job->find('first',array('conditions'=>array('id'=>$ids)));
         if($jj)
             $job_title = $jj['Job']['title'];

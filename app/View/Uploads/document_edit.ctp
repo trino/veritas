@@ -143,6 +143,7 @@ function remove_youtube()
 }
 </script>
 <form id="my_form" action="" method="post" enctype="multipart/form-data" onsubmit="return vehicle_test();">
+<?php //var_dump($rates);?>
 <div id="table">
 <table>
 <tr style="display: none;"><td style="width:140px;"><b>Location</b></td><td><div class="right"><input type="text" name="location" class="" /></div></td></tr>
@@ -176,6 +177,9 @@ function remove_youtube()
     <?php }?>
     <?php if((isset($canupdate['Canupload']['client_feedback'])&& $canupdate['Canupload']['client_feedback']=='1') ){?>
     <option value="client_feedback" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='client_feedback') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Client Feedback');?></option>
+    <?php }?>
+    <?php if(isset($rates['DeploymentRate'])){?>
+    <option value="deployment_rate" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='deployment_rate') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Deployment Rate');?></option>
     <?php }?>
     <!--<?php if($admin_doc['AdminDoc']['personal_inspection']=='1' && ((isset($canupdate['Canupload']['personal_inspection'])&& $canupdate['Canupload']['personal_inspection']=='1') || $this->Session->read('admin'))){?>
     <option value="personal_inspection" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='personal_inspection') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Personal Inspection');?></option>
