@@ -676,6 +676,7 @@ class UploadsController extends AppController
                     $sitesignin['guard_name'] = $_POST['guard_name'];
                     $sitesignin['date'] = $_POST['date'];
                     $sitesignin['loss_location'] = $_POST['loss_location'];
+                    $sitesignin['sign']=$this->Session->read('image_name');
                     //var_dump($_POST['arrival']);
                     //die('10');
                     foreach($_POST['arrival'] as $k=>$v)
@@ -689,7 +690,7 @@ class UploadsController extends AppController
                            $sitesignin['phone_no'] = $_POST['phone'][$k];
                            $sitesignin['company'] = $_POST['company'][$k];
                            $sitesignin['signature'] = $_POST['sign'][$k];
-                        
+                           
                             $this->SiteSignin->create();
                             $this->SiteSignin->save($sitesignin);
                         }
@@ -2307,6 +2308,7 @@ class UploadsController extends AppController
                     $sitesignin['guard_name'] = $_POST['guard_name'];
                     $sitesignin['date'] = $_POST['date'];
                     $sitesignin['loss_location'] = $_POST['loss_location'];
+                    $sitesignin['sign']=$this->Session->read('image_name');
                     //var_dump($_POST['arrival']);
                     //die('10');
                     foreach($_POST['arrival'] as $k=>$v)

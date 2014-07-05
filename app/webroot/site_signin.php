@@ -84,9 +84,37 @@ foreach($static as $k=>$v)
     <td><input type="text" name="company[]" /></td><td><input type="text" name="sign[]" /></td></tr>
 <?php }?>
 </table>
-<table class="table">
+<table class="table" style="border-bottom: 1px solid #DDD;">
     <tr><td style="text-align: right;"><a href="javascript:void(0);"id="addm" class="btn btn-primary">+Add More</a></td></tr>
 </table>
+<div style="position: relative;padding:5px;">
+    <div style="width: 50%;float:left;">
+        <strong>SIGNATURE:</strong><br />
+            <iframe src="<?php echo $this->webroot;?>canvas/example.php" style="width: 100%;border:1px solid #AAA;border-radius:10px;height:340px;">
+                
+            </iframe>
+    </div>        
+            <?php
+            if(isset($static[0]['SiteSignin']) && $static[0]['SiteSignin']['sign'])
+            $signature = $static[0]['SiteSignin']['sign'];
+            else
+            $signature = '';
+                if($signature)
+                {
+                    ?>
+                    
+                    <div style="float:left;width:40%;margin-left:5%;">
+                    <b><?php echo $this->requestAction('dashboard/translate/Current Signature')?></b><br />
+                <img src="<?php echo $this->webroot;?>canvas/<?php echo $signature;?>" />
+            </div>
+                    <?php
+                    
+                }
+                ?>
+            
+            
+      <div class="clear"></div>      
+    </div>
 </td>
 <style>
 .addmore_site input[type="text"]{width:145px;}
