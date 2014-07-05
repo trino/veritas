@@ -3280,4 +3280,32 @@ class UploadsController extends AppController
     $this->Session->write('image_name',$image);
     die();
   }
+  
+  function deployment_rate($jid)
+  {
+    $this->loadModel('DeploymentRate');
+    $this->set('jid',$jid);
+    if($rates = $this->DeploymentRate->findByJobId($jid))
+    {
+       $this->set("rate",$rates); 
+    }
+    if(isset($_POST['submit']))
+    {
+        $this->DeploymentRate->deleteAll(array("job_id",$jid));
+        $this->DeploymentRate->create();
+        foreach($_POST as $k=>$v)
+        {
+            $role[$k]=$v;
+            
+        }
+        if($this->DeploymentRate->save($role))
+        {
+            $this->Session->setFlash("Deployment Rates Successfully Saved.");
+            $this->redirect('/jobs');
+        }
+        
+    }
+    
+  }
+  
 }

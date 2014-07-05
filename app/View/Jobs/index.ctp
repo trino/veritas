@@ -164,6 +164,7 @@ foreach($job as $j)
         {
        ?>
        <a href="<?php echo $base_url;?>jobs/projectboard/<?php echo $j['Job']['id'];?>" class="btn btn-success"><?php echo $this->requestAction('dashboard/translate/Project Board');?></a>
+       <a href="<?php echo $base_url;?>uploads/deployment_rate/<?php echo $j['Job']['id'];?>" class="btn btn-info"><?php echo $this->requestAction('dashboard/translate/Deployment Rate');?></a>
        <?php
        }
        ?>
