@@ -219,6 +219,7 @@ function remove_youtube()
 </tr>
 </table>
 </td></tr>
+<tr class="deploy" style="display: none;"></tr>
 <tr class="training_more" style="display: none;">
 <td colspan="2">
 <table>
@@ -569,6 +570,16 @@ $(function(){
     $('#document_type').change(function()
     {
         var doctype = $(this).val();
+       if(doctype=='deployment_rate')
+       {
+           $('.deploy').show();
+           $('.deploy').load('<?php echo $this->webroot;?>/uploads/deployment/<?php echo $job_id;?>');
+           $(".loader2").hide();
+           $(".description_tr").hide(); 
+           $(".image_tr").hide();  
+       }
+       else 
+       $('.deploy').hide();
        if(doctype == 'evidence')
         {
             $('.extra_evidence').show();
@@ -595,10 +606,11 @@ $(function(){
         }
         else
         {
+            if(doctype!='deployment_rate'){
             //            $('.personal_more').hide();
             $('.description_tr').show();
             $('.image_tr').show();
-            
+            }
         }
         if(doctype == 'vehicle_inspection'){
             $('.loader2').show();

@@ -88,7 +88,7 @@ if($this->Session->read('admin'))
     <option value="mobile_inspection"><?php echo $this->requestAction('dashboard/translate/Mobile Inspectio');?>n</option>
     <option value="afimac_intel"><?php echo $this->requestAction('dashboard/translate/AFIMAC Intel');?></option>
     <option value="vehicle_inspection"><?php echo $this->requestAction('dashboard/translate/Vehicle Inspection');?></option>
-    
+    <option value="deployment_rate"><?php echo $this->requestAction('dashboard/translate/Deployment');?></option>
     <option value="news_media">News/Media</option>
     
     
@@ -253,7 +253,7 @@ $or = '&order=';
             <?php if($this->Session->read('admin') || $this->Session->read('id')== $d['Document']['addedBy'] )
             { 
                    //if(($this->Session->read('admin') && $d['Document']['document_type']!='client_feedback')|| $this->Session->read('user')) {
-                   if(($this->Session->read('admin') && $d['Document']['document_type']!='client_feedback')) {
+                   if(($this->Session->read('admin') && $d['Document']['document_type']!='client_feedback' && $d['Document']['document_type']!='deployment_rate')) {
                      echo $this->Html->link($this->requestAction('dashboard/translate/Edit'),'/uploads/document_edit/'.$d['Document']['id'],array('class'=>'btn btn-info'));                 
                     echo " " . $this->Html->link($this->requestAction('dashboard/translate/Delete'),'/uploads/delete/'.$d['Document']['id'],array('class'=>'btn btn-danger'),$this->requestAction('dashboard/translate/Confirm Delete Document')."?");
 					}

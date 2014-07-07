@@ -280,6 +280,12 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         include('inventory.php');
     }
     ?>
+    <?php
+    if($doc['Document']['document_type']=='deployment_rate')
+    {
+        include('deploy_view.php');
+    }
+    ?>
     
 </table>
 </div>

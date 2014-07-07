@@ -1851,6 +1851,7 @@ class UploadsController extends AppController
                 $subname = '_'.$_POST['memo_type'];
 				//debug($arr);exit;
             }
+            
             $arr['draft'] = $_POST['draft'];
             
             //Email
@@ -1891,6 +1892,48 @@ class UploadsController extends AppController
             $this->Document->save($arr);
             $id=$this->Document->id;
             
+            if($_POST['document_type']=='deployment_rate')
+            {
+                $this->loadModel('Equipment');
+                $this->loadModel('Personnel');
+                $count = count($_POST['Equipment']['items']);
+                $equ = $_POST['Equipment'];
+                for($i=0;$i<$count;$i++)
+                {
+                    $eq['items'] =  $equ['items'][$i];
+                    $eq['qty'] =  $equ['qty'][$i];
+                    $eq['kms'] =  $equ['kms'][$i];
+                    $eq['fuel_cost'] =  $equ['fuel_cost'][$i];
+                    $eq['hotel_cost'] =  $equ['hotel_cost'][$i];
+                    $eq['amount_billable'] =  $equ['amount_billable'][$i];
+                    $eq['doc_id'] = $id;
+                    $this->Equipment->create();
+                    $this->Equipment->save($eq);
+                }
+                
+                unset($equ);
+                unset($eq);
+                
+                $count = count($_POST['Personnel']['position']);
+                $equ = $_POST['Personnel'];
+                for($i=0;$i<$count;$i++)
+                {
+                    $eq['position'] =  $equ['position'][$i];
+                    $eq['no_of_staff'] =  $equ['no_of_staff'][$i];
+                    $eq['start_time'] =  $equ['start_time'][$i];
+                    $eq['end_time'] =  $equ['end_time'][$i];
+                    $eq['total_hours'] =  $equ['total_hours'][$i];
+                    $eq['hours_billable'] =  $equ['hours_billable'][$i];
+                    $eq['travel'] =  $equ['travel'][$i];
+                    $eq['travel_billable'] =  $equ['travel_billable'][$i];
+                    $eq['meal_amount'] =  $equ['meal_amount'][$i];
+                    $eq['meal_billable'] =  $equ['meal_billable'][$i];
+                    $eq['doc_id'] = $id;
+                    $this->Personnel->create();
+                    $this->Personnel->save($eq);
+                }
+                              
+            }
             
             if($_POST['document_type'] == 'vehicle_inspection')
             {
@@ -2998,6 +3041,12 @@ class UploadsController extends AppController
                 }
                 elseif($doc['Document']['document_type'] == 'client_feedback')
                     $this->set('memo',$this->Clientmemo->findByDocumentId($id));
+                elseif($doc['Document']['document_type'] == 'deployment_rate'){
+                    $this->loadModel('Personnel');
+                    $this->loadModel('Equipment');
+                $this->set('personnel',$this->Personnel->find('all',array('conditions'=>array('doc_id'=>$id))));
+                $this->set('equipment',$this->Equipment->find('all',array('conditions'=>array('doc_id'=>$id))));    
+                }
                 
                 $log['date'] = date('Y-m-d H:i:s');
                 $log['time'] = date('H:i:s');
@@ -3317,6 +3366,14 @@ class UploadsController extends AppController
         
     }
     
+  }
+  function deployment($jid)
+  {
+    
+    $this->loadModel('DeploymentRate');
+    $q1=$this->DeploymentRate->findByJobId($jid);
+    $this->set('rate',$q1);
+    $this->layout = 'modal_layout';
   }
   
 }
