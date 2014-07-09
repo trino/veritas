@@ -24,7 +24,7 @@ class JobsController extends AppController
          else
          {
             $this->redirect('/admin');
-        }
+         }
         if($this->Session->read('avatar'))
         {
             $this->paginate = array('conditions'=>array('isApproved'=>'1'),'limit'=>10);
