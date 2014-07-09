@@ -66,12 +66,48 @@
         
         
         $('.addPersonnel').click(function(){
+            if($('.personnel').val()=="")
+            return false;
+           
             var opts = $('.personnel').val().split("_");
             var main_val = opts[0];
             var hr_rate = opts[1];
             var travel_rate = opts[2];
        $('.entries').show();
-       $('.dep').append('<tr><td id="'+hr_rate+'_'+travel_rate+'"><input class="sg"  type="text" style="width:160px;" name="Personnel[position][]" value="'+main_val+'" readonly/></td><td><input class="staff" type="text" name="Personnel[no_of_staff][]" value=""/></td><td><input name="Personnel[start_time][]" type="text"/></td><td><input type="text" name="Personnel[end_time][]"/></td><td><input type="text" class="total_hours" name="Personnel[total_hours][]"/></td><td>$<input type="text" class="hours_billable" name="Personnel[hours_billable][]" value="" readonly/></td><td><input type="text" name="Personnel[travel][]" class="travel"/></td><td>$<input type="text" name="Personnel[travel_billable][]" readonly/></td><td><input type="text" name="Personnel[meal_amount][]" class="meal"/></td><td>$<input type="text" name="Personnel[meal_billable][]" readonly/></td></tr>') 
+       $('.dep').append('<tr><td id="'+hr_rate+'_'+travel_rate+'"><input class="sg"  type="text" style="width:160px;" name="Personnel[position][]" value="'+main_val+'" readonly/></td><td><input class="staff" type="text" name="Personnel[no_of_staff][]" value=""/></td><td><input name="Personnel[start_time][]" type="text" class="time"/></td><td><input type="text" name="Personnel[end_time][]" class="time"/></td><td><input type="text" class="total_hours" name="Personnel[total_hours][]" readonly/></td><td>$<input type="text" class="hours_billable" name="Personnel[hours_billable][]" value="" readonly/></td><td><input type="text" name="Personnel[travel][]" class="travel"/></td><td>$<input type="text" name="Personnel[travel_billable][]" readonly/></td><td><input type="text" name="Personnel[meal_amount][]" class="meal"/></td><td>$<input type="text" name="Personnel[meal_billable][]" readonly/><a href="javascript:void(0)" class ="btn btn-danger" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>') 
+        $('.time').timepicker();
+    });
+    
+    $('.time').live('change',function(){
+        var str_time = $(this).closest('tr').children('td:nth-child(3)').children('input').val();
+        var end_time = $(this).closest('tr').children('td:nth-child(4)').children('input').val();
+        
+        var st_arr = str_time.split(":");
+        //alert(st_arr);
+        var start_sec = st_arr[0]*60*60 + (st_arr[1]*60);
+        var end_arr = end_time.split(":");
+        //alert(end_arr);
+        var end_sec = end_arr[0]*60*60+(end_arr[1]*60);
+        //alert('1:'+start_sec+"2:"+end_sec);
+        if(start_sec > end_sec)
+        {
+            alert("End Time Is Less Than Start Time");
+            $(this).val("");
+            $(this).closest('tr').children('td:nth-child(5)').children('input').val(0);
+        }
+        else
+        {
+            var m_min = (end_sec-start_sec)/3600;
+            if(!m_min)
+                m_min = 0;
+            else
+                m_min = m_min.toFixed(2);
+            if(m_min)
+            $(this).closest('tr').children('td:nth-child(5)').children('input').val(m_min);
+        }
+        
+        
+        
     });
         $('.add_misc').click(function(){
             $('.misc').show();

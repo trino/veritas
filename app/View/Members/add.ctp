@@ -220,7 +220,7 @@ if($q || $q2){
 
 <?php if($admin_doc['AdminDoc']['kpiaudits']=='0'){?><input type="hidden" name="canView_KPIAudits" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/KPI Audits');?> </span><input type="checkbox" name="canView_KPIAudits" class="vie" /><?php }?>
-
+<!--
 <?php if($admin_doc['AdminDoc']['personal_inspection']=='0' ){?><input type="hidden" name="canView_personal_inspection" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Personal Inspection');?> </span><input type="checkbox" name="canView_personal_inspection" <?php if(isset($v['Canview']['personal_inspection']) && $v['Canview']['personal_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
 
@@ -235,7 +235,8 @@ if($q || $q2){
 
 <?php if($admin_doc['AdminDoc']['vehicle_inspection']=='0' ){?><input type="hidden" name="canView_vehicle_inspection" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <?php echo $this->requestAction('dashboard/translate/Vehicle Inspection');?> </span><input type="checkbox" name="canView_vehicle_inspection" <?php if(isset($u['Canupload']['vehicle_inspection']) && $u['Canupload']['vehicle_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
-
+-->
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Deployment');?> </span><input type="checkbox" name="canView_deployment_rate" <?php if(isset($v['Canview']['deployment_rate']) && $v['Canview']['deployment_rate']==1){?>checked="checked"<?php }?> />
 </td>
 </tr>
 </table>
@@ -288,7 +289,7 @@ if($q || $q2){
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/KPI Audits');?> </span><input type="checkbox" name="canUpload_KPIAudits" class="upl" /><?php } ?>
 
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Client Feedback');?> </span><input type="checkbox" name="canUpload_client_memo1" class="upl"  />
-
+<!--
 <?php if($admin_doc['AdminDoc']['personal_inspection']=='0' ){?><input type="hidden" name="canUpload_personal_inspection" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Personal Inspection');?> </span><input type="checkbox" name="canUpload_personal_inspection" <?php if(isset($u['Canupload']['personal_inspection']) && $u['Canupload']['personal_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
 
@@ -303,7 +304,8 @@ if($q || $q2){
 
 <?php if($admin_doc['AdminDoc']['vehicle_inspection']=='0' ){?><input type="hidden" name="canUpload_vehicle_inspection" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Vehicle Inspection');?> </span><input type="checkbox" name="canUpload_vehicle_inspection" <?php if(isset($u['Canupload']['canUpload_vehicle_inspection']) && $u['Canupload']['canUpload_vehicle_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
-
+-->
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Deployment');?> </span><input type="checkbox" name="canUpload_deployment_rate" <?php if(isset($u['Canupload']['deployment_rate']) && $u['Canupload']['deployment_rate']==1){?>checked="checked"<?php }?> />
 </td>
 </tr>
 </table>
@@ -362,7 +364,7 @@ if($q || $q2){
 <?php if($admin_doc['AdminDoc']['kpiaudits']=='0'){?><input type="hidden" name="Email_KPIAudits" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/KPI Audits');?> </span><input type="checkbox" name="Email_KPIAudits"  class="rec_email" /><?php }?>
 
-
+<!--
 <?php if($admin_doc['AdminDoc']['personal_inspection']=='0'){?><input type="hidden" name="Email_personal_inspection" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Personal Inspection');?> </span><input type="checkbox" name="Email_personal_inspection"  class="rec_email" /><?php }?>
 
@@ -377,7 +379,7 @@ if($q || $q2){
 
 <?php if($admin_doc['AdminDoc']['vehicle_inspection']=='0'){?><input type="hidden" name="Email_vehicle_inspection" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Vehicle Inspection');?> </span><input type="checkbox" name="Email_vehicle_inspection"  class="rec_email" /><?php }?>
-
+-->
 <!--<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client Feedback </span><input type="checkbox" name="Email_client_memo1"  />-->
 </td>
 </tr>

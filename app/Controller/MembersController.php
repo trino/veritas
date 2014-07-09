@@ -89,8 +89,8 @@ class MembersController extends AppController
         $q=$this->Member->find('first',array('conditions'=>array('email'=>$email)));
         if(trim($email))
         if($q){
-        $this->Session->setFlash('Email already exist');
-        $this->redirect('add');
+            $this->Session->setFlash('Email already exist');
+            $this->redirect('add');
         }}
         $this->loadModel('Member');
         $this->loadModel('AdminDoc');
@@ -261,6 +261,7 @@ class MembersController extends AppController
                 $canview['mobile_inspection'] = (isset($_POST['canView_mobile_inspection'])&& $_POST['canView_mobile_inspection'])? '1' : '0'  ;
                 $canview['inventory'] = (isset($_POST['canView_inventory'])&& $_POST['canView_inventory'])? '1' : '0'  ;
                 $canview['vehicle_inspection'] = (isset($_POST['canView_vehicle_inspection'])&& $_POST['canView_vehicle_inspection'])? '1' : '0'  ;
+                $canview['deployment_rate'] = (isset($_POST['canView_deployment_rate'])&&$_POST['canView_deployment_rate'])? '1' : '0';
                 $this->Canview->create();
                 $this->Canview->save($canview);
             }
@@ -278,6 +279,7 @@ class MembersController extends AppController
                 $canview['KPIAudits'] =  '0'  ;
                 $canview['afimac_intel'] = '0';
                 $canview['news_media'] = '0';
+                $canview['deployment_rate'] = 0;
                 $this->Canview->create();
                 $this->Canview->save($canview);
                 
@@ -303,6 +305,7 @@ class MembersController extends AppController
                 $canupdate['mobile_log'] = (isset($_POST['canUpload_mobile_log'])&& $_POST['canUpload_mobile_log'])? '1' : '0'  ;
                 $canupdate['inventory'] = (isset($_POST['canUpload_inventory'])&& $_POST['canUpload_inventory'])? '1' : '0'  ;
                 $canupdate['vehicle_inspection'] = (isset($_POST['canUpload_vehicle_inspection'])&& $_POST['canUpload_vehicle_inspection'])? '1' : '0'  ;
+                $canupdate['deployment_rate'] = (isset($_POST['canUpload_deployment_rate'])&& $_POST['canUpload_deployment_rate'])? '1' : '0'  ;
                 $this->Canupload->create();
                 $this->Canupload->save($canupdate);  
                 
@@ -322,6 +325,7 @@ class MembersController extends AppController
                 $canupdate['afimac_intel'] =  '0'  ;
                 $canupdate['news_media'] =  '0'  ;
                 $canupdate['client_feedback'] = '0' ;
+                $canupdate['deployment_rate'] = '0';
                 $this->Canupload->create();
                 $this->Canupload->save($canupdate);
             }
@@ -629,6 +633,7 @@ class MembersController extends AppController
                 $canview['mobile_inspection'] = (isset($_POST['canView_mobile_inspection'])&& $_POST['canView_mobile_inspection'])? '1' : '0'  ;
                 $canview['inventory'] = (isset($_POST['canView_inventory'])&& $_POST['canView_inventory'])? '1' : '0'  ;
                 $canview['vehicle_inspection'] = (isset($_POST['canView_vehicle_inspection'])&& $_POST['canView_vehicle_inspection'])? '1' : '0'  ;
+                $canview['deployment_rate'] = (isset($_POST['canView_deployment_rate'])&& $_POST['canView_deployment_rate'])? '1' : '0'  ;                
                 $this->Canview->create();
                 $this->Canview->save($canview);
                 //die('here');
@@ -652,6 +657,7 @@ class MembersController extends AppController
                 $canview['mobile_inspection'] = '0'  ;
                 $canview['mobile_log'] = '0'  ;
                 $canview['inventory'] = '0'  ;
+                $canview['deployment_rate'] = '0';
                 $this->Canview->create();
                 $this->Canview->save($canview);
             }
@@ -676,6 +682,7 @@ class MembersController extends AppController
                 $canupdate['mobile_log'] = (isset($_POST['canUpload_mobile_log'])&& $_POST['canUpload_mobile_log'])? '1' : '0'  ;
                 $canupdate['inventory'] = (isset($_POST['canUpload_inventory'])&& $_POST['canUpload_inventory'])? '1' : '0'  ;
                 $canupdate['vehicle_inspection'] = (isset($_POST['canUpload_vehicle_inspection'])&& $_POST['canUpload_vehicle_inspection'])? '1' : '0'  ;
+                $canupdate['deployment_rate'] = (isset($_POST['canUpload_deployment_rate'])&& $_POST['canUpload_deployment_rate'])? '1' : '0'  ;                
                 $this->Canupload->create();
                 $this->Canupload->save($canupdate);
                 //die();
@@ -700,6 +707,7 @@ class MembersController extends AppController
                 $canupdate['mobile_inspection'] = '0'  ;
                 $canupdate['mobile_log'] = '0'  ;
                 $canupdate['inventory'] = '0'  ;
+                $canupdate['deployment_rate'] = '0';
             }
     
             if(isset($_POST['receive2']))
