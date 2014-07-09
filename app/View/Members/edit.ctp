@@ -313,7 +313,7 @@ if($q || isset($sid)){
 ?>
 <input type="hidden" name="jmid" value="<?php echo $jmid; ?>" />
 <tr>
-    <td colspan="2">
+    <td colspan="2" style="padding: 0;">
         <table>
             <tr><td colspan="2"><strong><?php echo $this->requestAction('dashboard/translate/Assign Job to user');?></strong></td></tr>
             <?php

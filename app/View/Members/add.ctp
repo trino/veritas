@@ -121,11 +121,12 @@
 <tr><td><b><?php echo $this->requestAction('dashboard/translate/Repeat Password');?></b></td><td><input type="password" class="required" name="c_password" /></td></tr>
 <?php
 $q = $job->find('all',array('conditions'=>array('is_special'=>0),'order'=>'title')); 
-$q2 = $job->find('first',array('conditions'=>array('is_special'=>1),'order'=>'title'));
+//$q2 = $job->find('first',array('conditions'=>array('is_special'=>1),'order'=>'title'));
+$q2 = null; 
 if($q || $q2){
 ?>
 <tr>
-    <td colspan="2">
+    <td colspan="2" style="padding: 0;">
         <table class="jobb">
             <tr><td><strong><?php echo $this->requestAction('dashboard/translate/Assign Job to user');?></strong></td></tr>
             
