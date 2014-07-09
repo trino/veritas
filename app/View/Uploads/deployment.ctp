@@ -74,7 +74,7 @@
             var hr_rate = opts[1];
             var travel_rate = opts[2];
        $('.entries').show();
-       $('.dep').append('<tr><td id="'+hr_rate+'_'+travel_rate+'"><input class="sg"  type="text" style="width:160px;" name="Personnel[position][]" value="'+main_val+'" readonly/></td><td><input class="staff" type="text" name="Personnel[no_of_staff][]" value=""/></td><td><input name="Personnel[start_time][]" type="text" class="time"/></td><td><input type="text" name="Personnel[end_time][]" class="time"/></td><td><input type="text" class="total_hours" name="Personnel[total_hours][]" readonly/></td><td>$<input type="text" class="hours_billable" name="Personnel[hours_billable][]" value="" readonly/></td><td><input type="text" name="Personnel[travel][]" class="travel"/></td><td>$<input type="text" name="Personnel[travel_billable][]" readonly/></td><td><input type="text" name="Personnel[meal_amount][]" class="meal"/></td><td>$<input type="text" name="Personnel[meal_billable][]" readonly/><a href="javascript:void(0)" class ="btn btn-danger" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>') 
+       $('.dep').append('<tr><td id="'+hr_rate+'_'+travel_rate+'"><input class="sg"  type="text" style="width:160px;" name="Personnel[position][]" value="'+main_val+'" readonly/></td><td><input class="staff" type="text" name="Personnel[no_of_staff][]" value=""/></td><td><input name="Personnel[start_time][]" type="text" class="time"/></td><td><input type="text" name="Personnel[end_time][]" class="time"/></td><td><input type="text" class="total_hours" name="Personnel[total_hours][]" readonly/></td><td><input type="text" class="hours_billable" name="Personnel[hours_billable][]" value="$" readonly/></td><td><input type="text" name="Personnel[travel][]" class="travel"/></td><td><input type="text" name="Personnel[travel_billable][]" value="$" readonly/></td><td><input type="text" name="Personnel[meal_amount][]" class="meal"/></td><td><input value="$" type="text" name="Personnel[meal_billable][]" readonly/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>') 
         $('.time').timepicker();
     });
     
@@ -108,6 +108,35 @@
         
         
         
+        var st = $(this).closest('tr').children('td:nth-child(2)').children('input').val();
+        
+        if(!st)
+            st=0;
+        else
+            st = parseFloat(st);
+         //alert(st);   
+        var hr = $(this).closest('tr').children('td:nth-child(5)').children('input').val();
+        
+        if(!hr)
+            hr=0;
+        else
+            hr = parseFloat(hr);
+        //alert(hr);
+            
+        var pers = $(this).closest('tr').children('td:first').attr('id');
+        var optn = pers.split("_");
+        var hr_rate = parseFloat(optn[0]);
+        if(!hr_rate)
+        hr_rate = 0;
+        alert(hr_rate);
+        alert(st);
+        alert(hr);
+        var travel_rate = parseFloat(optn[1]);
+        var hours_billable = hr_rate*st*hr;
+        //alert(hours_billable);
+        $(this).closest('tr').children('td:nth-child(6)').children('input').val('$'+hours_billable);
+        
+        
     });
         $('.add_misc').click(function(){
             $('.misc').show();
@@ -126,7 +155,7 @@
                cost ='';
                if(cost)
                cost= parseFloat(cost);
-               $('.misc').append('<tr><td id="'+mid+'"><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td><input class="quantity" type="text" name="Equipment[qty][]"/></td><td><input type="text" name="Equipment[kms][]"/></td><td>$<input type="text" name="Equipment[fuel_cost][]"/></td><td>$<input type="text" name="Equipment[hotel_cost][]" value="'+cost+'" readonly /></td><td>$<input type="text" name="Equipment[amount_billable][]" readonly/></td></tr>'); 
+               $('.misc').append('<tr><td id="'+mid+'"><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td><input class="quantity" type="text" name="Equipment[qty][]"/></td><td><input type="text" name="Equipment[kms][]"/></td><td><input value="$" type="text" name="Equipment[fuel_cost][]"/></td><td><input type="text" name="Equipment[hotel_cost][]" value="$'+cost+'" readonly /></td><td><input value="$" type="text" name="Equipment[amount_billable][]" readonly/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>'); 
             });
     });
     var st=0;
@@ -155,13 +184,13 @@
         var travel_rate = parseFloat(optn[1]);
         var hours_billable = hr_rate*st*hr;
         //alert(hours_billable);
-        $(this).closest('tr').children('td:nth-child(6)').children('input').val(hours_billable);
+        $(this).closest('tr').children('td:nth-child(6)').children('input').val('$'+hours_billable);
         
             
         
         //$(par+' .hours_billable').val()
     });
-    $('.total_hours').live('keyup',function(){
+    $('.total_hours').live('change',function(){
         
         var st = $(this).closest('tr').children('td:nth-child(2)').children('input').val();
         
@@ -185,7 +214,7 @@
         var travel_rate = parseFloat(optn[1]);
         var hours_billable = hr_rate*st*hr;
         //alert(hours_billable);
-        $(this).closest('tr').children('td:nth-child(6)').children('input').val(hours_billable);
+        $(this).closest('tr').children('td:nth-child(6)').children('input').val('$'+hours_billable);
         
             
         
@@ -210,7 +239,7 @@
         var travel_rate = parseFloat(optn[1]);
         var hours_billable = travel_rate*st;
         //alert(hours_billable);
-        $(this).closest('tr').children('td:nth-child(8)').children('input').val(hours_billable);
+        $(this).closest('tr').children('td:nth-child(8)').children('input').val('$'+hours_billable);
         
             
         
@@ -231,11 +260,13 @@
         var pers = $(this).closest('tr').children('td:first').attr('id');
         
         var hr_rate = parseFloat(pers);
+        if(!hr_rate)
+        hr_rate = 0;
         //alert(hr_rate);
         
         var hours_billable = hr_rate*st;
         //alert(hours_billable);
-        $(this).closest('tr').children('td:nth-child(6)').children('input').val(hours_billable);
+        $(this).closest('tr').children('td:nth-child(6)').children('input').val('$'+hours_billable);
         
             
         
@@ -263,7 +294,7 @@
         meal_rate = parseFloat(meal_rate);
         var hours_billable = meal_rate*st;
         //alert(hours_billable);
-        $(this).closest('tr').children('td:nth-child(10)').children('input').val(hours_billable);
+        $(this).closest('tr').children('td:nth-child(10)').children('input').val('$'+hours_billable);
         
             
         
