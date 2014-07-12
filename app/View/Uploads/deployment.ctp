@@ -23,7 +23,7 @@
     <td colspan="10"><strong>Personnel</strong></td>
 </tr>
 <tr class="entries" style="display: none;">
-    <td><strong>Position</strong></td><td><strong>Number of Staff</strong></td><td><strong>Start Time</strong></td><td><strong>End Time</strong></td><td><strong>Total Hours</strong></td><td><strong>Hours Billable</strong></td><td><strong>Travel</strong></td><td><strong>Travel Billable</strong></td><td><strong>Meal Per Diem Amount</strong></td><td><strong>Meal Per Diem Billable</strong></td>
+    <td><strong>Position</strong></td><td><strong>Number of Staff</strong></td><td><strong>Start Time</strong></td><td><strong>End Time</strong></td><td><strong>Total Hours</strong></td><td><strong>Hours Billable</strong></td><td><strong>Travel</strong></td><td><strong>Travel Billable</strong></td><td><strong>Meal</strong></td><td><strong>Meal Billable</strong></td>
 </tr>
 
 </table>
@@ -91,7 +91,7 @@
         //alert('1:'+start_sec+"2:"+end_sec);
         if(start_sec > end_sec)
         {
-            alert("End Time Is Less Than Start Time");
+            alert("End time can't be less than start time.");
             $(this).val("");
             $(this).closest('tr').children('td:nth-child(5)').children('input').val(0);
         }
@@ -155,7 +155,7 @@
         var travel_rate = parseFloat(optn[1]);
         var hours_billable = hr_rate*st*hr;
         //alert(hours_billable);
-        $(this).closest('tr').children('td:nth-child(6)').children('input').val(hours_billable);
+        $(this).closest('tr').children('td:nth-child(6)').children('input').val(hours_billable.toFixed(2));
         
             
         
@@ -185,7 +185,7 @@
         var travel_rate = parseFloat(optn[1]);
         var hours_billable = hr_rate*st*hr;
         //alert(hours_billable);
-        $(this).closest('tr').children('td:nth-child(6)').children('input').val(hours_billable);
+        $(this).closest('tr').children('td:nth-child(6)').children('input').val(hours_billable.toFixed(2));
         
             
         
@@ -210,7 +210,7 @@
         var travel_rate = parseFloat(optn[1]);
         var hours_billable = travel_rate*st;
         //alert(hours_billable);
-        $(this).closest('tr').children('td:nth-child(8)').children('input').val(hours_billable);
+        $(this).closest('tr').children('td:nth-child(8)').children('input').val(hours_billable.toFixed(2));
         
             
         
@@ -235,7 +235,7 @@
         
         var hours_billable = hr_rate*st;
         //alert(hours_billable);
-        $(this).closest('tr').children('td:nth-child(6)').children('input').val(hours_billable);
+        $(this).closest('tr').children('td:nth-child(6)').children('input').val(hours_billable.toFixed(2));
         
             
         
@@ -263,7 +263,7 @@
         meal_rate = parseFloat(meal_rate);
         var hours_billable = meal_rate*st;
         //alert(hours_billable);
-        $(this).closest('tr').children('td:nth-child(10)').children('input').val(hours_billable);
+        $(this).closest('tr').children('td:nth-child(10)').children('input').val(hours_billable.toFixed(2));
         
             
         

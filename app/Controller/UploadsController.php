@@ -3345,6 +3345,9 @@ class UploadsController extends AppController
   {
     $this->loadModel('DeploymentRate');
     $this->set('jid',$jid);
+    $job = $this->Job->findById($jid);
+    $this->set('jname',$job['Job']['title']);
+    
     if($rates = $this->DeploymentRate->findByJobId($jid))
     {
        $this->set("rate",$rates); 
