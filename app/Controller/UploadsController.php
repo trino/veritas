@@ -1903,9 +1903,9 @@ class UploadsController extends AppController
                     $eq['items'] =  $equ['items'][$i];
                     $eq['qty'] =  $equ['qty'][$i];
                     $eq['kms'] =  $equ['kms'][$i];
-                    $eq['fuel_cost'] =  $equ['fuel_cost'][$i];
-                    $eq['hotel_cost'] =  $equ['hotel_cost'][$i];
-                    $eq['amount_billable'] =  $equ['amount_billable'][$i];
+                    $eq['fuel_cost'] =  str_replace('$','',$equ['fuel_cost'][$i]);
+                    $eq['hotel_cost'] =  str_replace('$','',$equ['hotel_cost'][$i]);
+                    $eq['amount_billable'] =  str_replace('$','',$equ['amount_billable'][$i]);
                     $eq['doc_id'] = $id;
                     $this->Equipment->create();
                     $this->Equipment->save($eq);
@@ -1923,11 +1923,11 @@ class UploadsController extends AppController
                     $eq['start_time'] =  $equ['start_time'][$i];
                     $eq['end_time'] =  $equ['end_time'][$i];
                     $eq['total_hours'] =  $equ['total_hours'][$i];
-                    $eq['hours_billable'] =  $equ['hours_billable'][$i];
+                    $eq['hours_billable'] =  str_replace('$','',$equ['hours_billable'][$i]);
                     $eq['travel'] =  $equ['travel'][$i];
-                    $eq['travel_billable'] =  $equ['travel_billable'][$i];
+                    $eq['travel_billable'] =  str_replace('$','',$equ['travel_billable'][$i]);
                     $eq['meal_amount'] =  $equ['meal_amount'][$i];
-                    $eq['meal_billable'] =  $equ['meal_billable'][$i];
+                    $eq['meal_billable'] =  str_replace('$','',$equ['meal_billable'][$i]);
                     $eq['doc_id'] = $id;
                     $this->Personnel->create();
                     $this->Personnel->save($eq);
@@ -3358,6 +3358,8 @@ class UploadsController extends AppController
         $this->DeploymentRate->create();
         foreach($_POST as $k=>$v)
         {
+            if(!$v)
+            $v=0;
             $role[$k]=$v;
             
         }
