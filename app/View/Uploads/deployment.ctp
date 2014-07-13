@@ -27,10 +27,10 @@
 </tr>
 
 </table>
-<table>
+<!--<table>
     <tr><td><a href="javascript:void(0)" class="btn btn-success add_misc">Add Equipment</a></td></tr>
-</table>
-<table class="misc" style="display: none;">
+</table>-->
+<table class="misc" >
     <tr>
         <td colspan="6">
             <select class="misc_opt" style="margin-bottom: 0;">
@@ -53,8 +53,11 @@
     </tr>
     <tr class="misc_entries" style="display: none;"><td colspan="6"><strong>Equipment</strong></td></tr>
     <tr class="misc_entries" style="display: none;"><td><strong>Item</strong></td><td><strong>Quantity</strong></td><td><strong>KM's</strong></td><td><strong>Fuel Costing (excluding tax and admin)</strong></td><td><strong>Hotel Cost (excluding Tax and Admin)</strong></td><td><strong>Amount Billable</strong></td></tr>
+    
 </table>
-
+<table>
+<tr><td><strong>Grand Total: <span class="g_tot"></span></strong></td></tr>
+</table>
 </td>
 <style>
 .misc input[type="text"],.dep input[type="text"]{width:55px;}
@@ -62,7 +65,7 @@
 <script>
     
     $(function(){
-        
+       
         
         
         $('.addPersonnel').click(function(){
@@ -74,7 +77,7 @@
             var hr_rate = opts[1];
             var travel_rate = opts[2];
        $('.entries').show();
-       $('.dep').append('<tr><td id="'+hr_rate+'_'+travel_rate+'"><input class="sg"  type="text" style="width:160px;" name="Personnel[position][]" value="'+main_val+'" readonly/></td><td><input class="staff" type="text" name="Personnel[no_of_staff][]" value=""/></td><td><input name="Personnel[start_time][]" type="text" class="time"/></td><td><input type="text" name="Personnel[end_time][]" class="time"/></td><td><input type="text" class="total_hours" name="Personnel[total_hours][]" readonly/></td><td><input type="text" class="hours_billable" name="Personnel[hours_billable][]" value="$" readonly/></td><td><input type="text" name="Personnel[travel][]" class="travel"/></td><td><input type="text" name="Personnel[travel_billable][]" value="$" readonly/></td><td><input type="text" name="Personnel[meal_amount][]" class="meal"/></td><td><input value="$" type="text" name="Personnel[meal_billable][]" readonly/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>') 
+       $('.dep').append('<tr><td id="'+hr_rate+'_'+travel_rate+'"><input class="sg"  type="text" style="width:160px;" name="Personnel[position][]" value="'+main_val+'" readonly/></td><td><input class="staff" type="text" name="Personnel[no_of_staff][]" value=""/></td><td><input name="Personnel[start_time][]" type="text" class="time"/></td><td><input type="text" name="Personnel[end_time][]" class="time"/></td><td><input type="text" class="total_hours" name="Personnel[total_hours][]" readonly/></td><td><input type="text" class="hours_billable total" name="Personnel[hours_billable][]" value="$"  readonly/></td><td><input type="text" name="Personnel[travel][]" class="travel"/></td><td><input type="text" name="Personnel[travel_billable][]" value="$" class="total" readonly/></td><td><input type="text" name="Personnel[meal_amount][]" class="meal"/></td><td><input value="$" type="text" name="Personnel[meal_billable][]" readonly class="total"/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>') 
         $('.time').timepicker();
     });
     
@@ -128,13 +131,31 @@
         var hr_rate = parseFloat(optn[0]);
         if(!hr_rate)
         hr_rate = 0;
-        alert(hr_rate);
-        alert(st);
-        alert(hr);
+        //alert(hr_rate);
+        //alert(st);
+        //alert(hr);
         var travel_rate = parseFloat(optn[1]);
         var hours_billable = hr_rate*st*hr;
         //alert(hours_billable);
         $(this).closest('tr').children('td:nth-child(6)').children('input').val('$'+hours_billable);
+        var tot = 0;
+        var n_tot =0;
+        $('.total').each(function(){
+           tot= $(this).val();
+           if(tot == '$' || !tot)
+              tot = 0;
+           else
+           if(isNaN(tot))
+           {
+                tot_arr = tot.split("$");
+                tot = tot_arr[1];
+                //alert(tot);
+           }
+           tot = parseFloat(tot);
+           n_tot = parseFloat(n_tot)+tot;
+        $('.g_tot').html("$ "+n_tot);   
+        });
+       
         
         
     });
@@ -143,6 +164,9 @@
             
         });
         $('.go_misc').click(function(){
+              
+               if($('.misc_opt').val()=="")
+                return false;
                $('.misc_entries').show();
                var newopt = $('.misc_opt').val().split('_');
                var mv = newopt[0];
@@ -155,7 +179,7 @@
                cost ='';
                if(cost)
                cost= parseFloat(cost);
-               $('.misc').append('<tr><td id="'+mid+'"><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td><input class="quantity" type="text" name="Equipment[qty][]"/></td><td><input type="text" name="Equipment[kms][]"/></td><td><input value="$" type="text" name="Equipment[fuel_cost][]"/></td><td><input type="text" name="Equipment[hotel_cost][]" value="$'+cost+'" readonly /></td><td><input value="$" type="text" name="Equipment[amount_billable][]" readonly/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>'); 
+               $('.misc').append('<tr><td id="'+mid+'"><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td><input class="quantity" type="text" name="Equipment[qty][]"/></td><td><input type="text" name="Equipment[kms][]"/></td><td><input value="$" type="text" name="Equipment[fuel_cost][]"/></td><td><input type="text" name="Equipment[hotel_cost][]" value="$'+cost+'" readonly /></td><td><input value="$" type="text" name="Equipment[amount_billable][]" class="total" readonly/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>'); 
             });
     });
     var st=0;
@@ -186,6 +210,25 @@
         //alert(hours_billable);
 
         $(this).closest('tr').children('td:nth-child(6)').children('input').val(hours_billable.toFixed(2));
+        var tot = 0;
+        var n_tot =0;
+        $('.total').each(function(){
+           tot= $(this).val();
+           if(tot == '$' || !tot)
+              tot = 0;
+           else
+           if(isNaN(tot))
+           {
+                tot_arr = tot.split("$");
+                tot = tot_arr[1];
+                //alert(tot);
+           }
+           tot = parseFloat(tot);
+           n_tot = parseFloat(n_tot)+tot;
+        $('.g_tot').html("$ "+n_tot);   
+        });
+        
+        
 
         
             
@@ -218,6 +261,24 @@
         //alert(hours_billable);
 
         $(this).closest('tr').children('td:nth-child(6)').children('input').val(hours_billable.toFixed(2));
+       var tot = 0;
+        var n_tot =0;
+        $('.total').each(function(){
+           tot= $(this).val();
+           if(tot == '$' || !tot)
+              tot = 0;
+           else
+           if(isNaN(tot))
+           {
+                tot_arr = tot.split("$");
+                tot = tot_arr[1];
+                //alert(tot);
+           }
+           tot = parseFloat(tot);
+           n_tot = parseFloat(n_tot)+tot;
+        $('.g_tot').html("$ "+n_tot);   
+        });
+        
 
         
             
@@ -245,6 +306,24 @@
         //alert(hours_billable);
 
         $(this).closest('tr').children('td:nth-child(8)').children('input').val(hours_billable.toFixed(2));
+        var tot = 0;
+        var n_tot =0;
+        $('.total').each(function(){
+           tot= $(this).val();
+           if(tot == '$' || !tot)
+              tot = 0;
+           else
+           if(isNaN(tot))
+           {
+                tot_arr = tot.split("$");
+                tot = tot_arr[1];
+                //alert(tot);
+           }
+           tot = parseFloat(tot);
+           n_tot = parseFloat(n_tot)+tot;
+        $('.g_tot').html("$ "+n_tot);   
+        });
+        
 
         
             
@@ -274,6 +353,25 @@
         //alert(hours_billable);
 
         $(this).closest('tr').children('td:nth-child(6)').children('input').val(hours_billable.toFixed(2));
+        var tot = 0;
+        var n_tot =0;
+        $('.total').each(function(){
+           tot= $(this).val();
+           if(tot == '$' || !tot)
+              tot = 0;
+           else
+           if(isNaN(tot))
+           {
+                tot_arr = tot.split("$");
+                tot = tot_arr[1];
+                //alert(tot);
+           }
+           tot = parseFloat(tot);
+           n_tot = parseFloat(n_tot)+tot;
+        $('.g_tot').html("$ "+n_tot);   
+        });
+        
+        
 
         
             
@@ -304,6 +402,24 @@
         //alert(hours_billable);
 
         $(this).closest('tr').children('td:nth-child(10)').children('input').val(hours_billable.toFixed(2));
+        var tot = 0;
+        var n_tot =0;
+        $('.total').each(function(){
+           tot= $(this).val();
+           if(tot == '$' || !tot)
+              tot = 0;
+           else
+           if(isNaN(tot))
+           {
+                tot_arr = tot.split("$");
+                tot = tot_arr[1];
+                //alert(tot);
+           }
+           tot = parseFloat(tot);
+           n_tot = parseFloat(n_tot)+tot;
+        $('.g_tot').html("$ "+n_tot);   
+        });
+        
 
             
         
