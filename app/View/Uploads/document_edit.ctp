@@ -573,7 +573,7 @@ $(function(){
        if(doctype=='deployment_rate')
        {
            $('.deploy').show();
-           $('.deploy').load('<?php echo $this->webroot;?>/uploads/deployment/<?php echo $job_id;?>');
+           $('.deploy').load('<?php echo $this->webroot;?>uploads/deployment/<?php echo $job_id;?>');
            $(".loader2").hide();
            $(".description_tr").hide(); 
            $(".image_tr").hide();  
@@ -716,6 +716,7 @@ $(function(){
          $('.extra_evidence').show();
          $(".loader2").hide();
          }
+        
     if($('#document_type').val() == 'personal_inspection'){
             
             doc_loader('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
@@ -790,6 +791,16 @@ $(function(){
             $('.client_more').show(); 
             $(".loader2").hide();
             }
+            if($('#document_type').val() == 'deployment_rate')
+        {
+           $('.deploy').show();
+           $('.deploy').load('<?php echo $this->webroot;?>/uploads/deployment/<?php echo $job_id;?>/<?php echo $did;?>');
+           $(".loader2").hide();
+           $(".description_tr").hide(); 
+           $(".image_tr").hide();  
+       }
+       else 
+       $('.deploy').hide();
     $('.extra_memo input').each(function(){
         $(this).click();
         $(this).blur();

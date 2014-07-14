@@ -474,6 +474,8 @@ class UploadsController extends AppController
         $this->loadModel('Vehicle_inspection');
         $this->loadModel('StaticSiteAudit');
         $this->loadModel('InsuranceSiteAudit');
+        
+        
         if($eid)
         {
             //$this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$eid))));
@@ -483,6 +485,7 @@ class UploadsController extends AppController
             if($rates = $this->DeploymentRate->findByJobId($docz['Document']['job_id']))
             {
                 $this->set('rates',$rates);
+                $this->set('job_id',$docz['Document']['job_id']);
             }
             
             if($in = $this->MobileTrunk->findByDocumentId($eid))
@@ -560,7 +563,57 @@ class UploadsController extends AppController
                 $arr['training_type'] = $_POST['training_type'];
                 $subname = '_'.$_POST['training_type'];
             }
-            
+            else
+            if($_POST['document_type']=='deployment_rate')
+            {
+                $this->loadModel('Equipment');
+                $this->loadModel('Personnel');
+                $count = count($_POST['Equipment']['items']);
+                $equ = $_POST['Equipment'];
+                $this->Equipment->deleteAll(array('doc_id'=>$eid));
+                for($i=0;$i<$count;$i++)
+                {
+                    $eq['items'] =  $equ['items'][$i];
+                    $eq['qty'] =  $equ['qty'][$i];
+                    if(isset($equ['kms'][$i]))
+                    $eq['kms'] =  $equ['kms'][$i];
+                    if(isset($equ['fuel_cost'][$i]))
+                    $eq['fuel_cost'] =  str_replace('$','',$equ['fuel_cost'][$i]);
+                    if(isset($equ['hotel_cost'][$i]))
+                    $eq['hotel_cost'] =  str_replace('$','',$equ['hotel_cost'][$i]);
+                    
+                    $eq['amount_billable'] =  str_replace('$','',$equ['amount_billable'][$i]);
+                    $eq['doc_id'] = $eid;
+                    
+                    $this->Equipment->create();
+                    $this->Equipment->save($eq);
+                }
+                
+                unset($equ);
+                unset($eq);
+                
+                $count = count($_POST['Personnel']['position']);
+                $equ = $_POST['Personnel'];
+                $this->Personnel->deleteAll(array('doc_id'=>$eid));
+                for($i=0;$i<$count;$i++)
+                {
+                    $eq['position'] =  $equ['position'][$i];
+                    $eq['no_of_staff'] =  $equ['no_of_staff'][$i];
+                    $eq['start_time'] =  $equ['start_time'][$i];
+                    $eq['end_time'] =  $equ['end_time'][$i];
+                    $eq['total_hours'] =  $equ['total_hours'][$i];
+                    $eq['hours_billable'] =  str_replace('$','',$equ['hours_billable'][$i]);
+                    $eq['travel'] =  $equ['travel'][$i];
+                    $eq['travel_billable'] =  str_replace('$','',$equ['travel_billable'][$i]);
+                    $eq['meal_amount'] =  $equ['meal_amount'][$i];
+                    $eq['meal_billable'] =  str_replace('$','',$equ['meal_billable'][$i]);
+                    $eq['doc_id'] = $eid;
+                    
+                    $this->Personnel->create();
+                    $this->Personnel->save($eq);
+                }
+                              
+            }
             elseif($_POST['document_type']=='report')
             {
                 $this->Activity->deleteAll(array('document_id'=>$eid));
@@ -1902,9 +1955,13 @@ class UploadsController extends AppController
                 {
                     $eq['items'] =  $equ['items'][$i];
                     $eq['qty'] =  $equ['qty'][$i];
+                    if(isset($equ['kms'][$i]))
                     $eq['kms'] =  $equ['kms'][$i];
+                    if(isset($equ['fuel_cost'][$i]))
                     $eq['fuel_cost'] =  str_replace('$','',$equ['fuel_cost'][$i]);
+                    if(isset($equ['hotel_cost'][$i]))
                     $eq['hotel_cost'] =  str_replace('$','',$equ['hotel_cost'][$i]);
+                    
                     $eq['amount_billable'] =  str_replace('$','',$equ['amount_billable'][$i]);
                     $eq['doc_id'] = $id;
                     $this->Equipment->create();
@@ -3372,13 +3429,20 @@ class UploadsController extends AppController
     }
     
   }
-  function deployment($jid)
+  function deployment($jid,$did=null)
   {
     
     $this->loadModel('DeploymentRate');
+    $this->loadModel('Personnel');
+    $this->loadModel('Equipment');
     $q1=$this->DeploymentRate->findByJobId($jid);
     $this->set('rate',$q1);
     $this->layout = 'modal_layout';
+    if($did)
+    {
+        $this->set('pers',$this->Personnel->find('all',array('conditions'=>array('doc_id'=>$did))));
+        $this->set('equip',$this->Equipment->find('all',array('conditions'=>array('doc_id'=>$did))));
+    }
   }
   
 }
