@@ -8,7 +8,7 @@
     <td><strong>Position</strong></td><td><strong>Number of Staff</strong></td><td><strong>Hours worked each</strong></td><td><strong>Hours Billable</strong></td><td><strong>Travel Billable</strong></td><td><strong>Meal Per Diem Billable</strong></td>
 </tr>
 <?php
-if($personnel)
+if($personnel) 
 {
     foreach($personnel as $per)
     {
