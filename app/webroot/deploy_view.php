@@ -59,7 +59,7 @@ if($equipment)
         }
     }?>
     <tr class="misc_entries2" ><td colspan="6"><strong>Vehicle</strong></td></tr>
-    <tr class="misc_entries2" ><td><strong>Item</strong></td><td><strong>Quantity</strong></td><td><strong>KM's</strong></td><td><strong>Fuel Costing (excluding tax and admin)</strong></td><td></td><td><strong>Amount Billable</strong></td></tr>
+    <tr class="misc_entries2" ><td><strong>Item</strong></td><td><strong>Quantity</strong></td><td><strong>KM's</strong></td><td><strong>Fuel Cost (excluding tax and admin)</strong></td><td></td><td><strong>Amount Billable</strong></td></tr>
     <?php
    
     foreach($equipment as $eq)
