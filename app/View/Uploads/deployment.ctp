@@ -32,10 +32,28 @@
 <?php
 if(isset($pers) && $pers)
 {
+    
     foreach($pers as $pp)
     {
+        $total = $pp['Personnel']['total'];
+        $tax = $pp['Personnel']['tax'];
+        $a_fee = $pp['Personnel']['a_fee'];
+        $g_total = $pp['Personnel']['g_total'];
+        if($pp['Personnel']['no_of_staff']<1)
+            $pp['Personnel']['no_of_staff1'] =1;
+        else
+           $pp['Personnel']['no_of_staff1']=$pp['Personnel']['no_of_staff']; 
+        if($pp['Personnel']['total_hours']<1)
+            $pp['Personnel']['total_hours1']=1;
+        else
+           $pp['Personnel']['total_hours1']=$pp['Personnel']['total_hours']; 
+        if($pp['Personnel']['travel']<1)
+            $pp['Personnel']['travel1']=1;
+        else
+           $pp['Personnel']['travel1']=$pp['Personnel']['travel']; 
+        
         ?>
-        <tr><td id="<?php echo ($pp['Personnel']['hours_billable'])/($pp['Personnel']['no_of_staff']*$pp['Personnel']['total_hours']).'_'.($pp['Personnel']['travel_billable'])/($pp['Personnel']['travel']);?>"><input class="sg"  type="text" style="width:160px;" name="Personnel[position][]" value="<?php echo $pp['Personnel']['position'];?>" readonly/></td><td><input class="staff" type="text" name="Personnel[no_of_staff][]" value="<?php echo $pp['Personnel']['no_of_staff'];?>"/></td><td><input name="Personnel[start_time][]" type="text" class="time" value="<?php echo $pp['Personnel']['start_time'];?>"/></td><td><input type="text" name="Personnel[end_time][]" class="time" value="<?php echo $pp['Personnel']['end_time'];?>"/></td><td><input type="text" class="total_hours" value="<?php echo $pp['Personnel']['total_hours'];?>" name="Personnel[total_hours][]" readonly /></td><td><input type="text" class="hours_billable total" name="Personnel[hours_billable][]" value="$<?php echo $pp['Personnel']['hours_billable'];?>"  readonly/></td><td><input type="text" name="Personnel[travel][]" class="travel" value="<?php echo $pp['Personnel']['travel'];?>"/></td><td><input type="text" name="Personnel[travel_billable][]" value="$<?php echo $pp['Personnel']['travel_billable'];?>" class="total" readonly/></td><td><input type="text" name="Personnel[meal_amount][]" class="meal" value="<?php echo $pp['Personnel']['meal_amount'];?>"/></td><td><input value="$<?php echo $pp['Personnel']['meal_billable'];?>" type="text" name="Personnel[meal_billable][]" readonly class="total"/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>
+        <tr><td id="<?php echo ($pp['Personnel']['hours_billable'])/($pp['Personnel']['no_of_staff1']*$pp['Personnel']['total_hours1']).'_'.($pp['Personnel']['travel_billable'])/($pp['Personnel']['travel1']);?>"><input class="sg"  type="text" style="width:160px;" name="Personnel[position][]" value="<?php echo $pp['Personnel']['position'];?>" readonly/></td><td><input class="staff" type="text" name="Personnel[no_of_staff][]" value="<?php echo $pp['Personnel']['no_of_staff'];?>"/></td><td><input name="Personnel[start_time][]" type="text" class="time" value="<?php echo $pp['Personnel']['start_time'];?>"/></td><td><input type="text" name="Personnel[end_time][]" class="time" value="<?php echo $pp['Personnel']['end_time'];?>"/></td><td><input type="text" class="total_hours" value="<?php echo $pp['Personnel']['total_hours'];?>" name="Personnel[total_hours][]" readonly /></td><td><input type="text" class="hours_billable total" name="Personnel[hours_billable][]" value="$<?php echo $pp['Personnel']['hours_billable'];?>"  readonly/></td><td><input type="text" name="Personnel[travel][]" class="travel" value="<?php echo $pp['Personnel']['travel'];?>"/></td><td><input type="text" name="Personnel[travel_billable][]" value="$<?php echo $pp['Personnel']['travel_billable'];?>" class="total" readonly/></td><td><input type="text" name="Personnel[meal_amount][]" class="meal" value="<?php echo $pp['Personnel']['meal_amount'];?>"/></td><td><input value="$<?php echo $pp['Personnel']['meal_billable'];?>" type="text" name="Personnel[meal_billable][]" readonly class="total"/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest('tr').remove();">X</a></td></tr>
         <?php
     }
 }
@@ -66,9 +84,19 @@ if(isset($pers) && $pers)
     if(isset($equip))
     foreach($equip as $eq)
     {
+         $total = $eq['Equipment']['total'];
+        $tax = $eq['Equipment']['tax'];
+        $a_fee = $eq['Equipment']['a_fee'];
+        $g_total = $eq['Equipment']['g_total'];
         if(in_array($eq['Equipment']['items'],$arr1)){
+            if($eq['Equipment']['qty']<1)
+                $eq['Equipment']['qty1']=1;
+             else
+                $eq['Equipment']['qty1']=$eq['Equipment']['qty'];
+            
       ?>
-    <tr><td id="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty'];?>"><input type="text" style="width:160px;" name="Equipment[items][]" value="<?php echo $eq['Equipment']['items'];?>" readonly /></td><td><input class="quantity" type="text" name="Equipment[qty][]" value="<?php echo $eq['Equipment']['qty'];?>"/></td><td></td><td></td><td></td><td><input value="$<?php echo $eq['Equipment']['amount_billable'];?>" type="text" name="Equipment[amount_billable][]" class="total" readonly/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>  
+    <tr><td id="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>"><input type="text" style="width:160px;" name="Equipment[items][]" value="<?php echo $eq['Equipment']['items'];?>" readonly /></td><td><input class="quantity" type="text" name="Equipment[qty][]" value="<?php echo $eq['Equipment']['qty'];?>"/></td><td></td><td></td><td></td><td><input value="$<?php echo $eq['Equipment']['amount_billable'];?>" type="text" name="Equipment[amount_billable][]" class="total" readonly /><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest('tr').remove();">X</a></td></tr>  
+      <input type="hidden" name="Equipment[kms][]" /><input type="hidden" name="Equipment[fuel_cost][]" />
       <?php  
       }
     }
@@ -97,9 +125,18 @@ if(isset($pers) && $pers)
     if(isset($equip))
     foreach($equip as $eq)
     {
+        
         if(in_array($eq['Equipment']['items'],$arr2)){
+             $total = $eq['Equipment']['total'];
+            $tax = $eq['Equipment']['tax'];
+            $a_fee = $eq['Equipment']['a_fee'];
+            $g_total = $eq['Equipment']['g_total'];
+             if($eq['Equipment']['qty']<1)
+                $eq['Equipment']['qty1']=1;
+             else
+                $eq['Equipment']['qty1']=$eq['Equipment']['qty'];
       ?>
-    <tr><td id="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty'];?>"><input type="text" style="width:160px;" name="Equipment[items][]" value="<?php echo $eq['Equipment']['items'];?>" readonly /></td><td><input class="quantity" type="text" name="Equipment[qty][]" value="<?php echo $eq['Equipment']['qty'];?>"/></td><td></td><td></td><td></td><td><input value="$<?php echo $eq['Equipment']['amount_billable'];?>" type="text" name="Equipment[amount_billable][]" class="total" readonly/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>  
+    <tr><td id="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>"><input type="text" style="width:160px;" name="Equipment[items][]" value="<?php echo $eq['Equipment']['items'];?>" readonly /></td><td><input class="quantity" type="text" name="Equipment[qty][]" value="<?php echo $eq['Equipment']['qty'];?>"/></td><td><input type="text" name="Equipment[kms][]" value="<?php echo $eq['Equipment']['kms'];?>"/></td><td><input value="<?php echo $eq['Equipment']['fuel_cost'];?>" type="text" name="Equipment[fuel_cost][]" class="total fuel_cost"/></td><td></td><td><input value="$<?php echo $eq['Equipment']['amount_billable'];?>" type="text" name="Equipment[amount_billable][]" class="total" readonly/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest('tr').remove();">X</a></td></tr>  
       <?php  
       }
     }
@@ -108,7 +145,10 @@ if(isset($pers) && $pers)
 </table>
 
 <table>
-<tr><td><strong>Grand Total: <span class="g_tot"></span></strong></td></tr>
+<tr><td><strong>Total: <span class="g_tot"><?php if(isset($pers)) echo $total;?></span></strong><input type="hidden" name="total" value="<?php if(isset($pers)) echo $total;?>" id="g_tot"  /></td></tr>
+<tr><td><strong>Tax: <span class="tax">$<?php if(isset($pers)) echo $tax;?></span></strong><input type="hidden" name="tax" value="<?php if(isset($pers)) echo $tax;?>" id="tax"  /></td></tr>
+<tr><td><strong>Admin Fee: <span class="a_fee">$<?php if(isset($pers)) echo $a_fee;?></span></strong><input type="hidden" name="a_fee" value="<?php if(isset($pers)) echo $a_fee;?>" id="a_fee"  /></td></tr>
+<tr><td><strong>Grand Total: <span class="g2_tot">$<?php if(isset($pers)) echo $g_total;?></span></strong><input type="hidden" name="g2_tot" value="<?php if(isset($pers)) echo $g_total;?>" id="g2_tot"  /></td></tr>
 </table>
 </td>
 <style>
@@ -117,7 +157,7 @@ if(isset($pers) && $pers)
 <script>
     
     $(function(){
-       
+       $('.time').timepicker();
         
         var tot = 0;
         var n_tot =0;
@@ -221,7 +261,19 @@ if(isset($pers) && $pers)
            }
            tot = parseFloat(tot);
            n_tot = parseFloat(n_tot)+tot;
-        $('.g_tot').html("$"+n_tot.toFixed(2));   
+           var tax = parseFloat(n_tot)*.13;
+           var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin'];?>');
+           var a_fee = parseFloat(n_tot)* a_tax/100;
+           var g2 = n_tot + tax + a_fee;
+        $('.g_tot').html("$"+n_tot.toFixed(2)); 
+        $('.tax').html("$"+tax.toFixed(2)); 
+        $('.a_fee').html("$"+a_fee.toFixed(2)); 
+        $('.g2_tot').html("$"+g2.toFixed(2)); 
+        $('#g_tot').val(n_tot.toFixed(2)); 
+        $('#tax').val(tax.toFixed(2)); 
+        $('#a_fee').val(a_fee.toFixed(2)); 
+        $('#g2_tot').val(g2.toFixed(2)); 
+          
         });
        
         
@@ -247,7 +299,7 @@ if(isset($pers) && $pers)
                cost ='';
                if(cost)
                cost= parseFloat(cost);
-               $('.misc').append('<tr><td id="'+mid+'"><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td><input class="quantity" type="text" name="Equipment[qty][]"/></td><td></td><td></td><td></td><td><input value="$" type="text" name="Equipment[amount_billable][]" class="total" readonly/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>'); 
+               $('.misc').append('<tr><td id="'+mid+'"><input type="hidden" name="Equipment[kms][]" /><input type="hidden" name="Equipment[fuel_cost][]" /><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td><input class="quantity" type="text" name="Equipment[qty][]"/></td><td></td><td></td><td></td><td><input value="$" type="text" name="Equipment[amount_billable][]" class="total" readonly/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>'); 
             });
             $('.go_misc2').click(function(){
               
@@ -265,7 +317,7 @@ if(isset($pers) && $pers)
                cost ='';
                if(cost)
                cost= parseFloat(cost);
-               $('.misc2').append('<tr><td id="'+mid+'"><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td><input class="quantity" type="text" name="Equipment[qty][]"/></td><td><input type="text" name="Equipment[kms][]"/></td><td><input value="$" type="text" name="Equipment[fuel_cost][]"/></td><td></td><td><input value="$" type="text" name="Equipment[amount_billable][]" class="total" readonly/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>'); 
+               $('.misc2').append('<tr><td id="'+mid+'"><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td><input class="quantity" type="text" name="Equipment[qty][]"/></td><td><input type="text" name="Equipment[kms][]"/></td><td><input value="$" type="text" name="Equipment[fuel_cost][]" class="total fuel_cost"/></td><td></td><td><input value="$" type="text" name="Equipment[amount_billable][]" class="total" readonly/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>'); 
             });
     });
     var st=0;
@@ -311,7 +363,18 @@ if(isset($pers) && $pers)
            }
            tot = parseFloat(tot);
            n_tot = parseFloat(n_tot)+tot;
-        $('.g_tot').html("$"+n_tot.toFixed(2));   
+            var tax = parseFloat(n_tot)*.13;
+           var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin'];?>');
+           var a_fee = parseFloat(n_tot)* a_tax/100;
+           var g2 = n_tot + tax + a_fee;
+        $('.g_tot').html("$"+n_tot.toFixed(2)); 
+        $('.tax').html("$"+tax.toFixed(2)); 
+        $('.a_fee').html("$"+a_fee.toFixed(2)); 
+        $('.g2_tot').html("$"+g2.toFixed(2)); 
+        $('#g_tot').val(n_tot.toFixed(2)); 
+        $('#tax').val(tax.toFixed(2)); 
+        $('#a_fee').val(a_fee.toFixed(2)); 
+        $('#g2_tot').val(g2.toFixed(2)); 
         });
         
         
@@ -362,7 +425,18 @@ if(isset($pers) && $pers)
            }
            tot = parseFloat(tot);
            n_tot = parseFloat(n_tot)+tot;
-        $('.g_tot').html("$"+n_tot.toFixed(2));   
+        var tax = parseFloat(n_tot)*.13;
+           var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin'];?>');
+           var a_fee = parseFloat(n_tot)* a_tax/100;
+           var g2 = n_tot + tax + a_fee;
+        $('.g_tot').html("$"+n_tot.toFixed(2)); 
+        $('.tax').html("$"+tax.toFixed(2)); 
+        $('.a_fee').html("$"+a_fee.toFixed(2)); 
+        $('.g2_tot').html("$"+g2.toFixed(2));
+        $('#g_tot').val(n_tot.toFixed(2)); 
+        $('#tax').val(tax.toFixed(2)); 
+        $('#a_fee').val(a_fee.toFixed(2)); 
+        $('#g2_tot').val(g2.toFixed(2));  
         });
         
 
@@ -407,7 +481,18 @@ if(isset($pers) && $pers)
            }
            tot = parseFloat(tot);
            n_tot = parseFloat(n_tot)+tot;
-        $('.g_tot').html("$"+n_tot.toFixed(2));   
+        var tax = parseFloat(n_tot)*.13;
+           var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin'];?>');
+           var a_fee = parseFloat(n_tot)* a_tax/100;
+           var g2 = n_tot + tax + a_fee;
+        $('.g_tot').html("$"+n_tot.toFixed(2)); 
+        $('.tax').html("$"+tax.toFixed(2)); 
+        $('.a_fee').html("$"+a_fee.toFixed(2)); 
+        $('.g2_tot').html("$"+g2.toFixed(2)); 
+        $('#g_tot').val(n_tot.toFixed(2)); 
+        $('#tax').val(tax.toFixed(2)); 
+        $('#a_fee').val(a_fee.toFixed(2)); 
+        $('#g2_tot').val(g2.toFixed(2));    
         });
         
 
@@ -454,15 +539,52 @@ if(isset($pers) && $pers)
            }
            tot = parseFloat(tot);
            n_tot = parseFloat(n_tot)+tot;
-        $('.g_tot').html("$"+n_tot.toFixed(2));   
+        var tax = parseFloat(n_tot)*.13;
+           var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin'];?>');
+           var a_fee = parseFloat(n_tot)* a_tax/100;
+           var g2 = n_tot + tax + a_fee;
+        $('.g_tot').html("$"+n_tot.toFixed(2)); 
+        $('.tax').html("$"+tax.toFixed(2)); 
+        $('.a_fee').html("$"+a_fee.toFixed(2)); 
+        $('.g2_tot').html("$"+g2.toFixed(2));
+        $('#g_tot').val(n_tot.toFixed(2)); 
+        $('#tax').val(tax.toFixed(2)); 
+        $('#a_fee').val(a_fee.toFixed(2)); 
+        $('#g2_tot').val(g2.toFixed(2));  
         });
-        
-        
-
-        
-            
-        
+     
         //$(par+' .hours_billable').val()
+    });
+    $('.fuel_cost').live('keyup', function(){
+         var tot = 0;
+        var n_tot =0;
+        $('.total').each(function(){
+           tot= $(this).val();
+           if(tot == '$' || !tot)
+              tot = 0;
+           else
+           if(isNaN(tot))
+           {
+                tot_arr = tot.split("$");
+                tot = tot_arr[1];
+                //alert(tot);
+           }
+           tot = parseFloat(tot);
+           n_tot = parseFloat(n_tot)+tot;
+            var tax = parseFloat(n_tot)*.13;
+           var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin'];?>');
+           var a_fee = parseFloat(n_tot)* a_tax/100;
+           var g2 = n_tot + tax + a_fee;
+            $('.g_tot').html("$"+n_tot.toFixed(2)); 
+            $('.tax').html("$"+tax.toFixed(2)); 
+            $('.a_fee').html("$"+a_fee.toFixed(2)); 
+            $('.g2_tot').html("$"+g2.toFixed(2));
+            $('#g_tot').val(n_tot.toFixed(2)); 
+            $('#tax').val(tax.toFixed(2)); 
+            $('#a_fee').val(a_fee.toFixed(2)); 
+            $('#g2_tot').val(g2.toFixed(2));  
+            
+        });
     });
     $('.meal').live('keyup',function(){
         
@@ -503,7 +625,18 @@ if(isset($pers) && $pers)
            }
            tot = parseFloat(tot);
            n_tot = parseFloat(n_tot)+tot;
-        $('.g_tot').html("$"+n_tot.toFixed(2));   
+        var tax = parseFloat(n_tot)*.13;
+           var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin'];?>');
+           var a_fee = parseFloat(n_tot)* a_tax/100;
+           var g2 = n_tot + tax + a_fee;
+        $('.g_tot').html("$"+n_tot.toFixed(2)); 
+        $('.tax').html("$"+tax.toFixed(2)); 
+        $('.a_fee').html("$"+a_fee.toFixed(2)); 
+        $('.g2_tot').html("$"+g2.toFixed(2)); 
+        $('#g_tot').val(n_tot.toFixed(2)); 
+        $('#tax').val(tax.toFixed(2)); 
+        $('#a_fee').val(a_fee.toFixed(2)); 
+        $('#g2_tot').val(g2.toFixed(2)); 
         });
         
 

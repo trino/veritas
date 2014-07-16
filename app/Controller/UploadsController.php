@@ -585,6 +585,11 @@ class UploadsController extends AppController
                     $eq['amount_billable'] =  str_replace('$','',$equ['amount_billable'][$i]);
                     $eq['doc_id'] = $eid;
                     
+                    $eq['total'] =$_POST['total'];
+                    $eq['tax'] =$_POST['tax'];
+                    $eq['a_fee'] =$_POST['a_fee'];
+                    $eq['g_total'] =$_POST['g2_tot'];
+                    
                     $this->Equipment->create();
                     $this->Equipment->save($eq);
                 }
@@ -608,6 +613,11 @@ class UploadsController extends AppController
                     $eq['meal_amount'] =  $equ['meal_amount'][$i];
                     $eq['meal_billable'] =  str_replace('$','',$equ['meal_billable'][$i]);
                     $eq['doc_id'] = $eid;
+                    
+                    $eq['total'] =$_POST['total'];
+                    $eq['tax'] =$_POST['tax'];
+                    $eq['a_fee'] =$_POST['a_fee'];
+                    $eq['g_total'] =$_POST['g2_tot'];
                     
                     $this->Personnel->create();
                     $this->Personnel->save($eq);
@@ -1964,6 +1974,10 @@ class UploadsController extends AppController
                     
                     $eq['amount_billable'] =  str_replace('$','',$equ['amount_billable'][$i]);
                     $eq['doc_id'] = $id;
+                    $eq['total'] =$_POST['total'];
+                    $eq['tax'] =$_POST['tax'];
+                    $eq['a_fee'] =$_POST['a_fee'];
+                    $eq['g_total'] =$_POST['g2_tot'];
                     $this->Equipment->create();
                     $this->Equipment->save($eq);
                 }
@@ -1986,6 +2000,11 @@ class UploadsController extends AppController
                     $eq['meal_amount'] =  $equ['meal_amount'][$i];
                     $eq['meal_billable'] =  str_replace('$','',$equ['meal_billable'][$i]);
                     $eq['doc_id'] = $id;
+                    $eq['doc_id'] = $id;
+                    $eq['total'] =$_POST['total'];
+                    $eq['tax'] =$_POST['tax'];
+                    $eq['a_fee'] =$_POST['a_fee'];
+                    $eq['g_total'] =$_POST['g2_tot'];
                     $this->Personnel->create();
                     $this->Personnel->save($eq);
                 }

@@ -154,6 +154,7 @@ class DashboardController extends AppController
             $this->set('mobile_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_inspection'))));
             $this->set('mobile_log',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_log'))));        
             $this->set('inventory', $this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_vehicle_trunk_inventory'))));
+            $this->set('deployment_rate', $this->Document->find('count',array('conditions'=>array('document_type'=>'deployment_rate'))));
             $this->set('vehicle_inspection', $this->Document->find('count',array('conditions'=>array('document_type'=>'vehicle_inspection'))));
             $this->paginate = array('limit'=>10,'order'=>'date desc ,time desc');
              //$this->set('activity',$this->paginate('Document'));
@@ -206,6 +207,7 @@ class DashboardController extends AppController
                         $this->set('SiteOrder',$this->Document->find('count',array('conditions'=>array('document_type'=>'siteOrder','job_id in ('.$d.')'))));
                         $this->set('training',$this->Document->find('count',array('conditions'=>array('document_type'=>'training','job_id in ('.$d.')'))));
                         $this->set('employee',$this->Document->find('count',array('conditions'=>array('document_type'=>'employee','job_id in ('.$d.')'))));
+                        $this->set('deployment_rate',$this->Document->find('count',array('conditions'=>array('document_type'=>'deployment_rate','job_id in ('.$d.')'))));
                         $this->set('KPIAudits',$this->Document->find('count',array('conditions'=>array('document_type'=>'KPIAudits','job_id in ('.$d.')'))));
                         $this->set('afimac_intel',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'AFIMAC Intel','job_id in ('.$d.')'))));            
                         $this->set('news_media',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'News/Media','job_id in ('.$d.')'))));
