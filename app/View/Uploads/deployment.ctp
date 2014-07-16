@@ -136,7 +136,7 @@ if(isset($pers) && $pers)
              else
                 $eq['Equipment']['qty1']=$eq['Equipment']['qty'];
       ?>
-    <tr><td id="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>"><input type="text" style="width:160px;" name="Equipment[items][]" value="<?php echo $eq['Equipment']['items'];?>" readonly /></td><td><input class="quantity" type="text" name="Equipment[qty][]" value="<?php echo $eq['Equipment']['qty'];?>"/></td><td><input type="text" name="Equipment[kms][]" value="<?php echo $eq['Equipment']['kms'];?>"/></td><td><input value="<?php echo $eq['Equipment']['fuel_cost'];?>" type="text" name="Equipment[fuel_cost][]" class="total fuel_cost"/></td><td></td><td><input value="$<?php echo $eq['Equipment']['amount_billable'];?>" type="text" name="Equipment[amount_billable][]" class="total" readonly/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest('tr').remove();">X</a></td></tr>  
+    <tr><td id="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>"><input type="text" style="width:160px;" name="Equipment[items][]" value="<?php echo $eq['Equipment']['items'];?>" readonly /></td><td><input class="quantity" type="text" name="Equipment[qty][]" value="<?php echo $eq['Equipment']['qty'];?>"/></td><td><input type="text" name="Equipment[kms][]" value="<?php echo $eq['Equipment']['kms'];?>"/></td><td><input value="<?php echo $eq['Equipment']['fuel_cost'];?>" type="text" name="Equipment[fuel_cost][]" class="fuel_cost"/></td><td><input type="hidden" value="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>" /></td><td><input value="$<?php echo $eq['Equipment']['amount_billable'];?>" type="text" name="Equipment[amount_billable][]" class="total" readonly/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest('tr').remove();">X</a></td></tr>  
       <?php  
       }
     }
@@ -204,6 +204,11 @@ if(isset($pers) && $pers)
         {
             alert("End time can't be less than start time.");
             $(this).val("");
+            $(this).closest('tr').children('td:nth-child(5)').children('input').val(0);
+        }
+        else
+        if(start_sec == end_sec)
+        {
             $(this).closest('tr').children('td:nth-child(5)').children('input').val(0);
         }
         else
@@ -317,7 +322,7 @@ if(isset($pers) && $pers)
                cost ='';
                if(cost)
                cost= parseFloat(cost);
-               $('.misc2').append('<tr><td id="'+mid+'"><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td><input class="quantity" type="text" name="Equipment[qty][]"/></td><td><input type="text" name="Equipment[kms][]"/></td><td><input value="$" type="text" name="Equipment[fuel_cost][]" class="total fuel_cost"/></td><td></td><td><input value="$" type="text" name="Equipment[amount_billable][]" class="total" readonly/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>'); 
+               $('.misc2').append('<tr><td id="'+mid+'"><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td><input class="quantity" type="text" name="Equipment[qty][]"/></td><td><input type="text" name="Equipment[kms][]"/></td><td><input value="$" type="text" name="Equipment[fuel_cost][]" class="fuel_cost"/></td><td><input type ="hidden" value="'+mid+'" /></td><td><input value="$" type="text" name="Equipment[amount_billable][]" class="total" readonly/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>'); 
             });
     });
     var st=0;
@@ -522,7 +527,14 @@ if(isset($pers) && $pers)
         
         var hours_billable = hr_rate*st;
         //alert(hours_billable);
-
+        
+        var f_cost = $(this).closest('tr').children('td:nth-child(4)').children('input').val();
+        
+        if(f_cost && f_cost !='$')
+        {
+            f_cost = f_cost.replace('$','');
+            hours_billable = hours_billable+parseFloat(f_cost);
+        }
         $(this).closest('tr').children('td:nth-child(6)').children('input').val(hours_billable.toFixed(2));
         var tot = 0;
         var n_tot =0;
@@ -556,7 +568,16 @@ if(isset($pers) && $pers)
         //$(par+' .hours_billable').val()
     });
     $('.fuel_cost').live('keyup', function(){
-         var tot = 0;
+        var f_cost = $(this).val();
+        f_cost = f_cost.replace('$','');
+        var am = $(this).closest('tr').children('td:nth-child(5)').children('input').val();
+        am = am.replace('$','');
+        am = parseFloat(am);
+        var qty = $(this).closest('tr').children('td:nth-child(2)').children('input').val();
+        am = am*qty;
+        var amou = parseFloat(f_cost)+parseFloat(am);
+        $(this).closest('tr').children('td:nth-child(6)').children('input').val(amou.toFixed(2));
+        var tot = 0;
         var n_tot =0;
         $('.total').each(function(){
            tot= $(this).val();
@@ -571,7 +592,7 @@ if(isset($pers) && $pers)
            }
            tot = parseFloat(tot);
            n_tot = parseFloat(n_tot)+tot;
-            var tax = parseFloat(n_tot)*.13;
+           var tax = parseFloat(n_tot)*.13;
            var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin'];?>');
            var a_fee = parseFloat(n_tot)* a_tax/100;
            var g2 = n_tot + tax + a_fee;
