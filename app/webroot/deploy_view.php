@@ -84,7 +84,7 @@ if($equipment)
 }
 ?>
 </table>
-<table>
+<table style="border-bottom: 1px solid #DDD;">
 <tr><td><strong>Total: <span class="g_tot">$<?php echo $total;?></span></strong><input type="hidden" name="total" value="<?php if(isset($pers)) echo $total;?>" id="g_tot"  /></td></tr>
 <tr><td><strong>Tax: <span class="tax">$<?php echo $tax;?></span></strong><input type="hidden" name="tax" value="<?php if(isset($pers)) echo $tax;?>" id="tax"  /></td></tr>
 <tr><td><strong>Admin Fee: <span class="a_fee">$<?php  echo $a_fee;?></span></strong><input type="hidden" name="a_fee" value="<?php if(isset($pers)) echo $a_fee;?>" id="a_fee"  /></td></tr>
