@@ -303,6 +303,10 @@ class SearchController extends AppController
             {
                 $arrs = array('document_type'=>'mobile_vehicle_trunk_inventory');
             }
+            if($type == 'deployment_rate')
+            {
+                $arrs = array('document_type'=>'deployment_rate');
+            }
             }
             if(count($arrs)< 1 && count($arrs2)< 1)
             $this->set('noView',1);
