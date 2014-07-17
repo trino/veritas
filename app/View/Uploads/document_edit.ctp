@@ -1,4 +1,5 @@
 <?php include_once('inc.php');
+
 if(isset($doc['Document']['id']))
 $did = $doc['Document']['id'];
 else
@@ -201,7 +202,7 @@ function remove_youtube()
 </tr>
 
 <tr class="loader2"></tr>
-<tr class="loaderimg" style="display: none;"><td colspan="3"><img src="<?php echo $this->webroot;?>img/ajax-loader.gif" /></td></tr>
+<tr class="loaderimg" style="display: none;"><td colspan="3"><img src="<?php echo $base_url;?>img/ajax-loader.gif" /></td></tr>
 <tr class="site_more" style="display: none;">
 <td colspan="2">
 <table>
@@ -364,12 +365,11 @@ foreach($activity as $act)
 {
     $t = explode(":",$act['Activity']['time']);
     $time = $t[0].":".$t[1];
-    $ran = rand(100000,999999);
     ?>
-<tr class="date_time <?php echo $ran;?>">
+<tr class="date_time">
 <td width="220px"><input type="text" value="<?php echo $act['Activity']['date'];?>" name="activity_date[]" class="activity_date required" /></td>
 <td width="220px"><input type="text" value="<?php echo $time;?>" name="activity_time[]" class="activity_time required" /></td>
-<td width="350px"><textarea name="activity_desc[]" class="activity_desc"><?php echo $act['Activity']['desc'];?></textarea>  <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger"><?php echo $this->requestAction('dashboard/translate/Remove');?></a> <a href="javascript:void(0);" onclick="" class="btn btn-success activity_mores" id="<?php echo $ran;?>">Add above</a></td>
+<td width="350px"><textarea name="activity_desc[]" class="activity_desc"><?php echo $act['Activity']['desc'];?></textarea>  <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger"><?php echo $this->requestAction('dashboard/translate/Remove');?></a></td>
 </tr>
 <?php }
 else{
@@ -450,7 +450,7 @@ $(function(){
             if($(this).val()=='7' || $(this).val()=='8' || $(this).val()=='9' || $(this).val()=="10" || $(this).val()=="11" || $(this).val()=="12"|| $(this).val()=="13"|| $(this).val()=="14"|| $(this).val()=="15"|| $(this).val()=="16" )
             {
                 $('.loader').show();
-                doc_loader1('<?php echo $this->webroot;?>uploads/reportType/id_<?php echo $did;?>/'+$(this).val());
+                doc_loader1('<?php echo $base_url;?>uploads/reportType/id_<?php echo $did;?>/'+$(this).val());
             }
             
                 
@@ -502,11 +502,7 @@ $(function(){
     $('.activity_date').val(da);
     <?php }?> 
     var test=1;
-    var incr = 1;
     $('#activity_more').click(function(){
-        incr++;
-     var ran = '<?php echo rand(100000,999999);?>';
-     ran = ran+incr;   
      var t = new Date;
      var mis ='';
         var dt = t.getFullYear()+'-'+Number(t.getMonth()+1)+'-'+t.getDate();
@@ -514,36 +510,12 @@ $(function(){
         mis = "0"+t.getMinutes();
     else
         mis = t.getMinutes(); 
-       var more = '<tr class="'+ran+'">'+
+       var more = '<tr>'+
 '<td width="220px"><input type="text" value="'+dt+'" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
 '<td width="220px"><input type="text" value="'+t.getHours()+':'+mis+'" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
-'<td width="350px"><textarea name="activity_desc[]"></textarea>   <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a> <a href="javascript:void(0);" onclick="" class="btn btn-success activity_mores" id="'+ran+'">Add above</a></td>'+
+'<td width="350px"><textarea name="activity_desc[]"></textarea>   <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>'+
 '</tr>';
                $('.activity_more').append(more);
-               $('.test'+test).each(function(){
-        $(this).click();
-        $(this).blur();
-       });
-       test++; 
-    });
-    incr2=100;
-    $('.activity_mores').live('click',function(){
-        var ran = '<?php echo rand(100000,999999);?>';   
-        ran=ran+incr2;
-     var id_r = $(this).attr('id');   
-     var t = new Date;
-     var mis ='';
-        var dt = t.getFullYear()+'-'+Number(t.getMonth()+1)+'-'+t.getDate();
-         if(t.getMinutes()<10)
-        mis = "0"+t.getMinutes();
-    else
-        mis = t.getMinutes(); 
-       var more = '<tr class="'+ran+'">'+
-'<td width="220px"><input type="text" value="'+dt+'" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
-'<td width="220px"><input type="text" value="'+t.getHours()+':'+mis+'" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
-'<td width="350px"><textarea name="activity_desc[]"></textarea>   <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a> <a href="javascript:void(0);" onclick="" class="btn btn-success activity_mores" id="'+ran+'">Add above</a></td>'+
-'</tr>';
-               $('.'+id_r).before(more);
                $('.test'+test).each(function(){
         $(this).click();
         $(this).blur();
@@ -602,7 +574,7 @@ $(function(){
        if(doctype=='deployment_rate')
        {
            $('.deploy').show();
-           $('.deploy').load('<?php echo $this->webroot;?>uploads/deployment/<?php echo $job_id;?>');
+           $('.deploy').load('<?php echo $base_url;?>uploads/deployment/<?php echo $job_id;?>');
            $(".loader2").hide();
            $(".description_tr").hide(); 
            $(".image_tr").hide();  
@@ -629,7 +601,7 @@ $(function(){
             //$('.personal_more').show();
             $('.loader2').show();
             
-            doc_loader('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+            doc_loader('<?php echo $base_url;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
             $('.description_tr').hide();
             $('.image_tr').hide();
         }
@@ -643,7 +615,7 @@ $(function(){
         }
         if(doctype == 'vehicle_inspection'){
             $('.loader2').show();
-            doc_loader('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+            doc_loader('<?php echo $base_url;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
             $('.description_tr').hide();
             $('.image_tr').hide();
             }
@@ -653,7 +625,7 @@ $(function(){
             }    
        if(doctype == 'mobile_vehicle_trunk_inventory')
         {
-            doc_loader('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+            doc_loader('<?php echo $base_url;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
             $('.description_tr').hide();
             $('.image_tr').hide();
         }
@@ -663,7 +635,7 @@ $(function(){
          }
         if(doctype == 'mobile_inspection')
         {
-            doc_loader('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+            doc_loader('<?php echo $base_url;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
             $('.description_tr').hide();
             $('.image_tr').hide();
         }
@@ -673,7 +645,7 @@ $(function(){
         }
         if(doctype == 'mobile_log')
         {
-            doc_loader('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+            doc_loader('<?php echo $base_url;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
             $('.description_tr').hide();
             $('.image_tr').hide();
         }
@@ -748,7 +720,7 @@ $(function(){
         
     if($('#document_type').val() == 'personal_inspection'){
             
-            doc_loader('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+            doc_loader('<?php echo $base_url;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
             $('.description_tr').hide();
             $('.image_tr').hide();
             }
@@ -759,7 +731,7 @@ $(function(){
             }
     if($('#document_type').val() == 'vehicle_inspection'){
             $('.loader2').show();
-            doc_loader('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+            doc_loader('<?php echo $base_url;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
             $('.description_tr').hide();
             $('.image_tr').hide();
             }
@@ -767,7 +739,7 @@ $(function(){
             //$('.loader2').hide();
            }
     if($('#document_type').val() == 'mobile_inspection'){
-        doc_loader('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+        doc_loader('<?php echo $base_url;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
         $('.description_tr').hide();
             $('.image_tr').hide();
            }
@@ -776,8 +748,8 @@ $(function(){
             }
     if($('#document_type').val() == 'mobile_log')
     {
-        doc_loader('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
-        //$('.loader2').load('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+        doc_loader('<?php echo $base_url;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+        //$('.loader2').load('<?php echo $base_url;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
         $('.description_tr').hide();
             $('.image_tr').hide();
     }
@@ -787,7 +759,7 @@ $(function(){
     }
     if($('#document_type').val() == 'mobile_vehicle_trunk_inventory')
     {
-        doc_loader('<?php echo $this->webroot;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
+        doc_loader('<?php echo $base_url;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());
         //$('.loader2').load();
         $('.description_tr').hide();
         $('.image_tr').hide();
@@ -823,7 +795,7 @@ $(function(){
             if($('#document_type').val() == 'deployment_rate')
         {
            $('.deploy').show();
-           $('.deploy').load('<?php echo $this->webroot;?>/uploads/deployment/<?php echo $job_id;?>/<?php echo $did;?>');
+           $('.deploy').load('<?php echo $base_url;?>/uploads/deployment/<?php echo $job_id;?>/<?php echo $did;?>');
            $(".loader2").hide();
            $(".description_tr").hide(); 
            $(".image_tr").hide();  
@@ -860,7 +832,7 @@ $(function(){
         
         ?>
         $('.loader').show();
-        $('.loader').load('<?php echo $this->webroot;?>uploads/reportType/id_<?php echo $did;?>/'+$('.reporttype').val());
+        $('.loader').load('<?php echo $base_url;?>uploads/reportType/id_<?php echo $did;?>/'+$('.reporttype').val());
         $('.description_tr').hide();
         $('.image_tr').hide();
         <?php
