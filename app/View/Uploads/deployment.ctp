@@ -120,7 +120,7 @@ if(isset($pers) && $pers)
         </td>
     </tr>
     <tr class="misc_entries2" style="<?php if(!isset($pers)){?>display: none;<?php }?>"><td colspan="6"><strong>Vehicle</strong></td></tr>
-    <tr class="misc_entries2" style="<?php if(!isset($pers)){?>display: none;<?php }?>"><td><strong>Item</strong></td><td><strong>Quantity</strong></td><td><strong>KM's</strong></td><td><strong>Fuel Costing (excluding tax and admin)</strong></td><td></td><td><strong>Amount Billable</strong></td></tr>
+    <tr class="misc_entries2" style="<?php if(!isset($pers)){?>display: none;<?php }?>"><td><strong>Item</strong></td><td><strong>Quantity</strong></td><td><strong>KM's</strong></td><td><strong>Fuel Cost (excluding tax and admin)</strong></td><td></td><td><strong>Amount Billable</strong></td></tr>
     <?php
     if(isset($equip))
     foreach($equip as $eq)
@@ -250,7 +250,7 @@ if(isset($pers) && $pers)
         var travel_rate = parseFloat(optn[1]);
         var hours_billable = hr_rate*st*hr;
         //alert(hours_billable);
-        $(this).closest('tr').children('td:nth-child(6)').children('input').val('$'+hours_billable);
+        $(this).closest('tr').children('td:nth-child(6)').children('input').val('$'+hours_billable.toFixed(2));
         var tot = 0;
         var n_tot =0;
         $('.total').each(function(){
