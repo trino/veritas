@@ -231,7 +231,7 @@ $(function(){
 		<div class="dusk2"></div>						
 	</div>
     <?php }?>
-  <?php if(((isset($canview['Canview']['deployment_rate']) && $canview['Canview']['deployment_rate']=='1')|| $this->Session->read('admin'))){?>
+  <?php if($admin_doc['AdminDoc']['deployment_rate']=='1'&&((isset($canview['Canview']['deployment_rate']) && $canview['Canview']['deployment_rate']=='1')|| $this->Session->read('admin'))){?>
     <div class="dashboard-stat purple">								
 		<div class="whiteCorner"></div>								
 		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->

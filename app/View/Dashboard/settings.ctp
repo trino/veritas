@@ -193,6 +193,7 @@ $(function(){
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Mobile Log');?> </span><input <?php echo $d;?> type="checkbox" name="show[mobile_log]" value="1" <?php if(isset($admin_doc['AdminDoc']['mobile_log']) && $admin_doc['AdminDoc']['mobile_log']=='1' ) echo "checked='checked'";?>/>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Mobile Vehicle Trunk Inventory');?> </span><input <?php echo $d;?> type="checkbox" name="show[inventory]" value="1" <?php if(isset($admin_doc['AdminDoc']['inventory']) && $admin_doc['AdminDoc']['inventory']=='1' ) echo "checked='checked'";?>/>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Vehicle Inspection');?> </span><input <?php echo $d;?> type="checkbox" name="show[vehicle_inspection]" value="1" <?php if(isset($admin_doc['AdminDoc']['vehicle_inspection']) && $admin_doc['AdminDoc']['vehicle_inspection']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Deployment');?> </span><input <?php echo $d;?> type="checkbox" name="show[deployment_rate]" value="1" <?php if(isset($admin_doc['AdminDoc']['deployment_rate']) && $admin_doc['AdminDoc']['deployment_rate']=='1' ) echo "checked='checked'";?>/>
 </td></tr>
         <tr>
             <td><?php echo $this->requestAction('dashboard/translate/Modules');?></td>
