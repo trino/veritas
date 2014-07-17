@@ -504,6 +504,12 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
                             <?php
                             }?>
                             <?php
+                            if($this->requestAction($base_url.'uploads/checkAdminPerm/deployment_rate')){
+                            ?>
+                            <li><a href="<?php echo $base_url;?>search/index/deployment_rate"><i class="icon-arrow-right"></i><?php echo $this->requestAction('dashboard/translate/Deployment');?></a></li>
+                            <?php
+                            }?>
+                            <?php
                             /*
                             if($this->requestAction($base_url.'uploads/checkAdminPerm/personal_inspection')){
                             ?>

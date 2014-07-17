@@ -5,7 +5,7 @@
 <td colspan="2" style="padding: 0;">
 <table class="dep">
 <tr>
-<td colspan="10">
+<td colspan="10"style="padding-top: 50px;">
 <select class="personnel" name="personnel" style="margin-bottom: 0;">
     <option value="" >Choose Personnel</option>
     <option value="Security Guard_<?php echo $rate['DeploymentRate']['securityguard_hr'];?>_<?php echo $rate['DeploymentRate']['securityguard_travel'];?>" class="securityguard">Security Guard</option>
@@ -65,7 +65,7 @@ if(isset($pers) && $pers)
 </table>-->
 <table class="misc" >
     <tr>
-        <td colspan="6">
+        <td colspan="6" style="padding-top: 50px;border-top:1px solid #ddd">
             <select class="misc_opt" style="margin-bottom: 0;">
                 <option value="">Choose Equipment/Hotel</option>
                 <option value="Radio_<?php echo $rate['DeploymentRate']['radio_day'];?>" class="radio_day">Radio</option>
@@ -105,7 +105,7 @@ if(isset($pers) && $pers)
 
 <table class="misc2" >
     <tr>
-        <td colspan="6">
+        <td colspan="6" style="padding-top: 50px;border-top:1px solid #ddd">
             <select class="misc_opt2" style="margin-bottom: 0;">
                 <option value="">Choose Vehicle</option>
                 <option value="Security Vehicle Regular_<?php echo $rate['DeploymentRate']['securityvehicleregular_day'];?>" class="securityvehicleregular_day">Security Vehicle Regular</option>
@@ -145,7 +145,7 @@ if(isset($pers) && $pers)
 </table>
 
 <table>
-<tr><td><strong>Total: <span class="g_tot"><?php if(isset($pers)) echo $total;?></span></strong><input type="hidden" name="total" value="<?php if(isset($pers)) echo $total;?>" id="g_tot"  /></td></tr>
+<tr><td style="padding-top: 50px;border-top:1px solid #ddd"><strong>Total: <span class="g_tot"><?php if(isset($pers)) echo $total;?></span></strong><input type="hidden" name="total" value="<?php if(isset($pers)) echo $total;?>" id="g_tot"  /></td></tr>
 <tr><td><strong>Tax: <span class="tax">$<?php if(isset($pers)) echo $tax;?></span></strong><input type="hidden" name="tax" value="<?php if(isset($pers)) echo $tax;?>" id="tax"  /></td></tr>
 <tr><td><strong>Admin Fee: <span class="a_fee">$<?php if(isset($pers)) echo $a_fee;?></span></strong><input type="hidden" name="a_fee" value="<?php if(isset($pers)) echo $a_fee;?>" id="a_fee"  /></td></tr>
 <tr><td><strong>Grand Total: <span class="g2_tot">$<?php if(isset($pers)) echo $g_total;?></span></strong><input type="hidden" name="g2_tot" value="<?php if(isset($pers)) echo $g_total;?>" id="g2_tot"  /></td></tr>

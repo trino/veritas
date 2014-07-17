@@ -2,7 +2,7 @@
     <td colspan="2" style="padding: 0;">
 <table class="dep">
 <tr class="entries">
-    <td colspan="10"><strong>Personnel</strong></td>
+    <td colspan="10" style="padding-top: 50px;"><strong>Personnel</strong></td>
 </tr>
 <tr class="entries">
     <td><strong>Position</strong></td><td><strong>Number of Staff</strong></td><td><strong>Hours worked each</strong></td><td><strong>Hours Billable</strong></td><td><strong>Travel Billable</strong></td><td><strong>Meal Per Diem Billable</strong></td>
@@ -33,7 +33,7 @@ if($personnel)
 
 <table class="misc" style="border-bottom:1px solid #ddd">
     
-    <tr class="misc_entries"><td colspan="6"><strong>Equipment</strong></td></tr>
+    <tr class="misc_entries"><td colspan="6" style="padding-top: 50px;"><strong>Equipment</strong></td></tr>
     <tr class="misc_entries"><td><strong>Item</strong></td><td><strong>Quantity</strong></td><td><strong>Amount Billable</strong></td></tr>
     <?php
 if($equipment)
@@ -58,7 +58,7 @@ if($equipment)
         <?php
         }
     }?>
-    <tr class="misc_entries2" ><td colspan="6"><strong>Vehicle</strong></td></tr>
+    <tr class="misc_entries2" ><td colspan="6" style="padding-top: 50px;"><strong>Vehicle</strong></td></tr>
     <tr class="misc_entries2" ><td><strong>Item</strong></td><td><strong>Quantity</strong></td><td><strong>KM's</strong></td><td><strong>Fuel Cost (excluding tax and admin)</strong></td><td></td><td><strong>Amount Billable</strong></td></tr>
     <?php
    
@@ -85,7 +85,7 @@ if($equipment)
 ?>
 </table>
 <table style="border-bottom: 1px solid #DDD;">
-<tr><td><strong>Total: <span class="g_tot">$<?php echo $total;?></span></strong><input type="hidden" name="total" value="<?php if(isset($pers)) echo $total;?>" id="g_tot"  /></td></tr>
+<tr><td style="padding-top: 50px;"><strong>Total: <span class="g_tot">$<?php echo $total;?></span></strong><input type="hidden" name="total" value="<?php if(isset($pers)) echo $total;?>" id="g_tot"  /></td></tr>
 <tr><td><strong>Tax: <span class="tax">$<?php echo $tax;?></span></strong><input type="hidden" name="tax" value="<?php if(isset($pers)) echo $tax;?>" id="tax"  /></td></tr>
 <tr><td><strong>Admin Fee: <span class="a_fee">$<?php  echo $a_fee;?></span></strong><input type="hidden" name="a_fee" value="<?php if(isset($pers)) echo $a_fee;?>" id="a_fee"  /></td></tr>
 <tr><td><strong>Grand Total: <span class="g2_tot">$<?php echo $g_total;?></span></strong><input type="hidden" name="g2_tot" value="<?php if(isset($pers)) echo $g_total;?>" id="g2_tot"  /></td></tr>
