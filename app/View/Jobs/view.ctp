@@ -187,6 +187,27 @@
 		<div class="dusk2"></div>						
 	</div>
     <?php }
+    ?>
+    <?php if(((isset($canview['Canview']['deployment_rate']) && $canview['Canview']['deployment_rate']=='1')|| $this->Session->read('admin'))){?>
+    <div class="dashboard-stat purple">								
+		<div class="whiteCorner"></div>								
+		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
+        <a href="<?=$base_url;?>search/index/deployment_rate" class="overallLink more">		
+			<div class="visual">										
+				<i class="icon-list"></i>									
+			</div>									
+			<div class="details">										
+				<div class="number"><?php echo $deployment_rate;?></div>										
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/Deployment');?></div>									
+			</div>									
+			<div class="more2">									
+				<?php echo $this->requestAction('dashboard/translate/View All');?> <?php echo $deployment_rate;?> Documents <i class="icon-arrow-right m-icon-white"></i>									
+			</div>														
+		</a>								
+		<div class="dusk2"></div>						
+	</div>
+    <?php }?>  
+    <?php
         }
     ?>
     <?php if($job['Job']['is_special']=='1'){ ?>
