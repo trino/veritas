@@ -512,7 +512,7 @@ $(function(){
        var more = '<tr>'+
 '<td width="220px"><input type="text" value="'+dt+'" name="activity_date[]" class="activity_date test'+test+'"  /></td>'+
 '<td width="220px"><input type="text" value="'+t.getHours()+':'+mis+'" name="activity_time[]" class="activity_time test'+test+'" /></td>'+
-'<td width="350px"><textarea name="activity_desc[]"></textarea>   <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a></td>'+
+'<td width="350px"><textarea name="activity_desc[]"></textarea>   <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Remove</a> <a href="javascript:void(0);" onclick="" class="btn btn-success">Add above</a></td>'+
 '</tr>';
                $('.activity_more').append(more);
                $('.test'+test).each(function(){
