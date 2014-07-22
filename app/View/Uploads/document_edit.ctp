@@ -312,8 +312,8 @@ function remove_youtube()
 <select name="report_type" class="required reporttype">
     <option value=""><?php echo $this->requestAction('dashboard/translate/Select report type');?></option>
     <option value="1" <?php  if((isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '1')||(isset($typee) && $typee=='activity_log')) echo "selected='selected'"; ?> ><?php echo $this->requestAction('dashboard/translate/Activity Log');?></option>
-    <option value="2" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '2') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Mobile Inspection');?></option>
-    <option value="3" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '3') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Mobile Security');?></option>
+    <!--<option value="2" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '2') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Mobile Inspection');?></option>-->
+    <!--<option value="3" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '3') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Mobile Security');?></option>-->
     <option value="4" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '4') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Security Occurance');?></option>
     <option value="5" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '5') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Incident Report');?></option>
     <option value="6" <?php  if(isset($ac['Activity']['report_type'])&&$ac['Activity']['report_type'] == '6') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Sign-off Sheets');?></option>
