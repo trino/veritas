@@ -3463,5 +3463,41 @@ class UploadsController extends AppController
         $this->set('equip',$this->Equipment->find('all',array('conditions'=>array('doc_id'=>$did))));
     }
   }
+  function updatepi()
+  {
+    $this->loadModel('PersonalInspection');
+    $q = $this->PersonalInspection->find('all');
+    foreach($q as $p)
+    {
+        $id = $p['PersonalInspection']['id'];
+        echo ($p['PersonalInspection']['uniform']/5);
+        echo "<br/>";
+        echo ($p['PersonalInspection']['uniform2']/5);
+        echo "<br/>";
+        
+        echo ($p['PersonalInspection']['grooming']/5);
+        echo "<br/>";
+        echo ($p['PersonalInspection']['proper_equipment']/5);
+        echo "<br/>";
+        echo ($p['PersonalInspection']['piercing']/5);
+        echo "<br/>";
+        echo ($p['PersonalInspection']['positioning']/5);
+        echo "<br/>";
+        echo "<br/>";
+        $oa = $p['PersonalInspection']['uniform']+$p['PersonalInspection']['uniform2']+$p['PersonalInspection']['grooming']+$p['PersonalInspection']['proper_equipment']+$p['PersonalInspection']['piercing']+$p['PersonalInspection']['positioning'];
+        $oa = $oa/30;
+        $oa = $oa*5;
+        $number = $oa;
+
+$decimals = 2;
+
+$expo = pow(10,$decimals);
+
+$oa = intval($number*$expo)/$expo;
+        $this->PersonalInspection->id = $id;
+        $this->PersonalInspection->saveField('overall_rating',$oa);
+    }
+    die();
+  }
   
 }
