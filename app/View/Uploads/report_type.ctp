@@ -21,5 +21,7 @@ if($type =='15')
     include("inventory.php"); 
 if($type =='16')
     include("vehicle_inspection.php"); 
+if($type =='17')
+    include("dispilinary.php"); 
  
 ?>

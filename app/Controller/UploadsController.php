@@ -846,6 +846,32 @@ class UploadsController extends AppController
                         
                     }
                 }
+                 if($_POST['report_type']=='17')
+                {
+                    //die('aa');
+                    $this->loadModel('Dispilinary');
+                    $this->Dispilinary->deleteAll(array('document_id'=>$eid));
+                    $_POST['disp']['document_id'] = $eid;
+                    $this->Dispilinary->create();
+                    $_POST['disp']['signature'] = $this->Session->read('image_name');
+                    foreach($_POST['disp']['rules']as $k=>$v)
+                    {
+                        $_POST['disp']['rule'] .= $v;
+                        if($k != count($_POST['disp']['rules'])-1)
+                            $_POST['disp']['rule'] .= ",";
+                    }
+                    foreach($_POST['disp']['warnings']as $k=>$v)
+                    {
+                        $_POST['disp']['warning'] .= $v;
+                        if($k != count($_POST['disp']['warnings'])-1)
+                            $_POST['disp']['warning'] .= ",";
+                    }
+                    
+                    //var_dump($_POST['disp']);
+                    //die();
+                    $this->Dispilinary->save($_POST['disp']);
+                    
+                }
                 if($_POST['report_type'] == '15')
                 {
                   if(isset($_POST['inv_id']))
@@ -2214,7 +2240,7 @@ class UploadsController extends AppController
                             //die($to);
                             $emails->to($to);
                             if($to != $this->Session->read('email'))
-                            $emails->send($message);
+                            //$emails->send($message);
                             $emails->reset();
                         }
                         
@@ -2230,7 +2256,7 @@ class UploadsController extends AppController
                 if(isset($activity['report_type']))
                     $activity['incident_type'] = $_POST['incident_type'];
                     
-                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit','siteSignin','instruction','personalInspection','mobileInspection','mobileLog','inventory','vehicleInspection');
+                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit','siteSignin','instruction','personalInspection','mobileInspection','mobileLog','inventory','vehicleInspection','dispilinary');
                 if($_POST['report_type'])
                     $subname = '_'.$act_type[$_POST['report_type']];
                 if($_POST['report_type']=='8')
@@ -2465,6 +2491,31 @@ class UploadsController extends AppController
                     $this->InsuranceSiteAudit->save($_POST);
                     
                 }
+                 if($_POST['report_type']=='17')
+                {
+                    //die('aa');
+                    $this->loadModel('Dispilinary');
+                    $_POST['disp']['document_id'] = $id;
+                    $this->Dispilinary->create();
+                    foreach($_POST['disp']['rules']as $k=>$v)
+                    {
+                        $_POST['disp']['rule'] .= $v;
+                        if($k != count($_POST['disp']['rules'])-1)
+                            $_POST['disp']['rule'] .= ",";
+                    }
+                    foreach($_POST['disp']['warnings']as $k=>$v)
+                    {
+                        $_POST['disp']['warning'] .= $v;
+                        if($k != count($_POST['disp']['warnings'])-1)
+                            $_POST['disp']['warning'] .= ",";
+                    }
+                    
+                    //var_dump($_POST['disp']);
+                    //die();
+                    $_POST['disp']['signature'] = $this->Session->read('image_name');
+                    $this->Dispilinary->save($_POST['disp']);
+                    
+                }
                 if($_POST['report_type']=='7')
                 {
                     
@@ -2559,7 +2610,7 @@ class UploadsController extends AppController
                     //var_dump($_POST['item']); die();
                     
                 }
-                if($_POST['report_type']==8 || $_POST['report_type']==9|| $_POST['report_type']==10|| $_POST['report_type']==11|| $_POST['report_type']==12|| $_POST['report_type']==13|| $_POST['report_type']==14|| $_POST['report_type']==15|| $_POST['report_type']==16)
+                if($_POST['report_type']==8 || $_POST['report_type']==9|| $_POST['report_type']==10|| $_POST['report_type']==11|| $_POST['report_type']==12|| $_POST['report_type']==13|| $_POST['report_type']==14|| $_POST['report_type']==15|| $_POST['report_type']==16|| $_POST['report_type']==17)
                 {
                     $this->Activity->create();
                     $this->Activity->save($activity);
@@ -2957,11 +3008,14 @@ class UploadsController extends AppController
         $this->loadModel('MobileNote');
         $this->loadModel('MobileSite');
         $this->loadModel('MobileTrunk');
+        $this->loadModel('Dispilinary');
         $this->loadModel('Vehicle_inspection');
         if($id)
         {
             $this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$id))));
             $this->set('vehicle',$this->Vehicle_inspection->find('first',array('conditions'=>array('document_id'=>$id))));
+            $vi2 = $this->Dispilinary->find('first',array('conditions'=>array('document_id'=>$id)));
+            $this->set('dw',$vi2);
             $vi = $this->Vehicle_inspection->find('first',array('conditions'=>array('document_id'=>$id)));
             if($vi)
             {
@@ -3111,6 +3165,15 @@ class UploadsController extends AppController
                         {
                             $vid = $vi['Vehicle_inspection']['id'];
                             $this->loadModel('Vehicle_note');
+                            $this->set('vn',$this->Vehicle_note->find('all',array('conditions'=>array('vehicle_id'=>$vid))));
+                        }
+                      }
+                      if($act[0]['Activity']['report_type']=='17')
+                      {
+                        if($vi)
+                        {
+                            $vid = $vi['Disciplinary']['id'];
+                            $this->loadModel('Disciplinary');
                             $this->set('vn',$this->Vehicle_note->find('all',array('conditions'=>array('vehicle_id'=>$vid))));
                         }
                       }
@@ -3378,6 +3441,14 @@ class UploadsController extends AppController
                 $this->loadModel('Vehicle_note');
                 $this->set('vn',$this->Vehicle_note->find('all',array('conditions'=>array('vehicle_id'=>$did))));
             }
+        }
+        if($type=='17')
+        {
+            //die('a');
+            $this->loadModel('Dispilinary');
+            $vi = $this->Dispilinary->find('first',array('conditions'=>array('document_id'=>$did)));
+            $this->set('vi',$vi);            
+            
         }
         if($type == '7')
         {

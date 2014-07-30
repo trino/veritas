@@ -1,9 +1,9 @@
 <?php include_once('inc.php');
 
 if(isset($doc['Document']['id']))
-$did = $doc['Document']['id'];
+    $did = $doc['Document']['id'];
 else
-$did = '';
+    $did = '';
 if(isset($job_name))
     $job_n=$job_name;
 else
@@ -327,6 +327,7 @@ function remove_youtube()
     <option value="14" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='14') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Mobile Log');?></option>
     <option value="15" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='15') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Mobile Vehicle Trunk Inventory');?></option>
     <option value="16" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='16') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Vehicle Inspection');?></option>
+    <option value="17" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='17') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Disciplinary Warning');?></option>
 </select>
 </th>
 </thead>
@@ -449,7 +450,7 @@ $(function(){
         else
         {
             
-            if($(this).val()=='7' || $(this).val()=='8' || $(this).val()=='9' || $(this).val()=="10" || $(this).val()=="11" || $(this).val()=="12"|| $(this).val()=="13"|| $(this).val()=="14"|| $(this).val()=="15"|| $(this).val()=="16" )
+            if($(this).val()=='7' || $(this).val()=='8' || $(this).val()=='9' || $(this).val()=="10" || $(this).val()=="11" || $(this).val()=="12"|| $(this).val()=="13"|| $(this).val()=="14"|| $(this).val()=="15"|| $(this).val()=="16"|| $(this).val()=="17" )
             {
                 $('.loader').show();
                 doc_loader1('<?php echo $base_url;?>uploads/reportType/id_<?php echo $did;?>/'+$(this).val());
@@ -463,7 +464,7 @@ $(function(){
             
         }
         
-        if($(this).val()=='7' || $(this).val()=='8' || $(this).val()=='9' || $(this).val()== "10" || $(this).val()=="11" || $(this).val()=="12"|| $(this).val()=="13"|| $(this).val()=="14"|| $(this).val()=="15"|| $(this).val()=="16")
+        if($(this).val()=='7' || $(this).val()=='8' || $(this).val()=='9' || $(this).val()== "10" || $(this).val()=="11" || $(this).val()=="12"|| $(this).val()=="13"|| $(this).val()=="14"|| $(this).val()=="15"|| $(this).val()=="16"|| $(this).val()=="17")
         {
             $('.date_time').hide();
             if($(this).val()=='7')
@@ -566,7 +567,7 @@ $(function(){
         $(this).timepicker();
     });
     $('.date_verify').datepicker({dateFormat: 'yy-mm-dd'});
-    if($('.reporttype').val()=='7' || $('.reporttype').val()=='8' || $('.reporttype').val()=='9' || $('.reporttype').val()=='10' || $('.reporttype').val()=='11'|| $('.reporttype').val()=='12'|| $('.reporttype').val()=='13'|| $('.reporttype').val()=='14'|| $('.reporttype').val()=='15'|| $('.reporttype').val()=='16')
+    if($('.reporttype').val()=='7' || $('.reporttype').val()=='8' || $('.reporttype').val()=='9' || $('.reporttype').val()=='10' || $('.reporttype').val()=='11'|| $('.reporttype').val()=='12'|| $('.reporttype').val()=='13'|| $('.reporttype').val()=='14'|| $('.reporttype').val()=='15'|| $('.reporttype').val()=='16'|| $('.reporttype').val()=='17')
        {
         if($('.reporttype').val()=='7')
         {
@@ -587,10 +588,10 @@ $(function(){
        }
     $('.reporttype').change(function(){
        var inc_type = $(this).val(); 
-       if(inc_type=='7' || $('.reporttype').val()=='8' || $('.reporttype').val()=='9'|| $('.reporttype').val()=='10' || $('.reporttype').val()=='11'|| $('.reporttype').val()=='12'|| $('.reporttype').val()=='13'|| $('.reporttype').val()=='14'|| $('.reporttype').val()=='15'|| $('.reporttype').val()=='16')
+       if(inc_type=='7' || $('.reporttype').val()=='8' || $('.reporttype').val()=='9'|| $('.reporttype').val()=='10' || $('.reporttype').val()=='11'|| $('.reporttype').val()=='12'|| $('.reporttype').val()=='13'|| $('.reporttype').val()=='14'|| $('.reporttype').val()=='15'|| $('.reporttype').val()=='16'|| $('.reporttype').val()=='17')
        {
             $('.loader').show();
-            if($('.reporttype').val()=='8' || $('.reporttype').val()=='9'|| $('.reporttype').val()=='10' || $('.reporttype').val()=='11'|| $('.reporttype').val()=='12'|| $('.reporttype').val()=='13'|| $('.reporttype').val()=='14'|| $('.reporttype').val()=='15'|| $('.reporttype').val()=='16'){
+            if($('.reporttype').val()=='8' || $('.reporttype').val()=='9'|| $('.reporttype').val()=='10' || $('.reporttype').val()=='11'|| $('.reporttype').val()=='12'|| $('.reporttype').val()=='13'|| $('.reporttype').val()=='14'|| $('.reporttype').val()=='15'|| $('.reporttype').val()=='16' || $('.reporttype').val()=='17'){
                 $('.description_tr').hide();
                 $('.image_tr').hide();
                 }
@@ -864,7 +865,7 @@ $(function(){
           }
        }); });
        <?php
-    if(isset($ac['Activity']['report_type'])&& ($ac['Activity']['report_type'] == '7' || $ac['Activity']['report_type'] == '8' || $ac['Activity']['report_type'] == '9' || $ac['Activity']['report_type'] == '10' || $ac['Activity']['report_type'] == '11'|| $ac['Activity']['report_type'] == '12'|| $ac['Activity']['report_type'] == '13'|| $ac['Activity']['report_type'] == '14'|| $ac['Activity']['report_type'] == '15'|| $ac['Activity']['report_type'] == '16'))
+    if(isset($ac['Activity']['report_type'])&& ($ac['Activity']['report_type'] == '7' || $ac['Activity']['report_type'] == '8' || $ac['Activity']['report_type'] == '9' || $ac['Activity']['report_type'] == '10' || $ac['Activity']['report_type'] == '11'|| $ac['Activity']['report_type'] == '12'|| $ac['Activity']['report_type'] == '13'|| $ac['Activity']['report_type'] == '14'|| $ac['Activity']['report_type'] == '15'|| $ac['Activity']['report_type'] == '16'|| $ac['Activity']['report_type'] == '17'))
     {
         
         ?>
