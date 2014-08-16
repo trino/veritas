@@ -167,6 +167,7 @@ class SearchController extends AppController
         {
          
             $this->loadModel('Canview');
+            $this->loadModel('ReportviewPermission');
             $qs = $this->Canview->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
             $che = $this->Member->find('first',array('conditions',array('id'=>$this->Session->read('id'))));
             $arrs = array();
@@ -178,6 +179,22 @@ class SearchController extends AppController
             }
             if($qs['Canview']['report'])
             {
+                $rvp = $this->ReportviewPermission->find('all',array('conditions'=>array('user_id'=>$this->Session->read('id'))));
+                if($rvp){
+                    $in_c = 0;        
+                    $in = null;                
+                    foreach($rvp as $rvps)
+                    {
+                        $in_c++;
+                        if($in_c==1)
+                        $in = $rvps['ReportviewPermission']['report_type'];
+                        else
+                        $in = $in.','.$rvps['ReportviewPermission']['report_type'];
+                    }
+                }
+                if($in)
+                $arrs[] = array('document_type'=>'report','re_id IN ('.$in.')');
+                else
                 $arrs[] = array('document_type'=>'report');
             }
             if($qs['Canview']['evidence'])
@@ -582,6 +599,77 @@ class SearchController extends AppController
             
             
     }
-    
+    function fill_report()
+    {
+        $this->loadModel('Document');
+        $this->loadModel('Activity');
+        $q = $this->Document->find('all',array('conditions'=>array('id IN(SELECT document_id FROM activities)')));
+        foreach($q as $d)
+        {
+            $q1 = $this->Activity->find('first',array('conditions'=>array('document_id'=>$d['Document']['id'])));
+            echo $q1['Activity']['report_type'];
+            echo $d['Document']['id'];
+            echo "<br>";
+            $this->Document->id = $d['Document']['id'];
+            $this->Document->saveField('re_id',$q1['Activity']['report_type']);
+        }
+        return false;
+    }
+    function fill_evidence()
+    {
+        $this->loadModel('Document');        
+        $q = $this->Document->find('all',array('conditions'=>array('evidence_type <>'=>'')));
+        foreach($q as $d)
+        {
+            echo $d['Document']['id'];
+            
+            $arr = array('Incident Report','Line Crossing Sheet','Shift Summary','Incident Video','Executive Summary','Average Picket Count','Victim Statement','Miscellaneous');            
+            $this->Document->id = $d['Document']['id'];
+            $key = array_search($d['Document']['evidence_type'],$arr);
+            $key = $key+1;
+            echo $key;
+            echo "<br/>";
+            $this->Document->saveField('ev_id',$key);
+        }
+        return false;
+        
+
+    }
+    function fill_siteorder()
+    {
+        $this->loadModel('Document');        
+        $q = $this->Document->find('all',array('conditions'=>array('site_type <>'=>'')));
+        foreach($q as $d)
+        {
+            echo $d['Document']['id'];
+            
+            $arr = array('Post Orders','Operational Memos','Site Maps','Forms');            
+            $this->Document->id = $d['Document']['id'];
+            $key = array_search($d['Document']['site_type'],$arr);
+            $key = $key+1;
+            echo $key;
+            echo "<br/>";
+            $this->Document->saveField('so_id',$key);
+        }
+        return false;
+    }
+    function fill_employee()
+    {
+        $this->loadModel('Document');        
+        $q = $this->Document->find('all',array('conditions'=>array('employee_type <>'=>'')));
+        foreach($q as $d)
+        {
+            echo $d['Document']['id'];
+            
+            $arr = array('Job Descriptions','Drug Free Policy','Schedules');            
+            $this->Document->id = $d['Document']['id'];
+            $key = array_search($d['Document']['employee_type'],$arr);
+            $key = $key+1;
+            echo $key;
+            echo "<br/>";
+            $this->Document->saveField('emp_id',$key);
+        }
+     return false;
+    }
 }
 ?>
