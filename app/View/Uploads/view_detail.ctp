@@ -201,7 +201,7 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         {
             ?>
         
-        <tr><td colspan="2">
+        <tr><td colspan="2" style="padding: 0;">
         <table>
         <thead><th>Date</th><th><?php echo $this->requestAction('dashboard/translate/Time');?></th><th>Description</th></thead>
         <?php foreach($activity as $act)
