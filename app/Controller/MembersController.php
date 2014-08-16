@@ -1078,6 +1078,8 @@ class MembersController extends AppController
     {
         $this->loadModel('ReportuploadPermission');
         $this->loadModel('EvidenceuploadPermission');
+        $this->loadModel('SiteorderuploadPermission');
+        $this->loadModel('EmployeeuploadPermission');
         $this->layout = "modal_layout";
        if($type == 'report' )
        {
@@ -1091,6 +1093,18 @@ class MembersController extends AppController
             $this->set('uid',$uid);
             $this->set('evidencestat',$this->EvidenceuploadPermission);
             $this->render('evidenceupload_type');
+       }
+       if($type == 'siteorder') 
+       {
+            $this->set('uid',$uid);
+            $this->set('siteorderstat',$this->SiteorderuploadPermission);
+            $this->render('siteorderupload_type');
+       }
+       if($type == 'employee') 
+       {
+            $this->set('uid',$uid);
+            $this->set('employeestat',$this->EmployeeuploadPermission);
+            $this->render('employeeupload_type');
        }
     }
     /*function encrypt()

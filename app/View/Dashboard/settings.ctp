@@ -79,7 +79,52 @@ $(function(){
     $('#passw').removeClass('error');
    });
    
+   <?php if(isset($admin_doc['AdminDoc']['evidence']) && $admin_doc['AdminDoc']['evidence']=='1' ){?>
+   $('.morez').load('<?php echo $this->webroot;?>members/loadupload/evidence/0',function(){
+            $('.loadmorez').append($('.morez').html());
+        $('.morez').html("");
+        });
+   <?php }?>
+   <?php if(isset($admin_doc['AdminDoc']['report']) && $admin_doc['AdminDoc']['report']=='1' ){?>
+   $('.morez').load('<?php echo $this->webroot;?>members/loadupload/report/0',function(){
+            $('.loadmorez').append($('.morez').html());
+        $('.morez').html("");
+        });
+   <?php }?>
+   <?php if(isset($admin_doc['AdminDoc']['employee']) && $admin_doc['AdminDoc']['employee']=='1' ){?>
+   $('.morez').load('<?php echo $this->webroot;?>members/loadupload/employee/0',function(){
+            $('.loadmorez').append($('.morez').html());
+        $('.morez').html("");
+        });
+   <?php }?>
+   <?php if(isset($admin_doc['AdminDoc']['site_orders']) && $admin_doc['AdminDoc']['site_orders']=='1' ){?>
+   $('.morez').load('<?php echo $this->webroot;?>members/loadupload/siteorder/0',function(){
+            $('.loadmorez').append($('.morez').html());
+        $('.morez').html("");
+        });
+   <?php }?>
+   
 });
+function loadmore(type, qq)
+{
+    
+    if(qq.prop('checked'))
+    {
+        
+        $('.morez').load('<?php echo $this->webroot;?>members/loadupload/'+type+'/0',function(){
+            $('.loadmorez').append($('.morez').html());
+            $('.morez').html("");
+        });
+       
+        
+    }
+    else
+    {
+        $('.'+type+'_more1').remove();
+        
+    }
+}
+
 </script>
 <div id="table">
     <form action="" method="post" id="myform" enctype="multipart/form-data">
@@ -181,20 +226,29 @@ $(function(){
         </tr>
         <tr><td><strong><?php echo $this->requestAction('dashboard/translate/Show Documents');?></strong></td>
         <td> <span><?php echo $this->requestAction('dashboard/translate/Contracts');?> </span><input <?php echo $d;?> type="checkbox" name="show[contracts]" value="1"  <?php if(isset($admin_doc['AdminDoc']['contracts']) && $admin_doc['AdminDoc']['contracts']=='1' ) echo "checked='checked'";?>  />
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Evidence');?> </span><input <?php echo $d;?> type="checkbox" name="show[evidence]" value="1" <?php if(isset($admin_doc['AdminDoc']['evidence']) && $admin_doc['AdminDoc']['evidence']=='1' ) echo "checked='checked'";?>   />
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Templates');?> </span><input <?php echo $d;?> type="checkbox" name="show[templates]" value="1" <?php if(isset($admin_doc['AdminDoc']['templates']) && $admin_doc['AdminDoc']['templates']=='1' ) echo "checked='checked'";?>/>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Report');?> </span><input <?php echo $d;?> type="checkbox" name="show[report]" value="1" <?php if(isset($admin_doc['AdminDoc']['report']) && $admin_doc['AdminDoc']['report']=='1' ) echo "checked='checked'";?>/>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Site Orders');?> </span><input <?php echo $d;?> type="checkbox" name="show[site_orders]" value="1" <?php if(isset($admin_doc['AdminDoc']['site_orders']) && $admin_doc['AdminDoc']['site_orders']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Evidence');?> </span><input <?php echo $d;?> type="checkbox" onclick="loadmore('evidence',$(this));" name="show[evidence]" value="1" <?php if(isset($admin_doc['AdminDoc']['evidence']) && $admin_doc['AdminDoc']['evidence']=='1' ) echo "checked='checked'";?>   />
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Templates');?> </span><input <?php echo $d;?> type="checkbox"  name="show[templates]" value="1" <?php if(isset($admin_doc['AdminDoc']['templates']) && $admin_doc['AdminDoc']['templates']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Report');?> </span><input <?php echo $d;?> type="checkbox" onclick="loadmore('report',$(this));" name="show[report]" value="1" <?php if(isset($admin_doc['AdminDoc']['report']) && $admin_doc['AdminDoc']['report']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Site Orders');?> </span><input <?php echo $d;?> type="checkbox" onclick="loadmore('siteorder',$(this));" name="show[site_orders]" value="1" <?php if(isset($admin_doc['AdminDoc']['site_orders']) && $admin_doc['AdminDoc']['site_orders']=='1' ) echo "checked='checked'";?>/>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Training');?> </span><input <?php echo $d;?> type="checkbox" name="show[training]" value="1" <?php if(isset($admin_doc['AdminDoc']['training']) && $admin_doc['AdminDoc']['training']=='1' ) echo "checked='checked'";?>/>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Employee');?> </span><input <?php echo $d;?> type="checkbox" name="show[employee]" value="1" <?php if(isset($admin_doc['AdminDoc']['employee']) && $admin_doc['AdminDoc']['employee']=='1' ) echo "checked='checked'";?>/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Employee');?> </span><input <?php echo $d;?> type="checkbox" onclick="loadmore('employee',$(this));"name="show[employee]" value="1" <?php if(isset($admin_doc['AdminDoc']['employee']) && $admin_doc['AdminDoc']['employee']=='1' ) echo "checked='checked'";?>/>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/KPI Audits');?> </span><input <?php echo $d;?> type="checkbox" name="show[kpiaudits]" value="1" <?php if(isset($admin_doc['AdminDoc']['kpiaudits']) && $admin_doc['AdminDoc']['kpiaudits']=='1' ) echo "checked='checked'";?>/>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Personal Inspection');?> </span><input <?php echo $d;?> type="checkbox" name="show[personal_inspection]" value="1" <?php if(isset($admin_doc['AdminDoc']['personal_inspection']) && $admin_doc['AdminDoc']['personal_inspection']=='1' ) echo "checked='checked'";?>/>
+        <!--<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Personal Inspection');?> </span><input <?php echo $d;?> type="checkbox" name="show[personal_inspection]" value="1" <?php if(isset($admin_doc['AdminDoc']['personal_inspection']) && $admin_doc['AdminDoc']['personal_inspection']=='1' ) echo "checked='checked'";?>/>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Mobile Inspection');?> </span><input <?php echo $d;?> type="checkbox" name="show[mobile_inspection]" value="1" <?php if(isset($admin_doc['AdminDoc']['mobile_inspection']) && $admin_doc['AdminDoc']['mobile_inspection']=='1' ) echo "checked='checked'";?>/>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Mobile Log');?> </span><input <?php echo $d;?> type="checkbox" name="show[mobile_log]" value="1" <?php if(isset($admin_doc['AdminDoc']['mobile_log']) && $admin_doc['AdminDoc']['mobile_log']=='1' ) echo "checked='checked'";?>/>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Mobile Vehicle Trunk Inventory');?> </span><input <?php echo $d;?> type="checkbox" name="show[inventory]" value="1" <?php if(isset($admin_doc['AdminDoc']['inventory']) && $admin_doc['AdminDoc']['inventory']=='1' ) echo "checked='checked'";?>/>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Vehicle Inspection');?> </span><input <?php echo $d;?> type="checkbox" name="show[vehicle_inspection]" value="1" <?php if(isset($admin_doc['AdminDoc']['vehicle_inspection']) && $admin_doc['AdminDoc']['vehicle_inspection']=='1' ) echo "checked='checked'";?>/>
+        -->
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Deployment');?> </span><input <?php echo $d;?> type="checkbox" name="show[deployment_rate]" value="1" <?php if(isset($admin_doc['AdminDoc']['deployment_rate']) && $admin_doc['AdminDoc']['deployment_rate']=='1' ) echo "checked='checked'";?>/>
-</td></tr>
+        </td>
+        </tr>
+        <div class="morez"></div>
+        <tr>
+            <td></td>
+            <td>
+            <table class="loadmorez" width="50%"></table>
+            </td>
+        </tr>
         <tr>
             <td><?php echo $this->requestAction('dashboard/translate/Modules');?></td>
             <td> <?php 

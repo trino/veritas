@@ -497,6 +497,62 @@ class DashboardController extends AppController
                 {
                     $sh['id']= '1';
                     $sh[$k]=$v;
+                    if($k=='report' && $v=='1')
+                    {
+                        $this->loadModel('ReportuploadPermission');
+                        $this->ReportuploadPermission->deleteAll(array('user_id'=>0));
+                        foreach($_POST['report_canUpload'] as $k=>$v)
+                        {
+                                $arr['user_id'] = 0;
+                                $arr['report_type1'] = $v;
+                                $arr['can_upload'] = 1; 
+                                $this->ReportuploadPermission->create();
+                                $this->ReportuploadPermission->save($arr);
+                        }
+                    }
+                    if($k == 'evidence' && $v =='1')
+                    {
+                        $this->loadModel('EvidenceuploadPermission');
+                        $this->EvidenceuploadPermission->deleteAll(array('user_id'=>0));
+                        foreach($_POST['evidence_canUpload'] as $k=>$v)
+                        {
+                                $arr['user_id'] = 0;
+                                $arr['report_type1'] = $v;
+                                $arr['can_upload'] = 1; 
+                                $this->EvidenceuploadPermission->create();
+                                $this->EvidenceuploadPermission->save($arr);
+                        }
+                        
+                    }
+                    if($k =='site_orders' && $v =='1')
+                    {
+                        $this->loadModel('SiteorderuploadPermission');
+                        $this->SiteorderuploadPermission->deleteAll(array('user_id'=>0));
+                        foreach($_POST['siteorder_canUpload'] as $k=>$v)
+                        {
+                                $arr['user_id'] = 0;
+                                $arr['report_type1'] = $v;
+                                $arr['can_upload'] = 1; 
+                                $this->SiteorderuploadPermission->create();
+                                $this->SiteorderuploadPermission->save($arr);
+                        }
+                        
+                    }
+                    if($k =='employee' && $v =='1')
+                    {
+                        $this->loadModel('EmployeeuploadPermission');
+                        $this->EmployeeuploadPermission->deleteAll(array('user_id'=>0));
+                        foreach($_POST['employee_canUpload'] as $k=>$v)
+                        {
+                                $arr['user_id'] = 0;
+                                $arr['report_type1'] = $v;
+                                $arr['can_upload'] = 1; 
+                                $this->EmployeeuploadPermission->create();
+                                $this->EmployeeuploadPermission->save($arr);
+                        }
+                        
+                    }
+                    
                 }
                 if(isset($sh) && is_array($sh)){
                 $this->AdminDoc->deleteAll(array('id >'=>0));                
