@@ -250,6 +250,20 @@ class MembersController extends AppController
                 $canview['evidence'] = (isset($_POST['canView_evidence'])&& $_POST['canView_templates']!= '0')? '1' : '0'  ;
                 $canview['templates'] = (isset($_POST['canView_templates'])&& $_POST['canView_templates']!= '0')? '1' : '0'  ;
                 $canview['report'] = (isset($_POST['canView_client_memo'])&& $_POST['canView_siteOrder']!= '0')? '1' : '0'  ;
+                if($canview['report']=='1')
+                {
+                    $this->loadModel('ReportviewPermission');
+                    $this->ReportviewPermission->deleteAll(array('user_id'=>$id));
+                    foreach($_POST['report_canView'] as $k=>$v)
+                    {
+                            $arr['user_id'] = $id;
+                            $arr['report_type'] = $v;
+                            $arr['can_view'] = 1; 
+                            $this->ReportviewPermission->create();
+                            $this->ReportviewPermission->save($arr);
+                    }
+                    
+                }
                 $canview['siteOrder'] = (isset($_POST['canView_siteOrder'])&& $_POST['canView_siteOrder']!= '0')? '1' : '0'  ;
                 $canview['training'] = (isset($_POST['canView_training'])&& $_POST['canView_training']!= '0')? '1' : '0'  ;
                 $canview['employee'] = (isset($_POST['canView_employee'])&& $_POST['canView_employee']!= '0')? '1' : '0'  ;
@@ -293,6 +307,20 @@ class MembersController extends AppController
                 $canupdate['evidence'] = (isset($_POST['canUpload_evidence'])&& $_POST['canUpload_evidence']!= '0')? '1' : '0'  ;
                 $canupdate['templates'] = (isset($_POST['canUpload_templates'])&& $_POST['canUpload_client_memo']!= '0')? '1' : '0'  ;
                 $canupdate['report'] = (isset($_POST['canUpload_client_memo'])&& $_POST['canUpload_client_memo']!= '0')? '1' : '0'  ;
+                if($canupdate['report']=='1')
+                {
+                    $this->loadModel('ReportuploadPermission');
+                    $this->ReportuploadPermission->deleteAll(array('user_id'=>$id));
+                    foreach($_POST['report_canUpload'] as $k=>$v)
+                    {
+                            $arr['user_id'] = $id;
+                            $arr['report_type1'] = $v;
+                            $arr['can_upload'] = 1; 
+                            $this->ReportuploadPermission->create();
+                            $this->ReportuploadPermission->save($arr);
+                    }
+                    
+                }
                 $canupdate['siteOrder'] = (isset($_POST['canUpload_siteOrder'])&& $_POST['canUpload_training']!= '0')? '1' : '0'  ;
                 $canupdate['training'] = (isset($_POST['canUpload_training'])&& $_POST['canUpload_training']!= '0')? '1' : '0'  ;
                 $canupdate['employee'] = (isset($_POST['canUpload_employee'])&& $_POST['canUpload_employee']!= '0')? '1' : '0'  ;
@@ -620,8 +648,36 @@ class MembersController extends AppController
                 $canview['member_id'] = $id;
                 $canview['contracts'] = (isset($_POST['canView_contracts'])&& $_POST['canView_contracts'])? '1' : '0'  ;
                 $canview['evidence'] = (isset($_POST['canView_evidence'])&& $_POST['canView_evidence'])? '1' : '0'  ;
+                if($canview['evidence']=='1')
+                {
+                    $this->loadModel('EvidenceviewPermission');
+                    $this->EvidenceviewPermission->deleteAll(array('user_id'=>$id));
+                    foreach($_POST['evidence_canView'] as $k=>$v)
+                    {
+                            $arr['user_id'] = $id;
+                            $arr['report_type'] = $v;
+                            $arr['can_view'] = 1; 
+                            $this->EvidenceviewPermission->create();
+                            $this->EvidenceviewPermission->save($arr);
+                    }
+                    
+                }
                 $canview['templates'] = (isset($_POST['canView_templates'])&& $_POST['canView_templates'])? '1' : '0'  ;
                 $canview['report'] = (isset($_POST['canView_client_memo'])&& $_POST['canView_client_memo'])? '1' : '0'  ;
+                if($canview['report']=='1')
+                {
+                    $this->loadModel('ReportviewPermission');
+                    $this->ReportviewPermission->deleteAll(array('user_id'=>$id));
+                    foreach($_POST['report_canView'] as $k=>$v)
+                    {
+                            $arr['user_id'] = $id;
+                            $arr['report_type'] = $v;
+                            $arr['can_view'] = 1; 
+                            $this->ReportviewPermission->create();
+                            $this->ReportviewPermission->save($arr);
+                    }
+                    
+                }
                 $canview['siteOrder'] = (isset($_POST['canView_siteOrder'])&& $_POST['canView_siteOrder'])? '1' : '0'  ;
                 $canview['training'] = (isset($_POST['canView_training'])&& $_POST['canView_training'])? '1' : '0'  ;
                 $canview['employee'] = (isset($_POST['canView_employee'])&& $_POST['canView_employee'])? '1' : '0'  ;
@@ -668,8 +724,36 @@ class MembersController extends AppController
                 $canupdate['member_id'] = $id;
                 $canupdate['contracts'] = (isset($_POST['canUpload_contracts'])&& $_POST['canUpload_contracts'])? '1' : '0'  ;
                 $canupdate['evidence'] = (isset($_POST['canUpload_evidence'])&& $_POST['canUpload_evidence'])? '1' : '0'  ;
+                if($canupdate['evidence']=='1')
+                {
+                    $this->loadModel('EvidenceuploadPermission');
+                    $this->EvidenceuploadPermission->deleteAll(array('user_id'=>$id));
+                    foreach($_POST['evidence_canUpload'] as $k=>$v)
+                    {
+                            $arr['user_id'] = $id;
+                            $arr['report_type1'] = $v;
+                            $arr['can_upload'] = 1; 
+                            $this->EvidenceuploadPermission->create();
+                            $this->EvidenceuploadPermission->save($arr);
+                    }
+                    
+                }
                 $canupdate['templates'] = (isset($_POST['canUpload_templates'])&& $_POST['canUpload_templates'])? '1' : '0'  ;
                 $canupdate['report'] = (isset($_POST['canUpload_client_memo'])&& $_POST['canUpload_client_memo'])? '1' : '0'  ;
+                if($canupdate['report']=='1')
+                {
+                    $this->loadModel('ReportuploadPermission');
+                    $this->ReportuploadPermission->deleteAll(array('user_id'=>$id));
+                    foreach($_POST['report_canUpload'] as $k=>$v)
+                    {
+                            $arr['user_id'] = $id;
+                            $arr['report_type1'] = $v;
+                            $arr['can_upload'] = 1; 
+                            $this->ReportuploadPermission->create();
+                            $this->ReportuploadPermission->save($arr);
+                    }
+                    
+                }
                 $canupdate['siteOrder'] = (isset($_POST['canUpload_siteOrder'])&& $_POST['canUpload_siteOrder'])? '1' : '0'  ;
                 $canupdate['training'] = (isset($_POST['canUpload_training'])&& $_POST['canUpload_training'])? '1' : '0'  ;
                 $canupdate['employee'] = (isset($_POST['canUpload_employee'])&& $_POST['canUpload_employee'])? '1' : '0'  ;
@@ -963,6 +1047,51 @@ class MembersController extends AppController
             $this->User->deleteAll(array('from_member'=>$id));
         }
         die();
+    }
+    
+    function loadextra($type, $uid="")
+    {
+        $this->loadModel('ReportviewPermission');
+        $this->loadModel('EvidenceviewPermission');
+        $this->layout = "modal_layout";
+       if($type == 'report' )
+       {
+        /*
+           if($uid!="")
+            $reportstat = $this->ReportPermission->find('all',array('conditions'=>array('user_id'=>$uid)));
+           else
+            $reportstat ="";
+         */ 
+            $this->set('uid',$uid);
+           $this->set('reportstat',$this->ReportviewPermission);
+           
+            $this->render('report_type');
+       }
+       if($type == 'evidence') 
+       {
+            $this->set('uid',$uid);
+            $this->set('evidencestat',$this->EvidenceviewPermission);
+            $this->render('evidence_type');
+       }
+    }
+     function loadupload($type, $uid="")
+    {
+        $this->loadModel('ReportuploadPermission');
+        $this->loadModel('EvidenceuploadPermission');
+        $this->layout = "modal_layout";
+       if($type == 'report' )
+       {
+       
+            $this->set('uid',$uid);
+            $this->set('reportstat',$this->ReportuploadPermission);
+            $this->render('reportupload_type');
+       }
+       if($type == 'evidence') 
+       {
+            $this->set('uid',$uid);
+            $this->set('evidencestat',$this->EvidenceuploadPermission);
+            $this->render('evidenceupload_type');
+       }
     }
     /*function encrypt()
     {

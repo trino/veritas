@@ -2,6 +2,39 @@
 <script>
 $(function(){
    $('#add_form').validate();
+   <?php if(isset($v['Canview']['report']) && $v['Canview']['report']==1){?>
+
+        $('.morez').load('<?php echo $this->webroot;?>members/loadextra/report/<?php echo $m['Member']['id'];?>',function(){
+           $('.loadmorez').append($('.morez').html());
+           $('.morez').html("");
+        });
+        
+        
+<?php }?>
+<?php if(isset($v['Canview']['evidence']) && $v['Canview']['evidence']==1){?>
+
+        $('.morez').load('<?php echo $this->webroot;?>members/loadextra/evidence/<?php echo $m['Member']['id'];?>',function(){
+           $('.loadmorez').append($('.morez').html());
+           $('.morez').html(""); 
+            
+        });
+        
+        
+<?php }?>
+
+<?php if(isset($u['Canupload']['report']) && $u['Canupload']['report']==1){?>
+        $('.morez1').load('<?php echo $this->webroot;?>members/loadupload/report/<?php echo $m['Member']['id'];?>',function(){
+            $('.loadmorez1').append($('.morez1').html());
+        $('.morez1').html("");
+        });
+        
+<?php }?>
+<?php if(isset($u['Canupload']['evidence']) && $u['Canupload']['evidence']==1){?>
+    $('.morez1').load('<?php echo $this->webroot;?>members/loadupload/evidence/<?php echo $m['Member']['id'];?>',function(){
+            $('.loadmorez1').append($('.morez1').html());
+        $('.morez1').html("");
+        });
+<?php }?>
    
 });
  function check_name()
@@ -40,6 +73,46 @@ $(function(){
             return false;
         }
     }
+//Load Extra Permissions
+
+function loadmore(type, qq)
+{
+    
+    if(qq.prop('checked'))
+    {
+        
+        $('.morez').load('<?php echo $this->webroot;?>members/loadextra/'+type+'/<?php echo $m['Member']['id'];?>',function(){
+             $('.loadmorez').append($('.morez').html());
+            $('.morez').html("");
+        });
+       
+        
+    }
+    else
+    {
+        $('.'+type+'_more').remove();
+        
+    }
+}
+function loadupload(type, qq)
+{
+    
+    if(qq.prop('checked'))
+    {
+        
+        $('.morez1').load('<?php echo $this->webroot;?>members/loadupload/'+type+'/<?php echo $m['Member']['id'];?>',function(){
+            $('.loadmorez1').append($('.morez1').html());
+            $('.morez1').html("");
+        });
+        
+        
+    }
+    else
+    {
+        $('.'+type+'_more1').remove();
+        
+    }
+}
 </script>
 <h3 class="page-title">
 	<?php echo $this->requestAction('dashboard/translate/Edit');?> <?php echo $m['Member']['full_name'];?>
@@ -78,13 +151,13 @@ if(!isset($sid)){
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Contracts');?> </span><input type="checkbox" name="canView_contracts" <?php if(isset($v['Canview']['contracts']) && $v['Canview']['contracts']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['evidence']=='0' ){?><input type="hidden" name="canView_evidence" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Evidence');?> </span><input type="checkbox" name="canView_evidence" <?php if(isset($v['Canview']['evidence']) && $v['Canview']['evidence']==1){?>checked="checked"<?php }?> /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Evidence');?> </span><input type="checkbox" name="canView_evidence" onclick="loadmore('evidence',$(this));" <?php if(isset($v['Canview']['evidence']) && $v['Canview']['evidence']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['templates']=='0' ){?><input type="hidden" name="canView_templates" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Templates');?> </span><input type="checkbox" name="canView_templates" <?php if(isset($v['Canview']['templates']) && $v['Canview']['templates']==1){?>checked="checked"<?php }?> /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Templates');?> </span><input type="checkbox" name="canView_templates"  <?php if(isset($v['Canview']['templates']) && $v['Canview']['templates']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['report']=='0' ){?><input type="hidden" name="canView_client_memo" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Report');?> </span><input type="checkbox" name="canView_client_memo" <?php if(isset($v['Canview']['report']) && $v['Canview']['report']==1){?>checked="checked"<?php }?> /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Report');?> </span><input type="checkbox" onclick="loadmore('report',$(this));" name="canView_client_memo"  <?php if(isset($v['Canview']['report']) && $v['Canview']['report']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['site_orders']=='0' ){?><input type="hidden" name="canView_siteOrder" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Site Orders');?> </span><input type="checkbox" name="canView_siteOrder" <?php if(isset($v['Canview']['siteOrder']) && $v['Canview']['siteOrder']==1){?>checked="checked"<?php }?> /><?php }?>
@@ -119,6 +192,8 @@ if(!isset($sid)){
 
 </tr>
 </table>
+<div class="morez"></div>
+<table class="loadmorez" width="50%"></table>
 </td>
 <?php }
 else
@@ -157,13 +232,13 @@ if(!isset($sid))
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Contracts');?> </span><input type="checkbox" name="canUpload_contracts" <?php if(isset($u['Canupload']['contracts']) && $u['Canupload']['contracts']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['evidence']=='0' ){?><input type="hidden" name="canUpload_evidence" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Evidence');?> </span><input type="checkbox" name="canUpload_evidence" <?php if(isset($u['Canupload']['evidence']) && $u['Canupload']['evidence']==1){?>checked="checked"<?php }?> /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Evidence');?> </span><input type="checkbox" onclick="loadupload('evidence',$(this));" name="canUpload_evidence" <?php if(isset($u['Canupload']['evidence']) && $u['Canupload']['evidence']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['templates']=='0' ){?><input type="hidden" name="canUpload_templates" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Templates');?> </span><input type="checkbox" name="canUpload_templates" <?php if(isset($u['Canupload']['templates']) && $u['Canupload']['templates']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['report']=='0' ){?><input type="hidden" name="canUpload_client_memo" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Report');?> </span><input type="checkbox" name="canUpload_client_memo" <?php if(isset($u['Canupload']['report']) && $u['Canupload']['report']==1){?>checked="checked"<?php }?> /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Report');?> </span><input type="checkbox" onclick="loadupload('report',$(this));" name="canUpload_client_memo" <?php if(isset($u['Canupload']['report']) && $u['Canupload']['report']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['site_orders']=='0' ){?><input type="hidden" name="canUpload_siteOrder" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Site Orders');?> </span><input type="checkbox" name="canUpload_siteOrder" <?php if(isset($u['Canupload']['siteOrder']) && $u['Canupload']['siteOrder']==1){?>checked="checked"<?php }?> /><?php }?>
@@ -199,6 +274,8 @@ if(!isset($sid))
 </td>
 </tr>
 </table>
+<div class="morez1"></div>
+<table class="loadmorez1" width="50%"></table>
 </td>
 <?php
 }
@@ -282,6 +359,7 @@ if(!isset($sid))
 </td>
 </tr>
 </table>
+
 </td>
 
     <?php

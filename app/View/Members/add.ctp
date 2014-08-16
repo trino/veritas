@@ -104,6 +104,43 @@
             return false;
         }
     }
+ function loadmore(type, qq)
+{
+    
+    if(qq.prop('checked'))
+    {
+        $('.morez').load('<?php echo $this->webroot;?>members/loadextra/'+type,function(){
+             $('.loadmorez').append($('.morez').html());
+            $('.morez').html("");
+        });
+       
+        
+    }
+    else
+    {
+        $('.'+type+'_more').remove();
+        
+    }
+}
+function loadupload(type, qq)
+{
+    
+    if(qq.prop('checked'))
+    {
+        
+        $('.morez1').load('<?php echo $this->webroot;?>members/loadupload/'+type,function(){
+            $('.loadmorez1').append($('.morez1').html());
+            $('.morez1').html("");
+        });
+        
+        
+    }
+    else
+    {
+        $('.'+type+'_more1').remove();
+        
+    }
+}
 </script>
 <div id="table">
 <form id="my_form"  autocomplete="off"  action="" method="post" enctype="multipart/form-data" onsubmit="return valid();">
@@ -202,13 +239,13 @@ if($q || $q2){
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Contracts');?> </span><input type="checkbox" name="canView_contracts" class="vie"  /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['evidence']=='0'){?><input type="hidden" name="canView_evidence" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Evidence');?> </span><input type="checkbox" name="canView_evidence" class="vie"  /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Evidence');?> </span><input type="checkbox" onclick="loadmore('evidence',$(this));" name="canView_evidence" class="vie"  /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['templates']=='0'){?><input type="hidden" name="canView_templates" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Templates');?> </span><input type="checkbox" name="canView_templates" class="vie"  /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['report']=='0'){?><input type="hidden" name="canView_client_memo" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Report');?> </span><input type="checkbox" name="canView_client_memo" class="vie"  /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Report');?> </span><input type="checkbox" onclick="loadmore('report',$(this));" name="canView_client_memo" class="vie"  /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['site_orders']=='0'){?><input type="hidden" name="canView_siteOrder" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Site Orders');?> </span><input type="checkbox" name="canView_siteOrder" class="vie" /><?php }?>
@@ -241,6 +278,8 @@ if($q || $q2){
 </td>
 </tr>
 </table>
+<div class="morez"></div>
+<table class="loadmorez" width="50%"></table>
 </td>
 </tr>
 
@@ -269,13 +308,13 @@ if($q || $q2){
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Contracts');?> </span><input type="checkbox" name="canUpload_contracts" class="upl"/><?php } ?>
 
 <?php if($admin_doc['AdminDoc']['evidence']=='0'){?><input type="hidden" name="canUpload_evidence" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Evidence');?> </span><input type="checkbox" name="canUpload_evidence" class="upl"  /><?php } ?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Evidence');?> </span><input type="checkbox" onclick="loadupload('evidence',$(this));" name="canUpload_evidence" class="upl"  /><?php } ?>
 
 <?php if($admin_doc['AdminDoc']['templates']=='0'){?><input type="hidden" name="canUpload_templates" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Templates');?> </span><input type="checkbox" name="canUpload_templates" class="upl"  /><?php } ?>
 
 <?php if($admin_doc['AdminDoc']['report']=='0'){?><input type="hidden" name="canUpload_client_memo" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Report');?> </span><input type="checkbox" name="canUpload_client_memo" class="upl"  /><?php } ?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Report');?> </span><input type="checkbox" onclick="loadupload('report',$(this));" name="canUpload_client_memo" class="upl"  /><?php } ?>
 
 <?php if($admin_doc['AdminDoc']['site_orders']=='0'){?><input type="hidden" name="canUpload_siteOrder" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Site Orders');?> </span><input type="checkbox" name="canUpload_siteOrder" class="upl"  /><?php } ?>
@@ -310,6 +349,8 @@ if($q || $q2){
 </td>
 </tr>
 </table>
+<div class="morez1"></div>
+<table class="loadmorez1" width="50%"></table>
 </td>
 </tr>
 <!--<tr><td><b>Can View Files</b></td><td><input type="checkbox" name="canView" /></td></tr>
@@ -438,9 +479,9 @@ $(function(){
                 $(this).removeAttr('checked');
             });
             $('.nospecial2').show();
-            $('.nospecial2 input[type="checkbox"]').each(function(){
+            /*$('.nospecial2 input[type="checkbox"]').each(function(){
                 $(this).attr('checked','checked');
-            });
+            });*/
             }
             
             }
@@ -457,20 +498,20 @@ $(function(){
     $('#canView').click(function(){
         if($('#canView').is(':checked')){
             $('.canviewfiles').show();
-            $('.vie').each(function(){
+            /*$('.vie').each(function(){
                if(!($(this).is(':checked')))
                $(this).click() ;
-            });
+            });*/
             if($('.special').is(':checked')){
             $('.yesspecial').show();
             $('.yesspecial input[type="checkbox"]').each(function(){
                 $(this).attr('checked','checked');
             });
             $('.nospecial').hide();
-            $('.nospecial input[type="checkbox"]').each(function(){
+            /*$('.nospecial input[type="checkbox"]').each(function(){
                 $(this).removeAttr('checked');
                 //alert('removed');
-            });
+            });*/
             }
             else
             {
@@ -479,9 +520,9 @@ $(function(){
                 $(this).removeAttr('checked');
             });
             $('.nospecial').show();
-            $('.nospecial input[type="checkbox"]').each(function(){
+            /*$('.nospecial input[type="checkbox"]').each(function(){
                 $(this).attr('checked','checked');
-            });
+            });*/
             }
             
             
@@ -636,9 +677,9 @@ $(function(){
                 $(this).removeAttr('checked');
             });
                     $('.nospecial').show();
-                    $('.nospecial input[type="checkbox"]').each(function(){
+                    /*$('.nospecial input[type="checkbox"]').each(function(){
                 $(this).attr('checked','checked');
-            });
+            });*/
                 }
                 
                 
@@ -679,9 +720,9 @@ $(function(){
                 $(this).removeAttr('checked');
             });
                     $('.nospecial').show();
-                    $('.nospecial input[type="checkbox"]').each(function(){
+                    /*$('.nospecial input[type="checkbox"]').each(function(){
                 $(this).attr('checked','checked');
-            });
+            });*/
                 }
                 
                 
@@ -693,9 +734,9 @@ $(function(){
                 $(this).removeAttr('checked');
             });
                     $('.nospecial2').show();
-                    $('.nospecial2 input[type="checkbox"]').each(function(){
+                    /*$('.nospecial2 input[type="checkbox"]').each(function(){
                 $(this).attr('checked','checked');
-            });
+            });*/
                 }
                 
         }

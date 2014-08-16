@@ -1,0 +1,14 @@
+<table class="evidence_more1">
+<tr><td><strong>Evidence Type</strong></td></tr>
+<tr>
+    <td><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Incident Report');?> </span><input type="checkbox" name="evidence_canUpload[]" <?php if($evidencestat->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>'1','can_upload'=>'1')))){?>checked="checked"<?php }?> value="1" />
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Line Crossing Sheet');?> </span><input type="checkbox" name="evidence_canUpload[]" <?php if($evidencestat->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>'2','can_upload'=>'1')))){?>checked="checked"<?php }?> value="2" />
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Shift Summary');?> </span><input type="checkbox" name="evidence_canUpload[]" <?php if($evidencestat->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>'3','can_upload'=>'1')))){?>checked="checked"<?php }?> value="3" />
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Incident Video');?> </span><input type="checkbox" name="evidence_canUpload[]" <?php if($evidencestat->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>'4','can_upload'=>'1')))){?>checked="checked"<?php }?> value="4" />
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Executive Summary');?> </span><input type="checkbox" name="evidence_canUpload[]" <?php if($evidencestat->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>'5','can_upload'=>'1')))){?>checked="checked"<?php }?> value="5" />
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Average Picket Count');?> </span><input type="checkbox" name="evidence_canUpload[]" <?php if($evidencestat->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>'6','can_upload'=>'1')))){?>checked="checked"<?php }?> value="6" />
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Victim Statement');?> </span><input type="checkbox" name="evidence_canUpload[]" <?php if($evidencestat->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>'7','can_upload'=>'1')))){?>checked="checked"<?php }?> value="7" />
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Miscellaneous');?> </span><input type="checkbox" name="evidence_canUpload[]" <?php if($evidencestat->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>'8','can_upload'=>'1')))){?>checked="checked"<?php }?> value="8" />
+    </td>
+</tr>
+</table>
