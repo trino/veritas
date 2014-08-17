@@ -248,13 +248,13 @@ if($q || $q2){
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Report');?> </span><input type="checkbox" onclick="loadmore('report',$(this));" name="canView_client_memo" class="vie"  /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['site_orders']=='0'){?><input type="hidden" name="canView_siteOrder" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Site Orders');?> </span><input type="checkbox" name="canView_siteOrder" class="vie" /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Site Orders');?> </span><input type="checkbox" onclick="loadmore('siteorder',$(this));" name="canView_siteOrder" class="vie" /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['training']=='0'){?><input type="hidden" name="canView_training" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Training');?> </span><input type="checkbox" name="canView_training" class="vie"  /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['employee']=='0'){?><input type="hidden" name="canView_employee" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Employee');?> </span><input type="checkbox" name="canView_employee" class="vie"  /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Employee');?> </span><input type="checkbox" onclick="loadmore('employee',$(this));" name="canView_employee" class="vie"  /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['kpiaudits']=='0'){?><input type="hidden" name="canView_KPIAudits" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/KPI Audits');?> </span><input type="checkbox" name="canView_KPIAudits" class="vie" /><?php }?>
@@ -317,13 +317,13 @@ if($q || $q2){
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Report');?> </span><input type="checkbox" onclick="loadupload('report',$(this));" name="canUpload_client_memo" class="upl"  /><?php } ?>
 
 <?php if($admin_doc['AdminDoc']['site_orders']=='0'){?><input type="hidden" name="canUpload_siteOrder" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Site Orders');?> </span><input type="checkbox" name="canUpload_siteOrder" class="upl"  /><?php } ?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Site Orders');?> </span><input type="checkbox" onclick="loadupload('siteorder',$(this));" name="canUpload_siteOrder" class="upl"  /><?php } ?>
 
 <?php if($admin_doc['AdminDoc']['training']=='0'){?><input type="hidden" name="canUpload_training" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Training');?> </span><input type="checkbox" name="canUpload_training" class="upl"  /><?php } ?>
 
 <?php if($admin_doc['AdminDoc']['employee']=='0'){?><input type="hidden" name="canUpload_employee" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Employee');?> </span><input type="checkbox" name="canUpload_employee" class="upl"  /><?php } ?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Employee');?> </span><input type="checkbox" onclick="loadupload('employee',$(this));" name="canUpload_employee" class="upl"  /><?php } ?>
 
 <?php if($admin_doc['AdminDoc']['kpiaudits']=='0'){?><input type="hidden" name="canUpload_KPIAudits" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/KPI Audits');?> </span><input type="checkbox" name="canUpload_KPIAudits" class="upl" /><?php } ?>

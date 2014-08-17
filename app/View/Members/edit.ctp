@@ -21,6 +21,26 @@ $(function(){
         
         
 <?php }?>
+<?php if(isset($v['Canview']['employee']) && $v['Canview']['employee']==1){?>
+
+        $('.morez').load('<?php echo $this->webroot;?>members/loadextra/employee/<?php echo $m['Member']['id'];?>',function(){
+           $('.loadmorez').append($('.morez').html());
+           $('.morez').html(""); 
+            
+        });
+        
+        
+<?php }?>
+<?php if(isset($v['Canview']['siteOrder']) && $v['Canview']['siteOrder']==1){?>
+
+        $('.morez').load('<?php echo $this->webroot;?>members/loadextra/siteorder/<?php echo $m['Member']['id'];?>',function(){
+           $('.loadmorez').append($('.morez').html());
+           $('.morez').html(""); 
+            
+        });
+        
+        
+<?php }?>
 
 <?php if(isset($u['Canupload']['report']) && $u['Canupload']['report']==1){?>
         $('.morez1').load('<?php echo $this->webroot;?>members/loadupload/report/<?php echo $m['Member']['id'];?>',function(){
@@ -31,6 +51,18 @@ $(function(){
 <?php }?>
 <?php if(isset($u['Canupload']['evidence']) && $u['Canupload']['evidence']==1){?>
     $('.morez1').load('<?php echo $this->webroot;?>members/loadupload/evidence/<?php echo $m['Member']['id'];?>',function(){
+            $('.loadmorez1').append($('.morez1').html());
+        $('.morez1').html("");
+        });
+<?php }?>
+<?php if(isset($u['Canupload']['employee']) && $u['Canupload']['employee']==1){?>
+    $('.morez1').load('<?php echo $this->webroot;?>members/loadupload/employee/<?php echo $m['Member']['id'];?>',function(){
+            $('.loadmorez1').append($('.morez1').html());
+        $('.morez1').html("");
+        });
+<?php }?>
+<?php if(isset($u['Canupload']['siteOrder']) && $u['Canupload']['siteOrder']==1){?>
+    $('.morez1').load('<?php echo $this->webroot;?>members/loadupload/siteorder/<?php echo $m['Member']['id'];?>',function(){
             $('.loadmorez1').append($('.morez1').html());
         $('.morez1').html("");
         });
@@ -160,13 +192,13 @@ if(!isset($sid)){
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Report');?> </span><input type="checkbox" onclick="loadmore('report',$(this));" name="canView_client_memo"  <?php if(isset($v['Canview']['report']) && $v['Canview']['report']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['site_orders']=='0' ){?><input type="hidden" name="canView_siteOrder" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Site Orders');?> </span><input type="checkbox" name="canView_siteOrder" <?php if(isset($v['Canview']['siteOrder']) && $v['Canview']['siteOrder']==1){?>checked="checked"<?php }?> /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Site Orders');?> </span><input type="checkbox" onclick="loadmore('siteorder',$(this));" name="canView_siteOrder" <?php if(isset($v['Canview']['siteOrder']) && $v['Canview']['siteOrder']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['training']=='0' ){?><input type="hidden" name="canView_training" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Training');?> </span><input type="checkbox" name="canView_training" <?php if(isset($v['Canview']['training']) && $v['Canview']['training']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['employee']=='0' ){?><input type="hidden" name="canView_employee" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Employee');?> </span><input type="checkbox" name="canView_employee" <?php if(isset($v['Canview']['employee']) && $v['Canview']['employee']==1){?>checked="checked"<?php }?> /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Employee');?> </span><input type="checkbox" onclick="loadmore('employee',$(this));" name="canView_employee" <?php if(isset($v['Canview']['employee']) && $v['Canview']['employee']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['kpiaudits']=='0' ){?><input type="hidden" name="canView_KPIAudits" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/KPI Audits');?> </span><input type="checkbox" name="canView_KPIAudits" <?php if(isset($v['Canview']['KPIAudits']) && $v['Canview']['KPIAudits']==1){?>checked="checked"<?php }?> /><?php }?>
@@ -241,13 +273,13 @@ if(!isset($sid))
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Report');?> </span><input type="checkbox" onclick="loadupload('report',$(this));" name="canUpload_client_memo" <?php if(isset($u['Canupload']['report']) && $u['Canupload']['report']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['site_orders']=='0' ){?><input type="hidden" name="canUpload_siteOrder" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Site Orders');?> </span><input type="checkbox" name="canUpload_siteOrder" <?php if(isset($u['Canupload']['siteOrder']) && $u['Canupload']['siteOrder']==1){?>checked="checked"<?php }?> /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Site Orders');?> </span><input type="checkbox" onclick="loadupload('siteorder',$(this));" name="canUpload_siteOrder" <?php if(isset($u['Canupload']['siteOrder']) && $u['Canupload']['siteOrder']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['training']=='0' ){?><input type="hidden" name="canUpload_training" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Training');?> </span><input type="checkbox" name="canUpload_training" <?php if(isset($u['Canupload']['training']) && $u['Canupload']['training']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['employee']=='0' ){?><input type="hidden" name="canUpload_employee" value="0"/><?php }else{?>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Employee');?> </span><input type="checkbox" name="canUpload_employee" <?php if(isset($u['Canupload']['employee']) && $u['Canupload']['employee']==1){?>checked="checked"<?php }?> /><?php }?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Employee');?> </span><input type="checkbox" onclick="loadupload('employee',$(this));" name="canUpload_employee" <?php if(isset($u['Canupload']['employee']) && $u['Canupload']['employee']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['kpiaudits']=='0' ){?><input type="hidden" name="canUpload_KPIAudits" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/KPI Audits');?> </span><input type="checkbox" name="canUpload_KPIAudits" <?php if(isset($u['Canupload']['KPIAudits']) && $u['Canupload']['KPIAudits']==1){?>checked="checked"<?php }?> /><?php }?>
