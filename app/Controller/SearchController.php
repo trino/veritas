@@ -179,10 +179,11 @@ class SearchController extends AppController
             }
             if($qs['Canview']['report'])
             {
+                $in = '9999999';
                 $rvp = $this->ReportviewPermission->find('all',array('conditions'=>array('user_id'=>$this->Session->read('id'))));
                 if($rvp){
                     $in_c = 0;        
-                    $in = null;                
+                                    
                     foreach($rvp as $rvps)
                     {
                         $in_c++;
@@ -197,9 +198,28 @@ class SearchController extends AppController
                 else
                 $arrs[] = array('document_type'=>'report');
             }
+            $this->loadModel('EvidenceviewPermission');
             if($qs['Canview']['evidence'])
             {
+                $in = '9999999';
+                $evp = $this->EvidenceviewPermission->find('all',array('conditions'=>array('user_id'=>$this->Session->read('id'))));
+                if($evp){
+                    $in_c = 0;        
+                                   
+                    foreach($evp as $rvps)
+                    {
+                        $in_c++;
+                        if($in_c==1)
+                        $in = $rvps['EvidenceviewPermission']['report_type'];
+                        else
+                        $in = $in.','.$rvps['EvidenceviewPermission']['report_type'];
+                    }
+                }
+                if($in)
+                $arrs[] = array('document_type'=>'evidence','ev_id IN ('.$in.')');
+                else
                 $arrs[] = array('document_type'=>'evidence');
+                
             }
             if($qs['Canview']['personal_inspection'])
             {
@@ -229,16 +249,52 @@ class SearchController extends AppController
             {
                 $arrs[] = array('document_type'=>'template');
             }
+            $this->loadModel('SiteorderviewPermission');
             if($qs['Canview']['siteOrder'])
             {
+                $in = '9999999'; 
+                $sovp = $this->SiteorderviewPermission->find('all',array('conditions'=>array('user_id'=>$this->Session->read('id'))));
+                if($sovp){
+                    $in_c = 0;        
+                                   
+                    foreach($sovp as $rvps)
+                    {
+                        $in_c++;
+                        if($in_c==1)
+                        $in = $rvps['SiteorderviewPermission']['report_type'];
+                        else
+                        $in = $in.','.$rvps['SiteorderviewPermission']['report_type'];
+                    }
+                }
+                if($in)
+                $arrs[] = array('document_type'=>'siteOrder','so_id IN ('.$in.')');
+                else
                 $arrs[] = array('document_type'=>'siteOrder');
             }
             if($qs['Canview']['training'])
             {
                 $arrs[] = array('document_type'=>'training');
             }
+            $this->loadModel('EmployeeviewPermission');
             if($qs['Canview']['employee'])
             {
+                $in = '9999999';
+                $emvp = $this->EmployeeviewPermission->find('all',array('conditions'=>array('user_id'=>$this->Session->read('id'))));
+                if($emvp){
+                    $in_c = 0;        
+                                    
+                    foreach($emvp as $rvps)
+                    {
+                        $in_c++;
+                        if($in_c==1)
+                        $in = $rvps['EmployeeviewPermission']['report_type'];
+                        else
+                        $in = $in.','.$rvps['EmployeeviewPermission']['report_type'];
+                    }
+                }
+                if($in)
+                $arrs[] = array('document_type'=>'employee','emp_id IN ('.$in.')');
+                else
                 $arrs[] = array('document_type'=>'employee');
             }
             if($qs['Canview']['KPIAudits'])
@@ -613,7 +669,7 @@ class SearchController extends AppController
             $this->Document->id = $d['Document']['id'];
             $this->Document->saveField('re_id',$q1['Activity']['report_type']);
         }
-        return false;
+        die();
     }
     function fill_evidence()
     {
@@ -631,7 +687,7 @@ class SearchController extends AppController
             echo "<br/>";
             $this->Document->saveField('ev_id',$key);
         }
-        return false;
+        die();
         
 
     }
@@ -651,7 +707,7 @@ class SearchController extends AppController
             echo "<br/>";
             $this->Document->saveField('so_id',$key);
         }
-        return false;
+        die();
     }
     function fill_employee()
     {
@@ -669,7 +725,82 @@ class SearchController extends AppController
             echo "<br/>";
             $this->Document->saveField('emp_id',$key);
         }
-     return false;
+     die();
+    }
+    function set_default_permission()
+    {
+        $this->loadModel('Member');
+        $q = $this->Member->find('all');
+        foreach($q as $m)
+        {
+            $this->loadModel('ReportuploadPermission');
+            for($i=1;$i<18;$i++)
+            {
+                $this->ReportuploadPermission->create();
+                $arr['user_id'] = $m['Member']['id'];
+                $arr['report_type1'] = $i;
+                $this->ReportuploadPermission->save($arr);
+            }
+            $this->loadModel('ReportviewPermission');
+            for($i=1;$i<18;$i++)
+            {
+                $this->ReportviewPermission->create();
+                $arr['user_id'] = $m['Member']['id'];
+                $arr['report_type'] = $i;
+                $this->ReportviewPermission->save($arr);
+            }
+            
+            $this->loadModel('EvidenceuploadPermission');
+            for($i=1;$i<9;$i++)
+            {
+                $this->EvidenceuploadPermission->create();
+                $arr['user_id'] = $m['Member']['id'];
+                $arr['report_type1'] = $i;
+                $this->EvidenceuploadPermission->save($arr);
+            }
+            $this->loadModel('EvidenceviewPermission');
+            for($i=1;$i<9;$i++)
+            {
+                $this->EvidenceviewPermission->create();
+                $arr['user_id'] = $m['Member']['id'];
+                $arr['report_type'] = $i;
+                $this->EvidenceviewPermission->save($arr);
+            }
+            
+            $this->loadModel('SiteorderuploadPermission');
+            for($i=1;$i<5;$i++)
+            {
+                $this->SiteorderuploadPermission->create();
+                $arr['user_id'] = $m['Member']['id'];
+                $arr['report_type1'] = $i;
+                $this->SiteorderuploadPermission->save($arr);
+            }
+            $this->loadModel('SiteorderviewPermission');
+            for($i=1;$i<5;$i++)
+            {
+                $this->SiteorderviewPermission->create();
+                $arr['user_id'] = $m['Member']['id'];
+                $arr['report_type'] = $i;
+                $this->SiteorderviewPermission->save($arr);
+            }
+            $this->loadModel('EmployeeuploadPermission');
+            for($i=1;$i<4;$i++)
+            {
+                $this->EmployeeuploadPermission->create();
+                $arr['user_id'] = $m['Member']['id'];
+                $arr['report_type1'] = $i;
+                $this->EmployeeuploadPermission->save($arr);
+            }
+            $this->loadModel('EmployeeviewPermission');
+            for($i=1;$i<4;$i++)
+            {
+                $this->EmployeeviewPermission->create();
+                $arr['user_id'] = $m['Member']['id'];
+                $arr['report_type'] = $i;
+                $this->EmployeeviewPermission->save($arr);
+            }
+        }
+        die();
     }
 }
 ?>
