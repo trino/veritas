@@ -3583,5 +3583,36 @@ $oa = intval($number*$expo)/$expo;
     }
     die();
   }
+  function check_p($model,$id)
+  {
+    if($this->Session->read('admin'))
+    return true;
+    $uid = $this->Session->read('id');
+    $this->loadModel($model);
+    if($model=='ReportuploadPermission')
+    {        
+        $q = $this->ReportuploadPermission->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>$id)));
+        return $q;
+    }
+    else
+    if($model=='EvidenceuploadPermission')
+    {
+        $q = $this->EvidenceuploadPermission->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>$id)));
+        return $q;
+    }
+    else
+    if($model=='SiteorderuploadPermission')
+    {
+        $q = $this->SiteorderuploadPermission->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>$id)));
+        return $q;
+    }
+    else
+    if($model=='EmployeeuploadPermission')
+    {
+       $q = $this->EmployeeuploadPermission->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>$id)));
+        return $q; 
+    }
+    return false;
+  }
   
 }

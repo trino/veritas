@@ -727,5 +727,80 @@ class SearchController extends AppController
         }
      die();
     }
+    function set_default_permission()
+    {
+        $this->loadModel('Member');
+        $q = $this->Member->find('all');
+        foreach($q as $m)
+        {
+            $this->loadModel('ReportuploadPermission');
+            for($i=1;$i<18;$i++)
+            {
+                $this->ReportuploadPermission->create();
+                $arr['user_id'] = $m['Member']['id'];
+                $arr['report_type1'] = $i;
+                $this->ReportuploadPermission->save($arr);
+            }
+            $this->loadModel('ReportviewPermission');
+            for($i=1;$i<18;$i++)
+            {
+                $this->ReportviewPermission->create();
+                $arr['user_id'] = $m['Member']['id'];
+                $arr['report_type'] = $i;
+                $this->ReportviewPermission->save($arr);
+            }
+            
+            $this->loadModel('EvidenceuploadPermission');
+            for($i=1;$i<9;$i++)
+            {
+                $this->EvidenceuploadPermission->create();
+                $arr['user_id'] = $m['Member']['id'];
+                $arr['report_type1'] = $i;
+                $this->EvidenceuploadPermission->save($arr);
+            }
+            $this->loadModel('EvidenceviewPermission');
+            for($i=1;$i<9;$i++)
+            {
+                $this->EvidenceviewPermission->create();
+                $arr['user_id'] = $m['Member']['id'];
+                $arr['report_type'] = $i;
+                $this->EvidenceviewPermission->save($arr);
+            }
+            
+            $this->loadModel('SiteorderuploadPermission');
+            for($i=1;$i<5;$i++)
+            {
+                $this->SiteorderuploadPermission->create();
+                $arr['user_id'] = $m['Member']['id'];
+                $arr['report_type1'] = $i;
+                $this->SiteorderuploadPermission->save($arr);
+            }
+            $this->loadModel('SiteorderviewPermission');
+            for($i=1;$i<5;$i++)
+            {
+                $this->SiteorderviewPermission->create();
+                $arr['user_id'] = $m['Member']['id'];
+                $arr['report_type'] = $i;
+                $this->SiteorderviewPermission->save($arr);
+            }
+            $this->loadModel('EmployeeuploadPermission');
+            for($i=1;$i<4;$i++)
+            {
+                $this->EmployeeuploadPermission->create();
+                $arr['user_id'] = $m['Member']['id'];
+                $arr['report_type1'] = $i;
+                $this->EmployeeuploadPermission->save($arr);
+            }
+            $this->loadModel('EmployeeviewPermission');
+            for($i=1;$i<4;$i++)
+            {
+                $this->EmployeeviewPermission->create();
+                $arr['user_id'] = $m['Member']['id'];
+                $arr['report_type'] = $i;
+                $this->EmployeeviewPermission->save($arr);
+            }
+        }
+        die();
+    }
 }
 ?>
