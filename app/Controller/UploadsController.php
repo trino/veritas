@@ -1913,6 +1913,9 @@ class UploadsController extends AppController
             
                 //$arr['desc'] = $_POST['desc'];
                 $arr['evidence_type'] = $_POST['evidence_type'];
+                $arr_e = array('Incident Report','Line Crossing Sheet','Shift Summary','Incident Video','Executive Summary','Average Picket Count','Victim Statement','Miscellaneous');
+                $k   = array_search($_POST['evidence_type'],$arr_e);
+                $arr['ev_id'] = $k+1;
                 $arr['evidence_author'] = $_POST['evidence_author'];
                 $subname = '_'.$_POST['evidence_type'];
               
@@ -1920,17 +1923,24 @@ class UploadsController extends AppController
             elseif($_POST['document_type'] == 'siteOrder')
             {
                 $arr['site_type'] = $_POST['site_type'];
+                $arr_so = array('Post Orders','Operational Memos','Site Maps','Forms');
+                $k = array_search($_POST['site_type'],$arr_so);
+                $arr['so_id'] = $k+1;
                 $subname = '_'.$_POST['site_type'];
             }
             elseif($_POST['document_type'] == 'employee')
             {
                 $arr['employee_type'] = $_POST['employee_type'];
+                $arr_em = array('Job Descriptions','Drug Free Policy','Schedules');
+                $k = array_search($_POST['employee_type'],$arr_em);
+                $arr['emp_id'] = $k+1;
                 echo $subname = '_'.$_POST['employee_type'];
 
             }
             elseif($_POST['document_type'] == 'training')
             {
                 $arr['training_type'] = $_POST['training_type'];
+                 
                 $subname = '_'.$_POST['training_type'];
 				//debug($arr);exit;
             }
@@ -1940,7 +1950,10 @@ class UploadsController extends AppController
                 $subname = '_'.$_POST['memo_type'];
 				//debug($arr);exit;
             }
-            
+            if($_POST['document_type']=='report')
+            {
+                $arr['re_id'] = $_POST['report_type'];
+            }
             $arr['draft'] = $_POST['draft'];
             
             //Email
