@@ -3,6 +3,7 @@
 <script>
 $(function(){
    $('#add_form').validate();
+   <?php if($admin_doc['AdminDoc']['report']=='1' ){?>
    <?php if(isset($v['Canview']['report']) && $v['Canview']['report']==1){?>
 
         $('.morez').load('<?php echo $this->webroot;?>members/loadextra/report/<?php echo $m['Member']['id'];?>',function(){
@@ -11,7 +12,8 @@ $(function(){
         });
         
         
-<?php }?>
+<?php }}?>
+<?php if($admin_doc['AdminDoc']['evidence']=='1' ){?>
 <?php if(isset($v['Canview']['evidence']) && $v['Canview']['evidence']==1){?>
 
         $('.morez').load('<?php echo $this->webroot;?>members/loadextra/evidence/<?php echo $m['Member']['id'];?>',function(){
@@ -21,7 +23,8 @@ $(function(){
         });
         
         
-<?php }?>
+<?php }}?>
+<?php if($admin_doc['AdminDoc']['employee']=='1' ){?>
 <?php if(isset($v['Canview']['employee']) && $v['Canview']['employee']==1){?>
 
         $('.morez').load('<?php echo $this->webroot;?>members/loadextra/employee/<?php echo $m['Member']['id'];?>',function(){
@@ -31,7 +34,8 @@ $(function(){
         });
         
         
-<?php }?>
+<?php }}?>
+<?php if($admin_doc['AdminDoc']['site_orders']=='1' ){?>
 <?php if(isset($v['Canview']['siteOrder']) && $v['Canview']['siteOrder']==1){?>
 
         $('.morez').load('<?php echo $this->webroot;?>members/loadextra/siteorder/<?php echo $m['Member']['id'];?>',function(){
@@ -41,33 +45,37 @@ $(function(){
         });
         
         
-<?php }?>
+<?php }}?>
 
+<?php if($admin_doc['AdminDoc']['report']=='1' ){?>
 <?php if(isset($u['Canupload']['report']) && $u['Canupload']['report']==1){?>
         $('.morez1').load('<?php echo $this->webroot;?>members/loadupload/report/<?php echo $m['Member']['id'];?>',function(){
             $('.loadmorez1').append($('.morez1').html());
         $('.morez1').html("");
         });
         
-<?php }?>
+<?php }}?>
+<?php if($admin_doc['AdminDoc']['evidence']=='1' ){?>
 <?php if(isset($u['Canupload']['evidence']) && $u['Canupload']['evidence']==1){?>
     $('.morez1').load('<?php echo $this->webroot;?>members/loadupload/evidence/<?php echo $m['Member']['id'];?>',function(){
             $('.loadmorez1').append($('.morez1').html());
         $('.morez1').html("");
         });
-<?php }?>
+<?php }}?>
+<?php if($admin_doc['AdminDoc']['employee']=='1' ){?>
 <?php if(isset($u['Canupload']['employee']) && $u['Canupload']['employee']==1){?>
     $('.morez1').load('<?php echo $this->webroot;?>members/loadupload/employee/<?php echo $m['Member']['id'];?>',function(){
             $('.loadmorez1').append($('.morez1').html());
         $('.morez1').html("");
         });
-<?php }?>
+<?php }}?>
+<?php if($admin_doc['AdminDoc']['site_orders']=='1' ){?>
 <?php if(isset($u['Canupload']['siteOrder']) && $u['Canupload']['siteOrder']==1){?>
     $('.morez1').load('<?php echo $this->webroot;?>members/loadupload/siteorder/<?php echo $m['Member']['id'];?>',function(){
             $('.loadmorez1').append($('.morez1').html());
         $('.morez1').html("");
         });
-<?php }?>
+<?php }}?>
    
 });
  function check_name()
