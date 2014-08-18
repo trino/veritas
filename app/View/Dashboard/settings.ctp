@@ -80,25 +80,25 @@ $(function(){
    });
    
    <?php if(isset($admin_doc['AdminDoc']['evidence']) && $admin_doc['AdminDoc']['evidence']=='1' ){?>
-   $('.morez').load('<?php echo $this->webroot;?>members/loadupload/evidence/0',function(){
+   $('.morez').load('<?php echo $this->webroot;?>members/loadupload/evidence/0/all',function(){
             $('.loadmorez').append($('.morez').html());
         $('.morez').html("");
         });
    <?php }?>
    <?php if(isset($admin_doc['AdminDoc']['report']) && $admin_doc['AdminDoc']['report']=='1' ){?>
-   $('.morez').load('<?php echo $this->webroot;?>members/loadupload/report/0',function(){
+   $('.morez').load('<?php echo $this->webroot;?>members/loadupload/report/0/all',function(){
             $('.loadmorez').append($('.morez').html());
         $('.morez').html("");
         });
    <?php }?>
    <?php if(isset($admin_doc['AdminDoc']['employee']) && $admin_doc['AdminDoc']['employee']=='1' ){?>
-   $('.morez').load('<?php echo $this->webroot;?>members/loadupload/employee/0',function(){
+   $('.morez').load('<?php echo $this->webroot;?>members/loadupload/employee/0/all',function(){
             $('.loadmorez').append($('.morez').html());
         $('.morez').html("");
         });
    <?php }?>
    <?php if(isset($admin_doc['AdminDoc']['site_orders']) && $admin_doc['AdminDoc']['site_orders']=='1' ){?>
-   $('.morez').load('<?php echo $this->webroot;?>members/loadupload/siteorder/0',function(){
+   $('.morez').load('<?php echo $this->webroot;?>members/loadupload/siteorder/0/all',function(){
             $('.loadmorez').append($('.morez').html());
         $('.morez').html("");
         });
@@ -111,7 +111,7 @@ function loadmore(type, qq)
     if(qq.prop('checked'))
     {
         
-        $('.morez').load('<?php echo $this->webroot;?>members/loadupload/'+type+'/0',function(){
+        $('.morez').load('<?php echo $this->webroot;?>members/loadupload/'+type+'/0/all',function(){
             $('.loadmorez').append($('.morez').html());
             $('.morez').html("");
         });

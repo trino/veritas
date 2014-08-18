@@ -536,13 +536,19 @@ class UploadsController extends AppController
                 $arr['description'] = $_POST['description'];
             $arr['draft'] = $_POST['draft'];
             
-          
+            if($_POST['document_type']=='report')
+            {
+                $arr['re_id'] = $_POST['report_type'];
+            }
             if($_POST['document_type']== 'evidence')
             {
                 $arr['incident_date'] = $_POST['incident_date'];
                 //$arr['desc'] = $_POST['desc'];
                 $arr['evidence_type'] = $_POST['evidence_type'];
                 $arr['evidence_author'] = $_POST['evidence_author'];
+                $arr_e = array('Incident Report','Line Crossing Sheet','Shift Summary','Incident Video','Executive Summary','Average Picket Count','Victim Statement','Miscellaneous');
+                $k   = array_search($_POST['evidence_type'],$arr_e);
+                $arr['ev_id'] = $k+1;
             
                 
                 
@@ -552,11 +558,19 @@ class UploadsController extends AppController
             {
                 $arr['site_type'] = $_POST['site_type'];
                 $subname = '_'.$_POST['site_type'];
+                //$arr['site_type'] = $_POST['site_type'];
+                $arr_so = array('Post Orders','Operational Memos','Site Maps','Forms');
+                $k = array_search($_POST['site_type'],$arr_so);
+                $arr['so_id'] = $k+1;
+                //$subname = '_'.$_POST['site_type'];
             }
             elseif($_POST['document_type'] == 'employee')
             {
                 $arr['employee_type'] = $_POST['employee_type'];
-                $subname = '_'.$_POST['employee_type'];
+                $arr_em = array('Job Descriptions','Drug Free Policy','Schedules');
+                $k = array_search($_POST['employee_type'],$arr_em);
+                $arr['emp_id'] = $k+1;
+                echo $subname = '_'.$_POST['employee_type'];
             }
             elseif($_POST['document_type'] == 'training')
             {
@@ -3590,27 +3604,46 @@ $oa = intval($number*$expo)/$expo;
     $uid = $this->Session->read('id');
     $this->loadModel($model);
     if($model=='ReportuploadPermission')
-    {        
+    {
+        if($this->ReportuploadPermission->find('first',array('conditions'=>array('user_id'=>0,'report_type1'=>$id)))){
         $q = $this->ReportuploadPermission->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>$id)));
         return $q;
+        }
+        else
+        return false;
     }
     else
     if($model=='EvidenceuploadPermission')
     {
+        
+        if($this->EvidenceuploadPermission->find('first',array('conditions'=>array('user_id'=>0,'report_type1'=>$id)))){
         $q = $this->EvidenceuploadPermission->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>$id)));
         return $q;
+        }
+        else
+        return false;
     }
     else
     if($model=='SiteorderuploadPermission')
     {
+        if($this->SiteorderuploadPermission->find('first',array('conditions'=>array('user_id'=>0,'report_type1'=>$id)))){
         $q = $this->SiteorderuploadPermission->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>$id)));
         return $q;
+        }
+        else
+        return false;
+        
     }
     else
     if($model=='EmployeeuploadPermission')
     {
-       $q = $this->EmployeeuploadPermission->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>$id)));
-        return $q; 
+        if($this->EmployeeuploadPermission->find('first',array('conditions'=>array('user_id'=>0,'report_type1'=>$id)))){
+        $q = $this->EmployeeuploadPermission->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>$id)));
+        return $q;
+        }
+        else
+        return false;
+        
     }
     return false;
   }

@@ -1195,17 +1195,17 @@ class MembersController extends AppController
         $this->loadModel('EvidenceviewPermission');
         $this->loadModel('EmployeeviewPermission');
         $this->loadModel('SiteorderviewPermission');
+        $this->loadModel('ReportuploadPermission');
+        $this->loadModel('EvidenceuploadPermission');
+        $this->loadModel('SiteorderuploadPermission');
+        $this->loadModel('EmployeeuploadPermission');
         $this->layout = "modal_layout";
+        
        if($type == 'report' )
        {
-        /*
-           if($uid!="")
-            $reportstat = $this->ReportPermission->find('all',array('conditions'=>array('user_id'=>$uid)));
-           else
-            $reportstat ="";
-         */ 
-            $this->set('uid',$uid);
+           $this->set('uid',$uid);
            $this->set('reportstat',$this->ReportviewPermission);
+           $this->set('reportstat1',$this->ReportuploadPermission);
            
             $this->render('report_type');
        }
@@ -1213,28 +1213,32 @@ class MembersController extends AppController
        {
             $this->set('uid',$uid);
             $this->set('evidencestat',$this->EvidenceviewPermission);
+            $this->set('evidencestat1',$this->EvidenceuploadPermission);
             $this->render('evidence_type');
        }
         if($type == 'employee') 
        {
             $this->set('uid',$uid);
             $this->set('employeestat',$this->EmployeeviewPermission);
+            $this->set('employeestat1',$this->EmployeeuploadPermission);
             $this->render('employee_type');
        }
         if($type == 'siteorder') 
        {
             $this->set('uid',$uid);
             $this->set('siteorderstat',$this->SiteorderviewPermission);
+            $this->set('siteorderstat1',$this->SiteorderuploadPermission);
             $this->render('siteorder_type');
        }
     }
-     function loadupload($type, $uid="")
+     function loadupload($type, $uid="", $mm=null)
     {
         $this->loadModel('ReportuploadPermission');
         $this->loadModel('EvidenceuploadPermission');
         $this->loadModel('SiteorderuploadPermission');
         $this->loadModel('EmployeeuploadPermission');
         $this->layout = "modal_layout";
+        $this->set('a',$mm);
        if($type == 'report' )
        {
        
