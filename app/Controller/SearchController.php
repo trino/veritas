@@ -210,6 +210,12 @@ class SearchController extends AppController
                     }
                 }
                 }
+                $this->loadModel('AdminDoc');
+                $per = $this->AdminDoc->find('first');
+                if($per['AdminDoc']['report']==0)
+                {
+                    $in = '999';
+                }
                 if($in)
                 $arrs[] = array('document_type'=>'report','re_id IN ('.$in.')');
                 else
@@ -244,6 +250,12 @@ class SearchController extends AppController
                         }
                     }
                 }
+                }
+                $this->loadModel('AdminDoc');
+                $per = $this->AdminDoc->find('first');
+                if($per['AdminDoc']['evidence']==0)
+                {
+                    $in = '999';
                 }
                 if($in)
                 $arrs[] = array('document_type'=>'evidence','ev_id IN ('.$in.')');
@@ -308,6 +320,12 @@ class SearchController extends AppController
                         }
                     }
                 }
+                }
+                $this->loadModel('AdminDoc');
+                $per = $this->AdminDoc->find('first');
+                if($per['AdminDoc']['site_orders']==0)
+                {
+                    $in = '999';
                 }
                 if($in)
                 $arrs[] = array('document_type'=>'siteOrder','so_id IN ('.$in.')');
@@ -379,6 +397,12 @@ class SearchController extends AppController
                         }
                     }
                 }
+                }
+                $this->loadModel('AdminDoc');
+                $per = $this->AdminDoc->find('first');
+                if($per['AdminDoc']['employee']==0)
+                {
+                    $in = '999';
                 }
                 if($in)
                 $arrs[] = array('document_type'=>'employee','emp_id IN ('.$in.')');
