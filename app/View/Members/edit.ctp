@@ -176,7 +176,7 @@ function loadupload(type, qq)
 <?php
 if(!isset($sid)){
 ?>
-<td colspan="2">
+<td colspan="2" style="padding: 0;background:#e5e5e5;">
 <table width="50%">
 
 <td><?php if($admin_doc['AdminDoc']['contracts']=='0'){?><input type="hidden" name="canView_contracts" value="0"/><?php }else{?>
@@ -231,7 +231,7 @@ if(!isset($sid)){
 else
 {
     ?>
-    <td colspan="2" class="">
+    <td colspan="2" class="" style="padding: 0;">
 <table width="50%">
     <tr>
         <td>
@@ -250,13 +250,13 @@ else
 </tr>
 
 <tr><td><b><?php echo $this->requestAction('dashboard/translate/Can Upload Files');?></b></td><td><input type="checkbox" name="canUpdate" id="canUpdate" <?php if($m['Member']['canUpdate']==1){?>checked="checked"<?php }?> /></td></tr>
-<tr class="canuploadfiles" style="display:none;">
+<tr class="canuploadfiles" style="display:none;background:#e5e5e5;">
 <?php
 if(!isset($sid))
 {
     ?>
     
-<td colspan="2">
+<td colspan="2" style="padding: 0;">
 <table width="50%">
 <tr>
 <td>
@@ -314,7 +314,7 @@ if(!isset($sid))
 else
 {
     ?>
-    <td colspan="2" class="">
+    <td colspan="2" class="" style="padding: 0;">
 <table width="50%">
     <tr>
         <td>
@@ -344,7 +344,7 @@ else
 if(!isset($sid))
 {
     ?>
-<td colspan="2" >
+<td colspan="2" style="padding: 0;">
 <table width="50%">
 <tr>
 <td>
@@ -399,7 +399,7 @@ if(!isset($sid))
 else
 {
     ?>
-    <td colspan="2" class="">
+    <td colspan="2" class="" style="padding: 0;">
 <table width="50%">
     <tr>
         <td>

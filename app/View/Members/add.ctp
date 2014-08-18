@@ -1,5 +1,5 @@
 <?php include_once('inc.php');?>
-
+<style>input[type="checkbox"]{margin-top:0;}</style>
 <h3 class="page-title">
 	Add User
 </h3>
@@ -231,7 +231,7 @@ if($q || $q2){
 </td>
 </tr>
 <tr class="canviewfiles nospecial" style="display: none;">
-<td colspan="2" class="">
+<td colspan="2" class="" style="padding:0;background: #e5e5e5;">
 <table width="50%">
 <tr>
 <td>
@@ -285,7 +285,7 @@ if($q || $q2){
 
 <tr><td><b><?php echo $this->requestAction('dashboard/translate/Can Upload Files');?></b></td><td><input type="checkbox" name="canUpdate" id="canUpdate"  /></td></tr>
 <tr class="canuploadfiles yesspecial2" style="display: none;">
-<td colspan="2" class="">
+<td colspan="2" class="" style="padding: 0;">
 <table width="50%">
     <tr>
         <td>
@@ -300,7 +300,7 @@ if($q || $q2){
 </td>
 </tr>
 <tr class="canuploadfiles nospecial2" style="display:none;">
-<td colspan="2">
+<td colspan="2" style="padding: 0;background:#e5e5e5;">
 <table width="50%">
 <tr>
 <td>
@@ -363,7 +363,7 @@ if($q || $q2){
 <tr><td><b><?php echo $this->requestAction('dashboard/translate/Receive email when someone sends me message');?></b>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input class="receive" type="checkbox" name="receive1" /></td></tr>
 <tr><td><b><?php echo $this->requestAction('dashboard/translate/Receive email when document is uploaded');?></b>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input class="receive" type="checkbox" name="receive2" id="receive2" /></td></tr>
 <tr class="upload_more yesspecial3" style="display: none;">
-<td colspan="2" class="">
+<td colspan="2" class="" style="padding: 0;">
 <table width="50%">
     <tr>
         <td>
@@ -378,7 +378,7 @@ if($q || $q2){
 </td>
 </tr>
 <tr class="upload_more nospecial3" style="display: none;" >
-<td colspan="2" >
+<td colspan="2" style="padding: 0;">
 <table width="50%">
 <tr>
 <td>
