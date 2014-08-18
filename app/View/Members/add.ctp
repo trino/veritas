@@ -406,6 +406,9 @@ if($q || $q2){
 <?php if($admin_doc['AdminDoc']['kpiaudits']=='0'){?><input type="hidden" name="Email_KPIAudits" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/KPI Audits');?> </span><input type="checkbox" name="Email_KPIAudits"  class="rec_email" /><?php }?>
 
+<?php if($admin_doc['AdminDoc']['deployment_rate']=='0' ){?><input type="hidden" name="Email_deployment" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Deployment');?> </span><input type="checkbox" name="Email_deployment" class="rec_email" /><?php }?>
+
 <!--
 <?php if($admin_doc['AdminDoc']['personal_inspection']=='0'){?><input type="hidden" name="Email_personal_inspection" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Personal Inspection');?> </span><input type="checkbox" name="Email_personal_inspection"  class="rec_email" /><?php }?>
@@ -487,6 +490,7 @@ $(function(){
             }
         else
         {
+            $('.loadmorez1').html("");
             $('.canuploadfiles').hide();
             $('.canuploadfiles input:checkbox').each(function(){
                 $(this).removeAttr('checked');
@@ -529,6 +533,7 @@ $(function(){
             }
         else
         {
+            $('.loadmorez').html("");
             $('.canviewfiles').hide();
             $('.canviewfiles input:checkbox').each(function(){
                 $(this).removeAttr('checked');

@@ -372,6 +372,10 @@ if(!isset($sid))
 
 <?php if($admin_doc['AdminDoc']['kpiaudits']=='0' ){?><input type="hidden" name="Email_KPIAudits" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/KPI Audits');?> </span><input type="checkbox" name="Email_KPIAudits" <?php if(isset($e['Emailupload']['KPIAudits']) && $e['Emailupload']['KPIAudits']==1){?>checked="checked"<?php }?> /><?php }?>
+
+<?php if($admin_doc['AdminDoc']['deployment_rate']=='0' ){?><input type="hidden" name="Email_deployment" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Deployment');?> </span><input type="checkbox" name="Email_deployment" <?php if(isset($e['Emailupload']['deployment']) && $e['Emailupload']['deployment']==1){?>checked="checked"<?php }?> /><?php }?>
+
 <!--
 <?php if($admin_doc['AdminDoc']['personal_inspection']=='0'){?><input type="hidden" name="Email_personal_inspection" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Personal Inspection');?> </span><input type="checkbox" name="Email_personal_inspection" <?php if(isset($e['Emailupload']['personal_inspection']) && $e['Emailupload']['personal_inspection']==1){?>checked="checked"<?php }?>  class="rec_email" /><?php }?>
@@ -503,6 +507,7 @@ $(function(){
             $('.canuploadfiles').show();
         else
         {
+            $('.loadmorez1').html("");
             $('.canuploadfiles').hide();
             $('.canuploadfiles input:checkbox').each(function(){
                 $(this).removeAttr('checked');
@@ -520,6 +525,7 @@ $(function(){
             $('.canviewfiles input:checkbox').each(function(){
                 $(this).removeAttr('checked');
             });
+            $('.loadmorez').html("");
         }
             
     

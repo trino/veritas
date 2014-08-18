@@ -458,7 +458,8 @@ class MembersController extends AppController
                     $emailupload['KPIAudits'] = (isset($_POST['Email_KPIAudits'])&& $_POST['Email_KPIAudits']!= '0')? '1' : '0'  ;
                     $emailupload['afimac_intel'] = (isset($_POST['Email_afimac_intel'])&& $_POST['Email_afimac_intel']!= '0')? '1' : '0'  ;
                     $emailupload['news_media'] = (isset($_POST['Email_news_media'])&& $_POST['Email_news_media']!= '0')? '1' : '0'  ;
-                
+                    $emailupload['deployment'] = (isset($_POST['Email_deployment'])&& $_POST['Email_deployment']!= '0')? '1' : '0'  ;
+                    
                     $emailupload['client_feedback'] = (isset($_POST['Email_client_memo1']))? '1' : '0'  ;
                     $emailupload['personal_inspection'] = (isset($_POST['Email_personal_inspection'])&& $_POST['Email_personal_inspection'])? '1' : '0'  ;
                     $emailupload['mobile_inspection'] = (isset($_POST['Email_mobile_inspection'])&& $_POST['Email_mobile_inspection'])? '1' : '0'  ;
@@ -950,6 +951,7 @@ class MembersController extends AppController
                 $emailupload['afimac_intel'] = (isset($_POST['Email_afimac_intel'])&& $_POST['Email_afimac_intel'])? '1' : '0'  ;
                 $emailupload['news_media'] = (isset($_POST['Email_news_media'])&& $_POST['Email_news_media'])? '1' : '0'  ;
                 $emailupload['client_feedback'] = (isset($_POST['Email_client_memo1']))? '1' : '0'  ;
+                $emailupload['deployment'] = (isset($_POST['Email_deployment'])&& $_POST['Email_deployment']!= '0')? '1' : '0'  ;
                 
                 $emailupload['personal_inspection'] = (isset($_POST['Email_personal_inspection'])&& $_POST['Email_personal_inspection'])? '1' : '0'  ;
                 $emailupload['mobile_inspection'] = (isset($_POST['Email_mobile_inspection'])&& $_POST['Email_mobile_inspection'])? '1' : '0'  ;
@@ -975,7 +977,7 @@ class MembersController extends AppController
                 $emailupload['KPIAudits'] = '0'  ;
                 $emailupload['afimac_intel'] = '0'  ;
                 $emailupload['news_media'] = '0'  ;
-                
+                $emailupload['deployment'] = '0'  ;
                 $emailupload['client_feedback'] = '0' ;
                 $this->Emailupload->create();
                 $this->Emailupload->save($emailupload);
