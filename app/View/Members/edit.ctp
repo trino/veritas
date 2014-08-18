@@ -1,4 +1,5 @@
 <?php include_once('inc.php');?>
+<style>input[type="checkbox"]{margin-top:0;}</style>
 <script>
 $(function(){
    $('#add_form').validate();

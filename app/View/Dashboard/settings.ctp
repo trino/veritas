@@ -244,8 +244,8 @@ function loadmore(type, qq)
         </tr>
         <div class="morez"></div>
         <tr>
-            <td></td>
-            <td>
+            
+            <td colspan="2" style="padding: 0;">
             <table class="loadmorez" width="50%"></table>
             </td>
         </tr>
@@ -291,3 +291,4 @@ $(function(){
     });       
 });
 </script>
+<style>input[type="checkbox"]{margin-top:0;}</style>
