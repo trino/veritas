@@ -3599,15 +3599,19 @@ $oa = intval($number*$expo)/$expo;
   }
   function check_p($model,$id)
   {
-    if($this->Session->read('admin'))
-    return true;
+    if(!$this->Session->read('admin'))
     $uid = $this->Session->read('id');
+    
     $this->loadModel($model);
     if($model=='ReportuploadPermission')
     {
         if($this->ReportuploadPermission->find('first',array('conditions'=>array('user_id'=>0,'report_type1'=>$id)))){
+        if(!$this->Session->read('admin')){    
         $q = $this->ReportuploadPermission->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>$id)));
         return $q;
+        }
+        else
+        return true;
         }
         else
         return false;
@@ -3617,8 +3621,12 @@ $oa = intval($number*$expo)/$expo;
     {
         
         if($this->EvidenceuploadPermission->find('first',array('conditions'=>array('user_id'=>0,'report_type1'=>$id)))){
+        if(!$this->Session->read('admin')){    
         $q = $this->EvidenceuploadPermission->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>$id)));
         return $q;
+        }
+        else
+        return true;
         }
         else
         return false;
@@ -3627,8 +3635,12 @@ $oa = intval($number*$expo)/$expo;
     if($model=='SiteorderuploadPermission')
     {
         if($this->SiteorderuploadPermission->find('first',array('conditions'=>array('user_id'=>0,'report_type1'=>$id)))){
+        if(!$this->Session->read('admin')){    
         $q = $this->SiteorderuploadPermission->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>$id)));
         return $q;
+        }
+        else
+        return true;
         }
         else
         return false;
@@ -3638,8 +3650,12 @@ $oa = intval($number*$expo)/$expo;
     if($model=='EmployeeuploadPermission')
     {
         if($this->EmployeeuploadPermission->find('first',array('conditions'=>array('user_id'=>0,'report_type1'=>$id)))){
+        if(!$this->Session->read('admin')){    
         $q = $this->EmployeeuploadPermission->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>$id)));
         return $q;
+        }
+        else
+        return true;
         }
         else
         return false;
