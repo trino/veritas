@@ -47,7 +47,7 @@ class MailController extends AppController
             //$this->set('email',$this->Mail->find('all',array('conditions'=>array('recipients_id'=>'0'))));
         }*/
         //else
-        //{
+        //{  
             $arr = array();
             if(!$this->Session->read('admin'))
                 $recc = $this->Session->read('id');

@@ -13,8 +13,6 @@
 		<a href="<?=$base_url;?>mail"><?php echo $subj;?></a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
-
-
 <script type="text/javascript">
     function show_reply()
     {

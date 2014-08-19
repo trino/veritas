@@ -62,6 +62,7 @@ include('../inc.php');
             <span style="color: red;"><strong>Note:</strong> Please Save Signature Before Submitting Form</span>
 		</div>
 		<script type="text/javascript">
+       
 		function save()
 		{
 			$("#test").data("jqScribble").save(function(imageData)
