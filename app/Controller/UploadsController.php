@@ -570,7 +570,7 @@ class UploadsController extends AppController
                 $arr_em = array('Job Descriptions','Drug Free Policy','Schedules');
                 $k = array_search($_POST['employee_type'],$arr_em);
                 $arr['emp_id'] = $k+1;
-                echo $subname = '_'.$_POST['employee_type'];
+                 $subname = '_'.$_POST['employee_type'];
             }
             elseif($_POST['document_type'] == 'training')
             {
@@ -1948,7 +1948,7 @@ class UploadsController extends AppController
                 $arr_em = array('Job Descriptions','Drug Free Policy','Schedules');
                 $k = array_search($_POST['employee_type'],$arr_em);
                 $arr['emp_id'] = $k+1;
-                echo $subname = '_'.$_POST['employee_type'];
+                 $subname = '_'.$_POST['employee_type'];
 
             }
             elseif($_POST['document_type'] == 'training')
