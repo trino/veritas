@@ -140,22 +140,90 @@ class DashboardController extends AppController
         //$this->set('ad',$this->User->find('first'));
         if($this->Session->read('avatar'))
         {
-            $this->set('contract',$this->Document->find('count',array('conditions'=>array('document_type'=>'contract'))));
-            $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence'))));
-            $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template'))));
-            $this->set('report',$this->Document->find('count',array('conditions'=>array('document_type'=>'report','draft'=>0))));
-            $this->set('siteOrder',$this->Document->find('count',array('conditions'=>array('document_type'=>'siteOrder'))));
-            $this->set('training',$this->Document->find('count',array('conditions'=>array('document_type'=>'training'))));
-            $this->set('employee',$this->Document->find('count',array('conditions'=>array('document_type'=>'employee'))));
-            $this->set('KPIAudits',$this->Document->find('count',array('conditions'=>array('document_type'=>'KPIAudits'))));
+            $this->loadModel('ReportuploadPermission');
+            $apr = $this->ReportuploadPermission->find('all',array('conditions'=>array('user_id'=>0)));
+            if($apr)
+            {
+                $m=0;
+                foreach($apr as $ar)
+                {
+                    $m++;
+                    if($m==1)
+                    $arr_re = $ar['ReportuploadPermission']['report_type1'];
+                    else
+                    $arr_re = $arr_re.','.$ar['ReportuploadPermission']['report_type1'];
+                }
+            }
+            else
+            $arr_re = '999999999';
+            
+            $this->loadModel('EvidenceuploadPermission');
+            $ape = $this->EvidenceuploadPermission->find('all',array('conditions'=>array('user_id'=>0)));
+            if($ape)
+            {
+                $m=0;
+                foreach($ape as $ae)
+                {
+                    $m++;
+                    if($m==1)
+                    $arr_ev = $ae['EvidenceuploadPermission']['report_type1'];
+                    else
+                    $arr_ev = $arr_ev.','.$ae['EvidenceuploadPermission']['report_type1'];
+                }
+            }
+            else
+            $arr_ev = '999999999';
+            
+            $this->loadModel('SiteorderuploadPermission');
+            $aps = $this->SiteorderuploadPermission->find('all',array('conditions'=>array('user_id'=>0)));
+            if($aps)
+            {
+                $m=0;
+                foreach($aps as $as)
+                {
+                    $m++;
+                    if($m==1)
+                    $arr_so = $as['SiteorderuploadPermission']['report_type1'];
+                    else
+                    $arr_so = $arr_so.','.$as['SiteorderuploadPermission']['report_type1'];
+                }
+            }
+            else
+            $arr_so = '999999999';
+            
+            $this->loadModel('EmployeeuploadPermission');
+            $apem = $this->EmployeeuploadPermission->find('all',array('conditions'=>array('user_id'=>0)));
+            if($apem)
+            {
+                $m=0;
+                foreach($apem as $ae)
+                {
+                    $m++;
+                    if($m==1)
+                    $arr_em = $ae['EmployeeuploadPermission']['report_type1'];
+                    else
+                    $arr_em = $arr_so.','.$ae['EmployeeuploadPermission']['report_type1'];
+                }
+            }
+            else
+            $arr_em = '999999999';
+            
+            $this->set('contract',$this->Document->find('count',array('conditions'=>array('document_type'=>'contract','draft'=>0))));
+            $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','draft'=>0,'ev_id IN('.$arr_ev.')'))));
+            $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','draft'=>0))));
+            $this->set('report',$this->Document->find('count',array('conditions'=>array('document_type'=>'report','draft'=>0,'re_id IN('.$arr_re.')'))));
+            $this->set('siteOrder',$this->Document->find('count',array('conditions'=>array('document_type'=>'siteOrder','draft'=>0,'so_id IN('.$arr_so.')'))));
+            $this->set('training',$this->Document->find('count',array('conditions'=>array('document_type'=>'training','draft'=>0))));
+            $this->set('employee',$this->Document->find('count',array('conditions'=>array('document_type'=>'employee','draft'=>0,'emp_id IN('.$arr_em.')'))));
+            $this->set('KPIAudits',$this->Document->find('count',array('conditions'=>array('document_type'=>'KPIAudits','draft'=>0))));
             $this->set('afimac_intel',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'AFIMAC Intel'))));            
             $this->set('news_media',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'News/Media'))));
-            $this->set('personal_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'personal_inspection'))));
-            $this->set('mobile_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_inspection'))));
-            $this->set('mobile_log',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_log'))));        
-            $this->set('inventory', $this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_vehicle_trunk_inventory'))));
-            $this->set('deployment_rate', $this->Document->find('count',array('conditions'=>array('document_type'=>'deployment_rate'))));
-            $this->set('vehicle_inspection', $this->Document->find('count',array('conditions'=>array('document_type'=>'vehicle_inspection'))));
+            $this->set('personal_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'personal_inspection','draft'=>0))));
+            $this->set('mobile_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_inspection','draft'=>0))));
+            $this->set('mobile_log',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_log','draft'=>0))));        
+            $this->set('inventory', $this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_vehicle_trunk_inventory','draft'=>0))));
+            $this->set('deployment_rate', $this->Document->find('count',array('conditions'=>array('document_type'=>'deployment_rate','draft'=>0))));
+            $this->set('vehicle_inspection', $this->Document->find('count',array('conditions'=>array('document_type'=>'vehicle_inspection','draft'=>0))));
             $this->paginate = array('limit'=>10,'order'=>'date desc ,time desc');
              //$this->set('activity',$this->paginate('Document'));
              $this->set('added',$this->Member->find('all'));

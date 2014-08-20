@@ -611,32 +611,230 @@ class JobsController extends AppController
                 $this->set('canupdate',$canupdate);
         }   
         if($this->Session->read('admin')){ 
-            $this->set('contract',$this->Document->find('count',array('conditions'=>array('job_id'=>$id,'document_type'=>'contract'))));
-            $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','job_id'=>$id))));
-            $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','job_id'=>$id))));
-            $this->set('report',$this->Document->find('count',array('conditions'=>array('document_type'=>'report','job_id'=>$id))));
-            $this->set('siteOrder',$this->Document->find('count',array('conditions'=>array('document_type'=>'siteOrder','job_id'=>$id))));
-            $this->set('training',$this->Document->find('count',array('conditions'=>array('document_type'=>'training','job_id'=>$id))));
-            $this->set('employee',$this->Document->find('count',array('conditions'=>array('document_type'=>'employee','job_id'=>$id))));
-            $this->set('KPIAudits',$this->Document->find('count',array('conditions'=>array('document_type'=>'KPIAudits','job_id'=>$id))));
-            $this->set('personal_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'personal_inspection','job_id'=>$id))));
-            $this->set('mobile_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_inspection','job_id'=>$id))));
-            $this->set('mobile_log',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_log','job_id'=>$id))));
-            $this->set('inventory',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_vehicle_trunk_inventory','job_id'=>$id))));
+            $this->loadModel('ReportuploadPermission');
+            $apr = $this->ReportuploadPermission->find('all',array('conditions'=>array('user_id'=>0)));
+            if($apr)
+            {
+                $m=0;
+                foreach($apr as $ar)
+                {
+                    $m++;
+                    if($m==1)
+                    $arr_re = $ar['ReportuploadPermission']['report_type1'];
+                    else
+                    $arr_re = $arr_re.','.$ar['ReportuploadPermission']['report_type1'];
+                }
+            }
+            else
+            $arr_re = '999999999';
+            
+            $this->loadModel('EvidenceuploadPermission');
+            $ape = $this->EvidenceuploadPermission->find('all',array('conditions'=>array('user_id'=>0)));
+            if($ape)
+            {
+                $m=0;
+                foreach($ape as $ae)
+                {
+                    $m++;
+                    if($m==1)
+                    $arr_ev = $ae['EvidenceuploadPermission']['report_type1'];
+                    else
+                    $arr_ev = $arr_ev.','.$ae['EvidenceuploadPermission']['report_type1'];
+                }
+            }
+            else
+            $arr_ev = '999999999';
+            
+            $this->loadModel('SiteorderuploadPermission');
+            $aps = $this->SiteorderuploadPermission->find('all',array('conditions'=>array('user_id'=>0)));
+            if($aps)
+            {
+                $m=0;
+                foreach($aps as $as)
+                {
+                    $m++;
+                    if($m==1)
+                    $arr_so = $as['SiteorderuploadPermission']['report_type1'];
+                    else
+                    $arr_so = $arr_so.','.$as['SiteorderuploadPermission']['report_type1'];
+                }
+            }
+            else
+            $arr_so = '999999999';
+            
+            $this->loadModel('EmployeeuploadPermission');
+            $apem = $this->EmployeeuploadPermission->find('all',array('conditions'=>array('user_id'=>0)));
+            if($apem)
+            {
+                $m=0;
+                foreach($apem as $ae)
+                {
+                    $m++;
+                    if($m==1)
+                    $arr_em = $ae['EmployeeuploadPermission']['report_type1'];
+                    else
+                    $arr_em = $arr_so.','.$ae['EmployeeuploadPermission']['report_type1'];
+                }
+            }
+            else
+            $arr_em = '999999999';
+            
+            $this->set('contract',$this->Document->find('count',array('conditions'=>array('document_type'=>'contract','draft'=>0,'job_id'=>$id))));
+            $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','draft'=>0,'ev_id IN('.$arr_ev.')','job_id'=>$id))));
+            $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','draft'=>0,'job_id'=>$id))));
+            $this->set('report',$this->Document->find('count',array('conditions'=>array('document_type'=>'report','draft'=>0,'re_id IN('.$arr_re.')','job_id'=>$id))));
+            $this->set('siteOrder',$this->Document->find('count',array('conditions'=>array('document_type'=>'siteOrder','draft'=>0,'so_id IN('.$arr_so.')','job_id'=>$id))));
+            $this->set('training',$this->Document->find('count',array('conditions'=>array('document_type'=>'training','draft'=>0,'job_id'=>$id))));
+            $this->set('employee',$this->Document->find('count',array('conditions'=>array('document_type'=>'employee','draft'=>0,'emp_id IN('.$arr_em.')','job_id'=>$id))));
+            $this->set('KPIAudits',$this->Document->find('count',array('conditions'=>array('document_type'=>'KPIAudits','draft'=>0,'job_id'=>$id))));
             $this->set('afimac_intel',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'AFIMAC Intel','job_id'=>$id))));            
             $this->set('news_media',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'News/Media','job_id'=>$id))));
-            $this->set('vehicle_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'vehicle_inspection','job_id'=>$id))));
-            $this->set('deployment_rate',$this->Document->find('count',array('conditions'=>array('document_type'=>'deployment_rate','job_id'=>$id))));
+            $this->set('personal_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'personal_inspection','draft'=>0,'job_id'=>$id))));
+            $this->set('mobile_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_inspection','draft'=>0,'job_id'=>$id))));
+            $this->set('mobile_log',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_log','draft'=>0,'job_id'=>$id))));        
+            $this->set('inventory', $this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_vehicle_trunk_inventory','draft'=>0,'job_id'=>$id))));
+            $this->set('deployment_rate', $this->Document->find('count',array('conditions'=>array('document_type'=>'deployment_rate','draft'=>0,'job_id'=>$id))));
+            $this->set('vehicle_inspection', $this->Document->find('count',array('conditions'=>array('document_type'=>'vehicle_inspection','draft'=>0,'job_id'=>$id))));
         }
         else
         {
+            $this->loadModel('ReportuploadPermission');
+            $apre= $this->ReportuploadPermission->find('all',array('conditions'=>array('user_id'=>0)));
+            if($apre)
+            {
+                
+                foreach($apre as $ar)
+                {
+                    
+                    $arr_re[] = $ar['ReportuploadPermission']['report_type1'];
+                    
+                }
+            }
+            else
+            $arr_re = array();
+            $this->loadModel('ReportviewPermission');
+            $qr = $this->ReportviewPermission->find('all',array('conditions'=>array('user_id'=>$this->Session->read('id'))));
+            if($qr)
+            {
+                $m=0;
+                foreach($qr as $rp)
+                {                    
+                    if(in_array($rp['ReportviewPermission']['report_type'],$arr_re))
+                    {
+                        $m++;
+                        $key_r=$rp['ReportviewPermission']['report_type'];
+                    }
+                    else
+                    $key_r=$key_r.','.$rp['ReportviewPermission']['report_type'];
+                }
+            }
+            else
+            $key_r = '999999';
+            
+            
+            
+            $this->loadModel('EvidenceuploadPermission');
+            $apev= $this->EvidenceuploadPermission->find('all',array('conditions'=>array('user_id'=>0)));
+            if($apev)
+            {
+                
+                foreach($apev as $ae)
+                {                    
+                    $arr_ev[] = $ae['EvidenceuploadPermission']['report_type1'];                    
+                }
+            }
+            else
+            $arr_ev = array();
+            $this->loadModel('EvidenceviewPermission');
+            $qe = $this->EvidenceviewPermission->find('all',array('conditions'=>array('user_id'=>$this->Session->read('id'))));
+            if($qe)
+            {
+                $m=0;
+                foreach($qe as $ep)
+                {                    
+                    if(in_array($ep['EvidenceviewPermission']['report_type'],$arr_ev))
+                    {
+                        $m++;
+                        $key_ev=$ep['EvidenceviewPermission']['report_type'];
+                    }
+                    else
+                    $key_ev=$key_ev.','.$ep['EvidenceviewPermission']['report_type'];
+                }
+            }
+            else
+            $key_ev = '999999';
+            
+            $this->loadModel('EmployeeuploadPermission');
+            $apem= $this->EmployeeuploadPermission->find('all',array('conditions'=>array('user_id'=>0)));
+            if($apem)
+            {
+                
+                foreach($apem as $aem)
+                {                    
+                    $arr_em[] = $aem['EmployeeuploadPermission']['report_type1'];                    
+                }
+            }
+            else
+            $arr_em = array();
+            $this->loadModel('EmployeeviewPermission');
+            $qem = $this->EmployeeviewPermission->find('all',array('conditions'=>array('user_id'=>$this->Session->read('id'))));
+            if($qem)
+            {
+                $m=0;
+                foreach($qem as $epm)
+                {                    
+                    if(in_array($epm['EmployeeviewPermission']['report_type'],$arr_em))
+                    {
+                        $m++;
+                        $key_em=$epm['EmployeeviewPermission']['report_type'];
+                    }
+                    else
+                    $key_em=$key_em.','.$epm['EmployeeviewPermission']['report_type'];
+                }
+            }
+            else
+            $key_em = '999999';
+            
+            $this->loadModel('SiteorderuploadPermission');
+            $apso= $this->SiteorderuploadPermission->find('all',array('conditions'=>array('user_id'=>0)));
+            if($apso)
+            {
+                
+                foreach($apso as $as)
+                {                    
+                    $arr_so[] = $as['SiteorderuploadPermission']['report_type1'];                    
+                }
+            }
+            else
+            $arr_so = array();
+            $this->loadModel('SiteorderviewPermission');
+            $qso = $this->SiteorderviewPermission->find('all',array('conditions'=>array('user_id'=>$this->Session->read('id'))));
+            if($qso)
+            {
+                $m=0;
+                foreach($qso as $so)
+                {                    
+                    if(in_array($so['SiteorderviewPermission']['report_type'],$arr_so))
+                    {
+                        $m++;
+                        $key_so=$so['SiteorderviewPermission']['report_type'];
+                    }
+                    else
+                    $key_so=$key_so.','.$so['SiteorderviewPermission']['report_type'];
+                }
+            }
+            else
+            $key_so = '999999';
+            
+            
+            
             $this->set('contract',$this->Document->find('count',array('conditions'=>array('job_id'=>$id,'document_type'=>'contract'))));
-            $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','job_id'=>$id))));
+            $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','job_id'=>$id,'ev_id IN('.$key_ev.')'))));
             $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','job_id'=>$id))));
-            $this->set('report',$this->Document->find('count',array('conditions'=>array('document_type'=>'report','job_id'=>$id))));
-            $this->set('siteOrder',$this->Document->find('count',array('conditions'=>array('document_type'=>'siteOrder','job_id'=>$id))));
+            $this->set('report',$this->Document->find('count',array('conditions'=>array('document_type'=>'report','job_id'=>$id,'re_id IN('.$key_r.')'))));
+            $this->set('siteOrder',$this->Document->find('count',array('conditions'=>array('document_type'=>'siteOrder','job_id'=>$id,'so_id IN('.$key_so.')'))));
             $this->set('training',$this->Document->find('count',array('conditions'=>array('document_type'=>'training','job_id'=>$id))));
-            $this->set('employee',$this->Document->find('count',array('conditions'=>array('document_type'=>'employee','job_id'=>$id))));
+            $this->set('employee',$this->Document->find('count',array('conditions'=>array('document_type'=>'employee','job_id'=>$id,'emp_id IN('.$key_em.')'))));
             $this->set('KPIAudits',$this->Document->find('count',array('conditions'=>array('document_type'=>'KPIAudits','job_id'=>$id))));
             $this->set('afimac_intel',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'AFIMAC Intel','job_id'=>$id))));            
             $this->set('news_media',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'News/Media','job_id'=>$id))));
