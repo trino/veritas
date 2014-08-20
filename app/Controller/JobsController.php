@@ -716,6 +716,7 @@ class JobsController extends AppController
             $qr = $this->ReportviewPermission->find('all',array('conditions'=>array('user_id'=>$this->Session->read('id'))));
             if($qr)
             {
+                $key_r = '999999';
                 $m=0;
                 foreach($qr as $rp)
                 {                    
@@ -751,6 +752,7 @@ class JobsController extends AppController
             $qe = $this->EvidenceviewPermission->find('all',array('conditions'=>array('user_id'=>$this->Session->read('id'))));
             if($qe)
             {
+                $key_ev = '999999';
                 $m=0;
                 foreach($qe as $ep)
                 {                    
@@ -784,6 +786,7 @@ class JobsController extends AppController
             $qem = $this->EmployeeviewPermission->find('all',array('conditions'=>array('user_id'=>$this->Session->read('id'))));
             if($qem)
             {
+                $key_em = '999999';
                 $m=0;
                 foreach($qem as $epm)
                 {                    
@@ -817,6 +820,7 @@ class JobsController extends AppController
             $qso = $this->SiteorderviewPermission->find('all',array('conditions'=>array('user_id'=>$this->Session->read('id'))));
             if($qso)
             {
+                $key_em = '999999';
                 $m=0;
                 foreach($qso as $so)
                 {                    
