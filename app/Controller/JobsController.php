@@ -722,10 +722,12 @@ class JobsController extends AppController
                     if(in_array($rp['ReportviewPermission']['report_type'],$arr_re))
                     {
                         $m++;
+                        if($m==1)
                         $key_r=$rp['ReportviewPermission']['report_type'];
+                        else
+                        $key_r=$key_r.','.$rp['ReportviewPermission']['report_type'];
                     }
-                    else
-                    $key_r=$key_r.','.$rp['ReportviewPermission']['report_type'];
+                    
                 }
             }
             else
@@ -755,10 +757,12 @@ class JobsController extends AppController
                     if(in_array($ep['EvidenceviewPermission']['report_type'],$arr_ev))
                     {
                         $m++;
+                        if($m==1)
                         $key_ev=$ep['EvidenceviewPermission']['report_type'];
+                        else
+                        $key_ev=$key_ev.','.$ep['EvidenceviewPermission']['report_type'];
                     }
-                    else
-                    $key_ev=$key_ev.','.$ep['EvidenceviewPermission']['report_type'];
+                    
                 }
             }
             else
@@ -786,10 +790,12 @@ class JobsController extends AppController
                     if(in_array($epm['EmployeeviewPermission']['report_type'],$arr_em))
                     {
                         $m++;
+                        if($m==1)
                         $key_em=$epm['EmployeeviewPermission']['report_type'];
+                        else
+                        $key_em=$key_em.','.$epm['EmployeeviewPermission']['report_type'];
                     }
-                    else
-                    $key_em=$key_em.','.$epm['EmployeeviewPermission']['report_type'];
+                    
                 }
             }
             else
@@ -817,10 +823,12 @@ class JobsController extends AppController
                     if(in_array($so['SiteorderviewPermission']['report_type'],$arr_so))
                     {
                         $m++;
+                        if($m==1)
                         $key_so=$so['SiteorderviewPermission']['report_type'];
+                        else
+                        $key_so=$key_so.','.$so['SiteorderviewPermission']['report_type'];
                     }
-                    else
-                    $key_so=$key_so.','.$so['SiteorderviewPermission']['report_type'];
+                    
                 }
             }
             else
