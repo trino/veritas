@@ -408,7 +408,7 @@ You may also download the video and play it on your local device.
 if($type == 'Report')
 {
     */?>
-    <?php if($this->Session->read('approve')=='1'){?><a href="<?php echo $this->webroot;?>uploads/approve/<?php echo $doc['Document']['id'];?>" class="btn btn-success">Approve Document</a><?php }?>
+    <?php if($this->Session->read('approve')=='1' && $doc['Document']['approved']=='0'){?><a href="<?php echo $this->webroot;?>uploads/approve/<?php echo $doc['Document']['id'];?>/detail" class="btn btn-success">Approve Document</a><?php }?>
     <input type="button" onclick="window.print();" value="<?php echo $this->requestAction('dashboard/translate/Print');?>" class="btn btn-primary" />
     <?php
 //}
