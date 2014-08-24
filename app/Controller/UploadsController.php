@@ -1831,14 +1831,8 @@ class UploadsController extends AppController
                 //die('here');
             }
             
-            /* for eamial */
-            
-            
-            
-            
-            
-            
-            
+            /* for emial */
+         
             $this->Event_log->create();
             $this->Event_log->save($log);
             $this->Session->setFlash('Data Saved Successfully.');
@@ -1970,10 +1964,7 @@ class UploadsController extends AppController
             }
             $arr['draft'] = $_POST['draft'];
             
-            //Email
-            //echo $ids;die();
-            $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$ids.',%'), array('job_id'=>$ids),array('job_id LIKE'=>'%,'.$ids.',%'),array('job_id LIKE'=>'%,'.$ids)))));
-                //var_dump($mails);
+           
                 
                 $aE = $this->User->find('first');
                  $adminEmail = $aE['User']['email'];
@@ -1990,11 +1981,7 @@ class UploadsController extends AppController
                     }
                     if(str_replace('http://','',$base_url)==$base_url)
                     $base_url = 'http://'.$base_url;
-                
-                
-                
-                
-            //Email Ends// 
+          
             $arr['date'] = date('Y-m-d H:i:s');
             $arr['job_id'] = $_POST['job'];
             $this->loadModel('Job');
@@ -2219,62 +2206,6 @@ class UploadsController extends AppController
                 
                 
             }
-            
-            foreach($mails as $m)
-                {
-                    //var_dump($mails);die();
-                    $mem_id = $m['Jobmember']['member_id']; 
-                    if($emailupload = $this->Emailupload->findByMemberId($mem_id))
-                    if($emailupload['Emailupload'][$_POST['document_type']] == 1 )
-                    if($t = $this->Member->find('first',array('conditions'=>array('id'=>$mem_id))))
-                    {
-                        //var_dump($t);die();
-                        $to = $t['Member']['email'];
-                        $emails = new CakeEmail();
-                        $emails->from(array('noreply@veritas.com'=>'Veritas'));
-                        
-                        $emails->subject("A new document has been uploaded!");
-                        $emails->emailFormat('html');
-                        if($_POST['document_type']== 'evidence')
-                            $message="
-							Job: ".$job_title."<br/>
-                            Document: ".$arr['title']."<br/>
-                            Author: ".$_POST['evidence_author']."<br/>
-                            Evidence Type: ".$_POST['evidence_type']."<br/>Description: ".$_POST['description']."<br/>Incident Date:".$_POST['incident_date']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
-                            Upload Date: ".date('Y-m-d')."<br/><a href='".$base_url."?upload=".$id."'>Click Here</a> to login and view the document.";
-                        else
-                            $message="
-                            Job: ".$job_title."<br/>
-                            Document: ".$arr['title']."<br/>
-                            Who Uploaded: ".$this->Session->read('username')."<br/>
-                            Upload Date: ".date('Y-m-d')."
-
-                            <br/><a href='".$base_url."?upload=".$id."'>Click Here</a> to login and view the document.";
-                            
-                        if($to)
-                        {
-                            $checks = $this->Member->find('first',array('conditions'=>array('email'=>$to)));
-                            $check=0;
-                        if($checks)
-                        {
-                            if($checks['Member']['receive1']==1 || $checks['Member']['receive2']==1)
-                                $check=1;
-                            else
-                                $check=0;
-                        }    
-                        if($check==1)
-                        {
-                            //die($to);
-                            $emails->to($to);
-                            if($to != $this->Session->read('email'))
-                            //$emails->send($message);
-                            $emails->reset();
-                        }
-                        
-                        }
-                    }    
-                }
-                
             if($_POST['document_type']== 'report')
             {
                 $activity['document_id'] = $id;
@@ -2662,7 +2593,65 @@ class UploadsController extends AppController
                 
                 
             }
-            elseif($_POST['document_type']== 'client_feedback')
+            $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$ids.',%'), array('job_id'=>$ids),array('job_id LIKE'=>'%,'.$ids.',%'),array('job_id LIKE'=>'%,'.$ids)))));
+            if($this->Session->read('approve')=='0'){
+            foreach($mails as $m)
+            {
+                    
+                    $mem_id = $m['Jobmember']['member_id']; 
+                    if($emailupload = $this->Emailupload->findByMemberId($mem_id))
+                    if($emailupload['Emailupload'][$_POST['document_type']] == 1 )
+                    if($t = $this->Member->find('first',array('conditions'=>array('id'=>$mem_id))))
+                    {
+                        //var_dump($t);die();
+                        $to = $t['Member']['email'];
+                        $emails = new CakeEmail();
+                        $emails->from(array('noreply@veritas.com'=>'Veritas'));
+                        
+                        $emails->subject("A new document has been uploaded!");
+                        $emails->emailFormat('html');
+                        if($_POST['document_type']== 'evidence')
+                            $message="
+							Job: ".$job_title."<br/>
+                            Document: ".$arr['title']."<br/>
+                            Author: ".$_POST['evidence_author']."<br/>
+                            Evidence Type: ".$_POST['evidence_type']."<br/>Description: ".$_POST['description']."<br/>Incident Date:".$_POST['incident_date']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
+                            Upload Date: ".date('Y-m-d')."<br/><a href='".$base_url."?upload=".$id."'>Click Here</a> to login and view the document.";
+                        else
+                            $message="
+                            Job: ".$job_title."<br/>
+                            Document: ".$arr['title']."<br/>
+                            Who Uploaded: ".$this->Session->read('username')."<br/>
+                            Upload Date: ".date('Y-m-d')."
+
+                            <br/><a href='".$base_url."?upload=".$id."'>Click Here</a> to login and view the document.";
+                            
+                        if($to)
+                        {
+                            $checks = $this->Member->find('first',array('conditions'=>array('email'=>$to)));
+                            $check=0;
+                        if($checks)
+                        {
+                            if($checks['Member']['receive1']==1 || $checks['Member']['receive2']==1)
+                                $check=1;
+                            else
+                                $check=0;
+                        }    
+                        if($check==1)
+                        {
+                            //die($to);
+                            $emails->to($to);
+                            if($to != $this->Session->read('email'))
+                            //$emails->send($message);
+                            $emails->reset();
+                        }
+                        
+                        }
+                    }    
+                }
+              } 
+              
+            if($_POST['document_type']== 'client_feedback')
             {
                 $this->loadModel('Clientmemo');
                 $client['document_id'] = $id;
@@ -2676,6 +2665,7 @@ class UploadsController extends AppController
 				//debug($qa);exit;
                 if($qA)
                 {
+                    if($this->Session->read('approve')=='0')
                     foreach($qA as $qa){
                     $emails = new CakeEmail();
                         $emails->from(array('noreply@veritas.com'=>'Veritas'));
@@ -2683,8 +2673,7 @@ class UploadsController extends AppController
                         $emails->subject("Client Feedback Uploaded.");
                         $emails->emailFormat('html');
                         
-                            $message="
-                            
+                            $message="                            
                             Job: ".$job_title."<br/>
                             Document: ".$arr['title']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
                            Upload Date: ".date('Y-m-d')."<br/><a href='".$base_url."?upload=".$id."'>Click Here</a> to login and view the document.";
@@ -2787,9 +2776,10 @@ class UploadsController extends AppController
             }
             }
             if(isset($_POST['emailadd']) && $_POST['emailadd'])
-                        {
-                            //die('here');
-                            if($_SERVER['SERVER_NAME']=='localhost')
+            {
+                if($this->Session->read('approve')=='0')
+                {            
+                if($_SERVER['SERVER_NAME']=='localhost')
                     $base_url = "http://localhost/veritas/";
                 else{
                         $base_url =	 str_replace('//','___',$_SERVER['SERVER_NAME']);
@@ -2849,6 +2839,7 @@ class UploadsController extends AppController
                                 
                             }
                         }
+            }
             /*
             for($i=1;$i<=$vid;$i++)
             {
@@ -2881,9 +2872,9 @@ class UploadsController extends AppController
             }
             */
             if(isset($_POST['emailadd'] )&& $_POST['emailadd'])
-            $this->Session->setFlash('Data Saved Successfully, Email Sent.');
+                $this->Session->setFlash('Data Saved Successfully, Email Sent.');
             else
-            $this->Session->setFlash('Data Saved Successfully.');
+                $this->Session->setFlash('Data Saved Successfully.');
             $log['date'] =  date('Y-m-d H:i:s');
             $log['time'] =  date('H:i:s');
             if($this->Session->read('admin'))
@@ -3662,6 +3653,14 @@ $oa = intval($number*$expo)/$expo;
         
     }
     return false;
+  }
+  
+  function approve($doc_id)
+  {
+    
+    
+    
+    
   }
   
 }

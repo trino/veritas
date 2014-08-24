@@ -561,6 +561,7 @@ class DashboardController extends AppController
             
             if(isset($_POST['show']))
             {
+                //var_dump($_POST['show']);die();
                 foreach($_POST['show'] as $k=>$v)
                 {
                     $sh['id']= '1';
@@ -622,6 +623,7 @@ class DashboardController extends AppController
                     }
                     
                 }
+                
                 if(isset($sh) && is_array($sh)){
                 $this->AdminDoc->deleteAll(array('id >'=>0));                
                 $this->AdminDoc->create();
@@ -711,6 +713,8 @@ class DashboardController extends AppController
                 $this->User->id=$this->Session->read('id');
                 $this->User->saveField('name_avatar',$_POST['name']);
                 $this->User->saveField('email',$_POST['email']);
+                $this->User->saveField('approve',(isset($_POST['approve'])? "1":"0"));
+                $this->Session->write('approve',(isset($_POST['approve'])? "1":"0"));
                 if($_POST['password'] != ''){
                 $this->User->saveField('password',md5($_POST['password']));
                 if($this->Session->read('FMember'))
