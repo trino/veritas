@@ -3267,11 +3267,11 @@ class UploadsController extends AppController
          $this->loadModel('User');
         
         $app1 = $this->User->find('first');
-        if($app1['User']['approve']==1)
+        /*if($app1['User']['approve']==1)
         {
             $app = "'approved'=1";
         }
-        else
+        else*/
             $app = "";
         $drafts = $this->Document->find('all',array('conditions'=>array('draft'=>'1','addedBy'=>$this->Session->read('id'),$app)));
         

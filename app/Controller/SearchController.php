@@ -17,7 +17,7 @@ class SearchController extends AppController
             $approve='1';
         }
         else
-        $approve='1,0';
+            $approve='1,0';
             $this->loadModel('ReportuploadPermission');
             $this->loadModel('EvidenceviewPermission');
             $this->loadModel('EvidenceuploadPermission');
