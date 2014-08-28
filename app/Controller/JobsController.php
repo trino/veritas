@@ -586,6 +586,15 @@ class JobsController extends AppController
         $this->loadModel('Canview');
         $this->loadModel('AdminDoc');
         $this->loadModel('SpecJob');
+        $this->loadModel('User');
+        $this->loadModel('Document');
+        $app1 = $this->User->find('first');
+        if($app1['User']['approve']==1)
+        {
+            $approve='1';
+        }
+        else
+        $approve='1,0';
         $this->set('admin_doc',$this->AdminDoc->findById('1'));
       if($this->Session->read('avatar') || $this->Session->read('user'))
         {
@@ -722,12 +731,17 @@ class JobsController extends AppController
                 {                    
                     if(in_array($rp['ReportviewPermission']['report_type'],$arr_re))
                     {
-                        $m++;
                         if($m==1)
+						{
+						                        $m++;
+
                         $key_r=$rp['ReportviewPermission']['report_type'];
-                        else
+                        }
+						else
+
+{
                         $key_r=$key_r.','.$rp['ReportviewPermission']['report_type'];
-                    }
+}                    }
                     
                 }
             }
@@ -758,12 +772,16 @@ class JobsController extends AppController
                 {                    
                     if(in_array($ep['EvidenceviewPermission']['report_type'],$arr_ev))
                     {
-                        $m++;
+                        
                         if($m==1)
+						{$m++;
                         $key_ev=$ep['EvidenceviewPermission']['report_type'];
-                        else
+                        }
+						else
+						{
                         $key_ev=$key_ev.','.$ep['EvidenceviewPermission']['report_type'];
                     }
+					}
                     
                 }
             }
@@ -792,12 +810,18 @@ class JobsController extends AppController
                 {                    
                     if(in_array($epm['EmployeeviewPermission']['report_type'],$arr_em))
                     {
-                        $m++;
+                       
                         if($m==1)
+						{
+						
+						 $m++;
                         $key_em=$epm['EmployeeviewPermission']['report_type'];
-                        else
+                        }
+						else
+						{
                         $key_em=$key_em.','.$epm['EmployeeviewPermission']['report_type'];
                     }
+					}
                     
                 }
             }
@@ -826,11 +850,16 @@ class JobsController extends AppController
                 {                    
                     if(in_array($so['SiteorderviewPermission']['report_type'],$arr_so))
                     {
-                        $m++;
-                        if($m==1)
+                       
+                        if($m==1){
+						 $m++;
                         $key_so=$so['SiteorderviewPermission']['report_type'];
+						
+						}
                         else
+						{
                         $key_so=$key_so.','.$so['SiteorderviewPermission']['report_type'];
+						}
                     }
                     
                 }
@@ -838,24 +867,39 @@ class JobsController extends AppController
             else
             $key_so = '999999';
             
+
+			if(!$key_so)
+			$key_so='999999';
+
+			if(!$key_em)
+			$key_em='999999';
+
+			if(!$key_ev)
+			$key_ev='999999';
+
+			if(!$key_r)
+			$key_r='999999';
+
             
             
-            $this->set('contract',$this->Document->find('count',array('conditions'=>array('job_id'=>$id,'document_type'=>'contract'))));
-            $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','job_id'=>$id,'ev_id IN('.$key_ev.')'))));
-            $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','job_id'=>$id))));
-            $this->set('report',$this->Document->find('count',array('conditions'=>array('document_type'=>'report','job_id'=>$id,'re_id IN('.$key_r.')'))));
-            $this->set('siteOrder',$this->Document->find('count',array('conditions'=>array('document_type'=>'siteOrder','job_id'=>$id,'so_id IN('.$key_so.')'))));
-            $this->set('training',$this->Document->find('count',array('conditions'=>array('document_type'=>'training','job_id'=>$id))));
-            $this->set('employee',$this->Document->find('count',array('conditions'=>array('document_type'=>'employee','job_id'=>$id,'emp_id IN('.$key_em.')'))));
-            $this->set('KPIAudits',$this->Document->find('count',array('conditions'=>array('document_type'=>'KPIAudits','job_id'=>$id))));
+            
+            $this->set('contract',$this->Document->find('count',array('conditions'=>array('approved IN('.$approve.')','job_id'=>$id,'document_type'=>'contract'))));
+            $this->set('evidence',$this->Document->find('count',array('conditions'=>array('approved IN('.$approve.')','document_type'=>'evidence','job_id'=>$id,'ev_id IN('.$key_ev.')'))));
+            $this->set('template',$this->Document->find('count',array('conditions'=>array('approved IN('.$approve.')','document_type'=>'template','job_id'=>$id))));
+            $this->set('report',$this->Document->find('count',array('conditions'=>array('approved IN('.$approve.')','document_type'=>'report','job_id'=>$id,'re_id IN('.$key_r.')'))));
+            $this->set('siteOrder',$this->Document->find('count',array('conditions'=>array('approved IN('.$approve.')','document_type'=>'siteOrder','job_id'=>$id,'so_id IN('.$key_so.')'))));
+            $this->set('training',$this->Document->find('count',array('conditions'=>array('approved IN('.$approve.')','document_type'=>'training','job_id'=>$id))));
+            $this->set('employee',$this->Document->find('count',array('conditions'=>array('approved IN('.$approve.')','document_type'=>'employee','job_id'=>$id,'emp_id IN('.$key_em.')'))));
+            $this->set('KPIAudits',$this->Document->find('count',array('conditions'=>array('approved IN('.$approve.')','document_type'=>'KPIAudits','job_id'=>$id))));
+
             $this->set('afimac_intel',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'AFIMAC Intel','job_id'=>$id))));            
             $this->set('news_media',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'News/Media','job_id'=>$id))));
-            $this->set('personal_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'personal_inspection','job_id'=>$id))));
-            $this->set('mobile_log',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_log', 'job_id'=>$id))));
-            $this->set('mobile_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_inspection','job_id'=>$id))));
-            $this->set('inventory',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_vehicle_trunk_inventory','job_id'=>$id))));
-            $this->set('vehicle_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'vehicle_inspection','job_id'=>$id))));
-            $this->set('deployment_rate',$this->Document->find('count',array('conditions'=>array('document_type'=>'deployment_rate','job_id'=>$id))));
+            $this->set('personal_inspection',$this->Document->find('count',array('conditions'=>array('approved IN('.$approve.')','document_type'=>'personal_inspection','job_id'=>$id))));
+            $this->set('mobile_log',$this->Document->find('count',array('conditions'=>array('approved IN('.$approve.')','document_type'=>'mobile_log', 'job_id'=>$id))));
+            $this->set('mobile_inspection',$this->Document->find('count',array('conditions'=>array('approved IN('.$approve.')','document_type'=>'mobile_inspection','job_id'=>$id))));
+            $this->set('inventory',$this->Document->find('count',array('conditions'=>array('approved IN('.$approve.')','document_type'=>'mobile_vehicle_trunk_inventory','job_id'=>$id))));
+            $this->set('vehicle_inspection',$this->Document->find('count',array('conditions'=>array('approved IN('.$approve.')','document_type'=>'vehicle_inspection','job_id'=>$id))));
+            $this->set('deployment_rate',$this->Document->find('count',array('conditions'=>array('approved IN('.$approve.')','document_type'=>'deployment_rate','job_id'=>$id))));
         }
         
         $this->set('key',$this->Key_contact);
