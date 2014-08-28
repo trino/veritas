@@ -262,7 +262,7 @@ $or = '&order=';
                     if(!$this->Session->read('admin'))
                         echo $this->Html->link($this->requestAction('dashboard/translate/Edit'),'/uploads/document_edit/'.$d['Document']['id'],array('class'=>'btn btn-info'));
                     if($this->Session->read('admin'))
-                    if($this->Session->read('approve')=='1' && $d['Document']['approved']=='0'){?><a href="<?php echo $this->webroot;?>uploads/approve/<?php echo $d['Document']['id'];?>" class="btn btn-success">Approve Document</a><?php }
+                    if($this->Session->read('approve')=='1' && $d['Document']['approved']=='0'){?><a href="<?php echo $this->webroot;?>uploads/approve/<?php echo $d['Document']['id'];?>" class="btn btn-success">Approve Document</a><?php }else{echo "<button class='btn btn-success' disabled>Approved</button>";}
                     
             } ?>    
             </td>
