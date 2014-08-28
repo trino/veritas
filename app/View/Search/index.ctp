@@ -84,12 +84,13 @@ if($this->Session->read('admin'))
     <option value="training"><?php echo $this->requestAction('dashboard/translate/Training');?></option>
     <option value="employee"><?php echo $this->requestAction('dashboard/translate/Employee');?></option>
     <option value="KPIAudits"><?php echo $this->requestAction('dashboard/translate/KPI Audits');?></option>
-    <option value="personal_inspection"><?php echo $this->requestAction('dashboard/translate/Personal Inspection');?></option>
-    <option value="mobile_inspection"><?php echo $this->requestAction('dashboard/translate/Mobile Inspectio');?>n</option>
+    <!--<option value="personal_inspection"><?php echo $this->requestAction('dashboard/translate/Personal Inspection');?></option>
+    <option value="mobile_inspection"><?php echo $this->requestAction('dashboard/translate/Mobile Inspection');?></option>
     <option value="afimac_intel"><?php echo $this->requestAction('dashboard/translate/AFIMAC Intel');?></option>
-    <option value="vehicle_inspection"><?php echo $this->requestAction('dashboard/translate/Vehicle Inspection');?></option>
-    <option value="deployment_rate"><?php echo $this->requestAction('dashboard/translate/Deployment');?></option>
     <option value="news_media">News/Media</option>
+    <option value="vehicle_inspection"><?php echo $this->requestAction('dashboard/translate/Vehicle Inspection');?></option>-->
+    <option value="deployment_rate"><?php echo $this->requestAction('dashboard/translate/Deployment');?></option>
+    
     
     
   </select>
@@ -259,7 +260,9 @@ $or = '&order=';
 					}
                     else
                     if(!$this->Session->read('admin'))
-                     echo $this->Html->link($this->requestAction('dashboard/translate/Edit'),'/uploads/document_edit/'.$d['Document']['id'],array('class'=>'btn btn-info'));
+                        echo $this->Html->link($this->requestAction('dashboard/translate/Edit'),'/uploads/document_edit/'.$d['Document']['id'],array('class'=>'btn btn-info'));
+                    if($this->Session->read('admin'))
+                    if($this->Session->read('approve')=='1' && $d['Document']['approved']=='0'){?><a href="<?php echo $this->webroot;?>uploads/approve/<?php echo $d['Document']['id'];?>" class="btn btn-success">Approve Document</a><?php }
                     
             } ?>    
             </td>

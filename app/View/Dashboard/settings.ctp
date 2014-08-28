@@ -152,7 +152,7 @@ function loadmore(type, qq)
             if(!$this->Session->read('avatar'))
             { ?>
                 <tr><td><b><?php echo $this->requestAction('dashboard/translate/Address');?></b></td><td><input type="text" name="address" value="<?php echo $user['Member']['address']; ?>" class="" <?php if($this->Session->read('user')) echo "readonly='readonly'" ;?> /></td></tr>
-               <tr><td><b><?php echo $this->requestAction('dashboard/translate/Phone');?> </b></td><td><input type="text" name="phone" value="<?php echo $user['Member']['phone']; ?>" class="" <?php if($this->Session->read('user')) echo "readonly='readonly'" ;?> /></td></tr>
+                <tr><td><b><?php echo $this->requestAction('dashboard/translate/Phone');?> </b></td><td><input type="text" name="phone" value="<?php echo $user['Member']['phone']; ?>" class="" <?php if($this->Session->read('user')) echo "readonly='readonly'" ;?> /></td></tr>
         <?php if($user['Member']['canEdit']=='1')
         {?>
         <tr><td><b><?php echo $this->requestAction('dashboard/translate/Receive email when someone sends me message');?></b></td><td><input class="receive" type="checkbox" name="receive1" <?php if($user['Member']['receive1']==1){?>checked="checked"<?php }?> /></td></tr>
@@ -186,7 +186,7 @@ function loadmore(type, qq)
         <?php if($admin_doc['AdminDoc']['kpiaudits']=='0' ){?><input type="hidden" name="Email_KPIAudits" value="0"/><?php }else{?>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/KPI Audits');?> </span><input type="checkbox" name="Email_KPIAudits" <?php if(isset($e['Emailupload']['KPIAudits']) && $e['Emailupload']['KPIAudits']==1){?>checked="checked"<?php }?> /><?php }?>
         
-        <?php if($admin_doc['AdminDoc']['personal_inspection']=='0'){?><input type="hidden" name="Email_personal_inspection" value="0"/><?php }else{?>
+        <!--<?php if($admin_doc['AdminDoc']['personal_inspection']=='0'){?><input type="hidden" name="Email_personal_inspection" value="0"/><?php }else{?>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Personal Inspection');?> </span><input type="checkbox" name="Email_personal_inspection" <?php if(isset($e['Emailupload']['personal_inspection']) && $e['Emailupload']['personal_inspection']==1){?>checked="checked"<?php }?>  class="rec_email" /><?php }?>
         
         <?php if($admin_doc['AdminDoc']['mobile_inspection']=='0'){?><input type="hidden" name="Email_mobile_inspection" value="0"/><?php }else{?>
@@ -201,7 +201,7 @@ function loadmore(type, qq)
         <?php if($admin_doc['AdminDoc']['vehicle_inspection']=='0'){?><input type="hidden" name="Email_vehicle_inspection" value="0"/><?php }else{?>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Vehicle Inspection');?> </span><input type="checkbox" name="Email_vehicle_inspection" <?php if(isset($e['Emailupload']['vehicle_inspection']) && $e['Emailupload']['vehicle_inspection']==1){?>checked="checked"<?php }?>  class="rec_email" /><?php }?>
 
-        <!--<?php if($admin_doc['AdminDoc']['personal_inspection']=='0' ){?><input type="hidden" name="Email_KPIAudits" value="0"/><?php }else{?>
+        <?php if($admin_doc['AdminDoc']['personal_inspection']=='0' ){?><input type="hidden" name="Email_KPIAudits" value="0"/><?php }else{?>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Personal Inspection </span><input type="checkbox" name="Email_personal_inspection" <?php if(isset($e['Emailupload']['personal_inspection']) && $e['Emailupload']['personal_inspection']==1){?>checked="checked"<?php }?> /><?php }?>-->
 
         <!--
@@ -250,7 +250,11 @@ function loadmore(type, qq)
             </td>
         </tr>
         <tr>
-            <td><?php echo $this->requestAction('dashboard/translate/Modules');?></td>
+            <td><strong><?php echo $this->requestAction('dashboard/translate/Approve Documents');?></strong></td>
+            <td><input type="checkbox" name="approve" value="1" <?php if($this->Session->read('approve')=='1' ) echo "checked='checked'";?> /></td>
+        </tr>
+        <tr>
+            <td><strong><?php echo $this->requestAction('dashboard/translate/Modules');?></strong></td>
             <td> <?php 
             if($module){
                 $i=0;
