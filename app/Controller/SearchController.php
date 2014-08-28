@@ -8,8 +8,9 @@ class SearchController extends AppController
     {
         
         $this->loadModel('ReportviewPermission');
-        $this->loadModel('User');
         $this->loadModel('Document');
+        $this->loadModel('User');
+        
         $app1 = $this->User->find('first');
         if($app1['User']['approve']==1)
         {

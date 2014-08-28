@@ -250,15 +250,14 @@ function loadmore(type, qq)
             </td>
         </tr>
         <tr>
-            <td><strong><?php echo $this->requestAction('dashboard/translate/Approve Documents');?></strong></td>
-            <td><input type="checkbox" name="approve" value="1" <?php if($this->Session->read('approve')=='1' ) echo "checked='checked'";?> /></td>
-        </tr>
-        <tr>
             <td><strong><?php echo $this->requestAction('dashboard/translate/Modules');?></strong></td>
             <td> <?php 
             if($module){
                 $i=0;
-                foreach($module as $mod){$i++;?><span><?php if($i!=1){?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php }?><?php echo $mod['AdminModule']['name'];?> </span><input <?php echo $d?> type="checkbox" name="mod[]" value="<?php echo $mod['AdminModule']['id'];?>" <?php if($mod['AdminModule']['status']==1){?>checked="checked"<?php }?> /><?php }}?></td>
+                foreach($module as $mod){$i++;?><span><?php if($i!=1){?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php }?><?php echo $mod['AdminModule']['name'];?> </span><input <?php echo $d?> type="checkbox" name="mod[]" value="<?php echo $mod['AdminModule']['id'];?>" <?php if($mod['AdminModule']['status']==1){?>checked="checked"<?php }?> /><?php }}?>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Approve Documents');?>
+                <input type="checkbox" name="approve" value="1" <?php if($this->Session->read('approve')=='1' ) echo "checked='checked'";?> /></td>
+        
         </tr>
         <tr>
         <?php
