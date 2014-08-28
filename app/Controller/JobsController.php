@@ -722,12 +722,17 @@ class JobsController extends AppController
                 {                    
                     if(in_array($rp['ReportviewPermission']['report_type'],$arr_re))
                     {
-                        $m++;
                         if($m==1)
+						{
+						                        $m++;
+
                         $key_r=$rp['ReportviewPermission']['report_type'];
-                        else
+                        }
+						else
+
+{
                         $key_r=$key_r.','.$rp['ReportviewPermission']['report_type'];
-                    }
+}                    }
                     
                 }
             }
@@ -758,12 +763,16 @@ class JobsController extends AppController
                 {                    
                     if(in_array($ep['EvidenceviewPermission']['report_type'],$arr_ev))
                     {
-                        $m++;
+                        
                         if($m==1)
+						{$m++;
                         $key_ev=$ep['EvidenceviewPermission']['report_type'];
-                        else
+                        }
+						else
+						{
                         $key_ev=$key_ev.','.$ep['EvidenceviewPermission']['report_type'];
                     }
+					}
                     
                 }
             }
@@ -792,12 +801,18 @@ class JobsController extends AppController
                 {                    
                     if(in_array($epm['EmployeeviewPermission']['report_type'],$arr_em))
                     {
-                        $m++;
+                       
                         if($m==1)
+						{
+						
+						 $m++;
                         $key_em=$epm['EmployeeviewPermission']['report_type'];
-                        else
+                        }
+						else
+						{
                         $key_em=$key_em.','.$epm['EmployeeviewPermission']['report_type'];
                     }
+					}
                     
                 }
             }
@@ -826,11 +841,16 @@ class JobsController extends AppController
                 {                    
                     if(in_array($so['SiteorderviewPermission']['report_type'],$arr_so))
                     {
-                        $m++;
-                        if($m==1)
+                       
+                        if($m==1){
+						 $m++;
                         $key_so=$so['SiteorderviewPermission']['report_type'];
+						
+						}
                         else
+						{
                         $key_so=$key_so.','.$so['SiteorderviewPermission']['report_type'];
+						}
                     }
                     
                 }
@@ -838,8 +858,18 @@ class JobsController extends AppController
             else
             $key_so = '999999';
             
-            
-            
+			if(!$key_so)
+			$key_so='999999';
+
+			if(!$key_em)
+			$key_em='999999';
+
+			if(!$key_ev)
+			$key_ev='999999';
+
+			if(!$key_r)
+			$key_r='999999';
+
             $this->set('contract',$this->Document->find('count',array('conditions'=>array('job_id'=>$id,'document_type'=>'contract'))));
             $this->set('evidence',$this->Document->find('count',array('conditions'=>array('document_type'=>'evidence','job_id'=>$id,'ev_id IN('.$key_ev.')'))));
             $this->set('template',$this->Document->find('count',array('conditions'=>array('document_type'=>'template','job_id'=>$id))));
