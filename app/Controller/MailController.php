@@ -250,18 +250,22 @@ To check your message, click <a href='".$base_url."/?mail=".$arr['parent']."'>he
     public function sent_mail()
     {
         $this->set('mems',$this->Member);
+        
         if($this->Session->read('avatar')&& $this->Session->read('FMember')=="0")
         {
             $this->paginate=array('conditions'=>array('sender_id'=>'0','delete_for IN("r","")'),'limit'=>15,'order'=>array('date'=>'desc'));
             $this->set('email',$this->paginate('Mail'));
         }
-        elseif($this->Session->read('FMember')!="0")
+        else
+        if($this->Session->read('FMember')!="0")
         {
+            
             $this->paginate=array('conditions'=>array('sender_id'=>$this->Session->read('FMember'),'delete_for IN ("r","")'),'limit'=>15,'order'=>array('date'=>'desc'));
             $this->set('email',$this->paginate('Mail'));
         }
         else
         {
+            
             $this->paginate=array('conditions'=>array('sender_id'=>$this->Session->read('id'),'delete_for IN ("r","")'),'limit'=>15,'order'=>array('date'=>'desc'));
             $this->set('email',$this->paginate('Mail'));
         }   
