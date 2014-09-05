@@ -730,10 +730,10 @@ class JobsController extends AppController
                 foreach($qr as $rp)
                 {                    
                     if(in_array($rp['ReportviewPermission']['report_type'],$arr_re))
-                    {
+                    {$m++;
                         if($m==1)
 						{
-						                        $m++;
+						                        
 
                         $key_r=$rp['ReportviewPermission']['report_type'];
                         }
@@ -772,9 +772,9 @@ class JobsController extends AppController
                 {                    
                     if(in_array($ep['EvidenceviewPermission']['report_type'],$arr_ev))
                     {
-                        
+                        $m++;
                         if($m==1)
-						{$m++;
+						{
                         $key_ev=$ep['EvidenceviewPermission']['report_type'];
                         }
 						else
@@ -810,11 +810,11 @@ class JobsController extends AppController
                 {                    
                     if(in_array($epm['EmployeeviewPermission']['report_type'],$arr_em))
                     {
-                       
+                        $m++;
                         if($m==1)
 						{
 						
-						 $m++;
+						
                         $key_em=$epm['EmployeeviewPermission']['report_type'];
                         }
 						else
@@ -850,9 +850,9 @@ class JobsController extends AppController
                 {                    
                     if(in_array($so['SiteorderviewPermission']['report_type'],$arr_so))
                     {
-                       
+                        $m++;
                         if($m==1){
-						 $m++;
+						
                         $key_so=$so['SiteorderviewPermission']['report_type'];
 						
 						}
@@ -868,16 +868,16 @@ class JobsController extends AppController
             $key_so = '999999';
             
 
-			if(!$key_so)
+			if(!isset($key_so))
 			$key_so='999999';
 
-			if(!$key_em)
+			if(!isset($key_em))
 			$key_em='999999';
 
-			if(!$key_ev)
+			if(!isset($key_ev))
 			$key_ev='999999';
 
-			if(!$key_r)
+			if(!isset($key_r))
 			$key_r='999999';
 
             
