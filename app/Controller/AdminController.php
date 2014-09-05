@@ -216,7 +216,7 @@ class AdminController extends AppController {
         else
         if($this->Session->read('FMember')!=0)
         $user = $this->Session->read('FMember');
-        echo $c = $this->Mailread->find('count',array('conditions'=>array('user'=>$user,'status'=>0,'parent<>'=>0)));
+        echo $c = $this->Mailread->find('count',array('conditions'=>array('user'=>$user,'status'=>0,'parent <>'=>0)));
         die();/*
         $this->loadModel('Mail');
         if($this->Session->read('avatar'))
