@@ -800,8 +800,10 @@ class JobsController extends AppController
             }
             else
             $arr_em = array();
+            //var_dump($arr_em);die();
             $this->loadModel('EmployeeviewPermission');
             $qem = $this->EmployeeviewPermission->find('all',array('conditions'=>array('user_id'=>$this->Session->read('id'))));
+            
             if($qem)
             {
                 $key_em = '999999';
@@ -824,9 +826,11 @@ class JobsController extends AppController
 					}
                     
                 }
+                //var_dump($key_em);
             }
             else
             $key_em = '999999';
+            
             
             $this->loadModel('SiteorderuploadPermission');
             $apso= $this->SiteorderuploadPermission->find('all',array('conditions'=>array('user_id'=>0)));
@@ -844,7 +848,7 @@ class JobsController extends AppController
             $qso = $this->SiteorderviewPermission->find('all',array('conditions'=>array('user_id'=>$this->Session->read('id'))));
             if($qso)
             {
-                $key_em = '999999';
+                $key_so = '999999';
                 $m=0;
                 foreach($qso as $so)
                 {                    
