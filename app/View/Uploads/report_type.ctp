@@ -23,5 +23,6 @@ if($type =='16')
     include("vehicle_inspection.php"); 
 if($type =='17')
     include("dispilinary.php"); 
- 
+if($type =='18')
+    include("injury_illness.php");  
 ?>
