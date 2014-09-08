@@ -328,7 +328,7 @@ function remove_youtube()
     <?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/15')){?><option value="15" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='15') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Mobile Vehicle Trunk Inventory');?></option><?php }?>
     <?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/16')){?><option value="16" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='16') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Vehicle Inspection');?></option><?php }?>
     <?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/17')){?><option value="17" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='17') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Disciplinary Warning');?></option><?php }?>
-    <?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/18')){?><option value="18" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='18') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Injury And Illness');?></option><?php }?>
+    <?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/18')){?><option value="18" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='18') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Injury and Illness');?></option><?php }?>
 </select>
 </th>
 </thead>
@@ -871,7 +871,7 @@ $(function(){
         
         ?>
         $('.loader').show();
-        $('.loader').load('<?php echo $base_url;?>uploads/reportType/id_<?php echo $did;?>/'+$('.reporttype').val());
+        $('.loader').load('<?php echo $base_url;?>uploads/reportType/id_<?php echo $did;?>/'+$('.reporttype').val(),function(){$('.loaderimg').hide()});
         $('.description_tr').hide();
         $('.image_tr').hide();
         <?php if($ac['Activity']['report_type']=='18'){?>

@@ -47,69 +47,46 @@
     <table style="border-bottom: 1px solid #ddd;">
         <thead>
             <tr>
-                <th colspan="2">Employee Information</th>
+                <th colspan="4">Employee Information</th>
             </tr>
             
         </thead>
         <tbody>
         
-            <tr><td style="width: 200px;">Name</td><td><input type="text" name="emp_name" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_name'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Home Address</td><td><input type="text" name="emp_home" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_home'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">City</td><td><input type="text" name="emp_city" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_city'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">State</td><td><input type="text" name="emp_state" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_state'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Zip</td><td><input type="text" name="emp_zip" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_zip'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Home Phone</td><td><input type="text" name="emp_home_phone" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_home_phone'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Cell Phone</td><td><input type="text" name="emp_cell_phone" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_cell_phone'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Social Security Number</td><td><input type="text" name="emp_ssn" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_ssn'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Date Of Birth</td><td><input type="text" name="emp_dob" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_dob'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Gender</td><td><input type="text" name="emp_gender" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_gender'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Marital Status</td><td><input type="text" name="emp_marital_status" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_marital_status'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Date Of Hire</td><td><input class="date" type="text" name="emp_doh" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_doh'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Position</td><td><input type="text" name="emp_position" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_position'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Hourly Wage</td><td><input type="text" name="emp_hourly_wage" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_hourly_wage'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Hours Worked Per Shift</td><td><input type="text" name="emp_hwps" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_hwps'];}?>" /></td></tr>
+            <tr><td style="width: 200px;">Name</td><td><input type="text" name="emp_name" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_name'];}?>" /></td>
+                <td style="width: 200px;">Home Address</td><td><input type="text" name="emp_home" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_home'];}?>" /></td></tr>
+            <tr><td style="width: 200px;">City</td><td><input type="text" name="emp_city" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_city'];}?>" /></td>
+                <td style="width: 200px;">State</td><td><input type="text" name="emp_state" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_state'];}?>" /></td></tr>
+            <tr><td style="width: 200px;">Zip</td><td><input type="text" name="emp_zip" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_zip'];}?>" /></td>
+                <td style="width: 200px;">Home Phone</td><td><input type="text" name="emp_home_phone" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_home_phone'];}?>" /></td></tr>
+            <tr><td style="width: 200px;">Cell Phone</td><td><input type="text" name="emp_cell_phone" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_cell_phone'];}?>" /></td>
+                <td style="width: 200px;">Social Security Number</td><td><input type="text" name="emp_ssn" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_ssn'];}?>" /></td></tr>
+            <tr><td style="width: 200px;">Date Of Birth</td><td><input type="text" name="emp_dob" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_dob'];}?>" /></td>
+                <td style="width: 200px;">Gender</td><td><input type="text" name="emp_gender" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_gender'];}?>" /></td></tr>
+            <tr><td style="width: 200px;">Marital Status</td><td><input type="text" name="emp_marital_status" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_marital_status'];}?>" /></td>
+                <td style="width: 200px;">Date Of Hire</td><td><input class="date" type="text" name="emp_doh" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_doh'];}?>" /></td></tr>
+            <tr><td style="width: 200px;">Position</td><td><input type="text" name="emp_position" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_position'];}?>" /></td>
+                <td style="width: 200px;">Hourly Wage</td><td><input type="text" name="emp_hourly_wage" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_hourly_wage'];}?>" /></td></tr>
+            <tr><td style="width: 200px;">Hours Worked Per Shift</td><td><input type="text" name="emp_hwps" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['emp_hwps'];}?>" /></td>
         </tbody>
     </table>
     
     <table style="border-bottom: 1px solid #ddd;">
         <thead>
             <tr>
-                <th colspan="2">Project Information</th>
+                <th colspan="4">Project Information</th>
             </tr>
             
         </thead>
         <tbody>
-            <tr><td style="width: 200px;">Project Name</td><td><input type="text" name="project_name" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['project_name'];}?>"/></td></tr>
-            <tr><td style="width: 200px;">Project Address</td><td><input type="text" name="project_address" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['project_address'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">City</td><td><input type="text" name="project_city" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['project_city'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">State</td><td><input type="text" name="project_state" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['project_state'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Zip</td><td><input type="text" name="project_zip" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['project_zip'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Hotel where Temporarily House</td><td><input type="text" name="project_hwth" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['project_hwth'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Project Manager Name</td><td><input type="text" name="project_manager_name" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['project_manager_name'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Employees Direct Supervisor Name</td><td><input type="text" name="project_edsn" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['project_edsn'];}?>" /></td></tr>
-            
-        </tbody>
-    </table>
-    
-    <table style="border-bottom: 1px solid #ddd;">
-        <thead>
-            <tr>
-                <th colspan="2">Medical Information</th>
-            </tr>
-            
-        </thead>
-        <tbody>
-            <tr><td style="width: 200px;">Hospital/Clinic Name</td><td><input type="text" name="medical_name" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_name'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Hospital/Clinic Address</td><td><input type="text" name="medical_address" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_address'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">City</td><td><input type="text" name="medical_city" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_city'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">State</td><td><input type="text" name="medical_state" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_state'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Zip</td><td><input type="text" name="medical_zip" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_zip'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Phone Number</td><td><input type="text" name="medical_phone" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_phone'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Treating Physician Name</td><td><input type="text" name="medical_physician" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_physician'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">First Day Of Treatment</td><td><input type="text" name="medical_fdot" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_fdot'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Length Of Stay</td><td><input type="text" name="medical_los" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_los'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Did They Go By Ambulance</td><td><input type="text" name="medical_dtgba" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_dtgba'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Initial Medical Diagnosis</td><td><input type="text" name="medical_imd" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_imd'];}?>" /></td></tr>
+            <tr><td style="width: 200px;">Project Name</td><td><input type="text" name="project_name" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['project_name'];}?>"/></td> 
+                <td style="width: 200px;">Project Address</td><td><input type="text" name="project_address" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['project_address'];}?>" /></td></tr>
+            <tr><td style="width: 200px;">City</td><td><input type="text" name="project_city" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['project_city'];}?>" /></td>    
+                <td style="width: 200px;">State</td><td><input type="text" name="project_state" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['project_state'];}?>" /></td></tr>
+            <tr><td style="width: 200px;">Zip</td><td><input type="text" name="project_zip" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['project_zip'];}?>" /></td>   
+                <td style="width: 200px;">Hotel where Temporarily House</td><td><input type="text" name="project_hwth" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['project_hwth'];}?>" /></td></tr>
+            <tr><td style="width: 200px;">Project Manager Name</td><td><input type="text" name="project_manager_name" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['project_manager_name'];}?>" /></td>    
+                <td style="width: 200px;">Employees Direct Supervisor Name</td><td><input type="text" name="project_edsn" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['project_edsn'];}?>" /></td></tr>
             
         </tbody>
     </table>
@@ -117,27 +94,50 @@
     <table style="border-bottom: 1px solid #ddd;">
         <thead>
             <tr>
-                <th colspan="2">Injury Information</th>
+                <th colspan="4">Medical Information</th>
             </tr>
             
         </thead>
         <tbody>
-            <tr><td style="width: 350px;">Date Of Injury</td><td><input type="text" class="date" name="injury_date" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_date'];}?>" /></td></tr>
-            <tr><td>Time Of Injury</td><td><input type="text" name="injury_time" class="time" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_time'];}?>" /></td></tr>
-            <tr><td>Time Shift Started</td><td><input type="text" class="time" name="injury_tss" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_tss'];}?>" /></td></tr>
-            <tr><td>Did This Injury Result In Death</td><td><input type="text" name="injury_dtirin" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_dtirin'];}?>" /></td></tr>
-            <tr><td>Where in Facility did Injury Happen</td><td><input type="text" name="injury_wifdih" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_wifdih'];}?>" /></td></tr>
-            <tr><td>Was the employee doing his/her regular duties</td><td><input type="text" name="injury_wtedhrd" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_wtedhrd'];}?>" /></td></tr>
-            <tr><td>Who did the employee report the Injury to</td><td><input type="text" name="injury_wdtertit" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_wdtertit'];}?>" /></td></tr>
-            <tr><td>Length Of Stay</td><td><input type="text" name="injury_wwedatoi" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_wwedatoi'];}?>" /></td></tr>
-            <tr><td>What was employee doing at time of Injury</td><td><input type="text" name="injury_wdcti" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_wdcti'];}?>" /></td></tr>
-            <tr><td>How and Why did Injury Occur</td><td><input type="text" name="injury_hawdio" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_hawdio'];}?>" /></td></tr>
-            <tr><td>Exact part of body affected</td><td><input type="text" name="injury_epoda" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_epoda'];}?>" /></td></tr>
-            <tr><td>Did employee lose consciousness</td><td><input type="text" name="injury_delc" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_delc'];}?>" /></td></tr>
-            <tr><td>Was Proper PPE being worn at time of Injury</td><td><input type="text" name="injury_wppbwatoi" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_wppbwatoi'];}?>" /></td></tr>
-            <tr><td>Did Employee miss any days of work due to injury</td><td><input type="text" name="injury_demadowdti" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_demadowdti'];}?>" /></td></tr>
-            <tr><td>Estimated return to work date</td><td><input class="date" type="text" name="injury_ertwd" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_imd'];}?>" /></td></tr>
-            <tr><td>Is the employee on light duty restriction</td><td><input type="text" name="injury_iteoldr" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_iteoldr'];}?>" /></td></tr>
+            <tr><td style="width: 200px;">Hospital/Clinic Name</td><td><input type="text" name="medical_name" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_name'];}?>" /></td>    
+                <td style="width: 200px;">Hospital/Clinic Address</td><td><input type="text" name="medical_address" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_address'];}?>" /></td></tr>
+            <tr><td style="width: 200px;">City</td><td><input type="text" name="medical_city" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_city'];}?>" /></td>
+                <td style="width: 200px;">State</td><td><input type="text" name="medical_state" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_state'];}?>" /></td></tr>
+            <tr><td style="width: 200px;">Zip</td><td><input type="text" name="medical_zip" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_zip'];}?>" /></td>
+                <td style="width: 200px;">Phone Number</td><td><input type="text" name="medical_phone" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_phone'];}?>" /></td></tr>
+            <tr><td style="width: 200px;">Treating Physician Name</td><td><input type="text" name="medical_physician" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_physician'];}?>" /></td>
+                <td style="width: 200px;">First Day Of Treatment</td><td><input type="text" name="medical_fdot" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_fdot'];}?>" /></td></tr>
+            <tr><td style="width: 200px;">Length Of Stay</td><td><input type="text" name="medical_los" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_los'];}?>" /></td>
+                <td style="width: 200px;">Did They Go By Ambulance</td><td><input type="text" name="medical_dtgba" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_dtgba'];}?>" /></td></tr>
+            <tr><td style="width: 200px;">Initial Medical Diagnosis</td><td><input type="text" name="medical_imd" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_imd'];}?>" /></td>
+            
+        </tbody>
+    </table>
+    
+    <table style="border-bottom: 1px solid #ddd;">
+        <thead>
+            <tr>
+                <th colspan="4">Injury Information</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            <tr><td style="width: 350px;">Date Of Injury</td><td><input type="text" class="date" name="injury_date" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_date'];}?>" /></td>
+                <td>Time Of Injury</td><td><input type="text" name="injury_time" class="time" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_time'];}?>" /></td></tr>
+            <tr><td>Time Shift Started</td><td><input type="text" class="time" name="injury_tss" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_tss'];}?>" /></td>
+                <td>Did This Injury Result In Death</td><td><input type="text" name="injury_dtirin" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_dtirin'];}?>" /></td></tr>
+            <tr><td>Where in Facility did Injury Happen</td><td><input type="text" name="injury_wifdih" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_wifdih'];}?>" /></td>
+                <td>Was the employee doing his/her regular duties</td><td><input type="text" name="injury_wtedhrd" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_wtedhrd'];}?>" /></td></tr>
+            <tr><td>Who did the employee report the Injury to</td><td><input type="text" name="injury_wdtertit" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_wdtertit'];}?>" /></td>
+                <td>Length Of Stay</td><td><input type="text" name="injury_wwedatoi" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_wwedatoi'];}?>" /></td></tr>
+            <tr><td>What was employee doing at time of Injury</td><td><input type="text" name="injury_wdcti" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_wdcti'];}?>" /></td>
+                <td>How and Why did Injury Occur</td><td><input type="text" name="injury_hawdio" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_hawdio'];}?>" /></td></tr>
+            <tr><td>Exact part of body affected</td><td><input type="text" name="injury_epoda" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_epoda'];}?>" /></td>
+                <td>Did employee lose consciousness</td><td><input type="text" name="injury_delc" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_delc'];}?>" /></td></tr>
+            <tr><td>Was Proper PPE being worn at time of Injury</td><td><input type="text" name="injury_wppbwatoi" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_wppbwatoi'];}?>" /></td>
+                <td>Did Employee miss any days of work due to injury</td><td><input type="text" name="injury_demadowdti" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_demadowdti'];}?>" /></td></tr>
+            <tr><td>Estimated return to work date</td><td><input class="date" type="text" name="injury_ertwd" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['medical_imd'];}?>" /></td>
+                <td>Is the employee on light duty restriction</td><td><input type="text" name="injury_iteoldr" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_iteoldr'];}?>" /></td></tr>
             <tr><td>If so for how long</td><td><input type="text" name="injury_isfhl" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['injury_isfhl'];}?>" /></td></tr>
         </tbody>
     </table>
@@ -145,27 +145,35 @@
     <table style="border-bottom: 1px solid #ddd;">
         <thead>
             <tr>
-                <th colspan="2">Witness</th>
+                <th colspan="4">Witness</th>
             </tr>
             
         </thead>
         <tbody>
-            <tr><td style="width: 200px;">Name</td><td><input type="text" name="witness_name" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['witness_name'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Address</td><td><input type="text" name="witness_address" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['witness_address'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Phone</td><td><input type="text" name="witness_phone" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['witness_phone'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Attach Statement</td><td><a href="javascript:void(0);" class="btn btn-info attach" id="attach1">Browse</a><input type="hidden" id="a1" name="witness_attach_statement" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['witness_attach_statement'];}?>" /><span class="attach1"><?php if(isset($ii)){echo '&nbsp; '.$ii['InjuryIllness']['witness_attach_statement'];}?></span></td></tr>
+            <tr><td style="width: 200px;">Name</td><td><input type="text" name="witness_name" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['witness_name'];}?>" /></td>
+                <td style="width: 200px;">Name</td><td><input type="text" name="witness_name2" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['witness_name2'];}?>" /></td></tr>
+            <tr><td style="width: 200px;">Address</td><td><input type="text" name="witness_address" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['witness_address'];}?>" /></td>
+                <td style="width: 200px;">Address</td><td><input type="text" name="witness_address2" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['witness_address2'];}?>" /></td></tr>
+            <tr><td style="width: 200px;">Phone</td><td><input type="text" name="witness_phone2" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['witness_phone2'];}?>" /></td>
+                <td style="width: 200px;">Phone</td><td><input type="text" name="witness_phone" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['witness_phone'];}?>" /></td></tr>
+                <td style="width: 200px;">Attach Statement</td>
+                <td><textarea name="witness_attach_statement2"><?php if(isset($ii)){echo $ii['InjuryIllness']['witness_attach_statement2'];}?></textarea>
+                <td style="width: 200px;">Attach Statement</td>
+                <td><textarea name="witness_attach_statement"><?php if(isset($ii)){echo $ii['InjuryIllness']['witness_attach_statement'];}?></textarea></tr>
+                <!--<a href="javascript:void(0);" class="btn btn-info attach" id="attach1">Browse</a><input type="hidden" id="a1" name="witness_attach_statement" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['witness_attach_statement'];}?>" /><span class="attach1"><?php if(isset($ii)){echo '&nbsp; '.$ii['InjuryIllness']['witness_attach_statement'];}?></span></td></tr>-->
             <tr><td colspan="2"></td></tr>
-            <tr><td style="width: 200px;">Name</td><td><input type="text" name="witness_name2" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['witness_name2'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Address</td><td><input type="text" name="witness_address2" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['witness_address2'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Phone</td><td><input type="text" name="witness_phone2" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['witness_phone2'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Attach Statement</td><td><a href="javascript:void(0);" class="btn btn-info attach" id="attach2">Browse</a><input type="hidden" id="a2" name="witness_attach_statement2" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['witness_attach_statement2'];}?>" /><span class="attach2"><?php if(isset($ii)){echo '&nbsp; '.$ii['InjuryIllness']['witness_attach_statement2'];}?></span></td></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr>
+                <!--<a href="javascript:void(0);" class="btn btn-info attach" id="attach2">Browse</a><input type="hidden" id="a2" name="witness_attach_statement2" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['witness_attach_statement2'];}?>" /><span class="attach2"><?php if(isset($ii)){echo '&nbsp; '.$ii['InjuryIllness']['witness_attach_statement2'];}?></span></td></tr>-->
         </tbody>
     </table>
     
     <table style="border-bottom: 1px solid #ddd;">
         <thead>
             <tr>
-                <th colspan="2">Supporting Documentation</th>
+                <th colspan="4">Supporting Documentation</th>
             </tr>
             
         </thead>
@@ -178,39 +186,31 @@
     <table style="border-bottom: 1px solid #ddd;">
         <thead>
             <tr>
-                <th>Employee Direct Comments</th>
+                <th>Employee Direct Comments</th><th>Additional Comments Of Report Writer</th>
             </tr>
             
         </thead>
         <tbody>
-            <tr><td><textarea style="width: 300px;height:100px;" name="edc"><?php if(isset($ii)){echo $ii['InjuryIllness']['edc'];}?></textarea></td></tr>
+            <tr><td><textarea style="width: 300px;height:100px;" name="edc"><?php if(isset($ii)){echo $ii['InjuryIllness']['edc'];}?></textarea></td>
+                <td><textarea style="width: 300px;height:100px;" name="acorw"><?php if(isset($ii)){echo $ii['InjuryIllness']['acorw'];}?></textarea></td>
+            </tr>
         </tbody>
     </table>
+    
+    
     
     <table style="border-bottom: 1px solid #ddd;">
         <thead>
             <tr>
-                <th>Additional Comments Of Report Writer</th>
+                <th colspan="4">Report Completed By</th>
             </tr>
             
         </thead>
         <tbody>
-            <tr><td><textarea style="width: 300px;height:100px;" name="acorw"><?php if(isset($ii)){echo $ii['InjuryIllness']['acorw'];}?></textarea></td></tr>
-        </tbody>
-    </table>
-    
-    <table style="border-bottom: 1px solid #ddd;">
-        <thead>
-            <tr>
-                <th colspan="2">Report Completed By</th>
-            </tr>
-            
-        </thead>
-        <tbody>
-            <tr><td style="width: 200px;">Report Completed By</td><td><input type="text" name="report_by" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['report_by'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Date</td><td><input type="text" class="date" name="report_date" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['report_date'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Time</td><td><input type="text" class="time" name="report_time" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['report_time'];}?>" /></td></tr>
-            <tr><td style="width: 200px;">Contact Number</td><td><input type="text" name="report_contact" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['report_contact'];}?>" /></td></tr>
+            <tr><td style="width: 200px;">Report Completed By</td><td><input type="text" name="report_by" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['report_by'];}?>" /></td>
+                <td style="width: 200px;">Date</td><td><input type="text" class="date" name="report_date" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['report_date'];}?>" /></td></tr>
+            <tr><td style="width: 200px;">Time</td><td><input type="text" class="time" name="report_time" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['report_time'];}?>" /></td>
+                <td style="width: 200px;">Contact Number</td><td><input type="text" name="report_contact" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['report_contact'];}?>" /></td></tr>
         </tbody>
     </table>
     <div style="position: relative;padding:5px;">
