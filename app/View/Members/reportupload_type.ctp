@@ -27,6 +27,11 @@
         <?php if($reportstat->find('first',array('conditions'=>array('user_id'=>0,'report_type1'=>'17','can_upload'=>'1')))|| $a=='all'){?><td><input type="hidden" name="report_type1[]" value="17" /><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" name="report_canUpload[]" <?php if($reportstat->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>'17','can_upload'=>'1')))){?>checked="checked"<?php }?> value="17" /> <?php echo $this->requestAction('dashboard/translate/Disciplinary Warning');?> </span></td><?php }?>
         
         </tr>
+        <tr>
+        <?php if($reportstat->find('first',array('conditions'=>array('user_id'=>0,'report_type1'=>'18','can_upload'=>'1')))|| $a=='all'){?><td><input type="hidden" name="report_type1[]" value="18" /><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" name="report_canUpload[]" <?php if($reportstat->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>'18','can_upload'=>'1')))){?>checked="checked"<?php }?> value="18" /> <?php echo $this->requestAction('dashboard/translate/Injury And Illness');?> </span></td><?php }?>
+        
+        
+        </tr>
         </table>
     </td>
 </tr>

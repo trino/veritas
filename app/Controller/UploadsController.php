@@ -660,6 +660,42 @@ class UploadsController extends AppController
                     $this->InsuranceSiteAudit->save($_POST);
                     
                 }
+                
+                if($_POST['report_type'] == '18')
+                {
+                    $illness = $_POST;
+                    $illness['document_id'] = $eid;
+                    $illness['signature'] = $this->Session->read('image_name');
+                    $this->InjuryIllness->deleteAll(array('doc_id'=>$eid));
+                    $this->loadModel('InjuryIllness');
+                    $this->InjuryIllness->create();
+                    $this->InjuryIllness->save($illness);
+                    
+                    if(isset($_POST['picture']))
+                    {
+                        $this->loadModel('InjuryPicture');
+                        $this->InjuryPicture->deleteAll(array('doc_id'=>$eid));
+                        foreach($_POST['picture'] as $p){
+                        $pic['document_id'] = $eid;
+                        $pic['file'] = $p;
+                        
+                        $this->InjuryPicture->create();
+                        $this->InjuryPicture->save($pic);
+                        }   
+                    }
+                    if(isset($_POST['medical_forms']))
+                    {
+                        $this->loadModel('InjuryForm');
+                        $this->InjuryForm->deleteAll(array('doc_id'=>$eid));
+                        foreach($_POST['medical_forms'] as $p){
+                        $form['document_id'] = $eid;
+                        $form['file'] = $p;
+                        
+                        $this->InjuryForm->create();
+                        $this->InjuryForm->save($form);
+                        }   
+                    }
+                }
                 if($_POST['report_type']=='11')
                 {
                     
@@ -2368,6 +2404,36 @@ class UploadsController extends AppController
                 $this->MobileTrunk->save($inventory);
             }
             
+            if($_POST['report_type'] == '18')
+            {
+                $illness = $_POST;
+                $illness['document_id'] = $id;
+                $illness['signature'] = $this->Session->read('image_name');
+                $this->loadModel('InjuryIllness');
+                if(isset($_POST['picture']))
+                {
+                    foreach($_POST['picture'] as $p){
+                    $pic['document_id'] = $id;
+                    $pic['file'] = $p;
+                    $this->loadModel('InjuryPicture');
+                    $this->InjuryPicture->create();
+                    $this->InjuryPicture->save($pic);
+                    }   
+                }
+                if(isset($_POST['medical_forms']))
+                {
+                    foreach($_POST['medical_forms'] as $p){
+                    $form['document_id'] = $id;
+                    $form['file'] = $p;
+                    $this->loadModel('InjuryForm');
+                    $this->InjuryForm->create();
+                    $this->InjuryForm->save($form);
+                    }   
+                }
+                $this->InjuryIllness->create();
+                $this->InjuryIllness->save($illness);
+            }
+            
             if($_POST['report_type'] == '14')
             {
                 $mob['document_id'] = $id;
@@ -2565,7 +2631,7 @@ class UploadsController extends AppController
                     //var_dump($_POST['item']); die();
                     
                 }
-                if($_POST['report_type']==8 || $_POST['report_type']==9|| $_POST['report_type']==10|| $_POST['report_type']==11|| $_POST['report_type']==12|| $_POST['report_type']==13|| $_POST['report_type']==14|| $_POST['report_type']==15|| $_POST['report_type']==16|| $_POST['report_type']==17)
+                if($_POST['report_type']==8 || $_POST['report_type']==9|| $_POST['report_type']==10|| $_POST['report_type']==11|| $_POST['report_type']==12|| $_POST['report_type']==13|| $_POST['report_type']==14|| $_POST['report_type']==15|| $_POST['report_type']==16|| $_POST['report_type']==17|| $_POST['report_type']==18)
                 {
                     $this->Activity->create();
                     $this->Activity->save($activity);
@@ -3474,6 +3540,18 @@ class UploadsController extends AppController
             $this->set('vi',$vi);            
             
         }
+        if($type=='18')
+        {
+            //die('a');
+            $this->loadModel('InjuryIllness');
+            $this->loadModel('InjuryPicture');
+            $this->loadModel('InjuryForm');
+            $this->set('ii',$this->InjuryIllness->findByDocumentId($did));
+            $this->set('ip',$this->InjuryPicture->find('all',array('conditions'=>array('document_id'=>$did))));
+            $this->set('if',$this->InjuryForm->find('all',array('conditions'=>array('document_id'=>$did))));
+            //$this->set('if',$this->InjuryForm->findByDocumentId($did));        
+            
+        }
         if($type == '7')
         {
             $this->set('type',$type);
@@ -3769,6 +3847,19 @@ $oa = intval($number*$expo)/$expo;
     
     
     
+  }
+  function attachment_statement1()
+  {
+            $exp = explode('.',$_FILES['myfile']['name']);
+            $ext = end($exp);
+            $rand = rand(100000,999999).'_'.rand(100000,999999);
+            $file = $rand.'.'.$ext;
+            $path = APP.'webroot/img/uploads/'.$file;
+            
+            move_uploaded_file($_FILES['myfile']['tmp_name'],$path);
+            
+			echo $file;
+            die();
   }
   
 }
