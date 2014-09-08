@@ -28,10 +28,10 @@
 <table>
             <tr>
 				<th><?php echo $this->requestAction('dashboard/translate/User');?></th>
-                <th><?php echo $this->requestAction('dashboard/translate/First Name');?></th>
-                <th><?php echo $this->requestAction('dashboard/translate/Last Name');?></th>
-                <th><?php echo $this->requestAction('dashboard/translate/Username');?></th>
-                <th><?php echo $this->requestAction('dashboard/translate/Title');?></th>
+                <th><?php echo $this->Paginator->sort('fname',$this->requestAction('dashboard/translate/First Name'));?></th>
+                <th><?php echo $this->Paginator->sort('lname',$this->requestAction('dashboard/translate/Last Name'));?></th>
+                <th><?php echo $this->Paginator->sort('full_name',$this->requestAction('dashboard/translate/Username'));?></th>
+                <th><?php echo $this->Paginator->sort('title',$this->requestAction('dashboard/translate/Title'));?></th>
                 <!--th>Assigned Jobs</th-->
                 <th style="width:250px;">Options</th>
                 <?php
