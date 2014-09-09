@@ -3189,6 +3189,18 @@ class UploadsController extends AppController
                         $this->loadModel('StaticSiteAudit');
                             $this->set('static',$this->StaticSiteAudit->find('first', array('conditions'=>array('doc_id'=>$eid))));
                     }
+                    if($act[0]['Activity']['report_type']='18')
+                    {
+                        //die('a');
+                        $this->loadModel('InjuryIllness');
+                        $this->loadModel('InjuryPicture');
+                        $this->loadModel('InjuryForm');
+                        $this->set('ii',$this->InjuryIllness->findByDocumentId($eid));
+                        $this->set('ip',$this->InjuryPicture->find('all',array('conditions'=>array('document_id'=>$eid))));
+                        $this->set('if',$this->InjuryForm->find('all',array('conditions'=>array('document_id'=>$eid))));
+                        //$this->set('if',$this->InjuryForm->findByDocumentId($did));        
+                        
+                    }
                     if($act[0]['Activity']['report_type']=='9')
                     {
                         $this->loadModel('InsuranceSiteAudit');
