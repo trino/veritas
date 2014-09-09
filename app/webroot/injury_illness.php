@@ -149,8 +149,8 @@
             <tr></tr>
             <tr></tr>
             <tr></tr>
-            <tr>
-                <!--<a href="javascript:void(0);" class="btn btn-info attach" id="attach2">Browse</a><input type="hidden" id="a2" name="witness_attach_statement2" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['witness_attach_statement2'];}?>" /><span class="attach2"><?php if(isset($ii)){echo '&nbsp; '.$ii['InjuryIllness']['witness_attach_statement2'];}?></span></td></tr>-->
+            <!--<tr>
+                <a href="javascript:void(0);" class="btn btn-info attach" id="attach2">Browse</a><input type="hidden" id="a2" name="witness_attach_statement2" value="<?php if(isset($ii)){echo $ii['InjuryIllness']['witness_attach_statement2'];}?>" /><span class="attach2"><?php if(isset($ii)){echo '&nbsp; '.$ii['InjuryIllness']['witness_attach_statement2'];}?></span></td></tr>-->
         
     </table>
     
