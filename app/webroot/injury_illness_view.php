@@ -161,7 +161,7 @@
         </thead>
         <tbody>
             <tr><td style="width:200px;">Pictures</td><td><span class="picture"><?php if(isset($ip)){foreach($ip as $pic){?><span style="display:inline-block;">&nbsp; <a href="<?php echo $this->webroot;?>img/uploads/<?php echo $pic['InjuryPicture']['file'];?>" target="_blank"><img src="<?php echo $this->webroot;?>img/uploads/<?php echo $pic['InjuryPicture']['file'];?>" style="height:100px;"/></a>&nbsp; </span><?php }}?></span></td></tr>
-            <tr><td style="">Medical Forms</td><td><span class="medical_forms"><?php if(isset($if)){foreach($if as $pic){?><strong>&nbsp; <a href="<?php echo $pic['InjuryForm']['file'];?>" target="_blank"><?php echo $pic['InjuryForm']['file'];?></a>, </strong><?php }}?></span></td></tr>
+            <tr><td style="">Medical Forms</td><td><span class="medical_forms"><?php if(isset($if)){foreach($if as $pic){?><strong>&nbsp; <a href="<?php echo $this->webroot;?>img/uploads/<?php echo $pic['InjuryForm']['file'];?>" target="_blank"><?php echo $pic['InjuryForm']['file'];?></a>, </strong><?php }}?></span></td></tr>
         </tbody>
     </table>
     

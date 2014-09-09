@@ -666,15 +666,15 @@ class UploadsController extends AppController
                     $illness = $_POST;
                     $illness['document_id'] = $eid;
                     $illness['signature'] = $this->Session->read('image_name');
-                    $this->InjuryIllness->deleteAll(array('doc_id'=>$eid));
                     $this->loadModel('InjuryIllness');
+                    $this->InjuryIllness->deleteAll(array('document_id'=>$eid));                    
                     $this->InjuryIllness->create();
                     $this->InjuryIllness->save($illness);
                     
                     if(isset($_POST['picture']))
                     {
                         $this->loadModel('InjuryPicture');
-                        $this->InjuryPicture->deleteAll(array('doc_id'=>$eid));
+                        $this->InjuryPicture->deleteAll(array('document_id'=>$eid));
                         foreach($_POST['picture'] as $p){
                         $pic['document_id'] = $eid;
                         $pic['file'] = $p;
@@ -686,7 +686,7 @@ class UploadsController extends AppController
                     if(isset($_POST['medical_forms']))
                     {
                         $this->loadModel('InjuryForm');
-                        $this->InjuryForm->deleteAll(array('doc_id'=>$eid));
+                        $this->InjuryForm->deleteAll(array('document_id'=>$eid));
                         foreach($_POST['medical_forms'] as $p){
                         $form['document_id'] = $eid;
                         $form['file'] = $p;
@@ -3319,7 +3319,7 @@ class UploadsController extends AppController
             }
             else
             {
-                $this->Session->setFlash('Sorry! This Document is Already Deleted.');
+                $this->Session->setFlash('Sorry! This Document Already Deleted.');
                 $this->redirect('/dashboard');
             }
         }
