@@ -73,8 +73,10 @@ foreach($job as $j)
         $me = 0;
         foreach($jme_all as $jmes)
         {
-            $me++;
+            
             $m = $mems->findById($jmes['Jobmember']['member_id']);
+            if($m && $m['Member']['full_name']){
+            $me++;
             if($me%4==1)
                                 echo "<tr>";
                                 if($this->Session->read('admin'))
@@ -84,6 +86,7 @@ foreach($job as $j)
                                 //$td++;
                                 if($me%4==0)
                                     echo "</tr>";
+                                    }
         }
         
         
