@@ -215,7 +215,7 @@ class AdminController extends AppController {
         $user = $this->Session->read('id');
         else
         if($this->Session->read('FMember')!=0)
-        $user = $this->Session->read('FMember');
+        $user = $this->Session->read('FMember'); //FMEMBER ARE THOSE ADMIN SELECTED BY ADMIN AMONG USERS
         echo $c = $this->Mailread->find('count',array('conditions'=>array('user'=>$user,'status'=>0,'parent <>'=>0)));
         die();/*
         $this->loadModel('Mail');
