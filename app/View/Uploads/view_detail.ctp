@@ -199,7 +199,7 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         <?php }
         if($activity[0]['Activity']['report_type']=='18'){?>
         <tr id="loss_prevention">
-        <td colspan="2"> <?php //include('injury_illness_view.php');?></td>
+        <td colspan="2" style="padding: 0;"> <?php include('injury_illness_view.php');?></td>
         </tr>
         <?php }
         if($activity[0]['Activity']['report_type']!='8' && $activity[0]['Activity']['report_type']!='9'&& $activity[0]['Activity']['report_type']!='10'&& $activity[0]['Activity']['report_type']!='11'&& $activity[0]['Activity']['report_type']!='12'&& $activity[0]['Activity']['report_type']!='13'&& $activity[0]['Activity']['report_type']!='14'&& $activity[0]['Activity']['report_type']!='15'&& $activity[0]['Activity']['report_type']!='16')

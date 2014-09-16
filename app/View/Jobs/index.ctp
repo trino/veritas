@@ -69,53 +69,42 @@ foreach($job as $j)
             
             
         <?php 
+        $jme_all = $jme->find('all',array('conditions'=>array("job_id LIKE '".$j['Job']['id'].",%' OR job_id LIKE '%,".$j['Job']['id'].",%' OR job_id LIKE '%,".$j['Job']['id']."'")));
         $me = 0;
-        $td=0;
-            foreach($member as $m)
-            {
-                foreach($jobmember as $jm)
-                {
-                    if($m['Member']['id']==$jm['Jobmember']['member_id'])
-                    {
-                        $job_id=$jm['Jobmember']['job_id'];
-                        $ji=explode(',',$job_id);
-                        
-                        for($i=0;$i<sizeof($ji);$i++)
-                        {
-                            if($ji[$i]==$j['Job']['id'])
-                            {
-                                $me++;
-                                if($me%4==1)
+        foreach($jme_all as $jmes)
+        {
+            
+            $m = $mems->findById($jmes['Jobmember']['member_id']);
+            if($m && $m['Member']['full_name']){
+            $me++;
+            if($me%4==1)
                                 echo "<tr>";
                                 if($this->Session->read('admin'))
                                     echo "<td style='width:20px;' ><a href='".$base_url."members/view/".$m['Member']['id']."'>"." ".$m['Member']['full_name']."</a></td>";
                                 else
                                     echo "<td style='width:20px;' >".$m['Member']['full_name']."</td>";
-                                $td++;
-                                if($m%4==0)
+                                //$td++;
+                                if($me%4==0)
                                     echo "</tr>";
-                                
-                                
-                            }
-                        }
-                    }
-                }   
-            }
-            if($td>0)
+                                    }
+        }
+        
+        
+            if($me>0)
             {
-               if($td%4==1)
+               if($me%4==1)
                {
                 
                 echo "<td></td><td></td><td></td></tr>";
                 
                }
-               if($td%4==2)
+               if($me%4==2)
                {
                 
                 echo "<td></td><td></td></tr>";
                 
                }
-               if($td%4==3)
+               if($me%4==3)
                {
                 
                 echo "<td></td></tr>";

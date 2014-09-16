@@ -438,7 +438,7 @@ To check your message, click <a href='".$base_url."/?mail=".$arr['parent']."'>he
                 $link = '/?mail='.$url['Mail']['id'];
             }
             else
-            $link = '';
+            $link = '/mail';
             $base_url = 'http://'.$_SERVER['SERVER_NAME'];
             if($_SERVER['SERVER_NAME'] == 'localhost')
             $base_url = 'http://'.$_SERVER['SERVER_NAME'].'/veritas';

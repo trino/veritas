@@ -32,6 +32,8 @@ class JobsController extends AppController
             
             $this->set('member',$this->Member->find('all'));
             $this->set('jobmember',$this->Jobmember->find('all'));
+            $this->set('jme',$this->Jobmember);
+            $this->set('mems',$this->Member);
             
         }
         else if($this->Session->read('user'))
