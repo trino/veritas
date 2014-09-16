@@ -3189,6 +3189,7 @@ class UploadsController extends AppController
                     $eid = $id;
                     $act = $this->Activity->find('all',array('conditions'=>array('document_id'=>$id)));
                     $this->set('activity', $act);
+                    //var_dump($act);
                     $this->loadModel('StoreInfo');
                     if($act[0]['Activity']['report_type'] == '7')
                     {
@@ -3217,7 +3218,7 @@ class UploadsController extends AppController
                         $this->loadModel('StaticSiteAudit');
                             $this->set('static',$this->StaticSiteAudit->find('first', array('conditions'=>array('doc_id'=>$eid))));
                     }
-                    if($act[0]['Activity']['report_type']='18')
+                    if($act[0]['Activity']['report_type']=='18')
                     {
                         //die('a');
                         $this->loadModel('InjuryIllness');
@@ -3273,8 +3274,10 @@ class UploadsController extends AppController
                             $this->set('moblog',$n); 
                         }
                     }
+                    
                     if($act[0]['Activity']['report_type']=='19')
                     {
+                        
                         $this->loadModel('Noticeoftermination');
                         $this->set('termination',$this->Noticeoftermination->findByDocId($id));
                     } 
