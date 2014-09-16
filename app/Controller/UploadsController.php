@@ -660,7 +660,21 @@ class UploadsController extends AppController
                     $this->InsuranceSiteAudit->save($_POST);
                     
                 }
-                
+                if($_POST['report_type']=='19')
+                {
+                    $this->loadModel('Noticeoftermination');
+                    $this->Noticeoftermination->deleteAll(array('doc_id'=>$eid));
+                    $termination['doc_id'] = $eid;
+                //var_dump($_POST['mobile_ins']);die();
+                    foreach($_POST['termination'] as $k=>$v)
+                    {
+                        $termination[$k] = $v;
+                    }
+                     $_POST['doc_id'] = $id;
+                    $this->Noticeoftermination->create();
+                    $this->Noticeoftermination->save($termination);
+                    
+                }
                 if($_POST['report_type'] == '18')
                 {
                     $illness = $_POST;
@@ -2512,6 +2526,20 @@ class UploadsController extends AppController
                     $this->InsuranceSiteAudit->save($_POST);
                     
                 }
+                if($_POST['report_type']=='19')
+                {
+                    $this->loadModel('Noticeoftermination');
+                    $termination['doc_id'] = $id;
+                //var_dump($_POST['mobile_ins']);die();
+                    foreach($_POST['termination'] as $k=>$v)
+                    {
+                        $termination[$k] = $v;
+                    }
+                     $_POST['doc_id'] = $id;
+                    $this->Noticeoftermination->create();
+                    $this->Noticeoftermination->save($termination);
+                    
+                }
                  if($_POST['report_type']=='17')
                 {
                     //die('aa');
@@ -2631,7 +2659,7 @@ class UploadsController extends AppController
                     //var_dump($_POST['item']); die();
                     
                 }
-                if($_POST['report_type']==8 || $_POST['report_type']==9|| $_POST['report_type']==10|| $_POST['report_type']==11|| $_POST['report_type']==12|| $_POST['report_type']==13|| $_POST['report_type']==14|| $_POST['report_type']==15|| $_POST['report_type']==16|| $_POST['report_type']==17|| $_POST['report_type']==18)
+                if($_POST['report_type']==8 || $_POST['report_type']==9|| $_POST['report_type']==10|| $_POST['report_type']==11|| $_POST['report_type']==12|| $_POST['report_type']==13|| $_POST['report_type']==14|| $_POST['report_type']==15|| $_POST['report_type']==16|| $_POST['report_type']==17|| $_POST['report_type']==18|| $_POST['report_type']==19)
                 {
                     $this->Activity->create();
                     $this->Activity->save($activity);
@@ -3232,6 +3260,11 @@ class UploadsController extends AppController
                             
                             $this->set('moblog',$n); 
                         }
+                    }
+                    if($act[0]['Activity']['report_type']=='19')
+                    {
+                        $this->loadModel('Noticeoftermination');
+                        $this->set('termination',$this->Noticeoftermination->findByDocId($id));
                     } 
                      if($act[0]['Activity']['report_type']=='15')
                      {
@@ -3551,6 +3584,11 @@ class UploadsController extends AppController
             $this->set('if',$this->InjuryForm->find('all',array('conditions'=>array('document_id'=>$did))));
             //$this->set('if',$this->InjuryForm->findByDocumentId($did));        
             
+        }
+        if($type == '19')
+        {
+            $this->loadModel('Noticeoftermination');
+            $this->set('termination',$this->Noticeoftermination->findByDocId($did));
         }
         if($type == '7')
         {

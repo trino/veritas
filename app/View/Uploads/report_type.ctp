@@ -24,5 +24,7 @@ if($type =='16')
 if($type =='17')
     include("dispilinary.php"); 
 if($type =='18')
-    include("injury_illness.php");  
+    include("injury_illness.php"); 
+if($type =='19')
+    include("notice_of_termination.php");  
 ?>
