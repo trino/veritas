@@ -31,9 +31,9 @@
         <tr>
             <?php if($reportstat1->find('first',array('conditions'=>array('user_id'=>0,'report_type1'=>'18','can_upload'=>'1')))){?><td><input type="hidden" name="report_type[]" value="18" /><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" name="report_canView[]" <?php if($reportstat->find('first',array('conditions'=>array('user_id'=>$uid,'report_type'=>'18','can_view'=>'1')))){?>checked="checked"<?php }?> value="18" /> <?php echo $this->requestAction('dashboard/translate/Injury and Illness');?> </span></td><?php }?>
             <?php if($reportstat1->find('first',array('conditions'=>array('user_id'=>0,'report_type1'=>'19','can_upload'=>'1')))){?><td><input type="hidden" name="report_type[]" value="18" /><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" name="report_canView[]" <?php if($reportstat->find('first',array('conditions'=>array('user_id'=>$uid,'report_type'=>'18','can_view'=>'1')))){?>checked="checked"<?php }?> value="19" /> <?php echo $this->requestAction('dashboard/translate/Notice Of Termination');?> </span></td><?php }?>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td> </td>
+            <td> </td>
+            <td> </td>
         </tr>
         </table>
     </td>
