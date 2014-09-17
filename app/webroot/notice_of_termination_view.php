@@ -43,7 +43,7 @@
             <td><strong>Reason for Termination</strong></td>
         </tr>
         <tr><td><?php echo (isset($termination['Noticeoftermination']['lack_of_work']) && $termination['Noticeoftermination']['lack_of_work']=='1')?"&#10004":'&times';?>&nbsp;<strong>Lack of Work/Reduction in Force/Project Ended</strong></td></tr>
-        <tr><td><?php echo (isset($termination['Noticeoftermination']['quit']) && $termination['Noticeoftermination']['quit']=='1')?"&#10004":'&times';?>&nbsp;<strong>Quit(check all the applies)</strong></td></tr>
+        <tr><td><?php echo (isset($termination['Noticeoftermination']['quit']) && $termination['Noticeoftermination']['quit']=='1')?"&#10004":'&times';?>&nbsp;<strong>Quit (check all the applies)</strong></td></tr>
                <tr><td style="padding: 0;"> <table >
                 <!--<table style="display: <?php if(isset($termination['Noticeoftermination']['quit']) && $termination['Noticeoftermination']['quit']=='0')echo 'none';?>">-->
                     <tr><td><?php echo (isset($termination['Noticeoftermination']['no_notice']) && $termination['Noticeoftermination']['no_notice']=='1')?"&#10004":'&times';?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No Notice/Reason Given</td>
