@@ -541,7 +541,11 @@ class DashboardController extends AppController
             //if()
             if($_POST['email'])
             {
+                if($this->Session->read('email')!=$_POST['email'])
                 $ch = $this->check_email($_POST['email']);
+                //var_dump($ch);die();
+                else
+                $ch=true;
                 if(!$ch)
                 {
                     $this->Session->setFlash('Email Already Taken');
