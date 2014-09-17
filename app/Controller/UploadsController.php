@@ -665,6 +665,7 @@ class UploadsController extends AppController
                     $this->loadModel('Noticeoftermination');
                     $this->Noticeoftermination->deleteAll(array('doc_id'=>$eid));
                     $termination['doc_id'] = $eid;
+                    $termination['signature'] = $this->Session->read('image_name');
                 //var_dump($_POST['mobile_ins']);die();
                     foreach($_POST['termination'] as $k=>$v)
                     {
@@ -2261,7 +2262,7 @@ class UploadsController extends AppController
                 if(isset($activity['report_type']))
                     $activity['incident_type'] = $_POST['incident_type'];
                     
-                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit','siteSignin','instruction','personalInspection','mobileInspection','mobileLog','inventory','vehicleInspection','dispilinary');
+                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit','siteSignin','instruction','personalInspection','mobileInspection','mobileLog','inventory','vehicleInspection','dispilinary','injuryIllness','noticeoftermination');
                 if($_POST['report_type'])
                     $subname = '_'.$act_type[$_POST['report_type']];
                 if($_POST['report_type']=='8')
@@ -2530,6 +2531,7 @@ class UploadsController extends AppController
                 {
                     $this->loadModel('Noticeoftermination');
                     $termination['doc_id'] = $id;
+                    $termination['signature'] = $this->Session->read('image_name');
                 //var_dump($_POST['mobile_ins']);die();
                     foreach($_POST['termination'] as $k=>$v)
                     {
