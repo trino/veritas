@@ -106,7 +106,7 @@
         <tr><td><input type="radio" value="1" name="termination[rehire]"  <?php echo (isset($termination['Noticeoftermination']['rehire']) && $termination['Noticeoftermination']['rehire']=='1')?"checked='checked'":'';?>/>&nbsp;Yes</td></tr>
         <tr><td><input type="radio" value="0" name="termination[rehire]"  <?php echo (isset($termination['Noticeoftermination']['rehire']) && $termination['Noticeoftermination']['rehire']=='0')?"checked='checked'":'';?>/>&nbsp;No</td></tr>
         <tr><td><strong>Employee Comments</strong></td></tr>
-        <tr><td><textarea name="termination[comments]"> <?php echo (isset($termination['Noticeoftermination']['comments']) && $termination['Noticeoftermination']['comments']!='')?$termination['Noticeoftermination']['comments']:'';?></textarea></td></tr>
+        <tr><td><textarea name="termination[comments]"><?php echo (isset($termination['Noticeoftermination']['comments']) && $termination['Noticeoftermination']['comments']!='')?$termination['Noticeoftermination']['comments']:'';?></textarea></td></tr>
         </table>
 </td>
 <script>
