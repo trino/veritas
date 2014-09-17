@@ -45,7 +45,7 @@
         <tr><td><input type="checkbox" value="1" name="termination[lack_of_work]" <?php echo (isset($termination['Noticeoftermination']['lack_of_work']) && $termination['Noticeoftermination']['lack_of_work']=='1')?"checked='checked'":'';?> /><strong>&nbsp;Lack of Work/Reduction in Force/Project Ended</strong></td></tr>
         <tr><td><input type="checkbox" value="1"  name="termination[quit]" <?php echo (isset($termination['Noticeoftermination']['quit']) && $termination['Noticeoftermination']['quit']=='1')?"checked='checked'":'';?> />&nbsp;<strong>Quit(check all the applies)</strong>
                        </td></tr>
-        <tr><td>
+        <tr><td style="padding: 0;">
                 <table >
                     
             <!--<td><input type="checkbox" value="1" onclick="if(this.checked){$(this).parent().children().show('slow');}else{$(this).parent().children(':not(:input,strong)').hide('slow');}" name="termination[quit]" <?php echo (isset($termination['Noticeoftermination']['quit']) && $termination['Noticeoftermination']['quit']=='1')?"checked='checked'":'';?> />&nbsp;<strong>Quit(check all the applies)</strong>
@@ -92,7 +92,7 @@
         </tr>
         <tr><td><input type="checkbox" value="1" name="termination[discharged]"  <?php echo (isset($termination['Noticeoftermination']['discharged']) && $termination['Noticeoftermination']['discharged']=='1')?"checked='checked'":'';?>/>&nbsp;<strong>Discharged (check all that applies)</strong>
              </td></tr>
-        <tr><td>
+        <tr><td style="padding: 0;">
             <table >
                     
         <!--<td><input type="checkbox" onclick="if(this.checked){$(this).parent().children().show('slow');}else{$(this).parent().children(':not(:input,strong)').hide('slow');}" value="1" name="termination[discharged]"  <?php echo (isset($termination['Noticeoftermination']['discharged']) && $termination['Noticeoftermination']['discharged']=='1')?"checked='checked'":'';?>/>&nbsp;<strong>Discharged (check all that applies)</strong>

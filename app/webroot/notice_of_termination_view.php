@@ -1,5 +1,5 @@
 <table style="border-bottom: 1px solid #DDD;">
-        <tr><td>
+        <tr><td style="padding: 0;">
         <table>
         <tr><td >Employee Name</td>
             <td><?php echo (isset($termination['Noticeoftermination']['name']))?$termination['Noticeoftermination']['name']:'';?></td>
@@ -43,8 +43,8 @@
             <td><strong>Reason for Termination</strong></td>
         </tr>
         <tr><td><?php echo (isset($termination['Noticeoftermination']['lack_of_work']) && $termination['Noticeoftermination']['lack_of_work']=='1')?"&#10004":'&times';?>&nbsp;<strong>Lack of Work/Reduction in Force/Project Ended</strong></td></tr>
-        <tr><td><?php echo (isset($termination['Noticeoftermination']['quit']) && $termination['Noticeoftermination']['quit']=='1')?"&#10004":'&times';?>&nbsp;<strong>Quit(check all the applies)</strong>
-                <table >
+        <tr><td><?php echo (isset($termination['Noticeoftermination']['quit']) && $termination['Noticeoftermination']['quit']=='1')?"&#10004":'&times';?>&nbsp;<strong>Quit(check all the applies)</strong></td></tr>
+               <tr><td style="padding: 0;"> <table >
                 <!--<table style="display: <?php if(isset($termination['Noticeoftermination']['quit']) && $termination['Noticeoftermination']['quit']=='0')echo 'none';?>">-->
                     <tr><td><?php echo (isset($termination['Noticeoftermination']['no_notice']) && $termination['Noticeoftermination']['no_notice']=='1')?"&#10004":'&times';?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No Notice/Reason Given</td>
                         <td><?php echo (isset($termination['Noticeoftermination']['other_work']) && $termination['Noticeoftermination']['other_work']=='1')?"&#10004":'&times';?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To Accept Other Work</td></tr>
@@ -66,8 +66,8 @@
                 </table>
             </td>
         </tr>
-        <tr><td><?php echo (isset($termination['Noticeoftermination']['discharged']) && $termination['Noticeoftermination']['discharged']=='1')?"&#10004":'&times';?>&nbsp;<strong>Discharged (check all that applies)</strong>
-                <table >
+        <tr><td><?php echo (isset($termination['Noticeoftermination']['discharged']) && $termination['Noticeoftermination']['discharged']=='1')?"&#10004":'&times';?>&nbsp;<strong>Discharged (check all that applies)</strong></td></tr>
+                <tr><td style="padding: 0;"><table >
                 <!--<table style="display: <?php if(isset($termination['Noticeoftermination']['discharged']) && $termination['Noticeoftermination']['discharged']=='0')echo 'none';?>">-->
                     <tr><td><?php echo (isset($termination['Noticeoftermination']['poor_attendence']) && $termination['Noticeoftermination']['poor_attendence']=='1')?"&#10004":'&times';?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Poor Attendance</td>
                     <td><?php echo (isset($termination['Noticeoftermination']['not_qualified']) && $termination['Noticeoftermination']['not_qualified']=='1')?"&#10004":'&times';?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Not Qualified for Job</td></tr>
