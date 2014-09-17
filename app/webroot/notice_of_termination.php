@@ -108,6 +108,31 @@
         <tr><td><strong>Employee Comments</strong></td></tr>
         <tr><td><textarea name="termination[comments]"><?php echo (isset($termination['Noticeoftermination']['comments']) && $termination['Noticeoftermination']['comments']!='')?$termination['Noticeoftermination']['comments']:'';?></textarea></td></tr>
         </table>
+        <div style="position: relative;padding:5px;">
+            <div style="width: 50%;float:left;">
+                <strong>SIGNATURE:</strong><br />
+                    <iframe src="<?php echo $this->webroot;?>canvas/example.php" style="width: 100%;border:1px solid #AAA;border-radius:10px;height:340px;">
+                        
+                    </iframe>
+            </div>        
+            <?php
+            
+                if(isset($termination) && $termination['Noticeoftermination']['signature'])
+                {
+                    ?>
+                    
+                    <div style="float:left;width:40%;margin-left:5%;">
+                    <b><?php echo $this->requestAction('dashboard/translate/Current Signature')?></b><br />
+                <img src="<?php echo $this->webroot;?>canvas/<?php echo $termination['Noticeoftermination']['signature'];?>" />
+            </div>
+                    <?php
+                    
+                }
+                ?>
+            
+            
+      <div class="clear"></div>      
+    </div>
 </td>
 <script>
 $('.activity_date').datepicker({dateFormat: 'yy-mm-dd'});

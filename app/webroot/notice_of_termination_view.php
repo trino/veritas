@@ -95,6 +95,26 @@
         </table>
 </td></tr>
 </table>
+<div style="position: relative;padding:5px;">
+                  
+            <?php
+            
+                if(isset($termination) && $termination['Noticeoftermination']['signature'])
+                {
+                    ?>
+                    
+                    <div style="float:left;width:40%;margin-left:5%;">
+                    <b><?php echo $this->requestAction('dashboard/translate/Current Signature')?></b><br />
+                <img src="<?php echo $this->webroot;?>canvas/<?php echo $termination['Noticeoftermination']['signature'];?>" />
+            </div>
+                    <?php
+                    
+                }
+                ?>
+            
+            
+      <div class="clear"></div>      
+    </div>
 <script>
 <?php
 if(isset($termination['Noticeoftermination']['warnings']) && $termination['Noticeoftermination']['warnings']=='0')
