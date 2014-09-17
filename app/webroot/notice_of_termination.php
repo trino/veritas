@@ -44,6 +44,8 @@
         </tr>
         <tr><td><input type="checkbox" value="1" name="termination[lack_of_work]" <?php echo (isset($termination['Noticeoftermination']['lack_of_work']) && $termination['Noticeoftermination']['lack_of_work']=='1')?"checked='checked'":'';?> /><strong>&nbsp;Lack of Work/Reduction in Force/Project Ended</strong></td></tr>
         <tr><td><input type="checkbox" value="1"  name="termination[quit]" <?php echo (isset($termination['Noticeoftermination']['quit']) && $termination['Noticeoftermination']['quit']=='1')?"checked='checked'":'';?> />&nbsp;<strong>Quit(check all the applies)</strong>
+                       </td></tr>
+        <tr><td>
                 <table >
                     
             <!--<td><input type="checkbox" value="1" onclick="if(this.checked){$(this).parent().children().show('slow');}else{$(this).parent().children(':not(:input,strong)').hide('slow');}" name="termination[quit]" <?php echo (isset($termination['Noticeoftermination']['quit']) && $termination['Noticeoftermination']['quit']=='1')?"checked='checked'":'';?> />&nbsp;<strong>Quit(check all the applies)</strong>
@@ -89,7 +91,9 @@
             </td>
         </tr>
         <tr><td><input type="checkbox" value="1" name="termination[discharged]"  <?php echo (isset($termination['Noticeoftermination']['discharged']) && $termination['Noticeoftermination']['discharged']=='1')?"checked='checked'":'';?>/>&nbsp;<strong>Discharged (check all that applies)</strong>
-                <table >
+             </td></tr>
+        <tr><td>
+            <table >
                     
         <!--<td><input type="checkbox" onclick="if(this.checked){$(this).parent().children().show('slow');}else{$(this).parent().children(':not(:input,strong)').hide('slow');}" value="1" name="termination[discharged]"  <?php echo (isset($termination['Noticeoftermination']['discharged']) && $termination['Noticeoftermination']['discharged']=='1')?"checked='checked'":'';?>/>&nbsp;<strong>Discharged (check all that applies)</strong>
                 <table style="display: <?php if(isset($termination['Noticeoftermination']['discharged']) && $termination['Noticeoftermination']['discharged']=='0')echo 'none';?>">-->
@@ -108,8 +112,7 @@
                         </table>
                     </td></tr>
                 </table>
-            </td>
-        </tr>
+         </td></tr>
         <tr><td><strong>Provide a Short Narrative on the Reason for Discharge to Include Company Policy Violated:</strong></td></tr>
         <tr><td><textarea name="termination[reason_of_discharge]"><?php echo (isset($termination['Noticeoftermination']['reason_of_discharge']) && $termination['Noticeoftermination']['reason_of_discharge']!='')?$termination['Noticeoftermination']['reason_of_discharge']:'';?></textarea></td></tr>
         
