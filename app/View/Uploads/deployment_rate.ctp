@@ -56,6 +56,8 @@
     <tr><td>Tapes</td><td>$&nbsp;<input type="text" value="<?php if(isset($rate['DeploymentRate']))echo $rate['DeploymentRate']['tapes_day'];else echo "0"?>" name="tapes_day" /></td><td>&nbsp;</td></tr>
     <tr><td>SD Card</td><td>$&nbsp;<input type="text" value="<?php if(isset($rate['DeploymentRate']))echo $rate['DeploymentRate']['sdcard_day'];else echo "0"?>" name="sdcard_day" /></td><td>&nbsp;</td></tr>
     <tr><td>DVD</td><td>$&nbsp;<input type="text" value="<?php if(isset($rate['DeploymentRate']))echo $rate['DeploymentRate']['dvd_day'];else echo "0"?>" name="dvd_day" /></td><td>&nbsp;</td></tr>
+    
+    <tr><td>Air Fair</td><td>$&nbsp;<input type="text" value="<?php if(isset($rate['DeploymentRate']))echo $rate['DeploymentRate']['air_fair_day'];else echo "0"?>" name="air_fair_day" /></td><td>&nbsp;</td></tr>
     <tr><td>Security Vehicles Regular</td><td>$&nbsp;<input type="text" value="<?php if(isset($rate['DeploymentRate']))echo $rate['DeploymentRate']['securityvehicleregular_day'];else echo "0"?>" name="securityvehicleregular_day" /></td><td>&nbsp;</td></tr>
     <tr><td>Security Vehicles Large</td><td>$&nbsp;<input type="text" value="<?php if(isset($rate['DeploymentRate']))echo $rate['DeploymentRate']['securityvehiclelarge_day'];else echo "0"?>" name="securityvehiclelarge_day" /></td><td>&nbsp;</td></tr>
     <tr><td>15 Passenger Van</td><td>$&nbsp;<input type="text" value="<?php if(isset($rate['DeploymentRate']))echo $rate['DeploymentRate']['15passengervan_day'];else echo "0"?>" name="15passengervan_day" /></td><td>&nbsp;</td></tr>

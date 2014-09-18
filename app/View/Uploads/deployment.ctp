@@ -4,11 +4,11 @@
 ?>
 <td colspan="2" style="padding: 0;">
 <table class="dep">
-<tr><td><strong>Choose Bill Rate</strong>&nbsp;
+<tr><td colspan="11"><strong>Choose Bill Rate</strong>&nbsp;
     <select name="bill_type" id="bill_type"><option value="0">Normal Bill Rate</option><option value="1">Holiday Bill Rate</option></select></td>
 </tr>
 <tr>
-<td colspan="10"style="padding-top: 50px;">
+<td colspan="11"style="padding-top: 50px;">
 <select class="personnel" name="personnel" style="margin-bottom: 0;">
     <option value="" >Choose Personnel</option>
     <option value="Security Guard_<?php echo $rate['DeploymentRate']['securityguard_hr'];?>_<?php echo $rate['DeploymentRate']['securityguard_hr_holiday'];?>_<?php echo $rate['DeploymentRate']['securityguard_travel'];?>" class="securityguard">Security Guard</option>
@@ -27,10 +27,10 @@
 </td>
 </tr>
 <tr class="entries" style="<?php if(!isset($pers)){?>display: none;<?php }?>">
-    <td colspan="10"><strong>Personnel</strong></td>
+    <td colspan="11"><strong>Personnel</strong></td>
 </tr>
 <tr class="entries" style="<?php if(!isset($pers)){?>display: none;<?php }?>">
-    <td><strong>Position</strong></td><td><strong>Number of Staff</strong></td><td><strong>Start Time</strong></td><td><strong>End Time</strong></td><td><strong>Total Hours</strong></td><td><strong>Hours Billable</strong></td><td><strong>Travel</strong></td><td><strong>Travel Billable</strong></td><td><strong>Meal</strong></td><td><strong>Meal Billable</strong></td>
+    <td style="width: 175px!important;"><strong>Position</strong></td><td><strong>Number of Staff</strong></td><td><strong>Start Time</strong></td><td><strong>End Time</strong></td><td><strong>Total Hours</strong></td><td><strong>Hours Billable</strong></td><td><strong>Travel</strong></td><td><strong>Travel Billable</strong></td><td><strong>Meal</strong></td><td><strong>Meal Billable</strong></td><td style="width: 60px!important;"><strong>Admin Fee</strong></td>
 </tr>
 <?php
 if(isset($pers) && $pers)
@@ -42,6 +42,9 @@ if(isset($pers) && $pers)
         $tax = $pp['Personnel']['tax'];
         $a_fee = $pp['Personnel']['a_fee'];
         $g_total = $pp['Personnel']['g_total'];
+        $afee = $pp['Personnel']['admin_fee'];
+        if(!$afee)
+        $afee=0;
         if($pp['Personnel']['no_of_staff']<1)
             $pp['Personnel']['no_of_staff1'] =1;
         else
@@ -54,9 +57,10 @@ if(isset($pers) && $pers)
             $pp['Personnel']['travel1']=1;
         else
            $pp['Personnel']['travel1']=$pp['Personnel']['travel']; 
+           
         
         ?>
-        <tr><td id="<?php echo ($pp['Personnel']['hours_billable'])/($pp['Personnel']['no_of_staff1']*$pp['Personnel']['total_hours1']).'_'.($pp['Personnel']['travel_billable'])/($pp['Personnel']['travel1']);?>"><input class="sg"  type="text" style="width:160px;" name="Personnel[position][]" value="<?php echo $pp['Personnel']['position'];?>" readonly/></td><td><input class="staff" type="text" name="Personnel[no_of_staff][]" value="<?php echo $pp['Personnel']['no_of_staff'];?>"/></td><td><input name="Personnel[start_time][]" type="text" class="time" value="<?php echo $pp['Personnel']['start_time'];?>"/></td><td><input type="text" name="Personnel[end_time][]" class="time" value="<?php echo $pp['Personnel']['end_time'];?>"/></td><td><input type="text" class="total_hours" value="<?php echo $pp['Personnel']['total_hours'];?>" name="Personnel[total_hours][]" readonly /></td><td><input type="text" class="hours_billable total" name="Personnel[hours_billable][]" value="$<?php echo $pp['Personnel']['hours_billable'];?>"  readonly/></td><td><input type="text" name="Personnel[travel][]" class="travel" value="<?php echo $pp['Personnel']['travel'];?>"/></td><td><input type="text" name="Personnel[travel_billable][]" value="$<?php echo $pp['Personnel']['travel_billable'];?>" class="total" readonly/></td><td><input type="text" name="Personnel[meal_amount][]" class="meal" value="<?php echo $pp['Personnel']['meal_amount'];?>"/></td><td><input value="$<?php echo $pp['Personnel']['meal_billable'];?>" type="text" name="Personnel[meal_billable][]" readonly class="total"/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest('tr').remove();">X</a></td></tr>
+        <tr><td id="<?php echo ($pp['Personnel']['hours_billable'])/($pp['Personnel']['no_of_staff1']*$pp['Personnel']['total_hours1']).'_'.($pp['Personnel']['travel_billable'])/($pp['Personnel']['travel1']);?>"><input class="sg"  type="text" style="width:160px;" name="Personnel[position][]" value="<?php echo $pp['Personnel']['position'];?>" readonly/></td><td><input class="staff" type="text" name="Personnel[no_of_staff][]" value="<?php echo $pp['Personnel']['no_of_staff'];?>"/></td><td><input name="Personnel[start_time][]" type="text" class="time" value="<?php echo $pp['Personnel']['start_time'];?>"/></td><td><input type="text" name="Personnel[end_time][]" class="time" value="<?php echo $pp['Personnel']['end_time'];?>"/></td><td><input type="text" class="total_hours" value="<?php echo $pp['Personnel']['total_hours'];?>" name="Personnel[total_hours][]" readonly /></td><td><input type="text" class="hours_billable total" name="Personnel[hours_billable][]" value="$<?php echo $pp['Personnel']['hours_billable'];?>"  readonly/></td><td><input type="text" name="Personnel[travel][]" class="travel" value="<?php echo $pp['Personnel']['travel'];?>"/></td><td><input type="text" name="Personnel[travel_billable][]" value="$<?php echo $pp['Personnel']['travel_billable'];?>" class="total" readonly/></td><td><input type="text" name="Personnel[meal_amount][]" class="meal" value="<?php echo $pp['Personnel']['meal_amount'];?>"/></td><td><input value="$<?php echo $pp['Personnel']['meal_billable'];?>" type="text" name="Personnel[meal_billable][]" readonly class="total"/></td><td><input <?php if($afee==1){?>checked="checked"<?php }?> type="checkbox" onclick="var v=0;if($(this).is(':checked')){v=1;}else{v=0;}$(this).parent().find('.fee').val(v);" /><input class="fee" type="hidden" name="Personnel[admin_fee][]" value="<?php echo $afee;?>" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest('tr').remove();">X</a></td></tr>
         <?php
     }
 }
@@ -68,7 +72,7 @@ if(isset($pers) && $pers)
 </table>-->
 <table class="misc" >
     <tr>
-        <td colspan="6" style="padding-top: 50px;border-top:1px solid #ddd">
+        <td colspan="7" style="padding-top: 50px;border-top:1px solid #ddd">
             <select class="misc_opt" style="margin-bottom: 0;">
                 <option value="">Choose Equipment/Hotel</option>
                 <option value="Radio_<?php echo $rate['DeploymentRate']['radio_day'];?>" class="radio_day">Radio</option>
@@ -76,13 +80,14 @@ if(isset($pers) && $pers)
                 <option value="Tapes_<?php echo $rate['DeploymentRate']['tapes_day'];?>" class="tapes_day">Tapes</option>
                 <option value="SD Card_<?php echo $rate['DeploymentRate']['sdcard_day'];?>" class="sdcard_day">SD Card</option>
                 <option value="DVD_<?php echo $rate['DeploymentRate']['dvd_day'];?>" class="dvd_day">DVD</option>
+                <option value="Air Fair_<?php echo $rate['DeploymentRate']['air_fair_day'];?>" class="air_fair_day">Air Fair</option>
                 <option value="Hotel_<?php echo $rate['DeploymentRate']['hotelcost_day'];?>" class="hotelcost_day">Hotel</option>                
             </select>
             <a href="javascript:void(0);" class="btn btn-primary go_misc">Add</a>
         </td>
     </tr>
-    <tr class="misc_entries" style="<?php if(!isset($pers)){?>display: none;<?php }?>"><td colspan="6"><strong>Equipment/Hotel</strong></td></tr>
-    <tr class="misc_entries" style="<?php if(!isset($pers)){?>display: none;<?php }?>"><td><strong>Item</strong></td><td><strong>Quantity</strong></td><td></td><td></td><td></td><td><strong>Amount Billable</strong></td></tr>
+    <tr class="misc_entries" style="<?php if(!isset($pers)){?>display: none;<?php }?>"><td colspan="7"><strong>Equipment/Hotel</strong></td></tr>
+    <tr class="misc_entries" style="<?php if(!isset($pers)){?>display: none;<?php }?>"><td><strong>Item</strong></td><td><strong>Quantity</strong></td><td></td><td></td><td></td><td><strong>Amount Billable</strong></td><td><strong>Admin Fee</strong></td></tr>
     <?php
     if(isset($equip))
     foreach($equip as $eq)
@@ -98,7 +103,8 @@ if(isset($pers) && $pers)
                 $eq['Equipment']['qty1']=$eq['Equipment']['qty'];
             
       ?>
-    <tr class="pers"><td id="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>"><input type="text" style="width:160px;" name="Equipment[items][]" value="<?php echo $eq['Equipment']['items'];?>" readonly /></td><td><input class="quantity" type="text" name="Equipment[qty][]" value="<?php echo $eq['Equipment']['qty'];?>"/></td><td></td><td></td><td></td><td><input value="$<?php echo $eq['Equipment']['amount_billable'];?>" type="text" name="Equipment[amount_billable][]" class="total" readonly /><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest('tr').remove();">X</a></td></tr>  
+    <tr class="pers">
+        <td id="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>"><input type="text" style="width:160px;" name="Equipment[items][]" value="<?php echo $eq['Equipment']['items'];?>" readonly /></td><td><input class="quantity" type="text" name="Equipment[qty][]" value="<?php echo $eq['Equipment']['qty'];?>"/></td><td></td><td></td><td></td><td><input value="$<?php echo $eq['Equipment']['amount_billable'];?>" type="text" name="Equipment[amount_billable][]" class="total" readonly /></td><td><input <?php if($afee==1){?>checked="checked"<?php }?>  type="checkbox" onclick="var v=0;if($(this).is(':checked')){v=1;}else{v=0;}$(this).parent().find('.fee').val(v);" /><input class="fee" type="hidden" name="Equipment[admin_fee][]" value="<?php echo $afee;?>" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest('tr').remove();">X</a></td></tr>  
       <input type="hidden" name="Equipment[kms][]" /><input type="hidden" name="Equipment[fuel_cost][]" />
       <?php  
       }
@@ -108,7 +114,7 @@ if(isset($pers) && $pers)
 
 <table class="misc2" >
     <tr>
-        <td colspan="6" style="padding-top: 50px;border-top:1px solid #ddd">
+        <td colspan="7" style="padding-top: 50px;border-top:1px solid #ddd">
             <select class="misc_opt2" style="margin-bottom: 0;">
                 <option value="">Choose Vehicle</option>
                 <option value="Security Vehicle Regular_<?php echo $rate['DeploymentRate']['securityvehicleregular_day'];?>" class="securityvehicleregular_day">Security Vehicle Regular</option>
@@ -122,8 +128,8 @@ if(isset($pers) && $pers)
             <a href="javascript:void(0);" class="btn btn-primary go_misc2">Add</a>
         </td>
     </tr>
-    <tr class="misc_entries2" style="<?php if(!isset($pers)){?>display: none;<?php }?>"><td colspan="6"><strong>Vehicle</strong></td></tr>
-    <tr class="misc_entries2" style="<?php if(!isset($pers)){?>display: none;<?php }?>"><td><strong>Item</strong></td><td><strong>Quantity</strong></td><td><strong>KM's</strong></td><td><strong>Fuel Cost (excluding tax and admin)</strong></td><td></td><td><strong>Amount Billable</strong></td></tr>
+    <tr class="misc_entries2" style="<?php if(!isset($pers)){?>display: none;<?php }?>"><td colspan="7"><strong>Vehicle</strong></td></tr>
+    <tr class="misc_entries2" style="<?php if(!isset($pers)){?>display: none;<?php }?>"><td><strong>Item</strong></td><td><strong>Quantity</strong></td><td><strong>KM's</strong></td><td><strong>Fuel Cost (excluding tax and admin)</strong></td><td></td><td><strong>Amount Billable</strong></td><td><strong>Admin Fee</strong></td></tr>
     <?php
     if(isset($equip))
     foreach($equip as $eq)
@@ -139,7 +145,7 @@ if(isset($pers) && $pers)
              else
                 $eq['Equipment']['qty1']=$eq['Equipment']['qty'];
       ?>
-    <tr><td id="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>"><input type="text" style="width:160px;" name="Equipment[items][]" value="<?php echo $eq['Equipment']['items'];?>" readonly /></td><td><input class="quantity" type="text" name="Equipment[qty][]" value="<?php echo $eq['Equipment']['qty'];?>"/></td><td><input type="text" name="Equipment[kms][]" value="<?php echo $eq['Equipment']['kms'];?>"/></td><td><input value="<?php echo $eq['Equipment']['fuel_cost'];?>" type="text" name="Equipment[fuel_cost][]" class="fuel_cost"/></td><td><input type="hidden" value="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>" /></td><td><input value="$<?php echo $eq['Equipment']['amount_billable'];?>" type="text" name="Equipment[amount_billable][]" class="total" readonly/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest('tr').remove();">X</a></td></tr>  
+    <tr><td id="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>"><input type="text" style="width:160px;" name="Equipment[items][]" value="<?php echo $eq['Equipment']['items'];?>" readonly /></td><td><input class="quantity" type="text" name="Equipment[qty][]" value="<?php echo $eq['Equipment']['qty'];?>"/></td><td><input type="text" name="Equipment[kms][]" value="<?php echo $eq['Equipment']['kms'];?>"/></td><td><input value="<?php echo $eq['Equipment']['fuel_cost'];?>" type="text" name="Equipment[fuel_cost][]" class="fuel_cost"/></td><td><input type="hidden" value="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>" /></td><td><input value="$<?php echo $eq['Equipment']['amount_billable'];?>" type="text" name="Equipment[amount_billable][]" class="total" readonly/></td><td><input type="checkbox" onclick="var v=0;if($(this).is(':checked')){v=1;}else{v=0;}$(this).parent().find('.fee').val(v);" /><input class="fee" type="hidden" name="Equipment[admin_fee][]" value="0" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest('tr').remove();">X</a></td></tr>  
       <?php  
       }
     }
@@ -192,7 +198,7 @@ if(isset($pers) && $pers)
             //alert(bill_type);
             
        $('.entries').show();
-       $('.dep').append('<tr class="pers"><td id="'+hr_rate+'_'+holiday_rate+'_'+travel_rate+'"><input class="sg"  type="text" style="width:160px;" name="Personnel[position][]" value="'+main_val+'" readonly/></td><td><input class="staff" type="text" name="Personnel[no_of_staff][]" value=""/></td><td><input name="Personnel[start_time][]" type="text" class="time"/></td><td><input type="text" name="Personnel[end_time][]" class="time"/></td><td><input type="text" class="total_hours" name="Personnel[total_hours][]" readonly/></td><td><input type="text" class="hours_billable total" name="Personnel[hours_billable][]" value="$"  readonly/></td><td><input type="text" name="Personnel[travel][]" class="travel"/></td><td><input type="text" name="Personnel[travel_billable][]" value="$" class="total" readonly/></td><td><input type="text" name="Personnel[meal_amount][]" class="meal"/></td><td><input value="$" type="text" name="Personnel[meal_billable][]" readonly class="total"/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>') 
+       $('.dep').append('<tr class="pers"><td id="'+hr_rate+'_'+holiday_rate+'_'+travel_rate+'"><input class="sg"  type="text" style="width:160px;" name="Personnel[position][]" value="'+main_val+'" readonly/></td><td><input class="staff" type="text" name="Personnel[no_of_staff][]" value=""/></td><td><input name="Personnel[start_time][]" type="text" class="time"/></td><td><input type="text" name="Personnel[end_time][]" class="time"/></td><td><input type="text" class="total_hours" name="Personnel[total_hours][]" readonly/></td><td><input type="text" class="hours_billable total" name="Personnel[hours_billable][]" value="$"  readonly/></td><td><input type="text" name="Personnel[travel][]" class="travel"/></td><td><input type="text" name="Personnel[travel_billable][]" value="$" class="total" readonly/></td><td><input type="text" name="Personnel[meal_amount][]" class="meal"/></td><td><input value="$" type="text" name="Personnel[meal_billable][]" readonly class="total"/></td><td><input type="checkbox" onclick="var v=0;if($(this).is(\':checked\')){v=1;}else{v=0;}$(this).parent().find(\'.fee\').val(v);" /><input class="fee" type="hidden" name="Personnel[admin_fee][]" value="0" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>') 
         $('.time').timepicker();
     });
     
@@ -317,7 +323,7 @@ if(isset($pers) && $pers)
                cost ='';
                if(cost)
                cost= parseFloat(cost);
-               $('.misc').append('<tr><td id="'+mid+'"><input type="hidden" name="Equipment[kms][]" /><input type="hidden" name="Equipment[fuel_cost][]" /><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td><input class="quantity" type="text" name="Equipment[qty][]"/></td><td></td><td></td><td></td><td><input value="$" type="text" name="Equipment[amount_billable][]" class="total" readonly/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>'); 
+               $('.misc').append('<tr><td id="'+mid+'"><input type="hidden" name="Equipment[kms][]" /><input type="hidden" name="Equipment[fuel_cost][]" /><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td><input class="quantity" type="text" name="Equipment[qty][]"/></td><td></td><td></td><td></td><td><input value="$" type="text" name="Equipment[amount_billable][]" class="total" readonly/></td><td><input type="checkbox" onclick="var v=0;if($(this).is(\':checked\')){v=1;}else{v=0;}$(this).parent().find(\'.fee\').val(v);" /><input class="fee" type="hidden" name="Equipment[admin_fee][]" value="0" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>'); 
             });
             $('.go_misc2').click(function(){
               
@@ -335,7 +341,7 @@ if(isset($pers) && $pers)
                cost ='';
                if(cost)
                cost= parseFloat(cost);
-               $('.misc2').append('<tr ><td id="'+mid+'"><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td><input class="quantity" type="text" name="Equipment[qty][]"/></td><td><input type="text" name="Equipment[kms][]"/></td><td><input value="$" type="text" name="Equipment[fuel_cost][]" class="fuel_cost"/></td><td><input type ="hidden" value="'+mid+'" /></td><td><input value="$" type="text" name="Equipment[amount_billable][]" class="total" readonly/><a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>'); 
+               $('.misc2').append('<tr ><td id="'+mid+'"><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td><input class="quantity" type="text" name="Equipment[qty][]"/></td><td><input type="text" name="Equipment[kms][]"/></td><td><input value="$" type="text" name="Equipment[fuel_cost][]" class="fuel_cost"/></td><td><input type ="hidden" value="'+mid+'" /></td><td><input value="$" type="text" name="Equipment[amount_billable][]" class="total" readonly/></td><td><input type="checkbox" onclick="var v=0;if($(this).is(\':checked\')){v=1;}else{v=0;}$(this).parent().find(\'.fee\').val(v);" /><input class="fee" type="hidden" name="Equipment[admin_fee][]" value="0" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>'); 
             });
     });
     var st=0;

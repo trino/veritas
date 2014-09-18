@@ -3658,7 +3658,7 @@ class UploadsController extends AppController
     }
     if(isset($_POST['submit']))
     {
-        $this->DeploymentRate->deleteAll(array("job_id",$jid));
+        $this->DeploymentRate->deleteAll(array("job_id"=>$jid));
         $this->DeploymentRate->create();
         foreach($_POST as $k=>$v)
         {

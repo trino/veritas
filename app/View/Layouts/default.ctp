@@ -249,6 +249,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
                
                $('#receipient_id').val($('#receipient_id').val().replace(ar[1]+',',''));
                $('#recipients').val($('#recipients').val().replace(' ',''));
+               if(ar[0])
     	       $('#recipients').val($('#recipients').val().replace(ar[0]+',',''));
                if($('#name').html().replace(' ','') == '' || $('#name').html().replace(' ','') == ' ' )
                {
@@ -292,6 +293,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
            $(this).remove(); 
            var ar = ems.split('__');
            $('#receipient_id').val($('#receipient_id').val().replace(ar[1]+',',''));
+           if(ar[0])
 	       $('#recipients').val($('#recipients').val().replace(ar[0]+',',''));
            if($('#name').html().replace(' ','') == '' || $('#name').html().replace(' ','') == ' ' )
            {
@@ -346,9 +348,13 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 					function list_email(value)
 					{
+					   var last = value.substr(-1,1);
+					   
 						var em=$('#name').val();
 						var ema=$('#recipients').val();
+                        
 						var e=value.split('__');
+                        //alert(e.length);
 						var i= $('#receipient_id').val();
 						var id;
                         var ema2 = $('#name').html();
@@ -382,12 +388,13 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 						}
 						else
 						{
-						  
+						    if(e[2])
 						    ema = ema.replace(e[2]+',','');
-                            ema2 = ema2.replace('<a href="javascript:void(0)" id="'+e[2]+'__'+e[1]+'" class="del_email">'+e[0]+' [x],'+'</a> ','');                            
+                            ema2 = ema2.replace('<a href="javascript:void(0)" id="'+e[2]+'__'+e[1]+'" class="del_email">'+e[0]+' [x],'+'</a> ','');
+                            if(e[2])                         
 							email=ema+e[2]+',';
                             del_em = ema2+'<a href="javascript:void(0)" id="'+e[2]+'__'+e[1]+'" class="del_email">'+e[0]+' [x],'+'</a> ';
-                            //alert(del_em);
+                            
 						}
 						//alert(email);
 						$('#receipient_id').val(id);

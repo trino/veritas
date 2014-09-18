@@ -192,7 +192,7 @@
     <div class="dashboard-stat purple">								
 		<div class="whiteCorner"></div>								
 		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
-        <a href="<?=$base_url;?>search/index/deployment_rate" class="overallLink more">		
+        <a href="<?=$base_url;?>search/index/deployment_rate/<?php echo $jobb_id;?>" class="overallLink more">		
 			<div class="visual">										
 				<i class="icon-list"></i>									
 			</div>									
