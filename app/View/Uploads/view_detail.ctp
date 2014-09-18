@@ -126,7 +126,7 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
     
     <?php if($activity){
         //var_dump($activity);
-        $r_types = array('','Activity Log','Mobile Inspection','Mobile Security','Security Occurance','Incident Reports','Sign-off Sheets','Loss Prevention','Static Site Audit','Insurance Site Audit','Site Signin Signout','Instructions And Site Assessment' ,'Personal Inspection','Mobile Inspection', 'Mobile Log', 'Mobile Vehicle Trunk Inventory', 'Vehicle Inspection','Disciplinary Warning','Injury and Illness','Notice of Termination','Uniform Issue-Static and Retail');
+        $r_types = array('','Activity Log','Mobile Inspection','Mobile Security','Security Occurance','Incident Reports','Sign-off Sheets','Loss Prevention','Static Site Audit','Insurance Site Audit','Site Signin Signout','Instructions And Site Assessment' ,'Personal Inspection','Mobile Inspection', 'Mobile Log', 'Mobile Vehicle Trunk Inventory', 'Vehicle Inspection','Disciplinary Warning','Injury and Illness','Notice of Termination','Uniform Issue - Static and Retail');
         ?>
         <tr>
         <td><strong><?php echo $this->requestAction('dashboard/translate/Report Type');?></strong></td>
