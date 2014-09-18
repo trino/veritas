@@ -676,6 +676,22 @@ class UploadsController extends AppController
                     $this->Noticeoftermination->save($termination);
                     
                 }
+                if($_POST['report_type']=='20')
+                {
+                    $this->loadModel('UniformIssue');
+                    $this->UniformIssue->deleteAll(array('doc_id'=>$eid));
+                    $uniform['doc_id'] = $eid;
+                    $uniform['signature'] = $this->Session->read('image_name');
+                //var_dump($_POST['mobile_ins']);die();
+                    foreach($_POST['uniform'] as $k=>$v)
+                    {
+                        $uniform[$k] = $v;
+                    }
+                     $_POST['doc_id'] = $id;
+                    $this->UniformIssue->create();
+                    $this->UniformIssue->save($uniform);
+                    
+                }
                 if($_POST['report_type'] == '18')
                 {
                     $illness = $_POST;
@@ -2527,6 +2543,21 @@ class UploadsController extends AppController
                     $this->InsuranceSiteAudit->save($_POST);
                     
                 }
+                if($_POST['report_type']=='20')
+                {
+                    $this->loadModel('UniformIssue');
+                    $uniform['doc_id'] = $id;
+                    $uniform['signature'] = $this->Session->read('image_name');
+                //var_dump($_POST['mobile_ins']);die();
+                    foreach($_POST['uniform'] as $k=>$v)
+                    {
+                        $uniform[$k] = $v;
+                    }
+                     
+                    $this->UniformIssue->create();
+                    $this->UniformIssue->save($uniform);
+                    
+                }
                 if($_POST['report_type']=='19')
                 {
                     $this->loadModel('Noticeoftermination');
@@ -2537,7 +2568,7 @@ class UploadsController extends AppController
                     {
                         $termination[$k] = $v;
                     }
-                     $_POST['doc_id'] = $id;
+                     
                     $this->Noticeoftermination->create();
                     $this->Noticeoftermination->save($termination);
                     
@@ -2661,7 +2692,7 @@ class UploadsController extends AppController
                     //var_dump($_POST['item']); die();
                     
                 }
-                if($_POST['report_type']==8 || $_POST['report_type']==9|| $_POST['report_type']==10|| $_POST['report_type']==11|| $_POST['report_type']==12|| $_POST['report_type']==13|| $_POST['report_type']==14|| $_POST['report_type']==15|| $_POST['report_type']==16|| $_POST['report_type']==17|| $_POST['report_type']==18|| $_POST['report_type']==19)
+                if($_POST['report_type']==8 || $_POST['report_type']==9|| $_POST['report_type']==10|| $_POST['report_type']==11|| $_POST['report_type']==12|| $_POST['report_type']==13|| $_POST['report_type']==14|| $_POST['report_type']==15|| $_POST['report_type']==16|| $_POST['report_type']==17|| $_POST['report_type']==18|| $_POST['report_type']==19 || $_POST['report_type']==20)
                 {
                     $this->Activity->create();
                     $this->Activity->save($activity);
@@ -3283,6 +3314,12 @@ class UploadsController extends AppController
                         $this->loadModel('Noticeoftermination');
                         $this->set('termination',$this->Noticeoftermination->findByDocId($id));
                     } 
+                    if($act[0]['Activity']['report_type']=='20')
+                    {
+                        
+                        $this->loadModel('UniformIssue');
+                        $this->set('uniform',$this->UniformIssue->findByDocId($id));
+                    } 
                      if($act[0]['Activity']['report_type']=='15')
                      {
                         if($in = $this->MobileTrunk->findByDocumentId($id))
@@ -3606,6 +3643,11 @@ class UploadsController extends AppController
         {
             $this->loadModel('Noticeoftermination');
             $this->set('termination',$this->Noticeoftermination->findByDocId($did));
+        }
+        if($type == '20')
+        {
+            $this->loadModel('UniformIssue');
+            $this->set('uniform',$this->UniformIssue->findByDocId($did));
         }
         if($type == '7')
         {

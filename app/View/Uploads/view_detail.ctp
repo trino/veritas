@@ -126,7 +126,7 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
     
     <?php if($activity){
         //var_dump($activity);
-        $r_types = array('','Activity Log','Mobile Inspection','Mobile Security','Security Occurance','Incident Reports','Sign-off Sheets','Loss Prevention','Static Site Audit','Insurance Site Audit','Site Signin Signout','Instructions And Site Assessment' ,'Personal Inspection','Mobile Inspection', 'Mobile Log', 'Mobile Vehicle Trunk Inventory', 'Vehicle Inspection','Disciplinary Warning','Injury and Illness','Notice of Termination');
+        $r_types = array('','Activity Log','Mobile Inspection','Mobile Security','Security Occurance','Incident Reports','Sign-off Sheets','Loss Prevention','Static Site Audit','Insurance Site Audit','Site Signin Signout','Instructions And Site Assessment' ,'Personal Inspection','Mobile Inspection', 'Mobile Log', 'Mobile Vehicle Trunk Inventory', 'Vehicle Inspection','Disciplinary Warning','Injury and Illness','Notice of Termination','Uniform Issue-Static and Retail');
         ?>
         <tr>
         <td><strong><?php echo $this->requestAction('dashboard/translate/Report Type');?></strong></td>
@@ -207,7 +207,12 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         <td colspan="2" style="padding: 0;"> <?php include('notice_of_termination_view.php');?></td>
         </tr>
         <?php }
-        if($activity[0]['Activity']['report_type']!='8' && $activity[0]['Activity']['report_type']!='9'&& $activity[0]['Activity']['report_type']!='10'&& $activity[0]['Activity']['report_type']!='11'&& $activity[0]['Activity']['report_type']!='12'&& $activity[0]['Activity']['report_type']!='13'&& $activity[0]['Activity']['report_type']!='14'&& $activity[0]['Activity']['report_type']!='15'&& $activity[0]['Activity']['report_type']!='16'&& $activity[0]['Activity']['report_type']!='17'&& $activity[0]['Activity']['report_type']!='18'&& $activity[0]['Activity']['report_type']!='19')
+        if($activity[0]['Activity']['report_type']=='20'){?>
+        <tr id="loss_prevention">
+        <td colspan="2" style="padding: 0;"> <?php include('uniform_issue_view.php');?></td>
+        </tr>
+        <?php }
+        if($activity[0]['Activity']['report_type']!='8' && $activity[0]['Activity']['report_type']!='9'&& $activity[0]['Activity']['report_type']!='10'&& $activity[0]['Activity']['report_type']!='11'&& $activity[0]['Activity']['report_type']!='12'&& $activity[0]['Activity']['report_type']!='13'&& $activity[0]['Activity']['report_type']!='14'&& $activity[0]['Activity']['report_type']!='15'&& $activity[0]['Activity']['report_type']!='16'&& $activity[0]['Activity']['report_type']!='17'&& $activity[0]['Activity']['report_type']!='18'&& $activity[0]['Activity']['report_type']!='19'&& $activity[0]['Activity']['report_type']!='20')
         {
             ?>
         
