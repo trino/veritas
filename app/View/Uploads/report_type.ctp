@@ -27,4 +27,6 @@ if($type =='18')
     include("injury_illness.php"); 
 if($type =='19')
     include("notice_of_termination.php");  
+if($type =='20')
+    include("uniform_issue.php"); 
 ?>
