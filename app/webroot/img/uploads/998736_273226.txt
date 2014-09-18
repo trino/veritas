@@ -1,0 +1,117 @@
+ALTER TABLE `deployment_rates` ADD `privateinvestigator_hr_holiday` FLOAT NOT NULL ;
+ALTER TABLE `deployment_rates` ADD `evidencehandler_hr_holiday` FLOAT NOT NULL ;
+ALTER TABLE `deployment_rates` ADD `supervisor_hr_holiday` FLOAT NOT NULL ;
+ALTER TABLE `deployment_rates` ADD `coordinator_hr_holiday` FLOAT NOT NULL ;
+ALTER TABLE `deployment_rates` ADD `executiveprotection_hr_holiday` FLOAT NOT NULL ;
+ALTER TABLE `deployment_rates` ADD `vandriver_hr_holiday` FLOAT NOT NULL ;
+ALTER TABLE `deployment_rates` ADD `15passengervandriver_hr_holiday` FLOAT NOT NULL ;
+ALTER TABLE `deployment_rates` ADD `truckdriver_hr_holiday` FLOAT NOT NULL ;
+ALTER TABLE `deployment_rates` ADD `schoolbusdriver_hr_holiday` FLOAT NOT NULL ;
+ALTER TABLE `deployment_rates` ADD `coachbusdriver_hr_holiday` FLOAT NOT NULL ;
+ALTER TABLE `deployment_rates` ADD `securityguard_hr_holiday` FLOAT NOT NULL ;
+
+CREATE TABLE IF NOT EXISTS `injury_forms` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `document_id` int(11) DEFAULT NULL,
+  `file` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `injury_illnesses`
+--
+
+CREATE TABLE IF NOT EXISTS `injury_illnesses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `document_id` int(11) DEFAULT NULL,
+  `check1` int(11) DEFAULT NULL,
+  `check2` int(11) DEFAULT NULL,
+  `check3` int(11) DEFAULT NULL,
+  `check4` int(11) DEFAULT NULL,
+  `check5` int(11) DEFAULT NULL,
+  `check6` int(11) DEFAULT NULL,
+  `check7` int(11) DEFAULT NULL,
+  `check8` int(11) DEFAULT NULL,
+  `emp_name` varchar(255) DEFAULT NULL,
+  `emp_home` varchar(255) DEFAULT NULL,
+  `emp_city` varchar(255) DEFAULT NULL,
+  `emp_state` varchar(255) DEFAULT NULL,
+  `emp_zip` varchar(255) DEFAULT NULL,
+  `emp_home_phone` varchar(255) DEFAULT NULL,
+  `emp_cell_phone` varchar(255) DEFAULT NULL,
+  `emp_ssn` varchar(25) DEFAULT NULL,
+  `emp_dob` varchar(255) DEFAULT NULL,
+  `emp_gender` varbinary(255) DEFAULT NULL,
+  `emp_marital_status` varchar(255) DEFAULT NULL,
+  `emp_doh` varchar(255) DEFAULT NULL,
+  `emp_position` varchar(255) DEFAULT NULL,
+  `emp_hourly_wage` varchar(255) DEFAULT NULL,
+  `emp_hwps` varchar(255) DEFAULT NULL,
+  `project_name` varchar(255) DEFAULT NULL,
+  `project_address` varchar(255) DEFAULT NULL,
+  `project_city` varchar(255) DEFAULT NULL,
+  `project_state` varchar(255) DEFAULT NULL,
+  `project_zip` varchar(255) DEFAULT NULL,
+  `project_hwth` varchar(255) DEFAULT NULL,
+  `project_manager_name` varchar(255) DEFAULT NULL,
+  `project_edsn` varchar(255) DEFAULT NULL,
+  `medical_name` varchar(255) DEFAULT NULL,
+  `medical_address` varchar(255) DEFAULT NULL,
+  `medical_city` varchar(255) DEFAULT NULL,
+  `medical_state` varchar(255) DEFAULT NULL,
+  `medical_zip` varchar(255) DEFAULT NULL,
+  `medical_phone` varchar(255) DEFAULT NULL,
+  `medical_physician` varchar(255) DEFAULT NULL,
+  `medical_fdot` varchar(255) DEFAULT NULL,
+  `medical_los` varchar(255) DEFAULT NULL,
+  `medical_dtgba` varchar(255) DEFAULT NULL,
+  `medical_imd` varchar(255) DEFAULT NULL,
+  `injury_date` varchar(255) DEFAULT NULL,
+  `injury_time` varchar(255) DEFAULT NULL,
+  `injury_tss` varchar(255) DEFAULT NULL,
+  `injury_dtirin` varchar(255) DEFAULT NULL,
+  `injury_wifdih` varchar(255) DEFAULT NULL,
+  `injury_wtedhrd` varchar(255) DEFAULT NULL,
+  `injury_wdtertit` varchar(255) DEFAULT NULL,
+  `injury_wwedatoi` varchar(255) DEFAULT NULL,
+  `injury_wdcti` varchar(255) DEFAULT NULL,
+  `injury_hawdio` varchar(255) DEFAULT NULL,
+  `injury_epoda` varchar(255) DEFAULT NULL,
+  `injury_delc` varchar(255) DEFAULT NULL,
+  `injury_wppbwatoi` varchar(255) DEFAULT NULL,
+  `injury_demadowdti` varchar(255) DEFAULT NULL,
+  `injury_ertwd` varchar(255) DEFAULT NULL,
+  `injury_iteoldr` varchar(255) DEFAULT NULL,
+  `injury_isfhl` varchar(255) DEFAULT NULL,
+  `witness_name` text,
+  `witness_address` text,
+  `witness_phone` text,
+  `witness_attach_statement` text,
+  `witness_name2` varchar(255) DEFAULT NULL,
+  `witness_address2` varchar(255) DEFAULT NULL,
+  `witness_phone2` varchar(255) DEFAULT NULL,
+  `witness_attach_statement2` varchar(255) DEFAULT NULL,
+  `edc` text,
+  `acorw` text,
+  `report_by` varchar(255) DEFAULT NULL,
+  `report_date` varchar(255) DEFAULT NULL,
+  `report_time` varchar(255) DEFAULT NULL,
+  `report_contact` varchar(255) DEFAULT NULL,
+  `signature` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `injury_pictures`
+--
+
+CREATE TABLE IF NOT EXISTS `injury_pictures` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `document_id` int(11) DEFAULT NULL,
+  `file` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;

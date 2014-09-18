@@ -43,7 +43,7 @@
             <td><strong>Reason for Termination</strong></td>
         </tr>
         <tr><td><input type="checkbox" value="1" name="termination[lack_of_work]" <?php echo (isset($termination['Noticeoftermination']['lack_of_work']) && $termination['Noticeoftermination']['lack_of_work']=='1')?"checked='checked'":'';?> /><strong>&nbsp;Lack of Work/Reduction in Force/Project Ended</strong></td></tr>
-        <tr><td><input type="checkbox" value="1"  name="termination[quit]" <?php echo (isset($termination['Noticeoftermination']['quit']) && $termination['Noticeoftermination']['quit']=='1')?"checked='checked'":'';?> />&nbsp;<strong>Quit(check all the applies)</strong>
+        <tr><td><input type="checkbox" value="1"  name="termination[quit]" <?php echo (isset($termination['Noticeoftermination']['quit']) && $termination['Noticeoftermination']['quit']=='1')?"checked='checked'":'';?> />&nbsp;<strong>Quit (check all the applies)</strong>
                        </td></tr>
         <tr><td style="padding: 0;">
                 <table >
