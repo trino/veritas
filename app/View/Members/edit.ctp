@@ -227,14 +227,22 @@ if(!isset($sid)){
 <?php if($admin_doc['AdminDoc']['vehicle_inspection']=='0' ){?><input type="hidden" name="canView_vehicle_inspection" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Vehicle Inspection');?> </span><input type="checkbox" name="canView_vehicle_inspection" <?php if(isset($u['Canupload']['vehicle_inspection']) && $u['Canupload']['vehicle_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
 -->
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Deployment');?> </span><input type="checkbox" name="canView_deployment_rate" <?php if(isset($v['Canview']['deployment_rate']) && $v['Canview']['deployment_rate']==1){?>checked="checked"<?php }?> />
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Deployment');?> </span><input onchange="if($(this).is(':checked')){$('.deploy_more').show();}else{$('.deploy_more').hide();if($('.is_client').is(':checked')){$('.is_client').click();}}" type="checkbox" name="canView_deployment_rate" <?php if(isset($v['Canview']['deployment_rate']) && $v['Canview']['deployment_rate']==1){?>checked="checked"<?php }?> />
 
 </td>
 
 </tr>
 </table>
 <div class="morez"></div>
-<table class="loadmorez" width="50%"></table>
+<table>
+    <td class="deploy_more" style="display: none;padding:0;">
+        <?php include('deployment_more.php');?>
+    </td>
+</table>
+<table class="loadmorez" width="50%">
+
+</table>
+
 </td>
 <?php }
 else
@@ -500,7 +508,9 @@ if($q || isset($sid)){
 </div>
 <script>
 $(function(){
-   
+   <?php if(isset($v['Canview']['deployment_rate']) && $v['Canview']['deployment_rate']==1){?>
+   $('.deploy_more').show();
+   <?php }?>
    if($('#canUpdate').is(':checked'))
         $('.canuploadfiles').show();
    
