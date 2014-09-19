@@ -69,7 +69,7 @@ foreach($job as $j)
             
             
         <?php 
-        $jme_all = $jme->find('all',array('conditions'=>array("job_id LIKE '".$j['Job']['id'].",%' OR job_id LIKE '%,".$j['Job']['id'].",%' OR job_id LIKE '%,".$j['Job']['id']."'")));
+        $jme_all = $jme->find('all',array('conditions'=>array("job_id LIKE '".$j['Job']['id'].",%' OR job_id LIKE '%,".$j['Job']['id'].",%' OR job_id LIKE '%,".$j['Job']['id']."' OR job_id LIKE '".$j['Job']['id']."'")));
         $me = 0;
         foreach($jme_all as $jmes)
         {
