@@ -54,7 +54,7 @@ class AdminController extends AppController {
             }
             else
             $this->Session->write('logo','afimaclogo.png'); 
-            $this->Session->write(array('username'=>'admin','admin'=>1,'avatar'=>$q['User']['name_avatar'],'email'=>$q['User']['email'],'image'=>$q['User']['picture'],'id'=>$q['User']['id'],'view'=>'1','FMember'=>$q['User']['from_member'],'approve'=>$q['User']['approve']));
+            $this->Session->write(array('is_client'=>1,'username'=>'admin','admin'=>1,'avatar'=>$q['User']['name_avatar'],'email'=>$q['User']['email'],'image'=>$q['User']['picture'],'id'=>$q['User']['id'],'view'=>'1','FMember'=>$q['User']['from_member'],'approve'=>$q['User']['approve']));
             
             
             if(isset($_GET['mail']))
