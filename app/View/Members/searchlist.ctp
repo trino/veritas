@@ -40,14 +40,16 @@ foreach($job as $j)
                 if($m)
                 {
                 
-                    if(!$this->Session->read('admin')){
-                    if($this->Session->read('id')!=$m['Member']['id']){    
-                    echo "<div style='width:770px;'><div style='float:left;width:660px;'><div style='float:left;width:130px;'>&nbsp;".$m['Member']['fname']." ".$m['Member']['lname']."</div><div style='float:left;margin-left:5px;width:120px;'>&nbsp;".$m['Member']['full_name']."</div><div style='float:left;margin-left:5px;width:220px;'>&nbsp;".$m['Member']['email']."</div><div style='width:120px;margin-left:5px;float:left;'>".$j['Job']['title']."</div><div style='clear:both;'></div></div>";
-                    ?>
-                    <div style="float: right;width:80px;"><input type="checkbox" class="<?php echo $m['Member']['full_name'].'__'.$m['Member']['id'].'__'.$m['Member']['email'];?>" /></div>
-                    <div style="clear:both;"></div></div>
-                    <?php
-                    }
+                    if(!$this->Session->read('admin'))
+                    {
+                        if($this->Session->read('id')!=$m['Member']['id'])
+                        {    
+                            echo "<div style='width:770px;'><div style='float:left;width:660px;'><div style='float:left;width:130px;'>&nbsp;".$m['Member']['fname']." ".$m['Member']['lname']."</div><div style='float:left;margin-left:5px;width:120px;'>&nbsp;".$m['Member']['full_name']."</div><div style='float:left;margin-left:5px;width:220px;'>&nbsp;".$m['Member']['email']."</div><div style='width:120px;margin-left:5px;float:left;'>".$j['Job']['title']."</div><div style='clear:both;'></div></div>";
+                            ?>
+                            <div style="float: right;width:80px;"><input type="checkbox" class="<?php echo $m['Member']['full_name'].'__'.$m['Member']['id'].'__'.$m['Member']['email'];?>" /></div>
+                            <div style="clear:both;"></div></div>
+                            <?php
+                        }
                     }
                     else
                     {
