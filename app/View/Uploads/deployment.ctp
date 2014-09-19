@@ -30,7 +30,7 @@
     <td colspan="11"><strong>Personnel</strong></td>
 </tr>
 <tr class="entries" style="<?php if(!isset($pers)){?>display: none;<?php }?>">
-    <td style="width: 175px!important;"><strong>Position</strong></td><td><strong>Number of Staff</strong></td><td><strong>Start Time</strong></td><td><strong>End Time</strong></td><td><strong>Total Hours</strong></td><td><strong>Hours Billable</strong></td><td><strong>Travel</strong></td><td><strong>Travel Billable</strong></td><td><strong>Meal</strong></td><td><strong>Meal Billable</strong></td><td style="width: 60px!important;"><strong>Admin Fee</strong></td>
+    <td style="width: 175px!important;"><strong>Position</strong></td><td><strong>Number of Staff</strong></td><td><strong>Start Time</strong></td><td><strong>End Time</strong></td><td><strong>Total Hours</strong></td><td <?php if($this->Session->read('is_client')=='0'){ echo "style:display:none";}?>><strong>Hours Billable</strong></td><td><strong>Travel</strong></td><td><strong>Travel Billable</strong></td><td><strong>Meal</strong></td><td><strong>Meal Billable</strong></td><td style="width: 60px!important;"><strong>Admin Fee</strong></td>
 </tr>
 <?php
 if(isset($pers) && $pers)
