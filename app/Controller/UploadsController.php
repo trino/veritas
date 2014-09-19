@@ -3967,7 +3967,7 @@ $oa = intval($number*$expo)/$expo;
   {
         $this->loadModel("Document");
         $this->Document->id = $id;
-        $this->saveField('client_approve',$app);
+        $this->Document->saveField('client_approve',$app);
         $this->redirect("view_detail/".$id);
   }
   
