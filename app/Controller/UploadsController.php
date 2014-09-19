@@ -3963,4 +3963,12 @@ $oa = intval($number*$expo)/$expo;
             die();
   }
   
+  function client_approve($id,$app)
+  {
+        $this->loadModel("Document");
+        $this->Document->id = $id;
+        $this->saveField('client_approve',$app);
+        $this->redirect("view_detail/".$id);
+  }
+  
 }
