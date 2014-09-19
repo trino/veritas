@@ -593,11 +593,11 @@ class UploadsController extends AppController
                     
                     $eq['amount_billable'] =  str_replace('$','',$equ['amount_billable'][$i]);
                     $eq['doc_id'] = $eid;
-                    
+                    $eq['a_fee'] = $equ['a_fee'];
                     $eq['total'] =$_POST['total'];
                     $eq['tax'] =$_POST['tax'];
-                    $eq['a_fee'] =$_POST['a_fee'];
-                    $eq['g_total'] =$_POST['g2_tot'];
+                    $eq['admin_fee'] =$equ['admin_fee'][$i];
+                    $eq['g_total'] =$equ['admin_fee'][$i];
                     
                     $this->Equipment->create();
                     $this->Equipment->save($eq);
@@ -608,6 +608,7 @@ class UploadsController extends AppController
                 
                 $count = count($_POST['Personnel']['position']);
                 $equ = $_POST['Personnel'];
+                
                 $this->Personnel->deleteAll(array('doc_id'=>$eid));
                 for($i=0;$i<$count;$i++)
                 {
@@ -621,6 +622,7 @@ class UploadsController extends AppController
                     $eq['travel_billable'] =  str_replace('$','',$equ['travel_billable'][$i]);
                     $eq['meal_amount'] =  $equ['meal_amount'][$i];
                     $eq['meal_billable'] =  str_replace('$','',$equ['meal_billable'][$i]);
+                    $eq['admin_fee'] =$equ['admin_fee'][$i];
                     $eq['doc_id'] = $eid;
                     
                     $eq['total'] =$_POST['total'];
@@ -2077,6 +2079,7 @@ class UploadsController extends AppController
                     $eq['hotel_cost'] =  str_replace('$','',$equ['hotel_cost'][$i]);
                     
                     $eq['amount_billable'] =  str_replace('$','',$equ['amount_billable'][$i]);
+                    $eq['admin_fee'] =  str_replace('$','',$equ['admin_fee'][$i]);
                     $eq['doc_id'] = $id;
                     $eq['total'] =$_POST['total'];
                     $eq['tax'] =$_POST['tax'];
@@ -2103,6 +2106,7 @@ class UploadsController extends AppController
                     $eq['travel_billable'] =  str_replace('$','',$equ['travel_billable'][$i]);
                     $eq['meal_amount'] =  $equ['meal_amount'][$i];
                     $eq['meal_billable'] =  str_replace('$','',$equ['meal_billable'][$i]);
+                    $eq['admin_fee'] =  str_replace('$','',$equ['admin_fee'][$i]);
                     $eq['doc_id'] = $id;
                     $eq['doc_id'] = $id;
                     $eq['total'] =$_POST['total'];

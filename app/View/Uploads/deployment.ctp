@@ -41,6 +41,8 @@ if(isset($pers) && $pers)
         $total = $pp['Personnel']['total'];
         $tax = $pp['Personnel']['tax'];
         $a_fee = $pp['Personnel']['a_fee'];
+        if($a_fee)
+        $af_tot = $pp['Personnel']['a_fee'];
         $g_total = $pp['Personnel']['g_total'];
         $afee = $pp['Personnel']['admin_fee'];
         if(!$afee)
@@ -95,6 +97,8 @@ if(isset($pers) && $pers)
          $total = $eq['Equipment']['total'];
         $tax = $eq['Equipment']['tax'];
         $a_fee = $eq['Equipment']['a_fee'];
+        if($a_fee)
+        $af_tot = $eq['Equipment']['a_fee'];
         $g_total = $eq['Equipment']['g_total'];
         if(in_array($eq['Equipment']['items'],$arr1)){
             if($eq['Equipment']['qty']<1)
@@ -139,6 +143,8 @@ if(isset($pers) && $pers)
              $total = $eq['Equipment']['total'];
             $tax = $eq['Equipment']['tax'];
             $a_fee = $eq['Equipment']['a_fee'];
+            if($a_fee)
+            $af_tot = $eq['Equipment']['a_fee'];
             $g_total = $eq['Equipment']['g_total'];
              if($eq['Equipment']['qty']<1)
                 $eq['Equipment']['qty1']=1;
@@ -148,6 +154,7 @@ if(isset($pers) && $pers)
     <tr><td id="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>"><input type="text" style="width:160px;" name="Equipment[items][]" value="<?php echo $eq['Equipment']['items'];?>" readonly /></td><td><input class="quantity" type="text" name="Equipment[qty][]" value="<?php echo $eq['Equipment']['qty'];?>"/></td><td><input type="text" name="Equipment[kms][]" value="<?php echo $eq['Equipment']['kms'];?>"/></td><td><input value="<?php echo $eq['Equipment']['fuel_cost'];?>" type="text" name="Equipment[fuel_cost][]" class="fuel_cost"/></td><td><input type="hidden" value="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>" /></td><td><input value="$<?php echo $eq['Equipment']['amount_billable'];?>" type="text" name="Equipment[amount_billable][]" class="total" readonly/></td><td><input type="checkbox" onclick="var v=0;if($(this).is(':checked')){v=1;}else{v=0;}$(this).parent().find('.fee').val(v);" /><input class="fee" type="hidden" name="Equipment[admin_fee][]" value="0" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest('tr').remove();">X</a></td></tr>  
       <?php  
       }
+      
     }
     ?>
     
@@ -155,8 +162,8 @@ if(isset($pers) && $pers)
 
 <table>
 <tr><td style="padding-top: 50px;border-top:1px solid #ddd"><strong>Total: <span class="g_tot"><?php if(isset($pers)) echo $total;?></span></strong><input type="hidden" name="total" value="<?php if(isset($pers)) echo $total;?>" id="g_tot"  /></td></tr>
-<tr><td><strong>Tax: <span class="tax">$<?php if(isset($pers)) echo $tax;?></span></strong><input type="hidden" name="tax" value="<?php if(isset($pers)) echo $tax;?>" id="tax"  /></td></tr>
 <tr><td><strong>Admin Fee: <span class="a_fee">$<?php if(isset($pers)) echo $a_fee;?></span></strong><input type="hidden" name="a_fee" value="<?php if(isset($pers)) echo $a_fee;?>" id="a_fee"  /></td></tr>
+<tr><td><strong>Tax: <span class="tax">$<?php if(isset($pers)) echo $tax;?></span></strong><input type="hidden" name="tax" value="<?php if(isset($pers)) echo $tax;?>" id="tax"  /></td></tr>
 <tr><td><strong>Grand Total: <span class="g2_tot">$<?php if(isset($pers)) echo $g_total;?></span></strong><input type="hidden" name="g2_tot" value="<?php if(isset($pers)) echo $g_total;?>" id="g2_tot"  /></td></tr>
 </table>
 </td>
@@ -166,6 +173,103 @@ if(isset($pers) && $pers)
 <script>
     
     $(function(){
+        
+        var af_tot = '<?php if(isset($pers)) echo $a_fee;else echo 0;?>';
+        if(af_tot)
+        {
+            $('#a_fee').val('af_tot');
+            $('.a_fee').html('$'+af_tot);
+        }
+       $('.deploy input[type="checkbox"]').live('change',function(){
+        $this = $(this);
+        var tot = 0;
+        //var toadd = 0;
+        $this.closest('tr').find('.total').each(function(){
+            //var to = $(this).closest('tr').find('.total').val();
+            var to = $(this).val();
+            to = to.replace('$','');
+            
+            if(to)
+            var to = parseFloat(to);
+            else
+            var to = 0;
+            
+            tot = tot+to;
+            
+                
+        });
+        var af = '<?php echo $rate['DeploymentRate']['admin'];?>';
+            //alert(af);
+            if(af)
+            af = parseFloat(af);
+            else
+            af = 0;
+            
+            af = Number(af);
+            tot = Number(tot);
+            
+            var toadd = ((af/100)*tot);
+            //alert(toadd);
+            if($this.is(':checked')){
+            af_tot = af_tot+toadd; 
+            }
+            else
+            {
+                af_tot = af_tot-toadd;    
+            }
+            af_tot = Number(af_tot);
+            af_tot = af_tot.toFixed(2);
+            $('.a_fee').html('$'+af_tot);
+            $('#a_fee').val(af_tot);
+        
+         
+        
+        //alert(toadd);
+        
+        var gtot = $('#g_tot').val();
+        alert(gtot);
+        if(gtot == '')
+        {
+            gtot = '0';
+            gtot = parseFloat(gtot);
+            gtot = Number(gtot);
+        }
+        else{
+        gtot = parseFloat(gtot);
+        gtot = Number(gtot);
+        }
+        if($this.is(':checked')){
+        gtot = gtot + toadd;
+        }
+        else
+        gtot = gtot - toadd;
+        gtot = gtot.toFixed(2);
+        $('#g_tot').val(gtot);
+        $('.g_tot').html('$'+gtot);
+        
+        
+        var g2tot = $('#g2_tot').val();
+        if(g2tot == '')
+        {
+            g2tot = '0';
+            g2tot = parseFloat(g2tot);
+            g2tot = Number(g2tot);
+        }
+        else{
+        g2tot = parseFloat(g2tot);
+        g2tot = Number(g2tot);
+        }
+        if($this.is(':checked')){
+        g2tot = g2tot + toadd;
+        }
+        else
+        g2tot = g2tot - toadd;
+        g2tot = g2tot.toFixed(2);
+        $('#g2_tot').val(g2tot);
+        $('.g2_tot').html('$'+g2tot);
+        
+        
+       });
        $('.time').timepicker();
         
         var tot = 0;
@@ -286,16 +390,17 @@ if(isset($pers) && $pers)
            tot = parseFloat(tot);
            n_tot = parseFloat(n_tot)+tot;
            var tax = parseFloat(n_tot)*.13;
-           var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin'];?>');
+           var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin']*0;?>');
            var a_fee = parseFloat(n_tot)* a_tax/100;
+           
            var g2 = n_tot + tax + a_fee;
         $('.g_tot').html("$"+n_tot.toFixed(2)); 
         $('.tax').html("$"+tax.toFixed(2)); 
-        $('.a_fee').html("$"+a_fee.toFixed(2)); 
+         
         $('.g2_tot').html("$"+g2.toFixed(2)); 
         $('#g_tot').val(n_tot.toFixed(2)); 
         $('#tax').val(tax.toFixed(2)); 
-        $('#a_fee').val(a_fee.toFixed(2)); 
+         
         $('#g2_tot').val(g2.toFixed(2)); 
           
         });
@@ -401,11 +506,11 @@ if(isset($pers) && $pers)
            var g2 = n_tot + tax + a_fee;
         $('.g_tot').html("$"+n_tot.toFixed(2)); 
         $('.tax').html("$"+tax.toFixed(2)); 
-        $('.a_fee').html("$"+a_fee.toFixed(2)); 
+         
         $('.g2_tot').html("$"+g2.toFixed(2)); 
         $('#g_tot').val(n_tot.toFixed(2)); 
         $('#tax').val(tax.toFixed(2)); 
-        $('#a_fee').val(a_fee.toFixed(2)); 
+         
         $('#g2_tot').val(g2.toFixed(2)); 
         });
         
@@ -466,16 +571,16 @@ if(isset($pers) && $pers)
            tot = parseFloat(tot);
            n_tot = parseFloat(n_tot)+tot;
         var tax = parseFloat(n_tot)*.13;
-           var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin'];?>');
+           var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin']*0;?>');
            var a_fee = parseFloat(n_tot)* a_tax/100;
            var g2 = n_tot + tax + a_fee;
         $('.g_tot').html("$"+n_tot.toFixed(2)); 
         $('.tax').html("$"+tax.toFixed(2)); 
-        $('.a_fee').html("$"+a_fee.toFixed(2)); 
+         
         $('.g2_tot').html("$"+g2.toFixed(2));
         $('#g_tot').val(n_tot.toFixed(2)); 
         $('#tax').val(tax.toFixed(2)); 
-        $('#a_fee').val(a_fee.toFixed(2)); 
+         
         $('#g2_tot').val(g2.toFixed(2));  
         });
         
@@ -530,16 +635,16 @@ if(isset($pers) && $pers)
            tot = parseFloat(tot);
            n_tot = parseFloat(n_tot)+tot;
         var tax = parseFloat(n_tot)*.13;
-           var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin'];?>');
+           var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin']*0;?>');
            var a_fee = parseFloat(n_tot)* a_tax/100;
            var g2 = n_tot + tax + a_fee;
         $('.g_tot').html("$"+n_tot.toFixed(2)); 
         $('.tax').html("$"+tax.toFixed(2)); 
-        $('.a_fee').html("$"+a_fee.toFixed(2)); 
+         
         $('.g2_tot').html("$"+g2.toFixed(2)); 
         $('#g_tot').val(n_tot.toFixed(2)); 
         $('#tax').val(tax.toFixed(2)); 
-        $('#a_fee').val(a_fee.toFixed(2)); 
+         
         $('#g2_tot').val(g2.toFixed(2));    
         });
         
@@ -595,16 +700,16 @@ if(isset($pers) && $pers)
            tot = parseFloat(tot);
            n_tot = parseFloat(n_tot)+tot;
         var tax = parseFloat(n_tot)*.13;
-           var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin'];?>');
+           var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin']*0;?>');
            var a_fee = parseFloat(n_tot)* a_tax/100;
            var g2 = n_tot + tax + a_fee;
         $('.g_tot').html("$"+n_tot.toFixed(2)); 
         $('.tax').html("$"+tax.toFixed(2)); 
-        $('.a_fee').html("$"+a_fee.toFixed(2)); 
+         
         $('.g2_tot').html("$"+g2.toFixed(2));
         $('#g_tot').val(n_tot.toFixed(2)); 
         $('#tax').val(tax.toFixed(2)); 
-        $('#a_fee').val(a_fee.toFixed(2)); 
+         
         $('#g2_tot').val(g2.toFixed(2));  
         });
      
@@ -636,16 +741,16 @@ if(isset($pers) && $pers)
            tot = parseFloat(tot);
            n_tot = parseFloat(n_tot)+tot;
            var tax = parseFloat(n_tot)*.13;
-           var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin'];?>');
+           var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin']*0;?>');
            var a_fee = parseFloat(n_tot)* a_tax/100;
            var g2 = n_tot + tax + a_fee;
             $('.g_tot').html("$"+n_tot.toFixed(2)); 
             $('.tax').html("$"+tax.toFixed(2)); 
-            $('.a_fee').html("$"+a_fee.toFixed(2)); 
+             
             $('.g2_tot').html("$"+g2.toFixed(2));
             $('#g_tot').val(n_tot.toFixed(2)); 
             $('#tax').val(tax.toFixed(2)); 
-            $('#a_fee').val(a_fee.toFixed(2)); 
+             
             $('#g2_tot').val(g2.toFixed(2));  
             
         });
@@ -698,16 +803,16 @@ if(isset($pers) && $pers)
            tot = parseFloat(tot);
            n_tot = parseFloat(n_tot)+tot;
         var tax = parseFloat(n_tot)*.13;
-           var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin'];?>');
+           var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin']*0;?>');
            var a_fee = parseFloat(n_tot)* a_tax/100;
            var g2 = n_tot + tax + a_fee;
         $('.g_tot').html("$"+n_tot.toFixed(2)); 
         $('.tax').html("$"+tax.toFixed(2)); 
-        $('.a_fee').html("$"+a_fee.toFixed(2)); 
+         
         $('.g2_tot').html("$"+g2.toFixed(2)); 
         $('#g_tot').val(n_tot.toFixed(2)); 
         $('#tax').val(tax.toFixed(2)); 
-        $('#a_fee').val(a_fee.toFixed(2)); 
+         
         $('#g2_tot').val(g2.toFixed(2)); 
         });
         
@@ -756,16 +861,16 @@ if(isset($pers) && $pers)
            tot = parseFloat(tot);
            n_tot = parseFloat(n_tot)+tot;
            var tax = parseFloat(n_tot)*.13;
-           var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin'];?>');
+           var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin']*0;?>');
            var a_fee = parseFloat(n_tot)* a_tax/100;
            var g2 = n_tot + tax + a_fee;
         $('.g_tot').html("$"+n_tot.toFixed(2)); 
         $('.tax').html("$"+tax.toFixed(2)); 
-        $('.a_fee').html("$"+a_fee.toFixed(2)); 
+         
         $('.g2_tot').html("$"+g2.toFixed(2)); 
         $('#g_tot').val(n_tot.toFixed(2)); 
         $('#tax').val(tax.toFixed(2)); 
-        $('#a_fee').val(a_fee.toFixed(2)); 
+         
         $('#g2_tot').val(g2.toFixed(2)); 
           
         });
