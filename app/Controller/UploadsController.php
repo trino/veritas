@@ -2055,7 +2055,10 @@ class UploadsController extends AppController
             $arr['job_title'] = $jobf['Job']['title'];
             $arr['addedBy'] = $id;
             $addedBy = $id;
-			
+            if($_POST['document_type']=='deployment_rate')
+			{
+			 $arr['approved'] = 1;
+			}
 		//	debug($arr);exit;
             $this->Document->create();
             $this->Document->save($arr);
