@@ -1,4 +1,5 @@
 <?php
+
     $arr1 = array('Radio','Internet Stick','Tapes','SD Card','DVD','Hotel');     
     $arr2 = array('Security Vehicle Regular','Security Vehicle Large','15 Pessenger Van','School Bus','Coach Bus','Transport Truck');
 ?>
@@ -30,7 +31,17 @@
     <td colspan="11"><strong>Personnel</strong></td>
 </tr>
 <tr class="entries" style="<?php if(!isset($pers)){?>display: none;<?php }?>">
-    <td style="width: 175px!important;"><strong>Position</strong></td><td><strong>Number of Staff</strong></td><td><strong>Start Time</strong></td><td><strong>End Time</strong></td><td><strong>Total Hours</strong></td><td><strong>Hours Billable</strong></td><td><strong>Travel</strong></td><td><strong>Travel Billable</strong></td><td><strong>Meal</strong></td><td><strong>Meal Billable</strong></td><td style="width: 60px!important;"><strong>Admin Fee</strong></td>
+    <td style="width: 175px!important;"><strong>Position</strong></td>
+    <td><strong>Number of Staff</strong></td>
+    <td><strong>Start Time</strong></td>
+    <td><strong>End Time</strong></td>
+    <td><strong>Total Hours</strong></td>
+    <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><strong>Hours Billable</strong></td>
+    <td><strong>Travel</strong></td>
+    <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><strong>Travel Billable</strong></td>
+    <td><strong>Meal</strong></td>
+    <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><strong>Meal Billable</strong></td>
+    <td style="width: 60px!important;"><strong>Admin Fee</strong></td>
 </tr>
 <?php
 if(isset($pers) && $pers)
@@ -62,7 +73,17 @@ if(isset($pers) && $pers)
            
         
         ?>
-        <tr><td id="<?php echo ($pp['Personnel']['hours_billable'])/($pp['Personnel']['no_of_staff1']*$pp['Personnel']['total_hours1']).'_'.($pp['Personnel']['travel_billable'])/($pp['Personnel']['travel1']);?>"><input class="sg"  type="text" style="width:160px;" name="Personnel[position][]" value="<?php echo $pp['Personnel']['position'];?>" readonly/></td><td><input class="staff" type="text" name="Personnel[no_of_staff][]" value="<?php echo $pp['Personnel']['no_of_staff'];?>"/></td><td><input name="Personnel[start_time][]" type="text" class="time" value="<?php echo $pp['Personnel']['start_time'];?>"/></td><td><input type="text" name="Personnel[end_time][]" class="time" value="<?php echo $pp['Personnel']['end_time'];?>"/></td><td><input type="text" class="total_hours" value="<?php echo $pp['Personnel']['total_hours'];?>" name="Personnel[total_hours][]" readonly /></td><td><input type="text" class="hours_billable total" name="Personnel[hours_billable][]" value="$<?php echo $pp['Personnel']['hours_billable'];?>"  readonly/></td><td><input type="text" name="Personnel[travel][]" class="travel" value="<?php echo $pp['Personnel']['travel'];?>"/></td><td><input type="text" name="Personnel[travel_billable][]" value="$<?php echo $pp['Personnel']['travel_billable'];?>" class="total" readonly/></td><td><input type="text" name="Personnel[meal_amount][]" class="meal" value="<?php echo $pp['Personnel']['meal_amount'];?>"/></td><td><input value="$<?php echo $pp['Personnel']['meal_billable'];?>" type="text" name="Personnel[meal_billable][]" readonly class="total"/></td><td><input <?php if($afee==1){?>checked="checked"<?php }?> type="checkbox" onclick="var v=0;if($(this).is(':checked')){v=1;}else{v=0;}$(this).parent().find('.fee').val(v);" /><input class="fee" type="hidden" name="Personnel[admin_fee][]" value="<?php echo $afee;?>" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest('tr').remove();">X</a></td></tr>
+        <tr><td id="<?php echo ($pp['Personnel']['hours_billable'])/($pp['Personnel']['no_of_staff1']*$pp['Personnel']['total_hours1']).'_'.($pp['Personnel']['travel_billable'])/($pp['Personnel']['travel1']);?>"><input class="sg"  type="text" style="width:160px;" name="Personnel[position][]" value="<?php echo $pp['Personnel']['position'];?>" readonly/></td>
+        <td><input class="staff" type="text" name="Personnel[no_of_staff][]" value="<?php echo $pp['Personnel']['no_of_staff'];?>"/></td>
+        <td><input name="Personnel[start_time][]" type="text" class="time" value="<?php echo $pp['Personnel']['start_time'];?>"/></td>
+        <td><input type="text" name="Personnel[end_time][]" class="time" value="<?php echo $pp['Personnel']['end_time'];?>"/></td>
+        <td ><input type="text" class="total_hours" value="<?php echo $pp['Personnel']['total_hours'];?>" name="Personnel[total_hours][]" readonly /></td>
+        <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><input type="text" class="hours_billable total" name="Personnel[hours_billable][]" value="$<?php echo $pp['Personnel']['hours_billable'];?>"  readonly/></td>
+        <td><input type="text" name="Personnel[travel][]" class="travel" value="<?php echo $pp['Personnel']['travel'];?>"/></td>
+        <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><input type="text" name="Personnel[travel_billable][]" value="$<?php echo $pp['Personnel']['travel_billable'];?>" class="total" readonly/></td>
+        <td><input type="text" name="Personnel[meal_amount][]" class="meal" value="<?php echo $pp['Personnel']['meal_amount'];?>"/></td>
+        <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><input value="$<?php echo $pp['Personnel']['meal_billable'];?>" type="text" name="Personnel[meal_billable][]" readonly class="total"/></td>
+        <td><input <?php if($afee==1){?>checked="checked"<?php }?> type="checkbox" onclick="var v=0;if($(this).is(':checked')){v=1;}else{v=0;}$(this).parent().find('.fee').val(v);" /><input class="fee" type="hidden" name="Personnel[admin_fee][]" value="<?php echo $afee;?>" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest('tr').remove();">X</a></td></tr>
         <?php
     }
 }
@@ -89,7 +110,7 @@ if(isset($pers) && $pers)
         </td>
     </tr>
     <tr class="misc_entries" style="<?php if(!isset($pers)){?>display: none;<?php }?>"><td colspan="7"><strong>Equipment/Hotel</strong></td></tr>
-    <tr class="misc_entries" style="<?php if(!isset($pers)){?>display: none;<?php }?>"><td><strong>Item</strong></td><td><strong>Quantity</strong></td><td></td><td></td><td></td><td><strong>Amount Billable</strong></td><td><strong>Admin Fee</strong></td></tr>
+    <tr class="misc_entries" style="<?php if(!isset($pers)){?>display: none;<?php }?>"><td><strong>Item</strong></td><td><strong>Quantity</strong></td><td></td><td></td><td></td><td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><strong>Amount Billable</strong></td><td><strong>Admin Fee</strong></td></tr>
     <?php
     if(isset($equip))
     foreach($equip as $eq)
@@ -108,7 +129,7 @@ if(isset($pers) && $pers)
             
       ?>
     <tr class="pers">
-        <td id="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>"><input type="text" style="width:160px;" name="Equipment[items][]" value="<?php echo $eq['Equipment']['items'];?>" readonly /></td><td><input class="quantity" type="text" name="Equipment[qty][]" value="<?php echo $eq['Equipment']['qty'];?>"/></td><td></td><td></td><td></td><td><input value="$<?php echo $eq['Equipment']['amount_billable'];?>" type="text" name="Equipment[amount_billable][]" class="total" readonly /></td><td><input <?php if($afee==1){?>checked="checked"<?php }?>  type="checkbox" onclick="var v=0;if($(this).is(':checked')){v=1;}else{v=0;}$(this).parent().find('.fee').val(v);" /><input class="fee" type="hidden" name="Equipment[admin_fee][]" value="<?php echo $afee;?>" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest('tr').remove();">X</a></td></tr>  
+        <td id="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>"><input type="text" style="width:160px;" name="Equipment[items][]" value="<?php echo $eq['Equipment']['items'];?>" readonly /></td><td><input class="quantity" type="text" name="Equipment[qty][]" value="<?php echo $eq['Equipment']['qty'];?>"/></td><td></td><td></td><td></td><td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><input value="$<?php echo $eq['Equipment']['amount_billable'];?>" type="text" name="Equipment[amount_billable][]" class="total" readonly /></td><td><input <?php if($afee==1){?>checked="checked"<?php }?>  type="checkbox" onclick="var v=0;if($(this).is(':checked')){v=1;}else{v=0;}$(this).parent().find('.fee').val(v);" /><input class="fee" type="hidden" name="Equipment[admin_fee][]" value="<?php echo $afee;?>" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest('tr').remove();">X</a></td></tr>  
       <input type="hidden" name="Equipment[kms][]" /><input type="hidden" name="Equipment[fuel_cost][]" />
       <?php  
       }
@@ -133,7 +154,7 @@ if(isset($pers) && $pers)
         </td>
     </tr>
     <tr class="misc_entries2" style="<?php if(!isset($pers)){?>display: none;<?php }?>"><td colspan="7"><strong>Vehicle</strong></td></tr>
-    <tr class="misc_entries2" style="<?php if(!isset($pers)){?>display: none;<?php }?>"><td><strong>Item</strong></td><td><strong>Quantity</strong></td><td><strong>KM's</strong></td><td><strong>Fuel Cost (excluding tax and admin)</strong></td><td></td><td><strong>Amount Billable</strong></td><td><strong>Admin Fee</strong></td></tr>
+    <tr class="misc_entries2" style="<?php if(!isset($pers)){?>display: none;<?php }?>"><td><strong>Item</strong></td><td><strong>Quantity</strong></td><td><strong>KM's</strong></td><td><strong>Fuel Cost (excluding tax and admin)</strong></td><td></td><td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><strong>Amount Billable</strong></td><td><strong>Admin Fee</strong></td></tr>
     <?php
     if(isset($equip))
     foreach($equip as $eq)
@@ -151,7 +172,7 @@ if(isset($pers) && $pers)
              else
                 $eq['Equipment']['qty1']=$eq['Equipment']['qty'];
       ?>
-    <tr><td id="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>"><input type="text" style="width:160px;" name="Equipment[items][]" value="<?php echo $eq['Equipment']['items'];?>" readonly /></td><td><input class="quantity" type="text" name="Equipment[qty][]" value="<?php echo $eq['Equipment']['qty'];?>"/></td><td><input type="text" name="Equipment[kms][]" value="<?php echo $eq['Equipment']['kms'];?>"/></td><td><input value="<?php echo $eq['Equipment']['fuel_cost'];?>" type="text" name="Equipment[fuel_cost][]" class="fuel_cost"/></td><td><input type="hidden" value="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>" /></td><td><input value="$<?php echo $eq['Equipment']['amount_billable'];?>" type="text" name="Equipment[amount_billable][]" class="total" readonly/></td><td><input type="checkbox" onclick="var v=0;if($(this).is(':checked')){v=1;}else{v=0;}$(this).parent().find('.fee').val(v);" /><input class="fee" type="hidden" name="Equipment[admin_fee][]" value="0" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest('tr').remove();">X</a></td></tr>  
+    <tr><td id="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>"><input type="text" style="width:160px;" name="Equipment[items][]" value="<?php echo $eq['Equipment']['items'];?>" readonly /></td><td><input class="quantity" type="text" name="Equipment[qty][]" value="<?php echo $eq['Equipment']['qty'];?>"/></td><td><input type="text" name="Equipment[kms][]" value="<?php echo $eq['Equipment']['kms'];?>"/></td><td><input value="<?php echo $eq['Equipment']['fuel_cost'];?>" type="text" name="Equipment[fuel_cost][]" class="fuel_cost"/></td><td <?php if($this->Session->read('is_client')=='0'){ echo "style='display:none'";}?>><input type="hidden" value="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>" /></td><td><input value="$<?php echo $eq['Equipment']['amount_billable'];?>" type="text" name="Equipment[amount_billable][]" class="total" readonly/></td><td><input type="checkbox" onclick="var v=0;if($(this).is(':checked')){v=1;}else{v=0;}$(this).parent().find('.fee').val(v);" /><input class="fee" type="hidden" name="Equipment[admin_fee][]" value="0" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest('tr').remove();">X</a></td></tr>  
       <?php  
       }
       
@@ -160,7 +181,7 @@ if(isset($pers) && $pers)
     
 </table>
 
-<table>
+<table <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>>
 <tr><td style="padding-top: 50px;border-top:1px solid #ddd"><strong>Total: <span class="g_tot"><?php if(isset($pers)) echo $total;?></span></strong><input type="hidden" name="total" value="<?php if(isset($pers)) echo $total;?>" id="g_tot"  /></td></tr>
 <tr><td><strong>Admin Fee: <span class="a_fee">$<?php if(isset($pers)) echo $a_fee;?></span></strong><input type="hidden" name="a_fee" value="<?php if(isset($pers)) echo $a_fee;?>" id="a_fee"  /></td></tr>
 <tr><td><strong>Tax: <span class="tax">$<?php if(isset($pers)) echo $tax;?></span></strong><input type="hidden" name="tax" value="<?php if(isset($pers)) echo $tax;?>" id="tax"  /></td></tr>
@@ -302,7 +323,7 @@ if(isset($pers) && $pers)
             //alert(bill_type);
             
        $('.entries').show();
-       $('.dep').append('<tr class="pers"><td id="'+hr_rate+'_'+holiday_rate+'_'+travel_rate+'"><input class="sg"  type="text" style="width:160px;" name="Personnel[position][]" value="'+main_val+'" readonly/></td><td><input class="staff" type="text" name="Personnel[no_of_staff][]" value=""/></td><td><input name="Personnel[start_time][]" type="text" class="time"/></td><td><input type="text" name="Personnel[end_time][]" class="time"/></td><td><input type="text" class="total_hours" name="Personnel[total_hours][]" readonly/></td><td><input type="text" class="hours_billable total" name="Personnel[hours_billable][]" value="$"  readonly/></td><td><input type="text" name="Personnel[travel][]" class="travel"/></td><td><input type="text" name="Personnel[travel_billable][]" value="$" class="total" readonly/></td><td><input type="text" name="Personnel[meal_amount][]" class="meal"/></td><td><input value="$" type="text" name="Personnel[meal_billable][]" readonly class="total"/></td><td><input type="checkbox" onclick="var v=0;if($(this).is(\':checked\')){v=1;}else{v=0;}$(this).parent().find(\'.fee\').val(v);" /><input class="fee" type="hidden" name="Personnel[admin_fee][]" value="0" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>') 
+       $('.dep').append('<tr class="pers"><td id="'+hr_rate+'_'+holiday_rate+'_'+travel_rate+'"><input class="sg"  type="text" style="width:160px;" name="Personnel[position][]" value="'+main_val+'" readonly/></td><td><input class="staff" type="text" name="Personnel[no_of_staff][]" value=""/></td><td><input name="Personnel[start_time][]" type="text" class="time"/></td><td><input type="text" name="Personnel[end_time][]" class="time"/></td><td><input type="text" class="total_hours" name="Personnel[total_hours][]" readonly/></td><td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><input type="text" class="hours_billable total" name="Personnel[hours_billable][]" value="$"  readonly/></td><td><input type="text" name="Personnel[travel][]" class="travel"/></td><td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><input type="text" name="Personnel[travel_billable][]" value="$" class="total" readonly/></td><td><input type="text" name="Personnel[meal_amount][]" class="meal"/></td><td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><input value="$" type="text" name="Personnel[meal_billable][]" readonly class="total"/></td><td><input type="checkbox" onclick="var v=0;if($(this).is(\':checked\')){v=1;}else{v=0;}$(this).parent().find(\'.fee\').val(v);" /><input class="fee" type="hidden" name="Personnel[admin_fee][]" value="0" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>') 
         $('.time').timepicker();
     });
     
@@ -428,7 +449,7 @@ if(isset($pers) && $pers)
                cost ='';
                if(cost)
                cost= parseFloat(cost);
-               $('.misc').append('<tr><td id="'+mid+'"><input type="hidden" name="Equipment[kms][]" /><input type="hidden" name="Equipment[fuel_cost][]" /><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td><input class="quantity" type="text" name="Equipment[qty][]"/></td><td></td><td></td><td></td><td><input value="$" type="text" name="Equipment[amount_billable][]" class="total" readonly/></td><td><input type="checkbox" onclick="var v=0;if($(this).is(\':checked\')){v=1;}else{v=0;}$(this).parent().find(\'.fee\').val(v);" /><input class="fee" type="hidden" name="Equipment[admin_fee][]" value="0" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>'); 
+               $('.misc').append('<tr><td id="'+mid+'"><input type="hidden" name="Equipment[kms][]" /><input type="hidden" name="Equipment[fuel_cost][]" /><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td><input class="quantity" type="text" name="Equipment[qty][]"/></td><td></td><td></td><td></td><td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><input value="$" type="text" name="Equipment[amount_billable][]" class="total" readonly/></td><td><input type="checkbox" onclick="var v=0;if($(this).is(\':checked\')){v=1;}else{v=0;}$(this).parent().find(\'.fee\').val(v);" /><input class="fee" type="hidden" name="Equipment[admin_fee][]" value="0" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>'); 
             });
             $('.go_misc2').click(function(){
               
@@ -446,7 +467,7 @@ if(isset($pers) && $pers)
                cost ='';
                if(cost)
                cost= parseFloat(cost);
-               $('.misc2').append('<tr ><td id="'+mid+'"><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td><input class="quantity" type="text" name="Equipment[qty][]"/></td><td><input type="text" name="Equipment[kms][]"/></td><td><input value="$" type="text" name="Equipment[fuel_cost][]" class="fuel_cost"/></td><td><input type ="hidden" value="'+mid+'" /></td><td><input value="$" type="text" name="Equipment[amount_billable][]" class="total" readonly/></td><td><input type="checkbox" onclick="var v=0;if($(this).is(\':checked\')){v=1;}else{v=0;}$(this).parent().find(\'.fee\').val(v);" /><input class="fee" type="hidden" name="Equipment[admin_fee][]" value="0" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>'); 
+               $('.misc2').append('<tr ><td id="'+mid+'"><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td><input class="quantity" type="text" name="Equipment[qty][]"/></td><td><input type="text" name="Equipment[kms][]"/></td><td><input value="$" type="text" name="Equipment[fuel_cost][]" class="fuel_cost"/></td><td><input type ="hidden" value="'+mid+'" /></td><td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><input value="$" type="text" name="Equipment[amount_billable][]" class="total" readonly/></td><td><input type="checkbox" onclick="var v=0;if($(this).is(\':checked\')){v=1;}else{v=0;}$(this).parent().find(\'.fee\').val(v);" /><input class="fee" type="hidden" name="Equipment[admin_fee][]" value="0" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>'); 
             });
     });
     var st=0;
@@ -484,7 +505,7 @@ if(isset($pers) && $pers)
         var hours_billable = hr_rate*st*hr;
         //alert(hours_billable);
 
-        $(this).closest('tr').children('td:nth-child(6)').children('input').val(hours_billable.toFixed(2));
+        $(this).closest('tr').children('td:nth-child(6)').children('input').val("$"+hours_billable.toFixed(2));
         var tot = 0;
         var n_tot =0;
         $('.total').each(function(){
@@ -554,7 +575,7 @@ if(isset($pers) && $pers)
         var hours_billable = hr_rate*st*hr;
         //alert(hours_billable);
 
-        $(this).closest('tr').children('td:nth-child(6)').children('input').val(hours_billable.toFixed(2));
+        $(this).closest('tr').children('td:nth-child(6)').children('input').val("$"+hours_billable.toFixed(2));
        var tot = 0;
         var n_tot =0;
         $('.total').each(function(){
@@ -594,7 +615,7 @@ if(isset($pers) && $pers)
         
         var st = $(this).val();
         
-        if(!st)
+        if(!st || st == "")
             st=0;
         else
             st = parseFloat(st);
@@ -611,10 +632,13 @@ if(isset($pers) && $pers)
                 hr_rate = hr_rate;
             else
                 hr_rate = holiday_rate; 
+        //alert(hr_rate);
         if(!hr_rate)
-        hr_rate = 0;
+            hr_rate = 0;
         //alert(hr_rate);
         var travel_rate = parseFloat(optn[2]);
+        //quick fix
+        var travel_rate = parseFloat(optn[1]);
         var hours_billable = travel_rate*st;
         //alert(hours_billable);
 
@@ -683,7 +707,7 @@ if(isset($pers) && $pers)
             f_cost = f_cost.replace('$','');
             hours_billable = hours_billable+parseFloat(f_cost);
         }
-        $(this).closest('tr').children('td:nth-child(6)').children('input').val(hours_billable.toFixed(2));
+        $(this).closest('tr').children('td:nth-child(6)').children('input').val("$"+hours_billable.toFixed(2));
         var tot = 0;
         var n_tot =0;
         $('.total').each(function(){
