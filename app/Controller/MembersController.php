@@ -92,6 +92,7 @@ class MembersController extends AppController
             $this->Session->setFlash('Email already exist');
             $this->redirect('add');
         }}
+        
         $this->loadModel('Member');
         $this->loadModel('AdminDoc');
         $this->set('admin_doc',$this->AdminDoc->findById('1'));
@@ -199,6 +200,10 @@ class MembersController extends AppController
             $arr['fname']=$_POST['fname'];
             $arr['lname']=$_POST['lname'];
             $arr['full_name']=$_POST['full_name'];
+            if(isset($_POST['is_client']))
+            $arr['is_client'] = 1;
+            else
+            $arr['is_client'] = 0;
             //$arr['name_avatar'] = $_POST['avatar'];
             $arr['title'] = $_POST['title'];
             $arr['address'] = $_POST['address'];
@@ -716,6 +721,8 @@ class MembersController extends AppController
             $this->Member->saveField('fname',$_POST['fname']);
             $this->Member->saveField('lname',$_POST['lname']);
             $this->Member->saveField('full_name',$_POST['full_name']);
+            if(isset($_POST['is_client']))
+            $this->Member->saveField('is_client',1);
             //$this->Member->saveField('name_avatar',$_POST['avatar']);
             $this->Member->saveField('title',$_POST['title']);
             $this->Member->saveField('address',$_POST['address']);
