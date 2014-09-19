@@ -618,7 +618,8 @@ $(function(){
            $('.deploy').load('<?php echo $base_url;?>uploads/deployment/<?php echo $job_id;?>');
            $(".loader2").hide();
            $(".description_tr").hide(); 
-           $(".image_tr").hide();  
+           $(".image_tr").hide(); 
+           $('.draft').hide(); 
        }
        else 
        $('.deploy').hide();

@@ -732,8 +732,8 @@ class SearchController extends AppController
                     {
                         
                     }
-                 if($this->Session->read('is_client')=='1')
-                  $arrs = array('document_type'=>'deployment_rate'); 
+                 if(($this->Session->read('is_client')=='1' || (!$this->Session->read('admin') && $qs['Canview']['deployment_rate'])) && !$type)
+                  $arrs[] = array('document_type'=>'deployment_rate'); 
                 $this->paginate = array('conditions'=>array('OR'=>$arrs,'AND'=>array('draft'=>0,'approved IN('.$approve.')','document_type <>'=>'client_feedback','OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%'))),'job_id IN'.$jid),'order'=>$order,'limit'=>10);
                 $this->set('count',$this->Document->find('count',array('conditions'=>array('OR'=>$arrs,'AND'=>array('approved IN('.$approve.')','draft'=>0,'document_type <>'=>'client_feedback','OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%'))),'job_id IN'.$jid))));
                 
@@ -742,14 +742,14 @@ class SearchController extends AppController
             else
             if($to && $from){
                 if($to!=$from){
-                    if($this->Session->read('is_client')=='1')
-                  $arrs = array('document_type'=>'deployment_rate'); 
+                    if(($this->Session->read('is_client')=='1' || (!$this->Session->read('admin') && $qs['Canview']['deployment_rate'])) && !$type)
+                  $arrs[] = array('document_type'=>'deployment_rate'); 
                     $this->paginate = array('conditions'=>array('OR'=>$arrs,'AND'=>array('approved IN('.$approve.')','draft'=>0,'document_type <>'=>'client_feedback','OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'DATE(`date`) >='=>$from, 'DATE(`date`) <='=>$to,'job_id IN'.$jid)),'order'=>$order,'limit'=>10);
                     $this->set('count',$this->Document->find('count',array('conditions'=>array('OR'=>$arrs,'AND'=>array('approved IN('.$approve.')','document_type <>'=>'client_feedback','OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'DATE(`date`) >='=>$from, 'DATE(`date`) <='=>$to,'job_id IN'.$jid)))));
                 }
                 else{
-                    if($this->Session->read('is_client')=='1')
-                  $arrs = array('document_type'=>'deployment_rate'); 
+                    if(($this->Session->read('is_client')=='1' || (!$this->Session->read('admin') && $qs['Canview']['deployment_rate'])) && !$type)
+                  $arrs[] = array('document_type'=>'deployment_rate'); 
                     $this->paginate = array('conditions'=>array('OR'=>$arrs,'AND'=>array('approved IN('.$approve.')','draft'=>0,'document_type <>'=>'client_feedback','OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'DATE(`date`)'=>$from,'job_id IN'.$jid)),'order'=>$order,'limit'=>10);
                     $this->set('count',$this->Document->find('count',array('conditions'=>array('OR'=>$arrs,'AND'=>array('approved IN('.$approve.')','draft'=>0,'document_type <>'=>'client_feedback','OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'DATE(`date`)'=>$from,'job_id IN'.$jid)))));
                 }
@@ -763,15 +763,15 @@ class SearchController extends AppController
                 if(!$to && !$from){
                 if($job_id == 0 )
                 {
-                    if($this->Session->read('is_client')=='1')
-                  $arrs = array('document_type'=>'deployment_rate'); 
+                    if(($this->Session->read('is_client')=='1' || (!$this->Session->read('admin') && $qs['Canview']['deployment_rate'])) && !$type)
+                  $arrs[] = array('document_type'=>'deployment_rate'); 
                     $this->paginate = array('conditions'=>array('OR'=>$arrs,'AND'=>array('approved IN('.$approve.')','draft'=>0,'document_type <>'=>'client_feedback','job_id IN'.$jid)),'order'=>$order,'limit'=>10);
                     $this->set('count',$this->Document->find('count',array('conditions'=>array('OR'=>$arrs,'AND'=>array('approved IN('.$approve.')','draft'=>0,'document_type <>'=>'client_feedback','job_id IN'.$jid)))));
                 }
                 else
                 {
-                    if($this->Session->read('is_client')=='1')
-                  $arrs = array('document_type'=>'deployment_rate'); 
+                    if(($this->Session->read('is_client')=='1' || (!$this->Session->read('admin') && $qs['Canview']['deployment_rate'])) && !$type)
+                  $arrs[] = array('document_type'=>'deployment_rate'); 
                     $this->paginate = array('conditions'=>array('OR'=>$arrs,'AND'=>array('approved IN('.$approve.')','draft'=>0,'document_type <>'=>'client_feedback','job_id'=>$job_id)),'order'=>$order,'limit'=>10);
                     $this->set('count',$this->Document->find('count',array('conditions'=>array('OR'=>$arrs,'AND'=>array('approved IN('.$approve.')','draft'=>0,'document_type <>'=>'client_feedback','job_id'=>$job_id )))));
                 }
@@ -780,14 +780,14 @@ class SearchController extends AppController
                 {
                     if($to==$from)
                     {
-                        if($this->Session->read('is_client')=='1')
-                  $arrs = array('document_type'=>'deployment_rate'); 
+                        if(($this->Session->read('is_client')=='1' || (!$this->Session->read('admin') && $qs['Canview']['deployment_rate'])) && !$type)
+                  $arrs[] = array('document_type'=>'deployment_rate'); 
                         $this->paginate = array('conditions'=>array('OR'=>$arrs,'AND'=>array('approved IN('.$approve.')','draft'=>0,'document_type <>'=>'client_feedback','job_id IN'.$jid,'DATE(`date`) LIKE "'.$from.'%"')),'order'=>$order,'limit'=>10);
                         $this->set('count',$this->Document->find('count',array('conditions'=>array('OR'=>$arrs,'AND'=>array('approved IN('.$approve.')','draft'=>0,'document_type <>'=>'client_feedback','job_id IN'.$jid,'DATE(`date`) LIKE "'.$from.'%"')))));
                     }
                     else{
-                        if($this->Session->read('is_client')=='1')
-                  $arrs = array('document_type'=>'deployment_rate'); 
+                        if(($this->Session->read('is_client')=='1' || (!$this->Session->read('admin') && $qs['Canview']['deployment_rate'])) && !$type)
+                  $arrs[]= array('document_type'=>'deployment_rate'); 
                         $this->paginate = array('conditions'=>array('OR'=>$arrs,'AND'=>array('approved IN('.$approve.')','draft'=>0,'document_type <>'=>'client_feedback','job_id IN'.$jid,'DATE(`date`) >='=>$from,'DATE(`date`) <='=>$to)),'order'=>$order,'limit'=>10);
                         $this->set('count',$this->Document->find('count',array('conditions'=>array('OR'=>$arrs,'AND'=>array('approved IN('.$approve.')','draft'=>0,'document_type <>'=>'client_feedback','job_id IN'.$jid,'DATE(`date`) >='=>$from,'DATE(`date`) <='=>$to)))));
                         }
@@ -825,14 +825,14 @@ class SearchController extends AppController
                         else
                         if($type == 'news_media')
                         $type = 'News/Media';
-                        if($this->Session->read('is_client')=='1')
-                  $arrs2 = array('document_type'=>'deployment_rate'); 
+                        if(($this->Session->read('is_client')=='1' || (!$this->Session->read('admin') && $qs['Canview']['deployment_rate'])) && !$type)
+                  $arrs2[] = array('document_type'=>'deployment_rate'); 
                         $this->paginate = array('conditions'=>array('OR'=>$arrs2,'AND'=>array('OR'=>array(array('document_type'=>'%'.$type.'%'),array('`desc` LIKE'=>'%'.$search.'%')),'approved IN('.$approve.')','draft'=>0)),'order'=>$order,'limit'=>10);
                         $this->set('count',$this->SpecJob->find('count',array('conditions'=>array('OR'=>$arrs2,'AND'=>array('OR'=>array(array('document_type'=>'%'.$type.'%'),array('`desc` LIKE'=>'%'.$search.'%')),'approved IN('.$approve.')','draft'=>0)))));
                     }
                     else{
-                 if($this->Session->read('is_client')=='1')
-                  $arrs2 = array('document_type'=>'deployment_rate');    
+                 if(($this->Session->read('is_client')=='1' || (!$this->Session->read('admin') && $qs['Canview']['deployment_rate'])) && !$type)
+                  $arrs[] = array('document_type'=>'deployment_rate');    
                 $this->paginate = array('conditions'=>array('OR'=>$arrs2,'AND'=>array('OR'=>array(array('document_type LIKE'=>'%'.$search.'%'),array('`desc` LIKE'=>'%'.$search.'%')),'approved IN('.$approve.')','draft'=>0)),'order'=>$order,'limit'=>10);
                 $this->set('count',$this->SpecJob->find('count',array('conditions'=>array('OR'=>$arrs2,'AND'=>array('OR'=>array(array('document_type LIKE'=>'%'.$search.'%'),array('`desc` LIKE'=>'%'.$search.'%')),'approved IN('.$approve.')','draft'=>0)))));
                 }
@@ -842,15 +842,15 @@ class SearchController extends AppController
             if($to && $from){
                 
                 if($to!=$from){
-                    if($this->Session->read('is_client')=='1')
-                  $arrs = array('document_type'=>'deployment_rate'); 
+                    if(($this->Session->read('is_client')=='1' || (!$this->Session->read('admin') && $qs['Canview']['deployment_rate'])) && !$type)
+                  $arrs[] = array('document_type'=>'deployment_rate'); 
                 $this->paginate = array('conditions'=>array('OR'=>$arrs,'AND'=>array('OR'=>array(array('document_type LIKE'=>'%'.$search.'%'),array('`desc` LIKE'=>'%'.$search.'%')),'DATE(`dop`) >='=>$from, 'DATE(`dop`) <='=>$to,'approved IN('.$approve.')','draft'=>0)),'order'=>$order,'limit'=>10);
                 $this->set('count',$this->SpecJob->find('count',array('conditions'=>array('OR'=>$arrs,'AND'=>array('OR'=>array(array('document_type LIKE'=>'%'.$search.'%'),array('`desc` LIKE'=>'%'.$search.'%')),'DATE(`dop`) >='=>$from, 'DATE(`dop`) <='=>$to,'approved IN('.$approve.')','draft'=>0)))));
                 }
                 //$this->paginate = array('conditions'=>array('OR'=>$arrs,'AND'=>array('document_type <>'=>'client_feedback','OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'DATE(`date`) >='=>$from, 'DATE(`date`) <='=>$to,'job_id IN'.$jid)),'order'=>$order,'limit'=>10);
                 else{
-                    if($this->Session->read('is_client')=='1')
-                  $arrs = array('document_type'=>'deployment_rate'); 
+                    if(($this->Session->read('is_client')=='1' || (!$this->Session->read('admin') && $qs['Canview']['deployment_rate'])) && !$type)
+                  $arrs[] = array('document_type'=>'deployment_rate'); 
                 //$this->paginate = array('conditions'=>array('OR'=>$arrs,'AND'=>array('document_type <>'=>'client_feedback','OR'=>array(array('title LIKE'=>'%'.$search.'%'),array('description LIKE'=>'%'.$search.'%')),'DATE(`date`)'=>$from,'job_id IN'.$jid)),'order'=>$order,'limit'=>10);
                 $this->paginate = array('conditions'=>array('OR'=>$arrs,'AND'=>array('OR'=>array(array('document_type LIKE'=>'%'.$search.'%'),array('`desc` LIKE'=>'%'.$search.'%')),'DATE(`dop`)'=>$from,'approved IN('.$approve.')','draft'=>0)),'order'=>$order,'limit'=>10);
                 $this->set('count',$this->SpecJob->find('count',array('conditions'=>array('OR'=>$arrs,'AND'=>array('OR'=>array(array('document_type LIKE'=>'%'.$search.'%'),array('`desc` LIKE'=>'%'.$search.'%')),'DATE(`dop`)'=>$from,'approved IN('.$approve.')','draft'=>0)))));
@@ -870,14 +870,14 @@ class SearchController extends AppController
                 if(!$to && !$from){
                     if($type)
                     {
-                        if($this->Session->read('is_client')=='1')
-                  $arrs2 = array('document_type'=>'deployment_rate'); 
+                        if(($this->Session->read('is_client')=='1' || (!$this->Session->read('admin') && $qs['Canview']['deployment_rate'])) && !$type)
+                  $arrs2[] = array('document_type'=>'deployment_rate'); 
                         $this->paginate = array('conditions'=>array('OR'=>$arrs2,'document_type'=>$type,'approved IN('.$approve.')','draft'=>0),'order'=>$order,'limit'=>10);
                         $this->set('count',$this->SpecJob->find('count',array('conditions'=>array('OR'=>$arrs2,'document_type'=>$type,'approved IN('.$approve.')','draft'=>0))));    
                     }
                     else{
-                        if($this->Session->read('is_client')=='1')
-                  $arrs2 = array('document_type'=>'deployment_rate'); 
+                        if(($this->Session->read('is_client')=='1' || (!$this->Session->read('admin') && $qs['Canview']['deployment_rate'])) && !$type)
+                  $arrs2[] = array('document_type'=>'deployment_rate'); 
                 $this->paginate = array('conditions'=>array('OR'=>$arrs2,'approved IN('.$approve.')','draft'=>0),'order'=>$order,'limit'=>10);
                 $this->set('count',$this->SpecJob->find('count',array('conditions'=>array('OR'=>$arrs2,'approved IN('.$approve.')','draft'=>0))));
                 }
@@ -888,15 +888,15 @@ class SearchController extends AppController
                     {
                         if($type)
                         {
-                            if($this->Session->read('is_client')=='1')
-                  $arrs2 = array('document_type'=>'deployment_rate'); 
+                            if(($this->Session->read('is_client')=='1' || (!$this->Session->read('admin') && $qs['Canview']['deployment_rate'])) && !$type)
+                  $arrs2[] = array('document_type'=>'deployment_rate'); 
                             $this->paginate = array('conditions'=>array('OR'=>$arrs2,'AND'=>array('document_type'=>$type,'approved IN('.$approve.')','draft'=>0,'DATE(`dop`) LIKE "'.$from.'%"')),'order'=>$order,'limit'=>10);
                             $this->set('count',$this->SpecJob->find('count',array('conditions'=>array('OR'=>$arrs2,'AND'=>array('document_type'=>$type,'approved IN('.$approve.')','draft'=>0,'DATE(`dop`) LIKE "'.$from.'%"')))));
                             
                         }
                         else{     
-                            if($this->Session->read('is_client')=='1')
-                  $arrs2 = array('document_type'=>'deployment_rate'); 
+                            if(($this->Session->read('is_client')=='1' || (!$this->Session->read('admin') && $qs['Canview']['deployment_rate'])) && !$type)
+                  $arrs2[] = array('document_type'=>'deployment_rate'); 
                         $this->paginate = array('conditions'=>array('OR'=>$arrs2,'AND'=>array('approved IN('.$approve.')','draft'=>0,'DATE(`dop`) LIKE "'.$from.'%"')),'order'=>$order,'limit'=>10);
                         $this->set('count',$this->SpecJob->find('count',array('conditions'=>array('OR'=>$arrs2,'AND'=>array('approved IN('.$approve.')','draft'=>0,'DATE(`dop`) LIKE "'.$from.'%"')))));
                         }
@@ -904,13 +904,13 @@ class SearchController extends AppController
                     else
                     if($type)
                     {
-                        if($this->Session->read('is_client')=='1')
-                  $arrs2 = array('document_type'=>'deployment_rate'); 
+                        if(($this->Session->read('is_client')=='1' || (!$this->Session->read('admin') && $qs['Canview']['deployment_rate'])) && !$type)
+                  $arrs2[] = array('document_type'=>'deployment_rate'); 
                        $this->paginate = array('conditions'=>array('OR'=>$arrs2,'AND'=>array('approved IN('.$approve.')','draft'=>0,'document_type'=>$type,'DATE(`dop`) >='=>$from,'DATE(`dop`) <='=>$to)),'order'=>$order,'limit'=>10);
                        $this->set('count',$this->SpecJob->find('count',array('conditions'=>array('OR'=>$arrs2,'AND'=>array('approved IN('.$approve.')','draft'=>0,'document_type'=>$type,'DATE(`dop`) >='=>$from,'DATE(`dop`) <='=>$to))))); 
                     }else{
-                        if($this->Session->read('is_client')=='1')
-                  $arrs2 = array('document_type'=>'deployment_rate'); 
+                        if(($this->Session->read('is_client')=='1' || (!$this->Session->read('admin') && $qs['Canview']['deployment_rate'])) && !$type)
+                  $arrs2[] = array('document_type'=>'deployment_rate'); 
                         $this->paginate = array('conditions'=>array('OR'=>$arrs2,'AND'=>array('approved IN('.$approve.')','draft'=>0,'DATE(`dop`) >='=>$from,'DATE(`dop`) <='=>$to)),'order'=>$order,'limit'=>10);
                         $this->set('count',$this->SpecJob->find('count',array('conditions'=>array('OR'=>$arrs2,'AND'=>array('approved IN('.$approve.')','draft'=>0,'DATE(`dop`) >='=>$from,'DATE(`dop`) <='=>$to)))));                        
                         }
