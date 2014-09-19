@@ -72,6 +72,22 @@ elseif($doc['Document']['document_type'] == 'mobile_vehicle_trunk_inventory')
 else    
     $ty = $doc['Document']['document_type'];
 if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Member']['Canview'][$ty]=='1')){?>
+<?php if($this->Session->read('is_client')==1 && $doc['Document']['document_type']=='deployment_rate'){?>
+<div style="margin-bottom: 10px;">
+    
+    <?php if($doc['Document']['client_approve']=='0'){
+        ?>
+        <a href="<?php echo $this->webroot;?>uploads/client_approve/<?php echo $doc['Document']['id'];?>/1" class="btn btn-success">Approve</a>
+        <a href="<?php echo $this->webroot;?>uploads/client_approve/<?php echo $doc['Document']['id'];?>/2" class="btn btn-danger">Disapprove</a>
+    <?php }
+    elseif($doc['Document']['client_approve']==1){
+            ?>
+            <strong style="display: block;background:#F5F5F5;color:#5FBE5F;font-size:17px;padding:7px;">Approved By Client</strong>
+            <?php }
+            else{?><strong style="display: block;background:#F5F5F5;color:#E1544F;font-size:17px;padding:7px;">Disapproved By Client</strong><?php }
+            ?>
+</div>
+<?php }?>
 <table class="table">
     <!--<tr>
         <td style="width:140px;"><b>Title</b></td>
@@ -81,6 +97,7 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         <td><b>Location</b></td>
         <td><?php echo $doc['Document']['location']; ?></td>
     </tr> -->
+    
     <tr>
         <td><b> <?php echo $this->requestAction('dashboard/translate/Document Type');?></b></td>
         <td><?php echo $type = ucwords(str_replace('_',' ',$doc['Document']['document_type'])); ?></td>

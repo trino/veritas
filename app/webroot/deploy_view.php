@@ -1,22 +1,7 @@
 <tr>
     <td colspan="2" style="padding: 0;">
 <table class="dep">
-<?php if($this->Session->read('is_client')==1){?>
-<tr class="">
-    <td colspan="10" style="padding-top: 50px;">
-    <?php if($doc['Document']['client_approve']=='0'){
-        ?>
-        <a href="<?php echo $this->webroot;?>uploads/client_approve/<?php echo $doc['Document']['id'];?>/1" class="btn btn-success">Approve</a>
-        <a href="<?php echo $this->webroot;?>uploads/client_approve/<?php echo $doc['Document']['id'];?>/2" class="btn btn-danger">Disapprove</a>
-    <?php }
-    elseif($doc['Document']['client_approve']==1){
-            ?>
-            <strong>Approved By Client</strong>
-            <?php }
-            else{?><strong>Disapproved By Client</strong><?php }
-            ?></td>
-</tr>
-<?php }?>
+
 <tr class="entries">
     <td colspan="10"><strong>Personnel</strong></td>
 </tr>
