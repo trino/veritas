@@ -1,8 +1,10 @@
 <div style="width: 770px;padding:5px;font-size:14px;"><div style="float:left;width:660px;"><div style="float:left;width:130px;"><strong>Full name</strong></div><div style="float:left;margin-left:5px;width:120px;"><strong>User name</strong></div><div style="float:left;margin-left:5px;width:220px;"><strong>Email</strong></div><div style="float: left;width:120px;"><strong>Job</strong></div><div style="clear: both;"></div></div><div style="float:right;width:100px;">Choose</div><div style="clear: both;"></div></div>
-<?php     
+<?php
+
 if($job)
 foreach($job as $j)
 {
+    $memz = array();     
     if($jid)
                     {
                         if($jid!=$j['Job']['id'])
@@ -23,33 +25,41 @@ foreach($job as $j)
             <?php
             foreach($q as $mem)
             {
-                if($jid && !$name)
+                if(!in_array($mem['Jobmember']['member_id'],$memz))
+                    $memz[] = $mem['Jobmember']['member_id'];
+              
+            }
+            foreach($memz as $m)
+            {
+                  if($jid && !$name)
                 {
-                    $m = $member->find('first',array('conditions'=>array('id'=>$mem['Jobmember']['member_id'])));
+                    $m = $member->find('first',array('conditions'=>array('id'=>$m)));
                 }
                 else
-                $m = $member->find('first',array('conditions'=>array('id'=>$mem['Jobmember']['member_id'],'OR'=>array(array('full_name LIKE "%'.$name.'%"'),array('fname LIKE "%'.$name.'%"'),array('lname LIKE "%'.$name.'%"'),array('email LIKE "%'.$name.'%"')))));
-                if($m){
+                    $m = $member->find('first',array('conditions'=>array('id'=>$m,'OR'=>array(array('full_name LIKE "%'.$name.'%"'),array('fname LIKE "%'.$name.'%"'),array('lname LIKE "%'.$name.'%"'),array('email LIKE "%'.$name.'%"')))));
+                if($m)
+                {
                 
-                if(!$this->Session->read('admin')){
-                if($this->Session->read('id')!=$m['Member']['id']){    
-                echo "<div style='width:770px;'><div style='float:left;width:660px;'><div style='float:left;width:130px;'>&nbsp;".$m['Member']['fname']." ".$m['Member']['lname']."</div><div style='float:left;margin-left:5px;width:120px;'>&nbsp;".$m['Member']['full_name']."</div><div style='float:left;margin-left:5px;width:220px;'>&nbsp;".$m['Member']['email']."</div><div style='width:120px;margin-left:5px;float:left;'>".$j['Job']['title']."</div><div style='clear:both;'></div></div>";
-                ?>
-                <div style="float: right;width:80px;"><input type="checkbox" class="<?php echo $m['Member']['full_name'].'__'.$m['Member']['id'].'__'.$m['Member']['email'];?>" /></div>
-                <div style="clear:both;"></div></div>
-                <?php
+                    if(!$this->Session->read('admin')){
+                    if($this->Session->read('id')!=$m['Member']['id']){    
+                    echo "<div style='width:770px;'><div style='float:left;width:660px;'><div style='float:left;width:130px;'>&nbsp;".$m['Member']['fname']." ".$m['Member']['lname']."</div><div style='float:left;margin-left:5px;width:120px;'>&nbsp;".$m['Member']['full_name']."</div><div style='float:left;margin-left:5px;width:220px;'>&nbsp;".$m['Member']['email']."</div><div style='width:120px;margin-left:5px;float:left;'>".$j['Job']['title']."</div><div style='clear:both;'></div></div>";
+                    ?>
+                    <div style="float: right;width:80px;"><input type="checkbox" class="<?php echo $m['Member']['full_name'].'__'.$m['Member']['id'].'__'.$m['Member']['email'];?>" /></div>
+                    <div style="clear:both;"></div></div>
+                    <?php
+                    }
+                    }
+                    else
+                    {
+                       echo "<div style='width:770px;'><div style='float:left;width:660px;'><div style='float:left;width:130px;'>&nbsp;".$m['Member']['fname']." ".$m['Member']['lname']."</div><div style='float:left;margin-left:5px;width:120px;'>&nbsp;".$m['Member']['full_name']."</div><div style='float:left;margin-left:5px;width:220px;'>&nbsp;".$m['Member']['email']."</div><div style='width:120px;margin-left:5px;float:left;'>".$j['Job']['title']."</div><div style='clear:both;'></div></div>";
+                        ?>
+                        <div style="float: right;width:80px;"><input type="checkbox" class="<?php echo $m['Member']['full_name'].'__'.$m['Member']['id'].'__'.$m['Member']['email'];?>" /></div>
+                        <div style="clear:both;"></div></div>
+                        <?php 
+                    }
+                
+                }
             }
-            }
-            else
-            {
-               echo "<div style='width:770px;'><div style='float:left;width:660px;'><div style='float:left;width:130px;'>&nbsp;".$m['Member']['fname']." ".$m['Member']['lname']."</div><div style='float:left;margin-left:5px;width:120px;'>&nbsp;".$m['Member']['full_name']."</div><div style='float:left;margin-left:5px;width:220px;'>&nbsp;".$m['Member']['email']."</div><div style='width:120px;margin-left:5px;float:left;'>".$j['Job']['title']."</div><div style='clear:both;'></div></div>";
-                ?>
-                <div style="float: right;width:80px;"><input type="checkbox" class="<?php echo $m['Member']['full_name'].'__'.$m['Member']['id'].'__'.$m['Member']['email'];?>" /></div>
-                <div style="clear:both;"></div></div>
-                <?php 
-            }
-            
-            }}
         }
         ?>
     </div>
