@@ -1,27 +1,12 @@
 <tr>
     <td colspan="2" style="padding: 0;">
 <table class="dep">
-<?php if($this->Session->read('is_client')==1){?>
-<tr class="">
-    <td colspan="10" style="padding-top: 50px;">
-    <?php if($doc['Document']['client_approve']=='0'){
-        ?>
-        <a href="<?php echo $this->webroot;?>uploads/client_approve/<?php echo $doc['Document']['id'];?>/1" class="btn btn-success">Approve</a>
-        <a href="<?php echo $this->webroot;?>uploads/client_approve/<?php echo $doc['Document']['id'];?>/2" class="btn btn-danger">Disapprove</a>
-    <?php }
-    elseif($doc['Document']['client_approve']==1){
-            ?>
-            <strong>Approved By Client</strong>
-            <?php }
-            else{?><strong>Disapproved By Client</strong><?php }
-            ?></td>
-</tr>
-<?php }?>
+
 <tr class="entries">
-    <td colspan="10"><strong>Personnel</strong></td>
+    <td colspan="11"><strong>Personnel</strong></td>
 </tr>
 <tr class="entries">
-    <td><strong>Position</strong></td><td><strong>Number of Staff</strong></td><td><strong>Hours worked each</strong></td><td><strong>Hours Billable</strong></td><td><strong>Travel Billable</strong></td><td><strong>Meal Per Diem Billable</strong></td>
+    <td><strong>Position</strong></td><td><strong>Number of Staff</strong></td><td><strong>Hours worked each</strong></td><td><strong>Hours Billable</strong></td><td><strong>Travel Billable</strong></td><td><strong>Meal Per Diem Billable</strong></td><td><strong>Admin Fee</strong></td>
 </tr>
 <?php
 if($personnel) 
@@ -40,6 +25,7 @@ if($personnel)
             <td>$<?php echo $per['Personnel']['hours_billable']?></td>
             <td>$<?php echo $per['Personnel']['travel_billable']?></td>
             <td>$<?php echo $per['Personnel']['meal_billable']?></td>
+            <td><?php if($per['Personnel']['admin_fee']){?>&#10004;<?php }?></td>
         </tr>
         <?php
     }
@@ -49,8 +35,8 @@ if($personnel)
 
 <table class="misc" style="border-bottom:1px solid #ddd">
     
-    <tr class="misc_entries"><td colspan="6" style="padding-top: 50px;"><strong>Equipment</strong></td></tr>
-    <tr class="misc_entries"><td><strong>Item</strong></td><td><strong>Quantity</strong></td><td><strong>Amount Billable</strong></td></tr>
+    <tr class="misc_entries"><td colspan="7" style="padding-top: 50px;"><strong>Equipment</strong></td></tr>
+    <tr class="misc_entries"><td><strong>Item</strong></td><td><strong>Quantity</strong></td><td><strong>Amount Billable</strong></td><td><strong>Admin Fee</strong></td></tr>
     <?php
 if($equipment)
 {
@@ -69,13 +55,13 @@ if($equipment)
             <td><?php echo $per['Equipment']['items'];?></td>
             <td><?php echo $per['Equipment']['qty'];?></td>
             <td>$<?php echo $per['Equipment']['amount_billable'];?></td>
-            
+            <td><?php if($per['Equipment']['admin_fee']){?>&#10004;<?php }?></td>
         </tr>
         <?php
         }
     }?>
-    <tr class="misc_entries2" ><td colspan="6" style="padding-top: 50px;"><strong>Vehicle</strong></td></tr>
-    <tr class="misc_entries2" ><td><strong>Item</strong></td><td><strong>Quantity</strong></td><td><strong>KM's</strong></td><td><strong>Fuel Cost (excluding tax and admin)</strong></td><td></td><td><strong>Amount Billable</strong></td></tr>
+    <tr class="misc_entries2" ><td colspan="7" style="padding-top: 50px;"><strong>Vehicle</strong></td></tr>
+    <tr class="misc_entries2" ><td><strong>Item</strong></td><td><strong>Quantity</strong></td><td><strong>KM's</strong></td><td><strong>Fuel Cost (excluding tax and admin)</strong></td><td></td><td><strong>Amount Billable</strong></td><td><strong>Admin Fee</strong></td></tr>
     <?php
    
     foreach($equipment as $eq)
@@ -91,6 +77,7 @@ if($equipment)
         <td><?php echo $eq['Equipment']['kms'];?></td>
         <td>$<?php echo $eq['Equipment']['fuel_cost'];?></td><td></td>
         <td>$<?php echo $eq['Equipment']['amount_billable'];?></td>
+        <td><?php if($per['Equipment']['admin_fee']){?>&#10004;<?php }?></td>
     </tr>  
       <?php  
       }

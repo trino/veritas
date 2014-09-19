@@ -202,6 +202,7 @@ if(isset($pers) && $pers)
             $('.a_fee').html('$'+af_tot);
         }
        $('.deploy input[type="checkbox"]').live('change',function(){
+        //alert(af_tot);
         $this = $(this);
         var tot = 0;
         //var toadd = 0;
@@ -232,11 +233,11 @@ if(isset($pers) && $pers)
             var toadd = ((af/100)*tot);
             //alert(toadd);
             if($this.is(':checked')){
-            af_tot = af_tot+toadd; 
+                af_tot = Number(af_tot)+Number(toadd); 
             }
             else
             {
-                af_tot = af_tot-toadd;    
+                af_tot = Number(af_tot)-Number(toadd);    
             }
             af_tot = Number(af_tot);
             af_tot = af_tot.toFixed(2);
@@ -245,10 +246,10 @@ if(isset($pers) && $pers)
         
          
         
-        //alert(toadd);
+        //alert(af_tot);
         
         var gtot = $('#g_tot').val();
-        alert(gtot);
+        //alert(gtot);
         if(gtot == '')
         {
             gtot = '0';
@@ -259,33 +260,20 @@ if(isset($pers) && $pers)
         gtot = parseFloat(gtot);
         gtot = Number(gtot);
         }
-        if($this.is(':checked')){
-        gtot = gtot + toadd;
-        }
-        else
-        gtot = gtot - toadd;
+        
         gtot = gtot.toFixed(2);
         $('#g_tot').val(gtot);
         $('.g_tot').html('$'+gtot);
         
-        
+        var tax = 0.13*(Number(gtot)+Number(af_tot));
+        tax = tax.toFixed(2);
+        $('.tax').html('$'+tax);
+        $('#tax').val(tax);
         var g2tot = $('#g2_tot').val();
-        if(g2tot == '')
-        {
-            g2tot = '0';
-            g2tot = parseFloat(g2tot);
-            g2tot = Number(g2tot);
-        }
-        else{
-        g2tot = parseFloat(g2tot);
-        g2tot = Number(g2tot);
-        }
-        if($this.is(':checked')){
-        g2tot = g2tot + toadd;
-        }
-        else
-        g2tot = g2tot - toadd;
+        
+        g2tot = Number(gtot) + Number(tax) + Number(af_tot);
         g2tot = g2tot.toFixed(2);
+        
         $('#g2_tot').val(g2tot);
         $('.g2_tot').html('$'+g2tot);
         

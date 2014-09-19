@@ -723,6 +723,8 @@ class MembersController extends AppController
             $this->Member->saveField('full_name',$_POST['full_name']);
             if(isset($_POST['is_client']))
             $this->Member->saveField('is_client',1);
+            else
+            $this->Member->saveField('is_client',0);
             //$this->Member->saveField('name_avatar',$_POST['avatar']);
             $this->Member->saveField('title',$_POST['title']);
             $this->Member->saveField('address',$_POST['address']);
