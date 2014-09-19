@@ -2725,12 +2725,15 @@ class UploadsController extends AppController
                 
             }
             $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$ids.',%'), array('job_id'=>$ids),array('job_id LIKE'=>'%,'.$ids.',%'),array('job_id LIKE'=>'%,'.$ids)))));
-            if($this->Session->read('approve')=='0'){
+            if($this->Session->read('approve')=='0' || $_POST['document_type'] == 'deployment_rate'){
+                if($_POST['document_type'] == 'deployment_rate')
+                    $_POST['document_type'] = 'deployment';
             foreach($mails as $m)
             {
                     
                     $mem_id = $m['Jobmember']['member_id']; 
                     if($emailupload = $this->Emailupload->findByMemberId($mem_id))
+                    //var_dump($emailupload); die();
                     if($emailupload['Emailupload'][$_POST['document_type']] == 1 )
                     if($t = $this->Member->find('first',array('conditions'=>array('id'=>$mem_id))))
                     {
