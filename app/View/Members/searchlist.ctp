@@ -27,6 +27,7 @@ foreach($job as $j)
             {
                 if(!in_array($mem['Jobmember']['member_id'],$memz))
                     $memz[] = $mem['Jobmember']['member_id'];
+                    
               
             }
             foreach($memz as $m)
