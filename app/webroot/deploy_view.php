@@ -9,7 +9,7 @@ if($personnel && count($personnel)>0)
     <td colspan="11"><strong>Personnel</strong></td>
 </tr>
 <tr class="entries">
-    <td><strong>Position</strong></td><td><strong>Number of Staff</strong></td><td>Start Time</td><td>End Time</td><td><strong>Hours worked each</strong></td><td><strong>Hours Billable</strong></td><td><strong>Travel Billable</strong></td><td><strong>Meal Per Diem Billable</strong></td><td><strong>Admin Fee</strong></td>
+    <td><strong>Position</strong></td><td><strong>Number of Staff</strong></td><td><strong>Start Time</strong></td><td><strong>End Time</strong></td><td><strong>Hours worked each</strong></td><td><strong>Hours Billable</strong></td><td><strong>Travel Billable</strong></td><td><strong>Meal Per Diem Billable</strong></td><td><strong>Admin Fee</strong></td>
 </tr>
 <?php
     foreach($personnel as $per)
