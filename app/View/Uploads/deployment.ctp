@@ -182,10 +182,10 @@ if(isset($pers) && $pers)
 </table>
 
 <table <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>>
-<tr><td style="padding-top: 50px;border-top:1px solid #ddd"><strong>Total: <span class="g_tot"><?php if(isset($pers)) echo $total;?></span></strong><input type="hidden" name="total" value="<?php if(isset($pers)) echo $total;?>" id="g_tot"  /></td></tr>
-<tr><td><strong>Admin Fee: <span class="a_fee">$<?php if(isset($pers)) echo $a_fee;?></span></strong><input type="hidden" name="a_fee" value="<?php if(isset($pers)) echo $a_fee;?>" id="a_fee"  /></td></tr>
-<tr><td><strong>Tax: <span class="tax">$<?php if(isset($pers)) echo $tax;?></span></strong><input type="hidden" name="tax" value="<?php if(isset($pers)) echo $tax;?>" id="tax"  /></td></tr>
-<tr><td><strong>Grand Total: <span class="g2_tot">$<?php if(isset($pers)) echo $g_total;?></span></strong><input type="hidden" name="g2_tot" value="<?php if(isset($pers)) echo $g_total;?>" id="g2_tot"  /></td></tr>
+<tr><td style="padding-top: 50px;border-top:1px solid #ddd"><strong>Total: <span class="g_tot"><?php if(isset($pers)) echo $total = number_format( $total,2);?></span></strong><input type="hidden" name="total" value="<?php if(isset($pers)) echo $total;?>" id="g_tot"  /></td></tr>
+<tr><td><strong>Admin Fee: <span class="a_fee">$<?php if(isset($pers)) echo $a_fee = number_format($a_fee,2);?></span></strong><input type="hidden" name="a_fee" value="<?php if(isset($pers)) echo $a_fee;?>" id="a_fee"  /></td></tr>
+<tr><td><strong>Tax: <span class="tax">$<?php if(isset($pers))  echo $tax = number_format($tax,2);?></span></strong><input type="hidden" name="tax" value="<?php if(isset($pers)) echo $tax;?>" id="tax"  /></td></tr>
+<tr><td><strong>Grand Total: <span class="g2_tot">$<?php if(isset($pers)) echo $pers = number_format($g_total,2);?></span></strong><input type="hidden" name="g2_tot" value="<?php if(isset($pers)) echo $g_total;?>" id="g2_tot"  /></td></tr>
 </table>
 </td>
 <style>
@@ -195,7 +195,7 @@ if(isset($pers) && $pers)
     
     $(function(){
         
-        var af_tot = '<?php if(isset($pers)) echo $a_fee;else echo 0;?>';
+        var af_tot = '<?php if(isset($pers)) echo $a_fee; else echo 0;?>';
         if(af_tot)
         {
             $('#a_fee').val('af_tot');
@@ -363,7 +363,7 @@ if(isset($pers) && $pers)
             hr=0;
         else
             hr = parseFloat(hr);
-        //alert(hr);
+
             
         var pers = $(this).closest('tr').children('td:first').attr('id');
         var optn = pers.split("_");
@@ -613,20 +613,9 @@ if(isset($pers) && $pers)
             
         var pers = $(this).closest('tr').children('td:first').attr('id');
         var optn = pers.split("_");
-        var hr_rate = parseFloat(optn[0]);
-        var holiday_rate = parseFloat(optn[1])
-        var bill_type = $('#bill_type').val();
-        if(bill_type ==0)
-                hr_rate = hr_rate;
-            else
-                hr_rate = holiday_rate; 
-        //alert(hr_rate);
-        if(!hr_rate)
-            hr_rate = 0;
-        //alert(hr_rate);
+       
         var travel_rate = parseFloat(optn[2]);
-        //quick fix
-        var travel_rate = parseFloat(optn[1]);
+       
         var hours_billable = travel_rate*st;
         //alert(hours_billable);
 

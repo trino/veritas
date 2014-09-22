@@ -97,10 +97,13 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         <td><b>Location</b></td>
         <td><?php echo $doc['Document']['location']; ?></td>
     </tr> -->
-    
+    <?php $type =ucwords(str_replace('_',' ',$doc['Document']['document_type']));
+        if($type = "Deployment Rate")
+            $type = "Deployment";
+    ?> 
     <tr>
         <td><b> <?php echo $this->requestAction('dashboard/translate/Document Type');?></b></td>
-        <td><?php echo $type = ucwords(str_replace('_',' ',$doc['Document']['document_type'])); ?></td>
+        <td><?php echo $type; ?></td>
     </tr>
      <?php if($type == 'Client Feedback'){?>
     <tr>

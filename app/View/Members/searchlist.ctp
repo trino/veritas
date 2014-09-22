@@ -5,7 +5,7 @@ if($job)
 foreach($job as $j)
 {
     $memz = array();     
-    if($jid)
+        if($jid)
                     {
                         if($jid!=$j['Job']['id'])
                         continue;
