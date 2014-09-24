@@ -1440,6 +1440,12 @@ class UploadsController extends AppController
                     
                 if(str_replace('http://','',$base_url) == $base_url)
                         $base_url = 'http://'.$base_url;
+                if($_POST['document_type']== 'deployment_rate')
+                {
+                    $arr['title'] = "Deployment";
+                    $_POST['document_type'] = "deployment";
+                    
+                }
                 
                 foreach($mails as $m)
                 {
@@ -1448,6 +1454,11 @@ class UploadsController extends AppController
                     if($emailupload['Emailupload'][$_POST['document_type']] == 1 )
                     if($t = $this->Member->find('first',array('conditions'=>array('id'=>$mem_id))))
                     {
+                        if($_POST['document_type']== 'deployment_rate')
+                        {
+                            $arr['title'] = "Deployment";
+                            
+                        }
                         $to = $t['Member']['email'];
                         $emails = new CakeEmail();
                         $emails->from(array('noreply@veritas.com'=>'Veritas'));
@@ -2727,7 +2738,10 @@ class UploadsController extends AppController
             $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$ids.',%'), array('job_id'=>$ids),array('job_id LIKE'=>'%,'.$ids.',%'),array('job_id LIKE'=>'%,'.$ids)))));
             if($this->Session->read('approve')=='0' || $_POST['document_type'] == 'deployment_rate'){
                 if($_POST['document_type'] == 'deployment_rate')
+                {
+                    $arr['title'] = "Deployment";
                     $_POST['document_type'] = 'deployment';
+                }
             foreach($mails as $m)
             {
                     
