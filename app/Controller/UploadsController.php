@@ -476,10 +476,14 @@ class UploadsController extends AppController
             //$this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$eid))));
             
             $docz = $this->Document->findById($eid);
+            
+            
             $this->loadModel('DeploymentRate');
             if($rates = $this->DeploymentRate->findByJobId($docz['Document']['job_id']))
             {
                 $this->set('rates',$rates);
+               
+                $this->set('docz1',$docz);
                 $this->set('job_id',$docz['Document']['job_id']);
             }
             
@@ -575,6 +579,12 @@ class UploadsController extends AppController
             else
             if($_POST['document_type']=='deployment_rate')
             {
+                 $this->Document->id = $eid;
+                $this->Documnent->saveField('start_peroid',$_POST['start_peroid']);
+                $this->Documnent->saveField('start_time',$_POST['start_time']);
+                $this->Documnent->saveField('end_peroid',$_POST['end_peroid']);
+                $this->Documnent->saveField('end_time',$_POST['end_time']);
+               
                 $this->loadModel('Equipment');
                 $this->loadModel('Personnel');
                 $count = count($_POST['Equipment']['items']);
@@ -1459,28 +1469,50 @@ class UploadsController extends AppController
                             $arr['title'] = "Deployment";
                             
                         }
+                        
+                        
                         $to = $t['Member']['email'];
                         $emails = new CakeEmail();
                         $emails->from(array('noreply@veritas.com'=>'Veritas'));
                         
                         $emails->subject("A new document has been uploaded.");
                         $emails->emailFormat('html');
+                        
                         $jj = $this->Job->find('first',array('conditions'=>array('id'=>$_POST['job'])));
                         if($jj)
                         $job_title = $jj['Job']['title'];
                         else
                         $job_title = '';
+                        if($mem = $this->Member->findByFullName($this->Session->read('username')))
+                        {
+                            $fullname = ucwords($mem['Member']['fname']." ".$mem['Member']['lname']);
+                        }
+                        else
+                        {
+                            $fullname = $this->Session->read('username');
+                        }
                         if($_POST['document_type']== 'evidence')
                             $message="Job: ".$job_title."<br/>
                             Document: ".$arr['title']."<br/>
                             Author: ".$_POST['evidence_author']."<br/>
                             Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
                             Upload Date: ".date('Y-m-d')."<br/> Please <a href='".$base_url."?upload=".$eid."'>Click Here</a> to Login<br><br>- The Veritas Team";
+                        elseif($_POST['document_type'] == 'deployment')
+                        {
+                           $message="
+                            Job: ".$job_title."<br/>
+                            Document: ".$arr['title']."<br/>
+                            Period Covered- Start:".$_POST['sart_peroid']." ".$_POST['start_time']."<br/>
+                            Period Covered- End:".$_POST['end_peroid']." ".$_POST['end_time']."<br/>
+                            Who Uploaded: ".$fullname."<br/>
+                            Upload Date: ".date('Y-m-d')."
+                            <br/> Please <a href='".$base_url."?upload=".$eid."'>Click Here</a> to Login<br><br>- The Veritas Team"; 
+                        }
                         else
                             $message="
                             Job: ".$job_title."<br/>
                             Document: ".$arr['title']."<br/>
-                            Who Uploaded: ".$this->Session->read('username')."<br/>
+                            Who Uploaded: ".$fullname."<br/>
                             Upload Date: ".date('Y-m-d')."
                             <br/> Please <a href='".$base_url."?upload=".$eid."'>Click Here</a> to Login<br><br>- The Veritas Team";
                         if($to){
@@ -1488,10 +1520,10 @@ class UploadsController extends AppController
                         $check=0;
                         if($checks)
                         {
-                            if($checks['Member']['receive1']==1 ||$checks['Member']['receive2']==1)
-                            $check=1;
+                            if($checks['Member']['receive1']==1 || $checks['Member']['receive2']==1)
+                                $check=1;
                             else
-                            $check=0;
+                                $check=0;
                         }    
                         if($check==1){
                         $emails->to($to);
@@ -2077,6 +2109,16 @@ class UploadsController extends AppController
             
             if($_POST['document_type']=='deployment_rate')
             {
+                
+                $this->Document->id = $id;
+                $this->Document->saveField('start_peroid',$_POST['start_peroid']);
+                $this->Document->saveField('start_time',$_POST['start_time']);
+                $this->Document->saveField('end_peroid',$_POST['end_peroid']);
+                $this->Document->saveField('end_time',$_POST['end_time']);
+                $this->Document->saveField('evidence_author','N/A');
+                $this->Document->saveField('description','N/A');
+                $this->Document->saveField('incident_date','N/A');
+                
                 $this->loadModel('Equipment');
                 $this->loadModel('Personnel');
                 $count = count($_POST['Equipment']['items']);
@@ -2758,22 +2800,39 @@ class UploadsController extends AppController
                         
                         $emails->subject("A new document has been uploaded!");
                         $emails->emailFormat('html');
+                        if($mem = $this->Member->findByFullName($this->Session->read('username')))
+                        {
+                            $fullname = ucwords($mem['Member']['fname']." ".$mem['Member']['lname']);
+                        }
+                        else
+                        {
+                            $fullname = $this->Session->read('username');
+                        }
                         if($_POST['document_type']== 'evidence')
-                            $message="
-							Job: ".$job_title."<br/>
+                            $message="Job: ".$job_title."<br/>
                             Document: ".$arr['title']."<br/>
                             Author: ".$_POST['evidence_author']."<br/>
-                            Evidence Type: ".$_POST['evidence_type']."<br/>Description: ".$_POST['description']."<br/>Incident Date:".$_POST['incident_date']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
-                            Upload Date: ".date('Y-m-d')."<br/><a href='".$base_url."?upload=".$id."'>Click Here</a> to login and view the document.";
+                            Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
+                            Upload Date: ".date('Y-m-d')."<br/> Please <a href='".$base_url."?upload=".$eid."'>Click Here</a> to Login<br><br>- The Veritas Team";
+                        elseif($_POST['document_type'] == 'deployment')
+                        {
+                           $message="
+                            Job: ".$job_title."<br/>
+                            Document: ".$arr['title']."<br/>
+                            Period Covered- Start:".$_POST['sart_peroid']." ".$_POST['start_time']."<br/>
+                            Period Covered- End:".$_POST['end_peroid']." ".$_POST['end_time']."<br/>
+                            Who Uploaded: ".$fullname."<br/>
+                            Upload Date: ".date('Y-m-d')."
+                            <br/> Please <a href='".$base_url."?upload=".$eid."'>Click Here</a> to Login<br><br>- The Veritas Team"; 
+                        }
                         else
                             $message="
                             Job: ".$job_title."<br/>
                             Document: ".$arr['title']."<br/>
-                            Who Uploaded: ".$this->Session->read('username')."<br/>
+                            Who Uploaded: ".$fullname."<br/>
                             Upload Date: ".date('Y-m-d')."
-
-                            <br/><a href='".$base_url."?upload=".$id."'>Click Here</a> to login and view the document.";
-                            
+                            <br/> Please <a href='".$base_url."?upload=".$eid."'>Click Here</a> to Login<br><br>- The Veritas Team";
+                        
                         if($to)
                         {
                             $checks = $this->Member->find('first',array('conditions'=>array('email'=>$to)));
@@ -3512,6 +3571,7 @@ class UploadsController extends AppController
     }
     else
     {
+        
         if($type=='personal_inspection')
         {
             $this->loadModel('Personal_inspection');
@@ -3746,6 +3806,7 @@ class UploadsController extends AppController
   {
     
     $this->loadModel('DeploymentRate');
+    $this->loadModel('Document');
     $this->loadModel('Personnel');
     $this->loadModel('Equipment');
     $q1=$this->DeploymentRate->findByJobId($jid);
@@ -3753,6 +3814,7 @@ class UploadsController extends AppController
     $this->layout = 'modal_layout';
     if($did)
     {
+        $this->set('docz', $this->Document->findById($did));
         $this->set('pers',$this->Personnel->find('all',array('conditions'=>array('doc_id'=>$did))));
         $this->set('equip',$this->Equipment->find('all',array('conditions'=>array('doc_id'=>$did))));
     }
@@ -3976,7 +4038,6 @@ $oa = intval($number*$expo)/$expo;
             $rand = rand(100000,999999).'_'.rand(100000,999999);
             $file = $rand.'.'.$ext;
             $path = APP.'webroot/img/uploads/'.$file;
-            
             move_uploaded_file($_FILES['myfile']['tmp_name'],$path);
             
 			echo $file;

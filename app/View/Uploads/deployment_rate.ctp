@@ -67,6 +67,7 @@
     <!--<tr><td colspan="3"><strong>Misc.</strong></td></tr>-->
     <tr><td>Hotel Cost</td><td>$&nbsp;<input type="text" value="<?php if(isset($rate['DeploymentRate']))echo $rate['DeploymentRate']['hotelcost_day'];else echo "0"?>" name="hotelcost_day" /></td><td>&nbsp;</td></tr>
     <tr><td>Admin</td><td>&nbsp;&nbsp;<input type="text" value="<?php if(isset($rate['DeploymentRate']))echo $rate['DeploymentRate']['admin'];else echo "0"?>" name="admin" /><strong>&nbsp;%</strong></td><td>&nbsp;</td></tr>
+    <tr><td>Tax</td><td>&nbsp;&nbsp;<input type="text" value="<?php if(isset($rate['DeploymentRate']))echo $rate['DeploymentRate']['tax'];else echo "0"?>" name="tax" /><strong>&nbsp;%</strong></td><td>&nbsp;</td></tr>
     <tr></tr>
     <tr><td></td><td colspan=" 2"><input type="submit" name="submit" class="btn btn-primary" value="submit"/></td></tr>
 </table>

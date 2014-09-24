@@ -136,7 +136,11 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         <td><?php if($j = $job->findById($doc['Document']['job_id'])) echo stripslashes($j['Job']['title']) ; ?></td>
     </tr>
     
-    
+    <?php if($type =='Deployment')
+    {?>
+       <tr><td><b>Period Covered - Start</b></td><td><?php echo $doc['Document']['start_peroid']." ".$doc['Document']['start_time'];?></td></tr>
+       <tr><td><b>Period Covered - End</b></td><td><?php echo $doc['Document']['end_peroid']." ".$doc['Document']['end_time'];?></td></tr> 
+    <?php }?>
     <?php if($type == 'Report')
     { ?>
      <!--<tr>

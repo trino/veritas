@@ -1,5 +1,5 @@
 <?php
-
+//var_dump($rates);
     $arr1 = array('Radio','Internet Stick','Tapes','SD Card','DVD','Hotel');     
     $arr2 = array('Security Vehicle Regular','Security Vehicle Large','15 Pessenger Van','School Bus','Coach Bus','Transport Truck');
 ?>
@@ -8,6 +8,8 @@
 <tr><td colspan="11"><strong>Choose Bill Rate</strong>&nbsp;
     <select name="bill_type" id="bill_type"><option value="0">Normal Bill Rate</option><option value="1">Holiday Bill Rate</option></select></td>
 </tr>
+<tr><td colspan="11">Period Covered- Start: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="date required" name="start_peroid" value="<?php if(isset($docz))echo $docz['Document']['start_peroid'];?>" style="width: 85px; margin-right:10px" /><input type="text" class="time  required" name="start_time" value="<?php if(isset($docz))echo $docz['Document']['start_time'];?>" /></td></tr>
+<tr><td colspan="11">Period Covered- End: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="date  required" name="end_peroid" style="width: 85px; margin-right:10px" value="<?php if(isset($docz))echo $docz['Document']['end_peroid'];?>" /><input type="text" class="time  required" name="end_time" value="<?php if(isset($docz))echo $docz['Document']['end_time'];?>"/></td></tr>
 <tr>
 <td colspan="11"style="padding-top: 50px;">
 <select class="personnel" name="personnel" style="margin-bottom: 0;">
@@ -192,9 +194,11 @@ if(isset($pers) && $pers)
 .misc2 input[type="text"],.misc input[type="text"],.dep input[type="text"]{width:55px;}
 </style>
 <script>
-    
+    var tax1 = Number(<?php echo $rate['DeploymentRate']['tax'];?>);
+        tax1 = tax1/100;
+   
     $(function(){
-        
+        $('.date').datepicker({dateFormat: 'yy-mm-dd'});
         var af_tot = '<?php if(isset($pers)) echo $a_fee; else echo 0;?>';
         if(af_tot)
         {
@@ -265,7 +269,7 @@ if(isset($pers) && $pers)
         $('#g_tot').val(gtot);
         $('.g_tot').html('$'+gtot);
         
-        var tax = 0.13*(Number(gtot)+Number(af_tot));
+        var tax = tax1*(Number(gtot)+Number(af_tot));
         tax = tax.toFixed(2);
         $('.tax').html('$'+tax);
         $('#tax').val(tax);
@@ -398,7 +402,7 @@ if(isset($pers) && $pers)
            }
            tot = parseFloat(tot);
            n_tot = parseFloat(n_tot)+tot;
-           var tax = parseFloat(n_tot)*.13;
+           var tax = parseFloat(n_tot)*tax1;
            var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin']*0;?>');
            var a_fee = parseFloat(n_tot)* a_tax/100;
            
@@ -509,7 +513,7 @@ if(isset($pers) && $pers)
            }
            tot = parseFloat(tot);
            n_tot = parseFloat(n_tot)+tot;
-            var tax = parseFloat(n_tot)*.13;
+            var tax = parseFloat(n_tot)*tax1;
            var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin'];?>');
            var a_fee = parseFloat(n_tot)* a_tax/100;
            var g2 = n_tot + tax + a_fee;
@@ -579,7 +583,7 @@ if(isset($pers) && $pers)
            }
            tot = parseFloat(tot);
            n_tot = parseFloat(n_tot)+tot;
-        var tax = parseFloat(n_tot)*.13;
+        var tax = parseFloat(n_tot)*tax1;
            var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin']*0;?>');
            var a_fee = parseFloat(n_tot)* a_tax/100;
            var g2 = n_tot + tax + a_fee;
@@ -635,7 +639,7 @@ if(isset($pers) && $pers)
            }
            tot = parseFloat(tot);
            n_tot = parseFloat(n_tot)+tot;
-        var tax = parseFloat(n_tot)*.13;
+        var tax = parseFloat(n_tot)*tax1;
            var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin']*0;?>');
            var a_fee = parseFloat(n_tot)* a_tax/100;
            var g2 = n_tot + tax + a_fee;
@@ -700,7 +704,7 @@ if(isset($pers) && $pers)
            }
            tot = parseFloat(tot);
            n_tot = parseFloat(n_tot)+tot;
-        var tax = parseFloat(n_tot)*.13;
+        var tax = parseFloat(n_tot)*tax1;
            var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin']*0;?>');
            var a_fee = parseFloat(n_tot)* a_tax/100;
            var g2 = n_tot + tax + a_fee;
@@ -741,7 +745,7 @@ if(isset($pers) && $pers)
            }
            tot = parseFloat(tot);
            n_tot = parseFloat(n_tot)+tot;
-           var tax = parseFloat(n_tot)*.13;
+           var tax = parseFloat(n_tot)*tax1;
            var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin']*0;?>');
            var a_fee = parseFloat(n_tot)* a_tax/100;
            var g2 = n_tot + tax + a_fee;
@@ -803,7 +807,7 @@ if(isset($pers) && $pers)
            }
            tot = parseFloat(tot);
            n_tot = parseFloat(n_tot)+tot;
-        var tax = parseFloat(n_tot)*.13;
+        var tax = parseFloat(n_tot)*tax1;
            var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin']*0;?>');
            var a_fee = parseFloat(n_tot)* a_tax/100;
            var g2 = n_tot + tax + a_fee;
@@ -861,7 +865,7 @@ if(isset($pers) && $pers)
            }
            tot = parseFloat(tot);
            n_tot = parseFloat(n_tot)+tot;
-           var tax = parseFloat(n_tot)*.13;
+           var tax = parseFloat(n_tot)*tax1;
            var a_tax = parseFloat('<?php echo $rate['DeploymentRate']['admin']*0;?>');
            var a_fee = parseFloat(n_tot)* a_tax/100;
            var g2 = n_tot + tax + a_fee;
@@ -883,3 +887,6 @@ if(isset($pers) && $pers)
     
     
 </script>
+<style>
+.dep label{display:inline!important;}
+</style>
