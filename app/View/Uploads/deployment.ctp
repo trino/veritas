@@ -8,8 +8,8 @@
 <tr><td colspan="11"><strong>Choose Bill Rate</strong>&nbsp;
     <select name="bill_type" id="bill_type"><option value="0">Normal Bill Rate</option><option value="1">Holiday Bill Rate</option></select></td>
 </tr>
-<tr><td colspan="11">Period Covered - Start: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="date required" name="start_peroid" value="<?php if(isset($docz))echo $docz['Document']['start_peroid'];?>" style="width: 85px; margin-right:10px" /><input type="text" class="time  required" name="start_time" value="<?php if(isset($docz))echo $docz['Document']['start_time'];?>" /></td></tr>
-<tr><td colspan="11">Period Covered - End: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="date  required" name="end_peroid" style="width: 85px; margin-right:10px" value="<?php if(isset($docz))echo $docz['Document']['end_peroid'];?>" /><input type="text" class="time  required" name="end_time" value="<?php if(isset($docz))echo $docz['Document']['end_time'];?>"/></td></tr>
+<tr><td colspan="11"><strong>Period Covered - Start:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="date required" name="start_peroid" value="<?php if(isset($docz))echo $docz['Document']['start_peroid'];?>" style="width: 85px; margin-right:10px" /><input type="text" class="time  required" name="start_time" value="<?php if(isset($docz))echo $docz['Document']['start_time'];?>" /></td></tr>
+<tr><td colspan="11"><strong>Period Covered - End:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="date  required" name="end_peroid" style="width: 85px; margin-right:10px" value="<?php if(isset($docz))echo $docz['Document']['end_peroid'];?>" /><input type="text" class="time  required" name="end_time" value="<?php if(isset($docz))echo $docz['Document']['end_time'];?>"/></td></tr>
 <tr>
 <td colspan="11"style="padding-top: 50px;">
 <select class="personnel" name="personnel" style="margin-bottom: 0;">
