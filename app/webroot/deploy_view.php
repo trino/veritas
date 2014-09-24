@@ -9,7 +9,15 @@ if($personnel && count($personnel)>0)
     <td colspan="11"><strong>Personnel</strong></td>
 </tr>
 <tr class="entries">
-    <td><strong>Position</strong></td><td><strong>Number of Staff</strong></td><td><strong>Start Time</strong></td><td><strong>End Time</strong></td><td><strong>Hours worked each</strong></td><td><strong>Hours Billable</strong></td><td><strong>Travel Billable</strong></td><td><strong>Meal Per Diem Billable</strong></td><td><strong>Admin Fee</strong></td>
+    <td><strong>Position</strong></td>
+    <td><strong>Number of Staff</strong></td>
+    <td><strong>Start Time</strong></td>
+    <td><strong>End Time</strong></td>
+    <td><strong>Hours worked each</strong></td>
+    <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><strong>Hours Billable</strong></td>
+    <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><strong>Travel Billable</strong></td>
+    <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><strong>Meal Per Diem Billable</strong></td>
+    <td><strong>Admin Fee</strong></td>
 </tr>
 <?php
     foreach($personnel as $per)
@@ -24,11 +32,11 @@ if($personnel && count($personnel)>0)
             <td><?php echo $per['Personnel']['no_of_staff']?></td>
             <td><?php echo $per['Personnel']['start_time']?></td>
             <td><?php echo $per['Personnel']['end_time']?></td>
-            <td><?php echo $per['Personnel']['total_hours']?></td>
-            <td>$<?php echo $per['Personnel']['hours_billable']?></td>
-            <td>$<?php echo $per['Personnel']['travel_billable']?></td>
-            <td>$<?php echo $per['Personnel']['meal_billable']?></td>
-            <td><?php if($per['Personnel']['admin_fee']){?>&#10004;<?php }?></td>
+            <td ><?php echo $per['Personnel']['total_hours']?></td>
+            <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>>$<?php echo $per['Personnel']['hours_billable']?></td>
+            <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>>$<?php echo $per['Personnel']['travel_billable']?></td>
+            <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>>$<?php echo $per['Personnel']['meal_billable']?></td>
+            <td ><?php if($per['Personnel']['admin_fee']){?>&#10004;<?php }?></td>
         </tr>
         <?php
     }?>
@@ -43,7 +51,9 @@ if($equipment && count($equipment)>0)
 <table class="misc" style="border-bottom:1px solid #ddd">
     
     <tr class="misc_entries"><td colspan="7" style="padding-top: 50px;"><strong>Equipment</strong></td></tr>
-    <tr class="misc_entries"><td><strong>Item</strong></td><td><strong>Quantity</strong></td><td><strong>Amount Billable</strong></td><td><strong>Admin Fee</strong></td></tr>
+    <tr class="misc_entries"><td><strong>Item</strong></td><td><strong>Quantity</strong></td>
+    <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><strong>Amount Billable</strong></td>
+    <td><strong>Admin Fee</strong></td></tr>
     <?php
 
      $arr1 = array('Radio','Internet Stick','Tapes','SD Card','DVD','Hotel');     
@@ -60,14 +70,16 @@ if($equipment && count($equipment)>0)
         <tr>
             <td><?php echo $per['Equipment']['items'];?></td>
             <td><?php echo $per['Equipment']['qty'];?></td>
-            <td>$<?php echo $per['Equipment']['amount_billable'];?></td>
+            <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>>$<?php echo $per['Equipment']['amount_billable'];?></td>
             <td><?php if($per['Equipment']['admin_fee']){?>&#10004;<?php }?></td>
         </tr>
         <?php
         }
     }?>
     <tr class="misc_entries2" ><td colspan="7" style="padding-top: 50px;"><strong>Vehicle</strong></td></tr>
-    <tr class="misc_entries2" ><td><strong>Item</strong></td><td><strong>Quantity</strong></td><td><strong>KM's</strong></td><td><strong>Fuel Cost (excluding tax and admin)</strong></td><td></td><td><strong>Amount Billable</strong></td><td><strong>Admin Fee</strong></td></tr>
+    <tr class="misc_entries2" ><td><strong>Item</strong></td><td><strong>Quantity</strong></td><td><strong>KM's</strong></td>
+    <td><strong>Fuel Cost (excluding tax and admin)</strong></td><td></td>
+    <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><strong>Amount Billable</strong></td><td><strong>Admin Fee</strong></td></tr>
     <?php
    
     foreach($equipment as $eq)
@@ -82,7 +94,7 @@ if($equipment && count($equipment)>0)
         <td><?php echo $eq['Equipment']['qty'];?></td>
         <td><?php echo $eq['Equipment']['kms'];?></td>
         <td>$<?php echo $eq['Equipment']['fuel_cost'];?></td><td></td>
-        <td>$<?php echo $eq['Equipment']['amount_billable'];?></td>
+        <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>>$<?php echo $eq['Equipment']['amount_billable'];?></td>
         <td><?php if($per['Equipment']['admin_fee']){?>&#10004;<?php }?></td>
     </tr>  
       <?php  
@@ -94,7 +106,7 @@ if($equipment && count($equipment)>0)
 </table>
 <?php }
 ?>
-<table style="border-bottom: 1px solid #DDD;">
+<table style="border-bottom: 1px solid #DDD;<?php if($this->Session->read('is_client')=='0'){ echo 'display:none;';}?>" >
 <tr><td style="padding-top: 50px;"><strong>Total: <span class="g_tot">$<?php echo number_format($total,2);?></span></strong><input type="hidden" name="total" value="<?php if(isset($pers)) echo $total;?>" id="g_tot"  /></td></tr>
 <tr><td><strong>Tax: <span class="tax">$<?php echo number_format($tax,2);?></span></strong><input type="hidden" name="tax" value="<?php if(isset($pers)) echo $tax;?>" id="tax"  /></td></tr>
 <tr><td><strong>Admin Fee: <span class="a_fee">$<?php  echo number_format($a_fee,2);?></span></strong><input type="hidden" name="a_fee" value="<?php if(isset($pers)) echo $a_fee;?>" id="a_fee"  /></td></tr>

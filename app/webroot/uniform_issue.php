@@ -133,18 +133,18 @@
         <td><input class="cost" type="text" value="<?php echo(isset($uniform))?"$".$uniform['UniformIssue']['cost18']:"";?>" name="uniform[cost18]" readonly="readonly"/></td>
         <td><input type="text" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['size18']:"";?>" name="uniform[size18]" /></td>
     </tr>
-    <tr><td colspan="2"></td><td><strong>Total Cost<input id="tots" type="hidden" name="uniform[totalcost]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['totalcost']:"";?>"/></strong></td><td class="totalcost"><?php echo(isset($uniform))?"$ ".$uniform['UniformIssue']['totalcost']:"";?></td></tr>
+    <tr><td colspan="2"></td><td><strong>Total Cost <input id="tots" type="hidden" name="uniform[totalcost]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['totalcost']:"";?>"/></strong></td><td class="totalcost"><?php echo(isset($uniform))?"$ ".$uniform['UniformIssue']['totalcost']:"";?></td></tr>
    <tr><td colspan="5"></td></tr>
-    <tr><td colspan="5">I, <input type="text" name="uniform[name]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['name']:"";?>"/>, agree that a total of <input type="text" name="uniform[val1]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['val1']:"";?>" style="width:50px"/> $50 <input type="text" name="uniform[val2]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['val2']:"";?>" style="width:50px"/> $75 <input type="text" name="uniform[val3]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['val3']:"";?>" style="width:50px"/> $ Full Amount, will be deducted from my pay until the total cost is deducted. Re-imbursement must be done within a reasonable amount of time, as per your supervisors’ discretion. 
+    <tr><td colspan="5">I, <input style="line-height: 0;border-radius: 0;box-shadow: none; height:7px;" type="text" name="uniform[name]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['name']:"";?>"/>, agree that a total of <input type="text" name="uniform[val1]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['val1']:"";?>" style="width:50px;line-height: 0;border-radius: 0;box-shadow: none;height:7px; " /> $50 <input type="text" name="uniform[val2]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['val2']:"";?>" style="width:50px;line-height: 0;border-radius: 0;box-shadow: none;height:7px; "/> $75 <input type="text" name="uniform[val3]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['val3']:"";?>" style="width:50px;line-height: 0;border-radius: 0;box-shadow: none;height:7px; "/> $ Full Amount, will be deducted from my pay until the total cost is deducted. Re-imbursement must be done within a reasonable amount of time, as per your supervisors’ discretion. 
     These deductions shall begin with my first pay period. Should my employment end for any reason with ASAP Secured Inc. prior to my uniform cost being fully paid, the total owing shall be deducted from my final pay. If your deduction is over $500, the amount deducted per pay is automatically $75.00.
     Upon full return of all ASAP Secured Inc. uniform pieces (with the exception of body armour), I will be refunded 50% of the total cost of the uniform. The remaining 50% will be used for dry cleaning and for the wear and tear of the uniform while in use. 
     </td></tr>
 <tr><td colspan="5"></td></tr>
-<tr><td colspan="5">I <input type="text" name="uniform[name2]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['name2']:"";?>"/> agree to return all ASAP’s uniform pieces including all logos, patches, insignias and any items labelled “Security” that were provided to me upon termination of my employment. 
+<tr><td colspan="5">I <input type="text" style="line-height: 0;border-radius: 0;box-shadow: none; height: 8px;"  name="uniform[name2]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['name2']:"";?>"/> agree to return all ASAP’s uniform pieces including all logos, patches, insignias and any items labelled “Security” that were provided to me upon termination of my employment. 
 
 By signing this document, I agree to the terms set out herein. 
 </td></tr>
- <tr><td colspan="5">&nbsp;Date:<input type="text" name="uniform[date]" class="date" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['date']:"";?>" /></td></tr>   
+ <tr><td colspan="5">&nbsp;Date:<input type="text" style="line-height: 0;border-radius: 0;box-shadow: none; height: 8px;" name="uniform[date]" class="date" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['date']:"";?>" /></td></tr>   
 </table>
 <div style="position: relative;padding:5px;">
             <div style="width: 50%;float:left;">
@@ -196,4 +196,5 @@ $('.number').change(function(){
 </script>
 <style>
 .uniform input{width:80px;}
+
 </style>
