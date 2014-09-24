@@ -8,8 +8,8 @@
 <tr><td colspan="11"><strong>Choose Bill Rate</strong>&nbsp;
     <select name="bill_type" id="bill_type"><option value="0">Normal Bill Rate</option><option value="1">Holiday Bill Rate</option></select></td>
 </tr>
-<tr><td colspan="11">Period Covered- Start: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="date required" name="start_peroid" value="<?php if(isset($docz))echo $docz['Document']['start_peroid'];?>" style="width: 85px; margin-right:10px" /><input type="text" class="time  required" name="start_time" value="<?php if(isset($docz))echo $docz['Document']['start_time'];?>" /></td></tr>
-<tr><td colspan="11">Period Covered- End: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="date  required" name="end_peroid" style="width: 85px; margin-right:10px" value="<?php if(isset($docz))echo $docz['Document']['end_peroid'];?>" /><input type="text" class="time  required" name="end_time" value="<?php if(isset($docz))echo $docz['Document']['end_time'];?>"/></td></tr>
+<tr><td colspan="11">Period Covered - Start: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="date required" name="start_peroid" value="<?php if(isset($docz))echo $docz['Document']['start_peroid'];?>" style="width: 85px; margin-right:10px" /><input type="text" class="time  required" name="start_time" value="<?php if(isset($docz))echo $docz['Document']['start_time'];?>" /></td></tr>
+<tr><td colspan="11">Period Covered - End: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="date  required" name="end_peroid" style="width: 85px; margin-right:10px" value="<?php if(isset($docz))echo $docz['Document']['end_peroid'];?>" /><input type="text" class="time  required" name="end_time" value="<?php if(isset($docz))echo $docz['Document']['end_time'];?>"/></td></tr>
 <tr>
 <td colspan="11"style="padding-top: 50px;">
 <select class="personnel" name="personnel" style="margin-bottom: 0;">
@@ -182,7 +182,19 @@ if(isset($pers) && $pers)
     ?>
     
 </table>
-
+<!--
+<table>
+    <tr><td colspan="7" style="padding-top: 50px;border-top:1px solid #ddd">
+            <select class="misc_opt3" style="margin-bottom: 0;">
+                <option value="">Others</option>
+                <option value="Air Fair">Air Fair</option>
+            </select>
+            <a href="javascript:void(0);" class="btn btn-primary go_misc3">Add</a>
+        </td>
+    </tr>
+    <tr class="misc_entries3" style="<?php if(!isset($others)){?>display: none;<?php }?>"><td colspan="7"><strong>Others</strong></td></tr>
+    <tr class="misc_entries3" style="<?php if(!isset($others)){?>display: none;<?php }?>"><td><strong>Item</strong></td><td></td><td ><strong>bill</strong></td><td><strong>Admin Fee</strong></td></tr>
+</table>-->
 <table <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>>
 <tr><td style="padding-top: 50px;border-top:1px solid #ddd"><strong>Total: <span class="g_tot"><?php if(isset($pers)) echo $total = number_format( $total,2);?></span></strong><input type="hidden" name="total" value="<?php if(isset($pers)) echo $total;?>" id="g_tot"  /></td></tr>
 <tr><td><strong>Admin Fee: <span class="a_fee">$<?php if(isset($pers)) echo $a_fee = number_format($a_fee,2);?></span></strong><input type="hidden" name="a_fee" value="<?php if(isset($pers)) echo $a_fee;?>" id="a_fee"  /></td></tr>
@@ -191,13 +203,33 @@ if(isset($pers) && $pers)
 </table>
 </td>
 <style>
-.misc2 input[type="text"],.misc input[type="text"],.dep input[type="text"]{width:55px;}
+.misc2 input[type="text"],.misc3 input[type="text"],.misc input[type="text"],.dep input[type="text"]{width:55px;}
 </style>
 <script>
     var tax1 = Number(<?php echo $rate['DeploymentRate']['tax'];?>);
         tax1 = tax1/100;
    
     $(function(){
+        $('.go_misc3').click(function(){
+            var v = $('.misc_opt3').val();
+             if($('.misc_opt3').val()=="")
+                return false;
+               $('.misc_entries3').show();
+               var newopt = $('.misc_opt2').val().split('_');
+               var mv = newopt[0];
+               var mid = newopt[1];
+               if(mv=='Hotel')
+               {
+                var cost = '<?php echo $rate['DeploymentRate']['hotelcost_day'];?>';
+               }
+               else
+               cost ='';
+               if(cost)
+               cost= parseFloat(cost);
+               $('.misc2').append('<tr ><td id="'+mid+'"><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td><input class="quantity" type="text" name="Equipment[qty][]"/></td><td><input type="text" name="Equipment[kms][]"/></td><td><input value="$" type="text" name="Equipment[fuel_cost][]" class="fuel_cost"/></td><td><input type ="hidden" value="'+mid+'" /></td><td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><input value="$" type="text" name="Equipment[amount_billable][]" class="total" readonly/></td><td><input type="checkbox" onclick="var v=0;if($(this).is(\':checked\')){v=1;}else{v=0;}$(this).parent().find(\'.fee\').val(v);" /><input class="fee" type="hidden" name="Equipment[admin_fee][]" value="0" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>'); 
+            
+            
+        });
         $('.date').datepicker({dateFormat: 'yy-mm-dd'});
         var af_tot = '<?php if(isset($pers)) echo $a_fee; else echo 0;?>';
         if(af_tot)

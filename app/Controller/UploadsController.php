@@ -1502,8 +1502,8 @@ class UploadsController extends AppController
                            $message="
                             Job: ".$job_title."<br/>
                             Document: ".$arr['title']."<br/>
-                            Period Covered- Start:".$_POST['sart_peroid']." ".$_POST['start_time']."<br/>
-                            Period Covered- End:".$_POST['end_peroid']." ".$_POST['end_time']."<br/>
+                            Period Covered - Start:".$_POST['start_peroid']." ".$_POST['start_time']."<br/>
+                            Period Covered - End:".$_POST['end_peroid']." ".$_POST['end_time']."<br/>
                             Who Uploaded: ".$fullname."<br/>
                             Upload Date: ".date('Y-m-d')."
                             <br/> Please <a href='".$base_url."?upload=".$eid."'>Click Here</a> to Login<br><br>- The Veritas Team"; 
@@ -2819,8 +2819,8 @@ class UploadsController extends AppController
                            $message="
                             Job: ".$job_title."<br/>
                             Document: ".$arr['title']."<br/>
-                            Period Covered- Start:".$_POST['sart_peroid']." ".$_POST['start_time']."<br/>
-                            Period Covered- End:".$_POST['end_peroid']." ".$_POST['end_time']."<br/>
+                            Period Covered - Start:".$_POST['start_peroid']." ".$_POST['start_time']."<br/>
+                            Period Covered - End:".$_POST['end_peroid']." ".$_POST['end_time']."<br/>
                             Who Uploaded: ".$fullname."<br/>
                             Upload Date: ".date('Y-m-d')."
                             <br/> Please <a href='".$base_url."?upload=".$eid."'>Click Here</a> to Login<br><br>- The Veritas Team"; 
