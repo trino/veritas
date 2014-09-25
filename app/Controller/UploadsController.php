@@ -3954,6 +3954,14 @@ $oa = intval($number*$expo)/$expo;
             $ids = $doc['Document']['job_id'];
             $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$ids.',%'), array('job_id'=>$ids),array('job_id LIKE'=>'%,'.$ids.',%'),array('job_id LIKE'=>'%,'.$ids)))));
             //var_dump($mails);die();
+            if($mem = $this->Member->findByFullName($this->Session->read('username')))
+            {
+                $fullname = ucwords($mem['Member']['fname']." ".$mem['Member']['lname']);
+            }
+            else
+            {
+                $fullname = $this->Session->read('username');
+            }
             foreach($mails as $m)
             {
                     
@@ -3985,7 +3993,7 @@ $oa = intval($number*$expo)/$expo;
                             $message="
                             Job: ".$job_title."<br/>
                             Document: ".$doc['Document']['title']."<br/>
-                            Who Uploaded: ".$this->Session->read('username')."<br/>
+                            Who Uploaded: ".$fullname."<br/>
                             Upload Date: ".date('Y-m-d')."
 
                             <br/><a href='".$base_url."?upload=".$doc_id."'>Click Here</a> to login and view the document.";
