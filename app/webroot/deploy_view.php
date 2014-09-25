@@ -57,8 +57,9 @@ if($equipment && count($equipment)>0)
     <?php
 
      $arr1 = array('Radio','Internet Stick','Tapes','SD Card','DVD','Hotel');     
-    $arr2 = array('Security Vehicle Regular','Security Vehicle Large','15 Pessenger Van','School Bus','Coach Bus','Transport Truck');
-    
+     $arr2 = array('Security Vehicle Regular','Security Vehicle Large','15 Pessenger Van','School Bus','Coach Bus','Transport Truck');
+     $arr3 = array('Air Fair');
+     
     foreach($equipment as $per)
     {
         $total = $per['Equipment']['total'];
@@ -106,6 +107,34 @@ if($equipment && count($equipment)>0)
 </table>
 <?php }
 ?>
+<table class="misc" style="border-bottom:1px solid #ddd">
+   
+    <tr class="misc_entries3" ><td colspan="7"><strong>Others</strong></td></tr>
+    <tr class="misc_entries3" ><td><strong>Item</strong></td><td></td><td></td><td ><strong>Fair</strong></td><td></td><td></td><td><strong>Admin Fee</strong></td></tr>
+    <?php
+    if(isset($equipment))
+    foreach($equipment as $eq)
+    {
+        
+        if(in_array($eq['Equipment']['items'],$arr3)){
+            $total = $eq['Equipment']['total'];
+            $tax = $eq['Equipment']['tax'];
+            $a_fee = $eq['Equipment']['a_fee'];
+            if($a_fee)
+                $af_tot = $eq['Equipment']['a_fee'];
+            $g_total = $eq['Equipment']['g_total'];
+            if($eq['Equipment']['qty']<1)
+                $eq['Equipment']['qty1']=1;
+            else
+                $eq['Equipment']['qty1']=$eq['Equipment']['qty'];
+      ?>
+    <tr><td id="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>"><?php echo $eq['Equipment']['items'];?></td><td></td><td></td><td><?php echo "$".$eq['Equipment']['fuel_cost'];?></td><td ></td><td></td><td><?php if($eq['Equipment']['admin_fee']){?>&#10004;<?php }?></td></tr>  
+      <?php  
+      }
+      
+    }
+    ?>
+</table>
 <table style="border-bottom: 1px solid #DDD;<?php if($this->Session->read('is_client')=='0'){ echo 'display:none;';}?>" >
 <tr><td style="padding-top: 50px;"><strong>Total: <span class="g_tot">$<?php echo number_format($total,2);?></span></strong><input type="hidden" name="total" value="<?php if(isset($pers)) echo $total;?>" id="g_tot"  /></td></tr>
 <tr><td><strong>Tax: <span class="tax">$<?php echo number_format($tax,2);?></span></strong><input type="hidden" name="tax" value="<?php if(isset($pers)) echo $tax;?>" id="tax"  /></td></tr>

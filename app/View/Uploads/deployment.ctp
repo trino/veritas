@@ -2,6 +2,7 @@
 //var_dump($rates);
     $arr1 = array('Radio','Internet Stick','Tapes','SD Card','DVD','Hotel');     
     $arr2 = array('Security Vehicle Regular','Security Vehicle Large','15 Pessenger Van','School Bus','Coach Bus','Transport Truck');
+    $arr3 = array('Air Fair');
 ?>
 <td colspan="2" style="padding: 0;">
 <table class="dep">
@@ -163,15 +164,15 @@ if(isset($pers) && $pers)
     {
         
         if(in_array($eq['Equipment']['items'],$arr2)){
-             $total = $eq['Equipment']['total'];
+            $total = $eq['Equipment']['total'];
             $tax = $eq['Equipment']['tax'];
             $a_fee = $eq['Equipment']['a_fee'];
             if($a_fee)
-            $af_tot = $eq['Equipment']['a_fee'];
+                $af_tot = $eq['Equipment']['a_fee'];
             $g_total = $eq['Equipment']['g_total'];
-             if($eq['Equipment']['qty']<1)
+            if($eq['Equipment']['qty']<1)
                 $eq['Equipment']['qty1']=1;
-             else
+            else
                 $eq['Equipment']['qty1']=$eq['Equipment']['qty'];
       ?>
     <tr><td id="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>"><input type="text" style="width:160px;" name="Equipment[items][]" value="<?php echo $eq['Equipment']['items'];?>" readonly /></td><td><input class="quantity" type="text" name="Equipment[qty][]" value="<?php echo $eq['Equipment']['qty'];?>"/></td><td><input type="text" name="Equipment[kms][]" value="<?php echo $eq['Equipment']['kms'];?>"/></td><td><input value="<?php echo $eq['Equipment']['fuel_cost'];?>" type="text" name="Equipment[fuel_cost][]" class="fuel_cost"/></td><td <?php if($this->Session->read('is_client')=='0'){ echo "style='display:none'";}?>><input type="hidden" value="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>" /></td><td><input value="$<?php echo $eq['Equipment']['amount_billable'];?>" type="text" name="Equipment[amount_billable][]" class="total" readonly/></td><td><input type="checkbox" onclick="var v=0;if($(this).is(':checked')){v=1;}else{v=0;}$(this).parent().find('.fee').val(v);" /><input class="fee" type="hidden" name="Equipment[admin_fee][]" value="0" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest('tr').remove();">X</a></td></tr>  
@@ -182,8 +183,8 @@ if(isset($pers) && $pers)
     ?>
     
 </table>
-<!--
-<table>
+
+<table class="misc3">
     <tr><td colspan="7" style="padding-top: 50px;border-top:1px solid #ddd">
             <select class="misc_opt3" style="margin-bottom: 0;">
                 <option value="">Others</option>
@@ -193,10 +194,34 @@ if(isset($pers) && $pers)
         </td>
     </tr>
     <tr class="misc_entries3" style="<?php if(!isset($others)){?>display: none;<?php }?>"><td colspan="7"><strong>Others</strong></td></tr>
-    <tr class="misc_entries3" style="<?php if(!isset($others)){?>display: none;<?php }?>"><td><strong>Item</strong></td><td></td><td ><strong>bill</strong></td><td><strong>Admin Fee</strong></td></tr>
-</table>-->
+    <tr class="misc_entries3" style="<?php if(!isset($others)){?>display: none;<?php }?>"><td><strong>Item</strong></td><td></td><td></td><td ><strong>Fair</strong></td><td></td><td></td><td><strong>Admin Fee</strong></td></tr>
+    <?php
+    if(isset($equip))
+    foreach($equip as $eq)
+    {
+        
+        if(in_array($eq['Equipment']['items'],$arr3)){
+            $total = $eq['Equipment']['total'];
+            $tax = $eq['Equipment']['tax'];
+            $a_fee = $eq['Equipment']['a_fee'];
+            if($a_fee)
+                $af_tot = $eq['Equipment']['a_fee'];
+            $g_total = $eq['Equipment']['g_total'];
+            if($eq['Equipment']['qty']<1)
+                $eq['Equipment']['qty1']=1;
+            else
+                $eq['Equipment']['qty1']=$eq['Equipment']['qty'];
+      ?>
+    <tr><td id="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>"><input type="text" style="width:160px;" name="Equipment[items][]" value="<?php echo $eq['Equipment']['items'];?>" readonly /></td><td></td><td></td><td><input value="<?php echo $eq['Equipment']['fuel_cost'];?>" type="text" name="Equipment[fuel_cost][]" class="fuel_cost"/></td><td ></td><td></td><td><input type="checkbox" onclick="var v=0;if($(this).is(':checked')){v=1;}else{v=0;}$(this).parent().find('.fee').val(v);" /><input class="fee" type="hidden" name="Equipment[admin_fee][]" value="0" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest('tr').remove();">X</a></td></tr>  
+      <?php  
+      }
+      
+    }
+    ?>
+</table>
+
 <table <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>>
-<tr><td style="padding-top: 50px;border-top:1px solid #ddd"><strong>Total: <span class="g_tot"><?php if(isset($pers)) echo $total = number_format( $total,2);?></span></strong><input type="hidden" name="total" value="<?php if(isset($pers)) echo $total;?>" id="g_tot"  /></td></tr>
+<tr><td style="padding-top: 50px;border-top:1px solid #ddd"><strong>Total: <span class="g_tot"><?php if(isset($pers)) echo $total = number_format( $total,2);?></span></strong><input type="hidden" name="total" value="<?php if(isset($pers)) echo $total;else echo "0";?>" id="g_tot"  /></td></tr>
 <tr><td><strong>Admin Fee: <span class="a_fee">$<?php if(isset($pers)) echo $a_fee = number_format($a_fee,2);?></span></strong><input type="hidden" name="a_fee" value="<?php if(isset($pers)) echo $a_fee;?>" id="a_fee"  /></td></tr>
 <tr><td><strong>Tax: <span class="tax">$<?php if(isset($pers))  echo $tax = number_format($tax,2);?></span></strong><input type="hidden" name="tax" value="<?php if(isset($pers)) echo $tax;?>" id="tax"  /></td></tr>
 <tr><td><strong>Grand Total: <span class="g2_tot">$<?php if(isset($pers)) echo $pers = number_format($g_total,2);?></span></strong><input type="hidden" name="g2_tot" value="<?php if(isset($pers)) echo $g_total;?>" id="g2_tot"  /></td></tr>
@@ -215,22 +240,44 @@ if(isset($pers) && $pers)
              if($('.misc_opt3').val()=="")
                 return false;
                $('.misc_entries3').show();
-               var newopt = $('.misc_opt2').val().split('_');
+               var newopt = $('.misc_opt3').val().split('_');
                var mv = newopt[0];
                var mid = newopt[1];
                if(mv=='Hotel')
                {
-                var cost = '<?php echo $rate['DeploymentRate']['hotelcost_day'];?>';
+                    var cost = '<?php echo $rate['DeploymentRate']['hotelcost_day'];?>';
                }
                else
-               cost ='';
+                    cost ='';
                if(cost)
-               cost= parseFloat(cost);
-               $('.misc2').append('<tr ><td id="'+mid+'"><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td><input class="quantity" type="text" name="Equipment[qty][]"/></td><td><input type="text" name="Equipment[kms][]"/></td><td><input value="$" type="text" name="Equipment[fuel_cost][]" class="fuel_cost"/></td><td><input type ="hidden" value="'+mid+'" /></td><td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><input value="$" type="text" name="Equipment[amount_billable][]" class="total" readonly/></td><td><input type="checkbox" onclick="var v=0;if($(this).is(\':checked\')){v=1;}else{v=0;}$(this).parent().find(\'.fee\').val(v);" /><input class="fee" type="hidden" name="Equipment[admin_fee][]" value="0" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>'); 
+                    cost= parseFloat(cost);
+               $('.misc3').append('<tr ><td id="'+mid+'"><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td></td><td></td><td>$<input value="" type="text" name="Equipment[fuel_cost][]" class="total fair"/></td><td><input type ="hidden" value="'+mid+'" /></td><td ></td><td><input type="checkbox" onclick="var v=0;if($(this).is(\':checked\')){v=1;}else{v=0;}$(this).parent().find(\'.fee\').val(v);" /><input class="fee" type="hidden" name="Equipment[admin_fee][]" value="0" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>'); 
             
             
         });
+       
         $('.date').datepicker({dateFormat: 'yy-mm-dd'});
+        
+        $('.fair').live('change',function(){
+            var gtot = 0;
+          $('.total').each(function(){
+            var t = $(this).val();
+            gtot = Number(gtot)+Number(t);
+          })
+           var t = $(this).val();
+           if(isNaN(t))
+           {
+                alert('Please enter a number');
+               
+           }
+           else
+           {
+               
+                $('#g_tot').val(gtot.toFixed(2));
+                $('.g_tot').text('$'+gtot.toFixed(2));
+                
+           }
+        });
         var af_tot = '<?php if(isset($pers)) echo $a_fee; else echo 0;?>';
         if(af_tot)
         {
@@ -248,15 +295,16 @@ if(isset($pers) && $pers)
             to = to.replace('$','');
             
             if(to)
-            var to = parseFloat(to);
+                var to = parseFloat(to);
             else
-            var to = 0;
+                var to = 0;
             
             tot = tot+to;
             
                 
-        });
-        var af = '<?php echo $rate['DeploymentRate']['admin'];?>';
+            });
+             //alert(tot);
+            var af = '<?php echo $rate['DeploymentRate']['admin'];?>';
             //alert(af);
             if(af)
             af = parseFloat(af);
