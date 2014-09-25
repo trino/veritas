@@ -187,13 +187,13 @@ if(isset($pers) && $pers)
 <table class="misc3">
     <tr><td colspan="7" style="padding-top: 50px;border-top:1px solid #ddd">
             <select class="misc_opt3" style="margin-bottom: 0;">
-                <option value="">Others</option>
+                <option value="">Other</option>
                 <option value="Air Fair">Air Fair</option>
             </select>
             <a href="javascript:void(0);" class="btn btn-primary go_misc3">Add</a>
         </td>
     </tr>
-    <tr class="misc_entries3" style="<?php if(!isset($others)){?>display: none;<?php }?>"><td colspan="7"><strong>Others</strong></td></tr>
+    <tr class="misc_entries3" style="<?php if(!isset($others)){?>display: none;<?php }?>"><td colspan="7"><strong>Other</strong></td></tr>
     <tr class="misc_entries3" style="<?php if(!isset($others)){?>display: none;<?php }?>"><td><strong>Item</strong></td><td></td><td></td><td ><strong>Fair</strong></td><td></td><td></td><td><strong>Admin Fee</strong></td></tr>
     <?php
     if(isset($equip))
@@ -221,10 +221,10 @@ if(isset($pers) && $pers)
 </table>
 
 <table <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>>
-<tr><td style="padding-top: 50px;border-top:1px solid #ddd"><strong>Total: <span class="g_tot"><?php if(isset($pers)) echo $total = number_format( $total,2);?></span></strong><input type="hidden" name="total" value="<?php if(isset($pers)) echo $total;else echo "0";?>" id="g_tot"  /></td></tr>
-<tr><td><strong>Admin Fee: <span class="a_fee">$<?php if(isset($pers)) echo $a_fee = number_format($a_fee,2);?></span></strong><input type="hidden" name="a_fee" value="<?php if(isset($pers)) echo $a_fee;?>" id="a_fee"  /></td></tr>
-<tr><td><strong>Tax: <span class="tax">$<?php if(isset($pers))  echo $tax = number_format($tax,2);?></span></strong><input type="hidden" name="tax" value="<?php if(isset($pers)) echo $tax;?>" id="tax"  /></td></tr>
-<tr><td><strong>Grand Total: <span class="g2_tot">$<?php if(isset($pers)) echo $pers = number_format($g_total,2);?></span></strong><input type="hidden" name="g2_tot" value="<?php if(isset($pers)) echo $g_total;?>" id="g2_tot"  /></td></tr>
+<tr><td style="padding-top: 50px;border-top:1px solid #ddd"><strong>Total: <span class="g_tot"><?php if(isset($pers)) echo $total = number_format( $total,2);else echo"$0.00"; ?></span></strong><input type="hidden" name="total" value="<?php if(isset($pers)) echo $total;else echo "0";?>" id="g_tot"  /></td></tr>
+<tr><td><strong>Admin Fee: <span class="a_fee">$<?php if(isset($pers)) echo $a_fee = number_format($a_fee, 2); else echo "$0.00";?></span></strong><input type="hidden" name="a_fee" value="<?php if(isset($pers)) echo $a_fee;?>" id="a_fee"  /></td></tr>
+<tr><td><strong>Tax: <span class="tax"><?php if(isset($pers))  echo $tax = number_format($tax,2);else echo"$0.00";?></span></strong><input type="hidden" name="tax" value="<?php if(isset($pers)) echo $tax;?>" id="tax"  /></td></tr>
+<tr><td><strong>Grand Total: <span class="g2_tot"><?php if(isset($pers)) echo $pers = number_format($g_total,2);else echo"$0.00";?></span></strong><input type="hidden" name="g2_tot" value="<?php if(isset($pers)) echo $g_total;?>" id="g2_tot"  /></td></tr>
 </table>
 </td>
 <style>
@@ -251,7 +251,7 @@ if(isset($pers) && $pers)
                     cost ='';
                if(cost)
                     cost= parseFloat(cost);
-               $('.misc3').append('<tr ><td id="'+mid+'"><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td></td><td></td><td>$<input value="" type="text" name="Equipment[fuel_cost][]" class="total fair"/></td><td><input type ="hidden" value="'+mid+'" /></td><td ></td><td><input type="checkbox" onclick="var v=0;if($(this).is(\':checked\')){v=1;}else{v=0;}$(this).parent().find(\'.fee\').val(v);" /><input class="fee" type="hidden" name="Equipment[admin_fee][]" value="0" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>'); 
+               $('.misc3').append('<tr ><td id="'+mid+'"><input type="text" style="width:160px;" name="Equipment[items][]" value="'+mv+'" readonly/></td><td></td><td></td><td><input value="$" type="text" name="Equipment[fuel_cost][]" class="total fair"/></td><td><input type ="hidden" value="'+mid+'" /></td><td ></td><td><input type="checkbox" onclick="var v=0;if($(this).is(\':checked\')){v=1;}else{v=0;}$(this).parent().find(\'.fee\').val(v);" /><input class="fee" type="hidden" name="Equipment[admin_fee][]" value="0" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest(\'tr\').remove();">X</a></td></tr>'); 
             
             
         });
@@ -297,7 +297,7 @@ if(isset($pers) && $pers)
            }
            
         });
-        var af_tot = '<?php if(isset($pers)) echo $a_fee; else echo 0;?>';
+        var af_tot = '<?php if(isset($pers)) echo $a_fee; else echo "0.00";?>';
         if(af_tot)
         {
             $('#a_fee').val('af_tot');

@@ -109,7 +109,7 @@ if($equipment && count($equipment)>0)
 ?>
 <table class="misc" style="border-bottom:1px solid #ddd">
    
-    <tr class="misc_entries3" ><td colspan="7"><strong>Others</strong></td></tr>
+    <tr class="misc_entries3" ><td colspan="7"><strong>Other</strong></td></tr>
     <tr class="misc_entries3" ><td><strong>Item</strong></td><td></td><td></td><td ><strong>Fair</strong></td><td></td><td></td><td><strong>Admin Fee</strong></td></tr>
     <?php
     if(isset($equipment))
@@ -128,7 +128,7 @@ if($equipment && count($equipment)>0)
             else
                 $eq['Equipment']['qty1']=$eq['Equipment']['qty'];
       ?>
-    <tr><td id="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>"><?php echo $eq['Equipment']['items'];?></td><td></td><td></td><td><?php echo "$".$eq['Equipment']['fuel_cost'];?></td><td ></td><td></td><td><?php if($eq['Equipment']['admin_fee']){?>&#10004;<?php }?></td></tr>  
+    <tr><td id="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>"><?php echo $eq['Equipment']['items'];?></td><td></td><td></td><td><?php echo "$".number_format($eq['Equipment']['fuel_cost'],2);?></td><td ></td><td></td><td><?php if($eq['Equipment']['admin_fee']){?>&#10004;<?php }?></td></tr>  
       <?php  
       }
       
