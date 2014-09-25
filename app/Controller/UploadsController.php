@@ -2816,7 +2816,7 @@ class UploadsController extends AppController
                             Document: ".$arr['title']."<br/>
                             Author: ".$_POST['evidence_author']."<br/>
                             Evidence Type: ".$_POST['evidence_type']."<br/>Incident Date:".$_POST['incident_date']."<br/>Uploaded by: ".$this->Session->read('username')."<br/>
-                            Upload Date: ".date('Y-m-d')."<br/> Please <a href='".$base_url."?upload=".$eid."'>Click Here</a> to Login<br><br>- The Veritas Team";
+                            Upload Date: ".date('Y-m-d')."<br/> Please <a href='".$base_url."?upload=".$id."'>Click Here</a> to Login<br><br>- The Veritas Team";
                         elseif($_POST['document_type'] == 'deployment')
                         {
                            $message="
@@ -2826,7 +2826,7 @@ class UploadsController extends AppController
                             Period Covered - End: ".$_POST['end_peroid']." ".$_POST['end_time']."<br/>
                             Who Uploaded: ".$fullname."<br/>
                             Upload Date: ".date('Y-m-d')."
-                            <br/> Please <a href='".$base_url."?upload=".$eid."'>Click Here</a> to Login<br><br>- The Veritas Team"; 
+                            <br/> Please <a href='".$base_url."?upload=".$id."'>Click Here</a> to Login<br><br>- The Veritas Team"; 
                         }
                         else
                             $message="
@@ -2834,7 +2834,7 @@ class UploadsController extends AppController
                             Document: ".$arr['title']."<br/>
                             Who Uploaded: ".$fullname."<br/>
                             Upload Date: ".date('Y-m-d')."
-                            <br/> Please <a href='".$base_url."?upload=".$eid."'>Click Here</a> to Login<br><br>- The Veritas Team";
+                            <br/> Please <a href='".$base_url."?upload=".$id."'>Click Here</a> to Login<br><br>- The Veritas Team";
                         
                         if($to)
                         {
