@@ -212,7 +212,7 @@ if(isset($pers) && $pers)
             else
                 $eq['Equipment']['qty1']=$eq['Equipment']['qty'];
       ?>
-    <tr><td id="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>"><input type="text" style="width:160px;" name="Equipment[items][]" value="<?php echo $eq['Equipment']['items'];?>" readonly /></td><td></td><td></td><td><input value="<?php echo $eq['Equipment']['fuel_cost'];?>" type="text" name="Equipment[fuel_cost][]" class="fuel_cost"/></td><td ></td><td></td><td><input type="checkbox" onclick="var v=0;if($(this).is(':checked')){v=1;}else{v=0;}$(this).parent().find('.fee').val(v);" /><input class="fee" type="hidden" name="Equipment[admin_fee][]" value="0" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest('tr').remove();">X</a></td></tr>  
+    <tr><td id="<?php echo $eq['Equipment']['amount_billable']/$eq['Equipment']['qty1'];?>"><input type="text" style="width:160px;" name="Equipment[items][]" value="<?php echo $eq['Equipment']['items'];?>" readonly /></td><td></td><td></td><td><input value="<?php echo "$".$eq['Equipment']['fuel_cost'];?>" type="text" name="Equipment[fuel_cost][]" class="fair total"/></td><td ></td><td></td><td><input type="checkbox" onclick="var v=0;if($(this).is(':checked')){v=1;}else{v=0;}$(this).parent().find('.fee').val(v);" /><input class="fee" type="hidden" name="Equipment[admin_fee][]" value="0" /> <a href="javascript:void(0)" class ="btn btn-danger btn-small" style="margin:0 0 3px 10px;" onclick="$(this).closest('tr').remove();">X</a></td></tr>  
       <?php  
       }
       
@@ -259,12 +259,18 @@ if(isset($pers) && $pers)
         $('.date').datepicker({dateFormat: 'yy-mm-dd'});
         
         $('.fair').live('change',function(){
-            var gtot = 0;
+            
+           var  gtot = 0;
+           
           $('.total').each(function(){
             var t = $(this).val();
+            t = t.replace('$','');
+            if(t == "" || !t)
+                t= 0;
             gtot = Number(gtot)+Number(t);
           })
            var t = $(this).val();
+               t = t.replace('$','');
            if(isNaN(t))
            {
                 alert('Please enter a number');
@@ -275,8 +281,21 @@ if(isset($pers) && $pers)
                
                 $('#g_tot').val(gtot.toFixed(2));
                 $('.g_tot').text('$'+gtot.toFixed(2));
+                var tax = tax1*(Number(gtot)+Number(af_tot));
+                tax = tax.toFixed(2);
+                $('.tax').html('$'+tax);
+                $('#tax').val(tax);
+                var g2tot = $('#g2_tot').val();
+                
+                g2tot = Number(gtot) + Number(tax) + Number(af_tot);
+                g2tot = g2tot.toFixed(2);
+                
+                $('#g2_tot').val(g2tot);
+                $('.g2_tot').html('$'+g2tot);
+                
                 
            }
+           
         });
         var af_tot = '<?php if(isset($pers)) echo $a_fee; else echo 0;?>';
         if(af_tot)
