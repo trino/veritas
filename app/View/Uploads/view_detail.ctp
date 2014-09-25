@@ -98,7 +98,7 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         <td><?php echo $doc['Document']['location']; ?></td>
     </tr> -->
     <?php $type =ucwords(str_replace('_',' ',$doc['Document']['document_type']));
-        if($type = "Deployment Rate")
+        if($type == "Deployment Rate")
             $type = "Deployment";
     ?> 
     <tr>
