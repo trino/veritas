@@ -2126,7 +2126,7 @@ class UploadsController extends AppController
                 for($i=0;$i<$count;$i++)
                 {
                     $eq['items'] =  $equ['items'][$i];
-                    if(isset($eq['qty'][$i]))
+                    if(isset($equ['qty'][$i]))
                         $eq['qty'] =  $equ['qty'][$i];
                     else
                         $eq['qty'] = 0;
