@@ -81,7 +81,7 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         <a href="javascript:void(0)" class="btn btn-danger" onclick="$('.disapp').toggle();">Client Disapprove</a>
         <div style="display: none;" class="disapp">
             <hr style="width: 300px;" />
-            <textarea style="width: 300px;" placeholder="Disapproval note" id="dnote"></textarea><br />
+            <textarea style="width: 300px;" placeholder="Reason for disapproval" id="dnote"></textarea><br />
             <a href="javascript:void(0)" class="btn btn-danger dnote">Disapprove</a>
             <script>
             $(function(){
