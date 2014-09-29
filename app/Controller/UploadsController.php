@@ -22,6 +22,12 @@ class UploadsController extends AppController
         parent::__construct($request,$response);
         
     }
+    function client_note($id)
+    {
+        $this->Document->id = $id;
+        $this->Document->saveField('client_note',$_POST['dnote']);
+        die();
+    }
     function beforefilter()
     {
          //echo $this->Session->read('admin'); die();    

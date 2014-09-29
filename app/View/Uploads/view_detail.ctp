@@ -78,13 +78,35 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
     <?php if($doc['Document']['client_approve']=='0'){
         ?>
         <a href="<?php echo $this->webroot;?>uploads/client_approve/<?php echo $doc['Document']['id'];?>/1" class="btn btn-success">Client Approve</a>
-        <a href="<?php echo $this->webroot;?>uploads/client_approve/<?php echo $doc['Document']['id'];?>/2" class="btn btn-danger">Client Disapprove</a>
+        <a href="javascript:void(0)" class="btn btn-danger" onclick="$('.disapp').toggle();">Client Disapprove</a>
+        <div style="display: none;" class="disapp">
+            <hr style="width: 300px;" />
+            <textarea style="width: 300px;" placeholder="Disapproval note" id="dnote"></textarea><br />
+            <a href="javascript:void(0)" class="btn btn-danger dnote">Disapprove</a>
+            <script>
+            $(function(){
+               $('.dnote').click(function(){
+                var dnote = $('#dnote').val();
+                $.ajax({
+                   url:'<?php echo $this->webroot;?>uploads/client_note/<?php echo $doc['Document']['id'];?>',
+                   data:'dnote='+dnote,
+                   type:'post',
+                   success:function()
+                   {
+                    //return;
+                    window.location = '<?php echo $this->webroot;?>uploads/client_approve/<?php echo $doc['Document']['id'];?>/2';
+                   } 
+                });
+               }); 
+            });
+            </script>
+        </div>
     <?php }
     elseif($doc['Document']['client_approve']==1){
             ?>
             <strong style="display: block;background:#F5F5F5;color:#5FBE5F;font-size:17px;padding:7px;">Approved By Client</strong>
             <?php }
-            else{?><strong style="display: block;background:#F5F5F5;color:#E1544F;font-size:17px;padding:7px;">Disapproved By Client</strong><?php }
+            else{?><strong style="display: block;background:#F5F5F5;color:#E1544F;font-size:17px;padding:7px;">Disapproved By Client<?php if($doc['Document']['client_note']){?><br /><span style="font-weight: normal!important;font-size: 14px!important;"><?php echo "Note: ".$doc['Document']['client_note'];?></span><?php }?></strong><?php }
             ?>
 </div>
 <?php }?>
