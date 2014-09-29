@@ -144,7 +144,7 @@
 By signing this document, I agree to the terms set out herein. 
 </td></tr>
  <tr><td colspan="5">&nbsp;Date: <?php echo(isset($uniform))?$uniform['UniformIssue']['date']:"";?></td></tr>
- <tr><td colspan="5">&nbsp;Charged: <?php if(isset($uniform)&&$uniform['UniformIssue']['charged'])echo "&#10004;";else echo '&times;';?></td></tr>   
+ <tr><td colspan="5">&nbsp;Charged?: <?php if(isset($uniform)&&$uniform['UniformIssue']['charged'])echo "&#10004;";else echo '&times;';?></td></tr>   
 </table>
 <div style="position: relative;padding:5px;">
                 
