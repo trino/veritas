@@ -3528,6 +3528,18 @@ class UploadsController extends AppController
         );
         $this->set($params);
     }
+    public function download_csv($file) {
+        //echo APP . 'outside_webroot_dir' . DS; die();
+        $this->viewClass = 'Media';
+        // Download app/outside_webroot_dir/example.zip
+        
+        $params = array(
+            'id'        => $file,
+            'download'  => true,
+            'path'      => APP . 'webroot/csvs/'
+        );
+        $this->set($params);
+    }
     
   public function email($id)
   {
@@ -4062,5 +4074,135 @@ $oa = intval($number*$expo)/$expo;
         $this->Document->saveField('client_approve',$app);
         $this->redirect("view_detail/".$id);
   }
+   public function export_csv($id)
+    {
+        
+        $this->loadModel('Document');
+        $this->loadModel('Job');
+        $this->loadModel('Equipment');
+        $this->loadModel('Personnel');
+        
+        $doc = $this->Document->findById($id);
+        if($j = $this->Job->findById($doc['Document']['job_id'])) 
+            $job_title =  stripslashes($j['Job']['title']);
+        else
+            $job_title = "";
+         if($doc['Document']['addedBy'] != 0)
+         {
+            $q = $member->find('first',array('conditions'=>array('id'=>$doc['Document']['addedBy'])));
+                if($q)
+                {
+                    if($this->Session->read('admin'))
+                        $up_by =  $q['Member']['full_name'];
+                    else 
+                        $up_by =  $q['Member']['full_name'];
+                }
+         }
+         else 
+            $up_by =  "Admin";
+            
+        $list = array (
+                        array('Document Type', 'Deployment'),
+                        array('Description', 'N/A'),
+                        array('Job Title', $job_title),
+                        array('Period Covered - Start',$doc['Document']['start_peroid']." ".$doc['Document']['start_time']),
+                        array('Period Covered - End',$doc['Document']['end_peroid']." ".$doc['Document']['end_time']),
+                        array('Uploaded By',$up_by),
+                        array('Uploaded On',$doc['Document']['date']),
+                        
+                        );
+        
+        $personnels = $this->Personnel->find('all',array('conditions'=>array('doc_id'=>$id)));
+        $equipments = $this->Equipment->find('all',array('conditions'=>array('doc_id'=>$id)));
+        if(count($personnels)>0)
+        {
+            
+            array_push($list,array('Personnel'));
+            array_push($list,array('Position','Number of Staff','Start Time','End Time','Hours worked Each','Hourly Rate','Hours Billable','Travel Rate','Travel Billable','Meal Rate','Meal Per Diem Billable','Admin Fee'));
+            foreach($personnels as $per)
+            {
+                $hour_rate = ($per['Personnel']['hours_billable']/$per['Personnel']['total_hours'])/$per['Personnel']['no_of_staff'];
+                $travel_rate = $per['Personnel']['travel_billable']/$per['Personnel']['travel'];
+                $meal_rate = $per['Personnel']['meal_billable']/$per['Personnel']['meal_amount'];
+                $total = $per['Equipment']['total'];
+                $tax = $per['Equipment']['tax'];
+                $a_fee = $per['Equipment']['a_fee'];
+                $g_total = $per['Equipment']['g_total'];
+                array_push($list, array($per['Personnel']['position'],$per['Personnel']['no_of_staff'],$per['Personnel']['start_time'],$per['Personnel']['end_time'],$per['Personnel']['total_hours'],"$".$hour_rate,"$".$per['Personnel']['hours_billable'],"$".$travel_rate,"$".$per['Personnel']['travel_billable'],"$".$meal_rate,"$".$per['Personnel']['meal_billable'],($per['Personnel']['admin_fee']==1)?"Yes":"No"));
+            }
+        }
+        
+        if(count($equipments)>0)
+        {
+             $arr1 = array('Radio','Internet Stick','Tapes','SD Card','DVD','Hotel');     
+             $arr2 = array('Security Vehicle Regular','Security Vehicle Large','15 Pessenger Van','School Bus','Coach Bus','Transport Truck');
+             $arr3 = array('Air Fair');
+             
+             foreach($equipments as $k=>$per)
+             {  
+                $cnt =0;
+                $total = $per['Equipment']['total'];
+                $tax = $per['Equipment']['tax'];
+                $a_fee = $per['Equipment']['a_fee'];
+                $g_total = $per['Equipment']['g_total'];
+                if(in_array($per['Equipment']['items'], $arr1))
+                {
+                    if($cnt == 0)
+                    {
+                            array_push($list,array('Equipment/Hotel'));
+                            array_push($list, array('Item','Quantity','Amount Billable','Admin Fee'));
+                    }
+                    $cnt++;
+                    
+                    array_push($list, array($per['Equipment']['items'],$per['Equipment']['qty'],"$".$per['Equipment']['amount_billable'],($per['Equipment']['admin_fee']==1)?'Yes':'No'));
+                }
+             }
+              foreach($equipments as $k=>$per)
+             {  
+                $cnt =0;
+                if(in_array($per['Equipment']['items'], $arr2))
+                {
+                    if($cnt == 0){
+                        array_push($list,array('Vehicle'));
+                         array_push($list, array('Item','Quantity',"KM's","Fuel Cost (excluding tax and admin)","Amount Billable",'Admin Fee'));
+                    }
+                    $cnt++;
+                    
+                    array_push($list, array($per['Equipment']['items'],$per['Equipment']['qty'],$per['Equipment']['kms'],"$".$per['Equipment']['fuel_cost'],"$".$per['Equipment']['amount_billable'],($per['Equipment']['admin_fee']==1)?'Yes':'No'));
+                }
+             }
+              foreach($equipments as $k=>$per)
+             {  
+                $cnt =0;
+                if(in_array($per['Equipment']['items'], $arr3))
+                {
+                    if($cnt == 0)
+                    {
+                        array_push($list,array('Other'));
+                         array_push($list, array('Item','Fair','Admin Fee'));
+                    }
+                    $cnt++;
+                    
+                    array_push($list, array($per['Equipment']['items'],"$".$per['Equipment']['fuel_cost'],($per['Equipment']['admin_fee']==1)?'Yes':'No'));
+                }
+             }
+             
+        }
+         array_push($list, array('Total',"$".number_format($total,2)));
+         array_push($list, array('Tax',"$".number_format($tax,2)));
+         array_push($list, array('Admin Fee',"$".number_format($a_fee,2)));
+         array_push($list, array('Grand Total',"$".number_format($g_total,2)));
+        //var_dump($list);
+        $fp = fopen(APP.'webroot/csvs/file.csv', 'w');
+        
+        foreach ($list as $fields) {
+            fputcsv($fp, $fields);
+        }
+        
+        fclose($fp);
+        $this->download_csv('file.csv');
+
+        //die();
+    }
   
 }

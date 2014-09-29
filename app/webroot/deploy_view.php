@@ -14,8 +14,11 @@ if($personnel && count($personnel)>0)
     <td><strong>Start Time</strong></td>
     <td><strong>End Time</strong></td>
     <td><strong>Hours worked each</strong></td>
+    <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><strong>Hourly Rate</strong></td>
     <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><strong>Hours Billable</strong></td>
+    <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><strong>Travel Rate</strong></td>
     <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><strong>Travel Billable</strong></td>
+    <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><strong>Meal Rate</strong></td>
     <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>><strong>Meal Per Diem Billable</strong></td>
     <td><strong>Admin Fee</strong></td>
 </tr>
@@ -26,6 +29,9 @@ if($personnel && count($personnel)>0)
         $tax = $per['Personnel']['tax'];
         $a_fee = $per['Personnel']['a_fee'];
         $g_total = $per['Personnel']['g_total'];
+        $hour_rate = ($per['Personnel']['hours_billable']/$per['Personnel']['total_hours'])/$per['Personnel']['no_of_staff'];
+        $travel_rate = $per['Personnel']['travel_billable']/$per['Personnel']['travel'];
+        $meal_rate = $per['Personnel']['meal_billable']/$per['Personnel']['meal_amount'];
         ?>
         <tr>
             <td><?php echo $per['Personnel']['position']?></td>
@@ -33,8 +39,11 @@ if($personnel && count($personnel)>0)
             <td><?php echo $per['Personnel']['start_time']?></td>
             <td><?php echo $per['Personnel']['end_time']?></td>
             <td ><?php echo $per['Personnel']['total_hours']?></td>
+            <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>>$<?php echo $hour_rate;?></td>
             <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>>$<?php echo $per['Personnel']['hours_billable']?></td>
+            <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>>$<?php echo $travel_rate;?></td>
             <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>>$<?php echo $per['Personnel']['travel_billable']?></td>
+            <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>>$<?php echo $meal_rate;?></td>
             <td <?php if($this->Session->read('is_client')=='0'){ echo 'style="display:none;"';}?>>$<?php echo $per['Personnel']['meal_billable']?></td>
             <td ><?php if($per['Personnel']['admin_fee']){?>&#10004;<?php }?></td>
         </tr>
