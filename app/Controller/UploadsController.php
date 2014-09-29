@@ -707,6 +707,8 @@ class UploadsController extends AppController
                     }
                      $_POST['doc_id'] = $id;
                     $this->UniformIssue->create();
+                    if(!isset($_POST['uniform']['charged']))
+                    $uniform['charged'] = 0;
                     $this->UniformIssue->save($uniform);
                     
                 }
@@ -2624,6 +2626,8 @@ class UploadsController extends AppController
                     }
                      
                     $this->UniformIssue->create();
+                    if(!isset($_POST['uniform']['charged']))
+                    $uniform['charged'] = 0;
                     $this->UniformIssue->save($uniform);
                     
                 }

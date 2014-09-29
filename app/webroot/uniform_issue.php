@@ -144,7 +144,8 @@
 
 By signing this document, I agree to the terms set out herein. 
 </td></tr>
- <tr><td colspan="5">&nbsp;Date:<input type="text" style="line-height: 0;border-radius: 0;box-shadow: none; height: 8px;" name="uniform[date]" class="date" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['date']:"";?>" /></td></tr>   
+ <tr><td colspan="5">&nbsp;Date:<input type="text" style="line-height: 0;border-radius: 0;box-shadow: none; height: 8px;" name="uniform[date]" class="date" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['date']:"";?>" /></td></tr>
+ <tr><td colspan="5">&nbsp;Charged?:<input type="checkbox"  name="uniform[charged]" <?php if(isset($uniform) && $uniform['UniformIssue']['charged']){?>checked="checked"<?php }?> class="" value="1" /></td></tr>   
 </table>
 <div style="position: relative;padding:5px;">
             <div style="width: 50%;float:left;">
