@@ -22,6 +22,12 @@ class UploadsController extends AppController
         parent::__construct($request,$response);
         
     }
+    function client_note($id)
+    {
+        $this->Document->id = $id;
+        $this->Document->saveField('client_note',$_POST['dnote']);
+        die();
+    }
     function beforefilter()
     {
          //echo $this->Session->read('admin'); die();    
@@ -701,6 +707,8 @@ class UploadsController extends AppController
                     }
                      $_POST['doc_id'] = $id;
                     $this->UniformIssue->create();
+                    if(!isset($_POST['uniform']['charged']))
+                    $uniform['charged'] = 0;
                     $this->UniformIssue->save($uniform);
                     
                 }
@@ -2126,7 +2134,7 @@ class UploadsController extends AppController
                 for($i=0;$i<$count;$i++)
                 {
                     $eq['items'] =  $equ['items'][$i];
-                    if(isset($eq['qty'][$i]))
+                    if(isset($equ['qty'][$i]))
                         $eq['qty'] =  $equ['qty'][$i];
                     else
                         $eq['qty'] = 0;
@@ -2618,6 +2626,8 @@ class UploadsController extends AppController
                     }
                      
                     $this->UniformIssue->create();
+                    if(!isset($_POST['uniform']['charged']))
+                    $uniform['charged'] = 0;
                     $this->UniformIssue->save($uniform);
                     
                 }

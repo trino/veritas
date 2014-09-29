@@ -9,8 +9,8 @@
 <tr><td colspan="11"><strong>Choose Bill Rate</strong>&nbsp;
     <select name="bill_type" id="bill_type"><option value="0">Normal Bill Rate</option><option value="1">Holiday Bill Rate</option></select></td>
 </tr>
-<tr><td colspan="11"><strong>Period Covered - Start:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="date required" name="start_peroid" value="<?php if(isset($docz))echo $docz['Document']['start_peroid'];?>" style="width: 85px; margin-right:10px" /><input type="text" class="time  required" name="start_time" value="<?php if(isset($docz))echo $docz['Document']['start_time'];?>" /></td></tr>
-<tr><td colspan="11"><strong>Period Covered - End:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="date  required" name="end_peroid" style="width: 85px; margin-right:10px" value="<?php if(isset($docz))echo $docz['Document']['end_peroid'];?>" /><input type="text" class="time  required" name="end_time" value="<?php if(isset($docz))echo $docz['Document']['end_time'];?>"/></td></tr>
+<tr><td colspan="11"><strong>Period Covered - Start:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="date required" name="start_peroid" value="<?php if(isset($docz))echo $docz['Document']['start_peroid'];?>" style="width: 85px; margin-right:10px" /><input type="text" class="timeP  required" name="start_time" value="<?php if(isset($docz))echo $docz['Document']['start_time'];?>" /></td></tr>
+<tr><td colspan="11"><strong>Period Covered - End:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="date  required" name="end_peroid" style="width: 85px; margin-right:10px" value="<?php if(isset($docz))echo $docz['Document']['end_peroid'];?>" /><input type="text" class="timeP  required" name="end_time" value="<?php if(isset($docz))echo $docz['Document']['end_time'];?>"/></td></tr>
 <tr>
 <td colspan="11"style="padding-top: 50px;">
 <select class="personnel" name="personnel" style="margin-bottom: 0;">
@@ -383,6 +383,12 @@ if(isset($pers) && $pers)
         
        });
        $('.time').timepicker();
+       $('.timeP').timepicker({
+        showMinutes: false
+       });
+       $('.timeP').change(function(){
+        $(this).val($(this).val()+':00');
+       });
         
         var tot = 0;
         var n_tot =0;
@@ -431,14 +437,36 @@ if(isset($pers) && $pers)
         //alert('1:'+start_sec+"2:"+end_sec);
         if(start_sec > end_sec)
         {
-            alert("End time can't be less than start time.");
+            /*alert("End time can't be less than start time.");
             $(this).val("");
-            $(this).closest('tr').children('td:nth-child(5)').children('input').val(0);
+            $(this).closest('tr').children('td:nth-child(5)').children('input').val(0);*/
+            var m_min = (end_sec-start_sec)/3600;
+            if(!m_min)
+                m_min = 0;
+            else{
+                m_min = Number(m_min)+24;
+                m_min = m_min.toFixed(2);
+                }
+            if(m_min)
+            $(this).closest('tr').children('td:nth-child(5)').children('input').val(m_min);
+            
         }
         else
         if(start_sec == end_sec)
         {
-            $(this).closest('tr').children('td:nth-child(5)').children('input').val(0);
+            //$(this).closest('tr').children('td:nth-child(5)').children('input').val(0);
+            var m_min = (end_sec-start_sec)/3600;
+            //alert(m_min);
+            if(!m_min){
+                m_min = 24;
+                m_min = m_min.toFixed(2);
+                }
+            else{
+                m_min = Number(m_min)+24;
+                m_min = m_min.toFixed(2);
+                }
+            if(m_min)
+            $(this).closest('tr').children('td:nth-child(5)').children('input').val(m_min);
         }
         else
         {
@@ -467,7 +495,8 @@ if(isset($pers) && $pers)
         else
             hr = parseFloat(hr);
 
-            
+        //alert(st);
+        //alert(hr);    
         var pers = $(this).closest('tr').children('td:first').attr('id');
         var optn = pers.split("_");
         var hr_rate = parseFloat(optn[0]);
