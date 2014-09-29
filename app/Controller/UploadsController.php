@@ -4157,6 +4157,11 @@ $oa = intval($number*$expo)/$expo;
                 $g_total = $per['Equipment']['g_total'];
                 if(in_array($per['Equipment']['items'], $arr1))
                 {
+                    
+                        if($per['Equipment']['qty']<1)
+                            $per['Equipment']['qty1']=1;
+                        else
+                            $per['Equipment']['qty1']=$per['Equipment']['qty'];         
                     if($cnt == 0)
                     {
                             array_push($list,array('Equipment/Hotel'));
@@ -4164,7 +4169,7 @@ $oa = intval($number*$expo)/$expo;
                     }
                     $cnt++;
                     
-                    array_push($list, array($per['Equipment']['items'],$per['Equipment']['qty'],"$".$per['Equipment']['amount_billable'],($per['Equipment']['admin_fee']==1)?'Yes':'No'));
+                    array_push($list, array($per['Equipment']['items'],$per['Equipment']['qty1'],"$".$per['Equipment']['amount_billable'],($per['Equipment']['admin_fee']==1)?'Yes':'No'));
                 }
              }
               foreach($equipments as $k=>$per)
@@ -4177,8 +4182,11 @@ $oa = intval($number*$expo)/$expo;
                          array_push($list, array('Item','Quantity',"KM's","Fuel Cost (excluding tax and admin)","Amount Billable",'Admin Fee'));
                     }
                     $cnt++;
-                    
-                    array_push($list, array($per['Equipment']['items'],$per['Equipment']['qty'],$per['Equipment']['kms'],"$".$per['Equipment']['fuel_cost'],"$".$per['Equipment']['amount_billable'],($per['Equipment']['admin_fee']==1)?'Yes':'No'));
+                     if($per['Equipment']['qty']<1)
+                        $per['Equipment']['qty1']=1;
+                    else
+                        $per['Equipment']['qty1']=$per['Equipment']['qty'];
+                    array_push($list, array($per['Equipment']['items'],$per['Equipment']['qty1'],$per['Equipment']['kms'],"$".$per['Equipment']['fuel_cost'],"$".$per['Equipment']['amount_billable'],($per['Equipment']['admin_fee']==1)?'Yes':'No'));
                 }
              }
               foreach($equipments as $k=>$per)

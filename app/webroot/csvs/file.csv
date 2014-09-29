@@ -10,10 +10,10 @@ Position,"Number of Staff","Start Time","End Time","Hours worked Each","Hourly R
 "Private Investigator",1,14:00,15:00,1.00,$3,$3.00,$4,$4.00,$3,$6.00,Yes
 Equipment/Hotel
 Item,Quantity,"Amount Billable","Admin Fee"
-Radio,0,$1.00,Yes
+Radio,1,$1.00,Yes
 Vehicle
 Item,Quantity,KM's,"Fuel Cost (excluding tax and admin)","Amount Billable","Admin Fee"
-"Security Vehicle Regular",0,1,$23,$29.00,Yes
+"Security Vehicle Regular",1,1,$23,$29.00,Yes
 Other
 Item,Fair,"Admin Fee"
 "Air Fair",$20,Yes
