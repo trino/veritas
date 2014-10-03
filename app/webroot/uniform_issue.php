@@ -133,6 +133,21 @@
         <td><input class="cost" type="text" value="<?php echo(isset($uniform))?"$".$uniform['UniformIssue']['cost18']:"";?>" name="uniform[cost18]" readonly="readonly"/></td>
         <td><input type="text" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['size18']:"";?>" name="uniform[size18]" /></td>
     </tr>
+    <tr>
+        <td><input type="text" name="uniform[item1]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['item1']:"";?>"/></td>
+        <td><input type="text" name="uniform[rate1]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['rate1']:"";?>" class="number" id="rate"/></td>
+        <td><input type="text" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['no19']:"";?>" name="uniform[no19]" class="number"/></td>
+        <td><input class="cost" type="text" value="<?php echo(isset($uniform))?"$".$uniform['UniformIssue']['cost19']:"";?>" name="uniform[cost19]" readonly="readonly"/></td>
+        <td><input type="text" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['size19']:"";?>" name="uniform[size19]" /></td>
+    </tr>
+    <tr>
+        <td><input type="text" name="uniform[item2]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['item2']:"";?>"/></td>
+        <td><input type="text" name="uniform[rate2]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['rate2']:"";?>" class="number" id="rate"/></td>
+        <td><input type="text" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['no20']:"";?>" name="uniform[no20]" class="number"/></td>
+        <td><input class="cost" type="text" value="<?php echo(isset($uniform))?"$".$uniform['UniformIssue']['cost20']:"";?>" name="uniform[cost20]" readonly="readonly"/></td>
+        <td><input type="text" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['size20']:"";?>" name="uniform[size20]" /></td>
+    </tr>
+    
     <tr><td colspan="2"></td><td><strong>Total Cost <input id="tots" type="hidden" name="uniform[totalcost]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['totalcost']:"";?>"/></strong></td><td class="totalcost"><?php echo(isset($uniform))?"$ ".$uniform['UniformIssue']['totalcost']:"";?></td></tr>
    <tr><td colspan="5"></td></tr>
     <tr><td colspan="5">I, <input style="line-height: 0;border-radius: 0;box-shadow: none; height:15px;padding:0;" type="text" name="uniform[name]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['name']:"";?>"/>, agree that a total of <input type="text" name="uniform[val1]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['val1']:"";?>" style="width:50px;line-height: 0;border-radius: 0;box-shadow: none;height:15px;padding:0; " /> $50 <input type="text" name="uniform[val2]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['val2']:"";?>" style="width:50px;line-height: 0;border-radius: 0;box-shadow: none;height:15px;padding:0; "/> $75 <input type="text" name="uniform[val3]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['val3']:"";?>" style="width:50px;line-height: 0;border-radius: 0;box-shadow: none;height:15px;padding:0; "/> $ Full Amount, will be deducted from my pay until the total cost is deducted. Re-imbursement must be done within a reasonable amount of time, as per your supervisors’ discretion. 
@@ -176,9 +191,33 @@ By signing this document, I agree to the terms set out herein.
 <script>
 $('.date').datepicker({dateFormat: 'yy-mm-dd'});
 $('.number').change(function(){
-    var no = $(this).val();
-    var price = $(this).parent().closest('tr').children(':nth-child(2)').text();
-        price = price.replace("$","");
+    
+    var id = $(this).attr('id');
+    if(id == 'rate')
+    {
+        var no = $(this).parent().closest('tr').children(':nth-child(3)').children().val();
+        if(isNaN(no))
+            no = 0;
+        var price = $(this).val();
+            price = price.replace("$","");
+        if(isNaN(price))
+            price = 0;
+        
+    }
+    else
+    {
+        var no = $(this).val();
+        if(isNaN(no))
+            no = 0;
+        if($(this).parent().closest('tr').children(':nth-child(2)').children().attr('id') == 'rate')
+            var price = $(this).parent().closest('tr').children(':nth-child(2)').children().val();
+        else
+            var price = $(this).parent().closest('tr').children(':nth-child(2)').text();
+            price = price.replace("$","");
+            if(isNaN(price))
+            price = 0;
+    }
+    
     var cost = price * no;
         cost = cost.toFixed(2);
     //alert(cost);

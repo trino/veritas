@@ -125,12 +125,26 @@
         <td><?php echo(isset($uniform))?"$".$uniform['UniformIssue']['cost17']:"";?></td>
         <td><?php echo(isset($uniform))?$uniform['UniformIssue']['size17']:"";?></td>
     </tr>
-     <tr>
+    <tr>
         <td>Black Suit</td>
         <td>$17.50</td>
         <td><?php echo(isset($uniform))?$uniform['UniformIssue']['no18']:"";?></td>
-        <td><?php echo(isset($uniform))?"$".$uniform['UniformIssue']['cost18']:"";?></td>
+        <td><?php echo(isset($uniform))? "$".$uniform['UniformIssue']['cost18']:"";?></td>
         <td><?php echo(isset($uniform))?$uniform['UniformIssue']['size18']:"";?></td>
+    </tr>
+    <tr>
+        <td><?php echo(isset($uniform))?$uniform['UniformIssue']['item1']:"";?></td>
+        <td><?php echo(isset($uniform))?"$".$uniform['UniformIssue']['rate1']:"";?></td>
+        <td><?php echo(isset($uniform))?$uniform['UniformIssue']['no19']:"";?></td>
+        <td><?php echo(isset($uniform))? "$".$uniform['UniformIssue']['cost19']:"";?></td>
+        <td><?php echo(isset($uniform))?$uniform['UniformIssue']['size19']:"";?></td>
+    </tr>
+    <tr>
+        <td><?php echo(isset($uniform))?$uniform['UniformIssue']['item2']:"";?></td>
+        <td><?php echo(isset($uniform))?"$".$uniform['UniformIssue']['rate2']:"";?></td>
+        <td><?php echo(isset($uniform))?$uniform['UniformIssue']['no20']:"";?></td>
+        <td><?php echo(isset($uniform))? "$".$uniform['UniformIssue']['cost20']:"";?></td>
+        <td><?php echo(isset($uniform))?$uniform['UniformIssue']['size20']:"";?></td>
     </tr>
     <tr><td colspan="2"></td><td><strong>Total Cost</strong></td><td class="totalcost"><?php echo(isset($uniform))?"$".$uniform['UniformIssue']['totalcost']:"";?></td></tr>
    <tr><td colspan="5"></td></tr>
