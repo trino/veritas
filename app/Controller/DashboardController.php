@@ -7,7 +7,12 @@ class DashboardController extends AppController
     {
         //parent::__construct();
         
-         if($this->Session->read('avatar') || $this->Session->read('user'))
+         
+        
+    }
+    public function changelang($lang)
+    {
+        if($this->Session->read('avatar') || $this->Session->read('user'))
         {
             //die('here');
         }
@@ -21,10 +26,6 @@ class DashboardController extends AppController
         {
             $this->Session->write('lang','eng');
         }
-        
-    }
-    public function changelang($lang)
-    {
         $this->Session->write('lang',$lang);
         die();
         
@@ -54,6 +55,20 @@ class DashboardController extends AppController
     }
     function upload()
     {
+        if($this->Session->read('avatar') || $this->Session->read('user'))
+        {
+            //die('here');
+        }
+        else
+        {
+            //die('there');
+            $this->redirect('/admin');
+        }
+        
+        if(!$this->Session->read('lang'))
+        {
+            $this->Session->write('lang','eng');
+        }
         
         if($this->Session->read('user'))
         {
@@ -78,6 +93,20 @@ class DashboardController extends AppController
     }
     function getall()
     {
+        if($this->Session->read('avatar') || $this->Session->read('user'))
+        {
+            //die('here');
+        }
+        else
+        {
+            //die('there');
+            $this->redirect('/admin');
+        }
+        
+        if(!$this->Session->read('lang'))
+        {
+            $this->Session->write('lang','eng');
+        }
          if($this->Session->read('user'))
         {
             $this->loadModel('Member');
@@ -99,6 +128,20 @@ class DashboardController extends AppController
     }
     public function index()
     {
+        if($this->Session->read('avatar') || $this->Session->read('user'))
+        {
+            //die('here');
+        }
+        else
+        {
+            //die('there');
+            $this->redirect('/admin');
+        }
+        
+        if(!$this->Session->read('lang'))
+        {
+            $this->Session->write('lang','eng');
+        }
         
         if($this->Session->read('avatar') || $this->Session->read('user'))
         {
@@ -457,6 +500,20 @@ class DashboardController extends AppController
     
     public function contactus()
     {
+        if($this->Session->read('avatar') || $this->Session->read('user'))
+        {
+            //die('here');
+        }
+        else
+        {
+            //die('there');
+            $this->redirect('/admin');
+        }
+        
+        if(!$this->Session->read('lang'))
+        {
+            $this->Session->write('lang','eng');
+        }
         $this->loadModel('User');
         if(isset($_POST['submit']))
         {
@@ -490,7 +547,20 @@ class DashboardController extends AppController
     }            
     public function settings()
     {
+        if($this->Session->read('avatar') || $this->Session->read('user'))
+        {
+            //die('here');
+        }
+        else
+        {
+            //die('there');
+            $this->redirect('/admin');
+        }
         
+        if(!$this->Session->read('lang'))
+        {
+            $this->Session->write('lang','eng');
+        }
         //echo $this->Session->read('logo');die();
         $this->loadModel('Member');
         $this->loadModel('Mail');
@@ -822,6 +892,20 @@ class DashboardController extends AppController
     
     public function check_password($p='')
     {
+        if($this->Session->read('avatar') || $this->Session->read('user'))
+        {
+            //die('here');
+        }
+        else
+        {
+            //die('there');
+            $this->redirect('/admin');
+        }
+        
+        if(!$this->Session->read('lang'))
+        {
+            $this->Session->write('lang','eng');
+        }
          $this->loadModel('Member');
         $this->loadModel('Mail');
         $this->loadModel('User');
@@ -858,6 +942,20 @@ class DashboardController extends AppController
     }
     public function check_email($em = '')
     {
+        if($this->Session->read('avatar') || $this->Session->read('user'))
+        {
+            //die('here');
+        }
+        else
+        {
+            //die('there');
+            $this->redirect('/admin');
+        }
+        
+        if(!$this->Session->read('lang'))
+        {
+            $this->Session->write('lang','eng');
+        }
         $this->loadModel('Member');
         $this->loadModel('Mail');
         $this->loadModel('User');
@@ -901,12 +999,40 @@ class DashboardController extends AppController
     
     public function home()
     {
+        if($this->Session->read('avatar') || $this->Session->read('user'))
+        {
+            //die('here');
+        }
+        else
+        {
+            //die('there');
+            $this->redirect('/admin');
+        }
+        
+        if(!$this->Session->read('lang'))
+        {
+            $this->Session->write('lang','eng');
+        }
         $this->loadModel('Page');
         $this->set('page',$this->Page->find('first'));
         
     }
     public function page_edit()
     {
+        if($this->Session->read('avatar') || $this->Session->read('user'))
+        {
+            //die('here');
+        }
+        else
+        {
+            //die('there');
+            $this->redirect('/admin');
+        }
+        
+        if(!$this->Session->read('lang'))
+        {
+            $this->Session->write('lang','eng');
+        }
         $this->loadModel('Page');
         if(isset($_POST['submit']))
         {
@@ -921,6 +1047,20 @@ class DashboardController extends AppController
     }
     public function get_jobs()
     {
+        if($this->Session->read('avatar') || $this->Session->read('user'))
+        {
+            //die('here');
+        }
+        else
+        {
+            //die('there');
+            $this->redirect('/admin');
+        }
+        
+        if(!$this->Session->read('lang'))
+        {
+            $this->Session->write('lang','eng');
+        }
         $this->loadModel('Job');
         if($this->Session->read('admin')){
         $q = $this->Job->find('all',array('order'=>'title'));
@@ -967,6 +1107,20 @@ class DashboardController extends AppController
     }
     function get_job2()
     {
+        if($this->Session->read('avatar') || $this->Session->read('user'))
+        {
+            //die('here');
+        }
+        else
+        {
+            //die('there');
+            $this->redirect('/admin');
+        }
+        
+        if(!$this->Session->read('lang'))
+        {
+            $this->Session->write('lang','eng');
+        }
         $this->loadModel('Jobmember');
         $jm = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
         if($jm)
@@ -978,6 +1132,20 @@ class DashboardController extends AppController
     }
     function get_active_module()
     {
+        if($this->Session->read('avatar') || $this->Session->read('user'))
+        {
+            //die('here');
+        }
+        else
+        {
+            //die('there');
+            $this->redirect('/admin');
+        }
+        
+        if(!$this->Session->read('lang'))
+        {
+            $this->Session->write('lang','eng');
+        }
         $this->loadModel('AdminModule');
         $module = $this->AdminModule->find('all',array('conditions'=>array('status'=>1)));
         return $module;

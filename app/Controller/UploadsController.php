@@ -2078,6 +2078,7 @@ class UploadsController extends AppController
             if($_POST['document_type']=='report')
             {
                 $arr['re_id'] = $_POST['report_type'];
+                                
             }
             $arr['draft'] = $_POST['draft'];
             
@@ -2629,6 +2630,7 @@ class UploadsController extends AppController
                     if(!isset($_POST['uniform']['charged']))
                     $uniform['charged'] = 0;
                     $this->UniformIssue->save($uniform);
+                    $send = $this->requestAction('/sender/sendUniformEmail/'.$id);                    
                     
                 }
                 if($_POST['report_type']=='19')
@@ -4222,5 +4224,5 @@ $oa = intval($number*$expo)/$expo;
 
         //die();
     }
-  
+    
 }
