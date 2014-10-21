@@ -703,6 +703,8 @@ class UploadsController extends AppController
                 //var_dump($_POST['mobile_ins']);die();
                     foreach($_POST['uniform'] as $k=>$v)
                     {
+                        $v = str_replace("$$","",$v);
+                        $v = str_replace("$","",$v);
                         $uniform[$k] = $v;
                     }
                      $_POST['doc_id'] = $id;
@@ -2623,6 +2625,8 @@ class UploadsController extends AppController
                 //var_dump($_POST['mobile_ins']);die();
                     foreach($_POST['uniform'] as $k=>$v)
                     {
+                        $v = str_replace("$$","",$v);
+                        $v = str_replace("$","",$v);
                         $uniform[$k] = $v;
                     }
                      
