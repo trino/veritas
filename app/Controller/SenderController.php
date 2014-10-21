@@ -19,7 +19,7 @@ class SenderController extends AppController{
     }
     function sendUniformEmail($id)
     {
-        die('here');
+        //die('here');
         App::uses('CakeEmail', 'Network/Email');
         $emails = new CakeEmail();
         $emails->from(array('noreply@veritas.com'=>'Veritas'));
