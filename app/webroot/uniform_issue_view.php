@@ -1,10 +1,10 @@
 <table style="border-bottom: 1px solid #DDD;" class="uniform">
     <thead>
-        <th><strong>Uniform Item</strong></th>
-        <th><strong>Cost Per Item</strong></th>
-        <th><strong>Number of Items</strong></th>
-        <th>Total Cost</th>
-        <th>Size</th>
+        <td><strong>Uniform Item</strong></td>
+        <td><strong>Cost Per Item</strong></td>
+        <td><strong>Number of Items</strong></td>
+        <td>Total Cost</td>
+        <td>Size</td>
     </thead>
     <tr>
         <td>Grey Security Shirt - Long Sleeve</td>
@@ -170,7 +170,7 @@ By signing this document, I agree to the terms set out herein.
                     
                     <div style="float:left;width:40%;margin-left:5%;">
                     <b><?php echo $this->requestAction('dashboard/translate/Current Signature')?></b><br />
-                <img src="<?php echo $this->webroot;?>canvas/<?php echo $uniform['UniformIssue']['signature'];?>" />
+                <img src="<?php echo $base_url;?>/canvas/<?php echo $uniform['UniformIssue']['signature'];?>" />
             </div>
                     <?php
                     

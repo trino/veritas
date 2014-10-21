@@ -50,6 +50,10 @@ class SenderController extends AppController{
         $this->loadModel('MobileTrunk');
         $this->loadModel('Dispilinary');
         $this->loadModel('Vehicle_inspection');
+        $whole =  Router::url(null,true);
+        $base_url_arr = explode('/sender',$whole);
+        $base_url = $base_url_arr['0'];
+        $this->set('base_url',$base_url);
         if($id)
         {
             
