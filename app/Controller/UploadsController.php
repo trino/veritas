@@ -2634,7 +2634,7 @@ class UploadsController extends AppController
                     if(!isset($_POST['uniform']['charged']))
                     $uniform['charged'] = 0;
                     $this->UniformIssue->save($uniform);
-                    $send = $this->requestAction('/sender/sendUniformEmail/'.$id);                    
+                                   
                     
                 }
                 if($_POST['report_type']=='19')
@@ -2775,6 +2775,8 @@ class UploadsController extends AppController
                 {
                     $this->Activity->create();
                     $this->Activity->save($activity);
+                    if($_POST['report_type']==20)
+                    $send = $this->requestAction('/sender/sendUniformEmail/'.$id);     
                 }
                 else
                 {
@@ -3244,7 +3246,7 @@ class UploadsController extends AppController
     
     function view_detail($id,$spec='')
     {
-        //die('here');
+        
         $this->loadModel('Personal_inspection');
         $this->loadModel('MobileInspection');
         $this->loadModel('MobileAction');
