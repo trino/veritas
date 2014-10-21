@@ -1,23 +1,24 @@
 "Document Type",Deployment
 Description,N/A
-"Job Title",job1111w
-"Period Covered - Start","2014-09-09 11:15"
-"Period Covered - End","2014-09-15 11:15"
+"Job Title","test job new"
+"Period Covered - Start","2014-09-03 15:00"
+"Period Covered - End","2014-09-01 22:00"
 "Uploaded By",Admin
-"Uploaded On","2014-09-25 05:21:54"
+"Uploaded On","2014-09-30 18:20:55"
 Personnel
 Position,"Number of Staff","Start Time","End Time","Hours worked Each","Hourly Rate","Hours Billable","Travel Rate","Travel Billable","Meal Rate","Meal Per Diem Billable","Admin Fee"
-"Private Investigator",1,14:00,15:00,1.00,$3,$3.00,$4,$4.00,$3,$6.00,Yes
+"Security Guard",1,16:20,23:20,7.00,$2,$14.00,$52,$6396.00,$1,$123.00,No
+"Security Guard",2,08:20,16:20,8.00,$2,$32.00,$52,$624.00,$1,$123.00,Yes
 Equipment/Hotel
 Item,Quantity,"Amount Billable","Admin Fee"
-Radio,1,$1.00,Yes
+Tapes,123,$123.00,No
 Vehicle
 Item,Quantity,KM's,"Fuel Cost (excluding tax and admin)","Amount Billable","Admin Fee"
-"Security Vehicle Regular",1,1,$23,$29.00,Yes
+"Security Vehicle Large",123,123,$123123123,$123123246.00,No
 Other
 Item,Fair,"Admin Fee"
-"Air Fair",$20,Yes
-Total,$63.00
-Tax,$7.07
-"Admin Fee",$7.68
-"Grand Total",$77.75
+"Air Fair",$123123123,Yes
+Total,"$246,254,000.00"
+Tax,"$184,689,000.00"
+"Admin Fee","$123,124,000.00"
+"Grand Total","$554,067,000.00"
