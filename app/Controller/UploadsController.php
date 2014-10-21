@@ -2788,8 +2788,14 @@ class UploadsController extends AppController
                 {
                     $this->Activity->create();
                     $this->Activity->save($activity);
-                    if($_POST['report_type']==20)
-                    $send = $this->requestAction('/sender/sendUniformEmail/'.$id);     
+                    if($_POST['report_type']==20){
+                    if(isset($_POST['draft']) && $_POST['draft']==1)
+                    {
+                        //
+                    }
+                    else    
+                    $send = $this->requestAction('/sender/sendUniformEmail/'.$id);
+                    }     
                 }
                 else
                 {

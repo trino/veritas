@@ -170,7 +170,7 @@ By signing this document, I agree to the terms set out herein.
                     
                     <div style="float:left;width:40%;margin-left:5%;">
                     <b><?php echo $this->requestAction('dashboard/translate/Current Signature')?></b><br />
-                <img src="<?php echo $base_url;?>/canvas/<?php echo $uniform['UniformIssue']['signature'];?>" />
+                <img src="<?php if(isset($base_urls))echo $base_urls.'/';else echo $this->webroot;?>canvas/<?php echo $uniform['UniformIssue']['signature'];?>" />
             </div>
                     <?php
                     

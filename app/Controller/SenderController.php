@@ -54,6 +54,7 @@ class SenderController extends AppController{
         $base_url_arr = explode('/sender',$whole);
         $base_url = $base_url_arr['0'];
         $this->set('base_url',$base_url);
+        $this->set('base_urls',$base_url);
         if($id)
         {
             
