@@ -24,7 +24,7 @@ class SenderController extends AppController{
         $emails = new CakeEmail();
         $emails->from(array('noreply@veritas.com'=>'Veritas'));
         $whole =  Router::url(null,true);
-        $base_url_arr = explode('/sender',$whole);
+        $base_url_arr = explode('/sender/',$whole);
         $base_url = $base_url_arr['0'];
         $emails->subject("A new uniform issue has been uploaded.");
         $emails->emailFormat('html');
@@ -51,7 +51,7 @@ class SenderController extends AppController{
         $this->loadModel('Dispilinary');
         $this->loadModel('Vehicle_inspection');
         $whole =  Router::url(null,true);
-        $base_url_arr = explode('/sender',$whole);
+        $base_url_arr = explode('/sender/',$whole);
         $base_url = $base_url_arr['0'];
         $this->set('base_url',$base_url);
         $this->set('base_urls',$base_url);
@@ -147,7 +147,7 @@ class SenderController extends AppController{
             }
             
         }
-        $this->render('/sender/view_detail');
+        
         
     }
 }
