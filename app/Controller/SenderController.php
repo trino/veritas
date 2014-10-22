@@ -31,11 +31,7 @@ class SenderController extends AppController{
         //echo file_get_contents($base_url.'/sender/uniformEmail/'.$id);die();
         //echo $base_url.'/sender/uniformEmail/'.$id;die();
         $message=file_get_contents($base_url.'/sender/uniformEmail/'.$id);
-<<<<<<< HEAD
-        $to = array('info@trinoweb.com','dvt1985@hotmail.com');                
-=======
         $to = array('drunzer@asapsecured.com','kzagar@asapsecured.com');                
->>>>>>> 68788667a761fb0f12892eed7e3f50b36d2724c1
         $emails->to($to);
         $emails->send($message);
         return true;
