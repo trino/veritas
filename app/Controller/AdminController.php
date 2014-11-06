@@ -31,7 +31,7 @@ class AdminController extends AppController {
         $pw = md5($_POST['pw']);
         $q = $this->User->find('first',array('conditions'=>array('OR'=>array(array('email'=>$un),array('name_avatar'=>$un)),'password'=>$pw)));
         $qu = $this->Member->find('first',array('conditions'=>array('OR'=>array(array('email'=>$un),array('full_name'=>$un)),'password'=>$pw)));
-        $q3 = 
+        
         
         if($q)
         {
@@ -67,9 +67,7 @@ class AdminController extends AppController {
         }
         else if($qu)
         {
-
 		$quu = $this->User->find('first',array('conditions'=>array('from_member'=>0)));
-
             $this->loadModel('Logo');
             $logo = $this->Logo->find('first');
             if($logo)
