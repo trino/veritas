@@ -2796,6 +2796,7 @@ class UploadsController extends AppController
             }
             $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$ids.',%'), array('job_id'=>$ids),array('job_id LIKE'=>'%,'.$ids.',%'),array('job_id LIKE'=>'%,'.$ids)))));
             if($this->Session->read('approve')=='0' || $_POST['document_type'] == 'deployment_rate'){
+                //die('11');
                 if($_POST['document_type'] == 'deployment_rate')
                 {
                     $arr['title'] = "Deployment";
@@ -2874,6 +2875,7 @@ class UploadsController extends AppController
                     }    
                 }
               } 
+             
               
             if($_POST['document_type']== 'client_feedback')
             {
