@@ -67,6 +67,7 @@ class AdminController extends AppController {
         }
         else if($qu)
         {
+		$quu = $this->User->find('first',array('conditions'=>array('from_member'=>0)));
             $this->loadModel('Logo');
             $logo = $this->Logo->find('first');
             if($logo)
@@ -85,7 +86,7 @@ class AdminController extends AppController {
             }
             else
                 $this->Session->write('logo','afimaclogo.png'); 
-                
+                $this->Session->write('approve',$quu['User']['approve']);
                 $this->Session->write(array('is_client'=>$qu['Member']['is_client'],'user'=>$qu['Member']['full_name'],'username'=>$qu['Member']['full_name'],'email'=>$qu['Member']['email'],'image'=>$qu['Member']['image'],'id'=>$qu['Member']['id'],'FMember'=>'0','upload'=>$qu['Member']['canUpdate'],'canEmail'=>$qu['Member']['canEmail'],'see'=>$qu['Member']['canView'],'view'=>$qu['Member']['canView']));
                 
                 $jobs = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$this->Session->read('id'))));
