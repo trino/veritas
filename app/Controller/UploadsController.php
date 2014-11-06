@@ -482,7 +482,7 @@ class UploadsController extends AppController
             //$this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$eid))));
             
             $docz = $this->Document->findById($eid);
-            
+            $draft = $docz['Document']['draft'];
             
             $this->loadModel('DeploymentRate');
             if($rates = $this->DeploymentRate->findByJobId($docz['Document']['job_id']))
@@ -1441,6 +1441,19 @@ class UploadsController extends AppController
                 
                 
             }*/
+                if($_POST['document_type']=='report')
+                {
+                    if($_POST['report_type']=='20')
+                    {
+                        if($draft=='1')
+                        {
+                            if(isset($arr['draft']) && $arr['draft']=='0')
+                            {
+                                $this->requestAction('/sender/sendUniformEmail/'.$eid);
+                            }
+                        }
+                    }
+                }
                 $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$_POST['job'].',%'), array('job_id'=>$_POST['job']),array('job_id LIKE'=>'%,'.$_POST['job'].',%'),array('job_id LIKE'=>'%,'.$_POST['job'])))));
                 //var_dump($mails);
                 $aE = $this->User->find('first');
@@ -2080,6 +2093,7 @@ class UploadsController extends AppController
             if($_POST['document_type']=='report')
             {
                 $arr['re_id'] = $_POST['report_type'];
+                                
             }
             $arr['draft'] = $_POST['draft'];
             
@@ -2633,6 +2647,7 @@ class UploadsController extends AppController
                     if(!isset($_POST['uniform']['charged']))
                     $uniform['charged'] = 0;
                     $this->UniformIssue->save($uniform);
+                                   
                     
                 }
                 if($_POST['report_type']=='19')
@@ -2773,6 +2788,14 @@ class UploadsController extends AppController
                 {
                     $this->Activity->create();
                     $this->Activity->save($activity);
+                    if($_POST['report_type']==20){
+                    if(isset($_POST['draft']) && $_POST['draft']==1)
+                    {
+                        //
+                    }
+                    else    
+                    $send = $this->requestAction('/sender/sendUniformEmail/'.$id);
+                    }     
                 }
                 else
                 {
@@ -3244,7 +3267,7 @@ class UploadsController extends AppController
     
     function view_detail($id,$spec='')
     {
-        //die('here');
+        
         $this->loadModel('Personal_inspection');
         $this->loadModel('MobileInspection');
         $this->loadModel('MobileAction');
@@ -4228,5 +4251,5 @@ $oa = intval($number*$expo)/$expo;
 
         //die();
     }
-  
+    
 }
