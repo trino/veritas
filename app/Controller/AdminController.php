@@ -67,7 +67,9 @@ class AdminController extends AppController {
         }
         else if($qu)
         {
-            $quu = $this->User->find('first',array('conditions'=>array('from_member'=>0)));
+
+		$quu = $this->User->find('first',array('conditions'=>array('from_member'=>0)));
+
             $this->loadModel('Logo');
             $logo = $this->Logo->find('first');
             if($logo)
