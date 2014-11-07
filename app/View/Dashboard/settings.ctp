@@ -269,8 +269,7 @@ function loadmore(type, qq)
             <?php
         } 
         ?>
-        <tr><td><strong><?php echo $this->requestAction('dashboard/translate/Country');?></strong></td>
-            <td><input <?php echo $d;?> type="radio" name="country" value="canada" style="margin: 0;" <?php if($user['User']['country']=='canada'){?>checked="checked"<?php }?> /> Canada &nbsp; &nbsp; <input <?php echo $d;?> type="radio" name="country" value="us" style="margin: 0;" <?php if($user['User']['country']=='us'){?>checked="checked"<?php }?>  /> US </td></tr>
+        
         <tr><td><input style="margin:8px;" type="submit" name="submit" value="<?php echo $this->requestAction('dashboard/translate/Save Changes');?>" class="btn btn-primary" onclick="if($('#old_password').val() != '' && $('#passw').val() == ''){$('#passw').addClass('error');return false;}else return true;" /></td></tr>
     </table>
     </form>
