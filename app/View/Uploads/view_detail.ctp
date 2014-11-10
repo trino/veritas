@@ -42,7 +42,7 @@
 <?php echo $this->Html->script('jquery.prettyPhoto'); ?>
 
 
-<div id="table">
+<div id="table" style="padding-bottom: 10px;">
 
 <div class="printlogo">
 <?php if( $this->Session->read('logo')=="afimaclogo.png"){?>
@@ -186,6 +186,12 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         </tr>
         <?php }?>
         
+         <?php if($activity[0]['Activity']['report_type']=='5'){?>
+        <tr >
+        <td>Incident Date</td>
+        <td><?php echo $doc['Document']['incident_date'];?></td>
+        </tr>
+        <?php }?>
         <?php if($activity[0]['Activity']['report_type']=='7'){?>
         <tr id="loss_prevention">
         <td colspan="2"> <?php include('loss_prevention.php');?></td>
@@ -363,14 +369,14 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
     <?php
     foreach($image as $i)
     {?>
-        <li><a href="<?php echo $base_url;?>img/documents/<?php echo $i['Image']['image']; ?>" rel="prettyPhoto[gallery1]"><?php echo $this->Html->image('documents/'.$i['Image']['image'],array('width'=>'100','height'=>'100')); ?></a></li>
+        <li style="float: left; list-style: none;"><a href="<?php echo $base_url;?>img/documents/<?php echo $i['Image']['image']; ?>" rel="prettyPhoto[gallery1]"><?php echo $this->Html->image('documents/'.$i['Image']['image'],array('width'=>'100','height'=>'100')); ?></a></li>
         
     <?php } 
     ?>
     <div class="clear"></div>
     </ul>
 </div>
-<div class="documents">
+<div class="documents" style="margin-bottom: 10px;">
     <?php 
         foreach($do as $d)
         { ?>

@@ -224,28 +224,30 @@ $or = '&order=';
             <td><?php if($d['Document']['incident_date']!='0000-00-00')echo $d['Document']['incident_date'];?></td>
             <td>
             <?php 
-            $q = $do->find('first',array('conditions'=>array('document_id'=>$d['Document']['id'])));
-            if($q)
+            $qs = $do->find('all',array('conditions'=>array('document_id'=>$d['Document']['id'])));
+            if(count($qs)>0)
             {
-                echo "<a href='".$base_url."uploads/view_detail/".$d['Document']['id']."'>".$q['Doc']['doc']."</a>";
-            }
-            else
-            {
-               $q2 = $im->find('first',array('conditions'=>array('document_id'=>$d['Document']['id'])));
-                if($q2)
-                {
-                    echo "<a href='".$base_url."uploads/view_detail/".$d['Document']['id']."'>".$q2['Image']['image']."</a>";
+                foreach($qs as $q){
+                    echo "<a href='".$base_url."uploads/view_detail/".$d['Document']['id']."'>".$q['Doc']['doc']."</a><br/>";
                 }
-                else
-                {
-                    $q3 = $v->find('first',array('conditions'=>array('document_id'=>$d['Document']['id'])));
-                    if($q3)
-                    {
-                        echo "<a href='".$base_url."uploads/view_detail/".$d['Document']['id']."'>".$q3['Video']['video']."</a>";
-                    }
-                    
-                }   
             }
+            $qs2 = $im->find('all',array('conditions'=>array('document_id'=>$d['Document']['id'])));
+            if(count($qs2)>0)
+            {
+                 foreach($qs2 as $q){
+                    echo "<a href='".$base_url."uploads/view_detail/".$d['Document']['id']."'>".$q['Image']['image']."</a><br/>";
+                 }
+            }
+            $qs3 = $v->find('all',array('conditions'=>array('document_id'=>$d['Document']['id'])));
+            if(count($qs3)>0)
+            {
+                 foreach($qs3 as $q){
+                    echo "<a href='".$base_url."uploads/view_detail/".$d['Document']['id']."'>".$q['Video']['video']."</a><br/>";
+                 }
+            }
+                
+             
+            
             ?>
             </td>
             <td>
