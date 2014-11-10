@@ -354,10 +354,29 @@ function remove_youtube()
     <option value="Non-Productive Stop"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Non-Productive Stop') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Non-Productive Stop');?></option>
     <option value="Suspicion Internal Theft"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Suspicion Internal Theft') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Suspicion Internal Theft');?></option>
     <option value="Fraud Loss"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Fraud Loss') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Fraud Loss');?></option>
+    <option value="Confrontation"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Confrontation') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Confrontation');?></option>
+    <option value="Damage to Vehicles"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Damage to Vehicles') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Damage to Vehicles');?></option>
+    <option value="Following Vehicle"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Following Vehicle') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Following Vehicle');?></option>
+    <option value="Blocking Access"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Blocking Access') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Blocking Access');?></option>
+    <option value="Vandalism"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Vandalism') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Vandalism');?></option>
+    <option value="Vehicle Accident"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Vehicle Accident') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Vehicle Accident');?></option>
+    <option value="Thrown Object(s)"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Thrown Object(s)') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Thrown Object(s)');?></option>
+    <option value="Trespassing"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Trespassing') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Trespassing');?></option>
+    <option value="Jackrocks, nails, etc."<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Jackrocks, nails, etc.') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Jackrocks, nails, etc.');?></option>
+    <option value="Threat Against Employee"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Threat Against Employee') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Threat Against Employee');?></option>
+    <option value="Damage to Company Property"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Damage to Company Property') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Damage to Company Property');?></option>
+    <option value="Harassment of Family"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Harassment of Family') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Harassment of Family');?></option>
+    <option value="Weapon"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Weapon') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Weapon');?></option>
+    <option value="Other"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Other') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Other');?></option>
 </select>
 </th>
 </thead>
 <tr class="loader"></tr>
+<thead class="incident_more" style="display: none;">
+<th width="100px">Incident Date</th>
+<th width="220px"><input type="text" name="incident_date" value="<?php if(isset($doc['Document']['incident_date']))echo $doc['Document']['incident_date'];?>" class="activity_date"/></th>
+<th></th>
+</thead>
 <thead class="date_time">
 <th width="220px">Date</th>
 <th width="220px"><?php echo $this->requestAction('dashboard/translate/Time');?></th>
@@ -398,9 +417,43 @@ onKeyUp="limitText(this.form.description,this.form.countdown,70);"><?php if(isse
 <br />
 </td></tr>
 <tr class="image_tr"><td><b><?php echo $this->requestAction('dashboard/translate/ImagesVideosDocs');?></b></td><td><div class="right">
-<input type="file" name="document_1" />
+<input type="file" name="document[]" /><a href="javascript:void(0)" id="addfiles" class="btn btn-primary">Add More +</a>
+
 </div><div id="doc"></div>
 </td></tr>
+<?php if(count($do)>0 || count($image)>0 || count($vid)>0){?>
+<tr><td><strong>Uploaded Files</strong></td>
+    <td><div class="right">
+    <?php if(isset($do))
+          {
+            foreach($do as $f)
+            {?>
+                <span><?php echo $f['Doc']['doc'];?><input type="hidden" name="documentz[]"  value="<?php echo $f['Doc']['doc'];?>"/><a href='javascript:void(0);' class="btn btn-danger" onclick="$(this).parent().remove();"> X</a></span>
+          <?php
+            }
+          }
+          if(isset($image))
+          {
+            foreach($image as $f)
+            {?>
+               <span><?php echo $f['Image']['image'];?><input type="hidden" name="documentz[]"  value="<?php echo $f['Image']['image'];?>"/><a href='javascript:void(0);' class="btn btn-danger" onclick="$(this).parent().remove();"> X</a></span> 
+          <?php
+            }
+          }
+          if(isset($vid))
+          {
+            foreach($vid as $f)
+            {?>
+               <span><?php echo $f['Video']['video'];?><input type="hidden" name="documentz[]"  value="<?php echo $f['Video']['video'];?>"/><a href='javascript:void(0);' class="btn btn-danger" onclick="$(this).parent().remove();"> X</a></span>
+            <?php
+            }
+          }
+          ?>
+    
+        </div>
+    </td></tr>
+<?php }?>
+
 </table>
 </div>
 <input type="hidden" name="document" id="document" value="1" />
@@ -417,11 +470,15 @@ if(!isset($job_id))
     $job_id = 0;?>
 <div class="submit"><input type="submit" class="btn btn-primary sbtbtn" style="float: left;" value="<?php echo $this->requestAction('dashboard/translate/Submit Document');?>" name="submit"/>
 <?php if(isset($doc) && $doc['Document']['job_id']==999 || $job_id == 999){?><a href="javascript:void(0)" class="btn btn-primary sbtbtn uploademail" style="float: left;margin-left:15px;display:none;"><?php echo $this->requestAction('dashboard/translate/Submit Document And Email');?></a> <?php }else{?><span class="uploademail" style="display: none;"></span>
-<?php }if(!$this->Session->read('admin')){?> <span style="float:left;" class="draftspan"><a href="javascript:void(0)" style="margin-left: 15px;" class="draft btn btn-primary"><?php echo $this->requestAction('dashboard/translate/Save as Draft');?></a></span><?php }?></div>
+<?php }if(!$this->Session->read('admin')){?> <span style="float:left;" class="draftspan"><a href="javascript:void(0);" style="margin-left: 15px;" class="draft btn btn-primary"><?php echo $this->requestAction('dashboard/translate/Save as Draft');?></a></span><?php }?></div>
 </form>
 <script type="text/javascript">
 
 $(function(){
+        $('#addfiles').click(function(){
+            //alert("ssss");
+           $('#doc').append('<div><input type="file" name="document[]" /><a href="javascript:void(0);" class="btn btn-danger" onclick="$(this).parent().remove();">Delete</a><br/></div>'); 
+        });
       $('.uploademail').click(function(){
         <?php if($this->request->params['action']=='document_edit'){?>
          $('.dialog-modals').load('<?php echo $base_url.'uploads/email/'.$doc['Document']['job_id'];?>');

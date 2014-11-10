@@ -215,7 +215,7 @@ $or = '&order=';
             <td><?php echo $d['Document']['job_title'];?></td>
             <td><?php echo $d['Document']['evidence_author'];?></td>
             <!--<td><?php echo $d['Document']['location']; ?></td>-->
-            <td><?php if($d['Document']['document_type']!='client_feedback' || $this->Session->read('admin'))echo $d['Document']['description']; ?></td>
+            <td><?php if($d['Document']['document_type']!='client_feedback' || $this->Session->read('admin'))echo substr($d['Document']['description'],0,150); if(strlen($d['Document']['description'])>150)echo " ..."; ?></td>
             <!--<td><?php echo $d['Document']['title'];?></td>-->
             <td><?php if($d['Document']['addedBy'] != 0){$q = $member->find('first',array('conditions'=>array('id'=>$d['Document']['addedBy'])));if($q){if($this->Session->read('admin'))echo "<a href='".$base_url."members/view/".$q['Member']['id']."'>".$q['Member']['full_name']."</a>";else echo $q['Member']['full_name'];}}else echo "Admin";?></td>
             

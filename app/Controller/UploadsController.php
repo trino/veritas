@@ -464,7 +464,7 @@ class UploadsController extends AppController
         $this->loadModel('Emailupload');
         $this->loadModel('Clientmemo');
         $this->loadModel('AdminDoc');
-        
+        $this->loadModel('Doc');
         $this->loadModel('Personal_inspection');
         $this->loadModel('MobileInspection');
         $this->loadModel('MobileAction');
@@ -475,15 +475,22 @@ class UploadsController extends AppController
         $this->loadModel('Vehicle_inspection');
         $this->loadModel('StaticSiteAudit');
         $this->loadModel('InsuranceSiteAudit');
-        
+        $this->loadModel('Image');
+        $this->loadModel('Video');
         
         if($eid)
         {
             //$this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$eid))));
             
+            $this->set('do',$this->Doc->find('all',array('conditions'=>array('document_id'=>$eid))));
+            $this->set('image',$this->Image->find('all',array('conditions'=>array('document_id'=>$eid))));
+            $this->set('vid',$this->Video->find('all',array('conditions'=>array('document_id'=>$eid))));
             $docz = $this->Document->findById($eid);
             $draft = $docz['Document']['draft'];
-            
+            if($files = $this->Doc->find('all',array('conditions'=>array('document_id'=>$eid))))
+            {
+                $this->set('files',$files);
+            }
             $this->loadModel('DeploymentRate');
             if($rates = $this->DeploymentRate->findByJobId($docz['Document']['job_id']))
             {
@@ -515,6 +522,8 @@ class UploadsController extends AppController
         
         if(isset($_POST['document_type']))
         {
+            
+            
             $uri = $_SERVER['REQUEST_URI'];
                 $uri = str_replace('/',' ',$uri);
                 $uri = str_replace(' ','/',trim($uri));
@@ -527,7 +536,7 @@ class UploadsController extends AppController
                 
                  if($_SERVER['SERVER_NAME']=='localhost')
                 {
-                    $path = $_SERVER['DOCUMENT_ROOT'].'veritas/app/webroot/img/documents/';
+                    $path = $_SERVER['DOCUMENT_ROOT'].'/veritas/app/webroot/img/documents/';
                 }
                 else
                     $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/documents/';
@@ -544,6 +553,7 @@ class UploadsController extends AppController
             if($_POST['document_type']=='report')
             {
                 $arr['re_id'] = $_POST['report_type'];
+                $arr['incident_date'] = $_POST['incident_date'];
             }
             if($_POST['document_type']== 'evidence')
             {
@@ -1454,6 +1464,95 @@ class UploadsController extends AppController
                         }
                     }
                 }
+                
+            $ext_doc = array('doc','docx','txt','pdf','xls','xlsx','ppt','pptx','cmd','csv');
+            $ext_img = array('jpg','png','gif','jpeg','bmp');
+            $ext_video = array('mp4');
+            $this->Doc->deleteAll(array('document_id'=>$eid));
+            $this->Image->deleteAll(array('document_id'=>$eid));
+            $this->Video->deleteAll(array('document_id'=>$eid));
+            if(count($_FILES['document']['name'])>0)
+            foreach($_FILES['document']['name'] as $k=>$f)
+            {
+                if($f!="")
+                {
+                    
+                    if($_FILES['document']['tmp_name']!="")
+                    {
+                        $source=$_FILES['document']['tmp_name'][$k];
+                        $rand = $arr['title'].$subname."_".date('Y-m-d_H-i-s');
+                        $whiteSpace = '';
+                        $pattern = '/[^a-zA-Z0-9-_'  . $whiteSpace . ']/u';
+                        $rand = preg_replace($pattern, '', (string) $rand);
+                        $ext_arr = explode('.',$f);
+                        $extn = end($ext_arr);
+                        $img = $rand.'.'.end($ext_arr);
+                        $lower_ext = strtolower($extn);
+                        $destination = $path.$img;
+                    
+                    //$destination = $path.$_FILES['document_'.$i]['name'];
+                    
+                        move_uploaded_file($source,$destination);
+                
+                     }
+                     
+                $d['document_id'] = $eid;
+                
+                if(in_array($lower_ext,$ext_doc)){
+                    
+                    $d['doc'] = $img;
+                    $this->Doc->create();
+                    $this->Doc->save($d);
+                }
+                elseif(in_array($lower_ext,$ext_img)){
+                    
+                    $d['image'] = $img;
+                    $this->Image->create();
+                    $this->Image->save($d);
+                }
+                else
+                if(in_array($lower_ext,$ext_video))
+                {
+                    
+                    $d['video'] = $img;
+                    $this->Video->create();
+                    $this->Video->save($d);
+                }
+                else
+                {
+                    $this->Session->setFlash('Document Updated, but the file couldn\'t be saved due to unknown extension');
+                }
+        
+              }
+            }
+            if(isset($_POST['documentz']) &&count($_POST['documentz'])>0)
+            foreach($_POST['documentz'] as $x)
+            {
+                $d['document_id'] = $eid;
+                $ext_arr = explode('.',$x);
+                $extn = end($ext_arr);
+                $lower_ext = strtolower($extn);
+                if(in_array($lower_ext,$ext_doc)){
+                    
+                    $d['doc'] = $x;
+                    $this->Doc->create();
+                    $this->Doc->save($d);
+                }
+                elseif(in_array($lower_ext,$ext_img)){
+                    
+                    $d['image'] = $x;
+                    $this->Image->create();
+                    $this->Image->save($d);
+                }
+                else
+                if(in_array($lower_ext,$ext_video))
+                {
+                    
+                    $d['video'] = $x;
+                    $this->Video->create();
+                    $this->Video->save($d);
+                }
+            }
                 $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$_POST['job'].',%'), array('job_id'=>$_POST['job']),array('job_id LIKE'=>'%,'.$_POST['job'].',%'),array('job_id LIKE'=>'%,'.$_POST['job'])))));
                 //var_dump($mails);
                 $aE = $this->User->find('first');
@@ -1570,63 +1669,10 @@ class UploadsController extends AppController
             
             $id = $this->Document->id;
             
-            $doc = $_POST['document'];
             
-            $ext_doc = array('doc','docx','txt','pdf','xls','xlsx','ppt','pptx','cmd','csv');
-            $ext_img = array('jpg','png','gif','jpeg','bmp');
-            $ext_video = array('mp4');
             
-            for($i=1;$i<=$doc;$i++)
-            {
-                if($_FILES['document_'.$i]['tmp_name']!="")
-                {
-                    $this->Doc->deleteAll(array('document_id'=>$id));
-                    $this->Image->deleteAll(array('document_id'=>$id));
-                    $this->Video->deleteAll(array('document_id'=>$id));
-                    $source=$_FILES['document_'.$i]['tmp_name'];
-                    $rand = $arr['title'].$subname."_".date('Y-m-d_H-i-s');
-                    $whiteSpace = '';
-                    $pattern = '/[^a-zA-Z0-9-_'  . $whiteSpace . ']/u';
-                    $rand = preg_replace($pattern, '', (string) $rand);
-                    $ext_arr = explode('.',$_FILES['document_'.$i]['name']);
-                    $extn = end($ext_arr);
-                    $img = $rand.'.'.end($ext_arr);
-                    $lower_ext = strtolower($extn);
-                    $destination = $path.$img;
-                
-                //$destination = $path.$_FILES['document_'.$i]['name'];
-                
-                move_uploaded_file($source,$destination);
-                
-                $d['document_id'] = $id;
-                
-                if(in_array($lower_ext,$ext_doc)){
-                    
-                    $d['doc'] = $img;
-                    $this->Doc->create();
-                    $this->Doc->save($d);
-                }
-                elseif(in_array($lower_ext,$ext_img)){
-                    
-                    $d['image'] = $img;
-                    $this->Image->create();
-                    $this->Image->save($d);
-                }
-                else
-                if(in_array($lower_ext,$ext_video))
-                {
-                    
-                    $d['video'] = $img;
-                    $this->Video->create();
-                    $this->Video->save($d);
-                }
-                else
-                {
-                    $this->Session->setFlash('Document Updated, but the file couldn\'t be saved due to unknown extension');
-                }
-        
-            }
-            }
+            
+            
             if(isset($_POST['emailadd']) && $_POST['emailadd'])
             {
                 if(isset($jj))
@@ -2029,7 +2075,7 @@ class UploadsController extends AppController
                 
                  if($_SERVER['SERVER_NAME']=='localhost')
                 {
-                    $path = $_SERVER['DOCUMENT_ROOT'].'veritas/app/webroot/img/documents/';
+                    $path = $_SERVER['DOCUMENT_ROOT'].'/veritas/app/webroot/img/documents/';
                 }
                 else
                     $path = $_SERVER['DOCUMENT_ROOT'].'/app/webroot/img/documents/';
@@ -2093,6 +2139,7 @@ class UploadsController extends AppController
             if($_POST['document_type']=='report')
             {
                 $arr['re_id'] = $_POST['report_type'];
+                 $arr['incident_date'] = $_POST['incident_date'];
                                 
             }
             $arr['draft'] = $_POST['draft'];
@@ -2817,6 +2864,70 @@ class UploadsController extends AppController
                 
                 
             }
+            //var_dump($_FILES['document']['name'][0]);
+            //die();
+            
+            $ext_doc = array('doc','docx','txt','pdf','xls','xlsx','ppt','pptx','cmd','csv');
+            $ext_img = array('jpg','png','gif','jpeg','bmp');
+            $ext_video = array('mp4');
+            
+            foreach($_FILES['document']['tmp_name'] as $k=>$f)
+            {
+                if($f!="")
+                {
+                $source=$f;
+                /*
+                if(strlen($arr['description'])>10)
+                    $fname = substr($arr['description'],0,10);
+                else
+                    $fname = $arr['description'];
+                
+                    //echo $fname;die();
+                $fname = str_replace(' ',"_",$fname);
+                $fname = urlencode($fname);
+                */
+                $rand = $arr['title'].$subname."_".date('Y-m-d_H-i-s');
+                $whiteSpace = '';
+                $pattern = '/[^a-zA-Z0-9-_'  . $whiteSpace . ']/u';
+                $rand = preg_replace($pattern, '', (string) $rand);
+                $ext_arr = explode('.',$_FILES['document']['name'][$k]);
+                $extn = end($ext_arr);
+                
+                $lower_ext = strtolower($extn);
+                $img = $rand.'.'.$lower_ext;
+                //die($img);
+                $destination = $path.$img;
+                //$destination = $path.$_FILES['document_'.$i]['name'];
+                move_uploaded_file($source,$destination);
+                $d['document_id'] = $id;
+                
+                if(in_array($lower_ext,$ext_doc)){
+                    
+                    $do = $img;
+                    $d['doc'] = $img;
+                $this->Doc->create();
+                $this->Doc->save($d);
+                }
+                else
+                if(in_array($lower_ext,$ext_img)){
+                    $d['image'] = $img;
+                    $this->Image->create();
+                $this->Image->save($d);
+                }
+                else
+                if(in_array($lower_ext,$ext_video))
+                {
+                    $d['video'] = $img;
+                    $this->Video->create();
+                $this->Video->save($d);
+                }
+                else
+                {
+                    $this->Session->setFlash('Document Saved, but the file couldn\'t be saved due to an unknown extension.');
+                }
+
+            }
+            }
             $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$ids.',%'), array('job_id'=>$ids),array('job_id LIKE'=>'%,'.$ids.',%'),array('job_id LIKE'=>'%,'.$ids)))));
             if($this->Session->read('approve')=='0' || $_POST['document_type'] == 'deployment_rate'){
                 //die('11');
@@ -2935,95 +3046,7 @@ class UploadsController extends AppController
                 
                 
             }
-            $doc = $_POST['document'];
             
-            $ext_doc = array('doc','docx','txt','pdf','xls','xlsx','ppt','pptx','cmd','csv');
-            $ext_img = array('jpg','png','gif','jpeg','bmp');
-            $ext_video = array('mp4');
-            
-            
-            //$ext_arr = explode('.',$_FILES['document_'.$i]['name']);
-            //$img = $rand.'.'.end($ext_arr);
-            //$imgs = $_POST['image'];
-            //$vid = $_POST['video'];
-            //$you=$_POST['youtube'];
-            /*
-            for($i=1;$i<=$imgs;$i++)
-            {
-                if($_FILES['image_'.$i]['tmp_name']!="")
-                {
-                $source=$_FILES['image_'.$i]['tmp_name'];
-                $rand = rand(100000,999999);
-                $ext_arr = explode('.',$_FILES['image_'.$i]['name']);
-                $img = $rand.'.'.end($ext_arr);
-                $destination = $path.$img;
-                //$destination = $path.$_FILES['image_'.$i]['name'];
-                move_uploaded_file($source,$destination);
-                $im['document_id'] = $id;
-                $im['image'] = $img;
-                
-                $this->Image->create();
-                $this->Image->save($im);
-                }
-            }
-            */
-            for($i=1;$i<=$doc;$i++)
-            {
-                if($_FILES['document_'.$i]['tmp_name']!="")
-                {
-                $source=$_FILES['document_'.$i]['tmp_name'];
-                /*
-                if(strlen($arr['description'])>10)
-                    $fname = substr($arr['description'],0,10);
-                else
-                    $fname = $arr['description'];
-                
-                    //echo $fname;die();
-                $fname = str_replace(' ',"_",$fname);
-                $fname = urlencode($fname);
-                */
-                $rand = $arr['title'].$subname."_".date('Y-m-d_H-i-s');
-                $whiteSpace = '';
-                $pattern = '/[^a-zA-Z0-9-_'  . $whiteSpace . ']/u';
-                $rand = preg_replace($pattern, '', (string) $rand);
-                $ext_arr = explode('.',$_FILES['document_'.$i]['name']);
-                $extn = end($ext_arr);
-                
-                $lower_ext = strtolower($extn);
-                $img = $rand.'.'.$lower_ext;
-                //die($img);
-                $destination = $path.$img;
-                //$destination = $path.$_FILES['document_'.$i]['name'];
-                move_uploaded_file($source,$destination);
-                $d['document_id'] = $id;
-                
-                if(in_array($lower_ext,$ext_doc)){
-                    
-                    $do = $img;
-                    $d['doc'] = $img;
-                $this->Doc->create();
-                $this->Doc->save($d);
-                }
-                else
-                if(in_array($lower_ext,$ext_img)){
-                    $d['image'] = $img;
-                    $this->Image->create();
-                $this->Image->save($d);
-                }
-                else
-                if(in_array($lower_ext,$ext_video))
-                {
-                    $d['video'] = $img;
-                    $this->Video->create();
-                $this->Video->save($d);
-                }
-                else
-                {
-                    $this->Session->setFlash('Document Saved, but the file couldn\'t be saved due to an unknown extension.');
-                }
-
-            }
-            }
             if(isset($_POST['emailadd']) && $_POST['emailadd'])
             {
                 if($this->Session->read('approve')=='0')
