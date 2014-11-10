@@ -188,7 +188,7 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         
          <?php if($activity[0]['Activity']['report_type']=='5'){?>
         <tr >
-        <td>Incident Date</td>
+        <td><strong>Incident Date</strong></td>
         <td><?php echo $doc['Document']['incident_date'];?></td>
         </tr>
         <?php }?>
