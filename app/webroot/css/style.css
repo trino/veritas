@@ -1,7 +1,10 @@
 @import url('font/font-awesome.css');
 
 
-
+.activity_desc
+{
+    height:100px;
+}
 
 body{
 	background: url(../img/bg.jpg) repeat-y; 

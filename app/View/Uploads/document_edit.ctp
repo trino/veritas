@@ -334,6 +334,7 @@ function remove_youtube()
 </select>
 </th>
 </thead>
+<tr><td><strong><?php echo $this->requestAction('dashboard/translate/Author');?></strong></td><td><input type="text" class="" name="report_author" value="<?php if(isset($doc['Document']['evidence_author'])) echo $doc['Document']['evidence_author'];?>"/></td></tr>
 <thead class="incident_more" style="display: none;">
 <th><?php echo $this->requestAction('dashboard/translate/Incident Report Options');?></th>
 <th colspan="2">
@@ -341,6 +342,16 @@ function remove_youtube()
     <option value=""><?php echo $this->requestAction('dashboard/translate/Select Incident Report Type');?></option>
     <option value="Alarm Activation" <?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Alarm Activation') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Alarm Activation');?></option>
     <option value="Burglary" <?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Burglary') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Burglary');?></option>
+    <option value="Intimidation" <?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Intimidation') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Intimidation');?></option>
+    <option value="Statement" <?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Statement') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Statement');?></option>
+    <option value="Hiding Identity ( Mask )" <?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Hiding Identity ( Mask )') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Hiding Identity ( Mask )');?></option>
+    <option value="Impair Vision" <?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Impair Vision') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Impair Vision');?></option>
+    <option value="Mass Picketing" <?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Mass Picketing') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Mass Picketing');?></option>
+    <option value="Racial Slurs" <?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Racial Slurs') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Racial Slurs');?></option>
+    <option value="Sexual Harassment" <?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Sexual Harassment') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Sexual Harassment');?></option>
+    <option value="Battery" <?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Battery') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Battery');?></option>
+    <option value="Menacing" <?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Menacing') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Menacing');?></option>
+    <option value="Terrorist Threat" <?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Terrorist Threat') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Terrorist Threat');?></option>
     <option value="Property Damage" <?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Property Damage') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Property Damage');?></option>
     <option value="Miscellaneous"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Miscellaneous') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Miscellaneous');?></option>
     <option value="Shoplift Loss"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Shoplift Loss') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Shoplift Loss');?></option>
@@ -355,7 +366,7 @@ function remove_youtube()
     <option value="Suspicion Internal Theft"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Suspicion Internal Theft') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Suspicion Internal Theft');?></option>
     <option value="Fraud Loss"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Fraud Loss') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Fraud Loss');?></option>
     <option value="Confrontation"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Confrontation') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Confrontation');?></option>
-    <option value="Damage to Vehicles"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Damage to Vehicles') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Damage to Vehicles');?></option>
+    <option value="Damage to Vehicle"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Damage to Vehicle') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Damage to Vehicle');?></option>
     <option value="Following Vehicle"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Following Vehicle') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Following Vehicle');?></option>
     <option value="Blocking Access"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Blocking Access') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Blocking Access');?></option>
     <option value="Vandalism"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Vandalism') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Vandalism');?></option>
@@ -365,7 +376,7 @@ function remove_youtube()
     <option value="Jackrocks, nails, etc."<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Jackrocks, nails, etc.') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Jackrocks, nails, etc.');?></option>
     <option value="Threat Against Employee"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Threat Against Employee') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Threat Against Employee');?></option>
     <option value="Damage to Company Property"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Damage to Company Property') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Damage to Company Property');?></option>
-    <option value="Harassment of Family"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Harassment of Family') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Harassment of Family');?></option>
+    <option value="Harassment"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Harassment') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Harassment');?></option>
     <option value="Weapon"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Weapon') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Weapon');?></option>
     <option value="Other"<?php  if(isset($ac['Activity']['incident_type'])&&$ac['Activity']['incident_type'] == 'Other') echo "selected='selected'"; ?>><?php echo $this->requestAction('dashboard/translate/Other');?></option>
 </select>
@@ -393,7 +404,7 @@ foreach($activity as $act)
 <tr class="date_time">
 <td width="220px"><input type="text" value="<?php echo $act['Activity']['date'];?>" name="activity_date[]" class="activity_date required" /></td>
 <td width="220px"><input type="text" value="<?php echo $time;?>" name="activity_time[]" class="activity_time required" /></td>
-<td width="350px"><textarea name="activity_desc[]" class="activity_desc"><?php echo $act['Activity']['desc'];?></textarea>  <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger"><?php echo $this->requestAction('dashboard/translate/Remove');?></a> <a href="javascript:void(0);" onclick="" class="btn btn-success activity_mores">Add above</a></td>
+<td width="350px"><textarea name="activity_desc[]" class="activity_desc "><?php echo $act['Activity']['desc'];?></textarea>  <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();" class="btn btn-danger"><?php echo $this->requestAction('dashboard/translate/Remove');?></a> <a href="javascript:void(0);" onclick="" class="btn btn-success activity_mores">Add above</a></td>
 
 </tr>
 <?php }

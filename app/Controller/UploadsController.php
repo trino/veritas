@@ -666,6 +666,7 @@ class UploadsController extends AppController
                 $this->Activity->deleteAll(array('document_id'=>$eid));
                 $activity['document_id'] = $eid;
                 $activity['report_type'] = $_POST['report_type'];
+                $arr['evidence_author'] = $_POST['report_author'];
                 $activity['addedBy'] = $id;
                 $activity['uploaded_on'] = date('Y-m-d');
                 if(isset($activity['report_type']))
@@ -2409,6 +2410,9 @@ class UploadsController extends AppController
                 $activity['document_id'] = $id;
                 $activity['report_type'] = $_POST['report_type'];
                 $activity['uploaded_on'] = date('Y-m-d');
+                $this->Document->id = $id;
+                $this->Document->saveField('evidence_author',$_POST['report_author']);
+                //$arr['evidence_author'] = $_POST['report_author'];
                 if(isset($activity['report_type']))
                     $activity['incident_type'] = $_POST['incident_type'];
                     
