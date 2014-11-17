@@ -174,8 +174,8 @@ $or = '&order=';
             <th width="10%"><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'addedBy&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='addedBy') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>"><?php echo $this->requestAction('dashboard/translate/Uploaded By');?></a><?php //echo $this->Paginator->sort('addedBy','Uploaded By');?></th>
             
             <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'`date`&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='`date`') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>"><?php echo $this->requestAction('dashboard/translate/Uploaded On');?></a><?php //echo $this->Paginator->sort('date','Uploaded On');?><!--</a>--></th>
-            <th><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'incident_date&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='incident_date') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>"><?php echo $this->requestAction('dashboard/translate/Incident Date');?></a><?php //echo $this->Paginator->sort('date','Uploaded On');?><!--</a>--></th>
-            <th><?php echo $this->requestAction('dashboard/translate/File');?></th>
+            <th width="10%"><a href="<?php echo str_replace('com//','com/',$base_url.$uri.$or).'incident_date&ty=';?><?php echo ((isset($_GET['order']) && $_GET['order']=='incident_date') && (isset($_GET['ty'])&& $_GET['ty']=='ASC'))? 'DESC':'ASC';?>"><?php echo $this->requestAction('dashboard/translate/Incident Date');?></a><?php //echo $this->Paginator->sort('date','Uploaded On');?><!--</a>--></th>
+            <th ><?php echo $this->requestAction('dashboard/translate/File');?></th>
             <th style="width: 185px;">Option</th>
         </tr>
     <?php
