@@ -423,8 +423,10 @@ else{
 </table>
 </td></tr>
 <tr class="description_tr"><td class="main_desc"><strong>Description</strong></td>
-<td><textarea name="description"  class="text_area_long" cols="10" rows="5" id="repl" onKeyDown="limitText(this.form.description,this.form.countdown,70);"
-onKeyUp="limitText(this.form.description,this.form.countdown,70);"><?php if(isset($doc['Document']['description'])) echo $doc['Document']['description'];?></textarea>
+<td>
+<!--<textarea name="description"  class="text_area_long" cols="10" rows="5" id="repl" onKeyDown="limitText(this.form.description,this.form.countdown,70);"
+onKeyUp="limitText(this.form.description,this.form.countdown,70);"><?php if(isset($doc['Document']['description'])) echo $doc['Document']['description'];?></textarea>-->
+<textarea name="description"  class="text_area_long" cols="10" rows="5" id="repl" ><?php if(isset($doc['Document']['description'])) echo $doc['Document']['description'];?></textarea>
 <br />
 </td></tr>
 <tr class="image_tr"><td><b><?php echo $this->requestAction('dashboard/translate/ImagesVideosDocs');?></b></td><td><div class="right">
