@@ -696,10 +696,10 @@ class UploadsController extends AppController
                         $mem= $this->Member->findById($uid);
                         $emails = new CakeEmail();
                         $emails->from(array('noreply@veritas.com'=>'Veritas'));
-                        $emails->subject("MEE Order Completed.");
+                        $emails->subject("MEE Order Completed");
                         $emails->emailFormat('html');
                         $msg = "Hello,<br/><br/>";
-                        $msg .= "Your order has been processed.Please <a href='".$base_url."uploads/view_detail/".$eid."'>click here</a> to view the detail<br/>";
+                        $msg .= "Your order has been processed.Please <a href='".$base_url."uploads/view_detail/".$eid."'>click here</a> to view the details.<br/>";
                         $msg .= "Thank You.";
                         $emails->to($mem['Member']['email']);
                         $emails->send($msg);
@@ -2297,6 +2297,7 @@ class UploadsController extends AppController
                 $this->Document->id = $id;
                 $this->Document->saveField('approved','1');
                 
+                
             }
             if($_POST['document_type'] == 'vehicle_inspection')
             {
@@ -2981,6 +2982,7 @@ class UploadsController extends AppController
             }
             }
             $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$ids.',%'), array('job_id'=>$ids),array('job_id LIKE'=>'%,'.$ids.',%'),array('job_id LIKE'=>'%,'.$ids)))));
+            //die($_POST['document_type']);
             if($this->Session->read('approve')=='0' || $_POST['document_type'] == 'deployment_rate' || $_POST['document_type'] == 'orders'){
                 //die('11');
                 if($_POST['document_type'] == 'deployment_rate')
@@ -2993,6 +2995,7 @@ class UploadsController extends AppController
                     $arr['title'] = "Orders";
                     
                 }
+                $c=0;
             foreach($mails as $m)
             {
                     
@@ -3054,11 +3057,26 @@ class UploadsController extends AppController
                         }    
                         if($check==1)
                         {
-                            //die($to);
+                            //die($message);
                             $emails->to($to);
-                            if($to != $this->Session->read('email'))
-                                $emails->send($message);
-                            $emails->reset();
+                            
+                            //if($to != $this->Session->read('email'))
+                            //{
+                                if(!$this->Session->read('admin')&& $c==0 )
+                                {
+                                    $c++;
+
+                                    $this->loadModel('User');
+                                    $u = $this->User->find('first');
+                                    //var_dump($u);die();
+                                    $emails->cc($u['User']['email']);
+                                }
+                                if($emails->send($message))
+                                {
+                                    //die($this->Session->read('email'));
+                                    $emails->reset();
+                                }
+                            //}
                         }
                         
                         }
