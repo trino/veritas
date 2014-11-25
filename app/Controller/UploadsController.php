@@ -482,7 +482,22 @@ class UploadsController extends AppController
         if($eid)
         {
             //$this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$eid))));
-            
+            if($_SERVER['SERVER_NAME']=='localhost')
+                $base_url = "http://localhost/veritas/";
+            else
+                {
+                    $base_url =	 str_replace('//','___',$_SERVER['SERVER_NAME']);
+                    $base_url =  str_replace('/',' ',$_SERVER['SERVER_NAME']);
+                    $base_url = trim($base_url);
+                    $base_url = str_replace(' ','/',$base_url);
+                    $base_url = str_replace('___','//',$base_url);
+                    $base_url = $base_url.'/';
+                    
+                }
+                
+            if(str_replace('http://','',$base_url) == $base_url)
+                    $base_url = 'http://'.$base_url;
+                
             $this->set('do',$this->Doc->find('all',array('conditions'=>array('document_id'=>$eid))));
             $this->set('image',$this->Image->find('all',array('conditions'=>array('document_id'=>$eid))));
             $this->set('vid',$this->Video->find('all',array('conditions'=>array('document_id'=>$eid))));
@@ -681,10 +696,10 @@ class UploadsController extends AppController
                         $mem= $this->Member->findById($uid);
                         $emails = new CakeEmail();
                         $emails->from(array('noreply@veritas.com'=>'Veritas'));
-                        $emails->subject("Order Status.");
+                        $emails->subject("MEE Order Completed.");
                         $emails->emailFormat('html');
                         $msg = "Hello,<br/><br/>";
-                        $msg .= "Order is complete.Please <a href='".$this->webroot."uploads/view_detail/".$eid."'>click here</a> to view the detail<br/>";
+                        $msg .= "Your order has been processed.Please <a href='".$base_url."uploads/view_detail/".$eid."'>click here</a> to view the detail<br/>";
                         $msg .= "Thank You.";
                         $emails->to($mem['Member']['email']);
                         $emails->send($msg);
@@ -1590,21 +1605,6 @@ class UploadsController extends AppController
                 //var_dump($mails);
                 $aE = $this->User->find('first');
                 $adminEmail = $aE['User']['email'];
-                if($_SERVER['SERVER_NAME']=='localhost')
-                    $base_url = "http://localhost/veritas/";
-                else
-                    {
-                        $base_url =	 str_replace('//','___',$_SERVER['SERVER_NAME']);
-                        $base_url =  str_replace('/',' ',$_SERVER['SERVER_NAME']);
-                        $base_url = trim($base_url);
-                        $base_url = str_replace(' ','/',$base_url);
-                        $base_url = str_replace('___','//',$base_url);
-                        $base_url = $base_url.'/';
-                        
-                    }
-                    
-                if(str_replace('http://','',$base_url) == $base_url)
-                        $base_url = 'http://'.$base_url;
                 if($_POST['document_type']== 'deployment_rate')
                 {
                     $arr['title'] = "Deployment";
@@ -1682,7 +1682,8 @@ class UploadsController extends AppController
                         }    
                         if($check==1){
                         $emails->to($to);
-                        $emails->send($message);}
+                        //$emails->send($message);
+                        }
                         }
                     }
                 }
@@ -2293,6 +2294,8 @@ class UploadsController extends AppController
                 $flash ="Your order has been uploaded, you will receive a notification once the order has been processed.";
                 $this->Order->create();
                 $this->Order->save($order);
+                $this->Document->id = $id;
+                $this->Document->saveField('approved','1');
                 
             }
             if($_POST['document_type'] == 'vehicle_inspection')
@@ -2978,12 +2981,17 @@ class UploadsController extends AppController
             }
             }
             $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$ids.',%'), array('job_id'=>$ids),array('job_id LIKE'=>'%,'.$ids.',%'),array('job_id LIKE'=>'%,'.$ids)))));
-            if($this->Session->read('approve')=='0' || $_POST['document_type'] == 'deployment_rate'){
+            if($this->Session->read('approve')=='0' || $_POST['document_type'] == 'deployment_rate' || $_POST['document_type'] == 'orders'){
                 //die('11');
                 if($_POST['document_type'] == 'deployment_rate')
                 {
                     $arr['title'] = "Deployment";
                     $_POST['document_type'] = 'deployment';
+                }
+                if($_POST['document_type'] == 'orders')
+                {
+                    $arr['title'] = "Orders";
+                    
                 }
             foreach($mails as $m)
             {
@@ -2998,7 +3006,6 @@ class UploadsController extends AppController
                         $to = $t['Member']['email'];
                         $emails = new CakeEmail();
                         $emails->from(array('noreply@veritas.com'=>'Veritas'));
-                        
                         $emails->subject("A new document has been uploaded!");
                         $emails->emailFormat('html');
                         if($mem = $this->Member->findByFullName($this->Session->read('username')))
@@ -3608,7 +3615,7 @@ class UploadsController extends AppController
             }
             else
             {
-                $this->Session->setFlash('Sorry! This Document Already Deleted.');
+                $this->Session->setFlash('Sorry! This Document is Already Deleted.');
                 $this->redirect('/dashboard');
             }
         }

@@ -485,6 +485,7 @@ if($type == 'Report')
     <?php if($doc['Document']['document_type']!='deployment_rate')if($this->Session->read('approve')=='1' && $doc['Document']['approved']=='0'){?><a href="<?php echo $this->webroot;?>uploads/approve/<?php echo $doc['Document']['id'];?>/detail" class="btn btn-success">Approve Document</a><?php }else{echo "<button class='btn btn-success' disabled>Approved</button>";}?>
     <input type="button" onclick="window.print();" value="<?php echo $this->requestAction('dashboard/translate/Print');?>" class="btn btn-primary" />
     <?php if($doc['Document']['document_type']=='deployment_rate'){?><a href="<?php echo $this->webroot;?>uploads/export_csv/<?php echo $doc['Document']['id'];?>" class="btn btn-warning">Export Csv</a><?php }?>
+    <?php if($doc['Document']['document_type']=='orders'){?><a href="<?php echo $this->webroot;?>uploads/document_edit/<?php echo $doc['Document']['id'];?>" class="btn btn-info">Edit</a><?php }?>
     <?php
 //}
 ?>

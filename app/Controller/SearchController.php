@@ -233,9 +233,9 @@ class SearchController extends AppController
                     $in = '999';
                 }
                 if($in)
-                $arrs[] = array('document_type'=>'report','re_id IN ('.$in.')');
+                    $arrs[] = array('document_type'=>'report','re_id IN ('.$in.')');
                 else
-                $arrs[] = array('document_type'=>'report');
+                    $arrs[] = array('document_type'=>'report');
             }
             $this->loadModel('EvidenceviewPermission');
             if($qs['Canview']['evidence'])
@@ -428,6 +428,10 @@ class SearchController extends AppController
             if($qs['Canview']['KPIAudits'])
             {
                 $arrs[] = array('document_type'=>'KPIAudits');
+            }
+            if($qs['Canview']['orders'])
+            {
+                $arrs[] = array('document_type'=>'orders');
             }
             if($qs['Canview']['afimac_intel'])
             {
