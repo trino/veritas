@@ -125,7 +125,7 @@ if($this->Session->read('admin'))
 if(isset($noView))
 {
     ?>
-    <div><strong><?php echo $this->requestAction('dashboard/translate/You do not have permission to view documen2ts.');?></strong></div>
+    <div><strong><?php echo $this->requestAction('dashboard/translate/You do not have permission to view documents.');?></strong></div>
     <?php
 }
 else

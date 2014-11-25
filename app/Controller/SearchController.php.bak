@@ -668,7 +668,7 @@ class SearchController extends AppController
             {
                 $arrs2 = array('document_type'=>'News/Media');
             }
-            if($type == 'orders')
+            if($type == 'Orders')
             {
                 $arrs2 = array('document_type'=>'orders');
             }
