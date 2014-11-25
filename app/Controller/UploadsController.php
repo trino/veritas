@@ -477,6 +477,7 @@ class UploadsController extends AppController
         $this->loadModel('InsuranceSiteAudit');
         $this->loadModel('Image');
         $this->loadModel('Video');
+        $this->loadModel('Order');
         
         if($eid)
         {
@@ -485,6 +486,7 @@ class UploadsController extends AppController
             $this->set('do',$this->Doc->find('all',array('conditions'=>array('document_id'=>$eid))));
             $this->set('image',$this->Image->find('all',array('conditions'=>array('document_id'=>$eid))));
             $this->set('vid',$this->Video->find('all',array('conditions'=>array('document_id'=>$eid))));
+            $this->set('orders',$this->Order->findByDocumentId($eid));
             $docz = $this->Document->findById($eid);
             $draft = $docz['Document']['draft'];
             if($files = $this->Doc->find('all',array('conditions'=>array('document_id'=>$eid))))
@@ -660,6 +662,36 @@ class UploadsController extends AppController
                     $this->Personnel->save($eq);
                 }
                               
+            }
+            elseif($_POST['document_type'] == 'orders')
+            {
+                $this->Order->deleteAll(array('document_id'=>$eid));
+                foreach($_POST['orders']as $key=>$o)
+                {
+                    $order[$key] = $o;
+                }
+                $order['document_id'] = $eid;
+                $this->Order->create();
+                $this->Order->save($order);
+                if($_POST['orders']['complete']=='1' && $this->Session->read('admin'))
+                {
+                    $uid = $docz['Document']['addedBy'];
+                    if($uid!=0)
+                    {
+                        $mem= $this->Member->findById($uid);
+                        $emails = new CakeEmail();
+                        $emails->from(array('noreply@veritas.com'=>'Veritas'));
+                        $emails->subject("Order Status.");
+                        $emails->emailFormat('html');
+                        $msg = "Hello,<br/><br/>";
+                        $msg .= "Order is complete.Please <a href='".$this->webroot."uploads/view_detail/".$eid."'>click here</a> to view the detail<br/>";
+                        $msg .= "Thank You.";
+                        $emails->to($mem['Member']['email']);
+                        $emails->send($msg);
+                    }
+                    
+                }
+                
             }
             elseif($_POST['document_type']=='report')
             {
@@ -2258,7 +2290,7 @@ class UploadsController extends AppController
                     $order[$key] = $o;   
                 }
                 $order['document_id'] = $id;
-                //var_dump($order);die();
+                $flash ="Your order has been uploaded, you will receive a notification once the order has been processed.";
                 $this->Order->create();
                 $this->Order->save($order);
                 
@@ -3161,9 +3193,23 @@ class UploadsController extends AppController
             }
             */
             if(isset($_POST['emailadd'] )&& $_POST['emailadd'])
-                $this->Session->setFlash('Data Saved Successfully, Email Sent.');
+            {
+                if(isset($flash))
+                {
+                    $this->Session->setFlash('Your order has been uploaded, you will receive a notification once the order has been processed.');
+                }
+                else
+                    $this->Session->setFlash('Data Saved Successfully, Email Sent.');
+            }
             else
-                $this->Session->setFlash('Data Saved Successfully.');
+            {
+                if(isset($flash))
+                {
+                    $this->Session->setFlash('Your order has been uploaded, you will receive a notification once the order has been processed.');
+                }
+                else
+                    $this->Session->setFlash('Data Saved Successfully.');
+            }
             $log['date'] =  date('Y-m-d H:i:s');
             $log['time'] =  date('H:i:s');
             if($this->Session->read('admin'))

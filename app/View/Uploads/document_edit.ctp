@@ -209,11 +209,11 @@ function remove_youtube()
     <td >
         <table>
             <tr>
-                <td> <input type="checkbox" name="orders[complete]" onchange="$('.pass').toggle()" value="1" /> Complete</td>
+                <td> <input type="checkbox" name="orders[complete]" onchange="$('.pass').toggle()" value="1" <?php if(isset($orders['Order']['complete']) && $orders['Order']['complete']=='1' )echo "checked='checked'";?> /> Complete</td>
             </tr>
-            <tr class="pass" style="display: none;">
-                <td><input type="radio" name="orders[pass]" value="1" />Pass
-                &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="orders[pass]" value="0" />Fail</td>
+            <tr class="pass" style="<?php if(isset($orders['Order']['complete']) && $orders['Order']['complete']=='0' )echo "display: none;";?>">
+                <td><input type="radio" name="orders[pass]" value="1" <?php if(isset($orders['Order']['pass']) && $orders['Order']['pass']=='1' )echo "checked='checked'";?> />Pass
+                &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="orders[pass]" value="0" <?php if(isset($orders['Order']['pass']) && $orders['Order']['pass']=='0' )echo "checked='checked'";?> />Fail</td>
             </tr>
         </table>
     </td>
@@ -854,7 +854,11 @@ $(function(){
          $('.extra_evidence').show();
          $(".loader2").hide();
          }
+    if($('#document_type').val() == 'orders'){
         
+         $('.orders').show();
+         }
+            
     if($('#document_type').val() == 'personal_inspection'){
             
             doc_loader('<?php echo $base_url;?>uploads/documentType/id_<?php echo $did;?>/'+$('#document_type').val());

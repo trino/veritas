@@ -47,7 +47,8 @@ class SearchController extends AppController
         $this->loadModel('Member');
         $this->loadModel('Job');
         $this->loadModel('Jobmember');
-        
+        $this->loadModel('Order');
+        $this->set('orders',$this->Order);
         $this->loadModel('SpecJob');
         if(isset($sess_id))
             $sess = $this->Jobmember->find('first',array('conditions'=>array('member_id'=>$sess_id)));
