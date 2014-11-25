@@ -2249,7 +2249,20 @@ class UploadsController extends AppController
                 }
                               
             }
-            
+            if($_POST['document_type'] == 'orders')
+            {
+                $this->loadModel('Order');
+                //var_dump($_POST['orders']);die();
+                foreach($_POST['orders'] as $key=>$o)
+                {
+                    $order[$key] = $o;   
+                }
+                $order['document_id'] = $id;
+                //var_dump($order);die();
+                $this->Order->create();
+                $this->Order->save($order);
+                
+            }
             if($_POST['document_type'] == 'vehicle_inspection')
             {
                 $veh['document_id'] = $id;
@@ -3304,6 +3317,7 @@ class UploadsController extends AppController
         $this->loadModel('MobileTrunk');
         $this->loadModel('Dispilinary');
         $this->loadModel('Vehicle_inspection');
+        $this->loadModel('Order');
         if($id)
         {
             $this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$id))));
@@ -3500,6 +3514,8 @@ class UploadsController extends AppController
                 }
                 elseif($doc['Document']['document_type'] == 'client_feedback')
                     $this->set('memo',$this->Clientmemo->findByDocumentId($id));
+                elseif($doc['Document']['document_type'] == 'orders')
+                    $this->set('orders',$this->Order->findByDocumentId($id));
                 elseif($doc['Document']['document_type'] == 'deployment_rate'){
                     $this->loadModel('Personnel');
                     $this->loadModel('Equipment');

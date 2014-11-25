@@ -258,6 +258,10 @@ if($q || $q2){
 
 <?php if($admin_doc['AdminDoc']['kpiaudits']=='0'){?><input type="hidden" name="canView_KPIAudits" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/KPI Audits');?> </span><input type="checkbox" name="canView_KPIAudits" class="vie" /><?php }?>
+
+<?php if($admin_doc['AdminDoc']['orders']=='0'){?><input type="hidden" name="canView_orders" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Orders');?> </span><input type="checkbox" name="canView_orders" class="vie" /><?php }?>
+
 <!--
 <?php if($admin_doc['AdminDoc']['personal_inspection']=='0' ){?><input type="hidden" name="canView_personal_inspection" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Personal Inspection');?> </span><input type="checkbox" name="canView_personal_inspection" <?php if(isset($v['Canview']['personal_inspection']) && $v['Canview']['personal_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
@@ -332,6 +336,9 @@ if($q || $q2){
 
 <?php if($admin_doc['AdminDoc']['kpiaudits']=='0'){?><input type="hidden" name="canUpload_KPIAudits" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/KPI Audits');?> </span><input type="checkbox" name="canUpload_KPIAudits" class="upl" /><?php } ?>
+
+<?php if($admin_doc['AdminDoc']['orders']=='0'){?><input type="hidden" name="canUpload_orders" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Orders');?> </span><input type="checkbox" name="canUpload_orders" class="upl" /><?php } ?>
 
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->requestAction('dashboard/translate/Client Feedback');?> </span><input type="checkbox" name="canUpload_client_memo1" class="upl"  />
 <!--
@@ -410,6 +417,9 @@ if($q || $q2){
 
 <?php if($admin_doc['AdminDoc']['kpiaudits']=='0'){?><input type="hidden" name="Email_KPIAudits" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/KPI Audits');?> </span><input type="checkbox" name="Email_KPIAudits"  class="rec_email" /><?php }?>
+
+<?php if($admin_doc['AdminDoc']['orders']=='0'){?><input type="hidden" name="Email_orders" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Orders');?> </span><input type="checkbox" name="Email_orders"  class="rec_email" /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['deployment_rate']=='0' ){?><input type="hidden" name="Email_deployment" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Deployment');?> </span><input type="checkbox" name="Email_deployment" class="rec_email" /><?php }?>

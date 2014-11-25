@@ -182,6 +182,9 @@ function remove_youtube()
     <?php if($admin_doc['AdminDoc']['deployment_rate']=='1' && isset($rates['DeploymentRate'])&& ($this->Session->read('admin')||(isset($canupdate['Canupload']['deployment_rate'])&& $canupdate['Canupload']['deployment_rate']=='1'))){?>
     <option value="deployment_rate" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='deployment_rate') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Deployment');?></option>
     <?php }?>
+    <?php if($admin_doc['AdminDoc']['orders']=='1' && ((isset($canupdate['Canupload']['orders'])&& $canupdate['Canupload']['orders']=='1') || $this->Session->read('admin'))){?>
+    <option value="orders" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='orders') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Orders');?></option>
+    <?php }?>
     <!--<?php if($admin_doc['AdminDoc']['personal_inspection']=='1' && ((isset($canupdate['Canupload']['personal_inspection'])&& $canupdate['Canupload']['personal_inspection']=='1') || $this->Session->read('admin'))){?>
     <option value="personal_inspection" <?php if(isset($doc['Document']['document_type']) && $doc['Document']['document_type']=='personal_inspection') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Personal Inspection');?></option>
     <?php }?>
@@ -200,7 +203,22 @@ function remove_youtube()
 </select>
 </div></td>
 </tr>
-
+<?php if($this->Session->read('admin')){?>
+<tr class="orders" style="display: none;">
+    <td>&nbsp;</td>
+    <td >
+        <table>
+            <tr>
+                <td> <input type="checkbox" name="orders[complete]" onchange="$('.pass').toggle()" value="1" /> Complete</td>
+            </tr>
+            <tr class="pass" style="display: none;">
+                <td><input type="radio" name="orders[pass]" value="1" />Pass
+                &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="orders[pass]" value="0" />Fail</td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<?php }?>
 <tr class="loader2"></tr>
 <tr class="loaderimg" style="display: none;"><td colspan="3"><img src="<?php echo $base_url;?>img/ajax-loader.gif" /></td></tr>
 <tr class="site_more" style="display: none;">
@@ -682,6 +700,13 @@ $(function(){
     $('#document_type').change(function()
     {
         var doctype = $(this).val();
+        
+       if(doctype == 'orders')
+       {
+            $('.orders').show();
+       }
+       else
+            $('.orders').hide();
        if(doctype=='deployment_rate')
        {
            $('.deploy').show();

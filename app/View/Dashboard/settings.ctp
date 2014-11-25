@@ -145,7 +145,7 @@ function loadmore(type, qq)
         <tr><td><b><?php echo $this->requestAction('dashboard/translate/Email');?></b></td><td><input type="text" name="email" value="<?php echo $email; ?>" id="email" class="email" <?php if($this->Session->read('user') || $this->Session->read('FMember')) echo "readonly='readonly'" ;?> /><span id="email_response"></span></td></tr>
         <tr><td><b>Image</b></td><td><?php echo $this->Html->image('uploads/'.$this->Session->read('image'), array('alt' => '','style'=>'width:60px;height:60px;'))?></td></tr>
         <!--<tr><td><b>New Image</b></td><td><input type="file" name="image"  /><br />-->
-        <tr><td><b><?php echo $this->requestAction('dashboard/translate/Old password');?></b></td><td><input type="password" name="old_password" id="old_password" class=""  /><span id="response"></span></td></tr>
+        <tr><td><b><?php echo $this->requestAction('dashboard/translate/Old password');?></b></td><td><input type="password" name="old_password" id="old_password" class="" value=""  /><span id="response"></span></td></tr>
        <tr><td><b> <?php echo $this->requestAction('dashboard/translate/New Password');?> </b></td><td><input type="password" id="passw" name="password" class="" /></td></tr>
        <tr><td><b> <?php echo $this->requestAction('dashboard/translate/New Password Again');?> </b></td><td><input type="password" id="npassw" name="npassword" class="" /></td></tr>
         <?php 
@@ -185,6 +185,9 @@ function loadmore(type, qq)
         
         <?php if($admin_doc['AdminDoc']['kpiaudits']=='0' ){?><input type="hidden" name="Email_KPIAudits" value="0"/><?php }else{?>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/KPI Audits');?> </span><input type="checkbox" name="Email_KPIAudits" <?php if(isset($e['Emailupload']['KPIAudits']) && $e['Emailupload']['KPIAudits']==1){?>checked="checked"<?php }?> /><?php }?>
+        
+        <?php if($admin_doc['AdminDoc']['orders']=='0' ){?><input type="hidden" name="Email_orders" value="0"/><?php }else{?>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Orders');?> </span><input type="checkbox" name="Email_orders" <?php if(isset($e['Emailupload']['orders']) && $e['Emailupload']['orders']==1){?>checked="checked"<?php }?> /><?php }?>
         
         <!--<?php if($admin_doc['AdminDoc']['personal_inspection']=='0'){?><input type="hidden" name="Email_personal_inspection" value="0"/><?php }else{?>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Personal Inspection');?> </span><input type="checkbox" name="Email_personal_inspection" <?php if(isset($e['Emailupload']['personal_inspection']) && $e['Emailupload']['personal_inspection']==1){?>checked="checked"<?php }?>  class="rec_email" /><?php }?>
@@ -239,6 +242,7 @@ function loadmore(type, qq)
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Mobile Vehicle Trunk Inventory');?> </span><input <?php echo $d;?> type="checkbox" name="show[inventory]" value="1" <?php if(isset($admin_doc['AdminDoc']['inventory']) && $admin_doc['AdminDoc']['inventory']=='1' ) echo "checked='checked'";?>/>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Vehicle Inspection');?> </span><input <?php echo $d;?> type="checkbox" name="show[vehicle_inspection]" value="1" <?php if(isset($admin_doc['AdminDoc']['vehicle_inspection']) && $admin_doc['AdminDoc']['vehicle_inspection']=='1' ) echo "checked='checked'";?>/>
         -->
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Orders');?> </span><input <?php echo $d;?> type="checkbox" name="show[orders]" value="1" <?php if(isset($admin_doc['AdminDoc']['orders']) && $admin_doc['AdminDoc']['orders']=='1' ) echo "checked='checked'";?>/>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Deployment');?> </span><input <?php echo $d;?> type="checkbox" name="show[deployment_rate]" value="1" <?php if(isset($admin_doc['AdminDoc']['deployment_rate']) && $admin_doc['AdminDoc']['deployment_rate']=='1' ) echo "checked='checked'";?>/>
         </td>
         </tr>

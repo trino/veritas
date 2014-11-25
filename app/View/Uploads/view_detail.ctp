@@ -163,6 +163,13 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
        <tr><td><b>Period Covered - Start</b></td><td><?php echo $doc['Document']['start_peroid']." ".$doc['Document']['start_time'];?></td></tr>
        <tr><td><b>Period Covered - End</b></td><td><?php echo $doc['Document']['end_peroid']." ".$doc['Document']['end_time'];?></td></tr> 
     <?php }?>
+    <?php if($type =='Orders')
+    {?>
+       <tr><td><b>Status</b></td><td><?php echo ($orders['Order']['complete']=='1')?"Completed":"Pending";?></td></tr>
+       <?php if($orders['Order']['complete']=='1'){?>
+       <tr><td><b>Result</b></td><td><?php echo ($orders['Order']['pass']=='1')?"Pass":"Fail";?></td></tr>
+       <?php }?>
+    <?php }?>
     <?php if($type == 'Report')
     { ?>
      <!--<tr>

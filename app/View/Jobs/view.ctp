@@ -206,7 +206,28 @@
 		</a>								
 		<div class="dusk2"></div>						
 	</div>
-    <?php }?>  
+    <?php }?>
+    
+    <?php if($admin_doc['AdminDoc']['orders']=='1' &&((isset($canview['Canview']['orders']) && $canview['Canview']['orders']=='1')|| $this->Session->read('admin'))){?>
+    <div class="dashboard-stat green">								
+		<div class="whiteCorner"></div>								
+		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
+        <a href="<?=$base_url;?>search/index/orders" class="overallLink more">		
+			<div class="visual">										
+				<i class="icon-file"></i>									
+			</div>									
+			<div class="details">										
+				<div class="number"><?php echo $orders;?></div>										
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/Orders');?></div>									
+			</div>									
+			<div class="more2">									
+				<!--<?php echo $this->requestAction('dashboard/translate/viewplace order');?> <?php echo $orders;?> Documents <i class="icon-arrow-right m-icon-white"></i>-->
+                view / place orders									
+			</div>														
+		</a>								
+		<div class="dusk2"></div>						
+	</div>
+    <?php }?>   
     <?php
         }
     ?>
@@ -261,6 +282,26 @@
 		<div class="dusk2"></div>						
 	</div>
     <?php }?>
+    <?php if($admin_doc['AdminDoc']['orders']=='1' &&((isset($canview['Canview']['orders']) && $canview['Canview']['orders']=='1')|| $this->Session->read('admin'))){?>
+    <div class="dashboard-stat green">								
+		<div class="whiteCorner"></div>								
+		<!--<a href="<?=$base_url;?>uploads/view_doc/contract" class="overallLink more">-->
+        <a href="<?=$base_url;?>search/index/orders" class="overallLink more">		
+			<div class="visual">										
+				<i class="icon-file"></i>									
+			</div>									
+			<div class="details">										
+				<div class="number"><?php echo $orders;?></div>										
+				<div class="desc"><?php echo $this->requestAction('dashboard/translate/Orders');?></div>									
+			</div>									
+			<div class="more2">									
+				<!--<?php echo $this->requestAction('dashboard/translate/viewplace order');?> <?php echo $orders;?> Documents <i class="icon-arrow-right m-icon-white"></i>-->
+                view / place orders									
+			</div>														
+		</a>								
+		<div class="dusk2"></div>						
+	</div>
+    <?php }?> 
 <?php }?>
 <?php /* if($admin_doc['AdminDoc']['personal_inspection']=='1' &&((isset($canview['Canview']['personal_inspection']) && $canview['Canview']['personal_inspection']=='1')|| $this->Session->read('admin'))){?>
     <div class="dashboard-stat yellow">								

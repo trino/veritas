@@ -705,6 +705,7 @@ class JobsController extends AppController
             $this->set('mobile_log',$this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_log','draft'=>0,'job_id'=>$id))));        
             $this->set('inventory', $this->Document->find('count',array('conditions'=>array('document_type'=>'mobile_vehicle_trunk_inventory','draft'=>0,'job_id'=>$id))));
             $this->set('deployment_rate', $this->Document->find('count',array('conditions'=>array('document_type'=>'deployment_rate','draft'=>0,'job_id'=>$id))));
+            $this->set('orders', $this->Document->find('count',array('conditions'=>array('document_type'=>'orders','draft'=>0,'job_id'=>$id))));
             $this->set('vehicle_inspection', $this->Document->find('count',array('conditions'=>array('document_type'=>'vehicle_inspection','draft'=>0,'job_id'=>$id))));
         }
         else
@@ -905,7 +906,8 @@ class JobsController extends AppController
             $this->set('mobile_inspection',$this->Document->find('count',array('conditions'=>array('approved IN('.$approve.')','draft'=>0,'document_type'=>'mobile_inspection','job_id'=>$id))));
             $this->set('inventory',$this->Document->find('count',array('conditions'=>array('approved IN('.$approve.')','draft'=>0,'document_type'=>'mobile_vehicle_trunk_inventory','job_id'=>$id))));
             $this->set('vehicle_inspection',$this->Document->find('count',array('conditions'=>array('approved IN('.$approve.')','draft'=>0,'document_type'=>'vehicle_inspection','job_id'=>$id))));
-            $this->set('deployment_rate',$this->Document->find('count',array('conditions'=>array('approved IN('.$approve.')','draft'=>0,'document_type'=>'deployment_rate','job_id'=>$id))));
+            $this->set('orders',$this->Document->find('count',array('conditions'=>array('approved IN('.$approve.')','draft'=>0,'document_type'=>'orders','job_id'=>$id))));
+            
         }
         
         $this->set('key',$this->Key_contact);

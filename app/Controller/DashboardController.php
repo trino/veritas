@@ -259,6 +259,7 @@ class DashboardController extends AppController
             $this->set('training',$this->Document->find('count',array('conditions'=>array('document_type'=>'training','draft'=>0))));
             $this->set('employee',$this->Document->find('count',array('conditions'=>array('document_type'=>'employee','draft'=>0,'emp_id IN('.$arr_em.')'))));
             $this->set('KPIAudits',$this->Document->find('count',array('conditions'=>array('document_type'=>'KPIAudits','draft'=>0))));
+            $this->set('orders',$this->Document->find('count',array('conditions'=>array('document_type'=>'orders','draft'=>0))));
             $this->set('afimac_intel',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'AFIMAC Intel'))));            
             $this->set('news_media',$this->SpecJob->find('count',array('conditions'=>array('document_type'=>'News/Media'))));
             $this->set('personal_inspection',$this->Document->find('count',array('conditions'=>array('document_type'=>'personal_inspection','draft'=>0))));

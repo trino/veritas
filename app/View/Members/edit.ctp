@@ -211,6 +211,10 @@ if(!isset($sid)){
 
 <?php if($admin_doc['AdminDoc']['kpiaudits']=='0' ){?><input type="hidden" name="canView_KPIAudits" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/KPI Audits');?> </span><input type="checkbox" name="canView_KPIAudits" <?php if(isset($v['Canview']['KPIAudits']) && $v['Canview']['KPIAudits']==1){?>checked="checked"<?php }?> /><?php }?>
+
+<?php if($admin_doc['AdminDoc']['orders']=='0' ){?><input type="hidden" name="canView_orders" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Orders');?> </span><input type="checkbox" name="canView_orders" <?php if(isset($v['Canview']['orders']) && $v['Canview']['orders']==1){?>checked="checked"<?php }?> /><?php }?>
+
 <!--
 <?php if($admin_doc['AdminDoc']['personal_inspection']=='0' ){?><input type="hidden" name="canView_personal_inspection" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Personal Inspection');?> </span><input type="checkbox" name="canView_personal_inspection" <?php if(isset($v['Canview']['personal_inspection']) && $v['Canview']['personal_inspection']==1){?>checked="checked"<?php }?> /><?php }?>
@@ -301,6 +305,9 @@ if(!isset($sid))
 <?php if($admin_doc['AdminDoc']['kpiaudits']=='0' ){?><input type="hidden" name="canUpload_KPIAudits" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/KPI Audits');?> </span><input type="checkbox" name="canUpload_KPIAudits" <?php if(isset($u['Canupload']['KPIAudits']) && $u['Canupload']['KPIAudits']==1){?>checked="checked"<?php }?> /><?php }?>
 
+<?php if($admin_doc['AdminDoc']['orders']=='0' ){?><input type="hidden" name="canUpload_orders" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Orders');?> </span><input type="checkbox" name="canUpload_orders" <?php if(isset($u['Canupload']['orders']) && $u['Canupload']['orders']==1){?>checked="checked"<?php }?> /><?php }?>
+
 
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Client Feedback');?> </span><input type="checkbox" name="canUpload_client_memo1" <?php if(isset($u['Canupload']['client_feedback']) && $u['Canupload']['client_feedback']==1){?>checked="checked"<?php }?> />
 <!--
@@ -388,6 +395,9 @@ if(!isset($sid))
 
 <?php if($admin_doc['AdminDoc']['kpiaudits']=='0' ){?><input type="hidden" name="Email_KPIAudits" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/KPI Audits');?> </span><input type="checkbox" name="Email_KPIAudits" <?php if(isset($e['Emailupload']['KPIAudits']) && $e['Emailupload']['KPIAudits']==1){?>checked="checked"<?php }?> /><?php }?>
+
+<?php if($admin_doc['AdminDoc']['orders']=='0' ){?><input type="hidden" name="Email_orders" value="0"/><?php }else{?>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Orders');?> </span><input type="checkbox" name="Email_orders" <?php if(isset($e['Emailupload']['orders']) && $e['Emailupload']['orders']==1){?>checked="checked"<?php }?> /><?php }?>
 
 <?php if($admin_doc['AdminDoc']['deployment_rate']=='0' ){?><input type="hidden" name="Email_deployment" value="0"/><?php }else{?>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $this->requestAction('dashboard/translate/Deployment');?> </span><input type="checkbox" name="Email_deployment" <?php if(isset($e['Emailupload']['deployment']) && $e['Emailupload']['deployment']==1){?>checked="checked"<?php }?> /><?php }?>
