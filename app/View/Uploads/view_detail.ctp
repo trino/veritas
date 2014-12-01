@@ -403,12 +403,12 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
 <?php foreach($vid as $v) { ?>
 <input type="hidden" name="first" id="first" value="<?php echo $v['Video']['video']; ?>" /> 
 <?php break; } ?>
-
+<div class="sub-video">
 <?php
-foreach($vid as $v)
+foreach($vid as $k=>$v)
 {
 ?>
-<div class="sub-video">
+
 
 <!--video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="500" height="264"
 poster=""
@@ -417,16 +417,16 @@ data-setup="{}" style="background:#000;">
 <track kind="captions" src="demo.captions.vtt" srclang="en" label="English" />
 </video-->
 
-<?php $video_file = $base_url . "img/documents/" . $v['Video']['video']; ?>
-<div id="myElement">Loading the player...</div>
+<?php  $video_file = $base_url . "img/documents/" . $v['Video']['video']; ?>
+<div id="myElement<?php echo $k;?>">Loading the player...</div>
 <script type="text/javascript">
-jwplayer("myElement").setup({
+jwplayer("myElement<?php echo $k;?>").setup({
 file: "<?=$video_file?>"
 });
 </script>
 
 <!--<a href="javascript:void(0);" onclick="video(this.id)" id="<?php echo $v['Video']['video']; ?>"><?php echo $v['Video']['video']; ?></a> </div>-->
-<br /><a href="<?php echo $base_url."uploads/download/".$v['Video']['video']; ?>" class="btn btn-info">Download</a>
+<br /><a href="<?php echo $base_url."uploads/download/".$v['Video']['video']; ?>" class="btn btn-info" style="margin-bottom: 10px;">Download</a>
 
 <?php
 } 
@@ -441,10 +441,11 @@ Video not playing? Check the compatibility of your browser <a target = "_blank" 
 <br><br>
 You may also download the video and play it on your local device.
 </div>
+<div class="clear"></div>
+</div>
 <?php } ?>
 
 
-<div class="clear"></div>
 
 <div id="youtube">
 <?php if($you)

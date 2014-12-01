@@ -203,6 +203,7 @@ function remove_youtube()
 </select>
 </div></td>
 </tr>
+<?php include('orders.php');?>
 <?php if($this->Session->read('admin')){?>
 <tr class="orders" style="display: none;">
     <td>&nbsp;</td>
@@ -444,7 +445,7 @@ else{
 <td>
 <!--<textarea name="description"  class="text_area_long" cols="10" rows="5" id="repl" onKeyDown="limitText(this.form.description,this.form.countdown,70);"
 onKeyUp="limitText(this.form.description,this.form.countdown,70);"><?php if(isset($doc['Document']['description'])) echo $doc['Document']['description'];?></textarea>-->
-<textarea name="description"  class="text_area_long" cols="10" rows="5" id="repl" ><?php if(isset($doc['Document']['description'])) echo $doc['Document']['description'];?></textarea>
+<textarea name="description"  class="text_area_long" cols="10" rows="7" id="repl" ><?php if(isset($doc['Document']['description'])) echo $doc['Document']['description'];?></textarea>
 <br />
 </td></tr>
 <tr class="image_tr"><td><b><?php echo $this->requestAction('dashboard/translate/ImagesVideosDocs');?></b></td><td><div class="right">

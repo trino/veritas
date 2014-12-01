@@ -674,13 +674,13 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 									<div class="recipientsLine" >
 									
 										<table cellspacing="0" cellpadding="0" border="0" width="100%"><tr><td style="padding:0px; padding-bottom:4px;">
-											<div id="name" style="height: 20px; background: none repeat scroll 0% 0% white; border: 1px solid rgb(204, 204, 204); padding: 1px 4px 2px; color: rgb(170, 170, 170); width:103%; float: left; font-family: 'Oxygen', sans-serif;"><?php echo $this->requestAction('dashboard/translate/Recipients');?></div>
+											<div id="name" style="height: 20px; background: none repeat scroll 0% 0% white; border: 1px solid rgb(204, 204, 204); padding: 1px 4px 2px; color: rgb(170, 170, 170); width:103%; float: left; font-family: 'Oxygen', sans-serif;"><?php echo $this->requestAction('dashboard/translate/To');?></div>
 										</td><td style="width:30px;padding-top:5px; text-align:right;">
 											<a id="contacts_modal" class="email btn btn-info" style="padding:0px;color:#FFF; width:100%; float:right; margin:0px; margin-top:-5px; margin-right:-18px; height:23px;" onclick="show_email();" href="javascript:void(0);">&nbsp;+&nbsp;</a>
 										</td></tr></table> 
 									</div>
 									<div class="subjectLine">
-										<input type="text" name="subject" placeholder="<?php echo $this->requestAction('dashboard/translate/Subject Title');?>" class="required" style="margin-bottom: 7px;" />
+										<input type="text" name="subject" placeholder="<?php echo $this->requestAction('dashboard/translate/Subject');?>" class="required" style="margin-bottom: 7px;" />
 									</div>
                                     <input type="hidden" name="recipients" id="recipients" value="" />
 									<input type="hidden" name="response" id="resp" />
@@ -691,7 +691,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
                                 <div style="clear: both;"></div>
 							</td><td width="50%" style="padding-right: 0;">
 								<div class="left msg">
-									<textarea placeholder="<?php echo $this->requestAction('dashboard/translate/Instant Message').' - '. $this->requestAction('dashboard/translate/Type message here');?>" name="message" class="required message" style="height:44%; width:98%;margin-bottom:10px"></textarea>
+									<textarea placeholder="<?php echo $this->requestAction('dashboard/translate/Message');?>" name="message" class="required message" style="height:44%; width:98%;margin-bottom:10px"></textarea>
                                     <input style="float:right;" type="submit" name="submit" value="<?php echo $this->requestAction('dashboard/translate/Send');?>" class="buttonV" id="send_email" />
     								<a href="javascript:void(0);" class="buttonV attachment" style="float:right;margin-right:8px;"><i class="icon-book"></i><?php echo $this->requestAction('dashboard/translate/Attach Documents');?></a>					
                                     <div style="clear: both;"></div>

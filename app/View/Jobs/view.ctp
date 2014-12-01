@@ -497,6 +497,10 @@
         <td><?php if($job['Job']['image']=='afimaclogo.png' || $job['Job']['image']=='asap.gif')echo $this->Html->image('uploads/'.$this->Session->read('logo'),array('width'=>'100','height'=>'100'));else echo $this->Html->image('uploads/'.$job['Job']['image'],array('width'=>'','height'=>'')); ?></td>
     </tr>
     <tr>
+        <td><b><?php echo $this->requestAction('dashboard/translate/Site');?></b></td>
+        <td><?php echo $job['Job']['site'] ?></td>
+    </tr>
+    <tr>
         <td><b><?php echo $this->requestAction('dashboard/translate/Date Start');?></b></td>
         <td><?php echo $job['Job']['date_start'] ?></td>
     </tr>

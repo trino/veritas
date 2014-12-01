@@ -155,6 +155,7 @@ class JobsController extends AppController
             $arr['title'] = $_POST['title'];
             $arr['description'] = $_POST['description'];
             $arr['image'] = $img;
+            $arr['site'] = $_POST['site'];
             $arr['date_start'] = $_POST['start_date'];
             $arr['date_end'] = $_POST['end_date'];
             $arr['isApproved'] = '1';
@@ -359,6 +360,7 @@ class JobsController extends AppController
             $this->Job->saveField('title',$_POST['title']);
             $this->Job->saveField('description',$_POST['description']);
             $this->Job->saveField('image',$img);
+            $this->Job->saveField('site',$_POST['site']);
             $this->Job->saveField('date_start',$_POST['start_date']);
             $this->Job->saveField('date_end',$_POST['end_date']); 
             $this->Job->saveField('status',$_POST['status']); 

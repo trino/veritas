@@ -1528,7 +1528,7 @@ class UploadsController extends AppController
                     if($_FILES['document']['tmp_name']!="")
                     {
                         $source=$_FILES['document']['tmp_name'][$k];
-                        $rand = $arr['title'].$subname."_".date('Y-m-d_H-i-s');
+                        $rand = $arr['title'].$subname."_".date('Y-m-d_H-i-s').".".rand(0,999999);
                         $whiteSpace = '';
                         $pattern = '/[^a-zA-Z0-9-_'  . $whiteSpace . ']/u';
                         $rand = preg_replace($pattern, '', (string) $rand);
@@ -2939,7 +2939,7 @@ class UploadsController extends AppController
                 $fname = str_replace(' ',"_",$fname);
                 $fname = urlencode($fname);
                 */
-                $rand = $arr['title'].$subname."_".date('Y-m-d_H-i-s');
+                $rand = $arr['title'].$subname."_".date('Y-m-d_H-i-s').".".rand(0,999999);
                 $whiteSpace = '';
                 $pattern = '/[^a-zA-Z0-9-_'  . $whiteSpace . ']/u';
                 $rand = preg_replace($pattern, '', (string) $rand);

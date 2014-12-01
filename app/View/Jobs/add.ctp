@@ -25,6 +25,7 @@ $(function(){
 <tr><td style="width:140px;"><b><?php echo $this->requestAction('dashboard/translate/Job Title');?></b></td><td><input type="text" name="title" class="required" /></td></tr>
 <tr><td><b><?php echo $this->requestAction('dashboard/translate/Job Description');?></b></td><td><textarea name="description" class="required" ></textarea></td></tr>
 <tr><td><b>Image</b></td><td><input type="file" name="image" class="" /></td></tr>
+<tr><td><b><?php echo $this->requestAction('dashboard/translate/Site');?> </b></td><td><input type="text" class="" name="site" value="" /></td></tr>
 <tr><td><b><?php echo $this->requestAction('dashboard/translate/Start Date');?></b></td><td><input type="text" name="start_date" id="start_date" class="" /></td></tr>
 <tr><td><b><?php echo $this->requestAction('dashboard/translate/End Date');?></b></td><td><input type="text" name="end_date" id="end_date" class="" /></td></tr>
 <tr><td><strong><?php echo $this->requestAction('dashboard/translate/Add Members');?>:</strong></td><td>

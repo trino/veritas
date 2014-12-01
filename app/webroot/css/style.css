@@ -23,7 +23,9 @@ body{
 	float:left;
     width: 100%;
 }
-
+.text_area_long{
+    width: 300px;
+}
 .changelang{width:100px;}
 /* Left column */
 .menu a{
