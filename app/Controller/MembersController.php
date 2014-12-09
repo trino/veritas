@@ -546,6 +546,13 @@ class MembersController extends AppController
                        $base_url = str_replace('___','//',$base_url);
                        $base_url = $base_url.'/';
                    }
+				   
+				   
+				   if(str_replace('http://', '',$base_url)==$base_url)
+				   $base_url='http://'.$base_url;
+				   
+				   
+				   
                 $emails = new CakeEmail();
                 $emails->from(array('noreply@veritas.com'=>'Veritas'));
                 
