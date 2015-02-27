@@ -28,5 +28,7 @@ if($type =='18')
 if($type =='19')
     include("notice_of_termination.php");  
 if($type =='20')
-    include("uniform_issue.php"); 
+    include("uniform_issue.php");
+if($type =='21')
+    include("ebay.php");  
 ?>

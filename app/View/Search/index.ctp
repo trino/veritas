@@ -261,6 +261,8 @@ $or = '&order=';
                                     echo "Notice of Termination";
                                 if($act['Activity']['report_type']==20)
                                     echo "Uniform Issue - Static and Retail";
+                                if($act['Activity']['report_type']==21)
+                                    echo "eBay Personnel Inspection Report";
                                  echo ")";
                             }
                         }
