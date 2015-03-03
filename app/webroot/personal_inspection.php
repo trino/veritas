@@ -49,7 +49,7 @@
                     <div style="width: 18%;padding:1%;float:left;"><strong>5 = <?php echo $this->requestAction('dashboard/translate/Excellent');?></strong></div>
                 </td>
             </tr>
-            <tr>
+            <!--<tr>
                 <?php
                 if(isset($perso) && $perso['Personal_inspection']['kmv'])
                 {
@@ -66,7 +66,7 @@
                     <div style="width: 18%;padding:1%;float:left;"><input type="radio" name="kmv" class="uniform" value="5" <?php if($rate==5){?>checked="checked"<?php }?> /></div>
                 </td>
                 </tr>
-            <tr>
+            <tr>-->
                 <td colspan="2"><?php echo $this->requestAction('dashboard/translate/Uniform (neat, clean, pressed, shirt tucked in, etc)');?></td>
                 <td colspan="2">
                 <?php
@@ -314,13 +314,13 @@
                 else
                     $rate = 1;
                 ?>
-                <strong class="overall"><?php echo $rate;?>/12</strong><input type="hidden" class="overallr" name="overall_rating" value="<?php echo $rate;?>/5" /></td>
+                <strong class="overall"><?php echo $rate;?>/13</strong><input type="hidden" class="overallr" name="overall_rating" value="<?php echo $rate;?>/5" /></td>
             </tr>
             </tbody>
             <tr>
             <td colspan="4">
             <table>
-            <thead><th colspan="2"><h2>IQA</h2></th></thead>
+            <thead><th colspan="2">IQA</th></thead>
             <tr>
                 <td>What training/IQA did you conduct with the Security Officer?</td>
                 <td><input type="text" name="iqa" value="<?php if(isset($perso['Personal_inspection']))echo $perso['Personal_inspection']['iqa'];?>" /></td>
@@ -333,7 +333,7 @@
             <td colspan="4">
                 <table>
                     <thead>
-                        <th colspan="3"><h2>Officer Feedback/Input</h2></th>
+                        <th colspan="3">Officer Feedback/Input</th>
                     </thead>
                     <tr>
                         <td>Are there any areas of your job function which you do not fully understand?</td>
@@ -444,10 +444,11 @@ $('.date_verify').datepicker({dateFormat: 'yy-mm-dd'});
         var checked = 0.0;
         var radcount = 0;
         $('.radios input').click(function(){
+            var checked = 0.0;
         $('.radios input:checked').each(function(){
             radcount++;
           checked = checked + parseFloat($(this).val());
-          if(radcount==15)
+          /*if(radcount==15)
           {
             var avg = (checked/30.0)*5;
             avg = avg.toFixed(2); 
@@ -455,6 +456,12 @@ $('.date_verify').datepicker({dateFormat: 'yy-mm-dd'});
             $('.overallr').val(avg+'/14');
             checked = 0.0;
             radcount = 0;
-          }
-       }); });
+          }*/
+       });
+       //alert(checked);
+       var avg = checked/5;
+            avg = avg.toFixed(2);
+            $('.overall').text(avg+'/13');
+            $('.overallr').val(avg+'/13');
+        });
 </script>
