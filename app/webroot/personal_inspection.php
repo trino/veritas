@@ -314,7 +314,7 @@
                 else
                     $rate = 1;
                 ?>
-                <strong class="overall"><?php echo $rate;?>/13</strong><input type="hidden" class="overallr" name="overall_rating" value="<?php echo $rate;?>/5" /></td>
+                <strong class="overall"><?php echo $rate;?>/65</strong><input type="hidden" class="overallr" name="overall_rating" value="<?php echo $rate;?>/5" /></td>
             </tr>
             </tbody>
             <tr>
@@ -459,9 +459,9 @@ $('.date_verify').datepicker({dateFormat: 'yy-mm-dd'});
           }*/
        });
        //alert(checked);
-       var avg = checked/5;
+       var avg = checked;
             avg = avg.toFixed(2);
-            $('.overall').text(avg+'/13');
-            $('.overallr').val(avg+'/13');
+            $('.overall').text(avg+'/65');
+            $('.overallr').val(avg+'/65');
         });
 </script>

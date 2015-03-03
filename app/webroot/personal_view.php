@@ -293,7 +293,7 @@
                 else
                 $rate = 1;
                 ?>
-                <strong class="overall"><?php echo $rate;?>/13</strong></td>
+                <strong class="overall"><?php echo $rate;?>/65</strong></td>
                 
             </tr>
             <tr>
