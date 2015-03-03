@@ -19,6 +19,25 @@
                 </select></td>
                 <td><?php echo $this->requestAction('dashboard/translate/Date');?> : </td><td><input type="text" name="date_submit" value="<?php if(isset($perso) && $perso['Personal_inspection']['date_submit']){echo $perso['Personal_inspection']['date_submit'];}else{echo date('Y-m-d H:i:s');}?>" readonly="readonly" /></td>
             </tr>
+            <tr>
+            <td colspan="4">
+                <table>
+                <thead><th colspan="4">General Compliance</th></thead>
+                <tr>
+                    <td><input type="radio" name="license" value="1" <?php if(isset($perso['Personal_inspection']) &&$perso['Personal_inspection']['license']=='1')echo "checked='checked'";?> />Yes</td>
+                    <td><input type="radio" name="license" value="0" <?php if(isset($perso['Personal_inspection']) &&$perso['Personal_inspection']['license']=='0')echo "checked='checked'";?>/>No</td>
+                    <td><input type="radio" name="license" value="2" <?php if(isset($perso['Personal_inspection']) &&$perso['Personal_inspection']['license']=='2')echo "checked='checked'";?>/>N/A</td>
+                    <td>Does the employee have a valid security license and proper identification?</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name="safe" value="1" <?php if(isset($perso['Personal_inspection']) &&$perso['Personal_inspection']['safe']=='1')echo "checked='checked'";?>/>Yes</td>
+                    <td><input type="radio" name="safe" value="0" <?php if(isset($perso['Personal_inspection']) &&$perso['Personal_inspection']['safe']=='0')echo "checked='checked'";?>/>No</td>
+                    <td></td>
+                    <td>Is a safe workplace being maintained? *</td>
+                </tr>
+                </table>
+            </td>
+            </tr>
             <tbody  class="radios" style="border-top: 1px solid #d5d5d5;">
             <tr>
                 <td colspan="2"><strong><?php echo $this->requestAction('dashboard/translate/Ratings');?></strong></td>
@@ -31,6 +50,23 @@
                 </td>
             </tr>
             <tr>
+                <?php
+                if(isset($perso) && $perso['Personal_inspection']['kmv'])
+                {
+                    $rate = $perso['Personal_inspection']['kmv'];
+                }
+                else
+                    $rate = 1;
+                ?>
+                <td colspan="2">Knowledge of Mission and Values (automatic score of "1" if no card in possession)</td>
+                <td colspan="2"><div style="width: 15%;padding:1%;float:left;"><input type="radio" name="kmv" class="uniform" value="1" <?php if($rate==1){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 15%;padding:1%;float:left;"><input type="radio" name="kmv" class="uniform" value="2" <?php if($rate==2){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 21%;padding:1%;float:left;"><input type="radio" name="kmv" class="uniform" value="3" <?php if($rate==3){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 18%;padding:1%;float:left;"><input type="radio" name="kmv" class="uniform" value="4" <?php if($rate==4){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 18%;padding:1%;float:left;"><input type="radio" name="kmv" class="uniform" value="5" <?php if($rate==5){?>checked="checked"<?php }?> /></div>
+                </td>
+                </tr>
+            <tr>
                 <td colspan="2"><?php echo $this->requestAction('dashboard/translate/Uniform (neat, clean, pressed, shirt tucked in, etc)');?></td>
                 <td colspan="2">
                 <?php
@@ -39,7 +75,7 @@
                     $rate = $perso['Personal_inspection']['uniform'];
                 }
                 else
-                $rate = 1;
+                    $rate = 1;
                 ?>
                     <div style="width: 15%;padding:1%;float:left;"><input type="radio" name="uniform" class="uniform" value="1" <?php if($rate==1){?>checked="checked"<?php }?> /></div>
                     <div style="width: 15%;padding:1%;float:left;"><input type="radio" name="uniform" class="uniform" value="2" <?php if($rate==2){?>checked="checked"<?php }?> /></div>
@@ -138,6 +174,133 @@
                     <div style="width: 18%;padding:1%;float:left;"><input type="radio" name="positioning" class="positioning" value="5" <?php if($rate==5){?>checked="checked"<?php }?> /></div>
                 </td>
             </tr>
+            <tr>
+                <td colspan="2">Cleanliness of Workplace</td>
+                <?php
+                if(isset($perso) && $perso['Personal_inspection']['cow'])
+                {
+                    $rate = $perso['Personal_inspection']['cow'];
+                }
+                else
+                $rate = 1;
+                ?>
+                <td colspan="2">
+                    <div style="width: 15%;padding:1%;float:left;"><input type="radio" name="cow" class="positioning" value="1" <?php if($rate==1){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 15%;padding:1%;float:left;"><input type="radio" name="cow" class="positioning" value="2" <?php if($rate==2){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 21%;padding:1%;float:left;"><input type="radio" name="cow" class="positioning" value="3" <?php if($rate==3){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 18%;padding:1%;float:left;"><input type="radio" name="cow" class="positioning" value="4" <?php if($rate==4){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 18%;padding:1%;float:left;"><input type="radio" name="cow" class="positioning" value="5" <?php if($rate==5){?>checked="checked"<?php }?> /></div>
+                </td>
+            </tr>    
+            <tr>
+                <td colspan="2">Knowledge of site</td>
+                <?php
+                if(isset($perso) && $perso['Personal_inspection']['kos'])
+                {
+                    $rate = $perso['Personal_inspection']['kos'];
+                }
+                else
+                $rate = 1;
+                ?>
+                <td colspan="2">
+                    <div style="width: 15%;padding:1%;float:left;"><input type="radio" name="kos" class="positioning" value="1" <?php if($rate==1){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 15%;padding:1%;float:left;"><input type="radio" name="kos" class="positioning" value="2" <?php if($rate==2){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 21%;padding:1%;float:left;"><input type="radio" name="kos" class="positioning" value="3" <?php if($rate==3){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 18%;padding:1%;float:left;"><input type="radio" name="kos" class="positioning" value="4" <?php if($rate==4){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 18%;padding:1%;float:left;"><input type="radio" name="kos" class="positioning" value="5" <?php if($rate==5){?>checked="checked"<?php }?> /></div>
+                </td>
+            </tr>    
+            <tr>
+                <td colspan="2">Knowledge of Post Orders</td>
+                <?php
+                if(isset($perso) && $perso['Personal_inspection']['kpo'])
+                {
+                    $rate = $perso['Personal_inspection']['kpo'];
+                }
+                else
+                $rate = 1;
+                ?>
+                <td colspan="2">
+                    <div style="width: 15%;padding:1%;float:left;"><input type="radio" name="kpo" class="positioning" value="1" <?php if($rate==1){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 15%;padding:1%;float:left;"><input type="radio" name="kpo" class="positioning" value="2" <?php if($rate==2){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 21%;padding:1%;float:left;"><input type="radio" name="kpo" class="positioning" value="3" <?php if($rate==3){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 18%;padding:1%;float:left;"><input type="radio" name="kpo" class="positioning" value="4" <?php if($rate==4){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 18%;padding:1%;float:left;"><input type="radio" name="kpo" class="positioning" value="5" <?php if($rate==5){?>checked="checked"<?php }?> /></div>
+                </td>
+            </tr>    
+            <tr>
+                <td colspan="2">Quality of Reports </td>
+                <?php
+                if(isset($perso) && $perso['Personal_inspection']['qor'])
+                {
+                    $rate = $perso['Personal_inspection']['qor'];
+                }
+                else
+                $rate = 1;
+                ?>
+                <td colspan="2">
+                    <div style="width: 15%;padding:1%;float:left;"><input type="radio" name="qor" class="positioning" value="1" <?php if($rate==1){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 15%;padding:1%;float:left;"><input type="radio" name="qor" class="positioning" value="2" <?php if($rate==2){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 21%;padding:1%;float:left;"><input type="radio" name="qor" class="positioning" value="3" <?php if($rate==3){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 18%;padding:1%;float:left;"><input type="radio" name="qor" class="positioning" value="4" <?php if($rate==4){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 18%;padding:1%;float:left;"><input type="radio" name="qor" class="positioning" value="5" <?php if($rate==5){?>checked="checked"<?php }?> /></div>
+                </td>
+            </tr>    
+            <tr>
+                <td colspan="2">Attitude and Demeanor </td>
+                   <?php
+                if(isset($perso) && $perso['Personal_inspection']['aad'])
+                {
+                    $rate = $perso['Personal_inspection']['aad'];
+                }
+                else
+                $rate = 1;
+                ?>
+                <td colspan="2">
+                    <div style="width: 15%;padding:1%;float:left;"><input type="radio" name="aad" class="positioning" value="1" <?php if($rate==1){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 15%;padding:1%;float:left;"><input type="radio" name="aad" class="positioning" value="2" <?php if($rate==2){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 21%;padding:1%;float:left;"><input type="radio" name="aad" class="positioning" value="3" <?php if($rate==3){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 18%;padding:1%;float:left;"><input type="radio" name="aad" class="positioning" value="4" <?php if($rate==4){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 18%;padding:1%;float:left;"><input type="radio" name="aad" class="positioning" value="5" <?php if($rate==5){?>checked="checked"<?php }?> /></div>
+                </td>
+            </tr>    
+            <tr>
+                <td colspan="2">Customer Service Skills </td>
+                   <?php
+                if(isset($perso) && $perso['Personal_inspection']['css'])
+                {
+                    $rate = $perso['Personal_inspection']['css'];
+                }
+                else
+                $rate = 1;
+                ?>
+                <td colspan="2">
+                    <div style="width: 15%;padding:1%;float:left;"><input type="radio" name="css" class="positioning" value="1" <?php if($rate==1){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 15%;padding:1%;float:left;"><input type="radio" name="css" class="positioning" value="2" <?php if($rate==2){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 21%;padding:1%;float:left;"><input type="radio" name="css" class="positioning" value="3" <?php if($rate==3){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 18%;padding:1%;float:left;"><input type="radio" name="css" class="positioning" value="4" <?php if($rate==4){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 18%;padding:1%;float:left;"><input type="radio" name="css" class="positioning" value="5" <?php if($rate==5){?>checked="checked"<?php }?> /></div>
+                </td>
+                </tr>    
+            <tr>
+                <td colspan="2">Knowledge of Equipment </td>
+                   <?php
+                if(isset($perso) && $perso['Personal_inspection']['koe'])
+                {
+                    $rate = $perso['Personal_inspection']['koe'];
+                }
+                else
+                $rate = 1;
+                ?>
+                <td colspan="2">
+                    <div style="width: 15%;padding:1%;float:left;"><input type="radio" name="koe" class="positioning" value="1" <?php if($rate==1){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 15%;padding:1%;float:left;"><input type="radio" name="koe" class="positioning" value="2" <?php if($rate==2){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 21%;padding:1%;float:left;"><input type="radio" name="koe" class="positioning" value="3" <?php if($rate==3){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 18%;padding:1%;float:left;"><input type="radio" name="koe" class="positioning" value="4" <?php if($rate==4){?>checked="checked"<?php }?> /></div>
+                    <div style="width: 18%;padding:1%;float:left;"><input type="radio" name="koe" class="positioning" value="5" <?php if($rate==5){?>checked="checked"<?php }?> /></div>
+                </td>
+               
+            </tr>
             </tbody>
             <tbody style="border-top: 1px solid #d5d5d5;">
             <tr>
@@ -149,11 +312,51 @@
                     $rate = $perso['Personal_inspection']['overall_rating'];
                 }
                 else
-                $rate = 1;
+                    $rate = 1;
                 ?>
-                <strong class="overall"><?php echo $rate;?>/5</strong><input type="hidden" class="overallr" name="overall_rating" value="<?php echo $rate;?>/5" /></td>
+                <strong class="overall"><?php echo $rate;?>/12</strong><input type="hidden" class="overallr" name="overall_rating" value="<?php echo $rate;?>/5" /></td>
             </tr>
             </tbody>
+            <tr>
+            <td colspan="4">
+            <table>
+            <thead><th colspan="2"><h2>IQA</h2></th></thead>
+            <tr>
+                <td>What training/IQA did you conduct with the Security Officer?</td>
+                <td><input type="text" name="iqa" value="<?php if(isset($perso['Personal_inspection']))echo $perso['Personal_inspection']['iqa'];?>" /></td>
+                
+            </tr>
+            </table>
+            </td>
+            </tr>
+            <tr>
+            <td colspan="4">
+                <table>
+                    <thead>
+                        <th colspan="3"><h2>Officer Feedback/Input</h2></th>
+                    </thead>
+                    <tr>
+                        <td>Are there any areas of your job function which you do not fully understand?</td>
+                        <td><input type="radio" name="notinterested" value="1" <?php if(isset($perso['Personal_inspection']) &&$perso['Personal_inspection']['notinterested']=='1')echo "checked='checked'";?>/>Yes</td>
+                        <td><input type="radio" name="notinterested" value="0" <?php if(isset($perso['Personal_inspection']) &&$perso['Personal_inspection']['notinterested']=='0')echo "checked='checked'";?>/>No</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Do you feel you are in need of any additional training?</td>
+                        <td><input type="radio" name="training" value="1" <?php if(isset($perso['Personal_inspection']) &&$perso['Personal_inspection']['training']=='1')echo "checked='checked'";?>/>Yes</td>
+                        <td><input type="radio" name="training" value="0" <?php if(isset($perso['Personal_inspection']) &&$perso['Personal_inspection']['training']=='0')echo "checked='checked'";?>/>No</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>So you have any comments, concerns or recommendations? </td>
+                        <td><input type="radio" name="ccr" value="1" <?php if(isset($perso['Personal_inspection']) &&$perso['Personal_inspection']['ccr']=='1')echo "checked='checked'";?>/>Yes</td>
+                        <td><input type="radio" name="ccr" value="0" <?php if(isset($perso['Personal_inspection']) &&$perso['Personal_inspection']['ccr']=='0')echo "checked='checked'";?>/>No</td>
+                        
+                    </tr>
+                </table>
+            </td>
+            </tr>
+            
             <tbody style="border-top: 1px solid #d5d5d5;">
             <tr>
                 <td colspan="2"><strong><?php echo $this->requestAction('dashboard/translate/Evaluation');?></strong><br /><?php echo $this->requestAction('dashboard/translate/Additional Comments');?></td>
@@ -244,12 +447,12 @@ $('.date_verify').datepicker({dateFormat: 'yy-mm-dd'});
         $('.radios input:checked').each(function(){
             radcount++;
           checked = checked + parseFloat($(this).val());
-          if(radcount==6)
+          if(radcount==15)
           {
             var avg = (checked/30.0)*5;
             avg = avg.toFixed(2); 
-            $('.overall').text(avg+'/5');
-            $('.overallr').val(avg+'/5');
+            $('.overall').text(avg+'/14');
+            $('.overallr').val(avg+'/14');
             checked = 0.0;
             radcount = 0;
           }

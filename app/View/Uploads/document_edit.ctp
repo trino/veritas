@@ -350,7 +350,7 @@ function remove_youtube()
     <?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/18')){?><option value="18" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='18') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Injury and Illness');?></option><?php }?>
     <?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/19')){?><option value="19" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='19') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Notice Of Termination');?></option><?php }?>
     <?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/20')){?><option value="20" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='20') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Uniform Issue - Static and Retail');?></option><?php }?>
-    <?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/21')){?><option value="21" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='21') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/eBay Personnel Inspection Report');?></option><?php }?>
+    <!--<?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/21')){?><option value="21" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='21') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/eBay Personnel Inspection Report');?></option><?php }?>-->
 </select>
 </th>
 </thead>

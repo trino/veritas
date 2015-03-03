@@ -848,7 +848,7 @@ class UploadsController extends AppController
                     $per['document_id'] = $eid;
                     foreach($_POST as $key=>$post)
                     {
-                        $in = array('document_type','emp_name1','site','jobs_title','date_submit','date_verify','date_verify2','evaluation','manager_name','emp_name2','overall_rating','uniform','uniform2','grooming','proper_equipment','piercing','positioning');
+                        $in = array('document_type','emp_name1','site','jobs_title','date_submit','date_verify','date_verify2','evaluation','manager_name','emp_name2','overall_rating','uniform','uniform2','grooming','proper_equipment','piercing','positioning','license','safe','kmv','cow','kos','kpo','qor','aad','css','koe','iqa','notinterested','training','ccr');
                         if(in_array($key,$in))
                         {
                             $per[$key] = $post;
@@ -2525,7 +2525,7 @@ class UploadsController extends AppController
                     
                     foreach($_POST as $key=>$post)
                     {
-                        $in = array('document_type','emp_name1','site','jobs_title','date_submit','date_verify','date_verify2','evaluation','manager_name','emp_name2','overall_rating','uniform','uniform2','grooming','proper_equipment','piercing','positioning');
+                        $in = array('document_type','emp_name1','site','jobs_title','date_submit','date_verify','date_verify2','evaluation','manager_name','emp_name2','overall_rating','uniform','uniform2','grooming','proper_equipment','piercing','positioning','license','safe','kmv','cow','kos','kpo','qor','aad','css','koe','iqa','notinterested','training','ccr');
                         if(in_array($key,$in))
                         {
                             $per[$key] = $post;
