@@ -696,7 +696,7 @@ class UploadsController extends AppController
                 if($_POST['orders']['complete']=='1' && $this->Session->read('admin'))
                 {
                     $uid = $docz['Document']['addedBy'];
-                    if($uid!=0)
+                    if($uid!=0 && $arr['draft']!='1')
                     {
                         $mem= $this->Member->findById($uid);
                         $emails = new CakeEmail();
@@ -1783,7 +1783,7 @@ class UploadsController extends AppController
                             </table>";
                             
                             
-                            if($tosend)
+                            if($tosend && $arr['draft']!='1')
                             {
                                 $emails = new CakeEmail();
                                 $emails->from(array('noreply@veritas.com'=>'Veritas'));
@@ -2045,7 +2045,7 @@ class UploadsController extends AppController
                             else
                                 $check=0;
                         }    
-                        if($check==1)
+                        if($check==1 && $arr['draft']!='1')
                         {
                             //die($to);
                             $emails->to($to);
@@ -2071,6 +2071,7 @@ class UploadsController extends AppController
     }
     function upload($ids,$typee='')
     {
+        $sitename = Configure::read('Sitename');
         $this->loadModel('DeploymentRate');
         if($rates = $this->DeploymentRate->findByJobId($ids))
         {
@@ -3043,7 +3044,7 @@ class UploadsController extends AppController
                         //var_dump($t);die();
                         $to = $t['Member']['email'];
                         $emails = new CakeEmail();
-                        $emails->from(array('noreply@veritas.com'=>'Veritas'));
+                        $emails->from(array('noreply@'.$sitename.'.com'=>'Veritas'));
                         $emails->subject("A new document has been uploaded!");
                         $emails->emailFormat('html');
                         if($mem = $this->Member->findByFullName($this->Session->read('username')))
@@ -3090,7 +3091,7 @@ class UploadsController extends AppController
                             else
                                 $check=0;
                         }    
-                        if($check==1)
+                        if($check==1 && $arr['draft']!='1')
                         {
                             //die($message);
                             $emails->to($to);
@@ -3132,12 +3133,12 @@ class UploadsController extends AppController
                 $this->Clientmemo->save($client);
                 $qA = $this->User->find('all');
 				//debug($qa);exit;
-                if($qA)
+                if($qA && $arr['draft']!='1')
                 {
                     if($this->Session->read('approve')=='0')
                     foreach($qA as $qa){
                     $emails = new CakeEmail();
-                        $emails->from(array('noreply@veritas.com'=>'Veritas'));
+                        $emails->from(array('noreply@'.$sitename.'.com'=>'Veritas'));
                         
                         $emails->subject("Client Feedback Uploaded.");
                         $emails->emailFormat('html');
@@ -3204,10 +3205,10 @@ class UploadsController extends AppController
                             </table>";
                             
                             //echo $msg;die();
-                            if($tosend)
+                            if($tosend && $arr['draft']!='1')
                             {
                                 $emails = new CakeEmail();
-                                $emails->from(array('noreply@veritas.com'=>'Veritas'));
+                                $emails->from(array('noreply@'.$sitename.'.com'=>'Veritas'));
                         
                                 $emails->subject("Veritas - Report Uploaded");
                                 $emails->emailFormat('html');
@@ -4220,7 +4221,7 @@ $oa = intval($number*$expo)/$expo;
                                 else
                                     $check=0;
                             }    
-                            if($check==1)
+                            if($check==1 && $arr['draft']!='1')
                             {
                                 //die($to);
                                 $emails->to($to);
