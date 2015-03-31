@@ -561,7 +561,7 @@ $(function(){
         if($(this).val()=='7' || $(this).val()=='8' || $(this).val()=='9' || $(this).val()== "10" || $(this).val()=="11" || $(this).val()=="12"|| $(this).val()=="13"|| $(this).val()=="14"|| $(this).val()=="15"|| $(this).val()=="16"|| $(this).val()=="17" || $(this).val()=="18"|| $(this).val()=="19"|| $(this).val()=="20" || $(this).val()=="21" )
         {
             $('.date_time').hide();
-            if($(this).val()=='7')
+            if($(this).val()=='7' || $(this).val()=='21')
             {
                 
             }   
@@ -685,7 +685,7 @@ $(function(){
        if(inc_type=='7' || $('.reporttype').val()=='8' || $('.reporttype').val()=='9'|| $('.reporttype').val()=='10' || $('.reporttype').val()=='11'|| $('.reporttype').val()=='12'|| $('.reporttype').val()=='13'|| $('.reporttype').val()=='14'|| $('.reporttype').val()=='15'|| $('.reporttype').val()=='16'|| $('.reporttype').val()=='17' || $('.reporttype').val()=="18"|| $('.reporttype').val()=='19' || $('.reporttype').val()=="20" || $('.reporttype').val()=="21")
        {
             $('.loader').show();
-            if($('.reporttype').val()=='8' || $('.reporttype').val()=='9'|| $('.reporttype').val()=='10' || $('.reporttype').val()=='11'|| $('.reporttype').val()=='12'|| $('.reporttype').val()=='13'|| $('.reporttype').val()=='14'|| $('.reporttype').val()=='15'|| $('.reporttype').val()=='16' || $('.reporttype').val()=='17' || $('.reporttype').val()=='18'|| $('.reporttype').val()=='19' || $('.reporttype').val()=="20" || $('.reporttype').val()=="21"){
+            if($('.reporttype').val()=='8' || $('.reporttype').val()=='9'|| $('.reporttype').val()=='10' || $('.reporttype').val()=='11'|| $('.reporttype').val()=='12'|| $('.reporttype').val()=='13'|| $('.reporttype').val()=='14'|| $('.reporttype').val()=='15'|| $('.reporttype').val()=='16' || $('.reporttype').val()=='17' || $('.reporttype').val()=='18'|| $('.reporttype').val()=='19' || $('.reporttype').val()=="20" ){
                 $('.description_tr').hide();
                 $('.image_tr').hide();
                 }
@@ -971,14 +971,21 @@ $(function(){
           }
        }); });
        <?php
-    if(isset($ac['Activity']['report_type'])&& ($ac['Activity']['report_type'] >= '7'))
+    if(isset($ac['Activity']['report_type'])&& ($ac['Activity']['report_type'] >= 7))
     {
         
         ?>
         $('.loader').show();
         $('.loader').load('<?php echo $base_url;?>uploads/reportType/id_<?php echo $did;?>/'+$('.reporttype').val(),function(){$('.loaderimg').hide()});
-        $('.description_tr').hide();
-        $('.image_tr').hide();
+        if($('.reporttype').val()==7 ||$('.reporttype').val()==21)
+        {
+            
+        }
+        else
+        {
+            $('.description_tr').hide();
+            $('.image_tr').hide();
+        }
         <?php if($ac['Activity']['report_type']=='18'){?>
         $('.date_time').hide();
         <?php

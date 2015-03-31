@@ -201,7 +201,7 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
         <?php }?>
         <?php if($activity[0]['Activity']['report_type']=='7'){?>
         <tr id="loss_prevention">
-        <td colspan="2"> <?php include('loss_prevention.php');?></td>
+         <?php include('loss_prevention.php');?>
         </tr>
         <?php }?>
         
