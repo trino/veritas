@@ -696,7 +696,7 @@ class UploadsController extends AppController
                 if($_POST['orders']['complete']=='1' && $this->Session->read('admin'))
                 {
                     $uid = $docz['Document']['addedBy'];
-                    if($uid!=0)
+                    if($uid!=0 && $arr['draft']!='1')
                     {
                         $mem= $this->Member->findById($uid);
                         $emails = new CakeEmail();
@@ -743,6 +743,19 @@ class UploadsController extends AppController
                 }
                 if($_POST['report_type']=='21')
                 {
+                    $this->loadModel('Payroll');
+                    $this->Payroll->deleteAll(array('document_id'=>$eid));
+                    $this->Payroll->create();
+                    foreach($_POST['payrol'] as $k=>$v)
+                    {
+                        $ebay[$k]= $v;
+                    }
+                    $ebay['document_id'] =$eid;
+                    
+                    $this->Payroll->save($ebay);
+                }
+                /*if($_POST['report_type']=='21')
+                {
                     
                     $this->EbayReport->deleteAll(array('document_id'=>$eid));
                     $this->EbayReport->create();
@@ -753,7 +766,7 @@ class UploadsController extends AppController
                     $ebay['document_id'] =$eid;
                     $ebay['signature'] = $this->Session->read('image_name');
                     $this->EbayReport->save($ebay);
-                }
+                }*/
                 if($_POST['report_type']=='19')
                 {
                     $this->loadModel('Noticeoftermination');
@@ -1229,7 +1242,7 @@ class UploadsController extends AppController
                     }
                     unset($v , $k);
                     $this->AdditionalInfo->save($add);
-                    
+                     //var_dump($_POST['item']); die();
                     $this->ItemInfo->deleteAll(array('doc_id'=>$eid));
                     $ii=-1;
                     $arr['case'] = $_POST['item_case'];
@@ -1246,7 +1259,7 @@ class UploadsController extends AppController
                     }
                     //die();
                     //var_dump($item); die();
-                    //var_dump($_POST['item']); die();
+                   
                     
                 }    
                     
@@ -1783,7 +1796,7 @@ class UploadsController extends AppController
                             </table>";
                             
                             
-                            if($tosend)
+                            if($tosend && $arr['draft']!='1')
                             {
                                 $emails = new CakeEmail();
                                 $emails->from(array('noreply@veritas.com'=>'Veritas'));
@@ -2045,7 +2058,7 @@ class UploadsController extends AppController
                             else
                                 $check=0;
                         }    
-                        if($check==1)
+                        if($check==1 && $arr['draft']!='1')
                         {
                             //die($to);
                             $emails->to($to);
@@ -2071,6 +2084,7 @@ class UploadsController extends AppController
     }
     function upload($ids,$typee='')
     {
+        $sitename = Configure::read('Sitename');
         $this->loadModel('DeploymentRate');
         if($rates = $this->DeploymentRate->findByJobId($ids))
         {
@@ -2487,7 +2501,7 @@ class UploadsController extends AppController
                 if(isset($activity['report_type']))
                     $activity['incident_type'] = $_POST['incident_type'];
                     
-                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit','siteSignin','instruction','personalInspection','mobileInspection','mobileLog','inventory','vehicleInspection','dispilinary','injuryIllness','noticeoftermination','unifrom','ebayreport');
+                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit','siteSignin','instruction','personalInspection','mobileInspection','mobileLog','inventory','vehicleInspection','dispilinary','injuryIllness','noticeoftermination','unifrom','payroll');
                 if($_POST['report_type'])
                     $subname = '_'.$act_type[$_POST['report_type']];
                 if($_POST['report_type']=='8')
@@ -2498,6 +2512,20 @@ class UploadsController extends AppController
                     $this->StaticSiteAudit->save($_POST);
                     
                 }
+                 if($_POST['report_type']=='21')
+                {
+                    
+                    $this->loadModel('Payroll');
+                    $this->Payroll->create();
+                    foreach($_POST['payrol'] as $k=>$v)
+                    {
+                        $ebay[$k]= $v;
+                    }
+                    $ebay['document_id'] =$id;
+                    
+                    $this->Payroll->save($ebay);
+                }
+                /*
                 if($_POST['report_type']=='21')
                 {
                     $this->loadModel('EbayReport');
@@ -2509,7 +2537,7 @@ class UploadsController extends AppController
                     $ebay['document_id'] =$id;
                     $ebay['signature'] = $this->Session->read('image_name');
                     $this->EbayReport->save($ebay);
-                }
+                }*/
                 if($_POST['report_type']=='11')
                 {
                     $this->loadModel('Instruction');
@@ -2913,12 +2941,13 @@ class UploadsController extends AppController
                         $arr['price'] = $_POST['item']['price'][$i];
                         $this->ItemInfo->save($arr);
                     }
+                    //var_dump($_POST);
                     //die();
                     //var_dump($item); die();
                     //var_dump($_POST['item']); die();
                     
                 }
-                if($_POST['report_type']==8 || $_POST['report_type']==9|| $_POST['report_type']==10|| $_POST['report_type']==11|| $_POST['report_type']==12|| $_POST['report_type']==13|| $_POST['report_type']==14|| $_POST['report_type']==15|| $_POST['report_type']==16|| $_POST['report_type']==17|| $_POST['report_type']==18|| $_POST['report_type']==19 || $_POST['report_type']==20|| $_POST['report_type']==21)
+                if($_POST['report_type']==8 || $_POST['report_type']==7 || $_POST['report_type']==9|| $_POST['report_type']==10|| $_POST['report_type']==11|| $_POST['report_type']==12|| $_POST['report_type']==13|| $_POST['report_type']==14|| $_POST['report_type']==15|| $_POST['report_type']==16|| $_POST['report_type']==17|| $_POST['report_type']==18|| $_POST['report_type']==19 || $_POST['report_type']==20|| $_POST['report_type']==21)
                 {
                     $this->Activity->create();
                     $this->Activity->save($activity);
@@ -3043,7 +3072,7 @@ class UploadsController extends AppController
                         //var_dump($t);die();
                         $to = $t['Member']['email'];
                         $emails = new CakeEmail();
-                        $emails->from(array('noreply@veritas.com'=>'Veritas'));
+                        $emails->from(array('noreply@'.$sitename.'.com'=>'Veritas'));
                         $emails->subject("A new document has been uploaded!");
                         $emails->emailFormat('html');
                         if($mem = $this->Member->findByFullName($this->Session->read('username')))
@@ -3090,7 +3119,7 @@ class UploadsController extends AppController
                             else
                                 $check=0;
                         }    
-                        if($check==1)
+                        if($check==1 && $arr['draft']!='1')
                         {
                             //die($message);
                             $emails->to($to);
@@ -3132,12 +3161,12 @@ class UploadsController extends AppController
                 $this->Clientmemo->save($client);
                 $qA = $this->User->find('all');
 				//debug($qa);exit;
-                if($qA)
+                if($qA && $arr['draft']!='1')
                 {
                     if($this->Session->read('approve')=='0')
                     foreach($qA as $qa){
                     $emails = new CakeEmail();
-                        $emails->from(array('noreply@veritas.com'=>'Veritas'));
+                        $emails->from(array('noreply@'.$sitename.'.com'=>'Veritas'));
                         
                         $emails->subject("Client Feedback Uploaded.");
                         $emails->emailFormat('html');
@@ -3204,10 +3233,10 @@ class UploadsController extends AppController
                             </table>";
                             
                             //echo $msg;die();
-                            if($tosend)
+                            if($tosend && $arr['draft']!='1')
                             {
                                 $emails = new CakeEmail();
-                                $emails->from(array('noreply@veritas.com'=>'Veritas'));
+                                $emails->from(array('noreply@'.$sitename.'.com'=>'Veritas'));
                         
                                 $emails->subject("Veritas - Report Uploaded");
                                 $emails->emailFormat('html');
@@ -3592,11 +3621,17 @@ class UploadsController extends AppController
                         $this->loadModel('UniformIssue');
                         $this->set('uniform',$this->UniformIssue->findByDocId($id));
                     }
-                    if($act[0]['Activity']['report_type']=='21')
+                    /*if($act[0]['Activity']['report_type']=='21')
                     {
                         
                         $this->loadModel('EbayReport');
                         $this->set('ebay',$this->EbayReport->findByDocumentId($id));
+                    }*/
+                    if($act[0]['Activity']['report_type']=='21')
+                    {
+                        
+                        $this->loadModel('Payroll');
+                        $this->set('payroll',$this->Payroll->findByDocumentId($id));
                     } 
                      if($act[0]['Activity']['report_type']=='15')
                      {
@@ -3942,10 +3977,15 @@ class UploadsController extends AppController
             $this->loadModel('UniformIssue');
             $this->set('uniform',$this->UniformIssue->findByDocId($did));
         }
-        if($type == '21')
+        /*if($type == '21')
         {
             $this->loadModel('EbayReport');
             $this->set('ebay',$this->EbayReport->findByDocumentId($did));
+        }*/
+        if($type == '21')
+        {
+            $this->loadModel('Payroll');
+            $this->set('payroll',$this->Payroll->findByDocumentId($did));
         }
         if($type == '7')
         {
@@ -4220,7 +4260,7 @@ $oa = intval($number*$expo)/$expo;
                                 else
                                     $check=0;
                             }    
-                            if($check==1)
+                            if($check==1 && $arr['draft']!='1')
                             {
                                 //die($to);
                                 $emails->to($to);

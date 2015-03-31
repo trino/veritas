@@ -71,9 +71,10 @@
         <input type="text" value="<?php if(isset($subject['SubjectInfo'])) echo $subject['SubjectInfo']['v_licence'];?>" name="subject[v_licence]" style="width: 130px!important;" /></td>
         <td><?php echo $this->requestAction('dashboard/translate/OTHER ID CARDS');?><br />
         <input type="text" name="subject[other_id]" value="<?php if(isset($subject['SubjectInfo'])) echo $subject['SubjectInfo']['other_id'];?>" /></td>
-        <td colspan="4"><?php echo $this->requestAction('dashboard/translate/Employer');?><br />
+        <td colspan="2"><?php echo $this->requestAction('dashboard/translate/PHOTOGRAPH');?><br />
         <input type="text" name="subject[photograph]" value="<?php if(isset($subject['SubjectInfo'])) echo $subject['SubjectInfo']['photograph'];?>" style="width: 130px!important;" /></td>
-        </td>
+        <td colspan="2"><input type="radio" name="subject[employed]" value="employed" <?php if(isset($subject['SubjectInfo']) && $subject['SubjectInfo']['employed']=='employed') echo "checked='checked'";?>style="margin:0 5px;" /> <?php echo $this->requestAction('dashboard/translate/EMPLOYED');?><br />
+        <input type="radio" name="subject[employed]" value="unemployed" <?php if(isset($subject['SubjectInfo']) && $subject['SubjectInfo']['employed']=='unemployed') echo "checked='checked'";?>style="margin:0 5px;" /> <?php echo $this->requestAction('dashboard/translate/UNEMPLOYED');?></td></tr>
     <tr><td colspan="2"><?php echo $this->requestAction('dashboard/translate/OCCUPATION');?><br />
         <input type="text" name="subject[occupation]" value="<?php if(isset($subject['SubjectInfo'])) echo $subject['SubjectInfo']['occupation'];?>" style="width: 130px!important;" /></td>
         <td colspan="7"><?php echo $this->requestAction('dashboard/translate/CLOTHING WORN (COMPLETE DESCRIPTION)');?><br />
@@ -88,7 +89,7 @@
         <input type="radio" name="subject[compliance]" value="belligerent" <?php if(isset($subject['SubjectInfo']) && $subject['SubjectInfo']['compliance']=='belligerent') echo "checked='checked'";?>style="margin: 0 5px;" /> <?php echo $this->requestAction('dashboard/translate/BELLIGERENT');?></td></tr>
     <tr><td colspan="7"><?php echo $this->requestAction('dashboard/translate/NAMES OF OTHERS APPREHENDED (SEPARATE CASE REPORT FOR EACH SUBJECT)');?><br />
         <input type="text" name="subject[other_name]" value="<?php if(isset($subject['SubjectInfo'])) echo $subject['SubjectInfo']['other_name'];?>" style="width: 500px!important;" /></td>
-        <td colspan="2"><?php echo $this->requestAction('dashboard/translate/RELATED CASE DATE')."/STORE";?><br />
+        <td colspan="2"><?php echo $this->requestAction('dashboard/translate/RELATED CASE NUMBER');?><br />
         <input type="text" name="subject[case_no]" value="<?php if(isset($subject['SubjectInfo'])) echo $subject['SubjectInfo']['case_no'];?>" style="width: 200px!important;" /></td></tr>
     </table>
 <table class="loss table table-bordered">
@@ -97,21 +98,21 @@
     <input type="text" value="<?php if(isset($special['SpecialistInfo'])) echo $special['SpecialistInfo']['last_name'];?>" name="specialist[last_name]" /></td>
     <td colspan="2"><?php echo $this->requestAction('dashboard/translate/FIRST NAME');?><br />
     <input type="text" value="<?php if(isset($special['SpecialistInfo'])) echo $special['SpecialistInfo']['first_name'];?>" name="specialist[first_name]" /></td>
-    <td><?php echo $this->requestAction('dashboard/translate/Employee')."#";?><br />
+    <td><?php echo $this->requestAction('dashboard/translate/ID');?><br />
     <input type="text" value="<?php if(isset($special['SpecialistInfo'])) echo $special['SpecialistInfo']['spec_id'];?>" name="specialist[spec_id]" /></td>
     <td colspan="3"><?php echo $this->requestAction('dashboard/translate/INTERVIEW BY');?><br />
     <input type="text" value="<?php if(isset($special['SpecialistInfo'])) echo $special['SpecialistInfo']['int_by'];?>" name="specialist[int_by]" /></td>
-    <td><?php echo $this->requestAction('dashboard/translate/Employee')."#";?><br />
+    <td><?php echo $this->requestAction('dashboard/translate/ID');?><br />
     <input type="text" value="<?php if(isset($special['SpecialistInfo'])) echo $special['SpecialistInfo']['int_id'];?>" name="specialist[int_id]" /></td></tr>
 <tr><td><?php echo $this->requestAction('dashboard/translate/INTERVIEW WITNESS');?><br />
     <input type="text" value="<?php if(isset($special['SpecialistInfo'])) echo $special['SpecialistInfo']['witness'];?>" name="specialist[witness]" /></td>
     <td colspan="2"><?php echo $this->requestAction('dashboard/translate/APPREHENDED BY');?><br />
     <input type="text" value="<?php if(isset($special['SpecialistInfo'])) echo $special['SpecialistInfo']['app_by'];?>" name="specialist[app_by]" /></td>
-    <td><?php echo $this->requestAction('dashboard/translate/Employee')."#";?><br />
+    <td><?php echo $this->requestAction('dashboard/translate/ID');?><br />
     <input type="text" value="<?php if(isset($special['SpecialistInfo'])) echo $special['SpecialistInfo']['app_id'];?>" name="specialist[app_id]" /></td>
     <td colspan="3"><?php echo $this->requestAction('dashboard/translate/ASSISTED BY');?><br />
     <input type="text" value="<?php if(isset($special['SpecialistInfo'])) echo $special['SpecialistInfo']['assisted_by'];?>" name="specialist[assisted_by]" /></td>
-    <td><?php echo $this->requestAction('dashboard/translate/Employee')."#";?><br />
+    <td><?php echo $this->requestAction('dashboard/translate/ID');?><br />
     <input type="text" value="<?php if(isset($special['SpecialistInfo'])) echo $special['SpecialistInfo']['assisted_id'];?>" name="specialist[assisted_id]" /></td></tr>
 <tr><td><?php echo $this->requestAction('dashboard/translate/WEAPON SEARCH CONDUCTED BY');?><br />
     <input type="text" value="<?php if(isset($special['SpecialistInfo'])) echo $special['SpecialistInfo']['searched_by'];?>" name="specialist[searched_by]" /></td>
@@ -125,6 +126,8 @@
 <tr><td><?php echo $this->requestAction('dashboard/translate/PROSECUTED');?><br />
     <input type="radio" name="specialist[prosecuted]" value="yes" <?php if(isset($special['SpecialistInfo']) && $special['SpecialistInfo']['prosecuted']=='yes') echo "checked='checked'";?> style="margin: 0 5px;" /> Yes 
     <input type="radio" name="specialist[prosecuted]" value="no" <?php if(isset($special['SpecialistInfo']) && $special['SpecialistInfo']['prosecuted']=='no') echo "checked='checked'";?> style="margin: 0 5px;" /> No</td>
+    <td><?php echo $this->requestAction('dashboard/translate/APPROVED BY');?><br />
+    <input type="text" value="<?php if(isset($special['SpecialistInfo'])) echo $special['SpecialistInfo']['approved_by'];?>" name="specialist[approved_by]" /></td>
     <td colspan="2"><?php echo $this->requestAction('dashboard/translate/INTERVIEW TIME BEGAN');?><br />
     <input type="text" value="<?php if(isset($special['SpecialistInfo'])) echo $special['SpecialistInfo']['time_began'];?>" name="specialist[time_began]" /></td>
     <td colspan="2"><?php echo $this->requestAction('dashboard/translate/TIME COMPLETED');?><br />
@@ -134,14 +137,22 @@
 </table>
 <table class="table table-bordered loss3">
 <tr><th colspan="4"><?php echo $this->requestAction('dashboard/translate/SUBJECT POSSESSIONS');?></th></tr>
-<tr><td><?php echo $this->requestAction('dashboard/translate/WEAPONS');?><br />
+<tr><td><?php echo $this->requestAction('dashboard/translate/CASH ON SUBJECT');?><br />
+<input type="text" value="<?php if(isset($subject['SubjectInfo'])) echo $subject['SubjectInfo']['cash'];?>" name="subject[cash]" /></td>
+    <td><?php echo $this->requestAction('dashboard/translate/WEAPONS');?><br />
     <input type="radio" name="subject[weapons]" value="yes" <?php if(isset($subject['SubjectInfo']) && $subject['SubjectInfo']['weapons']=='yes') echo "checked='checked'";?> style="margin: 0 5px;" /> <?php echo $this->requestAction('dashboard/translate/Yes');?>  
     <input type="radio" name="subject[weapons]" value="no" <?php if(isset($subject['SubjectInfo']) && $subject['SubjectInfo']['weapons']=='no') echo "checked='checked'";?> style="margin: 0 5px;" /> <?php echo $this->requestAction('dashboard/translate/No');?> </td>
     <td><?php echo $this->requestAction('dashboard/translate/DESCRIBE');?><br />
     <input type="text" value="<?php if(isset($subject['SubjectInfo'])) echo $subject['SubjectInfo']['weapon_desc'];?>" name="subject[weapon_desc]" /></td>
     <td><?php echo $this->requestAction('dashboard/translate/METHOD OF CONCEALMENT');?><br />
     <input type="text" value="<?php if(isset($subject['SubjectInfo'])) echo $subject['SubjectInfo']['concealment'];?>" name="subject[concealment]" /></td></tr>
-
+<tr><td><?php echo $this->requestAction('dashboard/translate/BANK CARDS');?><br />
+    <input type="radio" name="subject[bankcards]" value="yes" <?php if(isset($subject['SubjectInfo']) && $subject['SubjectInfo']['bankcards']=='yes') echo "checked='checked'";?> style="margin: 0 5px;" /> <?php echo $this->requestAction('dashboard/translate/Yes');?>  
+    <input type="radio" name="subject[bankcards]" value="no" <?php if(isset($subject['SubjectInfo']) && $subject['SubjectInfo']['bankcards']=='no') echo "checked='checked'";?> style="margin: 0 5px;" /> <?php echo $this->requestAction('dashboard/translate/No');?> </td>
+    <td><?php echo $this->requestAction('dashboard/translate/TYPE OF CARD(s)');?><br />
+    <input type="text" value="<?php if(isset($subject['SubjectInfo'])) echo $subject['SubjectInfo']['card_type'];?>" name="subject[card_type]" /></td>
+    <td colspan="2"><?php echo $this->requestAction('dashboard/translate/ADDITIONAL ITEMS IN POSESSIONS');?><br />
+    <input type="text" value="<?php if(isset($subject['SubjectInfo'])) echo $subject['SubjectInfo']['add_item'];?>" name="subject[add_item]" style="width: 335px!important;" /></td></tr>
 </table>
 <table class="table table-bordered">
 <tr><th colspan="3"><?php echo $this->requestAction('dashboard/translate/PRODUCT DISPOSITION');?></th></tr>
@@ -167,7 +178,7 @@
     <input type="text" value="<?php if(isset($police['PoliceInfo'])) echo $police['PoliceInfo']['badge'];?>" name="police[badge]" /></td>
     <td><?php echo $this->requestAction('dashboard/translate/INCIDENT');?><br />
     <input type="text" value="<?php if(isset($police['PoliceInfo'])) echo $police['PoliceInfo']['incident'];?>" name="police[incident]" /></td>
-    <td><?php echo $this->requestAction('dashboard/translate/CALL')." #1";?><br />
+    <td><?php echo $this->requestAction('dashboard/translate/CALLED');?><br />
     <input type="text" value="<?php if(isset($police['PoliceInfo'])) echo $police['PoliceInfo']['called'];?>" name="police[called]" /></td>
     <td><?php echo $this->requestAction('dashboard/translate/ETA');?><br />
     <input type="text" value="<?php if(isset($police['PoliceInfo'])) echo $police['PoliceInfo']['eta'];?>" name="police[eta]" /></td>
@@ -175,24 +186,9 @@
     <input type="text" value="<?php if(isset($police['PoliceInfo'])) echo $police['PoliceInfo']['arrived'];?>" name="police[arrived]" /></td>
     <td><?php echo $this->requestAction('dashboard/translate/LEFT');?><br />
     <input type="text" value="<?php if(isset($police['PoliceInfo'])) echo $police['PoliceInfo']['left'];?>" name="police[left]" /></td></tr>
-<tr>
-    <td><?php echo $this->requestAction('dashboard/translate/CALL')."#2";?><br />
-    <input type="text" value="<?php if(isset($police['PoliceInfo'])) echo $police['PoliceInfo']['called2'];?>" name="police[called2]" /></td>
-    <td><?php echo $this->requestAction('dashboard/translate/CALL')."#3";?><br />
-    <input type="text" value="<?php if(isset($police['PoliceInfo'])) echo $police['PoliceInfo']['called3'];?>" name="police[called3]" /></td>
-    <td><?php echo $this->requestAction('dashboard/translate/CALL')."#4";?><br />
-    <input type="text" value="<?php if(isset($police['PoliceInfo'])) echo $police['PoliceInfo']['called4'];?>" name="police[called4]" /></td>
-    <td><?php echo $this->requestAction('dashboard/translate/CALL')."#5";?><br />
-    <input type="text" value="<?php if(isset($police['PoliceInfo'])) echo $police['PoliceInfo']['called5'];?>" name="police[called5]" /></td>
-    <td><?php echo $this->requestAction('dashboard/translate/CALL')."#6";?><br />
-    <input type="text" value="<?php if(isset($police['PoliceInfo'])) echo $police['PoliceInfo']['called6'];?>" name="police[called6]" /></td>
-    <td><?php echo $this->requestAction('dashboard/translate/CALL')."#7";?><br />
-    <input type="text" value="<?php if(isset($police['PoliceInfo'])) echo $police['PoliceInfo']['called7'];?>" name="police[called7]" /></td>
-    
-</tr>
 </table>
 <table class="table table-bordered loss">
-<tr><th colspan="6"><?php echo $this->requestAction('dashboard/translate/YOUNG OFFENDERS RELEASE TO PARENT');?> / <?php echo $this->requestAction('dashboard/translate/GUARDIAN OR AUTHORIZED ADULT ONLY');?></th></tr>
+<tr><th colspan="6"><?php echo $this->requestAction('dashboard/translate/JUVENILES RELEASE TO PARENT');?> / <?php echo $this->requestAction('dashboard/translate/GUARDIAN OR AUTHORIZED ADULT ONLY');?></th></tr>
 <tr><td><?php echo $this->requestAction('dashboard/translate/LAST NAME OF ADULT');?><br />
     <input type="text" value="<?php if(isset($juv['JuvenileInfo'])) echo $juv['JuvenileInfo']['l_name_adult'];?>" name="juvenile[l_name_adult]" /></td>
     <td><?php echo $this->requestAction('dashboard/translate/FIRSTNAME OF ADULT');?><br />
@@ -201,9 +197,8 @@
     <input type="text" value="<?php if(isset($juv['JuvenileInfo'])) echo $juv['JuvenileInfo']['time'];?>" name="juvenile[time]" style="width: 500px!important;"/></td></tr>
 <tr><td><?php echo $this->requestAction('dashboard/translate/I.D. PRESENTED');?> / <?php echo $this->requestAction('dashboard/translate/EXPIRATION DATE');?><br />
     <input type="text" value="<?php if(isset($juv['JuvenileInfo'])) echo $juv['JuvenileInfo']['adult_id'];?>" name="juvenile[adult_id]" /></td>
-    <td><?php echo $this->requestAction('dashboard/translate/PARENT');?> / <?php echo $this->requestAction('dashboard/translate/GUARDIAN IDENTIFICATION PICTURE TAKEN');?> <br />
-    <input type="radio" name="juvenile[p_sign]" value="yes" <?php if(isset($juv['JuvenileInfo']) && $juv['JuvenileInfo']['p_sign']=='yes') echo "checked='checked'";?> style="margin: 0 5px;" /> <?php echo $this->requestAction('dashboard/translate/Yes');?> 
-    <input type="radio" name="juvenile[p_sign]" value="no" <?php if(isset($juv['JuvenileInfo']) && $juv['JuvenileInfo']['p_sign']=='no') echo "checked='checked'";?> style="margin: 0 5px;" /> <?php echo $this->requestAction('dashboard/translate/No');?></td>
+    <td><?php echo $this->requestAction('dashboard/translate/PARENT');?> / <?php echo $this->requestAction('dashboard/translate/GUARDIAN SIGNATURE');?> <br />
+    <input type="text" value="<?php if(isset($juv['JuvenileInfo'])) echo $juv['JuvenileInfo']['p_sign'];?>" name="juvenile[p_sign]" /></td>
     <td><?php echo $this->requestAction('dashboard/translate/CALLED');?><br />
     <input type="text" value="<?php if(isset($juv['JuvenileInfo'])) echo $juv['JuvenileInfo']['called'];?>" name="juvenile[called]" /></td>
     <td><?php echo $this->requestAction('dashboard/translate/ETA');?><br />
@@ -214,35 +209,12 @@
     <input type="text" value="<?php if(isset($juv['JuvenileInfo'])) echo $juv['JuvenileInfo']['left'];?>" name="juvenile[left]" /></td></tr>
 </table>
 <table class="table table-bordered loss">
-<tr><th>CHARGES</th>
-    <th><?php echo $this->requestAction('dashboard/translate/CIVIL DEMAND NOTICE');?></th>
-    <th>GSOC INTEL</th>
-</tr>
-<tr><td><?php echo $this->requestAction('dashboard/translate/ACCUSED CHARGED');?> 
-    <input type="radio" name="notice[accused_charged]" value="yes" <?php if(isset($notice['NoticeInfo']) && $notice['NoticeInfo']['accused_charged']=='yes') echo "checked='checked'";?> style="margin: 0 5px;" /> <?php echo $this->requestAction('dashboard/translate/Yes');?> 
-    <input type="radio" name="notice[accused_charged]" value="no" <?php if(isset($notice['NoticeInfo']) && $notice['NoticeInfo']['accused_charged']=='no') echo "checked='checked'";?> style="margin: 0 5px;" /> <?php echo $this->requestAction('dashboard/translate/No');?>
-    </td>
-    
-    <td><?php echo $this->requestAction('dashboard/translate/GIVEN TO SUBJECT');?> 
+<tr><th><?php echo $this->requestAction('dashboard/translate/CIVIL DEMAND NOTICE');?></th></tr>
+<tr><td><?php echo $this->requestAction('dashboard/translate/GIVEN TO SUBJECT');?> 
     <input type="radio" name="notice[given]" value="yes" <?php if(isset($notice['NoticeInfo']) && $notice['NoticeInfo']['given']=='yes') echo "checked='checked'";?> style="margin: 0 5px;" /> <?php echo $this->requestAction('dashboard/translate/Yes');?> 
-    <input type="radio" name="notice[given]" value="no" <?php if(isset($notice['NoticeInfo']) && $notice['NoticeInfo']['given']=='no') echo "checked='checked'";?> style="margin: 0 5px;" /> <?php echo $this->requestAction('dashboard/translate/No');?>
-    </td>
-    <td><?php echo $this->requestAction('dashboard/translate/CONTACT')." (424) 702-4512";?> 
-    <input type="radio" name="notice[contact]" value="yes" <?php if(isset($notice['NoticeInfo']) && $notice['NoticeInfo']['contact']=='yes') echo "checked='checked'";?> style="margin: 0 5px;" /> <?php echo $this->requestAction('dashboard/translate/Yes');?> 
-    <input type="radio" name="notice[contact]" value="no" <?php if(isset($notice['NoticeInfo']) && $notice['NoticeInfo']['contact']=='no') echo "checked='checked'";?> style="margin: 0 5px;" /> <?php echo $this->requestAction('dashboard/translate/No');?>
-    <br />
-    <?php echo $this->requestAction('dashboard/translate/IF NO, WHY NOT');?>? 
-    <textarea name="notice[desc]"><?php if(isset($notice['NoticeInfo'])) echo $notice['NoticeInfo']['desc'];?></textarea></td>
-
-    
-</tr>
-<tr>
-    <td colspan="2"></td>
-    <td>
-    <?php echo $this->requestAction('dashboard/translate/POSITIVE HIT')." (424) 702-4512";?> 
-    <input type="radio" name="notice[positive]" value="yes" <?php if(isset($notice['NoticeInfo']) && $notice['NoticeInfo']['positive']=='yes') echo "checked='checked'";?> style="margin: 0 5px;" /> <?php echo $this->requestAction('dashboard/translate/Yes');?> 
-    <input type="radio" name="notice[positive]" value="no" <?php if(isset($notice['NoticeInfo']) && $notice['NoticeInfo']['positive']=='no') echo "checked='checked'";?> style="margin: 0 5px;" /> <?php echo $this->requestAction('dashboard/translate/No');?></td>
-</tr>    
+    <input type="radio" name="notice[given]" value="no" <?php if(isset($notice['NoticeInfo']) && $notice['NoticeInfo']['given']=='no') echo "checked='checked'";?> style="margin: 0 5px;" /> <?php echo $this->requestAction('dashboard/translate/No');?></td></tr>
+<tr><td><?php echo $this->requestAction('dashboard/translate/IF NO, WHY NOT');?>? 
+    <textarea style="width: 500px;" name="notice[desc]"><?php if(isset($notice['NoticeInfo'])) echo $notice['NoticeInfo']['desc'];?></textarea></td></tr>
 </table>
 <table class="table table-bordered loss">
     <tr><th colspan="5"><?php echo $this->requestAction('dashboard/translate/ADDITIONAL INCIDENT INFORMATION');?></th></tr>
@@ -258,51 +230,46 @@
         <td><?php echo $this->requestAction('dashboard/translate/WEAPON USED');?> 
         <input type="radio" name="additional[weapon_used]" value="yes" <?php if(isset($add['AdditionalInfo']) && $add['AdditionalInfo']['weapon_used']=='yes') echo "checked='checked'";?> style="margin: 0 5px;" /> <?php echo $this->requestAction('dashboard/translate/Yes');?> 
         <input type="radio" name="additional[weapon_used]" value="no" <?php if(isset($add['AdditionalInfo']) && $add['AdditionalInfo']['weapon_used']=='no') echo "checked='checked'";?> style="margin: 0 5px;" /> <?php echo $this->requestAction('dashboard/translate/No');?></td>
-        <td><?php echo $this->requestAction('dashboard/translate/DEFEATED SENSOR');?> 
-        <input type="radio" name="additional[defeated_sensor]" value="yes" <?php if(isset($add['AdditionalInfo']) && $add['AdditionalInfo']['defeated_sensor']=='yes') echo "checked='checked'";?> style="margin: 0 5px;" /> <?php echo $this->requestAction('dashboard/translate/Yes');?> 
-        <input type="radio" name="additional[defeated_sensor]" value="no" <?php if(isset($add['AdditionalInfo']) && $add['AdditionalInfo']['defeated_sensor']=='no') echo "checked='checked'";?> style="margin: 0 5px;" /> <?php echo $this->requestAction('dashboard/translate/No');?></td>
-        </td>
-    </tr>
+        <td></td></tr>
 </table>
 <table class="table table-bordered loss">
-<?php //var_dump($item);?>
 <tr><th colspan="8"><?php echo $this->requestAction('dashboard/translate/ITEM DESCRIPTION');?></th></tr>
 <tr><td colspan="6" style="border-top:none;border-left:none;"></td>
     <td colspan="2" style="border-top: none;"><?php echo $this->requestAction('dashboard/translate/CASE');?><br />
-    <input type="text" name="item_case" value="<?php if(isset($item)) echo $item[0]['ItemInfo']['case'];?>" /></td></tr>
+    <input type="text" name="item_case" value="<?php if(isset($item['ItemInfo'])) echo $item[0]['ItemInfo']['case'];?>" /></td></tr>
 <tr><td>#</td><td><?php echo $this->requestAction('dashboard/translate/ITEM DESCRIPTION');?></td><td><?php echo $this->requestAction('dashboard/translate/SKU NUMBER');?></td><td><?php echo $this->requestAction('dashboard/translate/PRICE');?> $</td><td>#</td><td><?php echo $this->requestAction('dashboard/translate/ITEM DESCRIPTION');?></td><td><?php echo $this->requestAction('dashboard/translate/SKU NUMBER');?></td><td><?php echo $this->requestAction('dashboard/translate/PRICE');?> $</td></tr>
 <tr><td>1<input type="hidden" name="item[id][]" value="1" /></td>
-    <td><input type="text" name="item[desc][]" value="<?php if(isset($item)) echo $item[0]['ItemInfo']['desc'];?>"  /></td>
-    <td><input type="text" name="item[sku][]" value="<?php if(isset($item)) echo $item[0]['ItemInfo']['sku'];?>" style="width: 100px!important;" /></td>
-    <td><input type="text" name="item[price][]" value="<?php if(isset($item)) echo $item[0]['ItemInfo']['price'];?>" style="width: 100px!important;" /></td>
+    <td><input type="text" name="item[desc][]" value="<?php if(isset($item['ItemInfo'])) echo $item[0]['ItemInfo']['desc'];?>"  /></td>
+    <td><input type="text" name="item[sku][]" value="<?php if(isset($item['ItemInfo'])) echo $item[0]['ItemInfo']['sku'];?>" style="width: 100px!important;" /></td>
+    <td><input type="text" name="item[price][]" value="<?php if(isset($item['ItemInfo'])) echo $item[0]['ItemInfo']['price'];?>" style="width: 100px!important;" /></td>
     <td>2<input type="hidden" name="item[id][]" value="2" /></td>
-    <td><input type="text" name="item[desc][]" value="<?php if(isset($item)) echo $item[1]['ItemInfo']['desc'];?>"  /></td>
-    <td><input type="text" name="item[sku][]" value="<?php if(isset($item)) echo $item[1]['ItemInfo']['sku'];?>" style="width: 100px!important;" /></td>
-    <td><input type="text"  name="item[price][]" value="<?php if(isset($item)) echo $item[1]['ItemInfo']['price'];?>" style="width: 100px!important;" /></td></tr>
+    <td><input type="text" name="item[desc][]" value="<?php if(isset($item['ItemInfo'])) echo $item[1]['ItemInfo']['desc'];?>"  /></td>
+    <td><input type="text" name="item[sku][]" value="<?php if(isset($item['ItemInfo'])) echo $item[1]['ItemInfo']['sku'];?>" style="width: 100px!important;" /></td>
+    <td><input type="text"  name="item[price][]" value="<?php if(isset($item['ItemInfo'])) echo $item[1]['ItemInfo']['price'];?>" style="width: 100px!important;" /></td></tr>
 <tr><td>3<input type="hidden" name="item[id][]" value="3" /></td>
-    <td><input type="text" name="item[desc][]" value="<?php if(isset($item)) echo $item[2]['ItemInfo']['desc'];?>"  /></td>
-    <td><input type="text" name="item[sku][]" value="<?php if(isset($item)) echo $item[2]['ItemInfo']['sku'];?>" style="width: 100px!important;" /></td>
-    <td><input type="text" name="item[price][]" value="<?php if(isset($item)) echo $item[2]['ItemInfo']['price'];?>" style="width: 100px!important;" /></td>
+    <td><input type="text" name="item[desc][]" value="<?php if(isset($item['ItemInfo'])) echo $item[2]['ItemInfo']['desc'];?>"  /></td>
+    <td><input type="text" name="item[sku][]" value="<?php if(isset($item['ItemInfo'])) echo $item[2]['ItemInfo']['sku'];?>" style="width: 100px!important;" /></td>
+    <td><input type="text" name="item[price][]" value="<?php if(isset($item['ItemInfo'])) echo $item[2]['ItemInfo']['price'];?>" style="width: 100px!important;" /></td>
     <td>4<input type="hidden" name="item[id][]" value="4" /></td>
-    <td><input type="text" name="item[desc][]" value="<?php if(isset($item)) echo $item[3]['ItemInfo']['desc'];?>"  /></td>
-    <td><input type="text" name="item[sku][]" value="<?php if(isset($item)) echo $item[3]['ItemInfo']['sku'];?>" style="width: 100px!important;" /></td>
-    <td><input type="text" name="item[price][]" value="<?php if(isset($item)) echo $item[3]['ItemInfo']['price'];?>" style="width: 100px!important;" /></td></tr>
+    <td><input type="text" name="item[desc][]" value="<?php if(isset($item['ItemInfo'])) echo $item[3]['ItemInfo']['desc'];?>"  /></td>
+    <td><input type="text" name="item[sku][]" value="<?php if(isset($item['ItemInfo'])) echo $item[3]['ItemInfo']['sku'];?>" style="width: 100px!important;" /></td>
+    <td><input type="text" name="item[price][]" value="<?php if(isset($item['ItemInfo'])) echo $item[3]['ItemInfo']['price'];?>" style="width: 100px!important;" /></td></tr>
 <tr><td>5<input type="hidden" name="item[id][]" value="5" /></td>
-    <td><input type="text" name="item[desc][]" value="<?php if(isset($item)) echo $item[4]['ItemInfo']['desc'];?>"  /></td>
-    <td><input type="text" name="item[sku][]" value="<?php if(isset($item)) echo $item[4]['ItemInfo']['sku'];?>" style="width: 100px!important;" /></td>
-    <td><input type="text" name="item[price][]" value="<?php if(isset($item)) echo $item[4]['ItemInfo']['price'];?>" style="width: 100px!important;" /></td>
+    <td><input type="text" name="item[desc][]" value="<?php if(isset($item['ItemInfo'])) echo $item[4]['ItemInfo']['desc'];?>"  /></td>
+    <td><input type="text" name="item[sku][]" value="<?php if(isset($item['ItemInfo'])) echo $item[4]['ItemInfo']['sku'];?>" style="width: 100px!important;" /></td>
+    <td><input type="text" name="item[price][]" value="<?php if(isset($item['ItemInfo'])) echo $item[4]['ItemInfo']['price'];?>" style="width: 100px!important;" /></td>
     <td>6<input type="hidden" name="item[id][]" value="6" /></td>
-    <td><input type="text" name="item[desc][]" value="<?php if(isset($item)) echo $item[5]['ItemInfo']['desc'];?>" /></td>
-    <td><input type="text" name="item[sku][]" value="<?php if(isset($item)) echo $item[5]['ItemInfo']['sku'];?>" style="width: 100px!important;" /></td>
-    <td><input type="text" name="item[price][]" value="<?php if(isset($item)) echo $item[5]['ItemInfo']['price'];?>" style="width: 100px!important;" /></td></tr>
+    <td><input type="text" name="item[desc][]" value="<?php if(isset($item['ItemInfo'])) echo $item[5]['ItemInfo']['desc'];?>" /></td>
+    <td><input type="text" name="item[sku][]" value="<?php if(isset($item['ItemInfo'])) echo $item[5]['ItemInfo']['sku'];?>" style="width: 100px!important;" /></td>
+    <td><input type="text" name="item[price][]" value="<?php if(isset($item['ItemInfo'])) echo $item[5]['ItemInfo']['price'];?>" style="width: 100px!important;" /></td></tr>
 <tr><td>7<input type="hidden" name="item[id][]" value="7" /></td>
-    <td><input type="text" name="item[desc][]" value="<?php if(isset($item)) echo $item[6]['ItemInfo']['desc'];?>"  /></td>
-    <td><input type="text" name="item[sku][]" value="<?php if(isset($item)) echo $item[6]['ItemInfo']['sku'];?>" style="width: 100px!important;" /></td>
-    <td><input type="text" name="item[price][]" value="<?php if(isset($item)) echo $item[6]['ItemInfo']['price'];?>" style="width: 100px!important;" /></td>
+    <td><input type="text" name="item[desc][]" value="<?php if(isset($item['ItemInfo'])) echo $item[6]['ItemInfo']['desc'];?>"  /></td>
+    <td><input type="text" name="item[sku][]" value="<?php if(isset($item['ItemInfo'])) echo $item[6]['ItemInfo']['sku'];?>" style="width: 100px!important;" /></td>
+    <td><input type="text" name="item[price][]" value="<?php if(isset($item['ItemInfo'])) echo $item[6]['ItemInfo']['price'];?>" style="width: 100px!important;" /></td>
     <td>8<input type="hidden" name="item[id][]" value="8" /></td>
-    <td><input type="text" name="item[desc][]"  value="<?php if(isset($item)) echo $item[7]['ItemInfo']['desc'];?>"  /></td>
-    <td><input type="text" name="item[sku][]" value="<?php if(isset($item)) echo $item[7]['ItemInfo']['sku'];?>" style="width: 100px!important;" /></td>
-    <td><input type="text" name="item[price][]" value="<?php if(isset($item)) echo $item[7]['ItemInfo']['price'];?>" style="width: 100px!important;" /></td></tr>
+    <td><input type="text" name="item[desc][]"  value="<?php if(isset($item['ItemInfo'])) echo $item[7]['ItemInfo']['desc'];?>"  /></td>
+    <td><input type="text" name="item[sku][]" value="<?php if(isset($item['ItemInfo'])) echo $item[7]['ItemInfo']['sku'];?>" style="width: 100px!important;" /></td>
+    <td><input type="text" name="item[price][]" value="<?php if(isset($item['ItemInfo'])) echo $item[7]['ItemInfo']['price'];?>" style="width: 100px!important;" /></td></tr>
     <tr><td colspan="4" style=""></td><td colspan="2" style=""></td><td><?php echo $this->requestAction('dashboard/translate/TOTAL');?></td>
     <td><input type="text" value="" /></td></tr>
 </table>
