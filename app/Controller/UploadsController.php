@@ -743,6 +743,19 @@ class UploadsController extends AppController
                 }
                 if($_POST['report_type']=='21')
                 {
+                    $this->loadModel('Payroll');
+                    $this->Payroll->deleteAll(array('document_id'=>$eid));
+                    $this->Payroll->create();
+                    foreach($_POST['payrol'] as $k=>$v)
+                    {
+                        $ebay[$k]= $v;
+                    }
+                    $ebay['document_id'] =$eid;
+                    
+                    $this->Payroll->save($ebay);
+                }
+                /*if($_POST['report_type']=='21')
+                {
                     
                     $this->EbayReport->deleteAll(array('document_id'=>$eid));
                     $this->EbayReport->create();
@@ -753,7 +766,7 @@ class UploadsController extends AppController
                     $ebay['document_id'] =$eid;
                     $ebay['signature'] = $this->Session->read('image_name');
                     $this->EbayReport->save($ebay);
-                }
+                }*/
                 if($_POST['report_type']=='19')
                 {
                     $this->loadModel('Noticeoftermination');
@@ -1229,7 +1242,7 @@ class UploadsController extends AppController
                     }
                     unset($v , $k);
                     $this->AdditionalInfo->save($add);
-                    
+                     //var_dump($_POST['item']); die();
                     $this->ItemInfo->deleteAll(array('doc_id'=>$eid));
                     $ii=-1;
                     $arr['case'] = $_POST['item_case'];
@@ -1246,7 +1259,7 @@ class UploadsController extends AppController
                     }
                     //die();
                     //var_dump($item); die();
-                    //var_dump($_POST['item']); die();
+                   
                     
                 }    
                     
@@ -2488,7 +2501,7 @@ class UploadsController extends AppController
                 if(isset($activity['report_type']))
                     $activity['incident_type'] = $_POST['incident_type'];
                     
-                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit','siteSignin','instruction','personalInspection','mobileInspection','mobileLog','inventory','vehicleInspection','dispilinary','injuryIllness','noticeoftermination','unifrom','ebayreport');
+                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit','siteSignin','instruction','personalInspection','mobileInspection','mobileLog','inventory','vehicleInspection','dispilinary','injuryIllness','noticeoftermination','unifrom','payroll');
                 if($_POST['report_type'])
                     $subname = '_'.$act_type[$_POST['report_type']];
                 if($_POST['report_type']=='8')
@@ -2499,6 +2512,20 @@ class UploadsController extends AppController
                     $this->StaticSiteAudit->save($_POST);
                     
                 }
+                 if($_POST['report_type']=='21')
+                {
+                    
+                    $this->loadModel('Payroll');
+                    $this->Payroll->create();
+                    foreach($_POST['payrol'] as $k=>$v)
+                    {
+                        $ebay[$k]= $v;
+                    }
+                    $ebay['document_id'] =$id;
+                    
+                    $this->Payroll->save($ebay);
+                }
+                /*
                 if($_POST['report_type']=='21')
                 {
                     $this->loadModel('EbayReport');
@@ -2510,7 +2537,7 @@ class UploadsController extends AppController
                     $ebay['document_id'] =$id;
                     $ebay['signature'] = $this->Session->read('image_name');
                     $this->EbayReport->save($ebay);
-                }
+                }*/
                 if($_POST['report_type']=='11')
                 {
                     $this->loadModel('Instruction');
@@ -2914,12 +2941,13 @@ class UploadsController extends AppController
                         $arr['price'] = $_POST['item']['price'][$i];
                         $this->ItemInfo->save($arr);
                     }
+                    //var_dump($_POST);
                     //die();
                     //var_dump($item); die();
                     //var_dump($_POST['item']); die();
                     
                 }
-                if($_POST['report_type']==8 || $_POST['report_type']==9|| $_POST['report_type']==10|| $_POST['report_type']==11|| $_POST['report_type']==12|| $_POST['report_type']==13|| $_POST['report_type']==14|| $_POST['report_type']==15|| $_POST['report_type']==16|| $_POST['report_type']==17|| $_POST['report_type']==18|| $_POST['report_type']==19 || $_POST['report_type']==20|| $_POST['report_type']==21)
+                if($_POST['report_type']==8 || $_POST['report_type']==7 || $_POST['report_type']==9|| $_POST['report_type']==10|| $_POST['report_type']==11|| $_POST['report_type']==12|| $_POST['report_type']==13|| $_POST['report_type']==14|| $_POST['report_type']==15|| $_POST['report_type']==16|| $_POST['report_type']==17|| $_POST['report_type']==18|| $_POST['report_type']==19 || $_POST['report_type']==20|| $_POST['report_type']==21)
                 {
                     $this->Activity->create();
                     $this->Activity->save($activity);
@@ -3593,11 +3621,17 @@ class UploadsController extends AppController
                         $this->loadModel('UniformIssue');
                         $this->set('uniform',$this->UniformIssue->findByDocId($id));
                     }
-                    if($act[0]['Activity']['report_type']=='21')
+                    /*if($act[0]['Activity']['report_type']=='21')
                     {
                         
                         $this->loadModel('EbayReport');
                         $this->set('ebay',$this->EbayReport->findByDocumentId($id));
+                    }*/
+                    if($act[0]['Activity']['report_type']=='21')
+                    {
+                        
+                        $this->loadModel('Payroll');
+                        $this->set('payroll',$this->Payroll->findByDocumentId($id));
                     } 
                      if($act[0]['Activity']['report_type']=='15')
                      {
@@ -3943,10 +3977,15 @@ class UploadsController extends AppController
             $this->loadModel('UniformIssue');
             $this->set('uniform',$this->UniformIssue->findByDocId($did));
         }
-        if($type == '21')
+        /*if($type == '21')
         {
             $this->loadModel('EbayReport');
             $this->set('ebay',$this->EbayReport->findByDocumentId($did));
+        }*/
+        if($type == '21')
+        {
+            $this->loadModel('Payroll');
+            $this->set('payroll',$this->Payroll->findByDocumentId($did));
         }
         if($type == '7')
         {

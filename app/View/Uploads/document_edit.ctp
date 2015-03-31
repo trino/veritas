@@ -350,6 +350,7 @@ function remove_youtube()
     <?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/18')){?><option value="18" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='18') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Injury and Illness');?></option><?php }?>
     <?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/19')){?><option value="19" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='19') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Notice Of Termination');?></option><?php }?>
     <?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/20')){?><option value="20" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='20') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Uniform Issue - Static and Retail');?></option><?php }?>
+    <?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/21')){?><option value="21" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='21') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Pay Roll');?></option><?php }?>
     <!--<?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/21')){?><option value="21" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='21') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/eBay Personnel Inspection Report');?></option><?php }?>-->
 </select>
 </th>
@@ -543,7 +544,7 @@ $(function(){
         else
         {
             
-            if($(this).val()=='7' || $(this).val()=='8' || $(this).val()=='9' || $(this).val()=="10" || $(this).val()=="11" || $(this).val()=="12"|| $(this).val()=="13"|| $(this).val()=="14"|| $(this).val()=="15"|| $(this).val()=="16"|| $(this).val()=="17" || $(this).val()=="18" || $(this).val()=="19" || $(this).val()=="20" || $(this).val()=="21" )
+            if($(this).val() >= 7)
             {
                 $('.loader').show();
                 doc_loader1('<?php echo $base_url;?>uploads/reportType/id_<?php echo $did;?>/'+$(this).val());
@@ -970,7 +971,7 @@ $(function(){
           }
        }); });
        <?php
-    if(isset($ac['Activity']['report_type'])&& ($ac['Activity']['report_type'] == '7' || $ac['Activity']['report_type'] == '8' || $ac['Activity']['report_type'] == '9' || $ac['Activity']['report_type'] == '10' || $ac['Activity']['report_type'] == '11'|| $ac['Activity']['report_type'] == '12'|| $ac['Activity']['report_type'] == '13'|| $ac['Activity']['report_type'] == '14'|| $ac['Activity']['report_type'] == '15'|| $ac['Activity']['report_type'] == '16'|| $ac['Activity']['report_type'] == '17' || $ac['Activity']['report_type'] == "18" || $ac['Activity']['report_type'] == "19"|| $ac['Activity']['report_type'] == "20" || $ac['Activity']['report_type'] == "21" ))
+    if(isset($ac['Activity']['report_type'])&& ($ac['Activity']['report_type'] >= '7'))
     {
         
         ?>
