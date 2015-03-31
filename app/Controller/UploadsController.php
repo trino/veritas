@@ -1198,6 +1198,7 @@ class UploadsController extends AppController
                     unset($v , $k);
                     $this->SpecialistInfo->save($special);
                     
+                    if(isset($_POST['product'])){
                     $this->ProductDInfo->deleteAll(array('doc_id'=>$eid));
                     $product['doc_id'] = $eid;
                     foreach($_POST['product'] as $k=>$v)
@@ -1206,6 +1207,7 @@ class UploadsController extends AppController
                     }
                     unset($v , $k);
                     $this->ProductDInfo->save($product);
+                    }
                     
                     $this->PoliceInfo->deleteAll(array('doc_id'=>$eid));
                     $police['doc_id'] = $eid;
@@ -1246,6 +1248,7 @@ class UploadsController extends AppController
                     $this->ItemInfo->deleteAll(array('doc_id'=>$eid));
                     $ii=-1;
                     $arr['case'] = $_POST['item_case'];
+                    $arr['total'] = $_POST['total'];
                     $arr['doc_id'] = $eid ;
                     for($i=0;$i<8;$i++)//$_POST['item'] as $key=>$val)
                     {
@@ -2884,13 +2887,14 @@ class UploadsController extends AppController
                     
                     $this->loadModel('ProductDInfo');
                     $product['doc_id'] = $id;
+                    if(isset($_POST['product'])){
                     foreach($_POST['product'] as $k=>$v)
                     {
                        $product[$k] = $v; 
                     }
                     unset($v , $k);
                     $this->ProductDInfo->save($product);
-                    
+                    }
                     $this->loadModel('PoliceInfo');
                     $police['doc_id'] = $id;
                     foreach($_POST['police'] as $k=>$v)
@@ -2931,6 +2935,7 @@ class UploadsController extends AppController
                     $ii=-1;
                     $arr['case'] = $_POST['item_case'];
                     $arr['doc_id'] = $id ;
+                    $arr['total'] = $_POST['total'];
                     for($i=0;$i<8;$i++)//$_POST['item'] as $key=>$val)
                     {
                         

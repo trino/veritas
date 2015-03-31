@@ -304,7 +304,7 @@
     <td><input type="text" name="item[sku][]" value="<?php if(isset($item)) echo $item[7]['ItemInfo']['sku'];?>" style="width: 100px!important;" /></td>
     <td><input type="text" name="item[price][]" value="<?php if(isset($item)) echo $item[7]['ItemInfo']['price'];?>" style="width: 100px!important;" /></td></tr>
     <tr><td colspan="4" style=""></td><td colspan="2" style=""></td><td><?php echo $this->requestAction('dashboard/translate/TOTAL');?></td>
-    <td><input type="text" value="" /></td></tr>
+    <td><input type="text" value="<?php if(isset($item)) echo $item[0]['ItemInfo']['total'];?>" name="total" /></td></tr>
 </table>
 <table class="table table-bordered">
 <tr><th><?php echo $this->requestAction('dashboard/translate/NARRATIVE');?></th></tr>
