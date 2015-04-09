@@ -426,9 +426,10 @@ file: "<?=$video_file?>"
 </script>
 
 <!--<a href="javascript:void(0);" onclick="video(this.id)" id="<?php echo $v['Video']['video']; ?>"><?php echo $v['Video']['video']; ?></a> </div>-->
+<a href="javascript:void(0)" onclick="$('#example_video_<?php echo $v['Video']['id'];?>').show();">if the video dosenot play try this one...</p>
 <video id="example_video_<?php echo $v['Video']['id'];?>" class="video-js vjs-default-skin" controls preload="none" width="500" height="264"
 poster=""
-data-setup="{}" style="background:#000; margin-top: 10px;">
+data-setup="{}" style="background:#000; margin-top: 10px; display:none;">
 <source src="<?php echo $base_url;?>img/documents/<?php echo $v['Video']['video']; ?>" type='video/webm' />
 <track kind="captions" src="demo.captions.vtt" srclang="en" label="English" />
 </video>
