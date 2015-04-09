@@ -3022,7 +3022,7 @@ class UploadsController extends AppController
                 $ext_arr = explode('.',$_FILES['document']['name'][$k]);
                 $extn = end($ext_arr);
                 
-                $lower_ext = strtolower($extn);die();
+                $lower_ext = strtolower($extn);
                 $img = $rand.'.'.$lower_ext;
                 //die($img);
                 $destination = $path.$img;
