@@ -479,7 +479,7 @@ class UploadsController extends AppController
         $this->loadModel('Image');
         $this->loadModel('Video');
         $this->loadModel('Order');
-        
+        $subname ="";
         if($eid)
         {
             //$this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$eid))));
@@ -576,6 +576,9 @@ class UploadsController extends AppController
                     $arr['incident_date'] = $_POST['incident_date'];
                 else
                     $arr['incident_date'] = '0000-00-00';
+               $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit','siteSignin','instruction','personalInspection','mobileInspection','mobileLog','inventory','vehicleInspection','dispilinary','injuryIllness','noticeoftermination','unifrom','payroll');
+                if($_POST['report_type'])
+                    $subname = '_'.$act_type[$_POST['report_type']];
             }
             if($_POST['document_type']== 'evidence')
             {
@@ -2110,12 +2113,14 @@ class UploadsController extends AppController
           //var_dump($jj);  
         if($jj['Job']['is_special']=='1')
         {
+           
             $this->set('job_id',$ids);
             $this->render('special_doc');
             
         }
         else
-        {   
+        { 
+           
         if($typee!='email')                 
             $this->set('typee',$typee);
         $subname = '';
@@ -2125,6 +2130,7 @@ class UploadsController extends AppController
         
         if($this->Session->read('user'))
         {
+            
            if($this->Session->read('upload')!='1')
            {
             $this->redirect('/jobs');
@@ -2133,6 +2139,7 @@ class UploadsController extends AppController
         
         if(isset($_POST['document_type']))
         {
+            
                 $uri = $_SERVER['REQUEST_URI'];
                 $uri = str_replace('/',' ',$uri);
                 $uri = str_replace(' ','/',trim($uri));
@@ -3015,7 +3022,7 @@ class UploadsController extends AppController
                 $ext_arr = explode('.',$_FILES['document']['name'][$k]);
                 $extn = end($ext_arr);
                 
-                $lower_ext = strtolower($extn);
+                $lower_ext = strtolower($extn);die();
                 $img = $rand.'.'.$lower_ext;
                 //die($img);
                 $destination = $path.$img;

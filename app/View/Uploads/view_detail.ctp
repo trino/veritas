@@ -415,12 +415,7 @@ foreach($vid as $k=>$v)
 ?>
 
 
-<!--video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="500" height="264"
-poster=""
-data-setup="{}" style="background:#000;">
-<source src="<?php echo $base_url;?>img/documents/<?php echo $v['Video']['video']; ?>" type='video/webm' />
-<track kind="captions" src="demo.captions.vtt" srclang="en" label="English" />
-</video-->
+
 
 <?php  $video_file = $base_url . "img/documents/" . $v['Video']['video']; ?>
 <div id="myElement<?php echo $k;?>">Loading the player...</div>
@@ -431,6 +426,12 @@ file: "<?=$video_file?>"
 </script>
 
 <!--<a href="javascript:void(0);" onclick="video(this.id)" id="<?php echo $v['Video']['video']; ?>"><?php echo $v['Video']['video']; ?></a> </div>-->
+<video id="example_video_<?php echo $v['Video']['id'];?>" class="video-js vjs-default-skin" controls preload="none" width="500" height="264"
+poster=""
+data-setup="{}" style="background:#000; margin-top: 10px;">
+<source src="<?php echo $base_url;?>img/documents/<?php echo $v['Video']['video']; ?>" type='video/webm' />
+<track kind="captions" src="demo.captions.vtt" srclang="en" label="English" />
+</video>
 <br /><a href="<?php echo $base_url."uploads/download/".$v['Video']['video']; ?>" class="btn btn-info" style="margin-bottom: 10px;">Download</a>
 
 <?php

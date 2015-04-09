@@ -143,6 +143,7 @@ function remove_youtube()
     }
 }
 </script>
+
 <form id="my_form" action="" method="post" enctype="multipart/form-data" onsubmit="return vehicle_test();">
 <?php //var_dump($rates);?>
 <div id="table">
