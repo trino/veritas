@@ -576,7 +576,7 @@ class UploadsController extends AppController
                     $arr['incident_date'] = $_POST['incident_date'];
                 else
                     $arr['incident_date'] = '0000-00-00';
-               $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit','siteSignin','instruction','personalInspection','mobileInspection','mobileLog','inventory','vehicleInspection','dispilinary','injuryIllness','noticeoftermination','unifrom','payroll');
+               $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit','siteSignin','instruction','personalInspection','mobileInspection','mobileLog','inventory','vehicleInspection','dispilinary','injuryIllness','noticeoftermination','unifrom','payroll','dailyActivityLog');
                 if($_POST['report_type'])
                     $subname = '_'.$act_type[$_POST['report_type']];
             }
@@ -756,6 +756,19 @@ class UploadsController extends AppController
                     $ebay['document_id'] =$eid;
                     
                     $this->Payroll->save($ebay);
+                }
+                if($_POST['report_type']=='22')
+                {
+                    $this->loadModel('ActivityLog');
+                    $this->ActivityLog->deleteAll(array('doc_id'=>$eid));
+                    $this->ActivityLog->create();
+                    foreach($_POST as $k=>$v)
+                    {
+                        $asap[$k]= $v;
+                    }
+                    $asap['doc_id'] =$eid;
+                    
+                    $this->ActivityLog->save($asap);
                 }
                 /*if($_POST['report_type']=='21')
                 {
@@ -2511,7 +2524,7 @@ class UploadsController extends AppController
                 if(isset($activity['report_type']))
                     $activity['incident_type'] = $_POST['incident_type'];
                     
-                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit','siteSignin','instruction','personalInspection','mobileInspection','mobileLog','inventory','vehicleInspection','dispilinary','injuryIllness','noticeoftermination','unifrom','payroll');
+                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit','siteSignin','instruction','personalInspection','mobileInspection','mobileLog','inventory','vehicleInspection','dispilinary','injuryIllness','noticeoftermination','unifrom','payroll','dailyActivityLog');
                 if($_POST['report_type'])
                     $subname = '_'.$act_type[$_POST['report_type']];
                 if($_POST['report_type']=='8')
@@ -2534,6 +2547,19 @@ class UploadsController extends AppController
                     $ebay['document_id'] =$id;
                     
                     $this->Payroll->save($ebay);
+                }
+                 if($_POST['report_type']=='22')
+                {
+                    
+                    $this->loadModel('ActivityLog');
+                    $this->ActivityLog->create();
+                    foreach($_POST as $k=>$v)
+                    {
+                        $asap[$k]= $v;
+                    }
+                    $asap['doc_id'] =$id;
+                    
+                    $this->ActivityLog->save($asap);
                 }
                 /*
                 if($_POST['report_type']=='21')
@@ -2959,7 +2985,7 @@ class UploadsController extends AppController
                     //var_dump($_POST['item']); die();
                     
                 }
-                if($_POST['report_type']==8 || $_POST['report_type']==7 || $_POST['report_type']==9|| $_POST['report_type']==10|| $_POST['report_type']==11|| $_POST['report_type']==12|| $_POST['report_type']==13|| $_POST['report_type']==14|| $_POST['report_type']==15|| $_POST['report_type']==16|| $_POST['report_type']==17|| $_POST['report_type']==18|| $_POST['report_type']==19 || $_POST['report_type']==20|| $_POST['report_type']==21)
+                if($_POST['report_type']==8 || $_POST['report_type']==7 || $_POST['report_type']==9|| $_POST['report_type']==10|| $_POST['report_type']==11|| $_POST['report_type']==12|| $_POST['report_type']==13|| $_POST['report_type']==14|| $_POST['report_type']==15|| $_POST['report_type']==16|| $_POST['report_type']==17|| $_POST['report_type']==18|| $_POST['report_type']==19 || $_POST['report_type']==20|| $_POST['report_type']==21|| $_POST['report_type']==22)
                 {
                     $this->Activity->create();
                     $this->Activity->save($activity);
@@ -3059,6 +3085,7 @@ class UploadsController extends AppController
             }
             $mails = $this->Jobmember->find('all',array('conditions'=>array('OR'=>array(array('job_id LIKE'=>$ids.',%'), array('job_id'=>$ids),array('job_id LIKE'=>'%,'.$ids.',%'),array('job_id LIKE'=>'%,'.$ids)))));
             //die($_POST['document_type']);
+            
             if($this->Session->read('approve')=='0' || $_POST['document_type'] == 'deployment_rate' || $_POST['document_type'] == 'orders'){
                 //die('11');
                 if($_POST['document_type'] == 'deployment_rate')
@@ -3072,6 +3099,7 @@ class UploadsController extends AppController
                     
                 }
                 $c=0;
+               
             foreach($mails as $m)
             {
                     
@@ -3131,7 +3159,7 @@ class UploadsController extends AppController
                             else
                                 $check=0;
                         }    
-                        if($check==1 && $arr['draft']!='1')
+                        if($check==1 && $arr['draft']=='0')
                         {
                             //die($message);
                             $emails->to($to);
@@ -3160,7 +3188,7 @@ class UploadsController extends AppController
                 }
               } 
              
-              
+             
             if($_POST['document_type']== 'client_feedback')
             {
                 $this->loadModel('Clientmemo');
@@ -3173,11 +3201,11 @@ class UploadsController extends AppController
                 $this->Clientmemo->save($client);
                 $qA = $this->User->find('all');
 				//debug($qa);exit;
-                if($qA && $arr['draft']!='1')
+                if($qA && $arr['draft']=='0')
                 {
                     if($this->Session->read('approve')=='0')
                     foreach($qA as $qa){
-                    $emails = new CakeEmail();
+                        $emails = new CakeEmail();
                         $emails->from(array('noreply@'.$sitename.'.com'=>'Veritas'));
                         
                         $emails->subject("Client Feedback Uploaded.");
@@ -3245,7 +3273,7 @@ class UploadsController extends AppController
                             </table>";
                             
                             //echo $msg;die();
-                            if($tosend && $arr['draft']!='1')
+                            if($tosend && $arr['draft']=='0')
                             {
                                 $emails = new CakeEmail();
                                 $emails->from(array('noreply@'.$sitename.'.com'=>'Veritas'));
@@ -3644,6 +3672,12 @@ class UploadsController extends AppController
                         
                         $this->loadModel('Payroll');
                         $this->set('payroll',$this->Payroll->findByDocumentId($id));
+                    }
+                     if($act[0]['Activity']['report_type']=='22')
+                    {
+                        
+                        $this->loadModel('ActivityLog');
+                        $this->set('asap',$this->ActivityLog->findByDocId($id));
                     } 
                      if($act[0]['Activity']['report_type']=='15')
                      {
@@ -3998,6 +4032,11 @@ class UploadsController extends AppController
         {
             $this->loadModel('Payroll');
             $this->set('payroll',$this->Payroll->findByDocumentId($did));
+        }
+        if($type == '22')
+        {
+            $this->loadModel('ActivityLog');
+            $this->set('asap',$this->ActivityLog->findByDocId($did));
         }
         if($type == '7')
         {

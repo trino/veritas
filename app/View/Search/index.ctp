@@ -263,6 +263,8 @@ $or = '&order=';
                                     echo "Uniform Issue - Static and Retail";
                                 if($act['Activity']['report_type']==21)
                                     echo "Payroll";
+                                 if($act['Activity']['report_type']==22)
+                                    echo "Daily Activity Log";
                                  echo ")";
                             }
                         }
