@@ -1,0 +1,224 @@
+.asap .clearfix:after { 
+	content: ""; 
+	display: block; 
+	height: 0; 
+	clear: both; 
+	visibility: hidden; 
+}
+.asap .clearfix { 
+	display: inline-block;  
+}
+/** html .clearfix {  
+  height: 1%;  
+  }*/ /* Hides from IE-mac \*/
+ .asap .clearfix {  
+  	display: block;  
+  }
+
+  .asap {
+  	font-family: 'Open Sans', sans-serif;
+  	font-size: 14px;
+  	line-height: 20px;
+  }
+
+  .asap .f_left {
+  	float: left;
+  }
+
+  .asap .f_right {
+  	float: right;
+  }
+
+  .asap .header_right {
+  	font-size: 40px;
+  	font-weight: 600;
+  	line-height: 40px;
+  	margin-top: 15px;
+    padding-right: 10px;
+  }
+
+  .asap .header {
+  	border-bottom: 2px solid #4a7ebb;
+  	margin-bottom: 20px;
+  }
+
+  .asap .top_left {
+  	width: 48%;
+  }
+
+  .asap .note {
+  	border: 2px solid #000;
+  	font-weight: 600;
+  	padding: 10px;
+  	text-align: center;
+  }
+
+  .asap table, .asap th, .asap td {
+  	border: 2px solid black !important;
+  	border-collapse: collapse;
+  }
+  .asap th {
+  	padding: 5px !important;
+  	text-align: center !important;
+  }
+
+  .asap td {
+  	padding: 4px !important;
+  	text-align: right !important;
+  }
+
+  .asap .weather_table {
+  	margin-top: 12px;
+  	position: relative;
+  }
+  
+.asap .weather {
+    border: 2px solid #000;
+    font-size: 18px;
+    font-weight: 600;
+    left: -40px;
+    padding: 10px;
+    position: absolute;
+    text-align: center;
+    top: 40px;
+  	/* Rotate div */
+  	-ms-transform: rotate(270deg); /* IE 9 */
+  	-webkit-transform: rotate(270deg); /* Chrome, Safari, Opera */
+  	transform: rotate(270deg);
+    width: 105px;
+    height: 25px;
+}
+
+  .asap .weather_table table input {
+  	border: medium none;
+  	padding: 0 15px 0 10px;
+  	-moz-box-sizing: border-box;
+  	-webkit-box-sizing: border-box;
+  	box-sizing: border-box;
+    width: 100% !important;
+    background: #F5f5f5;
+    box-shadow: none;
+        
+  }
+
+  .asap .weather_table table td:first-child {
+  	width: 25%;
+  }
+
+  .asap .top_right {
+  	margin-top: 15px;
+  	width: 48%;
+  }
+
+  .asap .top_right label {
+  	display: inline-block;
+  	font-size: 20px;
+  	line-height: 24px;
+  	margin-right: 2%;
+  	text-align: right;
+  	width: 51%;
+  	font-weight: 600;
+  }
+
+  .asap .top_right div {
+  	margin-bottom: 8px;
+  }
+
+  .asap .top_right input {
+  	border-bottom: 1px solid #000;
+  	border-left: none;
+  	border-right: none;
+  	border-top: none;
+  	width: 42% !important;
+    background: #F5f5f5;
+    box-shadow: none;
+    border-radius: 0px;  
+  }
+
+  .asap .main_table {
+  	margin-top: 20px;
+  }
+
+  .asap .main_table th {
+  	font-size: 18px;
+  	font-weight: 400;
+  }
+
+  .asap .main_table th:first-child {
+  	width: 100px;
+  }
+
+  .asap .main_table th:nth-child(2n) {
+  	width: 100px;
+  }
+
+  .asap .main_table th:last-child {
+  	text-align: left;
+  }
+
+  .asap .main_table input {
+  	-moz-box-sizing: border-box;
+  	-webkit-box-sizing: border-box;
+  	box-sizing: border-box;
+  	width: 100%;
+  	border: none;
+  	padding: 0 5px;
+    background: #F5f5f5;
+    box-shadow: none;    
+  }
+
+  .asap .bottom_content {
+  	margin: 40px 0;
+  }
+
+  .asap .signature span {
+  	border-bottom: 2px solid #000;
+  	display: inline-block;
+  	font-size: 20px;
+  	font-weight: 600;
+  	padding-bottom: 1px;
+  }
+
+  .asap .signature input {
+  	border-bottom: 2px solid #000;
+  	border-left: none;
+  	border-right: none;
+  	border-top: none;
+  	width: 49%;
+  	display: inline-block;
+  	padding: 0 5px;
+  	-moz-box-sizing: border-box;
+  	-webkit-box-sizing: border-box;
+  	box-sizing: border-box;
+    background: #F5f5f5;
+    box-shadow: none;
+    border-radius: 0px;      
+  }
+
+  .asap .signature {
+  	width: 65%;
+  }
+
+  .asap .page_no span {
+  	font-size: 20px;
+  	font-weight: 600;
+  }
+
+  .asap .page_no input {
+  	border-bottom: 2px solid #000;
+  	border-left: none;
+  	border-right: none;
+  	border-top: none;
+  	width: 20%;
+  	display: inline-block;
+  	padding: 0 5px;
+  	-moz-box-sizing: border-box;
+  	-webkit-box-sizing: border-box;
+  	box-sizing: border-box;
+    background: #F5f5f5;
+    box-shadow: none;    
+  }
+
+  .asap .page_no {
+  	width: 10%;
+  }

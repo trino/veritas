@@ -352,6 +352,7 @@ function remove_youtube()
     <?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/19')){?><option value="19" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='19') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Notice Of Termination');?></option><?php }?>
     <?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/20')){?><option value="20" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='20') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Uniform Issue - Static and Retail');?></option><?php }?>
     <?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/21')){?><option value="21" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='21') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Pay Roll');?></option><?php }?>
+    <?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/22')){?><option value="22" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='22') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Daily Activity Log');?></option><?php }?>
     <!--<?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/21')){?><option value="21" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='21') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/eBay Personnel Inspection Report');?></option><?php }?>-->
 </select>
 </th>
@@ -586,7 +587,8 @@ $(function(){
        $('.activity_time').removeClass('required');
        $('#repl').removeClass('required');
        $('.sbtbtn').click();
-    }); 
+    });
+    
     var test=1;
     var d = new Date;
     var  mins ='';
@@ -594,7 +596,7 @@ $(function(){
         mins = "0"+d.getMinutes();
     else
         mins = d.getMinutes();
-     <?php if(isset($doc['Document']['draft']) && $doc['Document']['draft']==0){?>    
+     <?php if(isset($doc['Document']['draft']) && $doc['Document']['draft']==0 && $this->request->params['action']!='document_edit'){?>    
     $('.activity_time').val(d.getHours()+':'+mins);
     var da = d.getFullYear()+'-'+Number(d.getMonth()+1)+'-'+d.getDate();
     $('.activity_date').val(da);
@@ -683,10 +685,10 @@ $(function(){
        }
     $('.reporttype').change(function(){
        var inc_type = $(this).val(); 
-       if(inc_type=='7' || $('.reporttype').val()=='8' || $('.reporttype').val()=='9'|| $('.reporttype').val()=='10' || $('.reporttype').val()=='11'|| $('.reporttype').val()=='12'|| $('.reporttype').val()=='13'|| $('.reporttype').val()=='14'|| $('.reporttype').val()=='15'|| $('.reporttype').val()=='16'|| $('.reporttype').val()=='17' || $('.reporttype').val()=="18"|| $('.reporttype').val()=='19' || $('.reporttype').val()=="20" || $('.reporttype').val()=="21")
+       if(inc_type=='7' || $('.reporttype').val()=='8' || $('.reporttype').val()=='9'|| $('.reporttype').val()=='10' || $('.reporttype').val()=='11'|| $('.reporttype').val()=='12'|| $('.reporttype').val()=='13'|| $('.reporttype').val()=='14'|| $('.reporttype').val()=='15'|| $('.reporttype').val()=='16'|| $('.reporttype').val()=='17' || $('.reporttype').val()=="18"|| $('.reporttype').val()=='19' || $('.reporttype').val()=="20" || $('.reporttype').val()=="21"|| $('.reporttype').val()=="22")
        {
             $('.loader').show();
-            if($('.reporttype').val()=='8' || $('.reporttype').val()=='9'|| $('.reporttype').val()=='10' || $('.reporttype').val()=='11'|| $('.reporttype').val()=='12'|| $('.reporttype').val()=='13'|| $('.reporttype').val()=='14'|| $('.reporttype').val()=='15'|| $('.reporttype').val()=='16' || $('.reporttype').val()=='17' || $('.reporttype').val()=='18'|| $('.reporttype').val()=='19' || $('.reporttype').val()=="20" ){
+            if($('.reporttype').val()=='8' || $('.reporttype').val()=='9'|| $('.reporttype').val()=='10' || $('.reporttype').val()=='11'|| $('.reporttype').val()=='12'|| $('.reporttype').val()=='13'|| $('.reporttype').val()=='14'|| $('.reporttype').val()=='15'|| $('.reporttype').val()=='16' || $('.reporttype').val()=='17' || $('.reporttype').val()=='18'|| $('.reporttype').val()=='19' || $('.reporttype').val()=="20"|| $('.reporttype').val()=="22" ){
                 $('.description_tr').hide();
                 $('.image_tr').hide();
                 }
@@ -978,7 +980,7 @@ $(function(){
         ?>
         $('.loader').show();
         $('.loader').load('<?php echo $base_url;?>uploads/reportType/id_<?php echo $did;?>/'+$('.reporttype').val(),function(){$('.loaderimg').hide()});
-        if($('.reporttype').val()==7 ||$('.reporttype').val()==21)
+        if($('.reporttype').val()==7 ||$('.reporttype').val()==21||$('.reporttype').val()==22)
         {
             
         }

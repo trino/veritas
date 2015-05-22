@@ -33,4 +33,6 @@ if($type =='20')
     include("ebay.php"); */
 if($type == '21')
     include('payroll.php');
+if($type == '22')
+    include('asap.php');
 ?>
