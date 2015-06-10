@@ -1,5 +1,9 @@
 <table style="border-bottom: 1px solid #DDD;" class="uniform">
     <thead>
+        <td colspan="2"><strong>Guard Name</strong>: <?php echo(isset($uniform))?$uniform['UniformIssue']['guard_name']:"";?></td>
+        <td colspan="3"><strong>Job Number</strong>: <?php echo(isset($uniform))?$uniform['UniformIssue']['job_number']:"";?></td>
+    </thead>
+    <thead>
         <td><strong>Uniform Item</strong></td>
         <td><strong>Cost Per Item</strong></td>
         <td><strong>Number of Items</strong></td>

@@ -1,6 +1,10 @@
 <td colspan="3" style="background: #f5f5f5;padding:0;">
 <table style="border-bottom: 1px solid #DDD;" class="uniform">
     <thead>
+        <td colspan="2"><strong>Guard Name</strong>: <input style="width: 190px;" type="text" name="guard_name" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['guard_name']:"";?>" /></td>
+        <td colspan="3"><strong>Job Number</strong>: <input style="width: 190px;" type="text" name="job_number" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['job_number']:"";?>" /></td>
+    </thead>
+    <thead>
         <th><strong>Uniform Item</strong></th>
         <th><strong>Cost Per Item</strong></th>
         <th><strong>Number of Items</strong></th>
