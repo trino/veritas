@@ -816,6 +816,8 @@ class UploadsController extends AppController
                     $this->UniformIssue->deleteAll(array('doc_id'=>$eid));
                     $uniform['doc_id'] = $eid;
                     $uniform['signature'] = $this->Session->read('image_name');
+                    $uniform['guard_name'] = $_POST['guard_name'];
+                    $uniform['job_number'] = $_POST['job_number'];
                 //var_dump($_POST['mobile_ins']);die();
                     foreach($_POST['uniform'] as $k=>$v)
                     {
@@ -2907,6 +2909,8 @@ class UploadsController extends AppController
                 {
                     $this->loadModel('UniformIssue');
                     $uniform['doc_id'] = $id;
+                    $uniform['guard_name'] = $_POST['guard_name'];
+                    $uniform['job_number'] = $_POST['job_number'];
                     $uniform['signature'] = $this->Session->read('image_name');
                 //var_dump($_POST['mobile_ins']);die();
                     foreach($_POST['uniform'] as $k=>$v)
