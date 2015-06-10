@@ -358,7 +358,7 @@ function remove_youtube()
 </select>
 </th>
 </thead>
-<tr><td><strong><?php echo $this->requestAction('dashboard/translate/Author');?></strong></td><td><input type="text" class="" name="report_author" value="<?php if(isset($doc['Document']['evidence_author'])) echo $doc['Document']['evidence_author'];?>"/></td></tr>
+<tr class="aut"><td><strong><?php echo $this->requestAction('dashboard/translate/Author');?></strong></td><td><input type="text" class="" name="report_author" value="<?php if(isset($doc['Document']['evidence_author'])) echo $doc['Document']['evidence_author'];?>"/></td></tr>
 <thead class="incident_more" style="display: none;">
 <th><?php echo $this->requestAction('dashboard/translate/Incident Report Options');?></th>
 <th colspan="2">
@@ -1043,5 +1043,6 @@ function doc_loader1(urls)
         }
     });
 }
+$('.aut').parent().hide();
 
 </script>
