@@ -36,13 +36,22 @@ else
                     <strong><?php echo $this->requestAction('dashboard/translate/Known Theft-Recovery Map');?></strong>
                 </td>
             </tr>
+            <tr>
+                <td>    
+                    <strong>Date : <input type="text" class="datepicker" name="date" value="<?php if(isset($recovery))echo $recovery['Recovery_map']['date']?>" /></strong>
+                </td>
+                <td>    
+                    <strong>Shift time <input type="text" name="shift_time" value="<?php if(isset($recovery))echo $recovery['Recovery_map']['shift_time']?>" /></strong>
+                </td>
+                <td colspan="2">    
+                    <strong>Guard Name : <input type="text" name="guard_name" value="<?php if(isset($recovery))echo $recovery['Recovery_map']['guard_name']?>" /></strong>
+                </td>
+            </tr>
             
         </table>
         
         <table style="border-bottom: 1px solid #ddd;">
-            <tr>
-                <td colspan="2"><strong><?php echo $this->requestAction('dashboard/translate/Highlight area with noticeable dents or scratches');?>Highlight area with noticeable dents or scratches</strong></td>
-            </tr>
+            
             <tr>
                 <td colspan="2">
                     <img src="<?php echo $this->webroot;?>img/map.jpg" usemap="#frontmap" class="map" />
@@ -139,6 +148,7 @@ else
 <script src="<?php echo $this->webroot;?>js/highscript.js"></script>
 <script>
 $(function(){
+    $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
     $('.map').maphilight({
             fillColor: '008800'
         });

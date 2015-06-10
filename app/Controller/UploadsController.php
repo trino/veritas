@@ -587,7 +587,7 @@ class UploadsController extends AppController
                     $arr['incident_date'] = $_POST['incident_date'];
                 else
                     $arr['incident_date'] = '0000-00-00';
-               $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit','siteSignin','instruction','personalInspection','mobileInspection','mobileLog','inventory','vehicleInspection','dispilinary','injuryIllness','noticeoftermination','unifrom','payroll','dailyActivityLog');
+               $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit','siteSignin','instruction','personalInspection','mobileInspection','mobileLog','inventory','vehicleInspection','dispilinary','injuryIllness','noticeoftermination','unifrom','payroll','dailyActivityLog','recoveryMap');
                 if($_POST['report_type'])
                     $subname = '_'.$act_type[$_POST['report_type']];
             }
@@ -986,10 +986,13 @@ class UploadsController extends AppController
                     $this->Recovery_map->deleteAll(array('document_id'=>$eid));
                     $this->Recovery_map->create();
                     $rec['document_id'] =$eid;   
-                    $rec['front'] = $_POST['front'];                 
+                    $rec['front'] = $_POST['front'];    
+                    $rec['date'] = $_POST['date'];    
+                    $rec['shift_time'] = $_POST['shift_time'];  
+                    $rec['guard_name'] = $_POST['guard_name'];             
                     $this->Recovery_map->save($rec);
                     $reid=$this->Recovery_map->id;
-                    $this->Recovery_note->deleteAll(array('vehicle_id'=>$vid));
+                    $this->Recovery_note->deleteAll(array('recovery_id'=>$vid));
                     if(isset($_POST['desc1'])){
                     foreach($_POST['desc1'] as $desc1)
                     {
@@ -2582,8 +2585,12 @@ class UploadsController extends AppController
                     $this->loadModel('Recovery_map');
                     $this->loadModel('Recovery_note');
                     $this->Recovery_map->create();
-                    $rec['document_id'] =$id;   
-                    $rec['front'] = $_POST['front'];                 
+                    echo $rec['document_id'] =$id;
+                       
+                    $rec['front'] = $_POST['front'];  
+                    $rec['date'] = $_POST['date'];    
+                    $rec['shift_time'] = $_POST['shift_time'];  
+                    $rec['guard_name'] = $_POST['guard_name'];             
                     $this->Recovery_map->save($rec);
                     $reid = $this->Recovery_map->id;
                     if(isset($_POST['desc1']))
@@ -3053,7 +3060,7 @@ class UploadsController extends AppController
                     //var_dump($_POST['item']); die();
                     
                 }
-                if($_POST['report_type']==8 || $_POST['report_type']==7 || $_POST['report_type']==9|| $_POST['report_type']==10|| $_POST['report_type']==11|| $_POST['report_type']==12|| $_POST['report_type']==13|| $_POST['report_type']==14|| $_POST['report_type']==15|| $_POST['report_type']==16|| $_POST['report_type']==17|| $_POST['report_type']==18|| $_POST['report_type']==19 || $_POST['report_type']==20|| $_POST['report_type']==21|| $_POST['report_type']==22)
+                if($_POST['report_type']==8 || $_POST['report_type']==7 || $_POST['report_type']==9|| $_POST['report_type']==10|| $_POST['report_type']==11|| $_POST['report_type']==12|| $_POST['report_type']==13|| $_POST['report_type']==14|| $_POST['report_type']==15|| $_POST['report_type']==16|| $_POST['report_type']==17|| $_POST['report_type']==18|| $_POST['report_type']==19 || $_POST['report_type']==20|| $_POST['report_type']==21|| $_POST['report_type']==22|| $_POST['report_type']==23)
                 {
                     $this->Activity->create();
                     $this->Activity->save($activity);
