@@ -2587,7 +2587,7 @@ class UploadsController extends AppController
                     $this->loadModel('Recovery_map');
                     $this->loadModel('Recovery_note');
                     $this->Recovery_map->create();
-                    echo $rec['document_id'] =$id;
+                    $rec['document_id'] =$id;
                        
                     $rec['front'] = $_POST['front'];  
                     $rec['date'] = $_POST['date'];    
