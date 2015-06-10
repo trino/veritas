@@ -35,6 +35,14 @@
         <?php if($reportstat->find('first',array('conditions'=>array('user_id'=>0,'report_type1'=>'21','can_upload'=>'1')))|| $a=='all'){?><td><input type="hidden" name="report_type1[]" value="21" /><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" name="report_canUpload[]" <?php if($reportstat->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>'21','can_upload'=>'1')))){?>checked="checked"<?php }?> value="21" /> <?php echo $this->requestAction('dashboard/translate/Payroll');?> </span></td><?php }?>
         <?php if($reportstat->find('first',array('conditions'=>array('user_id'=>0,'report_type1'=>'21','can_upload'=>'1')))|| $a=='all'){?><td><input type="hidden" name="report_type1[]" value="21" /><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" name="report_canUpload[]" <?php if($reportstat->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>'22','can_upload'=>'1')))){?>checked="checked"<?php }?> value="22" /> <?php echo $this->requestAction('dashboard/translate/Daily Activity Log');?> </span></td><?php }?>
         </tr>
+        
+        <tr>
+        <?php if($reportstat->find('first',array('conditions'=>array('user_id'=>0,'report_type1'=>'23','can_upload'=>'1')))|| $a=='all'){?><td><input type="hidden" name="report_type1[]" value="23" /><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" name="report_canUpload[]" <?php if($reportstat->find('first',array('conditions'=>array('user_id'=>$uid,'report_type1'=>'23','can_upload'=>'1')))){?>checked="checked"<?php }?> value="23" /> <?php echo $this->requestAction('dashboard/translate/Known Theft/Recovery Map');?> </span></td><?php }?>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        </tr>
         </table>
     </td>
 </tr>

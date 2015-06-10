@@ -474,6 +474,8 @@ class UploadsController extends AppController
         $this->loadModel('MobileSite');
         $this->loadModel('MobileTrunk');
         $this->loadModel('Vehicle_inspection');
+        $this->loadModel('Recovery_map');
+        $this->loadModel('Recovery_note');
         $this->loadModel('StaticSiteAudit');
         $this->loadModel('InsuranceSiteAudit');
         $this->loadModel('Image');
@@ -482,6 +484,15 @@ class UploadsController extends AppController
         $subname ="";
         if($eid)
         {
+           //echo $eid;die();
+            $ri = $this->Recovery_map->find('first',array('conditions'=>array('document_id'=>$eid)));
+            if($ri)
+            {
+                $vid = $ri['Recovery_map']['id'];
+                $this->loadModel('Recovery_note');
+                $this->set('rn',$this->Recovery_note->find('all',array('conditions'=>array('recovery_id'=>$vid))));
+                //var_dump($this->Recovery_note->find('all',array('conditions'=>array('recovery_id'=>$vid))));die();
+            }
             //$this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$eid))));
             if($_SERVER['SERVER_NAME']=='localhost')
                 $base_url = "http://localhost/veritas/";
@@ -968,6 +979,36 @@ class UploadsController extends AppController
                     }
                        
                 }
+                if($_POST['report_type']=='23')
+                {
+                    $v = $this->Recovery_map->findByDocumentId($eid);
+                    $vid = $v['Recovery_map']['id'];
+                    $this->Recovery_map->deleteAll(array('document_id'=>$eid));
+                    $this->Recovery_map->create();
+                    $rec['document_id'] =$eid;   
+                    $rec['front'] = $_POST['front'];                 
+                    $this->Recovery_map->save($rec);
+                    $reid=$this->Recovery_map->id;
+                    $this->Recovery_note->deleteAll(array('vehicle_id'=>$vid));
+                    if(isset($_POST['desc1'])){
+                    foreach($_POST['desc1'] as $desc1)
+                    {
+                        $notes = $desc1;
+                        $ar_no = explode('__',$notes);
+                        $arr_v['notes'] = $ar_no[0];
+                        $arr_v['coords'] = $ar_no[1];
+                        $arr_v['note_no'] = $ar_no[2];
+                        $arr_v['recovery_id'] = $reid;
+                        $arr_v['image'] = 'first';
+                        
+                        $this->Recovery_note->create();
+                        $this->Recovery_note->save($arr_v);
+                        unset($ar_no);
+                        unset($arr_v);
+                    }}
+                }
+                
+                
                 if($_POST['report_type'] == '16')
                 {
                     $v = $this->Vehicle_inspection->findByDocumentId($eid);
@@ -2524,7 +2565,7 @@ class UploadsController extends AppController
                 if(isset($activity['report_type']))
                     $activity['incident_type'] = $_POST['incident_type'];
                     
-                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit','siteSignin','instruction','personalInspection','mobileInspection','mobileLog','inventory','vehicleInspection','dispilinary','injuryIllness','noticeoftermination','unifrom','payroll','dailyActivityLog');
+                $act_type = array('','activityLog','mobileInspection','mobileSecurity','securityOccurence','incidentReport','signOffSheet','lossPrevention','staticSiteAudit','insuranceSiteAudit','siteSignin','instruction','personalInspection','mobileInspection','mobileLog','inventory','vehicleInspection','dispilinary','injuryIllness','noticeoftermination','unifrom','payroll','dailyActivityLog','recoveryMap');
                 if($_POST['report_type'])
                     $subname = '_'.$act_type[$_POST['report_type']];
                 if($_POST['report_type']=='8')
@@ -2534,6 +2575,33 @@ class UploadsController extends AppController
                     $this->StaticSiteAudit->create();
                     $this->StaticSiteAudit->save($_POST);
                     
+                }
+                if($_POST['report_type']=='23')
+                {
+                    
+                    $this->loadModel('Recovery_map');
+                    $this->loadModel('Recovery_note');
+                    $this->Recovery_map->create();
+                    $rec['document_id'] =$id;   
+                    $rec['front'] = $_POST['front'];                 
+                    $this->Recovery_map->save($rec);
+                    $reid = $this->Recovery_map->id;
+                    if(isset($_POST['desc1']))
+                    foreach($_POST['desc1'] as $desc1)
+                    {
+                        $notes = $desc1;
+                        $ar_no = explode('__',$notes);
+                        $arr_v['notes'] = $ar_no[0];
+                        $arr_v['coords'] = $ar_no[1];
+                        $arr_v['note_no'] = $ar_no[2];
+                        $arr_v['recovery_id'] = $reid;
+                        $arr_v['image'] = 'first';
+                        
+                        $this->Recovery_note->create();
+                        $this->Recovery_note->save($arr_v);
+                        unset($ar_no);
+                        unset($arr_v);
+                    }
                 }
                  if($_POST['report_type']=='21')
                 {
@@ -3493,10 +3561,13 @@ class UploadsController extends AppController
         $this->loadModel('Dispilinary');
         $this->loadModel('Vehicle_inspection');
         $this->loadModel('Order');
+        $this->loadModel('Recovery_map');
+        $this->loadModel('Recovery_note');
         if($id)
         {
             $this->set('perso',$this->Personal_inspection->find('first',array('conditions'=>array('document_id'=>$id))));
             $this->set('vehicle',$this->Vehicle_inspection->find('first',array('conditions'=>array('document_id'=>$id))));
+            $this->set('recovery',$this->Recovery_map->find('first',array('conditions'=>array('document_id'=>$id))));
             $vi2 = $this->Dispilinary->find('first',array('conditions'=>array('document_id'=>$id)));
             $this->set('dw',$vi2);
             $vi = $this->Vehicle_inspection->find('first',array('conditions'=>array('document_id'=>$id)));
@@ -3505,6 +3576,13 @@ class UploadsController extends AppController
                 $vid = $vi['Vehicle_inspection']['id'];
                 $this->loadModel('Vehicle_note');
                 $this->set('vn',$this->Vehicle_note->find('all',array('conditions'=>array('vehicle_id'=>$vid))));
+            }
+            $ri = $this->Recovery_map->find('first',array('conditions'=>array('document_id'=>$id)));
+            if($ri)
+            {
+                $vid = $ri['Recovery_map']['id'];
+                $this->loadModel('Recovery_note');
+                $this->set('rn',$this->Recovery_note->find('all',array('conditions'=>array('recovery_id'=>$vid))));
             }
             if($mem = $this->MobileInspection->findByDocumentId($id))
             {
@@ -3695,13 +3773,22 @@ class UploadsController extends AppController
                             $this->set('vn',$this->Vehicle_note->find('all',array('conditions'=>array('vehicle_id'=>$vid))));
                         }
                       }
+                      if($act[0]['Activity']['report_type']=='23')
+                      {
+                        if($ri)
+                        {
+                            $vid = $ri['Recovery_map']['id'];
+                            $this->loadModel('Recovery_note');
+                            $this->set('rn',$this->Recovery_note->find('all',array('conditions'=>array('recovery_id'=>$vid))));
+                        }
+                      }
                       if($act[0]['Activity']['report_type']=='17')
                       {
                         if($vi)
                         {
                             $vid = $vi['Disciplinary']['id'];
                             $this->loadModel('Disciplinary');
-                            $this->set('vn',$this->Vehicle_note->find('all',array('conditions'=>array('vehicle_id'=>$vid))));
+                           // $this->set('vn',$this->Vehicle_note->find('all',array('conditions'=>array('vehicle_id'=>$vid))));
                         }
                       }
                 }
@@ -3879,6 +3966,18 @@ class UploadsController extends AppController
                 $this->set('vn',$this->Vehicle_note->find('all',array('conditions'=>array('vehicle_id'=>$did))));
             }
         }
+        if($type=='recovery_map')
+        {
+            $this->loadModel('Recovery_map');
+            $vi = $this->Recovery_map->find('first',array('conditions'=>array('document_id'=>$did)));
+            $this->set('recovery',$vi);            
+            if($vi)
+            {
+                $vid = $vi['Recovery_map']['id'];
+                $this->loadModel('Recovery_note');
+                $this->set('rn',$this->Recovery_note->find('all',array('conditions'=>array('recovery_id'=>$did))));
+            }
+        }
         if($type=='mobile_inspection')
         {
             $this->loadModel('MobileInspection');
@@ -3990,7 +4089,20 @@ class UploadsController extends AppController
             {
                 $vid = $vi['Vehicle_inspection']['id'];
                 $this->loadModel('Vehicle_note');
-                $this->set('vn',$this->Vehicle_note->find('all',array('conditions'=>array('vehicle_id'=>$did))));
+                $this->set('vn',$this->Vehicle_note->find('all',array('conditions'=>array('vehicle_id'=>$vid))));
+            }
+        }
+       
+        if($type=='23')
+        {
+            $this->loadModel('Recovery_map');
+            $vi = $this->Recovery_map->find('first',array('conditions'=>array('document_id'=>$did)));
+            $this->set('recovery',$vi);            
+            if($vi)
+            {
+                $vid = $vi['Recovery_map']['id'];
+                $this->loadModel('Recovery_note');
+                $this->set('rn',$this->Recovery_note->find('all',array('conditions'=>array('recovery_id'=>$vid))));
             }
         }
         if($type=='17')

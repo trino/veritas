@@ -35,4 +35,6 @@ if($type == '21')
     include('payroll.php');
 if($type == '22')
     include('asap.php');
+if($type == '23')
+    include('recovery_map.php');
 ?>
