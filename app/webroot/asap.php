@@ -172,7 +172,7 @@
 
 <div class="bottom_content clearfix">
 	<div class="signature f_left">
-		<span>SIGNATURE:</span><input type="text" name="signature" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['signature'];?>">
+		<span>NAME:</span><input type="text" name="signature" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['signature'];?>">
 	</div>
 </div>
 </td>
