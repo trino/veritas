@@ -1,4 +1,4 @@
-<td colspan="3" style="background: #f5f5f5;padding:0;" class="asap">
+<td colspan="3" style="background: #f5f5f5;padding-left:15px ;" class="asap">
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->webroot;?>css/asap.css" />
     <div class="header clearfix">
 		<div class="header_left f_left"><img src="<?php echo $this->webroot;?>img/asap1.png" /></div>
@@ -53,7 +53,7 @@
 		</div>
 	</div>
 	<div class="main_table">
-		<table style="width:99%;">
+		<table style="width:99%;" class="tableadd">
 			<tr>
 				<th><strong>DATE</strong></th>
 				<th><strong>TIME</strong></th>
@@ -164,10 +164,23 @@
 				<td><input type="text" class="activity_time" name="t24" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['t24'];?>"></td>
 				<td><input type="text" name="l24" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['l24'];?>"></td>
 			</tr>
-		</tr>
+            <?php foreach($logs as $log){?>
+            <tr>
+				<td><input type="text" class="activity_date" name="asapdate[]" value="<?php echo $log['AdditionalLog']['asapdate'];?>"></td>
+				<td><input type="text" class="activity_time" name="asaptime[]" value="<?php echo  $log['AdditionalLog']['asaptime'];?>"></td>
+				<td><input type="text" name="asapdesc[]" value="<?php echo  $log['AdditionalLog']['asapdesc'];?>"></td>
+			</tr>        
+            <?php }?>
+		
 
-	</tr>
+	
 </table>
+</div>
+<div class="addremove">
+
+<a href="javascript:void(0);" class="btn btn-primary addrow" >+Add More</a>
+<a href="javascript:void(0);" class="btn btn-danger removelast" onclick="if($('.tableadd tr').length=='22')$(this).hide();else $('.tableadd tr:last-child').remove();" >Remove Last</a>
+
 </div>
 
 <div class="bottom_content clearfix">
@@ -178,10 +191,19 @@
 </td>
 <script>
 $(function(){
+    $('.addrow').click(function(){
+        
+        $('.tableadd').append('<tr><td><input type="text" class="activity_date" name="asapdate[]" value=""></td>'
+				+'<td><input type="text" class="activity_time" name="asaptime[]" value=""></td>'
+				+'<td><input type="text" name="asapdesc[]" value=""></td>'
+			+'</tr>');
+   $('.removelast').show();
+    })
    <?php if($this->params['action']=='view_detail')
    {?>
    
    $('.asap input').attr('readonly','readonly');
+   $('.addremove').hide();
    
    <?php } ?> 
 });
