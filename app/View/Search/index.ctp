@@ -265,6 +265,9 @@ $or = '&order=';
                                     echo "Payroll";
                                  if($act['Activity']['report_type']==22)
                                     echo "Daily Activity Log";
+                                    
+                                if($act['Activity']['report_type']==23)
+                                    echo "Known Theft-Recovery Map";
                                  echo ")";
                             }
                         }

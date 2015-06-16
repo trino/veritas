@@ -353,11 +353,12 @@ function remove_youtube()
     <?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/20')){?><option value="20" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='20') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Uniform Issue - Static and Retail');?></option><?php }?>
     <?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/21')){?><option value="21" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='21') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Pay Roll');?></option><?php }?>
     <?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/22')){?><option value="22" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='22') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Daily Activity Log');?></option><?php }?>
+    <?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/23')){?><option value="23" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='23') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/Known Theft-Recovery Map');?></option><?php }?>
     <!--<?php if($this->requestAction('/uploads/check_p/ReportuploadPermission/21')){?><option value="21" <?php if(isset($ac['Activity']['report_type']) && $ac['Activity']['report_type']=='21') echo "selected='selected'"?>><?php echo $this->requestAction('dashboard/translate/eBay Personnel Inspection Report');?></option><?php }?>-->
 </select>
 </th>
 </thead>
-<tr><td><strong><?php echo $this->requestAction('dashboard/translate/Author');?></strong></td><td><input type="text" class="" name="report_author" value="<?php if(isset($doc['Document']['evidence_author'])) echo $doc['Document']['evidence_author'];?>"/></td></tr>
+<tr class="aut"><td><strong><?php echo $this->requestAction('dashboard/translate/Author');?></strong></td><td><input type="text" class="" name="report_author" value="<?php if(isset($doc['Document']['evidence_author'])) echo $doc['Document']['evidence_author'];?>"/></td></tr>
 <thead class="incident_more" style="display: none;">
 <th><?php echo $this->requestAction('dashboard/translate/Incident Report Options');?></th>
 <th colspan="2">
@@ -560,10 +561,12 @@ $(function(){
             
         }
         
-        if($(this).val()=='7' || $(this).val()=='8' || $(this).val()=='9' || $(this).val()== "10" || $(this).val()=="11" || $(this).val()=="12"|| $(this).val()=="13"|| $(this).val()=="14"|| $(this).val()=="15"|| $(this).val()=="16"|| $(this).val()=="17" || $(this).val()=="18"|| $(this).val()=="19"|| $(this).val()=="20" || $(this).val()=="21"|| $(this).val()=="22" )
+
+        if($(this).val()=='7' || $(this).val()=='8' || $(this).val()=='9' || $(this).val()== "10" || $(this).val()=="11" || $(this).val()=="12"|| $(this).val()=="13"|| $(this).val()=="14"|| $(this).val()=="15"|| $(this).val()=="16"|| $(this).val()=="17" || $(this).val()=="18"|| $(this).val()=="19"|| $(this).val()=="20" || $(this).val()=="21"|| $(this).val()=="22"|| $(this).val()=='23' )
+
         {
             $('.date_time').hide();
-            if($(this).val()=='7' || $(this).val()=='21')
+            if($(this).val()=='7' || $(this).val()=='21' || $(this).val()=='22'|| $(this).val()=='23')
             {
                 
             }   
@@ -664,13 +667,14 @@ $(function(){
         $(this).timepicker();
     });
     $('.date_verify').datepicker({dateFormat: 'yy-mm-dd'});
-    if($('.reporttype').val()=='7' || $('.reporttype').val()=='8' || $('.reporttype').val()=='9' || $('.reporttype').val()=='10' || $('.reporttype').val()=='11'|| $('.reporttype').val()=='12'|| $('.reporttype').val()=='13'|| $('.reporttype').val()=='14'|| $('.reporttype').val()=='15'|| $('.reporttype').val()=='16'|| $('.reporttype').val()=='17' || $('.reporttype').val()=="18" || $('.reporttype').val()=='19'|| $('.reporttype').val()=="20" || $('.reporttype').val()=="21"|| $('.reporttype').val()=="22")
+
+    if($('.reporttype').val()=='7' || $('.reporttype').val()=='8' || $('.reporttype').val()=='9' || $('.reporttype').val()=='10' || $('.reporttype').val()=='11'|| $('.reporttype').val()=='12'|| $('.reporttype').val()=='13'|| $('.reporttype').val()=='14'|| $('.reporttype').val()=='15'|| $('.reporttype').val()=='16'|| $('.reporttype').val()=='17' || $('.reporttype').val()=="18" || $('.reporttype').val()=='19'|| $('.reporttype').val()=="20" || $('.reporttype').val()=="21" || $('.reporttype').val()=="23"|| $('.reporttype').val()=="22")
        {
-       
-            if($('.reporttype').val()=='7')
-            {
-                
-            }
+        if($('.reporttype').val()=='7' || $('.reporttype').val()=="22"|| $('.reporttype').val()=="23")
+        {
+            
+        }
+
             else
             {
                  
@@ -688,10 +692,11 @@ $(function(){
        
     $('.reporttype').change(function(){
        var inc_type = $(this).val(); 
-       if(inc_type=='7' || $('.reporttype').val()=='8' || $('.reporttype').val()=='9'|| $('.reporttype').val()=='10' || $('.reporttype').val()=='11'|| $('.reporttype').val()=='12'|| $('.reporttype').val()=='13'|| $('.reporttype').val()=='14'|| $('.reporttype').val()=='15'|| $('.reporttype').val()=='16'|| $('.reporttype').val()=='17' || $('.reporttype').val()=="18"|| $('.reporttype').val()=='19' || $('.reporttype').val()=="20" || $('.reporttype').val()=="21"|| $('.reporttype').val()=="22")
+       if(inc_type=='7' || $('.reporttype').val()=='8' || $('.reporttype').val()=='9'|| $('.reporttype').val()=='10' || $('.reporttype').val()=='11'|| $('.reporttype').val()=='12'|| $('.reporttype').val()=='13'|| $('.reporttype').val()=='14'|| $('.reporttype').val()=='15'|| $('.reporttype').val()=='16'|| $('.reporttype').val()=='17' || $('.reporttype').val()=="18"|| $('.reporttype').val()=='19' || $('.reporttype').val()=="20" || $('.reporttype').val()=="21"|| $('.reporttype').val()=="22"|| $('.reporttype').val()=="23")
        {
             $('.loader').show();
-            if($('.reporttype').val()=='8' || $('.reporttype').val()=='9'|| $('.reporttype').val()=='10' || $('.reporttype').val()=='11'|| $('.reporttype').val()=='12'|| $('.reporttype').val()=='13'|| $('.reporttype').val()=='14'|| $('.reporttype').val()=='15'|| $('.reporttype').val()=='16' || $('.reporttype').val()=='17' || $('.reporttype').val()=='18'|| $('.reporttype').val()=='19' || $('.reporttype').val()=="20"|| $('.reporttype').val()=="22" ){
+            if($('.reporttype').val()=='8' || $('.reporttype').val()=='9'|| $('.reporttype').val()=='10' || $('.reporttype').val()=='11'|| $('.reporttype').val()=='12'|| $('.reporttype').val()=='13'|| $('.reporttype').val()=='14'|| $('.reporttype').val()=='15'|| $('.reporttype').val()=='16' || $('.reporttype').val()=='17' || $('.reporttype').val()=='18'|| $('.reporttype').val()=='19' || $('.reporttype').val()=="20"|| $('.reporttype').val()=="22"|| $('.reporttype').val()=="23" ){
+                if($('.reporttype').val()!="23")
                 $('.description_tr').hide();
                 $('.image_tr').hide();
                 }
@@ -977,16 +982,19 @@ $(function(){
         ?>
         $('.loader').show();
         $('.loader').load('<?php echo $base_url;?>uploads/reportType/id_<?php echo $did;?>/'+$('.reporttype').val(),function(){$('.loaderimg').hide()});
-        if($('.reporttype').val()=='7' ||$('.reporttype').val()=='21'||$('.reporttype').val()=='22')
+
+        if($('.reporttype').val()==7 ||$('.reporttype').val()==21||$('.reporttype').val()==22||$('.reporttype').val()==23)
+
         {
-            
+            if($('.reporttype').val()==23)
+            $('.image_tr').hide();
         }
         else
         {
             $('.description_tr').hide();
             $('.image_tr').hide();
         }
-        <?php if($ac['Activity']['report_type']=='18'){?>
+        <?php if($ac['Activity']['report_type']=='18' || $ac['Activity']['report_type']=='23'){?>
         $('.date_time').hide();
         <?php
     }}?>
@@ -1037,5 +1045,6 @@ function doc_loader1(urls)
         }
     });
 }
+$('.aut').parent().hide();
 
 </script>

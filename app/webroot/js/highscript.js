@@ -14,8 +14,9 @@ $(function(){
            //id = id.replace('star','');
            //var nu = parseFloat(id);
            var i1 = $('.front').val();
+             if($('.reporttype').val()=='16'){
            var i2 = $('.back').val();
-           var i3 = $('.side').val();
+           var i3 = $('.side').val();}
            if(nu==1)
            {
              var noten = 'Note for area '+id.replace('star_','');
@@ -371,7 +372,7 @@ $(function(){
         function vehicle_test()
         {
             
-            if($('.reporttype').val()=='16')
+            if($('.reporttype').val()=='16' || $('.reporttype').val()=='23')
             {
                 //alert('test');
                 $('.sbtbtn').val('Please Wait..');
@@ -385,6 +386,7 @@ $(function(){
                    //alert($(this).val());
                    //return false;
                 });
+                if($('.reporttype').val()=='16'){
                 $('.thirdhidden input').each(function(){
                    var note = $(this).attr('id').replace('third',''); 
                    var coor = $(this).attr('class');
@@ -398,7 +400,7 @@ $(function(){
                    var coor = coor.replace(' valid','');
                    var val =  $(this).val();
                    $(this).val(val+'__'+coor+'__'+note);
-                });
+                });}
                 return true;
             }
             else
