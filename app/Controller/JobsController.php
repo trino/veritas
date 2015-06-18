@@ -1077,5 +1077,61 @@ class JobsController extends AppController
         die('here');
     }
     
+    function aggregate($id)
+    {
+        $this->loadModel('Document');
+        $this->loadModel('ActivityLog');
+        $this->loadModel('AdditionalLog');
+        $this->loadModel('SiteSignin');
+        $this->loadModel('Activity');
+        $this->loadModel('Job');
+        $this->set('job',$this->Job);
+        $this->set('id',$id);
+        $arr['conditions'] = array('document_type'=>'report','job_id'=>$id,'(re_id = 22 OR re_id = 10 OR re_id = 5 OR re_id = 4)');
+        $docs = $this->Document->find('all',$arr);
+        $agg1 = null;
+        $agg2 = null;
+        $agg4 = null;
+        $agg5 = null;
+        foreach($docs as $k=>$d)
+        {
+            //var_dump($d);die();
+            if($d['Document']['re_id'] == 22)
+            {
+                $agg1[$k]['doc'] = $this->Document->findById($d['Document']['id']);
+                $agg1[$k]['act'] = $this->Activity->find('all',array('conditions'=>array('document_id'=>$d['Document']['id'])));
+                $agg1[$k]['asap'] = $this->ActivityLog->findByDocId($d['Document']['id']);
+                $agg1[$k]['logs'] =  $this->AdditionalLog->find('all',array('conditions'=>array('doc_id'=>$d['Document']['id'])));
+                //$agg1[]['doc'] = $this->Document->findById($d['Document']['id']);
+            }
+            else
+            if($d['Document']['re_id'] == 10)
+            {
+                $agg2[$k]['act'] = $this->Activity->find('all',array('conditions'=>array('document_id'=>$d['Document']['id'])));
+                $agg2[$k]['static']=$this->SiteSignin->find('all', array('conditions'=>array('doc_id'=>$d['Document']['id'])));
+                $agg2[$k]['doc'] = $this->Document->findById($d['Document']['id']);
+            }
+            
+            else
+            if($d['Document']['re_id'] == 5)
+            {
+                $agg5[$k]['act'] = $this->Activity->find('all',array('conditions'=>array('document_id'=>$d['Document']['id'])));
+                $agg5[$k]['doc'] = $this->Document->findById($d['Document']['id']);
+                
+            }
+            else
+            if($d['Document']['re_id'] == 4)
+            {
+                $agg4[$k]['act'] = $this->Activity->find('all',array('conditions'=>array('document_id'=>$d['Document']['id'])));
+                $agg4[$k]['doc'] = $this->Document->findById($d['Document']['id']);
+            }
+            
+        }
+            $this->set('a1',$agg1);
+            $this->set('a2',$agg2);
+            $this->set('a4',$agg4);
+            $this->set('a5',$agg5);
+    }
+    
     
 }

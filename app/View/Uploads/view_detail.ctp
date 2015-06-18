@@ -111,14 +111,7 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
 </div>
 <?php }?>
 <table class="table">
-    <!--<tr>
-        <td style="width:140px;"><b>Title</b></td>
-        <td><?php echo $doc['Document']['title']; ?></td>
-    </tr>
-    <tr>
-        <td><b>Location</b></td>
-        <td><?php echo $doc['Document']['location']; ?></td>
-    </tr> -->
+    
     <?php $type =ucwords(str_replace('_',' ',$doc['Document']['document_type']));
         if($type == "Deployment Rate")
             $type = "Deployment";
@@ -172,10 +165,7 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
     <?php }?>
     <?php if($type == 'Report')
     { ?>
-     <!--<tr>
-        <td><b>Client Memo</b></td>
-        <td><?php echo $doc['Document']['client_feedback'];?></a></td>
-    </tr>-->
+     
     
     <?php if($activity){
         //var_dump($activity);
@@ -383,6 +373,20 @@ if($this->Session->read('admin')||($usr1['Member']['canView']==1 && $usr1['Membe
     
 </table>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <?php if(isset($activity) && $activity[0]['Activity']['report_type']=='7'){?>
     <div style="margin-bottom: 15px;"><a href="javascript:void(0);" onclick="window.print();" class="btn btn-primary">Print Report</a></div>
     <?php }?>
