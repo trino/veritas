@@ -17,6 +17,8 @@
     left:0;
     top:0;
   }
+  .addrow{display:none;}
+  .removelast{display:none;}
   
 }
 </style>
@@ -762,4 +764,5 @@
     <?php
     }
     ?>
+    <div style="margin-bottom: 15px;"><a href="javascript:void(0);" onclick="window.print();" class="btn btn-primary">Print Report</a></div>
 </div>

@@ -176,13 +176,14 @@
 	
 </table>
 </div>
+<?php if($this->params['action']!='aggregate' && $this->params['action']!='view_detail'){?>
 <div class="addremove">
 
 <a href="javascript:void(0);" class="btn btn-primary addrow" >+Add More</a>
 <a href="javascript:void(0);" class="btn btn-danger removelast" onclick="if($('.tableadd tr').length=='22')$(this).hide();else $('.tableadd tr:last-child').remove();" >Remove Last</a>
 
 </div>
-
+<?php }?>
 <div class="bottom_content clearfix">
 	<div class="signature f_left">
 		<span>NAME:</span><input type="text" name="signature" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['signature'];?>">
