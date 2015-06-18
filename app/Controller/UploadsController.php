@@ -780,6 +780,21 @@ class UploadsController extends AppController
                     $asap['doc_id'] =$eid;
                     
                     $this->ActivityLog->save($asap);
+                    
+                    $this->loadModel('AdditionalLog');
+                    $this->AdditionalLog->deleteAll(array('doc_id'=>$eid));
+                    
+                    foreach($_POST['asapdate'] as $k=>$v)
+                    {
+                        $this->AdditionalLog->create();
+                        $logs['asapdate'] = $v;
+                        $logs['asaptime'] = $_POST['asaptime'][$k];
+                        $logs['asapdesc'] = $_POST['asapdesc'][$k];
+                        $logs['doc_id'] = $eid;
+                        $this->AdditionalLog->save($logs);
+                    }
+                    
+                    
                 }
                 /*if($_POST['report_type']=='21')
                 {
@@ -2637,6 +2652,20 @@ class UploadsController extends AppController
                     $asap['doc_id'] =$id;
                     
                     $this->ActivityLog->save($asap);
+                    
+                    $this->loadModel('AdditionalLog');
+                    $this->AdditionalLog->deleteAll(array('doc_id'=>$id));
+                    
+                    foreach($_POST['asapdate'] as $k=>$v)
+                    {
+                        $this->ActivityLog->create();
+                        $logs['asapdate'] = $v;
+                        $logs['asaptime'] = $_POST['asaptime'][$k];
+                        $logs['asapdesc'] = $_POST['asapdesc'][$k];
+                        $logs['doc_id'] = $eid;
+                        $this->AdditionalLog->save($logs);
+                    }
+                    
                 }
                 /*
                 if($_POST['report_type']=='21')
@@ -3767,6 +3796,8 @@ class UploadsController extends AppController
                         
                         $this->loadModel('ActivityLog');
                         $this->set('asap',$this->ActivityLog->findByDocId($id));
+                        $this->loadModel('AdditionalLog');
+                        $this->set('logs',$this->AdditionalLog->find('all',array('conditions'=>array('doc_id'=>$id))));
                     } 
                      if($act[0]['Activity']['report_type']=='15')
                      {
@@ -4160,6 +4191,10 @@ class UploadsController extends AppController
         {
             $this->loadModel('ActivityLog');
             $this->set('asap',$this->ActivityLog->findByDocId($did));
+            $this->loadModel('AdditionalLog');
+            $this->set('logs',$this->AdditionalLog->find('all',array('conditions'=>array('doc_id'=>$did))));
+                     
+            
         }
         if($type == '7')
         {
