@@ -30,11 +30,14 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
         echo $this->Html->script('hoverintent');        
         echo $this->Html->script('ajaxupload.3.6');
         echo $this->Html->script('jquery.validate');
+        echo $this->Html->css('prettyPhoto');
+        
         echo $this->Html->script('jquery.timepicker');
         echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->webroot;?>css/asap.css" />
     <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300' rel='stylesheet' type='text/css' />
     <script src="<?php echo $base_url;?>jwplayer/jwplayer.js"></script>
     
