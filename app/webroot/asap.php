@@ -1,14 +1,15 @@
 <td colspan="3" style="background: #f5f5f5;padding-left:15px ;" class="asap">
 	                                                                                         
     <div class="header clearfix">
-		<div class="header_left f_left"><img src="<?php echo $this->webroot;?>img/asap1.png" /></div>
-		<div class="header_right f_right">ACTIVITY LOG REPORT</div>
+		<?php if($this->params['action']!='download_doc'){?><div class="header_left f_left"><img src="<?php echo $this->webroot;?>img/asap1.png" /></div><?php }?>
+		<div class="header_right f_right"><?php if($this->params['action']=='download_doc'){?><br /><br /><b><?php }?>ACTIVITY LOG REPORT<?php if($this->params['action']=='download_doc'){?></b><br /><br /><?php }?></div>
 	</div>
 
 	<div class="top_content clearfix">
 		<div class="top_left f_left">
 			<div class="note">
 				NOTE: A SEPARATE REPORT MUST BE COMPLETED FOR EACH CHANGE IN SECURITY PERSONNEL AS WELL AS INCIDENTS REPORTED ON AN INCIDENT REPORT FORM. USE ADDITIONAL PAGE(S) IF MORE SPACE IS REQUIRED.
+                <?php if($this->params['action']=='download_doc'){?><br /><?php }?>
 			</div>
 			<div class="weather_table clearfix">
 				<div class="f_left weather"><strong>WEATHER</strong></div>
@@ -178,10 +179,10 @@
 </div>
 <?php if($this->params['action']!='aggregate' && $this->params['action']!='view_detail'){?>
 <div class="addremove">
-
+<?php if($this->params['action']!='download_doc'){?>
 <a href="javascript:void(0);" class="btn btn-primary addrow" >+Add More</a>
 <a href="javascript:void(0);" class="btn btn-danger removelast" onclick="if($('.tableadd tr').length=='22')$(this).hide();else $('.tableadd tr:last-child').remove();" >Remove Last</a>
-
+<?php }?>
 </div>
 <?php }?>
 <div class="bottom_content clearfix">

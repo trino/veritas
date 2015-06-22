@@ -38,15 +38,10 @@
     {
         ?>
         <h2>Daily activity log</h2>
-        <p>&nbsp;</p>
+        
         <?php
     }
-    else
-    {
-        ?>
-        <p>&nbsp;</p>
-        <?php
-    }
+    
     if($a1)
     foreach($a1 as $a)
     {
@@ -61,8 +56,10 @@
         
     
     <table class="table">
+    <tr><td colspan="2"><p>&nbsp;</p> </td></tr>
     <tr>
-        <td><b> <?php echo $this->requestAction('dashboard/translate/Document Type');?></b></td>
+        <td>
+        <b> <?php echo $this->requestAction('dashboard/translate/Document Type');?></b></td>
         <td><?php echo $type; ?></td>
     </tr>
     <tr>
@@ -228,7 +225,7 @@
         <hr />
         <p>&nbsp;</p>
         <h2>Site Signin Sigout</h2>
-        <p>&nbsp;</p>
+        
         <?php
     }
     if($a2)
@@ -241,6 +238,7 @@
         
     
     <table class="table">
+    <tr><td colspan="2"><p>&nbsp;</p> </td></tr>
     <tr>
         <td><b> <?php echo $this->requestAction('dashboard/translate/Document Type');?></b></td>
         <td><?php echo $type; ?></td>
@@ -409,7 +407,7 @@
         <hr />
         <p>&nbsp;</p>
         <h2>Security occurance</h2>
-        <p>&nbsp;</p>
+        
         <?php
     }
     if($a4)
@@ -421,6 +419,7 @@
         
     
     <table class="table">
+    <tr><td colspan="2"><p>&nbsp;</p> </td></tr>
     <tr>
         <td><b> <?php echo $this->requestAction('dashboard/translate/Document Type');?></b></td>
         <td><?php echo $type; ?></td>
@@ -588,7 +587,7 @@
         <hr />
         <p>&nbsp;</p>
         <h2>Incident Reports</h2>
-        <p>&nbsp;</p>
+               
         <?php
     }
     if($a5)
@@ -600,6 +599,7 @@
         
     
     <table class="table">
+    <tr><td colspan="2"><p>&nbsp;</p> </td></tr>
     <tr>
         <td><b> <?php echo $this->requestAction('dashboard/translate/Document Type');?></b></td>
         <td><?php echo $type; ?></td>
@@ -756,9 +756,15 @@
     </table>
     <?php
     }
-    ?>
+    if($this->params['action']!='download_doc')
+    {
+        ?>
     <div style="margin-bottom: 15px;">
         <a href="javascript:void(0);" onclick="window.print();" class="btn btn-primary">Print Report</a>
         <a href="<?php echo $this->webroot;?>jobs/download_doc/<?php echo $id;?>" class="btn btn-primary"><?php echo $this->requestAction('dashboard/translate/Word Doc');?></a>
         </div>
+        
+        <?php
+    }
+    ?>
 </div>
