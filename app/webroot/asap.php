@@ -1,5 +1,5 @@
 <td colspan="3" style="background: #f5f5f5;padding-left:15px ;" class="asap">
-	
+	                                                                                         
     <div class="header clearfix">
 		<div class="header_left f_left"><img src="<?php echo $this->webroot;?>img/asap1.png" /></div>
 		<div class="header_right f_right">ACTIVITY LOG REPORT</div>
@@ -15,25 +15,25 @@
 				<table style="width:91.1%;float:right;">
 
 					<tr>
-						<th style="text-align: left!important;">SHIFT</th>
-						<th style="text-align: left!important;">DATE</th>
-						<th style="text-align: left!important;">TIME</th>
-						<th style="text-align: left!important;">CONDITIONS</th>
+						<th style="text-align:right;">SHIFT</th>
+						<th>DATE</th>
+						<th>TIME</th>
+						<th>CONDITIONS</th>
 					</tr>
 					<tr>
-						<td style="text-align: left!important;padding:4px 10px!important;">Start</td>
+						<td>Start</td>
 						<td class="small_width"><input type="text" name="d1" class="activity_date" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['d1'];?>"></td>
 						<td class="small_width"><input type="text" class="activity_time" name="t1" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['t1'];?>"></td>
 						<td><input type="text" name="c1" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['c1'];?>"></td>
 					</tr>
 					<tr>
-						<td style="text-align: left!important;padding:4px 10px!important;">Change</td>
+						<td>Change</td>
 						<td class="small_width"><input type="text" name="d2" class="activity_date" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['d2'];?>"></td>
 						<td class="small_width"><input type="text" class="activity_time" name="t2" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['t2'];?>"></td>
 						<td><input type="text" name="c2" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['c2'];?>"></td>
 					</tr>
 					<tr>
-						<td style="text-align: left!important;padding:4px 10px!important;">Finish</td>
+						<td>Finish</td>
 						<td class="small_width"><input type="text" name="d3" class="activity_date" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['d3'];?>"></td>
 						<td class="small_width"><input type="text" class="activity_time" name="t3" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['t3'];?>"></td>
 						<td><input type="text" name="c3" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['c3'];?>"></td>

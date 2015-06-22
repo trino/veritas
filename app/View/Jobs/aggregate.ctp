@@ -33,7 +33,6 @@
 		<a href="<?=$base_url;?>jobs/aggregate/<?php echo $id; ?>">Documents: Aggregate</a> <!--span class="icon-angle-right"></span-->
 	</li>
 </ul>
-<?php echo $this->Html->css('prettyPhoto'); ?>
 <?php echo $this->Html->script('jquery.prettyPhoto'); ?>
 <div id="table" style="padding-bottom: 10px;">
 
@@ -45,7 +44,7 @@
     {
         ?>
         <img src="<?php echo $base_url?>img/uploads/asap.gif" />
-        <br />
+        <br /><br />
         <strong>&nbsp;</strong>
         8160 Parkhill Drive, Milton, Ontario, Canada, L9T 5V7 T: 1.877.923.2727, F: 905.875.1997, info@asapsecured.com<br /><br />
         <?php
@@ -764,5 +763,8 @@
     <?php
     }
     ?>
-    <div style="margin-bottom: 15px;"><a href="javascript:void(0);" onclick="window.print();" class="btn btn-primary">Print Report</a></div>
+    <div style="margin-bottom: 15px;">
+        <a href="javascript:void(0);" onclick="window.print();" class="btn btn-primary">Print Report</a>
+        <a href="<?php echo $this->webroot;?>jobs/download_doc/<?php echo $id;?>" class="btn btn-primary"><?php echo $this->requestAction('dashboard/translate/Word Doc');?></a>
+        </div>
 </div>
