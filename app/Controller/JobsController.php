@@ -1187,7 +1187,7 @@ class JobsController extends AppController
             $this->set('a2',$agg2);
             $this->set('a4',$agg4);
             $this->set('a5',$agg5);
-            $this->render('aggregate');
+            //$this->render('aggregate');
     }
     
     

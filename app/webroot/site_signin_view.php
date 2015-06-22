@@ -46,7 +46,7 @@ foreach($static as $k=>$v)
             $signature = $static[0]['SiteSignin']['sign'];
             else
             $signature = '';
-                if($signature)
+                if($signature && $this->params['action']!='download_doc')
                 {
                     ?>
                     
