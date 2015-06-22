@@ -9,6 +9,3 @@ echo $this->fetch('content');
 echo "</body>";
 echo "</html>"
 ?>
-<style>
-#table{border:1px solid #e5e5e5;}
-</style>
