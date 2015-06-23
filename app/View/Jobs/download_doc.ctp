@@ -15,6 +15,7 @@
     position:absolute;
     left:0;
     top:0;
+    text-align:left;
   }
   .addrow{display:none;}
   .removelast{display:none;}
@@ -418,7 +419,7 @@
         ?>
         
     
-    <table class="table">
+    <table class="table" style="width: 40%;">
     <tr><td colspan="2"><p>&nbsp;</p> </td></tr>
     <tr>
         <td><b> <?php echo $this->requestAction('dashboard/translate/Document Type');?></b></td>
@@ -550,8 +551,8 @@
             ?>
         
         <tr><td colspan="2" style="padding: 0;">
-        <table>
-        <thead><th>Date</th><th><?php echo $this->requestAction('dashboard/translate/Time');?></th><th>Description</th></thead>
+        <table style="width: 100%;">
+        <thead><th style="text-align: left;">Date</th><th style="text-align: left;"><?php echo $this->requestAction('dashboard/translate/Time');?></th><th style="text-align: left;">Description</th></thead>
         <?php foreach($activity as $act)
               {?>
         <tr><td><?php echo $act['Activity']['date'];?></td><td><?php echo $act['Activity']['time'];?></td><td><?php echo $act['Activity']['desc'];?></td></tr>
@@ -598,7 +599,7 @@
         ?>
         
     
-    <table class="table">
+    <table class="table" style="width: 40%;">
     <tr><td colspan="2"><p>&nbsp;</p> </td></tr>
     <tr>
         <td><b> <?php echo $this->requestAction('dashboard/translate/Document Type');?></b></td>
@@ -730,8 +731,8 @@
             ?>
         
         <tr><td colspan="2" style="padding: 0;">
-        <table>
-        <thead><th>Date</th><th><?php echo $this->requestAction('dashboard/translate/Time');?></th><th>Description</th></thead>
+        <table style="width: 100%;">
+        <thead><th style="text-align: left;">Date</th><th style="text-align: left;"><?php echo $this->requestAction('dashboard/translate/Time');?></th><th style="text-align: left;">Description</th></thead>
         <?php foreach($activity as $act)
               {?>
         <tr><td><?php echo $act['Activity']['date'];?></td><td><?php echo $act['Activity']['time'];?></td><td><?php echo $act['Activity']['desc'];?></td></tr>

@@ -16,10 +16,10 @@
 				<table style="width:91.1%;float:right;">
 
 					<tr>
-						<th style="text-align:right;">SHIFT</th>
-						<th>DATE</th>
-						<th>TIME</th>
-						<th>CONDITIONS</th>
+						<th <?php if($this->params['action']=='download_doc'){?>style="text-align:left;"<?php }?>>SHIFT</th>
+						<th <?php if($this->params['action']=='download_doc'){?>style="text-align:left;"<?php }?>>DATE</th>
+						<th <?php if($this->params['action']=='download_doc'){?>style="text-align:left;"<?php }?>>TIME</th>
+						<th <?php if($this->params['action']=='download_doc'){?>style="text-align:left;"<?php }?>>CONDITIONS</th>
 					</tr>
 					<tr>
 						<td>Start</td>
@@ -44,21 +44,36 @@
 			</div>
 		</div>
 		<div class="top_right f_right">
-		
+		<?php if($this->params['action']!='download_doc'){?>
 			<div><label>GUARD NAME:</label><input type="text" name="name" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['name'];?>"></div>
 			<div><label>DATE(mm/dd/yy):</label><input type="text" class="activity_date" name="date" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['date'];?>"></div>
 			<div><label>LOSS LOCATION:</label><input type="text" name="location" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['location'];?>"></div>
 			<div><label>WHOM DID YOU RELIEVE?</label><input type="text" name="whom" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['whom'];?>"></div>
 			<div><label>WHO RELIEVED YOU?</label><input type="text" name="who" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['who'];?>"></div>
-	
+	   <?php }
+       else
+       {
+        ?>
+        <table style="width: 50%;">
+        <tr><td colspan="2"><p>&nbsp;</p></td></tr>
+        <tr><td><strong>GUARD NAME:</strong></td><td><input type="text" name="name" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['name'];?>"></td></tr>
+        <tr><td><strong>DATE(mm/dd/yy)</strong></td><td><input type="text" class="activity_date" name="date" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['date'];?>"></td></tr>
+        <tr><td><strong>LOSS LOCATION:</strong></td><td><input type="text" name="location" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['location'];?>"></td></tr>
+        <tr><td><strong>WHOM DID YOU RELIEVE?</strong></td><td><input type="text" name="whom" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['whom'];?>"></td></tr>
+        <tr><td><strong>WHO RELIEVED YOU?</strong></td><td><input type="text" name="who" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['who'];?>"></td></tr>
+        <tr><td colspan="2"><p>&nbsp;</p></td></tr>
+        </table>
+        <?php
+       }
+       ?>
 		</div>
 	</div>
 	<div class="main_table">
 		<table style="width:99%;" class="tableadd">
 			<tr>
-				<th><strong>DATE</strong></th>
-				<th><strong>TIME</strong></th>
-				<th><strong>LOG REPORTS DETAILS</strong></th>
+				<th <?php if($this->params['action']=='download_doc'){?>style="text-align:left;"<?php }?>><strong>DATE</strong></th>
+				<th <?php if($this->params['action']=='download_doc'){?>style="text-align:left;"<?php }?>><strong>TIME</strong></th>
+				<th <?php if($this->params['action']=='download_doc'){?>style="text-align:left;"<?php }?>><strong>LOG REPORTS DETAILS</strong></th>
 			</tr>
 			<tr>
 				<td><input type="text" class="activity_date" name="d4" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['d4'];?>"></td>
@@ -187,7 +202,25 @@
 <?php }?>
 <div class="bottom_content clearfix">
 	<div class="signature f_left">
-		<span>NAME:</span><input type="text" name="signature" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['signature'];?>">
+    <?php
+    if($this->params['action']!='download_doc')
+    {
+        ?>
+        
+		<span>NAME:<?php if($this->params['action']=='download_doc'){?> &nbsp;<?php }?></span><input type="text" name="signature" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['signature'];?>">
+    <?php
+    }
+    else
+    {
+        ?>
+        <table style="width: 50%;">
+        <tr><td colspan="2"><p>&nbsp;</p></td></tr>
+        <tr><td><strong>NAME:</strong></td><td><input type="text" name="signature" value="<?php if(isset($asap['ActivityLog']))echo $asap['ActivityLog']['signature'];?>"></td></tr>
+        <tr><td colspan="2"><p>&nbsp;</p></td></tr>
+        </table>
+        <?php
+    }
+    ?>
 	</div>
 </div>
 </td>
