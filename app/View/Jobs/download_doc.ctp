@@ -552,12 +552,14 @@
         
         <tr><td colspan="2" style="padding: 0;">
         <table style="width: 100%;">
+        <tr><td colspan="3"><p>&nbsp;</p></td></tr>
         <thead><th style="text-align: left;">Date</th><th style="text-align: left;"><?php echo $this->requestAction('dashboard/translate/Time');?></th><th style="text-align: left;">Description</th></thead>
         <?php foreach($activity as $act)
               {?>
         <tr><td><?php echo $act['Activity']['date'];?></td><td><?php echo $act['Activity']['time'];?></td><td><?php echo $act['Activity']['desc'];?></td></tr>
         
         <?php } ?> 
+        <tr><td colspan="3"><p>&nbsp;</p></td></tr>
         </table></td></tr>
         
             <?php
@@ -732,12 +734,14 @@
         
         <tr><td colspan="2" style="padding: 0;">
         <table style="width: 100%;">
+        <tr><td colspan="3"><p>&nbsp;</p></td></tr>
         <thead><th style="text-align: left;">Date</th><th style="text-align: left;"><?php echo $this->requestAction('dashboard/translate/Time');?></th><th style="text-align: left;">Description</th></thead>
         <?php foreach($activity as $act)
               {?>
         <tr><td><?php echo $act['Activity']['date'];?></td><td><?php echo $act['Activity']['time'];?></td><td><?php echo $act['Activity']['desc'];?></td></tr>
         
         <?php } ?> 
+        <tr><td colspan="3"><p>&nbsp;</p></td></tr>
         </table></td></tr>
         
             <?php
