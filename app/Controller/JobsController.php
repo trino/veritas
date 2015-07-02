@@ -1085,6 +1085,8 @@ class JobsController extends AppController
         $this->loadModel('SiteSignin');
         $this->loadModel('Activity');
         $this->loadModel('Job');
+        $this->load('Member');
+        $this->set('member',$this->Member);
         $this->set('job',$this->Job);
         $this->set('id',$id);
         $arr['conditions'] = array('document_type'=>'report','job_id'=>$id,'(re_id = 22 OR re_id = 10 OR re_id = 5 OR re_id = 4)');
