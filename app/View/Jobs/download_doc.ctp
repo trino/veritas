@@ -55,8 +55,8 @@
         //$logs = array();
         ?>
         
-    
-    <table class="table">
+    <br />
+    <table class="table" style="width: 100%;border:1px solid #e5e5e5;padding:5px;margin-bottom:10px;">
     <tr><td colspan="2"><p>&nbsp;</p> </td></tr>
     <tr>
         <td>
@@ -237,8 +237,8 @@
         $static = $a['static'];
         ?>
         
-    
-    <table class="table">
+    <br />
+    <table class="table" style="width: 100%;border:1px solid #e5e5e5;padding:5px;margin-bottom:10px;">
     <tr><td colspan="2"><p>&nbsp;</p> </td></tr>
     <tr>
         <td><b> <?php echo $this->requestAction('dashboard/translate/Document Type');?></b></td>
@@ -418,8 +418,8 @@
         $activity = $a['act'];
         ?>
         
-    
-    <table class="table" style="width: 40%;">
+    <br />
+    <table class="table" style="width: 100%;border:1px solid #e5e5e5;padding:5px;margin-bottom:10px;">
     <tr><td colspan="2"><p>&nbsp;</p> </td></tr>
     <tr>
         <td><b> <?php echo $this->requestAction('dashboard/translate/Document Type');?></b></td>
@@ -600,8 +600,8 @@
         $activity = $a['act'];
         ?>
         
-    
-    <table class="table" style="width: 40%;">
+    <br />
+    <table class="table" style="width: 100%;border:1px solid #e5e5e5;padding:5px;margin-bottom:10px;">
     <tr><td colspan="2"><p>&nbsp;</p> </td></tr>
     <tr>
         <td><b> <?php echo $this->requestAction('dashboard/translate/Document Type');?></b></td>
