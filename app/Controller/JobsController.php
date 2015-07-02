@@ -1142,6 +1142,8 @@ class JobsController extends AppController
         $this->loadModel('AdditionalLog');
         $this->loadModel('SiteSignin');
         $this->loadModel('Activity');
+        $this->loadModel('Member');
+        $this->set('member',$this->Member);
         $this->loadModel('Job');
         $this->set('job',$this->Job);
         $this->set('id',$id);
