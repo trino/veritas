@@ -19,7 +19,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
                     <tr style="border-bottom: 0px;">
                     <td>Province : </td><td>
                     <select name="uniform[province_uni]">
-                        <option value="Ontorio" <?php if(isset($uniform) && $uniform['UniformIssue']['province_uni']=='Ontorio'){?>selected="selected"<?php }?>>Ontorio</option>
+                        <option value="Ontario" <?php if(isset($uniform) && $uniform['UniformIssue']['province_uni']=='Ontorio'){?>selected="selected"<?php }?>>Ontorio</option>
                         <option value="Quebec" <?php if(isset($uniform) && $uniform['UniformIssue']['province_uni']=='Quebec'){?>selected="selected"<?php }?>>Quebec</option>
                         <option value="British Colombia" <?php if(isset($uniform) && $uniform['UniformIssue']['province_uni']=='British Colombia'){?>selected="selected"<?php }?>>British Colombia</option>
                         <option value="Alberta" <?php if(isset($uniform) && $uniform['UniformIssue']['province_uni']=='Alberta'){?>selected="selected"<?php }?>>Alberta</option>

@@ -13,7 +13,7 @@
                     </tr>
                     <tr style="border-bottom: 0px;">
                     <td>Province : </td><td>
-                    <?php if(isset($uniform)){echo $uniform['UniformIssue']['province_uni'];}?>></td>
+                    <?php if(isset($uniform)){echo $uniform['UniformIssue']['province_uni'];}?></td>
                     </tr>
                     </table>
                 </th>
