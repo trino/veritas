@@ -255,7 +255,7 @@ By signing this document, I agree to the terms set out herein.
  <tr>
     <td colspan="5">
         <p>
-        I, <?php echo(isset($uniform))?$uniform['UniformIssue']['name']:"";?>, agree that one of the following sums of money will be deducted from my pay until
+        I, <?php echo(isset($uniform))?$uniform['UniformIssue']['namefinal']:"";?>, agree that one of the following sums of money will be deducted from my pay until
         the total cost is deducted. Reimbursement will be done within a reasonable amount of time, as per        
         your supervisors' decision. 
         </p>
@@ -288,7 +288,7 @@ By signing this document, I agree to the terms set out herein.
         By clicking one of the boxes below, the employee gives consent for that specific amount to be         
         deducted from every paycheck until the total cost of the uniform has been paid.
         </p>
-        <p><input type="radio" name="radioamt" value="25" readonly="" <?php if((isset($uniform) && $uniform['UniformIssue']['radioamt']==25) || !isset($uniform)){?>checked="checked"<?php }?>  /> $25 &nbsp; &nbsp; &nbsp; <input readonly="" type="radio" name="radioamt" value="50" <?php if(isset($uniform) && $uniform['UniformIssue']['radioamt']==50){?>checked="checked"<?php }?>   /> $50 &nbsp; &nbsp; &nbsp; <input readonly="" type="radio" name="radioamt" value="75" <?php if(isset($uniform) && $uniform['UniformIssue']['radioamt']==75){?>checked="checked"<?php }?>   /> $75 &nbsp; &nbsp; &nbsp; <input readonly="" type="radio" name="radioamt" value="full" <?php if(isset($uniform) && $uniform['UniformIssue']['radioamt']=='full'){?>checked="checked"<?php }?>   /> Full Amount &nbsp; &nbsp; &nbsp; <input readonly="" type="radio" name="radioamt" value="N/A" <?php if(isset($uniform) && $uniform['UniformIssue']['radioamt']=='N/A'){?>checked="checked"<?php }?>   /> N/A</p>
+        <p><input type="radio" name="radioamt" value="25" disabled="disabled" <?php if((isset($uniform) && $uniform['UniformIssue']['radioamt']==25) || !isset($uniform)){?>checked="checked"<?php }?>  /> $25 &nbsp; &nbsp; &nbsp; <input disabled="disabled" type="radio" name="radioamt" value="50" <?php if(isset($uniform) && $uniform['UniformIssue']['radioamt']==50){?>checked="checked"<?php }?>   /> $50 &nbsp; &nbsp; &nbsp; <input disabled="disabled" type="radio" name="radioamt" value="75" <?php if(isset($uniform) && $uniform['UniformIssue']['radioamt']==75){?>checked="checked"<?php }?>   /> $75 &nbsp; &nbsp; &nbsp; <input disabled="disabled" type="radio" name="radioamt" value="full" <?php if(isset($uniform) && $uniform['UniformIssue']['radioamt']=='full'){?>checked="checked"<?php }?>   /> Full Amount &nbsp; &nbsp; &nbsp; <input disabled="disabled" type="radio" name="radioamt" value="N/A" <?php if(isset($uniform) && $uniform['UniformIssue']['radioamt']=='N/A'){?>checked="checked"<?php }?>   /> N/A</p>
         
     </td>
 </tr>   

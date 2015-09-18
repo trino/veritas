@@ -77,7 +77,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td>$20.25</td>
         <td>
         <select name="uniform[no1]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -109,7 +109,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td>$19.75</td>
         <td>
         <select name="uniform[no2]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -140,7 +140,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td>$27.00</td>
         <td>
         <select name="uniform[no3]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -171,7 +171,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td>$26.00</td>
         <td>
         <select name="uniform[no25]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -202,7 +202,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td>$228.50</td>
         <td>
         <select name="uniform[no26]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -233,7 +233,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td>$25.00</td>
         <td>
         <select name="uniform[no27]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -264,7 +264,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td>$49.00</td>
         <td>
         <select name="uniform[no4]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -295,7 +295,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td>$48.75</td>
         <td>
         <select name="uniform[no5]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -326,7 +326,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td>$129.00</td>
         <td>
         <select name="uniform[no6]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -357,7 +357,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td>$7.20</td>
         <td>
         <select name="uniform[no7]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -388,7 +388,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td>$5.50</td>
         <td>
         <select name="uniform[no8]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -419,7 +419,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td>$200.00</td>
         <td>
         <select name="uniform[no9]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -450,7 +450,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td>$615.00</td>
         <td>
         <select name="uniform[no10]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -481,7 +481,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td>$53.00</td>
         <td>
         <select name="uniform[no11]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -512,7 +512,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td>$37.00</td>
         <td>
         <select name="uniform[no12]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -543,7 +543,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td>$3.50</td>
         <td>
         <select name="uniform[no13]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -574,7 +574,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td>$7.50</td>
         <td>
         <select name="uniform[no14]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -605,7 +605,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td>$15.00</td>
         <td>
         <select name="uniform[no15]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -636,7 +636,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td>$20.00</td>
         <td>
         <select name="uniform[no16]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -667,7 +667,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td>$10.00</td>
         <td>
         <select name="uniform[no17]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -698,7 +698,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td>$70.00</td>
         <td>
         <select name="uniform[no18]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -729,7 +729,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td>$5.00</td>
         <td>
         <select name="uniform[no28]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -760,7 +760,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td><input type="text" name="uniform[rate1]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['rate1']:"";?>" class="number" id="rate"/></td>
         <td>
         <select name="uniform[no19]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -791,7 +791,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td><input type="text" name="uniform[rate2]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['rate2']:"";?>" class="number" id="rate"/></td>
         <td>
         <select name="uniform[no20]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -822,7 +822,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td><input type="text" name="uniform[rate3]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['rate3']:"";?>" class="number" id="rate"/></td>
         <td>
         <select name="uniform[no29]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -853,7 +853,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td><input type="text" name="uniform[rate4]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['rate4']:"";?>" class="number" id="rate"/></td>
         <td>
         <select name="uniform[no30]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -884,7 +884,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         <td><input type="text" name="uniform[rate5]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['rate5']:"";?>" class="number" id="rate"/></td>
         <td>
         <select name="uniform[no31]" class="number">
-        <option>Select Quantity</option>
+        <option value="0">Select Quantity</option>
         <?php
         foreach($qtys as $qty)
         {
@@ -927,7 +927,7 @@ By signing this document, I agree to the terms set out herein.
  <tr>
  <td colspan="5">
     <p>
-        I, <?php echo(isset($uniform))?$uniform['UniformIssue']['name']:"";?>, agree that one of the following sums of money will be deducted from my pay until
+        I, <input type="text" style="line-height: 0;border-radius: 0;box-shadow: none; height:15px;padding:0;" name="uniform[namefinal]" value="<?php echo(isset($uniform))?$uniform['UniformIssue']['namefinal']:"";?>" />, agree that one of the following sums of money will be deducted from my pay until
         the total cost is deducted. Reimbursement will be done within a reasonable amount of time, as per        
         your supervisors' decision. 
         </p>
@@ -960,7 +960,7 @@ By signing this document, I agree to the terms set out herein.
         By clicking one of the boxes below, the employee gives consent for that specific amount to be         
         deducted from every paycheck until the total cost of the uniform has been paid.
         </p>
-        <p><input type="radio" name="uniform[radioamt]" value="25" readonly="" <?php if(isset($uniform) && $uniform['UniformIssue']['radioamt']==25){?>checked="checked"<?php }?>  /> $25 &nbsp; &nbsp; &nbsp; <input readonly="" type="radio" name="uniform[radioamt]" value="50" <?php if(isset($uniform) && $uniform['UniformIssue']['radioamt']==50){?>checked="checked"<?php }?>   /> $50 &nbsp; &nbsp; &nbsp; <input readonly="" type="radio" name="uniform[radioamt]" value="75" <?php if(isset($uniform) && $uniform['UniformIssue']['radioamt']==75){?>checked="checked"<?php }?>   /> $75 &nbsp; &nbsp; &nbsp; <input readonly="" type="radio" name="uniform[radioamt]" value="full" <?php if(isset($uniform) && $uniform['UniformIssue']['radioamt']=='full'){?>checked="checked"<?php }?>   /> Full Amount &nbsp; &nbsp; &nbsp; <input readonly="" type="radio" name="uniform[radioamt]" value="N/A" <?php if(isset($uniform) && $uniform['UniformIssue']['radioamt']=='N/A'){?>checked="checked"<?php }?>   /> N/A</p>
+        <p><input type="radio" name="uniform[radioamt]" value="25" <?php if(isset($uniform) && $uniform['UniformIssue']['radioamt']==25){?>checked="checked"<?php }?>  /> $25 &nbsp; &nbsp; &nbsp; <input type="radio" name="uniform[radioamt]" value="50" <?php if(isset($uniform) && $uniform['UniformIssue']['radioamt']==50){?>checked="checked"<?php }?>   /> $50 &nbsp; &nbsp; &nbsp; <input type="radio" name="uniform[radioamt]" value="75" <?php if(isset($uniform) && $uniform['UniformIssue']['radioamt']==75){?>checked="checked"<?php }?>   /> $75 &nbsp; &nbsp; &nbsp; <input type="radio" name="uniform[radioamt]" value="full" <?php if(isset($uniform) && $uniform['UniformIssue']['radioamt']=='full'){?>checked="checked"<?php }?>   /> Full Amount &nbsp; &nbsp; &nbsp; <input type="radio" name="uniform[radioamt]" value="N/A" <?php if(isset($uniform) && $uniform['UniformIssue']['radioamt']=='N/A'){?>checked="checked"<?php }?>   /> N/A</p>
  </td>
  </tr>   
 </table>
