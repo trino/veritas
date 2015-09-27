@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ea23df30-548f-44d8-b2d5-9fa143f847d6" name="Default" comment="">
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\Console\cake.bat" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\View\Members\~index.ctp.htm" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\View\inc.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas.rar" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\110601_891537.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\117550_903649.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\118978_778076.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\133261_422338.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\153503_927188.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\167703_717156.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\169104_940151.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\173333_360568.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\177481_826690.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\182315_678594.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\186242_333267.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\194729.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\206732_400997.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\221453_768161.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\225134_859951.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\230792_154794.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\232934_866433.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\241503_112991.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\246694_833502.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\248837_645141.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\262130_237878.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\265646_621081.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\266058_792550.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\303439_690515.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\317007_397564.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\322390_478094.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\349719_152212.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\363589_525006.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\370318_625668.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\386605_924414.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\402947.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\416763_695953.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\416818_898815.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\419537_590512.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\426239_139743.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\435275_660632.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\467053_566616.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\487872_951522.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\491937_663351.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\496249_838061.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\506851_390533.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\514157_371252.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\517315_785848.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\521627_960559.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\526022.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\538244_676480.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\543627_757009.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\557937_952703.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\579086_754785.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\608502_937680.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\611550_946551.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\636682_606167.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\637258_486224.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\650469_224667.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\663488_603091.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\667526_663488.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\703616_744183.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\709384_444750.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\720095.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\729846_861050.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\731054_824026.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\733169_984234.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\733883_921447.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\734323_744348.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\753411_589083.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\779504_648794.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\794857_198876.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\799801_456506.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\803674_808316.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\806970_380068.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\835726_828613.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\837484_120214.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\854568_210467.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\857617_219338.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\865307.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\882226_201760.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\900271_692108.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\900546_806420.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\922491_400009.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\941415_536157.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\957839_892059.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\989562_595181.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\canvas\995220_790023.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\css\font\fontawesome-webfont.eot" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\css\font\fontawesome-webfont.ttf" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\css\style.css.bak" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\error_log" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\favicon.ico" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\finger_painting.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\favicon.ico" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\layout\favicon.ico" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\130404_673486.docx" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\139111_877200.xlsx" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\142626_360403.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\189703_513607.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\230435_186187.xlsx" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\246722_484933.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\278912.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\282070_976983.docx" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\283059_128509.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\285723_517343.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\310552_411215.docx" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\319918_349279.docx" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\326812_158529.docx" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\329312_838775.docx" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\341287_962811.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\349664.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\357766_621575.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\375921_617648.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\437280_415115.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\448376_893350.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\524594_215136.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\547912_380288.docx" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\600042_296847.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\647009_944326.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\688098_585513.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\696640_180639.docx" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\699826_246667.docx" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\699963_303823.docx" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\716113_545413.txt" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\740832_933560.docx" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\752313_131832.docx" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\801119_825207.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\830014_430908.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\832046_736822.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\838967_197503.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\845669_646734.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\850476_847207.xlsx" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\883132_398992.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\906835_184182.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\910076_453073.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\926885_429013.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\934301_815457.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\939657_344555.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\952813_780136.docx" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\964294_878408.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\984756_394708.docx" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\989837_709494.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\img\uploads\998736_273226.txt" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\jquery.saveCanvas.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\js.rar" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\torun.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\app\webroot\~~ebay.php.htm" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\build.properties" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\hey van.txt" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\lib\Cake\Console\Templates\skel\Console\cake.bat" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\lib\Cake\Console\Templates\skel\webroot\favicon.ico" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\lib\Cake\Console\cake.bat" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\lib\Cake\Test\test_app\Config\acl.ini" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\lib\Cake\Test\test_app\Config\empty.ini" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\lib\Cake\Test\test_app\Config\htmlhelper_minimized.ini" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\lib\Cake\Test\test_app\Config\nested.ini" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\lib\Cake\Test\test_app\Config\no_section.ini" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\lib\Cake\Test\test_app\Plugin\PluginJs\webroot\js\one\plugin_one.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\lib\Cake\Test\test_app\Plugin\PluginJs\webroot\js\plugin_js.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\lib\Cake\Test\test_app\Plugin\TestPlugin\Config\nested.ini" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\lib\Cake\Test\test_app\Plugin\TestPlugin\webroot\css\theme_one.htc" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\lib\Cake\Test\test_app\Plugin\TestPlugin\webroot\js\test_plugin\test.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\lib\Cake\Test\test_app\Plugin\TestPlugin\webroot\root.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\lib\Cake\Test\test_app\View\Posts\alt_ext.alt" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\lib\Cake\Test\test_app\View\Themed\TestTheme\webroot\js\one\theme_one.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\lib\Cake\Test\test_app\View\Themed\TestTheme\webroot\js\theme.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\veritas.pub" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\veritas.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\veritas.sql.gz" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\veritas.tar.gz" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\veritas\veritas" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\veritas\veritas.pub" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\veritas\veritas\veritas.sql" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/webroot/img/map.jpg" afterPath="$PROJECT_DIR$/app/webroot/img/map.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Controller/UploadsController.php" afterPath="$PROJECT_DIR$/app/Controller/UploadsController.php" />
+    </list>
+    <ignored path="veritas.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="veritas" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="UploadsController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Controller/UploadsController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5446224">
+              <caret line="2275" column="0" selection-start-line="2275" selection-start-column="0" selection-end-line="2275" selection-end-column="0" />
+              <folding>
+                <marker date="1443022197300" expanded="true" signature="4206:4333" placeholder="SELECT COUNT..." />
+                <marker date="1443022197300" expanded="true" signature="4404:4536" placeholder="SELECT COUNT..." />
+                <marker date="1443022197300" expanded="true" signature="4615:4798" placeholder="SELECT COUNT..." />
+                <marker date="1443022197300" expanded="true" signature="4883:5039" placeholder="SELECT COUNT..." />
+                <marker date="1443022197300" expanded="true" signature="5368:5512" placeholder="SELECT COUNT..." />
+                <marker date="1443022197300" expanded="true" signature="5585:5747" placeholder="SELECT COUNT..." />
+                <marker date="1443022197300" expanded="true" signature="5828:5984" placeholder="SELECT COUNT..." />
+                <marker date="1443022197300" expanded="true" signature="6067:6223" placeholder="SELECT COUNT..." />
+                <marker date="1443022197300" expanded="true" signature="7577:7699" placeholder="SELECT COUNT..documents..." />
+                <marker date="1443022197300" expanded="true" signature="7952:8057" placeholder="SELECT COUNT..documents..." />
+                <marker date="1443022197300" expanded="true" signature="8272:8374" placeholder="SELECT COUNT..documents..." />
+                <marker date="1443022197300" expanded="true" signature="8488:8569" placeholder="SELECT COUNT..documents..." />
+                <marker date="1443022197300" expanded="true" signature="80547:80558" placeholder="..." />
+                <marker date="1443022197300" expanded="true" signature="80559:81305" placeholder="..." />
+                <marker date="1443022197300" expanded="true" signature="81085:81305" placeholder="..." />
+                <marker date="1443022197300" expanded="true" signature="81101:81305" placeholder="..." />
+                <marker date="1443022197300" expanded="true" signature="81158:81305" placeholder="..." />
+                <marker date="1443022197300" expanded="true" signature="147862:147873" placeholder="..." />
+                <marker date="1443022197300" expanded="true" signature="147874:148620" placeholder="..." />
+                <marker date="1443022197300" expanded="true" signature="148400:148620" placeholder="..." />
+                <marker date="1443022197300" expanded="true" signature="148416:148620" placeholder="..." />
+                <marker date="1443022197300" expanded="true" signature="148473:148620" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="document_edit.ctp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/View/Uploads/document_edit.ctp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="411" column="171" selection-start-line="411" selection-start-column="171" selection-end-line="411" selection-end-column="171" />
+              <folding>
+                <marker date="1443022431541" expanded="true" signature="59968:60083" placeholder="..." />
+                <marker date="1443022431541" expanded="true" signature="60586:60701" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/app/Controller/UploadsController.php" />
+        <option value="$PROJECT_DIR$/app/View/Uploads/document_edit.ctp" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="NamedScopeManager">
+    <order />
+  </component>
+  <component name="PhpServers">
+    <servers />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-4" />
+    <option name="y" value="-4" />
+    <option name="width" value="1928" />
+    <option name="height" value="1044" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="veritas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="veritas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="veritas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="veritas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="veritas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="veritas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="veritas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webroot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="veritas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="veritas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../veritas3-0" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FullScreen" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ea23df30-548f-44d8-b2d5-9fa143f847d6" name="Default" comment="" />
+      <created>1443021025710</created>
+      <option name="number" value="Default" />
+      <updated>1443021025710</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-4" y="-4" width="1928" height="1044" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25239617" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.07650862" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/Controller/UploadsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2251" column="0" selection-start-line="2251" selection-start-column="0" selection-end-line="2251" selection-end-column="0" />
+          <folding>
+            <marker date="1443022197300" expanded="true" signature="4206:4333" placeholder="SELECT COUNT..." />
+            <marker date="1443022197300" expanded="true" signature="4404:4536" placeholder="SELECT COUNT..." />
+            <marker date="1443022197300" expanded="true" signature="4615:4798" placeholder="SELECT COUNT..." />
+            <marker date="1443022197300" expanded="true" signature="4883:5039" placeholder="SELECT COUNT..." />
+            <marker date="1443022197300" expanded="true" signature="5368:5512" placeholder="SELECT COUNT..." />
+            <marker date="1443022197300" expanded="true" signature="5585:5747" placeholder="SELECT COUNT..." />
+            <marker date="1443022197300" expanded="true" signature="5828:5984" placeholder="SELECT COUNT..." />
+            <marker date="1443022197300" expanded="true" signature="6067:6223" placeholder="SELECT COUNT..." />
+            <marker date="1443022197300" expanded="true" signature="7577:7699" placeholder="SELECT COUNT..documents..." />
+            <marker date="1443022197300" expanded="true" signature="7952:8057" placeholder="SELECT COUNT..documents..." />
+            <marker date="1443022197300" expanded="true" signature="8272:8374" placeholder="SELECT COUNT..documents..." />
+            <marker date="1443022197300" expanded="true" signature="8488:8569" placeholder="SELECT COUNT..documents..." />
+            <marker date="1443022197300" expanded="true" signature="80547:80558" placeholder="..." />
+            <marker date="1443022197300" expanded="true" signature="80559:81305" placeholder="..." />
+            <marker date="1443022197300" expanded="true" signature="81085:81305" placeholder="..." />
+            <marker date="1443022197300" expanded="true" signature="81101:81305" placeholder="..." />
+            <marker date="1443022197300" expanded="true" signature="81158:81305" placeholder="..." />
+            <marker date="1443022197300" expanded="true" signature="147862:147873" placeholder="..." />
+            <marker date="1443022197300" expanded="true" signature="147874:148620" placeholder="..." />
+            <marker date="1443022197300" expanded="true" signature="148400:148620" placeholder="..." />
+            <marker date="1443022197300" expanded="true" signature="148416:148620" placeholder="..." />
+            <marker date="1443022197300" expanded="true" signature="148473:148620" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/View/Uploads/document_edit.ctp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="411" column="171" selection-start-line="411" selection-start-column="171" selection-end-line="411" selection-end-column="171" />
+          <folding>
+            <marker date="1443022431541" expanded="true" signature="59968:60083" placeholder="..." />
+            <marker date="1443022431541" expanded="true" signature="60586:60701" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/View/Uploads/document_edit.ctp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="411" column="171" selection-start-line="411" selection-start-column="171" selection-end-line="411" selection-end-column="171" />
+          <folding>
+            <marker date="1443022431541" expanded="true" signature="59968:60083" placeholder="..." />
+            <marker date="1443022431541" expanded="true" signature="60586:60701" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Controller/UploadsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5446224">
+          <caret line="2275" column="0" selection-start-line="2275" selection-start-column="0" selection-end-line="2275" selection-end-column="0" />
+          <folding>
+            <marker date="1443022197300" expanded="true" signature="4206:4333" placeholder="SELECT COUNT..." />
+            <marker date="1443022197300" expanded="true" signature="4404:4536" placeholder="SELECT COUNT..." />
+            <marker date="1443022197300" expanded="true" signature="4615:4798" placeholder="SELECT COUNT..." />
+            <marker date="1443022197300" expanded="true" signature="4883:5039" placeholder="SELECT COUNT..." />
+            <marker date="1443022197300" expanded="true" signature="5368:5512" placeholder="SELECT COUNT..." />
+            <marker date="1443022197300" expanded="true" signature="5585:5747" placeholder="SELECT COUNT..." />
+            <marker date="1443022197300" expanded="true" signature="5828:5984" placeholder="SELECT COUNT..." />
+            <marker date="1443022197300" expanded="true" signature="6067:6223" placeholder="SELECT COUNT..." />
+            <marker date="1443022197300" expanded="true" signature="7577:7699" placeholder="SELECT COUNT..documents..." />
+            <marker date="1443022197300" expanded="true" signature="7952:8057" placeholder="SELECT COUNT..documents..." />
+            <marker date="1443022197300" expanded="true" signature="8272:8374" placeholder="SELECT COUNT..documents..." />
+            <marker date="1443022197300" expanded="true" signature="8488:8569" placeholder="SELECT COUNT..documents..." />
+            <marker date="1443022197300" expanded="true" signature="80547:80558" placeholder="..." />
+            <marker date="1443022197300" expanded="true" signature="80559:81305" placeholder="..." />
+            <marker date="1443022197300" expanded="true" signature="81085:81305" placeholder="..." />
+            <marker date="1443022197300" expanded="true" signature="81101:81305" placeholder="..." />
+            <marker date="1443022197300" expanded="true" signature="81158:81305" placeholder="..." />
+            <marker date="1443022197300" expanded="true" signature="147862:147873" placeholder="..." />
+            <marker date="1443022197300" expanded="true" signature="147874:148620" placeholder="..." />
+            <marker date="1443022197300" expanded="true" signature="148400:148620" placeholder="..." />
+            <marker date="1443022197300" expanded="true" signature="148416:148620" placeholder="..." />
+            <marker date="1443022197300" expanded="true" signature="148473:148620" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -2243,11 +2243,12 @@ class UploadsController extends AppController
             $arr['description'] = $_POST['description'];
             }
             $arr['document_type'] = $_POST['document_type'];
-            
+
+
             if($_POST['document_type']== 'evidence')
             {
-                $arr['incident_date'] = $_POST['incident_date'];
-            
+
+                echo  $arr['incident_date'] = $_POST['incident_date'];
                 //$arr['desc'] = $_POST['desc'];
                 $arr['evidence_type'] = $_POST['evidence_type'];
                 $arr_e = array('Incident Report','Line Crossing Sheet','Shift Summary','Incident Video','Executive Summary','Average Picket Count','Victim Statement','Miscellaneous');

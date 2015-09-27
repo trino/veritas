@@ -19,7 +19,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
                     <tr style="border-bottom: 0px;">
                     <td>Province : </td><td>
                     <select name="uniform[province_uni]">
-                        <option value="Ontario" <?php if(isset($uniform) && $uniform['UniformIssue']['province_uni']=='Ontorio'){?>selected="selected"<?php }?>>Ontorio</option>
+                        <option value="Ontario" <?php if(isset($uniform) && $uniform['UniformIssue']['province_uni']=='Ontario'){?>selected="selected"<?php }?>>Ontario</option>
                         <option value="Quebec" <?php if(isset($uniform) && $uniform['UniformIssue']['province_uni']=='Quebec'){?>selected="selected"<?php }?>>Quebec</option>
                         <option value="British Colombia" <?php if(isset($uniform) && $uniform['UniformIssue']['province_uni']=='British Colombia'){?>selected="selected"<?php }?>>British Colombia</option>
                         <option value="Alberta" <?php if(isset($uniform) && $uniform['UniformIssue']['province_uni']=='Alberta'){?>selected="selected"<?php }?>>Alberta</option>
@@ -244,7 +244,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         ?>
         </select>
         </td>
-        <td><input class="cost" type="text" value="<?php echo(isset($uniform))?"$".$uniform['UniformIssue']['cost27']:"";?>" name="uniform[cost25]" readonly="readonly"/></td>
+        <td><input class="cost" type="text" value="<?php echo(isset($uniform))?"$".$uniform['UniformIssue']['cost27']:"";?>" name="uniform[cost27]" readonly="readonly"/></td>
         <td>
         <select name="uniform[size27]">
         <?php
@@ -740,7 +740,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         ?>
         </select>
         </td>
-        <td><input class="cost" type="text" value="<?php echo(isset($uniform))?"$".$uniform['UniformIssue']['cost28']:"";?>" name="uniform[cost18]" readonly="readonly"/></td>
+        <td><input class="cost" type="text" value="<?php echo(isset($uniform))?"$".$uniform['UniformIssue']['cost28']:"";?>" name="uniform[cost28]" readonly="readonly"/></td>
         <td>
         <select name="uniform[size28]">
         <?php
@@ -895,7 +895,7 @@ $qtys = array(1,2,3,4,5,6,7,8,9);
         ?>
         </select>
         </td>
-        <td><input class="cost" type="text" value="<?php echo(isset($uniform))?"$".$uniform['UniformIssue']['cost31']:"";?>" name="uniform[cost20]" readonly="readonly"/></td>
+        <td><input class="cost" type="text" value="<?php echo(isset($uniform))?"$".$uniform['UniformIssue']['cost31']:"";?>" name="uniform[cost31]" readonly="readonly"/></td>
         <td>
         <select name="uniform[size31]">
         <?php

@@ -79,14 +79,16 @@
         <td><?php echo(isset($uniform))?$uniform['UniformIssue']['size25']:"";?></td>
     </tr>
     <tr>
-        <td>White Security Shirt - Short Sleve</td>
+	        <td>White Security Shirt - Long Sleve</td>
+
         <td>$228.50</td>
         <td><?php echo(isset($uniform))?$uniform['UniformIssue']['no26']:"";?></td>
         <td><?php echo(isset($uniform))?"$".$uniform['UniformIssue']['cost26']:"";?></td>
         <td><?php echo(isset($uniform))?$uniform['UniformIssue']['size26']:"";?></td>
     </tr>
     <tr>
-        <td>White Security Shirt - Long Sleve</td>
+	        <td>White Security Shirt - Short Sleve</td>
+
         <td>$25.00</td>
         <td><?php echo(isset($uniform))?$uniform['UniformIssue']['no27']:"";?></td>
         <td><?php echo(isset($uniform))?"$".$uniform['UniformIssue']['cost27']:"";?></td>
